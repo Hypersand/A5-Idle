@@ -24,8 +24,7 @@
             <a href="https://github.com/Hosung99">
               <img src="https://github.com/Hosung99.png" width="100">
               <br />
-              <b>손성호 </br>(
-Hosung99)</b>
+              <b>손성호 </br>(Hosung99)</b>
             </a>
         </td>
         <td style="min-width: 150px;">
