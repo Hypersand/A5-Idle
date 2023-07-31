@@ -1,8 +1,8 @@
 ---
-name: Bug Issue
-about: 버그 이슈 생성
-title: ''
-labels: "Bug \U0001F6A8"
+name: Backend Issue
+about: 백엔드 이슈 생성
+title: "[BE]"
+labels: "Backend \U0001FAE5"
 assignees: ''
 
 ---

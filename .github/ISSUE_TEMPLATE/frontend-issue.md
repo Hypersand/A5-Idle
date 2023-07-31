@@ -1,8 +1,8 @@
 ---
-name: Normal Issue
-about: 기본적인 이슈 생성
-title: "[FE] [BE]"
-labels: ''
+name: Frontend Issue
+about: 프론트엔드 이슈 생성
+title: "[FE]"
+labels: "Frontend \U0001F610"
 assignees: ''
 
 ---
