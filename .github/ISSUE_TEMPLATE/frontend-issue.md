@@ -2,7 +2,7 @@
 name: Frontend Issue
 about: 프론트엔드 이슈 생성
 title: "[FE]"
-labels: "Frontend \U0001F610"
+labels: Frontend ☀️
 assignees: ''
 
 ---

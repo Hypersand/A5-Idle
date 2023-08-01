@@ -2,7 +2,7 @@
 name: Backend Issue
 about: 백엔드 이슈 생성
 title: "[BE]"
-labels: "Backend \U0001FAE5"
+labels: Backend ⚙️
 assignees: ''
 
 ---
