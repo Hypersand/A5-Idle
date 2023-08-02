@@ -1,5 +1,6 @@
+import ClickCarModelName from "../components/clickCarModelName/clickCarModelName";
 function TrimPage() {
-  return <div>trimPage</div>;
+  return <ClickCarModelName />;
 }
 
 export default TrimPage;
