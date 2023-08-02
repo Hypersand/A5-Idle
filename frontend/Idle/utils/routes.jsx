@@ -1,0 +1,2 @@
+export const FONT_HEAD = "frontend/Idle/src/assets/fonts/AnyConv.com__HyundaiSansHeadKRRegular.woff"
+export const FONT_TEXT = "frontend/Idle/src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff"
