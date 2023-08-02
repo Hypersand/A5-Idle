@@ -1,5 +1,5 @@
-import { css, createGlobalStyle } from 'styled-components'
-import {FONT_HEAD, FONT_TEXT} from "../utils/routes.jsx"
+import { css, createGlobalStyle } from "styled-components";
+import { FONT_HEAD, FONT_TEXT } from "../utils/routes.jsx";
 
 // prettier-ignore
 const reset = css`
@@ -58,11 +58,11 @@ table {
 
 @font-face {
   font-family: "Hyundai Sans Head KR";
-  src: url(${FONT_HEAD}) format("woff");
+  src: url(${FONT_HEAD});
 }
 @font-face {
   font-family: "Hyundai Sans Text KR";
-  src: url(${FONT_TEXT})format("woff");
+  src: url(${FONT_TEXT});
 }
 `
-export const Reset = createGlobalStyle`${reset}`
+export const Reset = createGlobalStyle`${reset}`;
