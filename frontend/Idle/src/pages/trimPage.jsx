@@ -1,5 +1,12 @@
+import MainLogo from "../components/common/MainLogo";
+
 function TrimPage() {
-  return <div>trimPage</div>;
+  return (
+    <div>
+      <MainLogo />
+      {/* trimPage */}
+    </div>
+  );
 }
 
 export default TrimPage;
