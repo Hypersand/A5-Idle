@@ -55,6 +55,17 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+button {
+  border: 0;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-decoration: none;
+  background: transparent;
+}
 
 @font-face {
   font-family: "Hyundai Sans Head KR";
