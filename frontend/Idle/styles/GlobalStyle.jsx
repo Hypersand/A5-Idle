@@ -56,12 +56,134 @@ table {
   border-spacing: 0;
 }
 
+
 @font-face {
   font-family: "Hyundai Sans Head KR";
   src: url(${FONT_HEAD});
 }
 @font-face {
   font-family: "Hyundai Sans Text KR";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 44px;
+  letter-spacing: -1.08px;
+  src: url(${FONT_TEXT});
+}
+@font-face {
+  font-family: "display small";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 44px;
+  letter-spacing: -1.08px;
+  src: url(${FONT_HEAD});
+}
+@font-face {
+  font-family: "headline large";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 40px; /* 125% */
+  letter-spacing: -0.96px;
+  src: url(${FONT_HEAD});
+}
+@font-face {
+  font-family: "headline medium";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px; /* 128.571% */
+  letter-spacing: -0.84px;
+  src: url(${FONT_HEAD});
+}
+@font-face {
+  font-family: "headline small";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px; /* 133.333% */
+  letter-spacing: -0.72px;
+  src: url(${FONT_HEAD});
+}
+@font-face {
+  font-family: "title large1";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px; /* 127.273% */
+  letter-spacing: -0.66px;
+  src: url(${FONT_TEXT});
+}
+@font-face {
+  font-family: "title large2";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px; /* 140% */
+  letter-spacing: -0.6px;
+  src: url(${FONT_TEXT});
+}
+
+@font-face {
+  font-family: "title medium1";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px; /* 145.455% */
+  letter-spacing: -0.66px;
+  src: url(${FONT_TEXT});
+}
+@font-face {
+  font-family: "title medium2";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.48px;
+  src: url(${FONT_TEXT});
+}
+
+@font-face {
+  font-family: "title small";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.42px;
+  src: url(${FONT_TEXT});
+}
+
+@font-face {
+  font-family: "body medium1";
+  font-family: Hyundai Sans Text KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.48px;
+  src: url(${FONT_TEXT});
+}
+
+@font-face {
+  font-family: "body medium2";
+  font-family: Hyundai Sans Text KR;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.42px;
+  src: url(${FONT_TEXT});
+}
+
+@font-face {
+  font-family: "body small";
+  font-family: Hyundai Sans Text KR;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: -0.36px;
   src: url(${FONT_TEXT});
 }
 `
