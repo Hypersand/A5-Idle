@@ -1,10 +1,9 @@
-import MainLogo from "../components/common/MainLogo";
-import ClickCarModelName from "../components/clickCarModelName/clickCarModelName";
+import NavbarBox from "../components/common/NavbarBox";
+
 function TrimPage() {
   return (
     <div>
-      <MainLogo />
-      <ClickCarModelName />
+      <NavbarBox />
       {/* trimPage */}
     </div>
   );

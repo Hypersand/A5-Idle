@@ -1,6 +1,6 @@
 // import MainLogoImg from "../../assets/images/Hyundai.svg";
 import styled from "styled-components";
-import { ReactComponent as MainLogoImg } from "../../assets/images/Hyundai.svg";
+import { ReactComponent as MainLogoImg } from "../../assets/images/hyundai.svg";
 import { HYUNDAI_MAIN } from "../../../utils/routes";
 
 function MainLogo() {
