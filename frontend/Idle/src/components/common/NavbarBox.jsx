@@ -4,13 +4,15 @@ import { useContext, useEffect, useState } from "react";
 import carContext from "../../../utils/carContext";
 import currentPageContext from "../../../utils/currentPageContext";
 import { TYPE } from "../../../utils/constants";
+import { useNavigate } from "react-router-dom";
+
 /**
  *
  * @param {trim,color~~} type
  * @param {현재 무슨 페이지인지} currentPage
  * @param {setIsMatch} setIsMatch
  */
-function checkPage(type, currentPage, setIsMatch) {
+function checkMatch(type, currentPage, setIsMatch) {
   if (type === currentPage) {
     setIsMatch(true);
   }
@@ -47,7 +49,12 @@ function renderOption(type, options) {
   }
   return selectedOptions.map((item, index) => <StSelected key={index}>{item}</StSelected>);
 }
-
+/**
+ *
+ * @param {trim,detail~~} type
+ * @param {전역 차 객체} car
+ * @returns 현재 type에서 총 가격
+ */
 function getTotalSum(type, car) {
   let total = 0;
   switch (type) {
@@ -69,6 +76,10 @@ function getTotalSum(type, car) {
   return total;
 }
 
+function boxClicked(type, navigate) {
+  navigate(`/${type}`);
+}
+
 /**
  *
  * @param {trim,color,option등 중 어떤 건지} type
@@ -79,19 +90,20 @@ function NavbarBox({ type }) {
   const { car } = useContext(carContext);
   const { currentPage } = useContext(currentPageContext);
   const [isMatch, setIsMatch] = useState(false);
+  const navigate = useNavigate();
 
   let totalSum = getTotalSum(type, car);
 
   useEffect(() => {
-    checkPage(type, currentPage, setIsMatch);
+    checkMatch(type, currentPage, setIsMatch);
   }, []);
 
   return (
-    <StDiv $ismatch={isMatch}>
+    <StDiv $ismatch={isMatch} onClick={() => boxClicked(type, navigate)}>
       <StTopDiv>
         <StType>{TYPE[type]}</StType>
         <StRightDiv>
-          <StMoney> {totalSum !== 0 ? "+" + totalSum : ""} </StMoney>
+          <StMoney> {totalSum !== 0 ? "+" + totalSum.toLocaleString() : ""} </StMoney>
           <Checked />
         </StRightDiv>
       </StTopDiv>

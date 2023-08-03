@@ -67,7 +67,7 @@ function App() {
       return this.getTrimSum() + this.getColorSum() + this.getDetailSum() + this.getOptionSum();
     },
   });
-  const [currentPage, setCurrentPage] = useState("trim");
+  const [currentPage, setCurrentPage] = useState("bill");
   return (
     <ThemeProvider theme={color}>
       <Reset />
@@ -75,7 +75,7 @@ function App() {
         <carContext.Provider value={{ car, setCar }}>
           <currentPageContext.Provider value={{ currentPage, setCurrentPage }}>
             <Routes>
-              <Route path="/" element={<TrimPage />}></Route>
+              <Route path="/trim" element={<TrimPage />}></Route>
               <Route path="/detailmodel" element={<DetailModelPage />}></Route>
               <Route path="/color" element={<ColorPage />}></Route>
               <Route path="/option" element={<OptionPage />}></Route>
