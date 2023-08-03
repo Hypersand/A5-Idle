@@ -91,7 +91,7 @@ function NavbarBox({ type }) {
       <StTopDiv>
         <StType>{TYPE[type]}</StType>
         <StRightDiv>
-          <StMoney>+ {totalSum}</StMoney>
+          <StMoney> {totalSum !== 0 ? "+" + totalSum : ""} </StMoney>
           <Checked />
         </StRightDiv>
       </StTopDiv>
