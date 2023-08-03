@@ -13,35 +13,38 @@ import currentPageContext from "../utils/currentPageContext";
 function App() {
   const [car, setCar] = useState({
     trim: {
-      name: "",
-      price: 0,
+      name: "Caligraphy",
+      price: 4800,
     },
     detail: {
       engine: {
-        name: "",
-        price: 0,
+        name: "disel",
+        price: 100,
       },
       wd: {
-        name: "",
-        price: 0,
+        name: "4wd",
+        price: 40,
       },
       bodytype: {
-        name: "",
-        price: 0,
+        name: "4p",
+        price: 40,
       },
     },
     color: {
       outside: {
-        name: "",
-        price: 0,
+        name: "gray",
+        price: 10,
       },
       inside: {
-        name: "",
-        price: 0,
+        name: "red",
+        price: 10,
       },
     },
     option: {
-      additional: [],
+      additional: [
+        { name: "sunroof", price: 10 },
+        { name: "sunroof2", price: 10 },
+      ],
       confusing: [],
     },
   });

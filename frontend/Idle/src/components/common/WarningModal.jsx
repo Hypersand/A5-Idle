@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import carContext from "../../../utils/carContext";
 import BlueButton from "./BlueButton";
 import WhiteButton from "./WhiteButton";
 /**
@@ -9,13 +10,44 @@ import WhiteButton from "./WhiteButton";
  */
 function WarningModal({ title }) {
   const [modalVisible, setModalVisible] = useState(true);
+  const { car, setCar } = useContext(carContext);
   function clickCancel() {
     setModalVisible(false);
   }
   function clickCheck() {
-    console.log(car);
-    // 차 객체 비우고 첫 페이지로 렌더링
+    setCar({
+      trim: {
+        name: "",
+        price: 0,
+      },
+      detail: {
+        engine: {
+          name: "",
+          price: 0,
+        },
+        wd: {
+          name: "",
+          price: 0,
+        },
+        bodytype: {
+          name: "",
+          price: 0,
+        },
+      },
+      color: {
+        outside: {
+          name: "",
+          price: 0,
+        },
+        inside: {
+          name: "",
+          price: 0,
+        },
+      },
+    });
+    //첫 페이지로 렌더링
   }
+  console.log(car);
   if (!modalVisible) {
     return null;
   }
