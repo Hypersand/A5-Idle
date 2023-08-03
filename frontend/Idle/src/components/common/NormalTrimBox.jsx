@@ -4,7 +4,7 @@ import { useContext } from "react";
 import carContext from "../../../utils/carContext";
 
 // eslint-disable-next-line react/prop-types
-function NormalTrimBox({ usage, title, detail, price }) {
+function NormalTrimBox({ usage, title, detail, price, isActive = true }) {
   const { car, setCar } = useContext(carContext);
 
   function trimClicked(name) {
@@ -22,7 +22,11 @@ function NormalTrimBox({ usage, title, detail, price }) {
   const isTrimSelected = car.trim.name === title;
 
   return (
-    <StContainer onClick={() => trimClicked(title)} $isSelected={isTrimSelected}>
+    <StContainer
+      onClick={() => trimClicked(title)}
+      $isSelected={isTrimSelected}
+      $isActive={isActive}
+    >
       <StContent>
         <StTitleContainer>
           <StContentHeader>
@@ -55,6 +59,8 @@ const StContainer = styled.div`
   align-items: flex-start;
   gap: 8px;
   flex-shrink: 0;
+  pointer-events: ${({ $isActive }) => ($isActive ? "" : "none")};
+  opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
     background: ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#e7ecf9")};
     opacity: 0.9;
