@@ -2,7 +2,7 @@ name: Idle Backend Project CI/CD build
 on:
   push:
     branches: 
-      - be-main
+      - main
   pull_request:
     branches: 
       - be-develop
