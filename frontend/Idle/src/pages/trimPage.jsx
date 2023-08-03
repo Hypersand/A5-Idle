@@ -1,3 +1,4 @@
+
 import NavbarBox from "../components/common/NavbarBox";
 
 function TrimPage() {
