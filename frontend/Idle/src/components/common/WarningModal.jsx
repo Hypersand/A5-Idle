@@ -47,7 +47,6 @@ function WarningModal({ title }) {
     });
     //첫 페이지로 렌더링
   }
-  console.log(car);
   if (!modalVisible) {
     return null;
   }

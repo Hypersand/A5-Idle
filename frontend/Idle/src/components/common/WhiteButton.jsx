@@ -40,6 +40,7 @@ const StButton = styled.button`
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   pointer-events: ${({ $isActive }) => ($isActive ? "" : "none")};
   &:hover {
-    opacity: 0.9;
+    cursor: pointer;
+    opacity: 0.5;
   }
 `;
