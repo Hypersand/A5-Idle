@@ -1,10 +1,10 @@
-import MainLogo from "../components/common/MainLogo";
-import CarNameDropdown from "../components/carNameDropdown/carNameDropdown";
+
+import NavbarBox from "../components/common/NavbarBox";
+
 function TrimPage() {
   return (
     <div>
-      <MainLogo />
-      <CarNameDropdown />
+      <NavbarBox />
       {/* trimPage */}
     </div>
   );
