@@ -7,45 +7,64 @@ import DetailModelPage from "./pages/detailModelPage";
 import ColorPage from "./pages/colorPage";
 import OptionPage from "./pages/optionPage";
 import BillPage from "./pages/billPage";
-import { useState } from "react";
 import carContext from "../utils/carContext";
 import currentPageContext from "../utils/currentPageContext";
+import { useState } from "react";
 function App() {
   const [car, setCar] = useState({
     trim: {
-      name: "Caligraphy",
-      price: 4800,
+      name: "Leblanc",
+      price: 0,
     },
     detail: {
       engine: {
-        name: "disel",
-        price: 100,
+        name: "가솔린",
+        price: 0,
       },
       wd: {
         name: "4wd",
-        price: 40,
+        price: 0,
       },
       bodytype: {
-        name: "4p",
-        price: 40,
+        name: "7인승",
+        price: 0,
       },
     },
     color: {
       outside: {
-        name: "gray",
-        price: 10,
+        name: "그라파이드 그레이 메탈릭",
+        price: 0,
       },
       inside: {
-        name: "red",
-        price: 10,
+        name: "퀼팅천연(블랙)",
+        price: 0,
       },
     },
     option: {
       additional: [
-        { name: "sunroof", price: 10 },
-        { name: "sunroof2", price: 10 },
+        { name: "현대스마트센스", price: 1000000 },
+        { name: "컴포트2", price: 2000000 },
+        { name: "듀얼와이드 선루프", price: 3000000 },
       ],
-      confusing: [],
+      confusing: ["a", "b", "C"],
+    },
+    bill: {},
+    getTrimSum: function () {
+      return this.trim.price;
+    },
+    getDetailSum: function () {
+      return this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price;
+    },
+    getColorSum: function () {
+      return this.color.outside.price + this.color.inside.price;
+    },
+    getOptionSum: function () {
+      let total = 0;
+      this.option.additional.forEach((item) => (total += item.price));
+      return total;
+    },
+    getAllSum: function () {
+      return this.getTrimSum() + this.getColorSum() + this.getDetailSum() + this.getOptionSum();
     },
   });
   const [currentPage, setCurrentPage] = useState("trim");
