@@ -1,10 +1,10 @@
 import MainLogo from "../components/common/MainLogo";
-import ClickCarModelName from "../components/clickCarModelName/clickCarModelName";
+import CarNameDropdown from "../components/carNameDropdown/carNameDropdown";
 function TrimPage() {
   return (
     <div>
       <MainLogo />
-      <ClickCarModelName />
+      <CarNameDropdown />
       {/* trimPage */}
     </div>
   );
