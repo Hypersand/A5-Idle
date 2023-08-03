@@ -61,7 +61,7 @@ jobs:
 
       - name: Docker Hub build and push
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/idle:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/idle:latest .
           docker images
           docker push ${{ secrets.DOCKER_USERNAME }}/idle:latest
       
