@@ -1,25 +1,39 @@
 import { styled } from "styled-components";
 import { ReactComponent as ArrorRight } from "../../assets/images/arrowRight.svg";
+import { useContext } from "react";
+import carContext from "../../../utils/carContext";
 
-/**
- *
- * @param {*} value {usage, title, detail, price}
- * @returns
- */
-function NormalTrimBox(value) {
+// eslint-disable-next-line react/prop-types
+function NormalTrimBox({ usage, title, detail, price }) {
+  const { car, setCar } = useContext(carContext);
+
+  function trimClicked(name) {
+    if (car.trim.name !== name) {
+      setCar((prevCar) => ({
+        ...prevCar,
+        trim: {
+          ...prevCar.trim,
+          name: name,
+        },
+      }));
+    }
+  }
+
+  const isTrimSelected = car.trim.name === title;
+
   return (
-    <StContainer>
+    <StContainer onClick={() => trimClicked(title)} $isSelected={isTrimSelected}>
       <StContent>
         <StTitleContainer>
           <StContentHeader>
-            <TitleDetail>{value.usage}</TitleDetail>
-            <Title>{value.title}</Title>
+            <TitleDetail $isSelected={isTrimSelected}>{usage}</TitleDetail>
+            <Title $isSelected={isTrimSelected}>{title}</Title>
           </StContentHeader>
-          <Detail>{value.detail}</Detail>
+          <Detail $isSelected={isTrimSelected}>{detail}</Detail>
         </StTitleContainer>
-        <Price>{value.price} 원</Price>
+        <Price $isSelected={isTrimSelected}>{price} 원</Price>
       </StContent>
-      <PopUpButton>
+      <PopUpButton $isSelected={isTrimSelected}>
         자세히 보기
         <ArrorRight />
       </PopUpButton>
@@ -34,13 +48,17 @@ const StContainer = styled.div`
   width: 150px;
   height: 138px;
   padding: 12px 24px;
-  border: 1px solid ${({ theme }) => theme.Grey_2};
-  background: ${({ theme }) => theme.White};
+  border: 1px solid ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#DDD")};
+  background: ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#fff")};
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 8px;
   flex-shrink: 0;
+  &:hover {
+    background: ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#e7ecf9")};
+    opacity: 0.9;
+  }
 `;
 
 const StContent = styled.div`
@@ -51,6 +69,7 @@ const StContent = styled.div`
   align-items: flex-start;
   flex-shrink: 0;
 `;
+
 const StContentHeader = styled.div`
   display: flex;
   flex-direction: column;
@@ -66,7 +85,7 @@ const StTitleContainer = styled.div`
 `;
 
 const TitleDetail = styled.p`
-  color: ${({ theme }) => theme.NavyBlue_5};
+  color: ${({ $isSelected }) => ($isSelected ? "#E7ECF9" : "#1A3276")};
   font-family: Hyundai Sans Text KR;
   font-size: 10px;
   font-style: normal;
@@ -76,7 +95,7 @@ const TitleDetail = styled.p`
 `;
 
 const Title = styled.h1`
-  color: ${({ theme }) => theme.Black};
+  color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
   font-family: Hyundai Sans Text KR;
   font-size: 22px;
   font-style: normal;
@@ -88,7 +107,7 @@ const Title = styled.h1`
 const Detail = styled.p`
   width: 154px;
   opacity: 0.5;
-  color: ${({ theme }) => theme.Black};
+  color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
   font-family: Hyundai Sans Text KR;
   font-size: 13px;
   font-style: normal;
@@ -98,7 +117,7 @@ const Detail = styled.p`
 `;
 
 const Price = styled.p`
-  color: ${({ theme }) => theme.Black};
+  color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
   font-family: Hyundai Sans Text KR;
   font-size: 16px;
   font-style: normal;
@@ -112,7 +131,7 @@ const PopUpButton = styled.div`
   justify-content: center;
   align-items: center;
   gap: 4px;
-  color: ${({ theme }) => theme.Black};
+  color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
   font-family: Hyundai Sans Text KR;
   font-size: 10px;
   font-style: normal;
