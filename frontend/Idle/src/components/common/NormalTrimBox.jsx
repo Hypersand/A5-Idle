@@ -64,6 +64,7 @@ const StContainer = styled.div`
   &:hover {
     background: ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#e7ecf9")};
     opacity: 0.9;
+    cursor: pointer;
   }
 `;
 
