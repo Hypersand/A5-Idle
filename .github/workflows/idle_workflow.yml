@@ -64,7 +64,7 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/Idle:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/idle:latest
       
       - name: Build and Deploy to EC2
         uses: appleboy/ssh-action@master
