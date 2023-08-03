@@ -7,7 +7,7 @@ import { styled } from "styled-components";
  * @param {boolean} isActive 비/활성화상태 (default : true)
  * @returns 버튼
  */
-function BlueButton(text, onClick, isActive = true) {
+function BlueButton({ text, onClick, isActive = true }) {
   return (
     <StButton $isActive={isActive} onClick={onClick}>
       {text}
