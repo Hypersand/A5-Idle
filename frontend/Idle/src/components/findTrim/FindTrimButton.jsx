@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowUpper } from "../../assets/images/arrowUpper.svg";
 
-function FindTrimButton() {
+function FindTrimButton({ onClick }) {
   return (
-    <StFindTrimButton>
+    <StFindTrimButton onClick={onClick}>
       <ArrowUpper />
       <StFindTrimButtonText>내게 맞는 트림 찾기</StFindTrimButtonText>
     </StFindTrimButton>

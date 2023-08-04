@@ -1,7 +1,7 @@
-import FindTrimButton from "../components/findTrim/FindTrimButton";
+import FindTrim from "../components/findTrim/FindTrim";
 
 function ColorPage() {
-  return <FindTrimButton />;
+  return <FindTrim />;
 }
 
 export default ColorPage;
