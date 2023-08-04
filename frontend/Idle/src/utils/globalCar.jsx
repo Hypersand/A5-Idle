@@ -1,6 +1,6 @@
 export const globalCar = {
   trim: {
-    name: "Le blanc",
+    name: "Exclusive",
     price: 40000000,
   },
   detail: {
