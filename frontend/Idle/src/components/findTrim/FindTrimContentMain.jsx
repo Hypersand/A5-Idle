@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import FindTrimTrimBox from "./FindTrimTrimBox";
 function FindTrimContentMain({ car }) {
-  // const trimName=[
-  //     {Exclusive:}
-  // ]
-  car.trim.name = "Leblanc";
   return (
     <StFindTrimContentMain>
       <FindTrimTrimBox></FindTrimTrimBox>
