@@ -1,15 +1,52 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 function FindTrimContent() {
-  return <StFindTrimContentContainer></StFindTrimContentContainer>;
+  return (
+    <StFindTrimContentContainer>
+      <StFindTrimContentTitle>
+        원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
+      </StFindTrimContentTitle>
+      <StFindTrimContentMain>암ㄴ으만의</StFindTrimContentMain>
+    </StFindTrimContentContainer>
+  );
 }
 
 export default FindTrimContent;
 
 const StFindTrimContentContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   z-index: 1;
   width: 1280px;
   height: 580px;
-  flex-shrink: 0;
   background-color: ${({ theme }) => theme.Grey_1};
+  animation: ${keyframes`
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  `} 1s ease-in-out;
+`;
+
+const StFindTrimContentTitle = styled.div`
+  width: 1024px;
+  height: 20px;
+  padding: 22.364px 340px 21.636px 335px;
+  align-items: center;
+  text-align: center;
+`;
+
+const StFindTrimContentMain = styled.div`
+  width: 1024px;
+  height: 384px;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
