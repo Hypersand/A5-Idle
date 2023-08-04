@@ -32,7 +32,7 @@ const StFindTrimContentContainer = styled.div`
   align-items: center;
   flex-direction: column;
   z-index: 1;
-  width: 100%
+  width: 100%;
   height: 580px;
   background-color: ${({ theme }) => theme.Grey_1};
   transition:
