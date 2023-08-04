@@ -1,8 +1,7 @@
 import { styled } from "styled-components";
 import { ReactComponent as ArrorRight } from "../../assets/images/arrowRight.svg";
 import { useContext } from "react";
-import carContext from "../../../utils/carContext";
-
+import { carContext } from "../../../utils/context";
 // eslint-disable-next-line react/prop-types
 function NormalTrimBox({ usage, title, detail, price, isActive = true }) {
   const { car, setCar } = useContext(carContext);

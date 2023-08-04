@@ -7,14 +7,13 @@ import DetailModelPage from "./pages/detailModelPage";
 import ColorPage from "./pages/colorPage";
 import OptionPage from "./pages/optionPage";
 import BillPage from "./pages/billPage";
-import carContext from "../utils/carContext";
-import currentPageContext from "../utils/currentPageContext";
 import { useState } from "react";
+import { carContext, currentPageContext } from "../utils/context";
 
 function App() {
   const [car, setCar] = useState({
     trim: {
-      name: "Leblanc",
+      name: "Le blanc",
       price: 40000000,
     },
     detail: {

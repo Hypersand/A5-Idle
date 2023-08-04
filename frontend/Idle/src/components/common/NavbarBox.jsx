@@ -1,8 +1,7 @@
 import { styled } from "styled-components";
 import { ReactComponent as Checked } from "../../assets/images/checked.svg";
 import { useContext, useEffect, useState } from "react";
-import carContext from "../../../utils/carContext";
-import currentPageContext from "../../../utils/currentPageContext";
+import { carContext, currentPageContext } from "../../../utils/context";
 import { TYPE } from "../../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { clickedOptionPage } from "../../../utils/constants";
@@ -26,27 +25,30 @@ function checkMatch(type, currentPage, setIsMatch) {
  */
 function renderOption(type, options) {
   let selectedOptions = [];
-  if (type === "trim") {
-    selectedOptions.push(options.name);
-  } else if (type === "option") {
-    options["additional"].forEach((item) => {
-      selectedOptions.push(item.name);
-    });
-    if (selectedOptions.length >= 4) {
-      const newSelectedOptions = selectedOptions.slice(0, 3);
-      newSelectedOptions[2] = newSelectedOptions[2].concat(
-        "",
-        ` 외 ${selectedOptions.length - 3}개`
-      );
-      selectedOptions = newSelectedOptions;
-    }
-  } else {
-    const keys = Object.keys(options);
-    keys.forEach((key) => {
-      selectedOptions.push(options[key].name);
-    });
+  switch (type) {
+    case "trim":
+      selectedOptions.push(options.name);
+      break;
+    case "option":
+      options["additional"].forEach((item) => {
+        selectedOptions.push(item.name);
+      });
+      if (selectedOptions.length >= 4) {
+        const newSelectedOptions = selectedOptions.slice(0, 3);
+        newSelectedOptions[2] = newSelectedOptions[2].concat(
+          "",
+          ` 외 ${selectedOptions.length - 3}개`
+        );
+        selectedOptions = newSelectedOptions;
+      }
+      break;
+    default:
+      // eslint-disable-next-line no-case-declarations
+      const keys = Object.keys(options);
+      keys.forEach((key) => {
+        selectedOptions.push(options[key].name);
+      });
   }
-
   if (type === "detail") {
     return (
       <StForDetail>
@@ -92,22 +94,25 @@ function boxClicked(type, navigate) {
 function renderChecked(type, currenPage, car) {
   //type , 현재 페이지, 카 객체
   const options = car[type];
-  if (currenPage === "bill" && car.getAllOptionChecked()) {
-    return <Checked />;
-  }
 
-  if (type === "trim") {
-    return options.name !== undefined ? <Checked /> : null;
-  } else if (type === "detail" || type === "color") {
-    const keys = Object.keys(options);
-    for (let i = 0; i < keys.length; i++) {
-      if (options[keys[i]].name === undefined) {
-        return;
+  if (currenPage === "bill" && car.getAllOptionChecked() && clickedOptionPage) return <Checked />;
+
+  switch (type) {
+    case "trim":
+      return options.name !== undefined ? <Checked /> : null;
+    case "option":
+      return clickedOptionPage ? <Checked /> : null;
+    case "bill":
+      break;
+    default:
+      // eslint-disable-next-line no-case-declarations
+      const keys = Object.keys(options);
+      for (let i = 0; i < keys.length; i++) {
+        if (options[keys[i]].name === undefined) {
+          return;
+        }
       }
-    }
-    return <Checked />;
-  } else if (type === "option") {
-    return clickedOptionPage ? <Checked /> : null;
+      return <Checked />;
   }
 }
 
