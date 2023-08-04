@@ -1,4 +1,4 @@
-import NavbarBox from "../common/NavbarBox.jsx";
+import NavbarBox from "./NavbarBox.jsx";
 import { TYPE } from "../../../utils/constants.jsx";
 import { styled } from "styled-components";
 import EstimatePrice from "./EstimatePrice.jsx";

@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
 import { ReactComponent as Checked } from "../../assets/images/checked.svg";
 import { useContext, useEffect, useState } from "react";
-import { carContext, currentPageContext } from "../../../utils/context";
+import { carContext } from "../../../utils/context";
 import { TYPE } from "../../../utils/constants";
-import { useNavigate } from "react-router-dom";
-import { clickedOptionPage } from "../../../utils/constants";
+import { useLocation, useNavigate } from "react-router-dom";
+import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL } from "../../../utils/constants";
 /**
  *
  * @param {trim,color~~} type
@@ -26,10 +26,10 @@ function checkMatch(type, currentPage, setIsMatch) {
 function renderOption(type, options) {
   let selectedOptions = [];
   switch (type) {
-    case "trim":
+    case TRIM:
       selectedOptions.push(options.name);
       break;
-    case "option":
+    case OPTION:
       options["additional"].forEach((item) => {
         selectedOptions.push(item.name);
       });
@@ -49,7 +49,7 @@ function renderOption(type, options) {
         selectedOptions.push(options[key].name);
       });
   }
-  if (type === "detail") {
+  if (type === DETAIL) {
     return (
       <StForDetail>
         {selectedOptions.map((item, index) => (
@@ -69,16 +69,16 @@ function renderOption(type, options) {
 function getTotalSum(type, car) {
   let total = 0;
   switch (type) {
-    case "trim":
+    case TRIM:
       total = car.getTrimSum();
       break;
-    case "detail":
+    case DETAIL:
       total = car.getDetailSum();
       break;
-    case "color":
+    case COLOR:
       total = car.getColorSum();
       break;
-    case "option":
+    case OPTION:
       total = car.getOptionSum();
       break;
     default:
@@ -95,14 +95,14 @@ function renderChecked(type, currenPage, car) {
   //type , 현재 페이지, 카 객체
   const options = car[type];
 
-  if (currenPage === "bill" && car.getAllOptionChecked() && clickedOptionPage) return <Checked />;
+  if (currenPage === BILL && car.getAllOptionChecked() && clickedOptionPage) return <Checked />;
 
   switch (type) {
-    case "trim":
+    case TRIM:
       return options.name !== undefined ? <Checked /> : null;
-    case "option":
+    case OPTION:
       return clickedOptionPage ? <Checked /> : null;
-    case "bill":
+    case BILL:
       break;
     default:
       // eslint-disable-next-line no-case-declarations
@@ -124,7 +124,7 @@ function renderChecked(type, currenPage, car) {
 // eslint-disable-next-line react/prop-types
 function NavbarBox({ type }) {
   const { car } = useContext(carContext);
-  const { currentPage } = useContext(currentPageContext);
+  const currentPage = useLocation().pathname.slice(1);
   const [isMatch, setIsMatch] = useState(false);
   const navigate = useNavigate();
 
@@ -191,7 +191,7 @@ const StMoney = styled.div`
   font-size: 8px;
   font-style: normal;
   font-weight: 400;
-  line-height: 165%; /* 13.2px */
+  line-height: 165%;
   letter-spacing: -0.24px;
 `;
 const StRightDiv = styled.div`
@@ -215,5 +215,4 @@ const StSelected = styled.div`
 
 const StForDetail = styled.div`
   display: flex;
-  /* gap: 12px; */
 `;
