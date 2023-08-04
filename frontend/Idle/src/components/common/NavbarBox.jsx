@@ -5,7 +5,7 @@ import carContext from "../../../utils/carContext";
 import currentPageContext from "../../../utils/currentPageContext";
 import { TYPE } from "../../../utils/constants";
 import { useNavigate } from "react-router-dom";
-
+import { clickedOptionPage } from "../../../utils/constants";
 /**
  *
  * @param {trim,color~~} type
@@ -38,6 +38,7 @@ function renderOption(type, options) {
       selectedOptions.push(options[key].name);
     });
   }
+
   if (type === "detail") {
     return (
       <StForDetail>
@@ -80,6 +81,28 @@ function boxClicked(type, navigate) {
   navigate(`/${type}`);
 }
 
+function renderChecked(type, currenPage, car) {
+  //type , 현재 페이지, 카 객체
+  const options = car[type];
+  if (currenPage === "bill" && car.getAllOptionChecked()) {
+    return <Checked />;
+  }
+
+  if (type === "trim") {
+    return options.name !== undefined ? <Checked /> : null;
+  } else if (type === "detail" || type === "color") {
+    const keys = Object.keys(options);
+    for (let i = 0; i < keys.length; i++) {
+      if (options[keys[i]].name === undefined) {
+        return;
+      }
+    }
+    return <Checked />;
+  } else if (type === "option") {
+    return clickedOptionPage ? <Checked /> : null;
+  }
+}
+
 /**
  *
  * @param {trim,color,option등 중 어떤 건지} type
@@ -103,8 +126,12 @@ function NavbarBox({ type }) {
       <StTopDiv>
         <StType>{TYPE[type]}</StType>
         <StRightDiv>
-          <StMoney> {totalSum !== 0 ? "+" + totalSum.toLocaleString() : ""} </StMoney>
-          <Checked />
+          <StMoney>
+            {totalSum !== undefined && totalSum !== 0 && !isNaN(totalSum)
+              ? "+" + totalSum.toLocaleString()
+              : ""}
+          </StMoney>
+          {renderChecked(type, currentPage, car)}
         </StRightDiv>
       </StTopDiv>
       {renderOption(type, car[type])}
@@ -123,6 +150,10 @@ const StDiv = styled.div`
   background-color: ${({ $ismatch }) => ($ismatch ? "#E7ECF9" : "#f6f6f6")};
   flex-direction: column;
   gap: 4px;
+  &:hover {
+    background-color: #f3f7ff;
+    cursor: pointer;
+  }
 `;
 
 const StTopDiv = styled.div`
@@ -166,9 +197,10 @@ const StSelected = styled.div`
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.24px;
+  margin-right: 6px;
 `;
 
 const StForDetail = styled.div`
   display: flex;
-  gap: 12px;
+  /* gap: 12px; */
 `;

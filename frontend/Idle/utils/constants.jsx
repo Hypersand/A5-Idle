@@ -5,3 +5,8 @@ export const TYPE = {
   option: "옵션",
   bill: "견적서 완성",
 };
+
+export let clickedOptionPage = false;
+export function setClickedOptionPage() {
+  clickedOptionPage = true;
+}

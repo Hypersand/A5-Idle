@@ -10,6 +10,7 @@ import BillPage from "./pages/billPage";
 import carContext from "../utils/carContext";
 import currentPageContext from "../utils/currentPageContext";
 import { useState } from "react";
+
 function App() {
   const [car, setCar] = useState({
     trim: {
@@ -37,7 +38,7 @@ function App() {
       },
       inside: {
         name: "퀼팅천연(블랙)",
-        price: 0,
+        price: 3000000,
       },
     },
     option: {
@@ -46,7 +47,7 @@ function App() {
         { name: "컴포트2", price: 2000000 },
         { name: "듀얼와이드 선루프", price: 3000000 },
       ],
-      confusing: ["a", "b", "C"],
+      confusing: [{ name: "abc", price: 0 }],
     },
     bill: {},
     getTrimSum: function () {
@@ -65,6 +66,19 @@ function App() {
     },
     getAllSum: function () {
       return this.getTrimSum() + this.getColorSum() + this.getDetailSum() + this.getOptionSum();
+    },
+    getAllOptionChecked() {
+      if (
+        this.trim.name !== undefined &&
+        this.detail.engine.name !== undefined &&
+        this.detail.wd.name !== undefined &&
+        this.detail.bodytype.name !== undefined &&
+        this.color.outside.name !== undefined &&
+        this.color.inside.name !== undefined
+      ) {
+        return true;
+      }
+      return false;
     },
   });
   const [currentPage, setCurrentPage] = useState("bill");
