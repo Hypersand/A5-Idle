@@ -15,7 +15,7 @@ function App() {
   const [car, setCar] = useState({
     trim: {
       name: "Leblanc",
-      price: 0,
+      price: 40000000,
     },
     detail: {
       engine: {
@@ -24,11 +24,11 @@ function App() {
       },
       wd: {
         name: "4wd",
-        price: 0,
+        price: 1000000,
       },
       bodytype: {
         name: "7인승",
-        price: 0,
+        price: 2000000,
       },
     },
     color: {
@@ -51,13 +51,19 @@ function App() {
     },
     bill: {},
     getTrimSum: function () {
-      return this.trim.price;
+      return this.trim.price !== undefined ? this.trim.price : 0;
     },
     getDetailSum: function () {
-      return this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price;
+      return this.detail.engine.price !== undefined &&
+        this.detail.wd.price !== undefined &&
+        this.detail.bodytype.price !== undefined
+        ? this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price
+        : 0;
     },
     getColorSum: function () {
-      return this.color.outside.price + this.color.inside.price;
+      return this.color.outside.price !== undefined && this.color.inside.price !== undefined
+        ? this.color.outside.price + this.color.inside.price
+        : 0;
     },
     getOptionSum: function () {
       let total = 0;
