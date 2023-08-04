@@ -37,8 +37,8 @@ const StVideo = styled.video`
 const StLogo = styled.div`
   z-index: 1;
   position: absolute;
-  top: 5%;
-  left: 10%;
+  top: 29px;
+  left: 128px;
 `;
 
 const StContainer = styled.div`
@@ -80,4 +80,5 @@ const StBtn = styled.button`
   font-style: normal;
   font-weight: 500;
   margin-top: 50px;
+  cursor: pointer;
 `;

@@ -10,7 +10,7 @@ function MainLogo() {
 
   return (
     <Stdiv>
-      <MainLogoImg onClick={logoClicked} />
+      <MainLogoImg onClick={logoClicked} style={{ cursor: "pointer" }} />
       <Stdivision></Stdivision>
       <Stspan>마이 카마스터</Stspan>
     </Stdiv>
