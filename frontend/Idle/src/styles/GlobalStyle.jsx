@@ -41,6 +41,9 @@ body {
   line-height: 1;
   -webkit-user-select: none;
   user-select: none;
+  position: relative;
+  width: 1280px;
+  height: 720px;
 }
 menu, ol, ul {
   list-style: none;

@@ -6,13 +6,14 @@ import { carContext } from "../../utils/context";
 function NormalTrimBox({ purchase_rate, name, desc, price, isActive = true }) {
   const { car, setCar } = useContext(carContext);
 
-  function trimClicked(name) {
+  function trimClicked(name, price) {
     if (car.trim.name !== name) {
       setCar((prevCar) => ({
         ...prevCar,
         trim: {
           ...prevCar.trim,
           name: name,
+          price: price,
         },
       }));
     }
@@ -22,7 +23,7 @@ function NormalTrimBox({ purchase_rate, name, desc, price, isActive = true }) {
 
   return (
     <StContainer
-      onClick={() => trimClicked(name)}
+      onClick={() => trimClicked(name, price)}
       $isSelected={isTrimSelected}
       $isActive={isActive}
     >
