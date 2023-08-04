@@ -3,9 +3,9 @@ import BlueButton from "../common/BlueButton";
 import WhiteButton from "../common/WhiteButton";
 import { useState } from "react";
 function FindTrimContent({ setVisible }) {
-  const [animationstate, setAnimationState] = useState("fadeIn");
+  const [animationstate, setAnimationState] = useState(false);
   function setModalOff() {
-    setAnimationState("fadeOut");
+    setAnimationState(true);
     setTimeout(() => {
       setVisible(false);
     }, 1000);
@@ -38,8 +38,7 @@ const StFindTrimContentContainer = styled.div`
   transition:
     transform 1s ease-in-out,
     opacity 1s ease-in-out;
-  ${({ $animationstate }) =>
-    $animationstate === "fadeOut" && "transform: translateY(100%); opacity: 0;"}
+  ${({ $animationstate }) => $animationstate === true && "transform: translateY(100%); opacity: 0;"}
   animation: ${keyframes`
   0% {
     transform: translateY(100%);
