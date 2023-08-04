@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import { ReactComponent as MainLogoImg } from "../../assets/images/hyundai.svg";
-import { HYUNDAI_MAIN } from "../../utils/routes";
+import { useNavigate } from "react-router-dom";
 
 function MainLogo() {
+  const navigate = useNavigate();
   function logoClicked() {
-    window.location.href = HYUNDAI_MAIN;
+    navigate("/");
   }
 
   return (
     <Stdiv>
-      <MainLogoImg onClick={logoClicked} />
+      <MainLogoImg onClick={logoClicked} style={{ cursor: "pointer" }} />
       <Stdivision></Stdivision>
       <Stspan>마이 카마스터</Stspan>
     </Stdiv>

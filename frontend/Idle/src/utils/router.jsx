@@ -5,11 +5,13 @@ import ColorPage from "../pages/colorPage";
 import OptionPage from "../pages/optionPage";
 import BillPage from "../pages/billPage";
 import Layout from "../components/layout/layout";
+import MainPage from "../pages/mainPage";
 
 function Router() {
   return (
     <Routes>
       <Route element={<Layout />}>
+        <Route path="/" element={<MainPage />} />
         <Route path="/trim" element={<TrimPage />} />
         <Route path="/detail" element={<DetailModelPage />} />
         <Route path="/color" element={<ColorPage />} />
