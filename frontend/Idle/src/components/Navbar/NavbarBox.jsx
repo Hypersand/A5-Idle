@@ -1,10 +1,9 @@
 import { styled } from "styled-components";
 import { ReactComponent as Checked } from "../../assets/images/checked.svg";
 import { useContext, useEffect, useState } from "react";
-import { carContext } from "../../../utils/context";
-import { TYPE } from "../../../utils/constants";
+import { carContext } from "../../utils/context";
 import { useLocation, useNavigate } from "react-router-dom";
-import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL } from "../../../utils/constants";
+import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL, TYPE } from "../../utils/constants";
 /**
  *
  * @param {trim,color~~} type
@@ -52,9 +51,11 @@ function renderOption(type, options) {
   if (type === DETAIL) {
     return (
       <StForDetail>
-        {selectedOptions.map((item, index) => (
-          <StSelected key={index}>{item}</StSelected>
-        ))}
+        {selectedOptions.map((item, index) => {
+          if (item !== undefined) {
+            return <StSelected key={index}>{item}</StSelected>;
+          }
+        })}
       </StForDetail>
     );
   }
