@@ -45,7 +45,7 @@ function WarningModal({ title }) {
         },
       },
     });
-    //첫 페이지로 렌더링
+    //첫 페이지로 렌더링 해야함
   }
   if (!modalVisible) {
     return null;
