@@ -7,7 +7,7 @@ function FindTrim() {
   return (
     <>
       {modalVisible ? (
-        <FindTrimContent />
+        <FindTrimContent setVisible={setModalVisible} />
       ) : (
         <FindTrimButton onClick={() => setModalVisible(true)} />
       )}

@@ -1,12 +1,21 @@
 import styled, { keyframes } from "styled-components";
+import BlueButton from "../common/BlueButton";
+import WhiteButton from "../common/WhiteButton";
 
-function FindTrimContent() {
+function FindTrimContent({ setVisible }) {
+  function setModalOff() {
+    setVisible(false);
+  }
   return (
     <StFindTrimContentContainer>
       <StFindTrimContentTitle>
         원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
       </StFindTrimContentTitle>
-      <StFindTrimContentMain>암ㄴ으만의</StFindTrimContentMain>
+      <StFindTrimContentMain></StFindTrimContentMain>
+      <StFindTrimContentButtonContainer>
+        <WhiteButton text={"나가기"} onClick={setModalOff} />
+        <BlueButton text={"확인"} isActive={false} />
+      </StFindTrimContentButtonContainer>
     </StFindTrimContentContainer>
   );
 }
@@ -49,4 +58,16 @@ const StFindTrimContentMain = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
+`;
+
+const StFindTrimContentButtonContainer = styled.div`
+  display: flex;
+  width: 314px;
+  height: 36px;
+  padding: 5.812px 33.42px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 1px black solid;
 `;
