@@ -1,11 +1,7 @@
-import Navbar from "../components/Navbar/Navbar";
+import FindTrim from "../components/findTrim/FindTrim";
 
 function ColorPage() {
-  return (
-    <div>
-      <Navbar />
-    </div>
-  );
+  return <FindTrim />;
 }
 
 export default ColorPage;
