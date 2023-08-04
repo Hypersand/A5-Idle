@@ -1,6 +1,6 @@
 export async function getTrimData() {
   try {
-    const response = await fetch("../utils/dummydata/trim.json")
+    const response = await fetch("../src/utils/dummydata/trim.json")
       .then((response) => response.json())
       .then((json) => {
         return json;

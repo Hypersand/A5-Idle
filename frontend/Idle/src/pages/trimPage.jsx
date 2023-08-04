@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTrimData } from "../../utils/api";
+import { getTrimData } from "../utils/api";
 import TrimBoxContainer from "../components/TrimBoxContainer/TrimBoxContainer";
 
 function TrimPage() {
