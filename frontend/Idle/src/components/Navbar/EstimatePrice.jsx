@@ -18,7 +18,7 @@ const StDiv = styled.div`
   display: flex;
   width: 130px;
   min-height: 48px;
-  padding: 12px 12px;
+  padding: 11px 11px;
   border: 1px solid #c5c9d2;
   flex-direction: column;
 `;
