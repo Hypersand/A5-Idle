@@ -4,7 +4,7 @@ import { useContext } from "react";
 import carContext from "../../../utils/carContext";
 
 // eslint-disable-next-line react/prop-types
-function NormalTrimBox({ usage, title, detail, price, isActive = true }) {
+function NormalTrimBox({ purchase_rate, name, desc, price, isActive = true }) {
   const { car, setCar } = useContext(carContext);
 
   function trimClicked(name) {
@@ -19,23 +19,23 @@ function NormalTrimBox({ usage, title, detail, price, isActive = true }) {
     }
   }
 
-  const isTrimSelected = car.trim.name === title;
+  const isTrimSelected = car.trim.name === name;
 
   return (
     <StContainer
-      onClick={() => trimClicked(title)}
+      onClick={() => trimClicked(name)}
       $isSelected={isTrimSelected}
       $isActive={isActive}
     >
       <StContent>
         <StTitleContainer>
           <StContentHeader>
-            <TitleDetail $isSelected={isTrimSelected}>{usage}</TitleDetail>
-            <Title $isSelected={isTrimSelected}>{title}</Title>
+            <TitleDetail $isSelected={isTrimSelected}>{purchase_rate}</TitleDetail>
+            <Title $isSelected={isTrimSelected}>{name}</Title>
           </StContentHeader>
-          <Detail $isSelected={isTrimSelected}>{detail}</Detail>
+          <Detail $isSelected={isTrimSelected}>{desc}</Detail>
         </StTitleContainer>
-        <Price $isSelected={isTrimSelected}>{price} 원</Price>
+        <Price $isSelected={isTrimSelected}>{price.toLocaleString()} 원</Price>
       </StContent>
       <PopUpButton $isSelected={isTrimSelected}>
         자세히 보기
