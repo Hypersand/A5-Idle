@@ -25,13 +25,21 @@ function checkMatch(type, currentPage, setIsMatch) {
  * @returns option하나 하나
  */
 function renderOption(type, options) {
-  const selectedOptions = [];
+  let selectedOptions = [];
   if (type === "trim") {
     selectedOptions.push(options.name);
   } else if (type === "option") {
     options["additional"].forEach((item) => {
       selectedOptions.push(item.name);
     });
+    if (selectedOptions.length >= 4) {
+      const newSelectedOptions = selectedOptions.slice(0, 3);
+      newSelectedOptions[2] = newSelectedOptions[2].concat(
+        "",
+        ` 외 ${selectedOptions.length - 3}개`
+      );
+      selectedOptions = newSelectedOptions;
+    }
   } else {
     const keys = Object.keys(options);
     keys.forEach((key) => {
