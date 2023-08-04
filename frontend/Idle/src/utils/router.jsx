@@ -4,15 +4,18 @@ import DetailModelPage from "../pages/detailModelPage";
 import ColorPage from "../pages/colorPage";
 import OptionPage from "../pages/optionPage";
 import BillPage from "../pages/billPage";
+import Layout from "../components/layout/layout";
 
 function Router() {
   return (
     <Routes>
-      <Route path="/trim" element={<TrimPage />}></Route>
-      <Route path="/detailmodel" element={<DetailModelPage />}></Route>
-      <Route path="/color" element={<ColorPage />}></Route>
-      <Route path="/option" element={<OptionPage />}></Route>
-      <Route path="/bill" element={<BillPage />}></Route>
+      <Route element={<Layout />}>
+        <Route path="/trim" element={<TrimPage />} />
+        <Route path="/detail" element={<DetailModelPage />} />
+        <Route path="/color" element={<ColorPage />} />
+        <Route path="/option" element={<OptionPage />} />
+        <Route path="/bill" element={<BillPage />} />
+      </Route>
     </Routes>
   );
 }

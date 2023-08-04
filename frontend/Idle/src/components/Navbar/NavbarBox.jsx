@@ -13,6 +13,8 @@ import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL, TYPE } from "../.
 function checkMatch(type, currentPage, setIsMatch) {
   if (type === currentPage) {
     setIsMatch(true);
+  } else {
+    setIsMatch(false);
   }
 }
 
@@ -133,7 +135,7 @@ function NavbarBox({ type }) {
 
   useEffect(() => {
     checkMatch(type, currentPage, setIsMatch);
-  }, []);
+  }, [currentPage, type]);
 
   return (
     <StDiv $ismatch={isMatch} onClick={() => boxClicked(type, navigate)}>
@@ -159,11 +161,11 @@ const StDiv = styled.div`
   display: flex;
   width: 130px;
   min-height: 20px;
-  padding: 8px 12px;
+  padding: 7px 11px;
   border: 1px solid ${({ $ismatch }) => ($ismatch ? "#96A9DC" : "#C5C9D2")};
   background-color: ${({ $ismatch }) => ($ismatch ? "#E7ECF9" : "#f6f6f6")};
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   &:hover {
     background-color: #f3f7ff;
     cursor: pointer;
@@ -174,6 +176,7 @@ const StTopDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1px;
 `;
 
 const StType = styled.div`
@@ -211,6 +214,8 @@ const StSelected = styled.div`
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.24px;
+  height: 13px;
+  margin-bottom: 1px;
   margin-right: 6px;
 `;
 
