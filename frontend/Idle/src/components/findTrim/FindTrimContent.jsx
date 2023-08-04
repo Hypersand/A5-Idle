@@ -1,13 +1,17 @@
 import styled, { keyframes } from "styled-components";
 import BlueButton from "../common/BlueButton";
 import WhiteButton from "../common/WhiteButton";
-
+import { useState } from "react";
 function FindTrimContent({ setVisible }) {
+  const [animationstate, setAnimationState] = useState("fadeIn");
   function setModalOff() {
-    setVisible(false);
+    setAnimationState("fadeOut");
+    setTimeout(() => {
+      setVisible(false);
+    }, 1000);
   }
   return (
-    <StFindTrimContentContainer>
+    <StFindTrimContentContainer $animationstate={animationstate}>
       <StFindTrimContentTitle>
         원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
       </StFindTrimContentTitle>
@@ -28,9 +32,14 @@ const StFindTrimContentContainer = styled.div`
   align-items: center;
   flex-direction: column;
   z-index: 1;
-  width: 1280px;
+  width: 100%
   height: 580px;
   background-color: ${({ theme }) => theme.Grey_1};
+  transition:
+    transform 1s ease-in-out,
+    opacity 1s ease-in-out;
+  ${({ $animationstate }) =>
+    $animationstate === "fadeOut" && "transform: translateY(100%); opacity: 0;"}
   animation: ${keyframes`
   0% {
     transform: translateY(100%);
@@ -41,6 +50,7 @@ const StFindTrimContentContainer = styled.div`
     opacity: 1;
   }
   `} 1s ease-in-out;
+  border: 1px black solid;
 `;
 
 const StFindTrimContentTitle = styled.div`
