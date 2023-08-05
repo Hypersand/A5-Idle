@@ -4,14 +4,14 @@ import { ReactComponent as EscapeButton } from "../../assets/images/esc.svg";
 
 const optioonList = ["파워트레인/성능", "지능형 안전기술", "안전", "외관", "내장", "시트", "편의", "멀티미디어"]
 // eslint-disable-next-line react/prop-types
-function TrimDetailModal({ trim, desc }) {
+function TrimDetailModal({ trim, desc, setModalOff }) {
     return (
         <StModal>
             <StContainer>
                 <StHeaderContainer>
                     <StHeader>
                         {trim}
-                        <EscapeButton />
+                        <EscapeButton onClick={setModalOff} />
                     </StHeader>
                     <Description>{desc}
                     </Description>
@@ -29,6 +29,7 @@ function TrimDetailModal({ trim, desc }) {
 export default TrimDetailModal
 
 const StModal = styled.div`
+    position: absolute;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -37,7 +38,7 @@ const StModal = styled.div`
     background: ${({ theme }) => theme.White};
     border: 1px solid black;
     overflow: hidden;
-    margin-left: 300px;
+    z-index: 100;
 `
 const StContainer = styled.div`
     display: inline-flex;
