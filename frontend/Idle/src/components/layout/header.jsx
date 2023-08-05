@@ -6,10 +6,12 @@ import Navbar from "../Navbar/Navbar";
 function Header() {
   return (
     <>
-      <StHeaderContainer>
+      <StLogoContainer>
         <MainLogo />
+      </StLogoContainer>
+      <StDropDownContainer>
         <CarNameDropdown />
-      </StHeaderContainer>
+      </StDropDownContainer>
       <StNavContainer>
         <Navbar />
       </StNavContainer>
@@ -19,17 +21,19 @@ function Header() {
 
 export default Header;
 
-const StHeaderContainer = styled.div`
-  display: flex;
-  width: 1024px;
-  padding: 26px 128px;
-  justify-content: space-between;
+const StLogoContainer = styled.div`
   position: absolute;
-  top: 0;
+  top: 30px;
+  left: 50px;
+`;
+const StDropDownContainer = styled.div`
+  position: absolute;
+  top: 30px;
+  right: 130px;
 `;
 
 const StNavContainer = styled.div`
   position: absolute;
-  top: 68px;
-  right: 128px;
+  top: 65px;
+  right: 130px;
 `;

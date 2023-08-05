@@ -31,11 +31,10 @@ const StFindTrimContentContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  z-index: 1;
-  width: 100%;
+  width: 1280px;
   height: 580px;
   background-color: ${({ theme }) => theme.Grey_1};
-  transition:
+  /* transition:
     transform 1s ease-in-out,
     opacity 1s ease-in-out;
   ${({ $animationstate }) => $animationstate === true && "transform: translateY(100%); opacity: 0;"}
@@ -48,15 +47,14 @@ const StFindTrimContentContainer = styled.div`
     transform: translateY(0);
     opacity: 1;
   }
-  `} 1s ease-in-out;
+  `} 1s ease-in-out; */
   border: 1px black solid;
 `;
 
 const StFindTrimContentTitle = styled.div`
-  width: 1024px;
+  width: 600px;
   height: 20px;
   padding: 22.364px 340px 21.636px 335px;
-  align-items: center;
   text-align: center;
 `;
 
