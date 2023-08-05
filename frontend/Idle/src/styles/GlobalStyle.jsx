@@ -41,12 +41,7 @@ body {
   line-height: 1;
   -webkit-user-select: none;
   user-select: none;
-  position: relative;
-  width: 1280px;
-  height: 720px;
-  display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
+
 }
 menu, ol, ul {
   list-style: none;

@@ -25,35 +25,44 @@ function TrimPage() {
   return (
     <>
       <StImageContainer src={`${TRIM_ROUTE}${car.trim.name}.png`} />
-      <StBottomContainer>
-        {trimData ? <TrimBoxContainer {...trimData} /> : <p>Loading...</p>}
-        <StConfirmContainer>
-          <StConfirmHeader>
-            <Title>트림 선택</Title>
-            <Description>원하는 트림을 선택해주세요.</Description>
-          </StConfirmHeader>
-          <BlueButton text={"다음"} onClick={nextBTNClicked} />
-        </StConfirmContainer>
-      </StBottomContainer>
-      <TrimSelectContainer>
-        <FindTrim />
-      </TrimSelectContainer>
+
+      <StWrapper>
+        <StBottomContainer>
+          {trimData ? <TrimBoxContainer {...trimData} /> : <p>Loading...</p>}
+          <StConfirmContainer>
+            <StConfirmHeader>
+              <Title>트림 선택</Title>
+              <Description>원하는 트림을 선택해주세요.</Description>
+            </StConfirmHeader>
+            <BlueButton text={"다음"} onClick={nextBTNClicked} />
+          </StConfirmContainer>
+        </StBottomContainer>
+
+        <TrimSelectContainer>
+          <FindTrim />
+        </TrimSelectContainer>
+      </StWrapper>
     </>
   );
 }
 
 export default TrimPage;
 
+const StWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const StImageContainer = styled.img`
   position: absolute;
   top: 120px;
   left: 130px;
 `;
+
 const StBottomContainer = styled.div`
   position: absolute;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   gap: 46px;
   bottom: 64px;
   left: 128px;
@@ -72,6 +81,12 @@ const StConfirmHeader = styled.div`
   align-items: flex-start;
   gap: 4px;
 `;
+
+const TrimSelectContainer = styled.div`
+  position: absolute;
+  bottom: 18px;
+`;
+
 const Title = styled.h1`
   color: #222;
   font-family: Hyundai Sans Text KR;
@@ -89,13 +104,4 @@ const Description = styled.p`
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.39px;
-`;
-
-const TrimSelectContainer = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  bottom: 18px;
-  left: 585px;
 `;
