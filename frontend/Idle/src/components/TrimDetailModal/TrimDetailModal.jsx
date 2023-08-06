@@ -1,10 +1,9 @@
+/* eslint-disable react/prop-types */
 import { styled } from "styled-components";
 import OptionDropDown from "./OptionDropDown";
 import { ReactComponent as EscapeButton } from "../../assets/images/esc.svg";
 
-const optioonList = ["파워트레인/성능", "지능형 안전기술", "안전", "외관", "내장", "시트", "편의", "멀티미디어"]
-// eslint-disable-next-line react/prop-types
-function TrimDetailModal({ trim, desc, setModalOff }) {
+function TrimDetailModal({ trim, desc, setModalOff, options, category }) {
     return (
         <StModal>
             <StContainer>
@@ -17,8 +16,8 @@ function TrimDetailModal({ trim, desc, setModalOff }) {
                     </Description>
                 </StHeaderContainer>
                 <StOptionContainer>
-                    {optioonList.map((item, idx) => (
-                        <OptionDropDown key={idx} content={item} />
+                    {category.map((item, idx) => (
+                        <OptionDropDown key={idx} category={item} options={options} />
                     ))}
                 </StOptionContainer>
             </StContainer>
@@ -39,6 +38,8 @@ const StModal = styled.div`
     border: 1px solid black;
     overflow: hidden;
     z-index: 100;
+    top:50%;
+    left:50%;
 `
 const StContainer = styled.div`
     display: inline-flex;

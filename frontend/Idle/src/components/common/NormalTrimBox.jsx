@@ -4,9 +4,9 @@ import { useContext, useState } from "react";
 import { carContext } from "../../utils/context";
 import TrimDetailModal from "../TrimDetailModal/TrimDetailModal";
 // eslint-disable-next-line react/prop-types
-function NormalTrimBox({ purchase_rate, name, desc, price, isActive = true }) {
+function NormalTrimBox({ purchase_rate, name, desc, price, default_func, category, isActive = true }) {
   const { car, setCar } = useContext(carContext);
-  const [isModal, setIsModal] = useState(false)
+  const [isModal, setIsModal] = useState(false);
 
   function trimClicked(name, price) {
     if (car.trim.name !== name) {
@@ -50,7 +50,7 @@ function NormalTrimBox({ purchase_rate, name, desc, price, isActive = true }) {
           <ArrorRight />
         </PopUpButton>
       </StContainer>
-      {isModal ? <TrimDetailModal trim={name} desc={desc} setModalOff={setModalOff} /> : <></>}
+      {isModal && <TrimDetailModal trim={name} desc={desc} setModalOff={setModalOff} options={default_func} category={category} />}
     </>
   );
 }
