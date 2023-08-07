@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import TrimBox from "./TrimBox";
 import OptionBoxContainer from "./OptionBoxContainer";
+import { selectedOptionContext } from "../../utils/context";
+import { useState } from "react";
 function FindTrimContentMain({ car }) {
+  const [selectedOption, setSelectedOption] = useState([]);
+
   const dummy = [
     {
       name: "Exclusive",
@@ -47,10 +51,12 @@ function FindTrimContentMain({ car }) {
     );
   }
   return (
-    <StFindTrimContentMain>
-      {renderTrimBox()}
-      <OptionBoxContainer />
-    </StFindTrimContentMain>
+    <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
+      <StFindTrimContentMain>
+        {renderTrimBox()}
+        <OptionBoxContainer />
+      </StFindTrimContentMain>
+    </selectedOptionContext.Provider>
   );
 }
 

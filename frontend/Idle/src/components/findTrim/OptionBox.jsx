@@ -1,14 +1,23 @@
 import { styled } from "styled-components";
 import { ReactComponent as OptionChecked } from "../../assets/images/optionChecked.svg";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import OptionModal from "../common/OptionModal";
+import { selectedOptionContext } from "../../utils/context";
 
 function OptionBox({ data, disable = false }) {
   const [isSelected, setIsSelected] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
   function boxClicked(e) {
-    if (e.target.tagName === "DIV") setIsSelected((cur) => !cur);
+    setIsSelected((cur) => !cur);
+    if (!isSelected) {
+      const newSelectedOption = [...selectedOption, data.name];
+      setSelectedOption(newSelectedOption);
+    } else {
+      const newSelectedOption = selectedOption.filter((item) => item !== data.name);
+      setSelectedOption(newSelectedOption);
+    }
   }
 
   function modalClicked(e) {
@@ -55,6 +64,9 @@ const StContainer = styled.div`
   pointer-events: ${({ $disable }) => ($disable ? "none" : "")};
   justify-content: space-between;
   align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const StOption = styled.div`
