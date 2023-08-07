@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { carContext } from "../../../utils/context";
 import TrimDetailModal from "../../trimDetailModal/TrimDetailModal"
 
-function NormalTrimBox({ purchase_rate, name, desc, price, default_func, category, isActive = true }) {
+function NormalTrimBox({ purchase_rate, name, description, price, default_func, category, isActive = true }) {
   const { car, setCar } = useContext(carContext);
   const [isModal, setIsModal] = useState(false);
 
@@ -41,7 +41,7 @@ function NormalTrimBox({ purchase_rate, name, desc, price, default_func, categor
               <TitleDetail $isSelected={isTrimSelected}>{purchase_rate}</TitleDetail>
               <Title $isSelected={isTrimSelected}>{name}</Title>
             </StContentHeader>
-            <Detail $isSelected={isTrimSelected}>{desc}</Detail>
+            <Detail $isSelected={isTrimSelected}>{description}</Detail>
           </StTitleContainer>
           <Price $isSelected={isTrimSelected}>{price.toLocaleString()} 원</Price>
         </StContent>
@@ -50,7 +50,7 @@ function NormalTrimBox({ purchase_rate, name, desc, price, default_func, categor
           <ArrorRight />
         </PopUpButton>
       </StContainer>
-      {isModal && <TrimDetailModal trim={name} desc={desc} setModalOff={setModalOff} options={default_func} category={category} />}
+      {isModal && <TrimDetailModal trim={name} desc={description} setModalOff={setModalOff} options={default_func} category={category} />}
     </>
   );
 }

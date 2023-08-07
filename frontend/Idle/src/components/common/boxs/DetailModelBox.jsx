@@ -12,7 +12,6 @@ function DetailModelBox({ purchase_rate, name, description, price, currentTab, i
                 price: price,
             },
         };
-
         return {
             ...prevCar,
             detail: updatedDetail,
@@ -21,42 +20,42 @@ function DetailModelBox({ purchase_rate, name, description, price, currentTab, i
 
     function optionClicked(name, price) {
         switch (currentTab) {
-            case "engine":
-                if (car.detail.engine.name !== name) {
-                    setCar((prevCar) => updateDetail(prevCar, "engine", name, price));
+            case "engines":
+                if (car.detail.engines.name !== name) {
+                    setCar((prevCar) => updateDetail(prevCar, "engines", name, price));
                 }
                 break;
-            case "wd":
-                if (car.detail.wd.name !== name) {
-                    setCar((prevCar) => updateDetail(prevCar, "wd", name, price));
+            case "driving_methods":
+                if (car.detail.driving_methods.name !== name) {
+                    setCar((prevCar) => updateDetail(prevCar, "driving_methods", name, price));
                 }
                 break;
-            case "bodytype":
-                if (car.detail.bodytype.name !== name) {
-                    setCar((prevCar) => updateDetail(prevCar, "bodytype", name, price));
+            case "body_types":
+                if (car.detail.body_types.name !== name) {
+                    setCar((prevCar) => updateDetail(prevCar, "body_types", name, price));
                 }
                 break;
             default:
                 break;
         }
     }
-    const isTrimSelected = car.trim.name === name;
+    const isOptionSelected = car.detail[currentTab].name === name;
     return (
         <>
             <StContainer
                 onClick={() => optionClicked(name, price)}
-                $isSelected={isTrimSelected}
+                $isSelected={isOptionSelected}
                 $isActive={isActive}
             >
                 <StContent>
                     <StTitleContainer>
                         <StContentHeader>
-                            <Title $isSelected={isTrimSelected}>{name}</Title>
-                            <TitleDetail $isSelected={isTrimSelected}>{purchase_rate}</TitleDetail>
+                            <Title $isSelected={isOptionSelected}>{name}</Title>
+                            <TitleDetail $isSelected={isOptionSelected}>{purchase_rate}</TitleDetail>
                         </StContentHeader>
-                        <Detail $isSelected={isTrimSelected}>{description}</Detail>
+                        <Detail $isSelected={isOptionSelected}>{description}</Detail>
                     </StTitleContainer>
-                    <Price $isSelected={isTrimSelected}>{price.toLocaleString()} 원</Price>
+                    <Price $isSelected={isOptionSelected}>{price.toLocaleString()} 원</Price>
                 </StContent>
             </StContainer>
         </>
