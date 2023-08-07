@@ -10,8 +10,7 @@ function OptionBox({ data, disable = false }) {
   const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
 
   function boxClicked(e) {
-    if (e.target.tagName !== "DIV" || e.target.data === "esc") return;
-
+    if (e.target.tagName === "svg" && e.target.dataset.name === "esc") return;
     setIsSelected((cur) => !cur);
     if (!isSelected) {
       const newSelectedOption = [...selectedOption, data.name];
@@ -46,7 +45,7 @@ function OptionBox({ data, disable = false }) {
   return (
     <StContainer onClick={boxClicked} $isSelcted={isSelected} $disable={disable}>
       <StOption>
-        <OptionChecked />
+        <OptionChecked data-name={data.name} />
         <StTitle $isSelcted={isSelected}>{data.name}</StTitle>
       </StOption>
       <StBtn $isSelcted={isSelected} onClick={modalClicked}>
