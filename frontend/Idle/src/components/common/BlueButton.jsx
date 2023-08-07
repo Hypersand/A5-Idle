@@ -7,7 +7,7 @@ import { styled } from "styled-components";
  * @param {boolean} isActive 비/활성화상태 (default : true)
  * @returns 버튼
  */
-function BlueButton(text, onClick, isActive = true) {
+function BlueButton({ text, onClick, isActive = true }) {
   return (
     <StButton $isActive={isActive} onClick={onClick}>
       {text}
@@ -39,6 +39,7 @@ const StButton = styled.button`
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   pointer-events: ${({ $isActive }) => ($isActive ? "" : "none")};
   &:hover {
+    cursor: pointer;
     opacity: 0.9;
   }
 `;

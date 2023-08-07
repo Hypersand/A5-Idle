@@ -1,5 +1,13 @@
+import OptionModal from "../components/common/OptionModal";
+
+
 function DetailModelPage() {
-  return <div>DetailModelPage</div>;
+  return (
+    <>
+      <OptionModal />
+
+    </>
+  );
 }
 
 export default DetailModelPage;

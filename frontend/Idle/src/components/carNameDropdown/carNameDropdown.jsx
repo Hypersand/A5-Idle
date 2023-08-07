@@ -19,8 +19,8 @@ export default CarNameDropdown;
 const StSelectBoxWrapper = styled.div`
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  width: 90px;
+  width: 75px;
+  padding: 5px;
   height: 20px;
   color: ${({ theme }) => theme.Black};
 `;
@@ -28,7 +28,6 @@ const StSelectBoxWrapper = styled.div`
 const Select = styled.select`
   display: block;
   width: 100%;
-  padding: 8px 8px;
   color: inherit;
   border: none;
   background-color: transparent;

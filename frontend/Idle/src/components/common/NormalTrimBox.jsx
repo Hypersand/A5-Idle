@@ -1,47 +1,57 @@
 import { styled } from "styled-components";
 import { ReactComponent as ArrorRight } from "../../assets/images/arrowRight.svg";
-import { useContext } from "react";
-import carContext from "../../../utils/carContext";
+import { useContext, useState } from "react";
+import { carContext } from "../../utils/context";
+import TrimDetailModal from "../TrimDetailModal/TrimDetailModal";
 
-// eslint-disable-next-line react/prop-types
-function NormalTrimBox({ usage, title, detail, price, isActive = true }) {
+function NormalTrimBox({ purchase_rate, name, desc, price, default_func, category, isActive = true }) {
   const { car, setCar } = useContext(carContext);
+  const [isModal, setIsModal] = useState(false);
 
-  function trimClicked(name) {
+  function trimClicked(name, price) {
     if (car.trim.name !== name) {
       setCar((prevCar) => ({
         ...prevCar,
         trim: {
           ...prevCar.trim,
           name: name,
+          price: price,
         },
       }));
     }
   }
 
-  const isTrimSelected = car.trim.name === title;
-
+  function setModalOn() {
+    setIsModal(true)
+  }
+  function setModalOff() {
+    setIsModal(false)
+  }
+  const isTrimSelected = car.trim.name === name;
   return (
-    <StContainer
-      onClick={() => trimClicked(title)}
-      $isSelected={isTrimSelected}
-      $isActive={isActive}
-    >
-      <StContent>
-        <StTitleContainer>
-          <StContentHeader>
-            <TitleDetail $isSelected={isTrimSelected}>{usage}</TitleDetail>
-            <Title $isSelected={isTrimSelected}>{title}</Title>
-          </StContentHeader>
-          <Detail $isSelected={isTrimSelected}>{detail}</Detail>
-        </StTitleContainer>
-        <Price $isSelected={isTrimSelected}>{price} 원</Price>
-      </StContent>
-      <PopUpButton $isSelected={isTrimSelected}>
-        자세히 보기
-        <ArrorRight />
-      </PopUpButton>
-    </StContainer>
+    <>
+      <StContainer
+        onClick={() => trimClicked(name, price)}
+        $isSelected={isTrimSelected}
+        $isActive={isActive}
+      >
+        <StContent>
+          <StTitleContainer>
+            <StContentHeader>
+              <TitleDetail $isSelected={isTrimSelected}>{purchase_rate}</TitleDetail>
+              <Title $isSelected={isTrimSelected}>{name}</Title>
+            </StContentHeader>
+            <Detail $isSelected={isTrimSelected}>{desc}</Detail>
+          </StTitleContainer>
+          <Price $isSelected={isTrimSelected}>{price.toLocaleString()} 원</Price>
+        </StContent>
+        <PopUpButton $isSelected={isTrimSelected} onClick={setModalOn}>
+          자세히 보기
+          <ArrorRight />
+        </PopUpButton>
+      </StContainer>
+      {isModal && <TrimDetailModal trim={name} desc={desc} setModalOff={setModalOff} options={default_func} category={category} />}
+    </>
   );
 }
 
