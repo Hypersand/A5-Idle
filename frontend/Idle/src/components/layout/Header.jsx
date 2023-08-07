@@ -1,13 +1,14 @@
 import { styled } from "styled-components";
-import MainLogo from "../common/MainLogo";
+
 import CarNameDropdown from "../carNameDropdown/CarNameDropdown";
 import Navbar from "../Navbar/Navbar";
+import MainLogoBlack from "../common/MainLogoBlack";
 
 function Header() {
   return (
     <>
       <StLogoContainer>
-        <MainLogo />
+        <MainLogoBlack />
       </StLogoContainer>
       <StDropDownContainer>
         <CarNameDropdown />

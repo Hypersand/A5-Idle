@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as MainLogoImg } from "../../assets/images/hyundaiDark.svg";
 import { useNavigate } from "react-router-dom";
 
-function MainLogo2() {
+function MainLogoWhite() {
   const navigate = useNavigate();
   function logoClicked() {
     navigate("/");
@@ -17,7 +17,7 @@ function MainLogo2() {
   );
 }
 
-export default MainLogo2;
+export default MainLogoWhite;
 
 const Stdiv = styled.div`
   display: inline-flex;

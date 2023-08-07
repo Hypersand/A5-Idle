@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import hyundaiVideo from "../assets/images/palisadeVideo.mp4";
-import MainLogo2 from "../components/common/MainLogo2";
+import MainLogoWhite from "../components/common/MainLogoWhite"
 import { useNavigate } from "react-router-dom";
 
 function MainPage() {
@@ -8,7 +8,7 @@ function MainPage() {
   return (
     <>
       <StLogo>
-        <MainLogo2 />
+        <MainLogoWhite />
       </StLogo>
       <StContainer>
         <StTitle>
