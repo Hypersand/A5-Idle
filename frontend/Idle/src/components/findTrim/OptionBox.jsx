@@ -72,6 +72,9 @@ const StContainer = styled.div`
   pointer-events: ${({ $disable }) => ($disable ? "none" : "")};
   justify-content: space-between;
   align-items: center;
+  &:hover {
+    background-color: #e7ecf9;
+  }
 `;
 
 const StOption = styled.div`
