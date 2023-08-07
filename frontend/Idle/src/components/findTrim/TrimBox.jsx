@@ -1,13 +1,19 @@
 import styled from "styled-components";
+import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
 
-function TrimBox({ name, content, price, isActive }) {
+function TrimBox({ name, content, price, isActive = true, car, optionStatus }) {
   return (
     <StFindTrimTrimContainer $isactive={isActive.toString()}>
-      <StTrimBoxActive>
+      <StTrimBox>
         <StTrimBoxTitle>{name}</StTrimBoxTitle>
         <StTrimBoxContent>{content}</StTrimBoxContent>
-        <StTrimBoxPrice>{price}</StTrimBoxPrice>
-      </StTrimBoxActive>
+        <StTrimBoxBottom>
+          <StTrimBoxPrice>{price}</StTrimBoxPrice>
+          {isActive && car.option.additional.length !== 0 ? (
+            <TrimBoxOptionStatus status={optionStatus} />
+          ) : null}
+        </StTrimBoxBottom>
+      </StTrimBox>
     </StFindTrimTrimContainer>
   );
 }
@@ -21,10 +27,10 @@ const StFindTrimTrimContainer = styled.div`
   align-items: center;
   justify-content: center;
   border: 1px solid ${({ theme }) => theme.Grey_2};
-  background: ${({ theme, isactive }) => (isactive == "true" ? theme.White : theme.Grey_2)};
+  background: ${({ theme, $isactive }) => ($isactive == "true" ? theme.White : theme.Grey_2)};
 `;
 
-const StTrimBoxActive = styled.div`
+const StTrimBox = styled.div`
   width: 160px;
   height: 116px;
   display: flex;
@@ -64,4 +70,10 @@ const StTrimBoxPrice = styled.div`
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.48px;
+`;
+
+const StTrimBoxBottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
