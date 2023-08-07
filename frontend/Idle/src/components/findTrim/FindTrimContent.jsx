@@ -153,5 +153,4 @@ const StFindTrimContentButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  border: 1px black solid;
 `;

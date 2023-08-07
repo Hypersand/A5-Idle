@@ -2,12 +2,16 @@ import styled from "styled-components";
 import TrimBox from "./TrimBox";
 import { getTrimData } from "../../utils/api";
 import { useEffect, useState } from "react";
+import OptionBoxContainer from "../findTrim/OptionBoxContainer";
+import { selectedOptionContext } from "../../utils/context";
 
-function FindTrimContentMain({ car, onClick }) {
+function FindTrimContentMain({ car, onClick}) {
   const [dummyData, setDummyData] = useState([]);
   const [selected, setSelected] = useState(-1);
   const [isActive, setIsActive] = useState(true);
+  const [selectedOption, setSelectedOption] = useState([]);
 
+  console.log(selectedOption);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -31,22 +35,25 @@ function FindTrimContentMain({ car, onClick }) {
     setIsActive(!isActive);
   }
   return (
-    <StFindTrimContentMain>
-      <StTrimBoxContainer>
-        {dummyData.map((item, index) => (
-          <TrimBox
-            key={item.trim_idx}
-            name={item.name}
-            desc={item.desc}
-            price={item.price}
-            isActive={true}
-            tempCar={car}
-            isSelected={index === selected}
-            onClick={() => handleClick(index)}
-          />
-        ))}
-      </StTrimBoxContainer>
-    </StFindTrimContentMain>
+    <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
+      <StFindTrimContentMain>
+        <StTrimBoxContainer>
+          {dummyData.map((item, index) => (
+            <TrimBox
+              key={item.trim_idx}
+              name={item.name}
+              desc={item.desc}
+              price={item.price}
+              isActive={true}
+              tempCar={car}
+              isSelected={index === selected}
+              onClick={() => handleClick(index)}
+            />
+          ))}
+        </StTrimBoxContainer>
+        <OptionBoxContainer />
+      </StFindTrimContentMain>
+    </selectedOptionContext.Provider>
   );
 }
 

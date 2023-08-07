@@ -11,7 +11,9 @@ function OptionBox({ data, disable = false }) {
 
   function boxClicked(e) {
     if (e.target.tagName === "svg" && e.target.dataset.name === "esc") return;
+
     setIsSelected((cur) => !cur);
+
     if (!isSelected) {
       const newSelectedOption = [...selectedOption, data.name];
       setSelectedOption(newSelectedOption);
@@ -32,6 +34,7 @@ function OptionBox({ data, disable = false }) {
         data={data}
         setModalVisible={() => setModalVisible(false)}
         setIsSelected={setIsSelected}
+        onClick={(e) => e.stopPropagation()}
       />
     ) : null;
   }
@@ -69,6 +72,9 @@ const StContainer = styled.div`
   pointer-events: ${({ $disable }) => ($disable ? "none" : "")};
   justify-content: space-between;
   align-items: center;
+  &:hover {
+    background-color: #e7ecf9;
+  }
 `;
 
 const StOption = styled.div`

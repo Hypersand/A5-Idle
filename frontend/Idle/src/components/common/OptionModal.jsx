@@ -5,40 +5,43 @@ import { ReactComponent as X } from "../../assets/images/X.svg";
 import { useContext } from "react";
 import { selectedOptionContext } from "../../utils/context";
 
-function OptionModal({ data, setModalVisible, setIsSelected }) {
+function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
   const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
 
   function selectedBtnClicked() {
-    if (selectedOption.includes(data.name)) return;
-    else {
+    if (selectedOption.includes(data.name)) {
+      setModalVisible(false);
+      return;
+    } else {
       const newSelectedOption = [...selectedOption, data.name];
       setSelectedOption(newSelectedOption);
       setIsSelected(true);
+      setModalVisible(false);
     }
   }
 
-  return (
-    createPortal(
-      <ModalContainer>
-        <ModalBackground />
-         <StContainer>
-          <StTitleContainer>
-            <StTitle>{data.name}</StTitle>
-            <X onClick={setModalVisible} data-name={"esc"} />
-          </StTitleContainer>
+  return createPortal(
+    <ModalContainer onClick={onClick}>
+      <ModalBackground onClick={() => setModalVisible(false)} />
+      <StContainer>
+        <StTitleContainer>
+          <StTitle>{data.name}</StTitle>
+          <X onClick={setModalVisible} data-name={"esc"} />
+        </StTitleContainer>
 
-          <StDescription1>{data.description1}</StDescription1>
-          <img
-            src=""
-            alt="sampleImage"
-            style={{ width: "452px", height: "256px", marginBottom: "16px" }}
-          />
-          <StDescription2>{data.description2}</StDescription2>
-          <StNote>{data.note}</StNote>
-          <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
-        </StContainer>
-      </ModalContainer>,
-      document.getElementById("modal")))
+        <StDescription1>{data.description1}</StDescription1>
+        <img
+          src=""
+          alt="sampleImage"
+          style={{ width: "452px", height: "256px", marginBottom: "16px" }}
+        />
+        <StDescription2>{data.description2}</StDescription2>
+        <StNote>{data.note}</StNote>
+        <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
+      </StContainer>
+    </ModalContainer>,
+    document.getElementById("modal")
+  );
 }
 
 export default OptionModal;
