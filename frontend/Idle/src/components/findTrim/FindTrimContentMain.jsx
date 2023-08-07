@@ -1,36 +1,49 @@
 import styled from "styled-components";
 import TrimBox from "./TrimBox";
-import OptionBoxContainer from "./OptionBoxContainer";
-import { selectedOptionContext } from "../../utils/context";
-import { useState } from "react";
+import { getTrimData } from "../../utils/api";
+import { useEffect, useState } from "react";
+
 function FindTrimContentMain({ car }) {
+  const [dummyData, setDummyData] = useState([]);
+  const [selected, setSelected] = useState(-1);
+  const [isActive, setIsActive] = useState(true);
 
-  const [selectedOption, setSelectedOption] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getTrimData();
+        setDummyData(data.trim);
+      } catch (error) {
+        console.error("Error fetching trim data:", error);
+      }
+    }
+    fetchData();
+  }, []);
 
-  const dummyData = [
-    { name: "Exclusive", content: "실용적이고 기본적인 기능을 갖춘 베이직 트림", price: 40440000 },
-    { name: "Leblanc", content: "실용적이고 기본적인 기능을 갖춘 베이직 트림", price: 50440000 },
-    { name: "Prestige", content: "실용적이고 기본적인 기능을 갖춘 베이직 트림", price: 60440000 },
-    { name: "Caligraphy", content: "실용적이고 기본적인 기능을 갖춘 베이직 트림", price: 70440000 },
-  ];
+  function handleClick(index) {
+    if (isActive) setSelected(index);
+  }
+
+  function toggleActive() {
+    setIsActive(!isActive);
+  }
   return (
-    <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
-      <StFindTrimContentMain>
-        <StTrimBoxContainer>
-          {dummyData.map((item) => (
-            <TrimBox
-              key={item.name}
-              name={item.name}
-              content={item.content}
-              price={item.price}
-              car={car}
-            />
-          ))}
-        </StTrimBoxContainer>
-        <OptionBoxContainer />
-      </StFindTrimContentMain>
-   </selectedOptionContext.Provider>
-
+    <StFindTrimContentMain>
+      <StTrimBoxContainer>
+        {dummyData.map((item, index) => (
+          <TrimBox
+            key={item.trim_idx}
+            name={item.name}
+            desc={item.desc}
+            price={item.price}
+            isActive={true}
+            car={car}
+            isSelected={index === selected}
+            onClick={() => handleClick(index)}
+          />
+        ))}
+      </StTrimBoxContainer>
+    </StFindTrimContentMain>
   );
 }
 
@@ -46,5 +59,6 @@ const StFindTrimContentMain = styled.div`
 
 const StTrimBoxContainer = styled.div`
   display: flex;
+  align-items: center;
   gap: 8px;
 `;
