@@ -5,7 +5,7 @@ export const globalCar = {
   },
   detail: {
     engine: {
-      name: "가솔린",
+      name: "가솔린 3.8",
       price: 0,
     },
     wd: {

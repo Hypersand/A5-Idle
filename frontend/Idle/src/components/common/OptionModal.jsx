@@ -9,8 +9,10 @@ function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
   const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
 
   function selectedBtnClicked() {
-    if (selectedOption.includes(data.name)) return;
-    else {
+    if (selectedOption.includes(data.name)) {
+      setModalVisible(false);
+      return;
+    } else {
       const newSelectedOption = [...selectedOption, data.name];
       setSelectedOption(newSelectedOption);
       setIsSelected(true);
@@ -20,7 +22,7 @@ function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
 
   return createPortal(
     <ModalContainer onClick={onClick}>
-      <ModalBackground />
+      <ModalBackground onClick={() => setModalVisible(false)} />
       <StContainer>
         <StTitleContainer>
           <StTitle>{data.name}</StTitle>
