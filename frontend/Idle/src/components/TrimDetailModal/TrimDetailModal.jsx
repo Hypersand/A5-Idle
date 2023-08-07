@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { styled } from "styled-components";
 import OptionDropDown from "./OptionDropDown";
 import { ReactComponent as EscapeButton } from "../../assets/images/esc.svg";
@@ -57,7 +56,7 @@ const StHeaderContainer = styled.div`
 const Description = styled.p`
     width: 496px;
     color: var(--black, #222);
-    font-family: Hyundai Sans Text KR;
+    font-family: "Hyundai Sans Text KR";
     font-size: 13px;
     font-style: normal;
     font-weight: 400;

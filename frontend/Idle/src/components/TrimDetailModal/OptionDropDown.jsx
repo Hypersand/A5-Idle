@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { styled } from "styled-components"
 import { ReactComponent as ArrowDown } from "../../assets/images/arrowDown.svg";
 import { useState } from "react";

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { getTrimData } from "../utils/api";
-import TrimBoxContainer from "../components/TrimBoxContainer/TrimBoxContainer";
+import TrimBoxContainer from "../components/trimBoxContainer/TrimBoxContainer";
 import { styled } from "styled-components";
 import BlueButton from "../components/common/BlueButton";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,6 @@ function TrimPage() {
   return (
     <>
       <StImageContainer src={`${TRIM_ROUTE}${car.trim.name}.png`} />
-
       <StWrapper>
         <StBottomContainer>
           {trimData ? <TrimBoxContainer {...trimData} /> : <p>Loading...</p>}
@@ -37,7 +36,6 @@ function TrimPage() {
             <BlueButton text={"다음"} onClick={nextBTNClicked} />
           </StConfirmContainer>
         </StBottomContainer>
-
         <TrimSelectContainer>
           <FindTrim />
         </TrimSelectContainer>

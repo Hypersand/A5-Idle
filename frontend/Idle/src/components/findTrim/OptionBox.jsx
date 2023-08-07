@@ -50,7 +50,7 @@ const StOption = styled.div`
 
 const StTitle = styled.div`
   color: ${({ $isSelcted }) => ($isSelcted ? "#fff" : "#000")};
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -60,7 +60,7 @@ const StTitle = styled.div`
 
 const StBtn = styled.button`
   color: ${({ $isSelcted }) => ($isSelcted ? "#fff" : "#1A3276")};
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;
   font-weight: 500;

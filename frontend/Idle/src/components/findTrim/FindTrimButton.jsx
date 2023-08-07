@@ -25,7 +25,7 @@ const StFindTrimButton = styled.button`
 
 const StFindTrimButtonText = styled.div`
   color: ${({ theme }) => theme.Black};
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

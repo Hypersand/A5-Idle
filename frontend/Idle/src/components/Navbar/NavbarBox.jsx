@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { styled } from "styled-components";
 import { ReactComponent as Checked } from "../../assets/images/checked.svg";
 import { useContext, useEffect, useState } from "react";
@@ -44,7 +45,6 @@ function renderOption(type, options) {
       }
       break;
     default:
-      // eslint-disable-next-line no-case-declarations
       const keys = Object.keys(options);
       keys.forEach((key) => {
         selectedOptions.push(options[key].name);
@@ -108,7 +108,7 @@ function renderChecked(type, currenPage, car) {
     case BILL:
       break;
     default:
-      // eslint-disable-next-line no-case-declarations
+
       const keys = Object.keys(options);
       for (let i = 0; i < keys.length; i++) {
         if (options[keys[i]].name === undefined) {
@@ -124,7 +124,6 @@ function renderChecked(type, currenPage, car) {
  * @param {trim,color,option등 중 어떤 건지} type
  * @returns navbar에서 박스 컴포넌트
  */
-// eslint-disable-next-line react/prop-types
 function NavbarBox({ type }) {
   const { car } = useContext(carContext);
   const currentPage = useLocation().pathname.slice(1);

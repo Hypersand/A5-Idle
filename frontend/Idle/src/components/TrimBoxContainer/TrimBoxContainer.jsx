@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 import NormalTrimBox from "../common/NormalTrimBox";
 
-// eslint-disable-next-line react/prop-types
 function TrimBoxContainer(data) {
   return (
     <StContainer>
