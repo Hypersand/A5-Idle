@@ -4,17 +4,17 @@ export const globalCar = {
     price: 40000000,
   },
   detail: {
-    engine: {
+    engines: {
       name: "가솔린 3.8",
       price: 0,
     },
-    wd: {
-      name: "4wd",
-      price: 1000000,
+    driving_methods: {
+      name: "2WD",
+      price: 0,
     },
-    bodytype: {
+    body_types: {
       name: "7인승",
-      price: 2000000,
+      price: 0,
     },
   },
   color: {
@@ -43,10 +43,10 @@ export const globalCar = {
     return this.trim.price !== undefined ? this.trim.price : 0;
   },
   getDetailSum: function () {
-    return this.detail.engine.price !== undefined &&
-      this.detail.wd.price !== undefined &&
-      this.detail.bodytype.price !== undefined
-      ? this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price
+    return this.detail.engines.price !== undefined &&
+      this.detail.driving_methods.price !== undefined &&
+      this.detail.body_types.price !== undefined
+      ? this.detail.engines.price + this.detail.driving_methods.price + this.detail.body_types.price
       : 0;
   },
   getColorSum: function () {
@@ -65,9 +65,9 @@ export const globalCar = {
   getAllOptionChecked() {
     if (
       this.trim.name !== undefined &&
-      this.detail.engine.name !== undefined &&
-      this.detail.wd.name !== undefined &&
-      this.detail.bodytype.name !== undefined &&
+      this.detail.engines.name !== undefined &&
+      this.detail.driving_methods.name !== undefined &&
+      this.detail.body_types.name !== undefined &&
       this.color.outside.name !== undefined &&
       this.color.inside.name !== undefined
     ) {

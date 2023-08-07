@@ -1,9 +1,9 @@
 import { createPortal } from "react-dom";
 import { styled } from "styled-components";
-import BlueButton from "./BlueButton";
-import { ReactComponent as X } from "../../assets/images/X.svg";
+import BlueButton from "../buttons/BlueButton";
+import { ReactComponent as X } from "../../../assets/images/esc.svg";
 import { useContext } from "react";
-import { selectedOptionContext } from "../../utils/context";
+import { selectedOptionContext } from "../../../utils/context";
 
 function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
   const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);

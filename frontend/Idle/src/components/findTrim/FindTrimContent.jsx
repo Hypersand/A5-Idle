@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
-import BlueButton from "../common/BlueButton";
-import WhiteButton from "../common/WhiteButton";
+import BlueButton from "../common/buttons/BlueButton";
+import WhiteButton from "../common/buttons/WhiteButton";
 import { useState } from "react";
 import FindTrimContentMain from "./FindTrimContentMain";
 import OptionAlert from "./OptionAlert";
