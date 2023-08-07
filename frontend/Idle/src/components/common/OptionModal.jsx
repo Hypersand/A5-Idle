@@ -2,36 +2,40 @@ import { createPortal } from "react-dom";
 import { styled } from "styled-components";
 import BlueButton from "./BlueButton";
 import { ReactComponent as X } from "../../assets/images/X.svg";
+import { useContext } from "react";
+import { selectedOptionContext } from "../../utils/context";
 
-function OptionModal({ data }) {
+function OptionModal({ data, setModalVisible, setIsSelected }) {
+  const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
+
+  function selectedBtnClicked() {
+    if (selectedOption.includes(data.name)) return;
+    else {
+      const newSelectedOption = [...selectedOption, data.name];
+      setSelectedOption(newSelectedOption);
+      setIsSelected(true);
+    }
+  }
+
   return (
     createPortal(
       <ModalContainer>
         <ModalBackground />
-        <StContainer>
+         <StContainer>
           <StTitleContainer>
-            <StTitle>2열 통풍 시트</StTitle>
-            <X />
+            <StTitle>{data.name}</StTitle>
+            <X onClick={setModalVisible} data-name={"esc"} />
           </StTitleContainer>
 
-          <StDescription1>
-            2열 통풍시트’와 함께라면 운전자 뿐만 아니라, 2열에 앉은 탑승자도 시원한 이동 경험을 즐길 수
-            있습니다.
-          </StDescription1>
+          <StDescription1>{data.description1}</StDescription1>
           <img
             src=""
             alt="sampleImage"
             style={{ width: "452px", height: "256px", marginBottom: "16px" }}
           />
-          <StDescription2>
-            시동이 걸린 상태에서 해당 좌석의 통풍 스위치를 누르면 표시등이 켜지면서 해당 좌석에 바람이
-            나오는 편의장치입니다.
-          </StDescription2>
-          <StNote>
-            * 홈페이지의 사진과 설명은 참고용이며 실제 차량에 탑재되는 기능과 설명은 상이할 수 있으니,
-            차량 구입 전 카마스터를 통해 확인 바랍니다.
-          </StNote>
-          <BlueButton text={"선택하기"} />
+          <StDescription2>{data.description2}</StDescription2>
+          <StNote>{data.note}</StNote>
+          <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
         </StContainer>
       </ModalContainer>,
       document.getElementById("modal")))
@@ -69,6 +73,7 @@ const StContainer = styled.div`
   flex-direction: column;
   z-index: 100;
   align-items: center;
+  z-index: 10;
 `;
 
 const StTitleContainer = styled.div`
