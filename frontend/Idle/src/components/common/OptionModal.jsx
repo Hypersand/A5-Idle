@@ -9,6 +9,7 @@ function OptionModal({ data, setModalVisible, setIsSelected }) {
   const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
 
   function selectedBtnClicked() {
+    console.log(selectedOption, data.name);
     if (selectedOption.includes(data.name)) return;
     else {
       const newSelectedOption = [...selectedOption, data.name];
@@ -17,28 +18,28 @@ function OptionModal({ data, setModalVisible, setIsSelected }) {
     }
   }
 
-  return (
-    createPortal(
-      <ModalContainer>
-        <ModalBackground />
-         <StContainer>
-          <StTitleContainer>
-            <StTitle>{data.name}</StTitle>
-            <X onClick={setModalVisible} data-name={"esc"} />
-          </StTitleContainer>
+  return createPortal(
+    <ModalContainer>
+      <ModalBackground />
+      <StContainer>
+        <StTitleContainer>
+          <StTitle>{data.name}</StTitle>
+          <X onClick={setModalVisible} data-name={"esc"} />
+        </StTitleContainer>
 
-          <StDescription1>{data.description1}</StDescription1>
-          <img
-            src=""
-            alt="sampleImage"
-            style={{ width: "452px", height: "256px", marginBottom: "16px" }}
-          />
-          <StDescription2>{data.description2}</StDescription2>
-          <StNote>{data.note}</StNote>
-          <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
-        </StContainer>
-      </ModalContainer>,
-      document.getElementById("modal")))
+        <StDescription1>{data.description1}</StDescription1>
+        <img
+          src=""
+          alt="sampleImage"
+          style={{ width: "452px", height: "256px", marginBottom: "16px" }}
+        />
+        <StDescription2>{data.description2}</StDescription2>
+        <StNote>{data.note}</StNote>
+        <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
+      </StContainer>
+    </ModalContainer>,
+    document.getElementById("modal")
+  );
 }
 
 export default OptionModal;
