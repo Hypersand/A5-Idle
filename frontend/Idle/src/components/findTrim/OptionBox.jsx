@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 import { ReactComponent as OptionChecked } from "../../assets/images/optionChecked.svg";
 import { useContext, useEffect, useState } from "react";
-import OptionModal from "../common/OptionModal";
 import { selectedOptionContext } from "../../utils/context";
+import OptionModal from "../common/modals/OptionModal";
 
 function OptionBox({ data, disable = false }) {
   const [isSelected, setIsSelected] = useState(false);

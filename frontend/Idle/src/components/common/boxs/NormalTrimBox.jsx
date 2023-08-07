@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
-import { ReactComponent as ArrorRight } from "../../assets/images/arrowRight.svg";
+import { ReactComponent as ArrorRight } from "../../../assets/images/arrowRight.svg";
 import { useContext, useState } from "react";
-import { carContext } from "../../utils/context";
-import TrimDetailModal from "../trimDetailModal/TrimDetailModal"
+import { carContext } from "../../../utils/context";
+import TrimDetailModal from "../../trimDetailModal/TrimDetailModal"
 
 function NormalTrimBox({ purchase_rate, name, desc, price, default_func, category, isActive = true }) {
   const { car, setCar } = useContext(carContext);
