@@ -4,9 +4,9 @@ function TrimBoxOptionStatus({ status }) {
   return (
     <div>
       {status === "add" ? (
-        <StTrimBoxAddOption>추가옵션</StTrimBoxAddOption>
+        <StTrimBoxAddOption>추가 옵션</StTrimBoxAddOption>
       ) : (
-        <StTrimBoxDefaultOption>기본옵션</StTrimBoxDefaultOption>
+        <StTrimBoxDefaultOption>기본 제공</StTrimBoxDefaultOption>
       )}
     </div>
   );
