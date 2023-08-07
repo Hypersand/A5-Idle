@@ -6,7 +6,7 @@ function TrimBoxContainer(data) {
   return (
     <StContainer>
       {data.trim.map((item, idx) => (
-        <NormalTrimBox key={idx} {...item} />
+        <NormalTrimBox key={idx} {...item} category={data.category} />
       ))}
     </StContainer>
   );

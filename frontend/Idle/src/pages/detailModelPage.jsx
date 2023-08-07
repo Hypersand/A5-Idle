@@ -1,9 +1,11 @@
 import OptionModal from "../components/common/OptionModal";
 
+
 function DetailModelPage() {
   return (
     <>
       <OptionModal />
+
     </>
   );
 }

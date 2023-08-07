@@ -35,7 +35,7 @@ const Stspan = styled.span`
   font-family: "Hyundai Sans Head KR";
   font-size: 8.784px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 12px;
   letter-spacing: -0.22px;
 `;
