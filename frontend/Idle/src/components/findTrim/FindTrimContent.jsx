@@ -7,6 +7,8 @@ import OptionAlert from "./OptionAlert";
 
 function FindTrimContent({ setVisible }) {
   const [animationstate, setAnimationState] = useState(false);
+  const [optionAlertVisible, setOptionAlertVisible] = useState(false);
+  const [clickActive, setClickActive] = useState(false);
   let tempCar = {
     trim: {
       name: "Exclusive",
@@ -80,23 +82,32 @@ function FindTrimContent({ setVisible }) {
   };
   function setModalOff() {
     setAnimationState(true);
+    setOptionAlertVisible(true);
     setTimeout(() => {
       setVisible(false);
-    }, 1000);
+    }, 4000);
   }
   function clickCheck() {
-    return <OptionAlert text={["테스트"]} />;
+    // if (tempCar.trim.name == ) {
+    //   setClickActive(true);
+    // }
   }
   return (
     <StFindTrimContentContainer $animationstate={animationstate}>
       <StFindTrimContentTitle>
         원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
       </StFindTrimContentTitle>
-      <FindTrimContentMain car={tempCar} />
+      <FindTrimContentMain
+        car={tempCar}
+        onClick={() => {
+          setClickActive(true);
+        }}
+      />
       <StFindTrimContentButtonContainer>
         <WhiteButton text={"나가기"} onClick={setModalOff} />
-        <BlueButton text={"확인"} isActive={false} onClick={clickCheck} />
+        <BlueButton text={"확인"} isActive={clickActive} onClick={clickCheck} />
       </StFindTrimContentButtonContainer>
+      {optionAlertVisible && <OptionAlert text={["테스트"]} />}
     </StFindTrimContentContainer>
   );
 }
