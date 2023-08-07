@@ -1,13 +1,26 @@
 import { styled } from "styled-components";
 import BlueButton from "./BlueButton";
 import { ReactComponent as X } from "../../assets/images/X.svg";
+import { useContext } from "react";
+import { selectedOptionContext } from "../../utils/context";
 
-function OptionModal({ data, setModalVisible }) {
+function OptionModal({ data, setModalVisible, setIsSelected }) {
+  const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
+
+  function selectedBtnClicked() {
+    if (selectedOption.includes(data.name)) return;
+    else {
+      const newSelectedOption = [...selectedOption, data.name];
+      setSelectedOption(newSelectedOption);
+      setIsSelected(true);
+    }
+  }
+
   return (
     <StContainer>
       <StTitleContainer>
         <StTitle>{data.name}</StTitle>
-        <X onClick={setModalVisible} />
+        <X onClick={setModalVisible} data-name={"esc"} />
       </StTitleContainer>
 
       <StDescription1>{data.description1}</StDescription1>
@@ -18,7 +31,7 @@ function OptionModal({ data, setModalVisible }) {
       />
       <StDescription2>{data.description2}</StDescription2>
       <StNote>{data.note}</StNote>
-      <BlueButton text={"선택하기"} />
+      <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
     </StContainer>
   );
 }

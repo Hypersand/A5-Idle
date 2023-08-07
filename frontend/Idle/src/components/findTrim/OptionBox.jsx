@@ -7,9 +7,11 @@ import { selectedOptionContext } from "../../utils/context";
 function OptionBox({ data, disable = false }) {
   const [isSelected, setIsSelected] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-
   const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
+
   function boxClicked(e) {
+    if (e.target.tagName !== "DIV" || e.target.data === "esc") return;
+
     setIsSelected((cur) => !cur);
     if (!isSelected) {
       const newSelectedOption = [...selectedOption, data.name];
@@ -27,7 +29,11 @@ function OptionBox({ data, disable = false }) {
 
   function renderModal() {
     return modalVisible ? (
-      <OptionModal data={data} setModalVisible={() => setModalVisible(false)} />
+      <OptionModal
+        data={data}
+        setModalVisible={() => setModalVisible(false)}
+        setIsSelected={setIsSelected}
+      />
     ) : null;
   }
 
