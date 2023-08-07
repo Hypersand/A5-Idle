@@ -11,13 +11,13 @@ function Router() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<MainPage />} />
         <Route path="/trim" element={<TrimPage />} />
         <Route path="/detail" element={<DetailModelPage />} />
         <Route path="/color" element={<ColorPage />} />
         <Route path="/option" element={<OptionPage />} />
         <Route path="/bill" element={<BillPage />} />
       </Route>
+      <Route path="/" element={<MainPage />} />
     </Routes>
   );
 }

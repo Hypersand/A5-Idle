@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import BlueButton from "./BlueButton";
 import { ReactComponent as X } from "../../assets/images/X.svg";
 
-function OptionModal() {
+function OptionModal({ data }) {
   return (
     <StContainer>
       <StTitleContainer>
