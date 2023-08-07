@@ -70,9 +70,6 @@ const StContainer = styled.div`
   pointer-events: ${({ $disable }) => ($disable ? "none" : "")};
   justify-content: space-between;
   align-items: center;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const StOption = styled.div`
@@ -101,4 +98,7 @@ const StBtn = styled.button`
   font-weight: 500;
   line-height: 16px;
   letter-spacing: -0.36px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
