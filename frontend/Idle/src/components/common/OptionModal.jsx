@@ -5,21 +5,21 @@ import { ReactComponent as X } from "../../assets/images/X.svg";
 import { useContext } from "react";
 import { selectedOptionContext } from "../../utils/context";
 
-function OptionModal({ data, setModalVisible, setIsSelected }) {
+function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
   const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
 
   function selectedBtnClicked() {
-    console.log(selectedOption, data.name);
     if (selectedOption.includes(data.name)) return;
     else {
       const newSelectedOption = [...selectedOption, data.name];
       setSelectedOption(newSelectedOption);
       setIsSelected(true);
+      setModalVisible(false);
     }
   }
 
   return createPortal(
-    <ModalContainer>
+    <ModalContainer onClick={onClick}>
       <ModalBackground />
       <StContainer>
         <StTitleContainer>
