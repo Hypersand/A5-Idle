@@ -1,30 +1,58 @@
+import { createPortal } from "react-dom";
 import { styled } from "styled-components";
 import OptionDropDown from "./OptionDropDown";
 import { ReactComponent as EscapeButton } from "../../assets/images/esc.svg";
 
 function TrimDetailModal({ trim, desc, setModalOff, options, category }) {
     return (
-        <StModal>
-            <StContainer>
-                <StHeaderContainer>
-                    <StHeader>
-                        {trim}
-                        <EscapeButton onClick={setModalOff} />
-                    </StHeader>
-                    <Description>{desc}
-                    </Description>
-                </StHeaderContainer>
-                <StOptionContainer>
-                    {category.map((item, idx) => (
-                        <OptionDropDown key={idx} category={item} options={options} />
-                    ))}
-                </StOptionContainer>
-            </StContainer>
-        </StModal>
+        createPortal(
+            <ModalContainer>
+                <ModalBackground onClick={setModalOff} />
+                <StModal>
+                    <StContainer>
+                        <StHeaderContainer>
+                            <StHeader>
+                                {trim}
+                                <EscapeButton onClick={setModalOff} />
+                            </StHeader>
+                            <Description>{desc}
+                            </Description>
+                        </StHeaderContainer>
+                        <StOptionContainer>
+                            {category.map((item, idx) => (
+                                <OptionDropDown key={idx} category={item} options={options} />
+                            ))}
+                        </StOptionContainer>
+                    </StContainer>
+                </StModal>
+            </ModalContainer>
+            , document.getElementById("modal"))
+
     )
 }
 
 export default TrimDetailModal
+
+const ModalContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ModalBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+`;
 
 const StModal = styled.div`
     position: absolute;
@@ -34,11 +62,11 @@ const StModal = styled.div`
     width: 600px;
     height: 533px;
     background: ${({ theme }) => theme.White};
-    border: 1px solid black;
     overflow: hidden;
     z-index: 100;
     top:50%;
     left:50%;
+    transform: translate(-50%, -50%);
 `
 const StContainer = styled.div`
     display: inline-flex;

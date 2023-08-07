@@ -1,6 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import color from "./styles/theme";
-import { Reset } from "./styles/GlobalStyle";
+import { Reset } from "./styles/globalStyle";
 import { BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import { carContext } from "./utils/context";

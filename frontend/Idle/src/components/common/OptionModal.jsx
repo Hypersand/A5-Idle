@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import { styled } from "styled-components";
 import BlueButton from "./BlueButton";
 import { ReactComponent as X } from "../../assets/images/X.svg";
@@ -17,26 +18,51 @@ function OptionModal({ data, setModalVisible, setIsSelected }) {
   }
 
   return (
-    <StContainer>
-      <StTitleContainer>
-        <StTitle>{data.name}</StTitle>
-        <X onClick={setModalVisible} data-name={"esc"} />
-      </StTitleContainer>
+    createPortal(
+      <ModalContainer>
+        <ModalBackground />
+         <StContainer>
+          <StTitleContainer>
+            <StTitle>{data.name}</StTitle>
+            <X onClick={setModalVisible} data-name={"esc"} />
+          </StTitleContainer>
 
-      <StDescription1>{data.description1}</StDescription1>
-      <img
-        src=""
-        alt="sampleImage"
-        style={{ width: "452px", height: "256px", marginBottom: "16px" }}
-      />
-      <StDescription2>{data.description2}</StDescription2>
-      <StNote>{data.note}</StNote>
-      <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
-    </StContainer>
-  );
+          <StDescription1>{data.description1}</StDescription1>
+          <img
+            src=""
+            alt="sampleImage"
+            style={{ width: "452px", height: "256px", marginBottom: "16px" }}
+          />
+          <StDescription2>{data.description2}</StDescription2>
+          <StNote>{data.note}</StNote>
+          <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
+        </StContainer>
+      </ModalContainer>,
+      document.getElementById("modal")))
 }
 
 export default OptionModal;
+
+const ModalContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ModalBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+`;
 
 const StContainer = styled.div`
   width: 452px;
@@ -45,6 +71,7 @@ const StContainer = styled.div`
   padding: 32px 44px;
   background: ${({ theme }) => theme.White};
   flex-direction: column;
+  z-index: 100;
   align-items: center;
   z-index: 10;
 `;
