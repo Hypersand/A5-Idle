@@ -10,6 +10,7 @@ function FindTrimContentMain({ car }) {
   const [isActive, setIsActive] = useState(true);
   const [selectedOption, setSelectedOption] = useState([]);
 
+  console.log(selectedOption);
   useEffect(() => {
     async function fetchData() {
       try {
