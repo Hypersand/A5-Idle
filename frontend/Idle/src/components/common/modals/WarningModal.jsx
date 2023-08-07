@@ -10,7 +10,7 @@ import WhiteButton from "../buttons/WhiteButton";
  */
 function WarningModal({ title }) {
   const [modalVisible, setModalVisible] = useState(true);
-  const { car, setCar } = useContext(carContext);
+  const { setCar } = useContext(carContext);
   function clickCancel() {
     setModalVisible(false);
   }
