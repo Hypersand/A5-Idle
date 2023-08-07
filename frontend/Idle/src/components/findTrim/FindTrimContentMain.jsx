@@ -7,6 +7,7 @@ function FindTrimContentMain({ car }) {
         name={"Exclusive"}
         content={"실용적이고 기본적인 기능을 갖춘 베이직 트림"}
         price={40440000}
+        isActive={false}
       ></TrimBox>
     </StFindTrimContentMain>
   );

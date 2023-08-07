@@ -83,7 +83,6 @@ function FindTrimContent({ setVisible }) {
       setVisible(false);
     }, 1000);
   }
-  console.log(tempCar);
   return (
     <StFindTrimContentContainer $animationstate={animationstate}>
       <StFindTrimContentTitle>
@@ -122,7 +121,10 @@ const StFindTrimContentContainer = styled.div`
     opacity: 1;
   }
   `} 1s ease-in-out;
+<<<<<<< HEAD
+=======
   border: 1px black solid;
+>>>>>>> 4c8eb7149f814ad1c5d885ad413a785ba668582b
 `;
 
 const StFindTrimContentTitle = styled.div`
