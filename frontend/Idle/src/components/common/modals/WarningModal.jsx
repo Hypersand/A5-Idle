@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useState, useContext } from "react";
-import carContext from "../../utils/context";
-import BlueButton from "./BlueButton";
-import WhiteButton from "./WhiteButton";
+import carContext from "../../../utils/context";
+import BlueButton from "../buttons/BlueButton";
+import WhiteButton from "../buttons/WhiteButton";
 /**
  *
  * @param {string} title 질문내용 (문자열)
@@ -10,7 +10,7 @@ import WhiteButton from "./WhiteButton";
  */
 function WarningModal({ title }) {
   const [modalVisible, setModalVisible] = useState(true);
-  const { car, setCar } = useContext(carContext);
+  const { setCar } = useContext(carContext);
   function clickCancel() {
     setModalVisible(false);
   }

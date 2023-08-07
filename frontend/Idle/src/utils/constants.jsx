@@ -5,6 +5,13 @@ export const TYPE = {
   option: "옵션",
   bill: "견적서 완성",
 };
+
+export const TRANSLATE = {
+  engines: "엔진",
+  driving_methods: "구동방식",
+  body_types: "바디타입"
+}
+
 export const TRIM = "trim";
 export const DETAIL = "detail";
 export const COLOR = "color";

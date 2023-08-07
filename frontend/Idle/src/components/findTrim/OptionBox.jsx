@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 import { ReactComponent as OptionChecked } from "../../assets/images/optionChecked.svg";
 import { useContext, useEffect, useState } from "react";
-import OptionModal from "../common/OptionModal";
 import { selectedOptionContext } from "../../utils/context";
+import OptionModal from "../common/modals/OptionModal";
 
 function OptionBox({ data, disable = false }) {
   const [isSelected, setIsSelected] = useState(false);
@@ -10,9 +10,10 @@ function OptionBox({ data, disable = false }) {
   const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
 
   function boxClicked(e) {
-    if (e.target.tagName !== "DIV" || e.target.data === "esc") return;
+    if (e.target.tagName === "svg" && e.target.dataset.name === "esc") return;
 
     setIsSelected((cur) => !cur);
+
     if (!isSelected) {
       const newSelectedOption = [...selectedOption, data.name];
       setSelectedOption(newSelectedOption);
@@ -33,6 +34,7 @@ function OptionBox({ data, disable = false }) {
         data={data}
         setModalVisible={() => setModalVisible(false)}
         setIsSelected={setIsSelected}
+        onClick={(e) => e.stopPropagation()}
       />
     ) : null;
   }
@@ -46,7 +48,7 @@ function OptionBox({ data, disable = false }) {
   return (
     <StContainer onClick={boxClicked} $isSelcted={isSelected} $disable={disable}>
       <StOption>
-        <OptionChecked />
+        <OptionChecked data-name={data.name} />
         <StTitle $isSelcted={isSelected}>{data.name}</StTitle>
       </StOption>
       <StBtn $isSelcted={isSelected} onClick={modalClicked}>
@@ -70,6 +72,9 @@ const StContainer = styled.div`
   pointer-events: ${({ $disable }) => ($disable ? "none" : "")};
   justify-content: space-between;
   align-items: center;
+  &:hover {
+    background-color: #e7ecf9;
+  }
 `;
 
 const StOption = styled.div`
