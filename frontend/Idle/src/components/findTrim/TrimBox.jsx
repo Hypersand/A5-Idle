@@ -1,10 +1,25 @@
 import styled from "styled-components";
 import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
 
-function TrimBox({ name, desc, price, isActive = true, isSelected, optionStatus, onClick, car }) {
+function TrimBox({
+  name,
+  desc,
+  price,
+  isActive = true,
+  isSelected,
+  optionStatus,
+  onClick,
+  tempCar,
+}) {
+  function handleClick() {
+    tempCar.trim.name = name;
+    if (isActive) {
+      onClick();
+    }
+  }
   return (
     <StFindTrimTrimContainer
-      onClick={isActive ? onClick : null}
+      onClick={handleClick}
       $isactive={isActive.toString()}
       $isselected={isSelected}
     >
@@ -13,7 +28,7 @@ function TrimBox({ name, desc, price, isActive = true, isSelected, optionStatus,
         <StTrimBoxContent $isselected={isSelected}>{desc}</StTrimBoxContent>
         <StTrimBoxBottom>
           <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
-          {isActive && car.option.additional.length !== 0 ? (
+          {isActive && tempCar.option.additional.length !== 0 ? (
             <TrimBoxOptionStatus status={optionStatus} />
           ) : null}
         </StTrimBoxBottom>
@@ -29,7 +44,7 @@ const StFindTrimTrimContainer = styled.div`
   width: 200px;
   height: 164px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   border: 1px solid ${({ theme }) => theme.Grey_2};
   background: ${({ theme, $isselected, $isactive }) =>
     $isselected ? theme.NavyBlue_5 : $isactive === "true" ? theme.White : theme.Grey_4};
