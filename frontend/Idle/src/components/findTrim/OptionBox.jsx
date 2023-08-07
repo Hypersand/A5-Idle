@@ -1,11 +1,25 @@
 import { styled } from "styled-components";
 import { ReactComponent as OptionChecked } from "../../assets/images/optionChecked.svg";
 import { useEffect, useState } from "react";
+import OptionModal from "../common/OptionModal";
+
 function OptionBox({ data, disable = false }) {
   const [isSelected, setIsSelected] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
-  function boxClicked() {
-    setIsSelected((cur) => !cur);
+  function boxClicked(e) {
+    if (e.target.tagName === "DIV") setIsSelected((cur) => !cur);
+  }
+
+  function modalClicked(e) {
+    e.stopPropagation();
+    setModalVisible((cur) => !cur);
+  }
+
+  function renderModal() {
+    return modalVisible ? (
+      <OptionModal data={data} setModalVisible={() => setModalVisible(false)} />
+    ) : null;
   }
 
   useEffect(() => {
@@ -20,7 +34,10 @@ function OptionBox({ data, disable = false }) {
         <OptionChecked />
         <StTitle $isSelcted={isSelected}>{data.name}</StTitle>
       </StOption>
-      <StBtn $isSelcted={isSelected}>상세보기</StBtn>
+      <StBtn $isSelcted={isSelected} onClick={modalClicked}>
+        상세보기
+      </StBtn>
+      {renderModal()}
     </StContainer>
   );
 }
