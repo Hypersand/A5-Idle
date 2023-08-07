@@ -7,6 +7,7 @@ import OptionAlert from "./OptionAlert";
 
 function FindTrimContent({ setVisible }) {
   const [animationstate, setAnimationState] = useState(false);
+  const [optionAlertVisible, setOptionAlertVisible] = useState(false);
   let tempCar = {
     trim: {
       name: "Exclusive",
@@ -80,9 +81,10 @@ function FindTrimContent({ setVisible }) {
   };
   function setModalOff() {
     setAnimationState(true);
+    setOptionAlertVisible(true);
     setTimeout(() => {
       setVisible(false);
-    }, 1000);
+    }, 4000);
   }
   function clickCheck() {
     return <OptionAlert text={["테스트"]} />;
@@ -97,6 +99,7 @@ function FindTrimContent({ setVisible }) {
         <WhiteButton text={"나가기"} onClick={setModalOff} />
         <BlueButton text={"확인"} isActive={false} onClick={clickCheck} />
       </StFindTrimContentButtonContainer>
+      {optionAlertVisible && <OptionAlert text={["테스트"]} />}
     </StFindTrimContentContainer>
   );
 }

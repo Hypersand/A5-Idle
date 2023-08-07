@@ -1,7 +1,9 @@
 import { styled } from "styled-components";
+import { createPortal } from "react-dom";
 
 function OptionAlert({ text }) {
-  return (
+  console.log(text);
+  return createPortal(
     <StAlertContainer>
       <StAlertTitle>
         선택하신 기능이 포함된 옵션인 <br />
@@ -12,13 +14,15 @@ function OptionAlert({ text }) {
           : `'${text[0]}','${text[1]}' 외 ${text.length - 2}개가 추가되었어요.`}
       </StAlertTitle>
       <StAlertContent>옵션 선택 페이지에서 수정이 가능해요</StAlertContent>
-    </StAlertContainer>
+    </StAlertContainer>,
+    document.getElementById("modal")
   );
 }
 
 export default OptionAlert;
 
 const StAlertContainer = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
   width: 454px;
