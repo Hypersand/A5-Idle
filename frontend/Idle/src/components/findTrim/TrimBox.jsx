@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
-import { useContext } from "react";
-import { carContext } from "../../utils/context";
 
 function TrimBox({
   name,
@@ -15,11 +13,10 @@ function TrimBox({
 }) {
   function handleClick() {
     tempCar.trim.name = name;
-    if (isActive && tempCar.trim.name !== car.trim.name) {
+    if (isActive) {
       onClick();
     }
   }
-  const { car } = useContext(carContext);
   return (
     <StFindTrimTrimContainer
       onClick={handleClick}
