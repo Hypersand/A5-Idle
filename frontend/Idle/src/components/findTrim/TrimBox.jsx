@@ -2,6 +2,7 @@ import styled from "styled-components";
 import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
 
 function TrimBox({ name, desc, price, isActive = true, isSelected, optionStatus, onClick, car }) {
+  console.log(car);
   return (
     <StFindTrimTrimContainer
       onClick={isActive ? onClick : null}
@@ -29,7 +30,7 @@ const StFindTrimTrimContainer = styled.div`
   width: 200px;
   height: 164px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   border: 1px solid ${({ theme }) => theme.Grey_2};
   background: ${({ theme, $isselected, $isactive }) =>
     $isselected ? theme.NavyBlue_5 : $isactive === "true" ? theme.White : theme.Grey_4};

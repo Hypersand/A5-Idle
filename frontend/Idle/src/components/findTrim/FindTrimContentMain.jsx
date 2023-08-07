@@ -60,5 +60,6 @@ const StFindTrimContentMain = styled.div`
 const StTrimBoxContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 `;
