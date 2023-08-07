@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState, useContext } from "react";
-import carContext from "../../utils/carContext";
+import carContext from "../../utils/context";
 import BlueButton from "./BlueButton";
 import WhiteButton from "./WhiteButton";
 /**
