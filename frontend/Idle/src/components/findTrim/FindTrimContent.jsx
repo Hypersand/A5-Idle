@@ -2,20 +2,94 @@ import styled, { keyframes } from "styled-components";
 import BlueButton from "../common/BlueButton";
 import WhiteButton from "../common/WhiteButton";
 import { useState } from "react";
+import FindTrimContentMain from "./FindTrimContentMain";
+
 function FindTrimContent({ setVisible }) {
   const [animationstate, setAnimationState] = useState(false);
+  let tempCar = {
+    trim: {
+      name: "Exclusive",
+      price: 40000000,
+    },
+    detail: {
+      engine: {
+        name: "",
+        price: 0,
+      },
+      wd: {
+        name: "",
+        price: 0,
+      },
+      bodytype: {
+        name: "",
+        price: 0,
+      },
+    },
+    color: {
+      outside: {
+        name: "",
+        price: 0,
+      },
+      inside: {
+        name: "",
+        price: 0,
+      },
+    },
+    option: {
+      additional: [],
+      confusing: [],
+    },
+    bill: {},
+    getTrimSum: function () {
+      return this.trim.price !== undefined ? this.trim.price : 0;
+    },
+    getDetailSum: function () {
+      return this.detail.engine.price !== undefined &&
+        this.detail.wd.price !== undefined &&
+        this.detail.bodytype.price !== undefined
+        ? this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price
+        : 0;
+    },
+    getColorSum: function () {
+      return this.color.outside.price !== undefined && this.color.inside.price !== undefined
+        ? this.color.outside.price + this.color.inside.price
+        : 0;
+    },
+    getOptionSum: function () {
+      let total = 0;
+      this.option.additional.forEach((item) => (total += item.price));
+      return total;
+    },
+    getAllSum: function () {
+      return this.getTrimSum() + this.getColorSum() + this.getDetailSum() + this.getOptionSum();
+    },
+    getAllOptionChecked() {
+      if (
+        this.trim.name !== undefined &&
+        this.detail.engine.name !== undefined &&
+        this.detail.wd.name !== undefined &&
+        this.detail.bodytype.name !== undefined &&
+        this.color.outside.name !== undefined &&
+        this.color.inside.name !== undefined
+      ) {
+        return true;
+      }
+      return false;
+    },
+  };
   function setModalOff() {
     setAnimationState(true);
     setTimeout(() => {
       setVisible(false);
     }, 1000);
   }
+  console.log(tempCar);
   return (
     <StFindTrimContentContainer $animationstate={animationstate}>
       <StFindTrimContentTitle>
         원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
       </StFindTrimContentTitle>
-      <StFindTrimContentMain></StFindTrimContentMain>
+      <FindTrimContentMain car={tempCar} />
       <StFindTrimContentButtonContainer>
         <WhiteButton text={"나가기"} onClick={setModalOff} />
         <BlueButton text={"확인"} isActive={false} />
@@ -56,16 +130,6 @@ const StFindTrimContentTitle = styled.div`
   height: 20px;
   padding: 22.364px 340px 21.636px 335px;
   text-align: center;
-`;
-
-const StFindTrimContentMain = styled.div`
-  width: 1024px;
-  height: 384px;
-  border: 2px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
 `;
 
 const StFindTrimContentButtonContainer = styled.div`
