@@ -1,5 +1,7 @@
+import FindTrim from "../components/findTrim/FindTrim";
+
 function ColorPage() {
-  return <div>ColorPage</div>;
+  return <FindTrim />;
 }
 
 export default ColorPage;
