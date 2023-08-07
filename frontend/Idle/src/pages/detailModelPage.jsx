@@ -3,8 +3,9 @@ import DetailModelBox from "../components/common/boxs/DetailModelBox";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import BlueButton from "../components/common/buttons/BlueButton";
-import { TRANSLATE } from "../utils/constants";
+import { BODY_TYPES, DRVING_METHODS, ENGINES, TRANSLATE } from "../utils/constants";
 import WhiteButton from "../components/common/buttons/WhiteButton";
+import CategoryTabs from "../components/common/tabs/CategoryTabs";
 
 const dummyData = {
   "engines": [
@@ -72,40 +73,34 @@ const dummyData = {
 }
 
 function DetailModelPage() {
-  const [currentTab, setCurrentTab] = useState("engines")
+  const [currentTab, setCurrentTab] = useState(ENGINES)
   const navigate = useNavigate();
+  const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES];
 
-  function nextBTNClicked() {
-    switch (currentTab) {
-      case "engines":
-        setCurrentTab("driving_methods")
-        break
-      case "driving_methods":
-        setCurrentTab("body_types")
-        break
-      case "body_types":
+  function handleTabChange(direction) {
+    const currentIndex = tabs.indexOf(currentTab);
+
+    if (direction === "next") {
+      if (currentIndex !== -1 && currentIndex + 1 < tabs.length) {
+        setCurrentTab(tabs[currentIndex + 1]);
+      } else {
         navigate("/color");
-        break
-    }
-  }
-  function prevBTNClicked() {
-    switch (currentTab) {
-      case "engines":
-        navigate(-1)
-        break
-      case "driving_methods":
-        setCurrentTab("engines")
-        break
-      case "body_types":
-        setCurrentTab("driving_methods")
-        break
+      }
+    } else if (direction === "prev") {
+      if (currentIndex > 0) {
+        setCurrentTab(tabs[currentIndex - 1]);
+      } else {
+        navigate("/trim");
+      }
     }
   }
 
   return (
     <>
-
       <StWrapper>
+        <StTabContainer>
+          {tabs.map((item, idx) => (<CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />))}
+        </StTabContainer>
         <StBottomContainer>
           <StContainer>
             {dummyData[currentTab].map((item, idx) => (<DetailModelBox key={idx} {...item} currentTab={currentTab} />))}
@@ -113,11 +108,11 @@ function DetailModelPage() {
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>{TRANSLATE[currentTab]} 선택</Title>
-              <Description>원하는 {TRANSLATE[currentTab]} 을 선택해주세요.</Description>
+              <Description>원하는 {TRANSLATE[currentTab]}을 선택해주세요.</Description>
             </StConfirmHeader>
             <StButtonContainer>
-              <WhiteButton text={"이전"} onClick={prevBTNClicked} />
-              <BlueButton text={"다음"} onClick={nextBTNClicked} />
+              <WhiteButton text={"이전"} onClick={() => { handleTabChange("prev") }} />
+              <BlueButton text={"다음"} onClick={() => { handleTabChange("next") }} />
             </StButtonContainer>
           </StConfirmContainer>
         </StBottomContainer>
@@ -145,7 +140,6 @@ const StBottomContainer = styled.div`
   display: flex;
   gap: 46px;
   bottom: 64px;
-  left: 128px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -170,7 +164,6 @@ const StButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-
 `
 
 const Title = styled.h1`
@@ -182,6 +175,7 @@ const Title = styled.h1`
   line-height: 24px;
   letter-spacing: -0.48px;
 `;
+
 const Description = styled.p`
   color: #222;
   font-family: Hyundai Sans Text KR;
@@ -192,3 +186,11 @@ const Description = styled.p`
   letter-spacing: -0.39px;
 `;
 
+const StTabContainer = styled.div`
+  position: absolute;
+  top: 68px;
+  left: 128px;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 24px;
+`
