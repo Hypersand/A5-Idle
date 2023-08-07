@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
 
-function TrimBox({ name, content, price, isActive = true, car, optionStatus }) {
+function TrimBox({ name, desc, price, isActive = true, car, optionStatus }) {
   return (
     <StFindTrimTrimContainer $isactive={isActive.toString()}>
       <StTrimBox>
         <StTrimBoxTitle>{name}</StTrimBoxTitle>
-        <StTrimBoxContent>{content}</StTrimBoxContent>
+        <StTrimBoxContent>{desc}</StTrimBoxContent>
         <StTrimBoxBottom>
           <StTrimBoxPrice>{price}</StTrimBoxPrice>
           {isActive && car.option.additional.length !== 0 ? (

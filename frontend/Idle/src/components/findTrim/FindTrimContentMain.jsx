@@ -1,20 +1,31 @@
 import styled from "styled-components";
 import TrimBox from "./TrimBox";
+import { getTrimData } from "../../utils/api";
+import { useEffect, useState } from "react";
+
 function FindTrimContentMain({ car }) {
-  const dummyData = [
-    { name: "Exclusive", content: "실용적이고 기본적인 기능을 갖춘 베이직 트림", price: 40440000 },
-    { name: "Leblanc", content: "실용적이고 기본적인 기능을 갖춘 베이직 트림", price: 50440000 },
-    { name: "Prestige", content: "실용적이고 기본적인 기능을 갖춘 베이직 트림", price: 60440000 },
-    { name: "Caligraphy", content: "실용적이고 기본적인 기능을 갖춘 베이직 트림", price: 70440000 },
-  ];
+  const [dummyData, setDummyData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getTrimData();
+        setDummyData(data.trim);
+      } catch (error) {
+        console.error("Error fetching trim data:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <StFindTrimContentMain>
       <StTrimBoxContainer>
         {dummyData.map((item) => (
           <TrimBox
-            key={item.name}
+            key={item.trim_idx}
             name={item.name}
-            content={item.content}
+            desc={item.desc}
             price={item.price}
             car={car}
           />
