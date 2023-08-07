@@ -1,9 +1,11 @@
-import OptionBoxContainer from "../components/findTrim/OptionBoxContainer";
+import OptionModal from "../components/common/OptionModal";
+
 
 function DetailModelPage() {
   return (
     <>
-      <OptionBoxContainer />
+      <OptionModal />
+
     </>
   );
 }

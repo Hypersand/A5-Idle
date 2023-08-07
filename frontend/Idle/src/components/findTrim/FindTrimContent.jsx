@@ -110,10 +110,10 @@ const StFindTrimContentContainer = styled.div`
   transition:
     transform 1s ease-in-out,
     opacity 1s ease-in-out;
-  ${({ $animationstate }) => $animationstate === true && "transform: translateY(100%); opacity: 0;"}
+  ${({ $animationstate }) => $animationstate === true && "transform: translateY(20%); opacity: 0;"}
   animation: ${keyframes`
   0% {
-    transform: translateY(100%);
+    transform: translateY(20%);
     opacity: 0;
   }
   100% {
@@ -121,6 +121,10 @@ const StFindTrimContentContainer = styled.div`
     opacity: 1;
   }
   `} 1s ease-in-out;
+<<<<<<< HEAD
+=======
+  border: 1px black solid;
+>>>>>>> 4c8eb7149f814ad1c5d885ad413a785ba668582b
 `;
 
 const StFindTrimContentTitle = styled.div`
