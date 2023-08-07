@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 function FindTrimContentMain({ car }) {
   const [dummyData, setDummyData] = useState([]);
+  const [selected, setSelected] = useState(-1);
+  const [isActive, setIsActive] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -18,16 +20,26 @@ function FindTrimContentMain({ car }) {
     fetchData();
   }, []);
 
+  function handleClick(index) {
+    if (isActive) setSelected(index);
+  }
+
+  function toggleActive() {
+    setIsActive(!isActive);
+  }
   return (
     <StFindTrimContentMain>
       <StTrimBoxContainer>
-        {dummyData.map((item) => (
+        {dummyData.map((item, index) => (
           <TrimBox
             key={item.trim_idx}
             name={item.name}
             desc={item.desc}
             price={item.price}
+            isActive={true}
             car={car}
+            isSelected={index === selected}
+            onClick={() => handleClick(index)}
           />
         ))}
       </StTrimBoxContainer>
@@ -49,5 +61,6 @@ const StFindTrimContentMain = styled.div`
 
 const StTrimBoxContainer = styled.div`
   display: flex;
+  align-items: center;
   gap: 8px;
 `;

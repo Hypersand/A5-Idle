@@ -1,14 +1,18 @@
 import styled from "styled-components";
 import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
 
-function TrimBox({ name, desc, price, isActive = true, car, optionStatus }) {
+function TrimBox({ name, desc, price, isActive = true, isSelected, optionStatus, onClick, car }) {
   return (
-    <StFindTrimTrimContainer $isactive={isActive.toString()}>
+    <StFindTrimTrimContainer
+      onClick={isActive ? onClick : null}
+      $isactive={isActive.toString()}
+      $isselected={isSelected}
+    >
       <StTrimBox>
-        <StTrimBoxTitle>{name}</StTrimBoxTitle>
-        <StTrimBoxContent>{desc}</StTrimBoxContent>
+        <StTrimBoxTitle $isselected={isSelected}>{name}</StTrimBoxTitle>
+        <StTrimBoxContent $isselected={isSelected}>{desc}</StTrimBoxContent>
         <StTrimBoxBottom>
-          <StTrimBoxPrice>{price}</StTrimBoxPrice>
+          <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
           {isActive && car.option.additional.length !== 0 ? (
             <TrimBoxOptionStatus status={optionStatus} />
           ) : null}
@@ -27,7 +31,9 @@ const StFindTrimTrimContainer = styled.div`
   align-items: center;
   justify-content: center;
   border: 1px solid ${({ theme }) => theme.Grey_2};
-  background: ${({ theme, $isactive }) => ($isactive == "true" ? theme.White : theme.Grey_2)};
+  background: ${({ theme, $isselected, $isactive }) =>
+    $isselected ? theme.NavyBlue_5 : $isactive === "true" ? theme.White : theme.Grey_4};
+  cursor: pointer;
 `;
 
 const StTrimBox = styled.div`
@@ -42,7 +48,7 @@ const StTrimBox = styled.div`
 `;
 
 const StTrimBoxTitle = styled.div`
-  color: ${({ theme }) => theme.Black};
+  color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
   font-family: Hyundai Sans Text KR;
   font-size: 22px;
   font-style: normal;
@@ -52,7 +58,7 @@ const StTrimBoxTitle = styled.div`
 `;
 
 const StTrimBoxContent = styled.div`
-  color: ${({ theme }) => theme.Black};
+  color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
   font-family: Hyundai Sans Text KR;
   font-size: 13px;
   font-style: normal;
@@ -63,7 +69,7 @@ const StTrimBoxContent = styled.div`
 `;
 
 const StTrimBoxPrice = styled.div`
-  color: ${({ theme }) => theme.Black};
+  color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
   font-family: Hyundai Sans Text KR;
   font-size: 16px;
   font-style: normal;

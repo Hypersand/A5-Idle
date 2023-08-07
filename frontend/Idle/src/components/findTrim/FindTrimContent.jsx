@@ -3,6 +3,7 @@ import BlueButton from "../common/BlueButton";
 import WhiteButton from "../common/WhiteButton";
 import { useState } from "react";
 import FindTrimContentMain from "./FindTrimContentMain";
+import OptionAlert from "./OptionAlert";
 
 function FindTrimContent({ setVisible }) {
   const [animationstate, setAnimationState] = useState(false);
@@ -83,6 +84,9 @@ function FindTrimContent({ setVisible }) {
       setVisible(false);
     }, 1000);
   }
+  function clickCheck() {
+    return <OptionAlert text={["테스트"]} />;
+  }
   return (
     <StFindTrimContentContainer $animationstate={animationstate}>
       <StFindTrimContentTitle>
@@ -91,7 +95,7 @@ function FindTrimContent({ setVisible }) {
       <FindTrimContentMain car={tempCar} />
       <StFindTrimContentButtonContainer>
         <WhiteButton text={"나가기"} onClick={setModalOff} />
-        <BlueButton text={"확인"} isActive={false} />
+        <BlueButton text={"확인"} isActive={false} onClick={clickCheck} />
       </StFindTrimContentButtonContainer>
     </StFindTrimContentContainer>
   );
