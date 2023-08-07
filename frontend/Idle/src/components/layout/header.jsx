@@ -23,17 +23,17 @@ export default Header;
 
 const StLogoContainer = styled.div`
   position: absolute;
-  top: 30px;
-  left: 50px;
+  top: 32px;
+  left: 128px;
 `;
 const StDropDownContainer = styled.div`
   position: absolute;
-  top: 30px;
-  right: 130px;
+  top: 26px;
+  left: 1077px;
 `;
 
 const StNavContainer = styled.div`
   position: absolute;
-  top: 65px;
-  right: 130px;
+  top: 68px;
+  left: 998px;
 `;
