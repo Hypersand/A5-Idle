@@ -1,11 +1,28 @@
 import styled from "styled-components";
 import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
+import { useContext } from "react";
+import { carContext } from "../../utils/context";
 
-function TrimBox({ name, desc, price, isActive = true, isSelected, optionStatus, onClick, car }) {
-  console.log(car);
+function TrimBox({
+  name,
+  desc,
+  price,
+  isActive = true,
+  isSelected,
+  optionStatus,
+  onClick,
+  tempCar,
+}) {
+  function handleClick() {
+    tempCar.trim.name = name;
+    if (isActive && tempCar.trim.name !== car.trim.name) {
+      onClick();
+    }
+  }
+  const { car } = useContext(carContext);
   return (
     <StFindTrimTrimContainer
-      onClick={isActive ? onClick : null}
+      onClick={handleClick}
       $isactive={isActive.toString()}
       $isselected={isSelected}
     >
@@ -14,7 +31,7 @@ function TrimBox({ name, desc, price, isActive = true, isSelected, optionStatus,
         <StTrimBoxContent $isselected={isSelected}>{desc}</StTrimBoxContent>
         <StTrimBoxBottom>
           <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
-          {isActive && car.option.additional.length !== 0 ? (
+          {isActive && tempCar.option.additional.length !== 0 ? (
             <TrimBoxOptionStatus status={optionStatus} />
           ) : null}
         </StTrimBoxBottom>
