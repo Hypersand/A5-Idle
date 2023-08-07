@@ -8,10 +8,12 @@ import { TRIM_ROUTE } from "../utils/routes";
 import { carContext } from "../utils/context";
 import FindTrim from "../components/findTrim/FindTrim";
 
+let cachedTrimData = null;
+
 function TrimPage() {
   const { car } = useContext(carContext);
   const navigate = useNavigate();
-  const [trimData, setTrimData] = useState(null);
+  const [trimData, setTrimData] = useState(cachedTrimData);
 
   function nextBTNClicked() {
     navigate("/detail");
@@ -19,6 +21,7 @@ function TrimPage() {
   useEffect(() => {
     getTrimData().then((result) => {
       setTrimData(result);
+      cachedTrimData = result
     });
   }, []);
 
