@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-function TrimBox({ name, content, price }) {
+function TrimBox({ name, content, price, isActive }) {
   return (
-    <StFindTrimTrimContainer>
-      <StTrimBox>
+    <StFindTrimTrimContainer $isactive={isActive.toString()}>
+      <StTrimBoxActive>
         <StTrimBoxTitle>{name}</StTrimBoxTitle>
         <StTrimBoxContent>{content}</StTrimBoxContent>
         <StTrimBoxPrice>{price}</StTrimBoxPrice>
-      </StTrimBox>
+      </StTrimBoxActive>
     </StFindTrimTrimContainer>
   );
 }
@@ -21,10 +21,10 @@ const StFindTrimTrimContainer = styled.div`
   align-items: center;
   justify-content: center;
   border: 1px solid ${({ theme }) => theme.Grey_2};
-  background: ${({ theme }) => theme.White};
+  background: ${({ theme, isactive }) => (isactive == "true" ? theme.White : theme.Grey_2)};
 `;
 
-const StTrimBox = styled.div`
+const StTrimBoxActive = styled.div`
   width: 160px;
   height: 116px;
   display: flex;
