@@ -1,0 +1,9 @@
+export const CHANGE_TRIM = "change_trim";
+export const CHANGE_ENGINES = "change_engine";
+export const CHANGE_DRIVING_METHODS = "change_driving_methods";
+export const CHANGE_BODY_TYPES = "change_body_types";
+export const CHANGE_OUTSIDE_COLOR = "change_outside_color";
+export const CHANGE_INSIDE_COLOR = "change_inside_color";
+export const CHANGE_ADDITIONAL_OPTION = "change_additional_option";
+export const CHANGE_CONFUSING_OPTION = "change_confusing_option";
+export const RESET_ALL = "reset_all";
