@@ -6,10 +6,10 @@ import FindTrimContentMain from "./FindTrimContentMain";
 import OptionAlert from "./OptionAlert";
 import { selectedOptionContext } from "../../utils/context";
 import { carContext } from "../../utils/context";
-import { initialTempCar } from "../../utils/globalCar";
+import { emptyCar, defaultOption } from "../../utils/constants";
 
 function FindTrimContent({ setVisible }) {
-  const [tempCar, setTempCar] = useState(initialTempCar);
+  const [tempCar, setTempCar] = useState(emptyCar);
   const isInitialRender = useRef(true);
   const [animationstate, setAnimationState] = useState(false);
   const [optionAlertVisible, setOptionAlertVisible] = useState(false);
@@ -48,28 +48,7 @@ function FindTrimContent({ setVisible }) {
       },
     ];
     if (dummyData.length === 0) {
-      setOptionStatus([
-        {
-          name: "Exclusive",
-          isDefault: "default",
-          selectPossible: true,
-        },
-        {
-          name: "Le Blanc",
-          isDefault: "default",
-          selectPossible: true,
-        },
-        {
-          name: "Prestige",
-          isDefault: "default",
-          selectPossible: true,
-        },
-        {
-          name: "Calligraphy",
-          isDefault: "default",
-          selectPossible: true,
-        },
-      ]);
+      setOptionStatus(defaultOption);
     }
     setOptionStatus(dummyData);
   }, [selectedOption]);
@@ -97,7 +76,6 @@ function FindTrimContent({ setVisible }) {
       },
     ];
     setSelectedOption([]);
-
     dummyData.forEach((item) => {
       setSelectedOption((prevAddOption) => [...prevAddOption, item.option_name]);
       tempCar.option.additional.push({
