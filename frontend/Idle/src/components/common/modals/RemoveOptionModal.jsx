@@ -13,10 +13,16 @@ import { carContext } from "../../../utils/context";
 
 function RemoveOptionModal({ data, setModalVisible }) {
   const { car, setCar } = useContext(carContext);
+  const names = [];
+  let priceSum = 0;
+
   function confirmClicked() {
     let options = car.option.additional;
-    options = options.filter((item) => item.name !== data.name);
-    //option additional인 경우에만 해제
+
+    data.forEach((ele) => {
+      options = options.filter((item) => item.name !== ele.name);
+    });
+
     setCar((prevCar) => ({
       ...prevCar,
       option: {
@@ -25,6 +31,11 @@ function RemoveOptionModal({ data, setModalVisible }) {
     }));
     setModalVisible(false);
   }
+
+  data.forEach((item) => {
+    names.push(item.name);
+    priceSum += item.price;
+  });
 
   return createPortal(
     <ModalContainer>
@@ -35,8 +46,10 @@ function RemoveOptionModal({ data, setModalVisible }) {
         </StTitle>
 
         <StOptionContainer>
-          <StOptionName>{data.name}</StOptionName>
-          <StOptionPrice>+{data.price.toLocaleString()}원</StOptionPrice>
+          {/* <StOptionName>{data.name}</StOptionName>
+          <StOptionPrice>+{data.price.toLocaleString()}원</StOptionPrice> */}
+          <StOptionName>{names.join(", ")}</StOptionName>
+          <StOptionPrice>총 +{priceSum.toLocaleString()}원</StOptionPrice>
         </StOptionContainer>
 
         <StBtnContainer>
@@ -77,14 +90,14 @@ const StTitle = styled.div`
 
 const StOptionContainer = styled.div`
   display: flex;
-  width: 168px;
-  height: 68px;
+  min-width: 168px;
+  min-height: 68px;
   padding: 12px 24px;
   border: 1px solid ${({ theme }) => theme.Grey_2};
   background: ${({ theme }) => theme.White};
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 48px;
   gap: 24px;
 `;
