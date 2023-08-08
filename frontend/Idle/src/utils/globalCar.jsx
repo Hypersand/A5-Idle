@@ -5,38 +5,38 @@ export const globalCar = {
   },
   detail: {
     engines: {
-      name: "가솔린 3.8",
-      price: 0,
+      // name: "가솔린 3.8",
+      // price: 0,
     },
     driving_methods: {
-      name: "2WD",
-      price: 0,
+      // name: "2WD",
+      // price: 0,
     },
     body_types: {
-      name: "7인승",
-      price: 0,
+      // name: "7인승",
+      // price: 0,
     },
   },
   color: {
     outside: {
-      name: "그라파이드 그레이 메탈릭",
-      price: 0,
+      // name: "그라파이드 그레이 메탈릭",
+      // price: 0,
     },
     inside: {
-      name: "퀼팅천연(블랙)",
-      price: 3000000,
+      // name: "퀼팅천연(블랙)",
+      // price: 3000000,
     },
   },
   option: {
     additional: [
-      { name: "현대스마트센스", price: 1000000 },
-      { name: "컴포트2", price: 2000000 },
-      { name: "듀얼와이드 선루프", price: 3000000 },
-      { name: "현대스마트센스", price: 1000000 },
-      { name: "컴포트2", price: 2000000 },
-      { name: "듀얼와이드 선루프", price: 3000000 },
+      // { name: "현대스마트센스", price: 1000000 },
+      // { name: "컴포트2", price: 2000000 },
+      // { name: "듀얼와이드 선루프", price: 3000000 },
+      // { name: "현대스마트센스", price: 1000000 },
+      // { name: "컴포트2", price: 2000000 },
+      // { name: "듀얼와이드 선루프", price: 3000000 },
     ],
-    confusing: [{ name: "abc", price: 0 }],
+    confusing: [],
   },
   bill: {},
   getTrimSum: function () {

@@ -17,6 +17,13 @@ export const DETAIL = "detail";
 export const COLOR = "color";
 export const OPTION = "option";
 export const BILL = "bill";
+export const ENGINES = "engines";
+export const DRVING_METHODS = "driving_methods";
+export const BODY_TYPES = "body_types";
+
+export const PEAK_OUTPUT_KR = "최고 출력";
+export const MAX_TORQUE_KR = "최대 토크";
+export const CONSUMTION_KR = "복합 연비";
 
 export let clickedOptionPage = false;
 
