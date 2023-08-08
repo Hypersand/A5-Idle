@@ -29,7 +29,7 @@ function renderOption(type, options) {
   let selectedOptions = [];
   switch (type) {
     case TRIM:
-      selectedOptions.push(options.name);
+      options.name !== undefined ? selectedOptions.push(options.name) : null;
       break;
     case OPTION:
       options["additional"].forEach((item) => {
@@ -49,7 +49,9 @@ function renderOption(type, options) {
       keys.forEach((key) => {
         selectedOptions.push(options[key].name);
       });
+      selectedOptions[0] === undefined ? (selectedOptions = []) : selectedOptions;
   }
+
   if (type === DETAIL) {
     return (
       <StForDetail>
@@ -108,7 +110,6 @@ function renderChecked(type, currenPage, car) {
     case BILL:
       break;
     default:
-
       const keys = Object.keys(options);
       for (let i = 0; i < keys.length; i++) {
         if (options[keys[i]].name === undefined) {
@@ -164,7 +165,6 @@ const StDiv = styled.div`
   border: 1px solid ${({ $ismatch }) => ($ismatch ? "#96A9DC" : "#C5C9D2")};
   background-color: ${({ $ismatch }) => ($ismatch ? "#E7ECF9" : "#f6f6f6")};
   flex-direction: column;
-  gap: 2px;
   &:hover {
     background-color: #f3f7ff;
     cursor: pointer;
@@ -201,7 +201,7 @@ const StRightDiv = styled.div`
   display: flex;
   width: 78.5px;
   justify-content: flex-end;
-  align-items: flex-start;
+  align-items: center;
   gap: 6px;
   flex-shrink: 0;
 `;

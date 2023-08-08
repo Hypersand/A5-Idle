@@ -6,7 +6,7 @@ export const globalCar = {
   detail: {
     engines: {
       name: "가솔린 3.8",
-      price: 0,
+      price: 40000000,
     },
     driving_methods: {
       name: "2WD",
@@ -24,7 +24,7 @@ export const globalCar = {
     },
     inside: {
       name: "퀼팅천연(블랙)",
-      price: 3000000,
+      price: 40000000,
     },
   },
   option: {
