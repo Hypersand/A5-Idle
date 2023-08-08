@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as MainLogoImg } from "../../../assets/images/hyundaiDark.svg";
+import { ReactComponent as MainLogoImg } from "../../assets/images/hyundaiDark.svg";
 import { useNavigate } from "react-router-dom";
 
 function MainLogoWhite() {

@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import hyundaiVideo from "../assets/images/palisadeVideo.mp4";
-import MainLogoWhite from "../components/common/logos/MainLogoWhite"
+import MainLogoWhite from "../components/common/MainLogoWhite"
 import { useNavigate } from "react-router-dom";
 
 function MainPage() {

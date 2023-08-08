@@ -1,42 +1,11 @@
 import { styled } from "styled-components";
 import { ReactComponent as OptionChecked } from "../../assets/images/optionChecked.svg";
-import { useContext, useEffect, useState } from "react";
-import { selectedOptionContext } from "../../utils/context";
-import OptionModal from "../common/modals/OptionModal";
-
+import { useEffect, useState } from "react";
 function OptionBox({ data, disable = false }) {
   const [isSelected, setIsSelected] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
 
-  function boxClicked(e) {
-    if (e.target.tagName === "svg" && e.target.dataset.name === "esc") return;
-
+  function boxClicked() {
     setIsSelected((cur) => !cur);
-
-    if (!isSelected) {
-      const newSelectedOption = [...selectedOption, data.name];
-      setSelectedOption(newSelectedOption);
-    } else {
-      const newSelectedOption = selectedOption.filter((item) => item !== data.name);
-      setSelectedOption(newSelectedOption);
-    }
-  }
-
-  function modalClicked(e) {
-    e.stopPropagation();
-    setModalVisible((cur) => !cur);
-  }
-
-  function renderModal() {
-    return modalVisible ? (
-      <OptionModal
-        data={data}
-        setModalVisible={() => setModalVisible(false)}
-        setIsSelected={setIsSelected}
-        onClick={(e) => e.stopPropagation()}
-      />
-    ) : null;
   }
 
   useEffect(() => {
@@ -48,13 +17,10 @@ function OptionBox({ data, disable = false }) {
   return (
     <StContainer onClick={boxClicked} $isSelcted={isSelected} $disable={disable}>
       <StOption>
-        <OptionChecked data-name={data.name} />
+        <OptionChecked />
         <StTitle $isSelcted={isSelected}>{data.name}</StTitle>
       </StOption>
-      <StBtn $isSelcted={isSelected} onClick={modalClicked}>
-        상세보기
-      </StBtn>
-      {renderModal()}
+      <StBtn $isSelcted={isSelected}>상세보기</StBtn>
     </StContainer>
   );
 }
@@ -72,9 +38,6 @@ const StContainer = styled.div`
   pointer-events: ${({ $disable }) => ($disable ? "none" : "")};
   justify-content: space-between;
   align-items: center;
-  &:hover {
-    background-color: #e7ecf9;
-  }
 `;
 
 const StOption = styled.div`
@@ -103,7 +66,4 @@ const StBtn = styled.button`
   font-weight: 500;
   line-height: 16px;
   letter-spacing: -0.36px;
-  &:hover {
-    cursor: pointer;
-  }
 `;

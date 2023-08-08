@@ -1,7 +1,8 @@
 import { styled } from "styled-components";
-import CarNameDropdown from "../carNameDropdown/carNameDropdown";
-import Navbar from "../navbar/Navbar";
-import MainLogoBlack from "../common/logos/MainLogoBlack";
+
+import CarNameDropdown from "../carNameDropdown/CarNameDropdown";
+import Navbar from "../Navbar/Navbar";
+import MainLogoBlack from "../common/MainLogoBlack";
 
 function Header() {
   return (

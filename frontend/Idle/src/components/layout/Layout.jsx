@@ -6,7 +6,7 @@ import { styled } from "styled-components";
 function Layout() {
   return (
     <StWrapper>
-      <StContainer id={"modal"}>
+      <StContainer>
         <Header />
         <Outlet />
         <Footer />
