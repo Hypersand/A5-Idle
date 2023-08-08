@@ -17,6 +17,11 @@ export const DETAIL = "detail";
 export const COLOR = "color";
 export const OPTION = "option";
 export const BILL = "bill";
+export const ENGINES = "engines";
+export const DRVING_METHODS = "driving_methods";
+export const BODY_TYPES = "body_types";
+
+
 
 export let clickedOptionPage = false;
 
