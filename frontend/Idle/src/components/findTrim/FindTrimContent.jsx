@@ -1,114 +1,116 @@
 import styled, { keyframes } from "styled-components";
 import BlueButton from "../common/buttons/BlueButton";
 import WhiteButton from "../common/buttons/WhiteButton";
-import { useState } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import FindTrimContentMain from "./FindTrimContentMain";
 import OptionAlert from "./OptionAlert";
+import { selectedOptionContext } from "../../utils/context";
+import { carContext } from "../../utils/context";
+import { emptyCar, defaultOption } from "../../utils/constants";
 
 function FindTrimContent({ setVisible }) {
+  const [tempCar, setTempCar] = useState(emptyCar);
+  const isInitialRender = useRef(true);
   const [animationstate, setAnimationState] = useState(false);
   const [optionAlertVisible, setOptionAlertVisible] = useState(false);
   const [clickActive, setClickActive] = useState(false);
-  let tempCar = {
-    trim: {
-      name: "Exclusive",
-      price: 40000000,
-    },
-    detail: {
-      engine: {
-        name: "",
-        price: 0,
+  const [selectedOption, setSelectedOption] = useState([]);
+  const [optionStatus, setOptionStatus] = useState([]);
+  const { setCar } = useContext(carContext);
+
+  useEffect(() => {
+    //백엔드로 요청
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
+
+    const dummyData = [
+      {
+        name: "Exclusive",
+        isDefault: true,
+        selectPossible: false,
       },
-      wd: {
-        name: "",
-        price: 0,
+      {
+        name: "Le Blanc",
+        isDefault: false,
+        selectPossible: true,
       },
-      bodytype: {
-        name: "",
-        price: 0,
+      {
+        name: "Prestige",
+        isDefault: false,
+        selectPossible: true,
       },
-    },
-    color: {
-      outside: {
-        name: "",
-        price: 0,
+      {
+        name: "Calligraphy",
+        isDefault: true,
+        selectPossible: true,
       },
-      inside: {
-        name: "",
-        price: 0,
-      },
-    },
-    option: {
-      additional: [],
-      confusing: [],
-    },
-    bill: {},
-    getTrimSum: function () {
-      return this.trim.price !== undefined ? this.trim.price : 0;
-    },
-    getDetailSum: function () {
-      return this.detail.engine.price !== undefined &&
-        this.detail.wd.price !== undefined &&
-        this.detail.bodytype.price !== undefined
-        ? this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price
-        : 0;
-    },
-    getColorSum: function () {
-      return this.color.outside.price !== undefined && this.color.inside.price !== undefined
-        ? this.color.outside.price + this.color.inside.price
-        : 0;
-    },
-    getOptionSum: function () {
-      let total = 0;
-      this.option.additional.forEach((item) => (total += item.price));
-      return total;
-    },
-    getAllSum: function () {
-      return this.getTrimSum() + this.getColorSum() + this.getDetailSum() + this.getOptionSum();
-    },
-    getAllOptionChecked() {
-      if (
-        this.trim.name !== undefined &&
-        this.detail.engine.name !== undefined &&
-        this.detail.wd.name !== undefined &&
-        this.detail.bodytype.name !== undefined &&
-        this.color.outside.name !== undefined &&
-        this.color.inside.name !== undefined
-      ) {
-        return true;
-      }
-      return false;
-    },
-  };
-  function setModalOff() {
+    ];
+    if (dummyData.length === 0) {
+      setOptionStatus(defaultOption);
+    }
+    setOptionStatus(dummyData);
+  }, [selectedOption]);
+
+  function clickExit(animateTime) {
     setAnimationState(true);
-    setOptionAlertVisible(true);
     setTimeout(() => {
       setVisible(false);
-    }, 4000);
+    }, animateTime);
   }
   function clickCheck() {
-    // if (tempCar.trim.name == ) {
-    //   setClickActive(true);
-    // }
+    clickExit(4000);
+    //request 보내기
+    //get 받기
+    const dummyData = [
+      {
+        option_id: 1234,
+        option_name: "12.3인치 LCD 클러스터",
+        option_price: 1000000,
+      },
+      {
+        option_id: 1235,
+        option_name: "컴포트2",
+        option_price: 2000000,
+      },
+    ];
+    setSelectedOption([]);
+    dummyData.forEach((item) => {
+      setSelectedOption((prevAddOption) => [...prevAddOption, item.option_name]);
+      tempCar.option.additional.push({
+        name: item.option_name,
+        price: item.option_price,
+      });
+    });
+    setCar(tempCar);
+    setOptionAlertVisible(true);
   }
   return (
-    <StFindTrimContentContainer $animationstate={animationstate}>
-      <StFindTrimContentTitle>
-        원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
-      </StFindTrimContentTitle>
-      <FindTrimContentMain
-        car={tempCar}
-        onClick={() => {
-          setClickActive(true);
-        }}
-      />
-      <StFindTrimContentButtonContainer>
-        <WhiteButton text={"나가기"} onClick={setModalOff} />
-        <BlueButton text={"확인"} isActive={clickActive} onClick={clickCheck} />
-      </StFindTrimContentButtonContainer>
-      {optionAlertVisible && <OptionAlert text={["테스트"]} />}
-    </StFindTrimContentContainer>
+    <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
+      <StFindTrimContentContainer $animationstate={animationstate}>
+        <StFindTrimContentTitle>
+          원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
+        </StFindTrimContentTitle>
+        <FindTrimContentMain
+          optionStatus={optionStatus}
+          setTempCar={setTempCar}
+          onClick={() => {
+            setClickActive(true);
+          }}
+        />
+        <StFindTrimContentButtonContainer>
+          <WhiteButton
+            text={"나가기"}
+            onClick={() => {
+              clickExit(1000);
+            }}
+          />
+          <BlueButton text={"확인"} isActive={clickActive} onClick={clickCheck} />
+        </StFindTrimContentButtonContainer>
+        {optionAlertVisible && <OptionAlert text={selectedOption} />}
+      </StFindTrimContentContainer>
+    </selectedOptionContext.Provider>
   );
 }
 

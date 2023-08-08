@@ -3,16 +3,40 @@ import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
 
 function TrimBox({
   name,
-  desc,
+  description,
   price,
   isActive = true,
   isSelected,
   optionStatus,
   onClick,
-  tempCar,
+  setTempCar,
+  setDisableFunctionId,
+  dummyData,
 }) {
   function handleClick() {
-    tempCar.trim.name = name;
+    const carData = dummyData.find((item) => item.name === name);
+    // get으로 carData.trim_idx 보내기.
+    const dummy = [
+      {
+        function_id: 111111,
+      },
+      {
+        function_id: 222222,
+      },
+      {
+        function_id: 333333,
+      },
+    ];
+    setDisableFunctionId(dummy);
+    setTempCar((prevTempCar) => {
+      return {
+        ...prevTempCar,
+        trim: {
+          name: carData.name,
+          price: carData.price,
+        },
+      };
+    });
     if (isActive) {
       onClick();
     }
@@ -23,20 +47,17 @@ function TrimBox({
       $isactive={isActive.toString()}
       $isselected={isSelected}
     >
-      <StTrimBox>
+      <StTrimBox onClick={handleClick}>
         <StTrimBoxTitle $isselected={isSelected}>{name}</StTrimBoxTitle>
-        <StTrimBoxContent $isselected={isSelected}>{desc}</StTrimBoxContent>
+        <StTrimBoxContent $isselected={isSelected}>{description}</StTrimBoxContent>
         <StTrimBoxBottom>
           <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
-          {isActive && tempCar.option.additional.length !== 0 ? (
-            <TrimBoxOptionStatus status={optionStatus} />
-          ) : null}
+          {isActive ? <TrimBoxOptionStatus status={optionStatus} /> : null}
         </StTrimBoxBottom>
       </StTrimBox>
     </StFindTrimTrimContainer>
   );
 }
-
 export default TrimBox;
 
 const StFindTrimTrimContainer = styled.div`
@@ -48,7 +69,8 @@ const StFindTrimTrimContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.Grey_2};
   background: ${({ theme, $isselected, $isactive }) =>
     $isselected ? theme.NavyBlue_5 : $isactive === "true" ? theme.White : theme.Grey_4};
-  cursor: pointer;
+  ${({ $isactive }) => $isactive === "true" && `cursor: pointer`};
+  margin-bottom: 12px;
 `;
 
 const StTrimBox = styled.div`
