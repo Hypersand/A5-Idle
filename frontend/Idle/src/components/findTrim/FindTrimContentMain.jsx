@@ -7,6 +7,8 @@ import OptionBoxContainer from "../findTrim/OptionBoxContainer";
 function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
   const [dummyData, setDummyData] = useState([]);
   const [selected, setSelected] = useState(-1);
+  const [functionList, setFunctionList] = useState([]);
+  const [disableFunctionId, setDisableFunctionId] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -17,6 +19,62 @@ function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
         console.error("Error fetching trim data:", error);
       }
     }
+    setFunctionList([
+      {
+        function_id: 111111,
+        name: "aaa",
+        description: "설명1",
+        img_url: "",
+      },
+      {
+        function_id: 222222,
+        name: "bbb",
+        description: "설명2",
+        img_url: "",
+      },
+      {
+        function_id: 333333,
+        name: "ccc",
+        description: "설명3",
+        img_url: "",
+      },
+      {
+        function_id: 444444,
+        name: "ddd",
+        description: "설명4",
+        img_url: "",
+      },
+      {
+        function_id: 555555,
+        name: "eee",
+        description: "설명5",
+        img_url: "",
+      },
+      {
+        function_id: 666666,
+        name: "fff",
+        description: "설명6",
+        img_url: "",
+      },
+      {
+        function_id: 777777,
+        name: "ggg",
+        description: "설명7",
+        img_url: "",
+      },
+      {
+        function_id: 888888,
+        name: "hhh",
+        description: "설명8",
+        img_url: "",
+      },
+      {
+        function_id: 999999,
+        name: "iii",
+        description: "설명9",
+        img_url: "",
+      },
+    ]);
     fetchData();
   }, []);
 
@@ -36,6 +94,7 @@ function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
           {...item}
           isActive={isActive}
           setTempCar={setTempCar}
+          setDisableFunctionId={setDisableFunctionId}
           isSelected={index === selected}
           onClick={() => handleClick(index)}
           optionStatus={optionStatusProp}
@@ -48,7 +107,7 @@ function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
   return (
     <StFindTrimContentMain>
       <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>
-      <OptionBoxContainer />
+      <OptionBoxContainer functionList={functionList} disableFunctionId={disableFunctionId} />
     </StFindTrimContentMain>
   );
 }

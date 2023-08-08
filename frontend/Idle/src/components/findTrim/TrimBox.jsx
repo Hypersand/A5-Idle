@@ -10,10 +10,24 @@ function TrimBox({
   optionStatus,
   onClick,
   setTempCar,
+  setDisableFunctionId,
   dummyData,
 }) {
   function handleClick() {
     const carData = dummyData.find((item) => item.name === name);
+    // get으로 carData.trim_idx 보내기.
+    const dummy = [
+      {
+        function_id: 111111,
+      },
+      {
+        function_id: 222222,
+      },
+      {
+        function_id: 333333,
+      },
+    ];
+    setDisableFunctionId(dummy);
     setTempCar((prevTempCar) => {
       return {
         ...prevTempCar,
