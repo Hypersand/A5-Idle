@@ -123,6 +123,7 @@ const StBar = styled.div`
                 return "#818992"
         }
     }} ;
+    transition: width 0.3s linear
 `
 const StBar2 = styled(StBar)`
     background-color:#C5C9D2;
