@@ -2,30 +2,37 @@ import { styled } from "styled-components";
 import { ReactComponent as ArrorRight } from "../../../assets/images/arrowRight.svg";
 import { useContext, useState } from "react";
 import { carContext } from "../../../utils/context";
-import TrimDetailModal from "../../trimDetailModal/TrimDetailModal"
+import TrimDetailModal from "../../trimDetailModal/TrimDetailModal";
+import { CHANGE_TRIM } from "../../../utils/actionType";
 
-function NormalTrimBox({ purchase_rate, name, description, price, default_func, category, isActive = true }) {
-  const { car, setCar } = useContext(carContext);
+function NormalTrimBox({
+  purchase_rate,
+  name,
+  description,
+  price,
+  default_func,
+  category,
+  isActive = true,
+}) {
+  const { car, dispatch } = useContext(carContext);
   const [isModal, setIsModal] = useState(false);
 
   function trimClicked(name, price) {
     if (car.trim.name !== name) {
-      setCar((prevCar) => ({
-        ...prevCar,
-        trim: {
-          ...prevCar.trim,
-          name: name,
-          price: price,
-        },
-      }));
+      const payload = {
+        name: name,
+        price: price,
+      };
+
+      dispatch({ type: CHANGE_TRIM, payload: payload });
     }
   }
 
   function setModalOn() {
-    setIsModal(true)
+    setIsModal(true);
   }
   function setModalOff() {
-    setIsModal(false)
+    setIsModal(false);
   }
   const isTrimSelected = car.trim.name === name;
   return (
@@ -50,7 +57,15 @@ function NormalTrimBox({ purchase_rate, name, description, price, default_func, 
           <ArrorRight />
         </PopUpButton>
       </StContainer>
-      {isModal && <TrimDetailModal trim={name} desc={description} setModalOff={setModalOff} options={default_func} category={category} />}
+      {isModal && (
+        <TrimDetailModal
+          trim={name}
+          desc={description}
+          setModalOff={setModalOff}
+          options={default_func}
+          category={category}
+        />
+      )}
     </>
   );
 }

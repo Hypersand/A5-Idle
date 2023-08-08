@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { useState, useContext } from "react";
-import carContext from "../../../utils/context";
 import BlueButton from "../buttons/BlueButton";
 import WhiteButton from "../buttons/WhiteButton";
+import { RESET_ALL } from "../../../utils/actionType";
+import { carContext } from "../../../utils/context";
+import { useNavigate } from "react-router-dom";
 /**
  *
  * @param {string} title 질문내용 (문자열)
@@ -10,42 +12,14 @@ import WhiteButton from "../buttons/WhiteButton";
  */
 function WarningModal({ title }) {
   const [modalVisible, setModalVisible] = useState(true);
-  const { setCar } = useContext(carContext);
+  const navigate = useNavigate();
+  const { dispatch } = useContext(carContext);
   function clickCancel() {
     setModalVisible(false);
   }
   function clickCheck() {
-    setCar({
-      trim: {
-        name: "",
-        price: 0,
-      },
-      detail: {
-        engine: {
-          name: "",
-          price: 0,
-        },
-        wd: {
-          name: "",
-          price: 0,
-        },
-        bodytype: {
-          name: "",
-          price: 0,
-        },
-      },
-      color: {
-        outside: {
-          name: "",
-          price: 0,
-        },
-        inside: {
-          name: "",
-          price: 0,
-        },
-      },
-    });
-    window.location.replace("/");
+    dispatch({ type: RESET_ALL, payload: null });
+    navigate("/");
   }
   if (!modalVisible) {
     return null;

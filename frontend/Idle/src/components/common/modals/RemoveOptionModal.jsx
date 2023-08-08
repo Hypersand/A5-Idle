@@ -4,7 +4,7 @@ import WhiteButton from "../buttons/WhiteButton";
 import { createPortal } from "react-dom";
 import { useContext } from "react";
 import { carContext } from "../../../utils/context";
-
+import { CHANGE_ADDITIONAL_OPTION } from "../../../utils/actionType";
 /**
  *
  * @param {string} param0
@@ -12,18 +12,13 @@ import { carContext } from "../../../utils/context";
  */
 
 function RemoveOptionModal({ data, setModalVisible }) {
-  const { car, setCar } = useContext(carContext);
+  const { car, dispatch } = useContext(carContext);
+
+  console.log(car);
   function confirmClicked() {
     let options = car.option.additional;
     options = options.filter((item) => item.name !== data.name);
-    //option additional인 경우에만 해제
-    setCar((prevCar) => ({
-      ...prevCar,
-      option: {
-        additional: options,
-      },
-    }));
-    setModalVisible(false);
+    dispatch({ type: CHANGE_ADDITIONAL_OPTION, payload: options });
   }
 
   return createPortal(
