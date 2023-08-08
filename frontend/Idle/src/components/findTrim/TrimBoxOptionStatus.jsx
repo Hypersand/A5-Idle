@@ -3,7 +3,7 @@ import styled from "styled-components";
 function TrimBoxOptionStatus({ status }) {
   return (
     <div>
-      {status === false ? (
+      {status === "default" ? null : status === false ? (
         <StTrimBoxAddOption>추가 옵션</StTrimBoxAddOption>
       ) : (
         <StTrimBoxDefaultOption>기본 제공</StTrimBoxDefaultOption>

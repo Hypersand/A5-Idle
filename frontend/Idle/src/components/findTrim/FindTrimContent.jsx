@@ -1,13 +1,87 @@
 import styled, { keyframes } from "styled-components";
 import BlueButton from "../common/buttons/BlueButton";
 import WhiteButton from "../common/buttons/WhiteButton";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import FindTrimContentMain from "./FindTrimContentMain";
 import OptionAlert from "./OptionAlert";
 import { selectedOptionContext } from "../../utils/context";
 import { carContext } from "../../utils/context";
 
+const initialTempCar = {
+  trim: {
+    name: "",
+    price: 0,
+  },
+  detail: {
+    engine: {
+      name: "",
+      price: 0,
+    },
+    wd: {
+      name: "",
+      price: 0,
+    },
+    bodytype: {
+      name: "",
+      price: 0,
+    },
+  },
+  color: {
+    outside: {
+      name: "",
+      price: 0,
+    },
+    inside: {
+      name: "",
+      price: 0,
+    },
+  },
+  option: {
+    additional: [],
+    confusing: [],
+  },
+  bill: {},
+  getTrimSum: function () {
+    return this.trim.price !== undefined ? this.trim.price : 0;
+  },
+  getDetailSum: function () {
+    return this.detail.engine.price !== undefined &&
+      this.detail.wd.price !== undefined &&
+      this.detail.bodytype.price !== undefined
+      ? this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price
+      : 0;
+  },
+  getColorSum: function () {
+    return this.color.outside.price !== undefined && this.color.inside.price !== undefined
+      ? this.color.outside.price + this.color.inside.price
+      : 0;
+  },
+  getOptionSum: function () {
+    let total = 0;
+    this.option.additional.forEach((item) => (total += item.price));
+    return total;
+  },
+  getAllSum: function () {
+    return this.getTrimSum() + this.getColorSum() + this.getDetailSum() + this.getOptionSum();
+  },
+  getAllOptionChecked() {
+    if (
+      this.trim.name !== undefined &&
+      this.detail.engine.name !== undefined &&
+      this.detail.wd.name !== undefined &&
+      this.detail.bodytype.name !== undefined &&
+      this.color.outside.name !== undefined &&
+      this.color.inside.name !== undefined
+    ) {
+      return true;
+    }
+    return false;
+  },
+};
+
 function FindTrimContent({ setVisible }) {
+  const [tempCar, setTempCar] = useState(initialTempCar);
+  const isInitialRender = useRef(true);
   const [animationstate, setAnimationState] = useState(false);
   const [optionAlertVisible, setOptionAlertVisible] = useState(false);
   const [clickActive, setClickActive] = useState(false);
@@ -17,6 +91,11 @@ function FindTrimContent({ setVisible }) {
 
   useEffect(() => {
     //백엔드로 요청
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
+
     const dummyData = [
       {
         name: "Exclusive",
@@ -39,80 +118,32 @@ function FindTrimContent({ setVisible }) {
         selectPossible: true,
       },
     ];
+    if (dummyData.length === 0) {
+      setOptionStatus([
+        {
+          name: "Exclusive",
+          isDefault: "default",
+          selectPossible: true,
+        },
+        {
+          name: "Le Blanc",
+          isDefault: "default",
+          selectPossible: true,
+        },
+        {
+          name: "Prestige",
+          isDefault: "default",
+          selectPossible: true,
+        },
+        {
+          name: "Calligraphy",
+          isDefault: "default",
+          selectPossible: true,
+        },
+      ]);
+    }
     setOptionStatus(dummyData);
   }, [selectedOption]);
-
-  let tempCar = {
-    trim: {
-      name: "",
-      price: 0,
-    },
-    detail: {
-      engine: {
-        name: "",
-        price: 0,
-      },
-      wd: {
-        name: "",
-        price: 0,
-      },
-      bodytype: {
-        name: "",
-        price: 0,
-      },
-    },
-    color: {
-      outside: {
-        name: "",
-        price: 0,
-      },
-      inside: {
-        name: "",
-        price: 0,
-      },
-    },
-    option: {
-      additional: [],
-      confusing: [],
-    },
-    bill: {},
-    getTrimSum: function () {
-      return this.trim.price !== undefined ? this.trim.price : 0;
-    },
-    getDetailSum: function () {
-      return this.detail.engine.price !== undefined &&
-        this.detail.wd.price !== undefined &&
-        this.detail.bodytype.price !== undefined
-        ? this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price
-        : 0;
-    },
-    getColorSum: function () {
-      return this.color.outside.price !== undefined && this.color.inside.price !== undefined
-        ? this.color.outside.price + this.color.inside.price
-        : 0;
-    },
-    getOptionSum: function () {
-      let total = 0;
-      this.option.additional.forEach((item) => (total += item.price));
-      return total;
-    },
-    getAllSum: function () {
-      return this.getTrimSum() + this.getColorSum() + this.getDetailSum() + this.getOptionSum();
-    },
-    getAllOptionChecked() {
-      if (
-        this.trim.name !== undefined &&
-        this.detail.engine.name !== undefined &&
-        this.detail.wd.name !== undefined &&
-        this.detail.bodytype.name !== undefined &&
-        this.color.outside.name !== undefined &&
-        this.color.inside.name !== undefined
-      ) {
-        return true;
-      }
-      return false;
-    },
-  };
 
   function clickExit(animateTime) {
     setAnimationState(true);
@@ -137,7 +168,7 @@ function FindTrimContent({ setVisible }) {
       },
     ];
     setSelectedOption([]);
-    console.log(tempCar);
+
     dummyData.forEach((item) => {
       setSelectedOption((prevAddOption) => [...prevAddOption, item.option_name]);
       tempCar.option.additional.push({
@@ -156,7 +187,7 @@ function FindTrimContent({ setVisible }) {
         </StFindTrimContentTitle>
         <FindTrimContentMain
           optionStatus={optionStatus}
-          tempCar={tempCar}
+          setTempCar={setTempCar}
           onClick={() => {
             setClickActive(true);
           }}

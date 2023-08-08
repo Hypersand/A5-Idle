@@ -9,13 +9,20 @@ function TrimBox({
   isSelected,
   optionStatus,
   onClick,
-  tempCar,
+  setTempCar,
   dummyData,
 }) {
   function handleClick() {
     const carData = dummyData.find((item) => item.name === name);
-    tempCar.trim.name = carData.name;
-    tempCar.trim.price = carData.price;
+    setTempCar((prevTempCar) => {
+      return {
+        ...prevTempCar,
+        trim: {
+          name: carData.name,
+          price: carData.price,
+        },
+      };
+    });
     if (isActive) {
       onClick();
     }
@@ -48,7 +55,7 @@ const StFindTrimTrimContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.Grey_2};
   background: ${({ theme, $isselected, $isactive }) =>
     $isselected ? theme.NavyBlue_5 : $isactive === "true" ? theme.White : theme.Grey_4};
-  cursor: pointer;
+  ${({ $isactive }) => $isactive === "true" && `cursor: pointer`};
   margin-bottom: 12px;
 `;
 
