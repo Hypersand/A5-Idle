@@ -80,17 +80,15 @@ function FindTrimContent({ setVisible }) {
       return false;
     },
   };
-  function setModalOff() {
+  function setModalOff(animateTime) {
     setAnimationState(true);
-    setOptionAlertVisible(true);
     setTimeout(() => {
       setVisible(false);
-    }, 4000);
+    }, animateTime);
   }
   function clickCheck() {
-    // if (tempCar.trim.name == ) {
-    //   setClickActive(true);
-    // }
+    setOptionAlertVisible(true);
+    setModalOff(4000);
   }
   return (
     <StFindTrimContentContainer $animationstate={animationstate}>
@@ -104,7 +102,12 @@ function FindTrimContent({ setVisible }) {
         }}
       />
       <StFindTrimContentButtonContainer>
-        <WhiteButton text={"나가기"} onClick={setModalOff} />
+        <WhiteButton
+          text={"나가기"}
+          onClick={() => {
+            setModalOff(1000);
+          }}
+        />
         <BlueButton text={"확인"} isActive={clickActive} onClick={clickCheck} />
       </StFindTrimContentButtonContainer>
       {optionAlertVisible && <OptionAlert text={["테스트"]} />}

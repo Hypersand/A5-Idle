@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import OptionBoxContainer from "../findTrim/OptionBoxContainer";
 import { selectedOptionContext } from "../../utils/context";
 
-function FindTrimContentMain({ car, onClick}) {
+function FindTrimContentMain({ car, onClick }) {
   const [dummyData, setDummyData] = useState([]);
   const [selected, setSelected] = useState(-1);
   const [isActive, setIsActive] = useState(true);
@@ -34,23 +34,25 @@ function FindTrimContentMain({ car, onClick}) {
   function toggleActive() {
     setIsActive(!isActive);
   }
+
+  function renderTrimBox() {
+    return dummyData.map((item, index) => (
+      <TrimBox
+        key={item.trim_idx}
+        name={item.name}
+        desc={item.description}
+        price={item.price}
+        isActive={isActive}
+        tempCar={car}
+        isSelected={index === selected}
+        onClick={() => handleClick(index)}
+      />
+    ));
+  }
   return (
     <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
       <StFindTrimContentMain>
-        <StTrimBoxContainer>
-          {dummyData.map((item, index) => (
-            <TrimBox
-              key={item.trim_idx}
-              name={item.name}
-              desc={item.desc}
-              price={item.price}
-              isActive={true}
-              tempCar={car}
-              isSelected={index === selected}
-              onClick={() => handleClick(index)}
-            />
-          ))}
-        </StTrimBoxContainer>
+        <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>
         <OptionBoxContainer />
       </StFindTrimContentMain>
     </selectedOptionContext.Provider>

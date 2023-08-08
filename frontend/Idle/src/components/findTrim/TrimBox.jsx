@@ -49,6 +49,7 @@ const StFindTrimTrimContainer = styled.div`
   background: ${({ theme, $isselected, $isactive }) =>
     $isselected ? theme.NavyBlue_5 : $isactive === "true" ? theme.White : theme.Grey_4};
   cursor: pointer;
+  margin-bottom: 12px;
 `;
 
 const StTrimBox = styled.div`
