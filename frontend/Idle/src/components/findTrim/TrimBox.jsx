@@ -16,7 +16,6 @@ function TrimBox({
     const carData = dummyData.find((item) => item.name === name);
     tempCar.trim.name = carData.name;
     tempCar.trim.price = carData.price;
-    console.log("trimBox", tempCar);
     if (isActive) {
       onClick();
     }
@@ -32,15 +31,12 @@ function TrimBox({
         <StTrimBoxContent $isselected={isSelected}>{description}</StTrimBoxContent>
         <StTrimBoxBottom>
           <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
-          {isActive && tempCar.option.additional.length !== 0 ? (
-            <TrimBoxOptionStatus status={optionStatus} />
-          ) : null}
+          {isActive ? <TrimBoxOptionStatus status={optionStatus} /> : null}
         </StTrimBoxBottom>
       </StTrimBox>
     </StFindTrimTrimContainer>
   );
 }
-
 export default TrimBox;
 
 const StFindTrimTrimContainer = styled.div`

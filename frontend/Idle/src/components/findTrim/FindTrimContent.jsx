@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import BlueButton from "../common/buttons/BlueButton";
 import WhiteButton from "../common/buttons/WhiteButton";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import FindTrimContentMain from "./FindTrimContentMain";
 import OptionAlert from "./OptionAlert";
 import { selectedOptionContext } from "../../utils/context";
@@ -12,7 +12,35 @@ function FindTrimContent({ setVisible }) {
   const [optionAlertVisible, setOptionAlertVisible] = useState(false);
   const [clickActive, setClickActive] = useState(false);
   const [selectedOption, setSelectedOption] = useState([]);
+  const [optionStatus, setOptionStatus] = useState([]);
   const { setCar } = useContext(carContext);
+
+  useEffect(() => {
+    //백엔드로 요청
+    const dummyData = [
+      {
+        name: "Exclusive",
+        isDefault: true,
+        selectPossible: false,
+      },
+      {
+        name: "Le Blanc",
+        isDefault: false,
+        selectPossible: true,
+      },
+      {
+        name: "Prestige",
+        isDefault: false,
+        selectPossible: true,
+      },
+      {
+        name: "Calligraphy",
+        isDefault: true,
+        selectPossible: true,
+      },
+    ];
+    setOptionStatus(dummyData);
+  }, [selectedOption]);
 
   let tempCar = {
     trim: {
@@ -127,6 +155,7 @@ function FindTrimContent({ setVisible }) {
           원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
         </StFindTrimContentTitle>
         <FindTrimContentMain
+          optionStatus={optionStatus}
           tempCar={tempCar}
           onClick={() => {
             setClickActive(true);

@@ -4,7 +4,7 @@ import { getTrimData } from "../../utils/api";
 import { useEffect, useState } from "react";
 import OptionBoxContainer from "../findTrim/OptionBoxContainer";
 
-function FindTrimContentMain({ tempCar, onClick }) {
+function FindTrimContentMain({ optionStatus, tempCar, onClick }) {
   const [dummyData, setDummyData] = useState([]);
   const [selected, setSelected] = useState(-1);
   const [isActive, setIsActive] = useState(true);
@@ -33,18 +33,23 @@ function FindTrimContentMain({ tempCar, onClick }) {
   }
 
   function renderTrimBox() {
-    console.log(tempCar);
-    return dummyData.map((item, index) => (
-      <TrimBox
-        key={index}
-        {...item}
-        isActive={isActive}
-        tempCar={tempCar}
-        isSelected={index === selected}
-        onClick={() => handleClick(index)}
-        dummyData={dummyData}
-      />
-    ));
+    return dummyData.map(
+      (item, index) => (
+        console.log(optionStatus[index]),
+        (
+          <TrimBox
+            key={index}
+            {...item}
+            isActive={optionStatus[index].selectPossible}
+            tempCar={tempCar}
+            isSelected={index === selected}
+            onClick={() => handleClick(index)}
+            optionStatus={optionStatus[index].isDefault}
+            dummyData={dummyData}
+          />
+        )
+      )
+    );
   }
 
   return (
