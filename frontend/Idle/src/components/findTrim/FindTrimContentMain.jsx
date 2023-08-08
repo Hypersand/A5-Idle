@@ -3,15 +3,12 @@ import TrimBox from "./TrimBox";
 import { getTrimData } from "../../utils/api";
 import { useEffect, useState } from "react";
 import OptionBoxContainer from "../findTrim/OptionBoxContainer";
-import { selectedOptionContext } from "../../utils/context";
 
 function FindTrimContentMain({ car, onClick }) {
   const [dummyData, setDummyData] = useState([]);
   const [selected, setSelected] = useState(-1);
   const [isActive, setIsActive] = useState(true);
-  const [selectedOption, setSelectedOption] = useState([]);
 
-  console.log(selectedOption);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -50,12 +47,10 @@ function FindTrimContentMain({ car, onClick }) {
     ));
   }
   return (
-    <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
-      <StFindTrimContentMain>
-        <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>
-        <OptionBoxContainer />
-      </StFindTrimContentMain>
-    </selectedOptionContext.Provider>
+    <StFindTrimContentMain>
+      <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>
+      <OptionBoxContainer />
+    </StFindTrimContentMain>
   );
 }
 

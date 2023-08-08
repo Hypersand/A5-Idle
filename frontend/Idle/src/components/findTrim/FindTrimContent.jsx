@@ -4,11 +4,15 @@ import WhiteButton from "../common/buttons/WhiteButton";
 import { useState } from "react";
 import FindTrimContentMain from "./FindTrimContentMain";
 import OptionAlert from "./OptionAlert";
+import { selectedOptionContext } from "../../utils/context";
 
 function FindTrimContent({ setVisible }) {
   const [animationstate, setAnimationState] = useState(false);
   const [optionAlertVisible, setOptionAlertVisible] = useState(false);
   const [clickActive, setClickActive] = useState(false);
+  const [selectedOption, setSelectedOption] = useState([]);
+
+  console.log(selectedOption);
   let tempCar = {
     trim: {
       name: "Exclusive",
@@ -91,27 +95,29 @@ function FindTrimContent({ setVisible }) {
     setModalOff(4000);
   }
   return (
-    <StFindTrimContentContainer $animationstate={animationstate}>
-      <StFindTrimContentTitle>
-        원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
-      </StFindTrimContentTitle>
-      <FindTrimContentMain
-        car={tempCar}
-        onClick={() => {
-          setClickActive(true);
-        }}
-      />
-      <StFindTrimContentButtonContainer>
-        <WhiteButton
-          text={"나가기"}
+    <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
+      <StFindTrimContentContainer $animationstate={animationstate}>
+        <StFindTrimContentTitle>
+          원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
+        </StFindTrimContentTitle>
+        <FindTrimContentMain
+          car={tempCar}
           onClick={() => {
-            setModalOff(1000);
+            setClickActive(true);
           }}
         />
-        <BlueButton text={"확인"} isActive={clickActive} onClick={clickCheck} />
-      </StFindTrimContentButtonContainer>
-      {optionAlertVisible && <OptionAlert text={["테스트"]} />}
-    </StFindTrimContentContainer>
+        <StFindTrimContentButtonContainer>
+          <WhiteButton
+            text={"나가기"}
+            onClick={() => {
+              setModalOff(1000);
+            }}
+          />
+          <BlueButton text={"확인"} isActive={clickActive} onClick={clickCheck} />
+        </StFindTrimContentButtonContainer>
+        {optionAlertVisible && <OptionAlert text={["테스트"]} />}
+      </StFindTrimContentContainer>
+    </selectedOptionContext.Provider>
   );
 }
 
