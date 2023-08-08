@@ -4,7 +4,7 @@ import { getTrimData } from "../../utils/api";
 import { useEffect, useState } from "react";
 import OptionBoxContainer from "../findTrim/OptionBoxContainer";
 
-function FindTrimContentMain({ optionStatus, tempCar, setTempCar, onClick }) {
+function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
   const [dummyData, setDummyData] = useState([]);
   const [selected, setSelected] = useState(-1);
 
