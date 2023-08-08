@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import { ReactComponent as MainLogoImg } from "../../assets/images/hyundai.svg";
-import { useNavigate } from "react-router-dom";
+import { ReactComponent as MainLogoImg } from "../../../assets/images/hyundai.svg";
+import WarningModal from "../modals/WarningModal";
+import { useState } from "react";
 
 function MainLogoBlack() {
-  const navigate = useNavigate();
+  const [modalVisible, setModalVisible] = useState(false);
+
   function logoClicked() {
-    navigate("/");
+    setModalVisible(true);
   }
 
   return (
@@ -13,6 +15,12 @@ function MainLogoBlack() {
       <MainLogoImg onClick={logoClicked} style={{ cursor: "pointer" }} />
       <Stdivision></Stdivision>
       <Stspan>마이 카마스터</Stspan>
+      {modalVisible ? (
+        <WarningModal
+          title={"마이 카마스터를 종료하시겠습니까?"}
+          setModalVisible={setModalVisible}
+        />
+      ) : null}
     </Stdiv>
   );
 }
