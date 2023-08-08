@@ -34,7 +34,6 @@ export let clickedOptionPage = false;
 export function setClickedOptionPage() {
   clickedOptionPage = true;
 }
-
 export const DEFAULT_ENGINE = {
   "Exclusive": {
     name: "가솔린 3.8",
@@ -125,3 +124,99 @@ export const DEFAULT_INTERIROR_COLOR = {
     price: 0,
   }
 }
+
+export const defaultOption = [
+  {
+    name: "Exclusive",
+    isDefault: "default",
+    selectPossible: true,
+  },
+  {
+    name: "Le Blanc",
+    isDefault: "default",
+    selectPossible: true,
+  },
+  {
+    name: "Prestige",
+    isDefault: "default",
+    selectPossible: true,
+  },
+  {
+    name: "Calligraphy",
+    isDefault: "default",
+    selectPossible: true,
+  },
+];
+
+export const emptyCar = {
+  trim: {
+    name: "",
+    price: 0,
+  },
+  detail: {
+    engine: {
+      name: "",
+      price: 0,
+    },
+    wd: {
+      name: "",
+      price: 0,
+    },
+    bodytype: {
+      name: "",
+      price: 0,
+    },
+  },
+  color: {
+    outside: {
+      name: "",
+      price: 0,
+    },
+    inside: {
+      name: "",
+      price: 0,
+    },
+  },
+  option: {
+    additional: [],
+    confusing: [],
+  },
+  bill: {},
+  getTrimSum: function () {
+    return this.trim.price !== undefined ? this.trim.price : 0;
+  },
+  getDetailSum: function () {
+    return this.detail.engine.price !== undefined &&
+      this.detail.wd.price !== undefined &&
+      this.detail.bodytype.price !== undefined
+      ? this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price
+      : 0;
+  },
+  getColorSum: function () {
+    return this.color.outside.price !== undefined && this.color.inside.price !== undefined
+      ? this.color.outside.price + this.color.inside.price
+      : 0;
+  },
+  getOptionSum: function () {
+    let total = 0;
+    this.option.additional.forEach((item) => (total += item.price));
+    return total;
+  },
+  getAllSum: function () {
+    return this.getTrimSum() + this.getColorSum() + this.getDetailSum() + this.getOptionSum();
+  },
+  getAllOptionChecked() {
+    if (
+      this.trim.name !== undefined &&
+      this.detail.engine.name !== undefined &&
+      this.detail.wd.name !== undefined &&
+      this.detail.bodytype.name !== undefined &&
+      this.color.outside.name !== undefined &&
+      this.color.inside.name !== undefined
+    ) {
+      return true;
+    }
+    return false;
+  },
+};
+

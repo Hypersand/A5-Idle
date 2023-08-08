@@ -3,13 +3,13 @@ import TrimBox from "./TrimBox";
 import { getTrimData } from "../../utils/api";
 import { useEffect, useState } from "react";
 import OptionBoxContainer from "../findTrim/OptionBoxContainer";
-import { selectedOptionContext } from "../../utils/context";
 
-function FindTrimContentMain({ car, onClick }) {
+
+function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
   const [dummyData, setDummyData] = useState([]);
   const [selected, setSelected] = useState(-1);
-  const [isActive, setIsActive] = useState(true);
-  const [selectedOption, setSelectedOption] = useState([]);
+  const [functionList, setFunctionList] = useState([]);
+  const [disableFunctionId, setDisableFunctionId] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -20,39 +20,96 @@ function FindTrimContentMain({ car, onClick }) {
         console.error("Error fetching trim data:", error);
       }
     }
+    setFunctionList([
+      {
+        function_id: 111111,
+        name: "aaa",
+        description: "설명1",
+        img_url: "",
+      },
+      {
+        function_id: 222222,
+        name: "bbb",
+        description: "설명2",
+        img_url: "",
+      },
+      {
+        function_id: 333333,
+        name: "ccc",
+        description: "설명3",
+        img_url: "",
+      },
+      {
+        function_id: 444444,
+        name: "ddd",
+        description: "설명4",
+        img_url: "",
+      },
+      {
+        function_id: 555555,
+        name: "eee",
+        description: "설명5",
+        img_url: "",
+      },
+      {
+        function_id: 666666,
+        name: "fff",
+        description: "설명6",
+        img_url: "",
+      },
+      {
+        function_id: 777777,
+        name: "ggg",
+        description: "설명7",
+        img_url: "",
+      },
+      {
+        function_id: 888888,
+        name: "hhh",
+        description: "설명8",
+        img_url: "",
+      },
+      {
+        function_id: 999999,
+        name: "iii",
+        description: "설명9",
+        img_url: "",
+      },
+    ]);
     fetchData();
   }, []);
 
   function handleClick(index) {
-    if (isActive) {
-      setSelected(index);
-      onClick();
-    }
+    setSelected(index);
+    onClick();
   }
 
-  function toggleActive() {
-    setIsActive(!isActive);
+  function renderTrimBox() {
+    return dummyData.map((item, index) => {
+      const isActive = optionStatus.length === 0 ? true : optionStatus[index].selectPossible;
+      const optionStatusProp =
+        optionStatus.length === 0 ? "default" : optionStatus[index].isDefault;
+      return (
+        <TrimBox
+          key={index}
+          {...item}
+          isActive={isActive}
+          setTempCar={setTempCar}
+          setDisableFunctionId={setDisableFunctionId}
+          isSelected={index === selected}
+          onClick={() => handleClick(index)}
+          optionStatus={optionStatusProp}
+          dummyData={dummyData}
+        />
+      );
+    });
   }
+
   return (
-    <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
-      <StFindTrimContentMain>
-        <StTrimBoxContainer>
-          {dummyData.map((item, index) => (
-            <TrimBox
-              key={item.trim_idx}
-              name={item.name}
-              desc={item.desc}
-              price={item.price}
-              isActive={true}
-              tempCar={car}
-              isSelected={index === selected}
-              onClick={() => handleClick(index)}
-            />
-          ))}
-        </StTrimBoxContainer>
-        <OptionBoxContainer />
-      </StFindTrimContentMain>
-    </selectedOptionContext.Provider>
+    <StFindTrimContentMain>
+      <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>
+      <OptionBoxContainer functionList={functionList} disableFunctionId={disableFunctionId} />
+    </StFindTrimContentMain>
   );
 }
 
