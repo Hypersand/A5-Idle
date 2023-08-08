@@ -155,6 +155,7 @@ const StConfirmContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 30px;
+  width: 154px;
 `;
 
 const StConfirmHeader = styled.div`
@@ -188,6 +189,7 @@ const Description = styled.p`
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.39px;
+  white-space: nowrap;
 `;
 
 const StTabContainer = styled.div`
