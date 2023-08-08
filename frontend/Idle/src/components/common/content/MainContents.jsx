@@ -11,7 +11,7 @@ function MainContents({ currentState, data, color = false }) {
         <StContainer>
             {currentState === ENGINES ?
                 <EngineContent {...filteredData} /> :
-                <StImage src={filteredData.img_url} />
+                <StImage src={filteredData?.img_url} />
             }
         </StContainer>
     )

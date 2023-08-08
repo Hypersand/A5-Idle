@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 export const TYPE = {
   trim: "트림",
   detail: "세부 모델",
@@ -29,4 +30,17 @@ export let clickedOptionPage = false;
 
 export function setClickedOptionPage() {
   clickedOptionPage = true;
+}
+
+export const DEFAULT_ENGINE = {
+  name: "가솔린 3.8",
+  price: 0,
+}
+export const DEFAULT_DRIVING_METHOD = {
+  name: "2WD",
+  price: 0,
+}
+export const DEFAULT_BODY_TYPE = {
+  name: "7인승",
+  price: 0,
 }
