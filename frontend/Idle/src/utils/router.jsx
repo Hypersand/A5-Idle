@@ -5,7 +5,7 @@ import ColorPage from "../pages/colorPage";
 import OptionPage from "../pages/optionPage";
 import BillPage from "../pages/billPage";
 import MainPage from "../pages/mainPage";
-import Layout from "../components/layout/Layout";
+import Layout from "../components/layout/layout";
 
 function Router() {
   return (
