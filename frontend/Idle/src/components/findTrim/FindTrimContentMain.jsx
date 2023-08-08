@@ -5,13 +5,12 @@ import { useEffect, useState } from "react";
 import OptionBoxContainer from "../findTrim/OptionBoxContainer";
 import { selectedOptionContext } from "../../utils/context";
 
-function FindTrimContentMain({ car, onClick}) {
+function FindTrimContentMain({ car, onClick }) {
   const [dummyData, setDummyData] = useState([]);
   const [selected, setSelected] = useState(-1);
   const [isActive, setIsActive] = useState(true);
   const [selectedOption, setSelectedOption] = useState([]);
 
-  console.log(selectedOption);
   useEffect(() => {
     async function fetchData() {
       try {

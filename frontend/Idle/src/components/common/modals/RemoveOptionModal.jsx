@@ -14,7 +14,6 @@ import { CHANGE_ADDITIONAL_OPTION } from "../../../utils/actionType";
 function RemoveOptionModal({ data, setModalVisible }) {
   const { car, dispatch } = useContext(carContext);
 
-  console.log(car);
   function confirmClicked() {
     let options = car.option.additional;
     options = options.filter((item) => item.name !== data.name);

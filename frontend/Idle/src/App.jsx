@@ -15,7 +15,6 @@ function App() {
       <Reset />
       <BrowserRouter>
         <carContext.Provider value={{ car, dispatch }}>
-          {console.log(car)}
           <Router />
         </carContext.Provider>
       </BrowserRouter>
