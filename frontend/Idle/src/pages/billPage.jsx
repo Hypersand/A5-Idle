@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import RemoveOptionModal from "../components/common/modals/RemoveOptionModal";
 
+import RemoveOptionModal from "../components/common/modals/RemoveOptionModal";
 function BillPage() {
   const data = [
     {

@@ -4,7 +4,7 @@ import WhiteButton from "../buttons/WhiteButton";
 import { createPortal } from "react-dom";
 import { useContext } from "react";
 import { carContext } from "../../../utils/context";
-
+import { CHANGE_ADDITIONAL_OPTION } from "../../../utils/actionType";
 /**
  *
  * @param {string} param0
@@ -12,7 +12,8 @@ import { carContext } from "../../../utils/context";
  */
 
 function RemoveOptionModal({ data, setModalVisible }) {
-  const { car, setCar } = useContext(carContext);
+  const { car, dispatch } = useContext(carContext);
+
   const names = [];
   let priceSum = 0;
 
@@ -22,13 +23,7 @@ function RemoveOptionModal({ data, setModalVisible }) {
     data.forEach((ele) => {
       options = options.filter((item) => item.name !== ele.name);
     });
-
-    setCar((prevCar) => ({
-      ...prevCar,
-      option: {
-        additional: options,
-      },
-    }));
+    dispatch({ type: CHANGE_ADDITIONAL_OPTION, payload: options });
     setModalVisible(false);
   }
 
