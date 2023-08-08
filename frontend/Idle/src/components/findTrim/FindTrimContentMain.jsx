@@ -4,7 +4,7 @@ import { getTrimData } from "../../utils/api";
 import { useEffect, useState } from "react";
 import OptionBoxContainer from "../findTrim/OptionBoxContainer";
 
-function FindTrimContentMain({ car, onClick }) {
+function FindTrimContentMain({ tempCar, onClick }) {
   const [dummyData, setDummyData] = useState([]);
   const [selected, setSelected] = useState(-1);
   const [isActive, setIsActive] = useState(true);
@@ -40,7 +40,7 @@ function FindTrimContentMain({ car, onClick }) {
         desc={item.description}
         price={item.price}
         isActive={isActive}
-        tempCar={car}
+        tempCar={tempCar}
         isSelected={index === selected}
         onClick={() => handleClick(index)}
       />

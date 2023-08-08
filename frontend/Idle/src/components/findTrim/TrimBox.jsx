@@ -13,6 +13,7 @@ function TrimBox({
 }) {
   function handleClick() {
     tempCar.trim.name = name;
+    console.log(tempCar);
     if (isActive) {
       onClick();
     }

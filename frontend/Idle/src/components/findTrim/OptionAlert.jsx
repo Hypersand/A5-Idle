@@ -2,7 +2,6 @@ import { styled } from "styled-components";
 import { createPortal } from "react-dom";
 
 function OptionAlert({ text }) {
-  console.log(text);
   return createPortal(
     <StAlertContainer>
       <StAlertTitle>

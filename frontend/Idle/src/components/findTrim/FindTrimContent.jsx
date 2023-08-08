@@ -1,22 +1,23 @@
 import styled, { keyframes } from "styled-components";
 import BlueButton from "../common/buttons/BlueButton";
 import WhiteButton from "../common/buttons/WhiteButton";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import FindTrimContentMain from "./FindTrimContentMain";
 import OptionAlert from "./OptionAlert";
 import { selectedOptionContext } from "../../utils/context";
+import { carContext } from "../../utils/context";
 
 function FindTrimContent({ setVisible }) {
   const [animationstate, setAnimationState] = useState(false);
   const [optionAlertVisible, setOptionAlertVisible] = useState(false);
   const [clickActive, setClickActive] = useState(false);
   const [selectedOption, setSelectedOption] = useState([]);
+  const { car, setCar } = useContext(carContext);
 
-  console.log(selectedOption);
   let tempCar = {
     trim: {
-      name: "Exclusive",
-      price: 40000000,
+      name: "",
+      price: 0,
     },
     detail: {
       engine: {
@@ -84,15 +85,39 @@ function FindTrimContent({ setVisible }) {
       return false;
     },
   };
-  function setModalOff(animateTime) {
+  function clickExit(animateTime) {
     setAnimationState(true);
     setTimeout(() => {
       setVisible(false);
     }, animateTime);
   }
   function clickCheck() {
+    clickExit(4000);
+    //request 보내기
+    //get 받기
+    const dummyData = [
+      {
+        option_id: 1234,
+        option_name: "12.3인치 LCD 클러스터",
+        option_price: 1000000,
+      },
+      {
+        option_id: 1235,
+        option_name: "컴포트2",
+        option_price: 2000000,
+      },
+    ];
+    setSelectedOption([]);
+    dummyData.forEach((item) => {
+      setSelectedOption((prevAddOption) => [...prevAddOption, item.option_name]);
+      tempCar.option.additional.push({
+        name: item.option_name,
+        price: item.option_price,
+      });
+    });
+    console.log(tempCar);
+    setCar(tempCar);
     setOptionAlertVisible(true);
-    setModalOff(4000);
   }
   return (
     <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
@@ -101,7 +126,7 @@ function FindTrimContent({ setVisible }) {
           원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
         </StFindTrimContentTitle>
         <FindTrimContentMain
-          car={tempCar}
+          tempCar={tempCar}
           onClick={() => {
             setClickActive(true);
           }}
@@ -110,12 +135,12 @@ function FindTrimContent({ setVisible }) {
           <WhiteButton
             text={"나가기"}
             onClick={() => {
-              setModalOff(1000);
+              clickExit(1000);
             }}
           />
           <BlueButton text={"확인"} isActive={clickActive} onClick={clickCheck} />
         </StFindTrimContentButtonContainer>
-        {optionAlertVisible && <OptionAlert text={["테스트"]} />}
+        {optionAlertVisible && <OptionAlert text={selectedOption} />}
       </StFindTrimContentContainer>
     </selectedOptionContext.Provider>
   );
