@@ -5,36 +5,20 @@ export const globalCar = {
   },
   detail: {
     engines: {
-      // name: "가솔린 3.8",
-      // price: 0,
     },
     driving_methods: {
-      // name: "2WD",
-      // price: 0,
     },
     body_types: {
-      // name: "7인승",
-      // price: 0,
     },
   },
   color: {
     outside: {
-      // name: "그라파이드 그레이 메탈릭",
-      // price: 0,
     },
     inside: {
-      // name: "퀼팅천연(블랙)",
-      // price: 3000000,
     },
   },
   option: {
     additional: [
-      // { name: "현대스마트센스", price: 1000000 },
-      // { name: "컴포트2", price: 2000000 },
-      // { name: "듀얼와이드 선루프", price: 3000000 },
-      // { name: "현대스마트센스", price: 1000000 },
-      // { name: "컴포트2", price: 2000000 },
-      // { name: "듀얼와이드 선루프", price: 3000000 },
     ],
     confusing: [],
   },
@@ -43,16 +27,27 @@ export const globalCar = {
     return this.trim.price !== undefined ? this.trim.price : 0;
   },
   getDetailSum: function () {
-    return this.detail.engines.price !== undefined &&
-      this.detail.driving_methods.price !== undefined &&
-      this.detail.body_types.price !== undefined
-      ? this.detail.engines.price + this.detail.driving_methods.price + this.detail.body_types.price
-      : 0;
+    let sum = 0;
+    if (this.detail.engines.price !== undefined) {
+      sum += this.detail.engines.price;
+    }
+    if (this.detail.driving_methods.price !== undefined) {
+      sum += this.detail.driving_methods.price;
+    }
+    if (this.detail.body_types.price !== undefined) {
+      sum += this.detail.body_types.price;
+    }
+    return sum;
   },
   getColorSum: function () {
-    return this.color.outside.price !== undefined && this.color.inside.price !== undefined
-      ? this.color.outside.price + this.color.inside.price
-      : 0;
+    let sum = 0;
+    if (this.color.outside.price !== undefined) {
+      sum += this.color.outside.price;
+    }
+    if (this.color.inside.price !== undefined) {
+      sum += this.color.inside.price;
+    }
+    return sum;
   },
   getOptionSum: function () {
     let total = 0;

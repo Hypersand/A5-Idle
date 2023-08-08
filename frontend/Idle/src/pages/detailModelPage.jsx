@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DetailModelBox from "../components/common/boxs/DetailModelBox";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import BlueButton from "../components/common/buttons/BlueButton";
-import { BODY_TYPES, DRVING_METHODS, ENGINES, TRANSLATE } from "../utils/constants";
+import { BODY_TYPES, DEFAULT_BODY_TYPE, DEFAULT_DRIVING_METHOD, DEFAULT_ENGINE, DRVING_METHODS, ENGINES, TRANSLATE } from "../utils/constants";
 import WhiteButton from "../components/common/buttons/WhiteButton";
 import CategoryTabs from "../components/common/tabs/CategoryTabs";
 import MainContents from "../components/common/content/MainContents";
+import { carContext } from "../utils/context";
+import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "../utils/actionType";
 
 const dummyData = {
   "engines": [
@@ -77,6 +79,33 @@ function DetailModelPage() {
   const [currentTab, setCurrentTab] = useState(ENGINES)
   const navigate = useNavigate();
   const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES];
+  const { car, dispatch } = useContext(carContext);
+
+  function dispatchDefault(tabState, actionType, defaultPayload) {
+    if (tabState.name === undefined) {
+      dispatch({
+        type: actionType,
+        payload: defaultPayload
+      });
+    }
+  }
+
+  useEffect(() => {
+    switch (currentTab) {
+      case ENGINES:
+        dispatchDefault(car.detail.engines, CHANGE_ENGINES, DEFAULT_ENGINE);
+        break;
+      case DRVING_METHODS:
+        dispatchDefault(car.detail.driving_methods, CHANGE_DRIVING_METHODS, DEFAULT_DRIVING_METHOD);
+        break;
+      case BODY_TYPES:
+        dispatchDefault(car.detail.body_types, CHANGE_BODY_TYPES, DEFAULT_BODY_TYPE);
+        break;
+      default:
+        break;
+    }
+  }, [currentTab]);
+
 
   function handleTabChange(direction) {
     const currentIndex = tabs.indexOf(currentTab);
