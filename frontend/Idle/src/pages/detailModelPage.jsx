@@ -93,13 +93,13 @@ function DetailModelPage() {
   useEffect(() => {
     switch (currentTab) {
       case ENGINES:
-        dispatchDefault(car.detail.engines, CHANGE_ENGINES, DEFAULT_ENGINE);
+        dispatchDefault(car.detail.engines, CHANGE_ENGINES, DEFAULT_ENGINE[car.trim.name]);
         break;
       case DRVING_METHODS:
-        dispatchDefault(car.detail.driving_methods, CHANGE_DRIVING_METHODS, DEFAULT_DRIVING_METHOD);
+        dispatchDefault(car.detail.driving_methods, CHANGE_DRIVING_METHODS, DEFAULT_DRIVING_METHOD[car.trim.name]);
         break;
       case BODY_TYPES:
-        dispatchDefault(car.detail.body_types, CHANGE_BODY_TYPES, DEFAULT_BODY_TYPE);
+        dispatchDefault(car.detail.body_types, CHANGE_BODY_TYPES, DEFAULT_BODY_TYPE[car.trim.name]);
         break;
       default:
         break;
