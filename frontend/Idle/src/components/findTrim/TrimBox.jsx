@@ -3,17 +3,20 @@ import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
 
 function TrimBox({
   name,
-  desc,
+  description,
   price,
   isActive = true,
   isSelected,
   optionStatus,
   onClick,
   tempCar,
+  dummyData,
 }) {
   function handleClick() {
-    tempCar.trim.name = name;
-    console.log(tempCar);
+    const carData = dummyData.find((item) => item.name === name);
+    tempCar.trim.name = carData.name;
+    tempCar.trim.price = carData.price;
+    console.log("trimBox", tempCar);
     if (isActive) {
       onClick();
     }
@@ -24,9 +27,9 @@ function TrimBox({
       $isactive={isActive.toString()}
       $isselected={isSelected}
     >
-      <StTrimBox>
+      <StTrimBox onClick={handleClick}>
         <StTrimBoxTitle $isselected={isSelected}>{name}</StTrimBoxTitle>
-        <StTrimBoxContent $isselected={isSelected}>{desc}</StTrimBoxContent>
+        <StTrimBoxContent $isselected={isSelected}>{description}</StTrimBoxContent>
         <StTrimBoxBottom>
           <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
           {isActive && tempCar.option.additional.length !== 0 ? (

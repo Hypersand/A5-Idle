@@ -12,7 +12,7 @@ function FindTrimContent({ setVisible }) {
   const [optionAlertVisible, setOptionAlertVisible] = useState(false);
   const [clickActive, setClickActive] = useState(false);
   const [selectedOption, setSelectedOption] = useState([]);
-  const { car, setCar } = useContext(carContext);
+  const { setCar } = useContext(carContext);
 
   let tempCar = {
     trim: {
@@ -85,6 +85,7 @@ function FindTrimContent({ setVisible }) {
       return false;
     },
   };
+
   function clickExit(animateTime) {
     setAnimationState(true);
     setTimeout(() => {
@@ -108,6 +109,7 @@ function FindTrimContent({ setVisible }) {
       },
     ];
     setSelectedOption([]);
+    console.log(tempCar);
     dummyData.forEach((item) => {
       setSelectedOption((prevAddOption) => [...prevAddOption, item.option_name]);
       tempCar.option.additional.push({
@@ -115,7 +117,6 @@ function FindTrimContent({ setVisible }) {
         price: item.option_price,
       });
     });
-    console.log(tempCar);
     setCar(tempCar);
     setOptionAlertVisible(true);
   }

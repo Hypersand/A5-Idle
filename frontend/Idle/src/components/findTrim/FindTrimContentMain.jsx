@@ -33,19 +33,20 @@ function FindTrimContentMain({ tempCar, onClick }) {
   }
 
   function renderTrimBox() {
+    console.log(tempCar);
     return dummyData.map((item, index) => (
       <TrimBox
-        key={item.trim_idx}
-        name={item.name}
-        desc={item.description}
-        price={item.price}
+        key={index}
+        {...item}
         isActive={isActive}
         tempCar={tempCar}
         isSelected={index === selected}
         onClick={() => handleClick(index)}
+        dummyData={dummyData}
       />
     ));
   }
+
   return (
     <StFindTrimContentMain>
       <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>
