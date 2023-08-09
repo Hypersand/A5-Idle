@@ -20,15 +20,16 @@ function Car3D() {
     const [currentImg, setCurrentImage] = useState(0);
     const [isMouseDown, setisMouseDown] = useState(false);
     const [beforeX, setBeforeX] = useState(0)
+    const imgCount = dummyData.car_img_urls.length - 1
 
     function turnRight() {
-        if (currentImg === 59) {
+        if (currentImg === imgCount) {
             setCurrentImage(0)
         } else { setCurrentImage(currentImg + 1) }
     }
     function turnLeft() {
         if (currentImg === 0) {
-            setCurrentImage(59)
+            setCurrentImage(imgCount)
         } else { setCurrentImage(currentImg - 1) }
     }
     function turnCar(e) {
