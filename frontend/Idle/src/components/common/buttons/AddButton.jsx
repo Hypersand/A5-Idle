@@ -10,8 +10,8 @@ export default AddButton
 
 const StContainer = styled.div`
     display: flex;
-    width: 78px;
-    padding: 4px 12px;
+    width: 53px;
+    padding: 3.5px 12px;
     border: 0.5px solid ${({ $state }) => $state === "none" ? "#222" : "#fff"};
     color:${({ $state }) => {
         switch ($state) {
