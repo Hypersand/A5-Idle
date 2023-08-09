@@ -214,7 +214,6 @@ const StConfirmHeader = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  margin-top: 8.22px;
 `;
 
 const StButtonContainer = styled.div`

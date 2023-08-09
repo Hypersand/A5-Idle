@@ -29,12 +29,13 @@ const StOutline = styled.div`
   position: absolute;
   width: 188px;
   border: 3px solid white;
-  height: 68px;
+  height: 64px;
 `;
+
 const StContainer = styled.div`
   position: relative;
   width: 194px;
-  height: 74px;
+  height: 70px;
   background-color: grey;
   border: 3px solid ${({ $isActive }) => ($isActive ? "#1A3276" : "#000")};
   background-image: ${({ $img }) => `url(${$img})`};
@@ -42,7 +43,7 @@ const StContainer = styled.div`
 
 const StName = styled.div`
   position: absolute;
-  top: 10px;
+  top: 7px;
   left: 12px;
   color: ${({ $isWhite }) => ($isWhite ? "#000" : "#fff")};
   font-family: "Hyundai Sans Text KR";
@@ -55,7 +56,7 @@ const StName = styled.div`
 
 const StRatio = styled.div`
   position: absolute;
-  top: 28px;
+  top: 25px;
   left: 12px;
   color: ${({ $isGrey }) => ($isGrey ? "#ffffff" : "#7B7B7B")};
   font-family: "Hyundai Sans Text KR";
@@ -69,7 +70,7 @@ const StRatio = styled.div`
 
 const StPrice = styled.div`
   position: absolute;
-  top: 54px;
+  top: 52px;
   left: 12px;
   color: ${({ $isWhite }) => ($isWhite ? "#81899E" : "#C5C9D2")};
   font-family: "Hyundai Sans Text KR";

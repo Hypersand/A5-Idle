@@ -30,6 +30,5 @@ const StContainer = styled.div`
   align-items: center;
   gap: 12px 8px;
   width: 824px;
-  height: 172px;
   flex-wrap: wrap;
 `;
