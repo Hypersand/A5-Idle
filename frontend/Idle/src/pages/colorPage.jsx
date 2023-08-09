@@ -21,6 +21,7 @@ import silver from "../assets/images/outsideColor/silver.png";
 import brown from "../assets/images/outsideColor/brown.png";
 import emerald from "../assets/images/outsideColor/emerald.png";
 import OutsideColorBoxContainer from "../components/colorSelection/OutsideColorBoxContainer";
+import InnerColor from "../components/carColor/InnerColor";
 
 const dummyData = {
   car_img_urls: ["...", "..."],
@@ -69,7 +70,26 @@ const dummyData = {
     },
   ],
 };
-
+const innercolorData = {
+  car_interior_colors: [
+    {
+      interior_idx: 1234,
+      interior_name: "퀕팅천연(블랙)",
+      interior_price: 0,
+      interior_img_url: "...",
+      car_interior_img_url: "...",
+      interior_purchase_rate: "구매자의 22%가 선택",
+    },
+    {
+      interior_idx: 1235,
+      interior_name: "그라파이트 그레이 블랙",
+      interior_price: 1000,
+      interior_img_url: "...",
+      car_interior_img_url: "...",
+      interior_purchase_rate: "구매자의 32%가 선택",
+    },
+  ],
+};
 function ColorPage() {
   const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS);
   const tabs = [EXTERIOR_COLORS, INTERIROR_COLORS];
@@ -96,7 +116,6 @@ function ColorPage() {
         break;
     }
   }, [currentTab]);
-
   function dispatchDefault(tabState, actionType, defaultPayload) {
     if (tabState.name === undefined) {
       dispatch({
@@ -105,7 +124,6 @@ function ColorPage() {
       });
     }
   }
-
   function handleTabChange(direction) {
     const currentIndex = tabs.indexOf(currentTab);
 
@@ -132,6 +150,7 @@ function ColorPage() {
             <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />
           ))}
         </StTabContainer>
+        <StContentsContainer>{/* 메인 내용 */}</StContentsContainer>
         {
           currentTab === EXTERIOR_COLORS ?
             <Car3D /> : <></>
@@ -143,7 +162,6 @@ function ColorPage() {
               <OutsideColorBoxContainer data={dummyData.exterior_colors} />
             ) : null}
           </StContainer>
-
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>{TRANSLATE[currentTab]} 선택</Title>
@@ -239,7 +257,7 @@ const StTabContainer = styled.div`
   display: inline-flex;
   align-items: flex-start;
   gap: 24px;
-`
+`;
 const StContentsContainer = styled.div`
   position: absolute;
   top: 100px;
