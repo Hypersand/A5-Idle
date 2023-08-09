@@ -2,12 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { carContext } from "../utils/context";
-import { CHANGE_INSIDE_COLOR, CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
+import { CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
 import BlueButton from "../components/common/buttons/BlueButton";
 import WhiteButton from "../components/common/buttons/WhiteButton";
 import {
   DEFAULT_EXTERIROR_COLOR,
-  DEFAULT_INTERIROR_COLOR,
   EXTERIOR_COLORS,
   INTERIROR_COLORS,
   TRANSLATE,
@@ -253,9 +252,4 @@ const StTabContainer = styled.div`
   display: inline-flex;
   align-items: flex-start;
   gap: 24px;
-`;
-const StContentsContainer = styled.div`
-  position: absolute;
-  top: 100px;
-  left: 128px;
 `;
