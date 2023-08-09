@@ -1,21 +1,40 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { styled } from "styled-components"
 import ConfusingButton from "../buttons/ConfusingButton";
 import AddButton from "../buttons/AddButton";
+import { POP_ADDITIONAL_OPTION, POP_CONFUSING_OPTION, PUSH_ADDITIONAL_OPTION, PUSH_CONFUSING_OPTION } from "../../../utils/actionType";
+import { carContext } from "../../../utils/context";
 
 function OptionBox({ option_name, option_price, option_purchase_rate, selectedOption, setSelectedOption }) {
+    const { car, dispatch } = useContext(carContext);
     const [currentState, setCurrentState] = useState("none")
     const isSelected = selectedOption === option_name
 
+    function popPayload(name) {
+        let newPayload
+        newPayload = car.option.confusing
+        dispatch({ type: POP_CONFUSING_OPTION, payload: newPayload.filter((item) => item.name !== name) })
+        newPayload = car.option.additional
+        dispatch({ type: POP_ADDITIONAL_OPTION, payload: newPayload.filter((item) => item.name !== name) })
+    }
+
     function toggleConfuse(e) {
         e.stopPropagation()
+        popPayload(option_name)
         if (currentState === "confuse") setCurrentState("none")
-        else setCurrentState("confuse")
+        else {
+            dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: option_name, price: option_price } })
+            setCurrentState("confuse")
+        }
     }
     function toggleAdd(e) {
         e.stopPropagation()
+        popPayload(option_name)
         if (currentState === "add") setCurrentState("none")
-        else setCurrentState("add")
+        else {
+            dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: option_name, price: option_price } })
+            setCurrentState("add")
+        }
     }
 
     return (
@@ -25,6 +44,7 @@ function OptionBox({ option_name, option_price, option_purchase_rate, selectedOp
                 $isSelected={isSelected}
                 $state={currentState}
             >
+                <ClickedBorder $isSelected={isSelected} $state={currentState} />
                 <StContent>
                     <StContentHeader>
                         <TitleDetail $isSelected={isSelected} $state={currentState}>{option_purchase_rate}</TitleDetail>
@@ -44,12 +64,33 @@ function OptionBox({ option_name, option_price, option_purchase_rate, selectedOp
 export default OptionBox;
 
 const StContainer = styled.div`
-      display: flex;
-      width: 166px;
-      height: 138px;
-      padding: 12px 16px;
-      border: 1px solid ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#DDD")};
-      background: ${({ $state }) => {
+    position: relative;
+    display: flex;
+    width: 166px;
+    height: 138px;
+    padding: 12px 16px;
+    border: 2px solid ${({ $isSelected, $state }) => {
+        if ($isSelected) {
+            switch ($state) {
+                case "none":
+                    return "#E7ECF9"
+                case "confuse":
+                    return "#9B6D54"
+                case "add":
+                    return "#1A3276"
+            }
+        } else {
+            switch ($state) {
+                case "none":
+                    return "#ddd"
+                case "confuse":
+                    return "#9B6D54"
+                case "add":
+                    return "#1A3276"
+            }
+        }
+    }};
+    background: ${({ $state }) => {
         switch ($state) {
             case "none":
                 return "#fff"
@@ -59,14 +100,14 @@ const StContainer = styled.div`
                 return "#1A3276"
         }
     }};
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 8px;
-      flex-shrink: 0;
-      pointer-events: ${({ $state }) => ($state === "block" ? "none" : "")};
-      opacity: ${({ $state }) => ($state ? 1 : 0.2)};
-      &:hover {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    flex-shrink: 0;
+    pointer-events: ${({ $state }) => ($state === "block" ? "none" : "")};
+    opacity: ${({ $state }) => ($state ? 1 : 0.2)};
+    &:hover {
         background:  ${({ $state }) => {
         switch ($state) {
             case "none":
@@ -77,10 +118,10 @@ const StContainer = styled.div`
                 return "#1A3276"
         }
     }};
-        opacity: 0.9;
-        cursor: pointer;
-      }
-    `;
+    opacity: 0.9;
+    cursor: pointer;
+    }
+`;
 
 const StContent = styled.div`
     display: flex;
@@ -99,13 +140,13 @@ const StContentHeader = styled.div`
 `;
 
 const TitleDetail = styled.p`
-      color: ${({ $state }) => ($state === "confuse" ? "rgba(255, 255, 255, 0.50)" : "#96A9DC")};
-      font-family: "Hyundai Sans Text KR";
-      font-size: 10px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 16px;
-      letter-spacing: -0.3px;
+    color: ${({ $state }) => ($state === "confuse" ? "rgba(255, 255, 255, 0.50)" : "#96A9DC")};
+    font-family: "Hyundai Sans Text KR";
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.3px;
 `;
 
 const Title = styled.h1`
@@ -119,13 +160,13 @@ const Title = styled.h1`
 `;
 
 const Price = styled.p`
-      color: ${({ $state }) => ($state === "none" ? "#222222" : "#ffffff")};
-      font-family: "Hyundai Sans Text KR";
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 20px;
-      letter-spacing: -0.42px;
+    color: ${({ $state }) => ($state === "none" ? "#222222" : "#ffffff")};
+    font-family: "Hyundai Sans Text KR";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.42px;
 `;
 
 const StButtonContainer = styled.div`
@@ -133,4 +174,21 @@ const StButtonContainer = styled.div`
     justify-content: flex-end;
     align-items: center;
     gap: 12px;
+`
+const ClickedBorder = styled.div`
+    position: absolute;
+    display: ${({ $isSelected, $state }) => {
+        if ($state == "none") {
+            return "none"
+        } else {
+            if ($isSelected) return ""
+            else return "none"
+        }
+    }};
+    width: 192px;
+    border: 2px solid #E7ECF9;
+    height: 156px;
+    top: 1px;
+    left: 1px;
+    z-index: 1;
 `

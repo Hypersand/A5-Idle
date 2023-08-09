@@ -34,4 +34,5 @@ const StContainer = styled.div`
     line-height: 16px;
     letter-spacing: -0.36px;
     text-align: center;
+    z-index: 2;
 `
