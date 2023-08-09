@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import InnerColorImg from "../../assets/images/innerColor.png";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { carContext } from "../../utils/context";
 import { CHANGE_INSIDE_COLOR } from "../../utils/actionType";
 
