@@ -71,7 +71,6 @@ const dummyData = {
 
 function ColorPage() {
   const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS);
-  const [selectedOutColor, setSelectedOutColor] = useState({ name: "", price: 0 });
   const tabs = [EXTERIOR_COLORS, INTERIROR_COLORS];
   const { car, dispatch } = useContext(carContext);
   const navigate = useNavigate();
@@ -124,14 +123,6 @@ function ColorPage() {
     }
   }
 
-  function nextBtnClicked() {
-    handleTabChange("next");
-    if (currentTab === EXTERIOR_COLORS) {
-      dispatch({ type: CHANGE_OUTSIDE_COLOR, payload: selectedOutColor });
-    }
-    // else inside
-  }
-
   return (
     <>
       <StWrapper>
@@ -147,11 +138,7 @@ function ColorPage() {
           <StContainer>
             {/* 박스 컨테이너 자리 */}
             {currentTab === EXTERIOR_COLORS ? (
-              <OutsideColorBoxContainer
-                data={dummyData.exterior_colors}
-                selectedColor={selectedOutColor}
-                setSelectedColor={setSelectedOutColor}
-              />
+              <OutsideColorBoxContainer data={dummyData.exterior_colors} />
             ) : null}
           </StContainer>
 
@@ -167,7 +154,7 @@ function ColorPage() {
                   handleTabChange("prev");
                 }}
               />
-              <BlueButton text={"다음"} onClick={nextBtnClicked} />
+              <BlueButton text={"다음"} onClick={() => handleTabChange("next")} />
             </StButtonContainer>
           </StConfirmContainer>
         </StBottomContainer>
