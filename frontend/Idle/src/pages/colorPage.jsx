@@ -2,63 +2,110 @@ import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import BlueButton from "../components/common/buttons/BlueButton";
-import { DEFAULT_EXTERIROR_COLOR, DEFAULT_INTERIROR_COLOR, EXTERIOR_COLORS, INTERIROR_COLORS, TRANSLATE } from "../utils/constants";
+import {
+  DEFAULT_EXTERIROR_COLOR,
+  DEFAULT_INTERIROR_COLOR,
+  EXTERIOR_COLORS,
+  INTERIROR_COLORS,
+  TRANSLATE,
+} from "../utils/constants";
 import WhiteButton from "../components/common/buttons/WhiteButton";
 import CategoryTabs from "../components/common/tabs/CategoryTabs";
 import { carContext } from "../utils/context";
 import { CHANGE_INSIDE_COLOR, CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
 import Car3D from "../components/common/content/Car3D";
+import grey from "../assets/images/outsideColor/grey.png";
+import black from "../assets/images/outsideColor/black.png";
+import white from "../assets/images/outsideColor/white.png";
+import silver from "../assets/images/outsideColor/silver.png";
+import brown from "../assets/images/outsideColor/brown.png";
+import emerald from "../assets/images/outsideColor/emerald.png";
+import OutsideColorBoxContainer from "../components/colorSelection/OutsideColorBoxContainer";
 
 const dummyData = {
-  "car_img_urls": [
-    "...",
-    "...",
-  ],
-  "exterior_colors": [
+  car_img_urls: ["...", "..."],
+  exterior_colors: [
     {
-      "exterior_id": 1234,
-      "exterior_name": "black",
-      "exterior_price": 0,
-      "exterior_img_url": "...",
-      "exteriror_purchase_rate": "구매자의 22%가 선택"
+      exterior_id: 1,
+      exterior_name: "grey",
+      exterior_price: 0,
+      exterior_img_url: grey,
+      exteriror_purchase_rate: "구매자의 32%가 선택",
     },
     {
-      "exterior_id": 1235,
-      "exterior_name": "grey",
-      "exterior_price": 0,
-      "exterior_img_url": "...",
-      "exteriror_purchase_rate": "구매자의 32%가 선택"
-    }
-  ]
-}
+      exterior_id: 15,
+      exterior_name: "black",
+      exterior_price: 0,
+      exterior_img_url: black,
+      exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+    {
+      exterior_id: 3,
+      exterior_name: "white",
+      exterior_price: 0,
+      exterior_img_url: white,
+      exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+    {
+      exterior_id: 31,
+      exterior_name: "brown",
+      exterior_price: 100000,
+      exterior_img_url: brown,
+      exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+    {
+      exterior_id: 5,
+      exterior_name: "silver",
+      exterior_price: 0,
+      exterior_img_url: silver,
+      exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+    {
+      exterior_id: 333,
+      exterior_name: "emerald",
+      exterior_price: 0,
+      exterior_img_url: emerald,
+      exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+  ],
+};
+
 function ColorPage() {
-  const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS)
-  const navigate = useNavigate();
+  const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS);
+  const [selectedOutColor, setSelectedOutColor] = useState({ name: "", price: 0 });
   const tabs = [EXTERIOR_COLORS, INTERIROR_COLORS];
   const { car, dispatch } = useContext(carContext);
-
-  function dispatchDefault(tabState, actionType, defaultPayload) {
-    if (tabState.name === undefined) {
-      dispatch({
-        type: actionType,
-        payload: defaultPayload
-      });
-    }
-  }
+  const navigate = useNavigate();
 
   useEffect(() => {
     switch (currentTab) {
       case EXTERIOR_COLORS:
-        dispatchDefault(car.color.outside, CHANGE_OUTSIDE_COLOR, DEFAULT_EXTERIROR_COLOR[car.trim.name]);
+        dispatchDefault(
+          car.color.outside,
+          CHANGE_OUTSIDE_COLOR,
+          DEFAULT_EXTERIROR_COLOR[car.trim.name]
+        );
         break;
       case INTERIROR_COLORS:
-        dispatchDefault(car.color.inside, CHANGE_INSIDE_COLOR, DEFAULT_INTERIROR_COLOR[car.trim.name]);
+        dispatchDefault(
+          car.color.inside,
+          CHANGE_INSIDE_COLOR,
+          DEFAULT_INTERIROR_COLOR[car.trim.name]
+        );
         break;
       default:
         break;
     }
   }, [currentTab]);
 
+  function dispatchDefault(tabState, actionType, defaultPayload) {
+    if (tabState.name === undefined) {
+      dispatch({
+        type: actionType,
+        payload: defaultPayload,
+      });
+    }
+  }
 
   function handleTabChange(direction) {
     const currentIndex = tabs.indexOf(currentTab);
@@ -78,29 +125,51 @@ function ColorPage() {
     }
   }
 
+  function nextBtnClicked() {
+    handleTabChange("next");
+    if (currentTab === EXTERIOR_COLORS) {
+      dispatch({ type: CHANGE_OUTSIDE_COLOR, payload: selectedOutColor });
+    }
+    // else inside
+  }
+
   return (
     <>
       <StWrapper>
         <StTabContainer>
-          {tabs.map((item, idx) => (<CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />))}
+          {tabs.map((item, idx) => (
+            <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />
+          ))}
         </StTabContainer>
         {
           currentTab === EXTERIOR_COLORS ?
             <Car3D /> : <></>
         }
-
-        <StBottomContainer id="here">
+        <StBottomContainer>
           <StContainer>
             {/* 박스 컨테이너 자리 */}
+            {currentTab === EXTERIOR_COLORS ? (
+              <OutsideColorBoxContainer
+                data={dummyData.exterior_colors}
+                selectedColor={selectedOutColor}
+                setSelectedColor={setSelectedOutColor}
+              />
+            ) : null}
           </StContainer>
+
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>{TRANSLATE[currentTab]} 선택</Title>
               <Description>원하는 {TRANSLATE[currentTab]}을 선택해주세요.</Description>
             </StConfirmHeader>
             <StButtonContainer>
-              <WhiteButton text={"이전"} onClick={() => { handleTabChange("prev") }} />
-              <BlueButton text={"다음"} onClick={() => { handleTabChange("next") }} />
+              <WhiteButton
+                text={"이전"}
+                onClick={() => {
+                  handleTabChange("prev");
+                }}
+              />
+              <BlueButton text={"다음"} onClick={nextBtnClicked} />
             </StButtonContainer>
           </StConfirmContainer>
         </StBottomContainer>
@@ -153,7 +222,7 @@ const StButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-`
+`;
 
 const Title = styled.h1`
   color: #222;
@@ -184,3 +253,8 @@ const StTabContainer = styled.div`
   align-items: flex-start;
   gap: 24px;
 `
+const StContentsContainer = styled.div`
+  position: absolute;
+  top: 100px;
+  left: 128px;
+`;
