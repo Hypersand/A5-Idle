@@ -47,9 +47,9 @@ function renderOption(type, options) {
     default:
       const keys = Object.keys(options);
       keys.forEach((key) => {
-        selectedOptions.push(options[key].name);
+        if (options[key].name !== undefined) selectedOptions.push(options[key].name);
       });
-      selectedOptions[0] === undefined ? (selectedOptions = []) : selectedOptions;
+    // selectedOptions[0] === undefined ? (selectedOptions = []) : selectedOptions;
   }
 
   if (type === DETAIL) {
