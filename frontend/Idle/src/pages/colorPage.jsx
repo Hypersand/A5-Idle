@@ -13,7 +13,6 @@ import WhiteButton from "../components/common/buttons/WhiteButton";
 import CategoryTabs from "../components/common/tabs/CategoryTabs";
 import { carContext } from "../utils/context";
 import { CHANGE_INSIDE_COLOR, CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
-import InnerColorSrc from "../assets/images/innerColor.svg";
 
 const dummyData = {
   car_img_urls: ["...", "..."],
@@ -88,38 +87,6 @@ function ColorPage() {
     }
   }
 
-  function renderInnerColor() {
-    const colorData = {
-      car_interior_colors: [
-        {
-          interior_idx: 1234,
-          interior_name: "black",
-          interior_price: 0,
-          interior_img_url: "...",
-          car_interior_img_url: "...",
-          interior_purchase_rate: "구매자의 22%가 선택",
-        },
-        {
-          interior_idx: 1235,
-          interior_name: "grey",
-          interior_price: 0,
-          interior_img_url: "...",
-          car_interior_img_url: "...",
-          interior_purchase_rate: "구매자의 32%가 선택",
-        },
-      ],
-    };
-    return colorData.car_interior_colors.map((item) => {
-      return (
-        <StInnerColorBox key={item.interior_idx}>
-          <StInnerColorImg />
-          <StInnerColorTextBox>
-            <span>퀄팅천연(블랙)</span>
-          </StInnerColorTextBox>
-        </StInnerColorBox>
-      );
-    });
-  }
   return (
     <>
       <StWrapper>
@@ -131,7 +98,7 @@ function ColorPage() {
         <StContentsContainer>{/* 메인 내용 */}</StContentsContainer>
         <StBottomContainer>
           <StContainer>
-            <StInnerColorContainer>{renderInnerColor()}</StInnerColorContainer>
+            
           </StContainer>
           <StConfirmContainer>
             <StConfirmHeader>
@@ -238,36 +205,4 @@ const StContentsContainer = styled.div`
   position: absolute;
   top: 100px;
   left: 128px;
-`;
-
-const StInnerColorContainer = styled.div`
-  display: flex;
-  width: 824px;
-  height: 164px;
-  top: 492px;
-  left: 128px;
-  gap: 8px;
-`;
-
-const StInnerColorBox = styled.div`
-  width: 200px;
-  height: 164px;
-  border: 1px solid ${({ theme }) => theme.Grey_2};
-  gap: 2px;
-`;
-
-const StInnerColorImg = styled.img.attrs({
-  src: InnerColorSrc,
-})`
-  width: 200px;
-  height: 82px;
-  object-fit: cover;
-`;
-
-const StInnerColorTextBox = styled.div`
-  width: 118px;
-  height: 56px;
-  gap: 11px;
-  margin-top: 12px;
-  margin-left: 12px;
 `;
