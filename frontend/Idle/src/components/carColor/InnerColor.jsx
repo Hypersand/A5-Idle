@@ -1,11 +1,25 @@
 import { styled } from "styled-components";
 import InnerColorImg from "../../assets/images/innerColor.png";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { carContext } from "../../utils/context";
+import { CHANGE_INSIDE_COLOR } from "../../utils/actionType";
 
 function InnerColor({ data }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
-  function handleBoxClick(index) {
-    setSelectedIndex(index);
+  const { car, dispatch } = useContext(carContext);
+
+  function innerColorClick(index, interior_name, price) {
+    if (car.color.inside.name != interior_name) {
+      const payload = {
+        name: interior_name,
+        price: price,
+      };
+      dispatch({
+        type: CHANGE_INSIDE_COLOR,
+        payload: payload,
+      });
+      setSelectedIndex(index);
+    }
   }
   function renderInnerColor() {
     return data.car_interior_colors.map((item, index) => {
@@ -13,7 +27,7 @@ function InnerColor({ data }) {
         <StInnerColorBox
           key={item.interior_idx}
           $isselected={index === selectedIndex}
-          onClick={() => handleBoxClick(index)}
+          onClick={() => innerColorClick(index, item.interior_name, item.interior_price)}
         >
           {/* <StInnerColorImg /> */}
           <StImage src={InnerColorImg} />
@@ -53,15 +67,6 @@ const StImage = styled.img`
   height: 82px;
 `;
 
-const StInnerColorImg = styled.div`
-  width: 200px;
-  height: 50%;
-  background-image: url(${InnerColorImg});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto 100%;
-`;
-
 const StTextBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -74,9 +79,10 @@ const StTextBox = styled.div`
 const StTextTitle = styled.div`
   font-family: Hyundai Sans Text KR;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 16px;
   letter-spacing: -0.03em;
+  text-align: left;
   color: ${({ theme }) => theme.Black};
   margin-bottom: 3px;
 `;
@@ -98,5 +104,5 @@ const StTextPrice = styled.div`
   font-weight: 500;
   line-height: 16px;
   letter-spacing: -0.03em;
-  color: ${({ theme }) => theme.Grey_2};
+  color: ${({ theme }) => theme.CoolGrey_2};
 `;

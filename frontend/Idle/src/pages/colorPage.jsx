@@ -38,7 +38,7 @@ const innercolorData = {
   car_interior_colors: [
     {
       interior_idx: 1234,
-      interior_name: "black",
+      interior_name: "퀕팅천연(블랙)",
       interior_price: 0,
       interior_img_url: "...",
       car_interior_img_url: "...",
@@ -46,8 +46,8 @@ const innercolorData = {
     },
     {
       interior_idx: 1235,
-      interior_name: "grey",
-      interior_price: 0,
+      interior_name: "그라파이트 그레이 블랙",
+      interior_price: 1000,
       interior_img_url: "...",
       car_interior_img_url: "...",
       interior_purchase_rate: "구매자의 32%가 선택",
