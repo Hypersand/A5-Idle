@@ -7,6 +7,7 @@ import WhiteButton from "../components/common/buttons/WhiteButton";
 import CategoryTabs from "../components/common/tabs/CategoryTabs";
 import { carContext } from "../utils/context";
 import { CHANGE_INSIDE_COLOR, CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
+import Car3D from "../components/common/content/Car3D";
 
 const dummyData = {
   "car_img_urls": [
@@ -83,10 +84,12 @@ function ColorPage() {
         <StTabContainer>
           {tabs.map((item, idx) => (<CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />))}
         </StTabContainer>
-        <StContentsContainer>
-          {/* 메인 내용 */}
-        </StContentsContainer>
-        <StBottomContainer>
+        {
+          currentTab === EXTERIOR_COLORS ?
+            <Car3D /> : <></>
+        }
+
+        <StBottomContainer id="here">
           <StContainer>
             {/* 박스 컨테이너 자리 */}
           </StContainer>
@@ -180,9 +183,4 @@ const StTabContainer = styled.div`
   display: inline-flex;
   align-items: flex-start;
   gap: 24px;
-`
-const StContentsContainer = styled.div`
-  position: absolute;
-  top: 100px;
-  left: 128px;
 `

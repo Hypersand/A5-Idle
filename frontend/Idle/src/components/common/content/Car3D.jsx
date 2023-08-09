@@ -46,21 +46,28 @@ function Car3D() {
         setisMouseDown(false)
     }
     return (
-        <StContainer >
-            <StImageContainer onMouseDown={onMouseDown} onMouseMove={turnCar} onMouseUp={onMouseUp} onMouseLeave={onMouseUp} >
-                {
-                    dummyData.car_img_urls.map((item, idx) =>
-                        (<StImage key={idx} src={item} $display={currentImg === idx} />)
-                    )
-                }
-            </StImageContainer>
-            <Circle />
-            <Text>360도 돌려보세요!</Text>
-        </StContainer >
+        <StContentsContainer>
+            <StContainer >
+                <StImageContainer onMouseDown={onMouseDown} onMouseMove={turnCar} onMouseUp={onMouseUp} onMouseLeave={onMouseUp} >
+                    {
+                        dummyData.car_img_urls.map((item, idx) =>
+                            (<StImage key={idx} src={item} $display={currentImg === idx} />)
+                        )
+                    }
+                </StImageContainer>
+                <Circle />
+                <Text>360도 돌려보세요!</Text>
+            </StContainer >
+        </StContentsContainer>
     )
 }
 
 export default Car3D
+const StContentsContainer = styled.div`
+  position: absolute;
+  top: 75px;
+  left: 128px;
+`
 
 const StContainer = styled.div`
     position: relative;
