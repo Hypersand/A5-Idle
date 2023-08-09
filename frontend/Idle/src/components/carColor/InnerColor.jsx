@@ -1,11 +1,11 @@
 import { styled } from "styled-components";
 import InnerColorImg from "../../assets/images/innerColor.png";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { carContext } from "../../utils/context";
 import { CHANGE_INSIDE_COLOR } from "../../utils/actionType";
 
 function InnerColor({ data }) {
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const { car, dispatch } = useContext(carContext);
 
   function innerColorClick(index, interior_name, price) {
