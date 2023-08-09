@@ -1,12 +1,12 @@
 import { styled } from "styled-components";
 import OutsideColorBox from "../common/boxs/OutsideColorBox";
 import { useState } from "react";
-import grey from "../../assets/images/outsideColor/그레이.png";
-import black from "../../assets/images/outsideColor/블랙.png";
-import white from "../../assets/images/outsideColor/화이트.png";
-import silver from "../../assets/images/outsideColor/실버.png";
-import brown from "../../assets/images/outsideColor/브라운.png";
-import emerald from "../../assets/images/outsideColor/에메랄드.png";
+import grey from "../../assets/images/outsideColor/grey.png";
+import black from "../../assets/images/outsideColor/black.png";
+import white from "../../assets/images/outsideColor/white.png";
+import silver from "../../assets/images/outsideColor/silver.png";
+import brown from "../../assets/images/outsideColor/brown.png";
+import emerald from "../../assets/images/outsideColor/emerald.png";
 
 const data = [
   {
