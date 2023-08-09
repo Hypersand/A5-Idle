@@ -1,5 +1,6 @@
 import {
   CHANGE_ADDITIONAL_OPTION,
+  CHANGE_ALL,
   CHANGE_BODY_TYPES,
   CHANGE_CONFUSING_OPTION,
   CHANGE_DRIVING_METHODS,
@@ -97,6 +98,11 @@ export function carReducer(car, { type, payload }) {
           additional: [],
           confusing: [],
         },
+      };
+    case CHANGE_ALL:
+      return {
+        ...car,
+        ...payload,
       };
   }
 }

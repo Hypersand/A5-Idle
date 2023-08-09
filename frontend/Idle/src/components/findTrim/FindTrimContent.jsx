@@ -7,6 +7,7 @@ import OptionAlert from "./OptionAlert";
 import { selectedOptionContext } from "../../utils/context";
 import { carContext } from "../../utils/context";
 import { emptyCar, defaultOption } from "../../utils/constants";
+import { CHANGE_ALL } from "../../utils/actionType";
 
 function FindTrimContent({ setVisible }) {
   const [tempCar, setTempCar] = useState(emptyCar);
@@ -16,8 +17,7 @@ function FindTrimContent({ setVisible }) {
   const [clickActive, setClickActive] = useState(false);
   const [selectedOption, setSelectedOption] = useState([]);
   const [optionStatus, setOptionStatus] = useState([]);
-  const { setCar } = useContext(carContext);
-
+  const { car, dispatch } = useContext(carContext);
   useEffect(() => {
     //백엔드로 요청
     if (isInitialRender.current) {
@@ -83,7 +83,7 @@ function FindTrimContent({ setVisible }) {
         price: item.option_price,
       });
     });
-    setCar(tempCar);
+    dispatch({ type: CHANGE_ALL, payload: tempCar });
     setOptionAlertVisible(true);
   }
   return (
