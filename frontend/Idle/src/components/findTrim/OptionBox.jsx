@@ -73,7 +73,8 @@ const StContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   &:hover {
-    background-color: #e7ecf9;
+    background-color: ${({ $isSelcted }) => ($isSelcted ? "#1A3276" : "#e7ecf9")};
+    opacity: 0.9;
   }
 `;
 

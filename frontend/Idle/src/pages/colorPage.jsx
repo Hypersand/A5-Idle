@@ -13,23 +13,59 @@ import WhiteButton from "../components/common/buttons/WhiteButton";
 import CategoryTabs from "../components/common/tabs/CategoryTabs";
 import { carContext } from "../utils/context";
 import { CHANGE_INSIDE_COLOR, CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
+import Car3D from "../components/common/content/Car3D";
+import grey from "../assets/images/outsideColor/grey.png";
+import black from "../assets/images/outsideColor/black.png";
+import white from "../assets/images/outsideColor/white.png";
+import silver from "../assets/images/outsideColor/silver.png";
+import brown from "../assets/images/outsideColor/brown.png";
+import emerald from "../assets/images/outsideColor/emerald.png";
+import OutsideColorBoxContainer from "../components/colorSelection/OutsideColorBoxContainer";
 import InnerColor from "../components/carColor/InnerColor";
 
 const dummyData = {
   car_img_urls: ["...", "..."],
   exterior_colors: [
     {
-      exterior_id: 1234,
-      exterior_name: "black",
-      exterior_price: 0,
-      exterior_img_url: "...",
-      exteriror_purchase_rate: "구매자의 22%가 선택",
-    },
-    {
-      exterior_id: 1235,
+      exterior_id: 1,
       exterior_name: "grey",
       exterior_price: 0,
-      exterior_img_url: "...",
+      exterior_img_url: grey,
+      exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+    {
+      exterior_id: 15,
+      exterior_name: "black",
+      exterior_price: 0,
+      exterior_img_url: black,
+      exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+    {
+      exterior_id: 3,
+      exterior_name: "white",
+      exterior_price: 0,
+      exterior_img_url: white,
+      exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+    {
+      exterior_id: 31,
+      exterior_name: "brown",
+      exterior_price: 100000,
+      exterior_img_url: brown,
+      exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+    {
+      exterior_id: 5,
+      exterior_name: "silver",
+      exterior_price: 0,
+      exterior_img_url: silver,
+      exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+    {
+      exterior_id: 333,
+      exterior_name: "emerald",
+      exterior_price: 0,
+      exterior_img_url: emerald,
       exteriror_purchase_rate: "구매자의 32%가 선택",
     },
   ],
@@ -56,18 +92,9 @@ const innercolorData = {
 };
 function ColorPage() {
   const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS);
-  const navigate = useNavigate();
   const tabs = [EXTERIOR_COLORS, INTERIROR_COLORS];
   const { car, dispatch } = useContext(carContext);
-
-  function dispatchDefault(tabState, actionType, defaultPayload) {
-    if (tabState.name === undefined) {
-      dispatch({
-        type: actionType,
-        payload: defaultPayload,
-      });
-    }
-  }
+  const navigate = useNavigate();
 
   useEffect(() => {
     switch (currentTab) {
@@ -89,7 +116,14 @@ function ColorPage() {
         break;
     }
   }, [currentTab]);
-
+  function dispatchDefault(tabState, actionType, defaultPayload) {
+    if (tabState.name === undefined) {
+      dispatch({
+        type: actionType,
+        payload: defaultPayload,
+      });
+    }
+  }
   function handleTabChange(direction) {
     const currentIndex = tabs.indexOf(currentTab);
 
@@ -117,9 +151,16 @@ function ColorPage() {
           ))}
         </StTabContainer>
         <StContentsContainer>{/* 메인 내용 */}</StContentsContainer>
+        {
+          currentTab === EXTERIOR_COLORS ?
+            <Car3D /> : <></>
+        }
         <StBottomContainer>
           <StContainer>
-            <InnerColor data={innercolorData} />
+            {/* 박스 컨테이너 자리 */}
+            {currentTab === EXTERIOR_COLORS ? (
+              <OutsideColorBoxContainer data={dummyData.exterior_colors} />
+            ) : null}
           </StContainer>
           <StConfirmContainer>
             <StConfirmHeader>
@@ -133,12 +174,7 @@ function ColorPage() {
                   handleTabChange("prev");
                 }}
               />
-              <BlueButton
-                text={"다음"}
-                onClick={() => {
-                  handleTabChange("next");
-                }}
-              />
+              <BlueButton text={"다음"} onClick={() => handleTabChange("next")} />
             </StButtonContainer>
           </StConfirmContainer>
         </StBottomContainer>

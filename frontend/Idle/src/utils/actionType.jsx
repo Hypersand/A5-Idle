@@ -7,3 +7,4 @@ export const CHANGE_INSIDE_COLOR = "change_inside_color";
 export const CHANGE_ADDITIONAL_OPTION = "change_additional_option";
 export const CHANGE_CONFUSING_OPTION = "change_confusing_option";
 export const RESET_ALL = "reset_all";
+export const CHANGE_ALL = "change_all";
