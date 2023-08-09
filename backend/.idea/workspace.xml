@@ -5,8 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e403be0a-f93c-40be-8b3d-ea49a383fbf3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/TestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/carType/CarTypeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/carType/CarTypeRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/category/functionCategory/FunctionCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/category/functionCategory/FunctionCategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/category/functionCategory/FunctionCategoryRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/category/functionCategory/dto/DefaultFunctionCategoryResDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/category/functionCategory/dto/FunctionCategoryDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/function/Function.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/function/FunctionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/function/TrimFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/function/dto/DefaultFunctionResDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/trim/TrimController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/trim/TrimRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/trim/TrimRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/trim/TrimService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/trim/dto/TrimDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/trim/dto/TrimSelectionResDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/carType/CarType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/carType/CarType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/option/additionalOption/AdditionalOption.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/option/defaultOption/DefaultOption.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/trim/Trim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autoever/idle/domain/trim/Trim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,8 +98,9 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "be-develop",
+    "git-widget-placeholder": "be-feat#5",
     "last_opened_file_path": "/Users/kim_jeongyeon/Documents/softeerbootcamp/A5-Idle/backend/build.gradle",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -132,5 +160,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
