@@ -16,7 +16,8 @@ function FindTrimContent({ setVisible }) {
   const [clickActive, setClickActive] = useState(false);
   const [selectedOption, setSelectedOption] = useState([]);
   const [optionStatus, setOptionStatus] = useState([]);
-  const { car, dispatch } = useContext(carContext);
+  const [showOptionAlert, setShowOptionAlert] = useState(false);
+  const { dispatch } = useContext(carContext);
   useEffect(() => {
     //백엔드로 요청
     if (initialRender.current) {
@@ -83,7 +84,7 @@ function FindTrimContent({ setVisible }) {
       });
     });
     dispatch({ type: CHANGE_ALL, payload: tempCar });
-        return <OptionAlert text={selectedOption} />;
+    setShowOptionAlert(true);
   }
   return (
     <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
@@ -108,6 +109,7 @@ function FindTrimContent({ setVisible }) {
           <BlueButton text={"확인"} isActive={clickActive} onClick={clickCheck} />
         </StFindTrimContentButtonContainer>
       </StFindTrimContentContainer>
+      {showOptionAlert && <OptionAlert text={selectedOption} />}
     </selectedOptionContext.Provider>
   );
 }

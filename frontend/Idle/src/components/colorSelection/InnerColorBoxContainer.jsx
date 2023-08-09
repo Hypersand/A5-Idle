@@ -1,13 +1,23 @@
 import { styled } from "styled-components";
-import InnerColorImg from "../../assets/images/innerColor.png";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { carContext } from "../../utils/context";
 import { CHANGE_INSIDE_COLOR } from "../../utils/actionType";
+import InnerColorImg from "../../assets/images/innerColor.png";
 
-function InnerColor({ data }) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+function InnerColorBoxContainer({ data, onClick }) {
+  const [selectedIndex, setSelectedIndex] = useState(1);
   const { car, dispatch } = useContext(carContext);
 
+  useEffect(() => {
+    const payload = {
+      name: data.car_interior_colors[0].interior_name,
+      price: data.car_interior_colors[0].interior_price,
+    };
+    dispatch({
+      type: CHANGE_INSIDE_COLOR,
+      payload: payload,
+    });
+  }, []);
   function innerColorClick(index, interior_name, price) {
     if (car.color.inside.name != interior_name) {
       const payload = {
@@ -18,6 +28,7 @@ function InnerColor({ data }) {
         type: CHANGE_INSIDE_COLOR,
         payload: payload,
       });
+      onClick(index);
       setSelectedIndex(index);
     }
   }
@@ -25,15 +36,17 @@ function InnerColor({ data }) {
     return data.car_interior_colors.map((item, index) => {
       return (
         <StInnerColorBox
-          key={item.interior_idx}
-          $isselected={index === selectedIndex}
-          onClick={() => innerColorClick(index, item.interior_name, item.interior_price)}
+          key={index}
+          $isselected={selectedIndex === item.interior_idx}
+          onClick={() =>
+            innerColorClick(item.interior_idx, item.interior_name, item.interior_price)
+          }
         >
           <StImage src={InnerColorImg} />
           <StTextBox>
             <StTextTitle>{item.interior_name}</StTextTitle>
             <StTextSelect>{item.interior_purchase_rate}</StTextSelect>
-            <StTextPrice>+{item.interior_price}원</StTextPrice>
+            <StTextPrice>+ {item.interior_price} 원</StTextPrice>
           </StTextBox>
         </StInnerColorBox>
       );
@@ -42,7 +55,7 @@ function InnerColor({ data }) {
   return <StInnerColorContainer>{renderInnerColor()}</StInnerColorContainer>;
 }
 
-export default InnerColor;
+export default InnerColorBoxContainer;
 
 const StInnerColorContainer = styled.div`
   display: flex;
@@ -60,6 +73,7 @@ const StInnerColorBox = styled.div`
   border: ${({ $isselected }) => ($isselected ? "2px" : "1px")} solid
     ${({ $isselected, theme }) => ($isselected ? "#6d14b8" : theme.Grey_2)};
   gap: 2px;
+  cursor: pointer;
 `;
 
 const StImage = styled.img`

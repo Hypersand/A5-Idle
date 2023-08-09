@@ -39,6 +39,7 @@ const StContainer = styled.div`
   background-color: grey;
   border: 3px solid ${({ $isActive }) => ($isActive ? "#1A3276" : "#000")};
   background-image: ${({ $img }) => `url(${$img})`};
+  cursor: pointer;
 `;
 
 const StName = styled.div`
