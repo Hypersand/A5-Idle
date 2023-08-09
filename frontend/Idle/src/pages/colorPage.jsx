@@ -2,36 +2,40 @@ import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import BlueButton from "../components/common/buttons/BlueButton";
-import { DEFAULT_EXTERIROR_COLOR, DEFAULT_INTERIROR_COLOR, EXTERIOR_COLORS, INTERIROR_COLORS, TRANSLATE } from "../utils/constants";
+import {
+  DEFAULT_EXTERIROR_COLOR,
+  DEFAULT_INTERIROR_COLOR,
+  EXTERIOR_COLORS,
+  INTERIROR_COLORS,
+  TRANSLATE,
+} from "../utils/constants";
 import WhiteButton from "../components/common/buttons/WhiteButton";
 import CategoryTabs from "../components/common/tabs/CategoryTabs";
 import { carContext } from "../utils/context";
 import { CHANGE_INSIDE_COLOR, CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
+import InnerColorSrc from "../assets/images/innerColor.svg";
 
 const dummyData = {
-  "car_img_urls": [
-    "...",
-    "...",
-  ],
-  "exterior_colors": [
+  car_img_urls: ["...", "..."],
+  exterior_colors: [
     {
-      "exterior_id": 1234,
-      "exterior_name": "black",
-      "exterior_price": 0,
-      "exterior_img_url": "...",
-      "exteriror_purchase_rate": "구매자의 22%가 선택"
+      exterior_id: 1234,
+      exterior_name: "black",
+      exterior_price: 0,
+      exterior_img_url: "...",
+      exteriror_purchase_rate: "구매자의 22%가 선택",
     },
     {
-      "exterior_id": 1235,
-      "exterior_name": "grey",
-      "exterior_price": 0,
-      "exterior_img_url": "...",
-      "exteriror_purchase_rate": "구매자의 32%가 선택"
-    }
-  ]
-}
+      exterior_id: 1235,
+      exterior_name: "grey",
+      exterior_price: 0,
+      exterior_img_url: "...",
+      exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+  ],
+};
 function ColorPage() {
-  const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS)
+  const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS);
   const navigate = useNavigate();
   const tabs = [EXTERIOR_COLORS, INTERIROR_COLORS];
   const { car, dispatch } = useContext(carContext);
@@ -40,7 +44,7 @@ function ColorPage() {
     if (tabState.name === undefined) {
       dispatch({
         type: actionType,
-        payload: defaultPayload
+        payload: defaultPayload,
       });
     }
   }
@@ -48,16 +52,23 @@ function ColorPage() {
   useEffect(() => {
     switch (currentTab) {
       case EXTERIOR_COLORS:
-        dispatchDefault(car.color.outside, CHANGE_OUTSIDE_COLOR, DEFAULT_EXTERIROR_COLOR[car.trim.name]);
+        dispatchDefault(
+          car.color.outside,
+          CHANGE_OUTSIDE_COLOR,
+          DEFAULT_EXTERIROR_COLOR[car.trim.name]
+        );
         break;
       case INTERIROR_COLORS:
-        dispatchDefault(car.color.inside, CHANGE_INSIDE_COLOR, DEFAULT_INTERIROR_COLOR[car.trim.name]);
+        dispatchDefault(
+          car.color.inside,
+          CHANGE_INSIDE_COLOR,
+          DEFAULT_INTERIROR_COLOR[car.trim.name]
+        );
         break;
       default:
         break;
     }
   }, [currentTab]);
-
 
   function handleTabChange(direction) {
     const currentIndex = tabs.indexOf(currentTab);
@@ -77,18 +88,50 @@ function ColorPage() {
     }
   }
 
+  function renderInnerColor() {
+    const colorData = {
+      car_interior_colors: [
+        {
+          interior_idx: 1234,
+          interior_name: "black",
+          interior_price: 0,
+          interior_img_url: "...",
+          car_interior_img_url: "...",
+          interior_purchase_rate: "구매자의 22%가 선택",
+        },
+        {
+          interior_idx: 1235,
+          interior_name: "grey",
+          interior_price: 0,
+          interior_img_url: "...",
+          car_interior_img_url: "...",
+          interior_purchase_rate: "구매자의 32%가 선택",
+        },
+      ],
+    };
+    return colorData.car_interior_colors.map((item) => {
+      return (
+        <StInnerColorBox key={item.interior_idx}>
+          <StInnerColorImg />
+          <StInnerColorTextBox>
+            <span>퀄팅천연(블랙)</span>
+          </StInnerColorTextBox>
+        </StInnerColorBox>
+      );
+    });
+  }
   return (
     <>
       <StWrapper>
         <StTabContainer>
-          {tabs.map((item, idx) => (<CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />))}
+          {tabs.map((item, idx) => (
+            <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />
+          ))}
         </StTabContainer>
-        <StContentsContainer>
-          {/* 메인 내용 */}
-        </StContentsContainer>
+        <StContentsContainer>{/* 메인 내용 */}</StContentsContainer>
         <StBottomContainer>
           <StContainer>
-            {/* 박스 컨테이너 자리 */}
+            <StInnerColorContainer>{renderInnerColor()}</StInnerColorContainer>
           </StContainer>
           <StConfirmContainer>
             <StConfirmHeader>
@@ -96,8 +139,18 @@ function ColorPage() {
               <Description>원하는 {TRANSLATE[currentTab]}을 선택해주세요.</Description>
             </StConfirmHeader>
             <StButtonContainer>
-              <WhiteButton text={"이전"} onClick={() => { handleTabChange("prev") }} />
-              <BlueButton text={"다음"} onClick={() => { handleTabChange("next") }} />
+              <WhiteButton
+                text={"이전"}
+                onClick={() => {
+                  handleTabChange("prev");
+                }}
+              />
+              <BlueButton
+                text={"다음"}
+                onClick={() => {
+                  handleTabChange("next");
+                }}
+              />
             </StButtonContainer>
           </StConfirmContainer>
         </StBottomContainer>
@@ -150,7 +203,7 @@ const StButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-`
+`;
 
 const Title = styled.h1`
   color: #222;
@@ -180,9 +233,41 @@ const StTabContainer = styled.div`
   display: inline-flex;
   align-items: flex-start;
   gap: 24px;
-`
+`;
 const StContentsContainer = styled.div`
   position: absolute;
   top: 100px;
   left: 128px;
-`
+`;
+
+const StInnerColorContainer = styled.div`
+  display: flex;
+  width: 824px;
+  height: 164px;
+  top: 492px;
+  left: 128px;
+  gap: 8px;
+`;
+
+const StInnerColorBox = styled.div`
+  width: 200px;
+  height: 164px;
+  border: 1px solid ${({ theme }) => theme.Grey_2};
+  gap: 2px;
+`;
+
+const StInnerColorImg = styled.img.attrs({
+  src: InnerColorSrc,
+})`
+  width: 200px;
+  height: 82px;
+  object-fit: cover;
+`;
+
+const StInnerColorTextBox = styled.div`
+  width: 118px;
+  height: 56px;
+  gap: 11px;
+  margin-top: 12px;
+  margin-left: 12px;
+`;
