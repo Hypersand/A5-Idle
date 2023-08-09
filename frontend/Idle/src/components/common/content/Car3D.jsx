@@ -25,12 +25,12 @@ function Car3D() {
     function turnRight() {
         if (currentImg === imgCount) {
             setCurrentImage(0)
-        } else { setCurrentImage(currentImg + 1) }
+        } else { setCurrentImage((before) => before + 1) }
     }
     function turnLeft() {
         if (currentImg === 0) {
             setCurrentImage(imgCount)
-        } else { setCurrentImage(currentImg - 1) }
+        } else { setCurrentImage((before) => before - 1) }
     }
     function turnCar(e) {
         if (isMouseDown && e.clientX != beforeX) {
@@ -45,10 +45,9 @@ function Car3D() {
     function onMouseUp() {
         setisMouseDown(false)
     }
-
     return (
         <StContainer >
-            <StImageContainer onMouseDown={onMouseDown} onMouseMove={turnCar} onMouseUp={onMouseUp} >
+            <StImageContainer onMouseDown={onMouseDown} onMouseMove={turnCar} onMouseUp={onMouseUp} onMouseLeave={onMouseUp} >
                 {
                     dummyData.car_img_urls.map((item, idx) =>
                         (<StImage key={idx} src={item} $display={currentImg === idx} />)
@@ -103,6 +102,5 @@ const StImage = styled.img`
     width: 860px;
     flex-shrink: 0;
     display: ${({ $display }) => $display ? "" : "none"};
-
 `
 
