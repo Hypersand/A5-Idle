@@ -29,7 +29,6 @@ function InnerColor({ data }) {
           $isselected={index === selectedIndex}
           onClick={() => innerColorClick(index, item.interior_name, item.interior_price)}
         >
-          {/* <StInnerColorImg /> */}
           <StImage src={InnerColorImg} />
           <StTextBox>
             <StTextTitle>{item.interior_name}</StTextTitle>
@@ -55,6 +54,7 @@ const StInnerColorContainer = styled.div`
 `;
 
 const StInnerColorBox = styled.div`
+  box-sizing: border-box;
   width: 200px;
   height: 164px;
   border: ${({ $isselected }) => ($isselected ? "2px" : "1px")} solid
@@ -63,8 +63,8 @@ const StInnerColorBox = styled.div`
 `;
 
 const StImage = styled.img`
-  width: 200px;
-  height: 82px;
+  width: 100%;
+  height: 50%;
 `;
 
 const StTextBox = styled.div`
