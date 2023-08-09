@@ -13,6 +13,7 @@ import WhiteButton from "../components/common/buttons/WhiteButton";
 import CategoryTabs from "../components/common/tabs/CategoryTabs";
 import { carContext } from "../utils/context";
 import { CHANGE_INSIDE_COLOR, CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
+import InnerColor from "../components/carColor/InnerColor";
 
 const dummyData = {
   car_img_urls: ["...", "..."],
@@ -30,6 +31,26 @@ const dummyData = {
       exterior_price: 0,
       exterior_img_url: "...",
       exteriror_purchase_rate: "구매자의 32%가 선택",
+    },
+  ],
+};
+const innercolorData = {
+  car_interior_colors: [
+    {
+      interior_idx: 1234,
+      interior_name: "black",
+      interior_price: 0,
+      interior_img_url: "...",
+      car_interior_img_url: "...",
+      interior_purchase_rate: "구매자의 22%가 선택",
+    },
+    {
+      interior_idx: 1235,
+      interior_name: "grey",
+      interior_price: 0,
+      interior_img_url: "...",
+      car_interior_img_url: "...",
+      interior_purchase_rate: "구매자의 32%가 선택",
     },
   ],
 };
@@ -98,7 +119,7 @@ function ColorPage() {
         <StContentsContainer>{/* 메인 내용 */}</StContentsContainer>
         <StBottomContainer>
           <StContainer>
-            
+            <InnerColor data={innercolorData} />
           </StContainer>
           <StConfirmContainer>
             <StConfirmHeader>

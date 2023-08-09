@@ -1,35 +1,27 @@
-import { InnerColorSrc } from "../../assets/images/innerColor.svg";
 import { styled } from "styled-components";
+import InnerColorImg from "../../assets/images/innerColor.png";
+import { useState } from "react";
 
-function InnerColor() {
+function InnerColor({ data }) {
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  function handleBoxClick(index) {
+    setSelectedIndex(index);
+  }
   function renderInnerColor() {
-    const colorData = {
-      car_interior_colors: [
-        {
-          interior_idx: 1234,
-          interior_name: "black",
-          interior_price: 0,
-          interior_img_url: "...",
-          car_interior_img_url: "...",
-          interior_purchase_rate: "구매자의 22%가 선택",
-        },
-        {
-          interior_idx: 1235,
-          interior_name: "grey",
-          interior_price: 0,
-          interior_img_url: "...",
-          car_interior_img_url: "...",
-          interior_purchase_rate: "구매자의 32%가 선택",
-        },
-      ],
-    };
-    return colorData.car_interior_colors.map((item) => {
+    return data.car_interior_colors.map((item, index) => {
       return (
-        <StInnerColorBox key={item.interior_idx}>
-          <StInnerColorImg />
-          <StInnerColorTextBox>
-            <span>퀄팅천연(블랙)</span>
-          </StInnerColorTextBox>
+        <StInnerColorBox
+          key={item.interior_idx}
+          $isselected={index === selectedIndex}
+          onClick={() => handleBoxClick(index)}
+        >
+          {/* <StInnerColorImg /> */}
+          <StImage src={InnerColorImg} />
+          <StTextBox>
+            <StTextTitle>{item.interior_name}</StTextTitle>
+            <StTextSelect>{item.interior_purchase_rate}</StTextSelect>
+            <StTextPrice>+{item.interior_price}원</StTextPrice>
+          </StTextBox>
         </StInnerColorBox>
       );
     });
@@ -51,21 +43,60 @@ const StInnerColorContainer = styled.div`
 const StInnerColorBox = styled.div`
   width: 200px;
   height: 164px;
-  border: 1px solid ${({ theme }) => theme.Grey_2};
+  border: ${({ $isselected }) => ($isselected ? "2px" : "1px")} solid
+    ${({ $isselected, theme }) => ($isselected ? "#6d14b8" : theme.Grey_2)};
   gap: 2px;
 `;
 
-const StInnerColorImg = styled.img.attrs({
-  src: InnerColorSrc,
-})`
-  max-width: 100%;
-  height: auto;
+const StImage = styled.img`
+  width: 200px;
+  height: 82px;
 `;
 
-const StInnerColorTextBox = styled.div`
+const StInnerColorImg = styled.div`
+  width: 200px;
+  height: 50%;
+  background-image: url(${InnerColorImg});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 100%;
+`;
+
+const StTextBox = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 118px;
   height: 56px;
-  gap: 11px;
   margin-top: 12px;
   margin-left: 12px;
+`;
+
+const StTextTitle = styled.div`
+  font-family: Hyundai Sans Text KR;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.03em;
+  color: ${({ theme }) => theme.Black};
+  margin-bottom: 3px;
+`;
+
+const StTextSelect = styled.div`
+  font-family: Hyundai Sans Text KR;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: -0.03em;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.Grey_3};
+`;
+
+const StTextPrice = styled.div`
+  display: flex;
+  font-family: Hyundai Sans Text KR;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.03em;
+  color: ${({ theme }) => theme.Grey_2};
 `;
