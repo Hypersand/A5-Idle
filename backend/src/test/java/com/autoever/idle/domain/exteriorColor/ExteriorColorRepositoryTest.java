@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@DisplayName("Exterior Color Repositor Test")
+@DisplayName("Exterior Color Repository Test")
 class ExteriorColorRepositoryTest {
 
     @Autowired
