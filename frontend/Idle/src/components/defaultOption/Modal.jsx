@@ -1,12 +1,21 @@
 import { styled, keyframes } from "styled-components";
 import { useState } from "react";
+import CloseButton from "./CloseButton";
 
-function Modal() {
+function Modal({ setVisible }) {
   const [animationstate, setAnimationState] = useState(false);
+  function clickClose() {
+    setAnimationState(true);
+    setTimeout(() => {
+      setVisible(false);
+    }, 1000);
+  }
   return (
-    <StContainer>
-      <StCloseButtonContainer></StCloseButtonContainer>
-      <StCategoryContainer> </StCategoryContainer>
+    <StContainer $animationstate={animationstate}>
+      <StCloseButtonContainer>
+        <CloseButton onClick={clickClose} />
+      </StCloseButtonContainer>
+      <StCategoryContainer></StCategoryContainer>
       <StContentContainer></StContentContainer>
       <StPaginationContainer></StPaginationContainer>
     </StContainer>
@@ -41,10 +50,12 @@ const StContainer = styled.div`
 `;
 
 const StCloseButtonContainer = styled.div`
+  display: flex;
   width: 1032px;
   height: 54px;
   flex-shrink: 0;
   align-items: center;
+  justify-content: center;
   border: 3px solid rgba(255, 122, 0, 0.3);
   margin-top: 6.07px;
 `;
@@ -63,7 +74,7 @@ const StContentContainer = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 1024px;``
+  width: 1024px;
   height: 456px;
   gap: 32px;
   border: 1px solid black;
