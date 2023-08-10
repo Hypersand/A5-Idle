@@ -7,12 +7,16 @@ export const TYPE = {
   bill: "견적서 완성",
 };
 
+export const BILL_LIST = ["trim", "engines", "driving_methods", "body_types", "exterior_colors", "interior_colors", "option"]
+
 export const TRANSLATE = {
+  trim: "트림",
   engines: "엔진",
   driving_methods: "구동방식",
   body_types: "바디타입",
   exterior_colors: "외장 색상",
   interior_colors: "내장 색상",
+  option: "옵션",
   all: "전체",
   safety: "안전",
   style: "스타일&퍼포먼스",
