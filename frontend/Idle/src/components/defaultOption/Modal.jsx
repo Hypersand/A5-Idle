@@ -1,12 +1,20 @@
 import { styled, keyframes } from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CloseButton from "./CloseButton";
 import CategoryTabs from "../common/tabs/CategoryTabs";
 import ItemBox from "./ItemBox";
+import PaginationButton from "./PaginationButton";
 
 function Modal({ setVisible }) {
+  const pageSize = 10;
   const [animationstate, setAnimationState] = useState(false);
   const [currentTab, setCurrentTab] = useState("파워트레인/성능");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [currentTab]);
+
   const tabs = [
     {
       categoryName: "파워트레인/성능",
@@ -27,7 +35,7 @@ function Modal({ setVisible }) {
       categoryName: "지능형 안전기술",
       functions: [
         {
-          functionName: "10에어백",
+          functionName: "10에어백 시스템(1열 어드밴스드/센터사이드, 1/2열 사이드미러입니다",
           functionImgUrl: "...",
           functionDescription: "...",
         },
@@ -73,6 +81,11 @@ function Modal({ setVisible }) {
         },
         {
           functionName: "11에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "13 에어백",
           functionImgUrl: "...",
           functionDescription: "...",
         },
@@ -130,18 +143,22 @@ function Modal({ setVisible }) {
       </StCategoryBox>
     ));
   }
+  function handlePageChange(newPage) {
+    setCurrentPage(newPage);
+  }
   function renderItem() {
     const currentCategory = tabs.find((tab) => tab.categoryName === currentTab);
-    console.log(currentCategory);
     if (currentCategory) {
-      return currentCategory.functions.map((func, idx) => (
-        <ItemBox
-          key={idx}
-          functionName={func.functionName}
-          functionImgUrl={func.functionImgUrl}
-          functionDescription={func.functionDescription}
-        />
-      ));
+      return currentCategory.functions
+        .slice((currentPage - 1) * pageSize, currentPage * pageSize)
+        .map((item, idx) => (
+          <ItemBox
+            key={idx}
+            functionName={item.functionName}
+            functionImgUrl={item.functionImgUrl}
+            functionDescription={item.functionDescription}
+          />
+        ));
     }
   }
 
@@ -152,7 +169,16 @@ function Modal({ setVisible }) {
       </StCloseButtonContainer>
       <StCategoryContainer>{renderCategory()}</StCategoryContainer>
       <StContentContainer>{renderItem()}</StContentContainer>
-      <StPaginationContainer></StPaginationContainer>
+      <StPaginationContainer>
+        <PaginationButton
+          onClickPrev={() => handlePageChange(currentPage - 1)}
+          onClickNext={() => handlePageChange(currentPage + 1)}
+          currentPage={currentPage}
+          totalPages={Math.ceil(
+            tabs.find((tab) => tab.categoryName === currentTab).functions.length / pageSize
+          )}
+        />
+      </StPaginationContainer>
     </StContainer>
   );
 }
@@ -216,7 +242,6 @@ const StContentContainer = styled.div`
   width: 1024px;
   height: 456px;
   gap: 26px;
-  border: 1px solid black;
   margin-top: 22.07px;
 `;
 
@@ -228,5 +253,4 @@ const StPaginationContainer = styled.div`
   height: 24px;
   gap: 32px;
   margin-top: 34px;
-  border: 1px solid black;
 `;

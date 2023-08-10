@@ -1,11 +1,20 @@
 import styled from "styled-components";
-
+import { ReactComponent as ArrowRight } from "../../assets/images/arrowRight.svg";
 function ItemBox({ functionName, functionImgUrl, functionDescription }) {
+  function checkLength() {
+    if (functionName.length > 34) {
+      return functionName.slice(0, 34) + "...";
+    }
+    return functionName;
+  }
   return (
     <StContainer>
       <StImg />
-      <StDescription>{functionName}</StDescription>
-      <StDetailButton>자세히 보기</StDetailButton>
+      <StDescription>{checkLength()}</StDescription>
+      <StDetailButton>
+        자세히 보기
+        <ArrowRight />
+      </StDetailButton>
     </StContainer>
   );
 }
@@ -40,9 +49,11 @@ const StDescription = styled.div`
 `;
 
 const StDetailButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 4px;
   margin-left: 20px;
   margin-top: 12px;
-  width: 44px;
   height: 15px;
   color: ${({ theme }) => theme.Black};
   font-family: Hyundai Sans Text KR;
@@ -51,4 +62,5 @@ const StDetailButton = styled.button`
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.3px;
+  cursor: pointer;
 `;
