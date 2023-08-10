@@ -43,7 +43,7 @@ function BillDetail({ item }) {
             </StTitle>
             <StDetailContainer>
                 <h1>{detail ? detail : "아직 선택하지 않았습니다."}</h1>
-                <p>{price ? price.toLocaleString() : ""}</p>
+                <p>{price ? price.toLocaleString() : "0"} 원</p>
             </StDetailContainer>
         </StContainer>
     )
