@@ -2,7 +2,6 @@ package com.autoever.idle.domain.exteriorColor;
 
 import com.autoever.idle.domain.exteriorColor.dto.CarExteriorImgDto;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorColorDto;
-import com.autoever.idle.domain.exteriorColor.dto.ExteriorColorResDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +21,7 @@ public class ExteriorColorRepositoryImpl implements ExteriorColorRepository {
         String query = "select ec.exterior_color_id, ec.color, ec.color_img_url, ec.price, ec.purchase_rate " +
                 "from TRIM_EXTERIOR_COLOR as tec " +
                 "left join EXTERIOR_COLOR as ec on tec.exterior_color_id = ec.exterior_color_id " +
-                "where trim_id = ?";
+                "where trim_id = ? order by ec.price asc";
 
         return jdbcTemplate.query(
                 query,
