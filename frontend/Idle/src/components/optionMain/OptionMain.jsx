@@ -5,11 +5,13 @@ import { ALL } from "../../utils/constants";
 
 function OptionMain({ data, currentTab, selectedOption }) {
   const [selectedFunction, setSelectedFunction] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
   //option이 달라지면 currentPage는 0으로
   let filteredData;
 
   useEffect(() => {
     setSelectedFunction(filteredData[0].functions[0]);
+    setCurrentPage(0);
   }, [selectedOption]);
 
   function filterData() {
@@ -39,6 +41,8 @@ function OptionMain({ data, currentTab, selectedOption }) {
         data={filteredData}
         setSelectedFunction={setSelectedFunction}
         selectedFunction={selectedFunction}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
       />
     </StContainer>
   );

@@ -3,8 +3,8 @@ import { styled } from "styled-components";
 import { ReactComponent as ArrowLeft } from "../../assets/images/optionArrowLeft.svg";
 import { ReactComponent as ArrowRight } from "../../assets/images/optionArrowRight.svg";
 
-function Functions({ data, setSelectedFunction }) {
-  const [currentPage, setCurrentPage] = useState(0);
+function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
+  // const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     setSelectedFunction(() => data[currentPage]);

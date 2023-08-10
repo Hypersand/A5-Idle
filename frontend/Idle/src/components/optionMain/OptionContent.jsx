@@ -1,7 +1,13 @@
 import { styled } from "styled-components";
 import Functions from "./Functions";
 
-function OptionContent({ data, setSelectedFunction, selectedFunction }) {
+function OptionContent({
+  data,
+  setSelectedFunction,
+  selectedFunction,
+  currentPage,
+  setCurrentPage,
+}) {
   function renderWheelImg() {
     if (selectedFunction.wheelLogoImgUrl === undefined) return;
     return selectedFunction.wheelLogoImgUrl !== null ? (
@@ -15,7 +21,12 @@ function OptionContent({ data, setSelectedFunction, selectedFunction }) {
       <StOptionDesc>{data.optionDescription}</StOptionDesc>
       {renderWheelImg()}
       <StHr />
-      <Functions data={data[0].functions} setSelectedFunction={setSelectedFunction} />
+      <Functions
+        data={data[0].functions}
+        setSelectedFunction={setSelectedFunction}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </StContainer>
   );
 }
