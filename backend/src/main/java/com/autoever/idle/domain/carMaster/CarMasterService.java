@@ -13,7 +13,7 @@ public class CarMasterService {
 
     private final CarMasterRepository carMasterRepository;
 
-    public CarMasterService(CarMasterRepositoryImpl carMasterRepository) {
+    public CarMasterService(CarMasterRepository carMasterRepository) {
         this.carMasterRepository = carMasterRepository;
     }
 

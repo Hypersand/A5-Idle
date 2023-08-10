@@ -4,7 +4,6 @@ import com.autoever.idle.domain.carMaster.dto.CarMasterDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
@@ -12,8 +11,8 @@ public class CarMasterRepositoryImpl implements CarMasterRepository{
 
     private final JdbcTemplate jdbcTemplate;
 
-    public CarMasterRepositoryImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    public CarMasterRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public List<CarMasterDto> findAvailableCarMaster(Double latitude, Double longitude){ //10km 이내의 카마스터들 정보를 거리순으로 반환

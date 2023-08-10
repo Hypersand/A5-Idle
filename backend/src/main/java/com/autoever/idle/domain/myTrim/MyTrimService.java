@@ -1,7 +1,6 @@
 package com.autoever.idle.domain.myTrim;
 
 import com.autoever.idle.domain.function.FunctionRepository;
-import com.autoever.idle.domain.function.FunctionRepositoryImpl;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,7 @@ public class MyTrimService {
 
     private final FunctionRepository functionRepository;
 
-    public MyTrimService(FunctionRepositoryImpl functionRepository) {
+    public MyTrimService(FunctionRepository functionRepository) {
         this.functionRepository = functionRepository;
     }
 

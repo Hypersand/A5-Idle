@@ -4,7 +4,6 @@ import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
@@ -12,8 +11,8 @@ public class FunctionRepositoryImpl implements FunctionRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public FunctionRepositoryImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    public FunctionRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
