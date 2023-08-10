@@ -7,23 +7,20 @@ function Functions({ data, setSelectedFunction }) {
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    setSelectedFunction(data[currentPage]);
+    setSelectedFunction(() => data[currentPage]);
   }, [currentPage]);
 
   function leftBtnClicked() {
     currentPage === 0 ? setCurrentPage(() => data.length - 1) : setCurrentPage((cur) => cur - 1);
-    setSelectedFunction(data[currentPage]);
   }
   function rightBtnClicked() {
     currentPage === data.length - 1 ? setCurrentPage(() => 0) : setCurrentPage((cur) => cur + 1);
-    setSelectedFunction(data[currentPage]);
   }
 
   function circleClicked(e) {
     const key = e.target.dataset.key;
     if (key === undefined) return;
     setCurrentPage(() => Number(key));
-    setSelectedFunction(data[currentPage]);
   }
 
   function renderCircle() {

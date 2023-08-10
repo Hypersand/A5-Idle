@@ -3,8 +3,9 @@ import Functions from "./Functions";
 
 function OptionContent({ data, setSelectedFunction, selectedFunction }) {
   function renderWheelImg() {
+    if (selectedFunction.wheelLogoImgUrl === undefined) return;
     return selectedFunction.wheelLogoImgUrl !== null ? (
-      <StWheelImg src={data.functions[0].wheelLogoImgUrl} />
+      <StWheelImg src={selectedFunction.wheelLogoImgUrl} />
     ) : null;
   }
 
@@ -14,7 +15,7 @@ function OptionContent({ data, setSelectedFunction, selectedFunction }) {
       <StOptionDesc>{data.optionDescription}</StOptionDesc>
       {renderWheelImg()}
       <StHr />
-      <Functions data={data.functions} setSelectedFunction={setSelectedFunction} />
+      <Functions data={data[0].functions} setSelectedFunction={setSelectedFunction} />
     </StContainer>
   );
 }

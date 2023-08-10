@@ -1,15 +1,21 @@
 import { styled } from "styled-components";
 import OptionContent from "./OptionContent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ALL } from "../../utils/constants";
 
-function OptionMain({ data, currentTab = "전체", selectedOption = "" }) {
+function OptionMain({ data, currentTab, selectedOption }) {
   const [selectedFunction, setSelectedFunction] = useState("");
-
+  //option이 달라지면 currentPage는 0으로
   let filteredData;
+
+  useEffect(() => {
+    setSelectedFunction(filteredData[0].functions[0]);
+  }, [selectedOption]);
+
   function filterData() {
-    if (currentTab === "전체") {
+    if (currentTab === ALL) {
       if (selectedOption === "") {
-        filteredData = data[0];
+        filteredData = [data[0]];
       } else {
         filteredData = data.filter((item) => item.optionName === selectedOption);
       }
@@ -23,19 +29,12 @@ function OptionMain({ data, currentTab = "전체", selectedOption = "" }) {
       }
     }
   }
-
   filterData();
 
   return (
     <StContainer>
-      <StImg
-        alt="imagesss"
-        src={
-          selectedFunction === ""
-            ? filteredData.functions[0].functionImgUrl
-            : selectedFunction.functionImgUrl
-        }
-      />
+      <StImg src={selectedFunction.functionImgUrl} />
+
       <OptionContent
         data={filteredData}
         setSelectedFunction={setSelectedFunction}
