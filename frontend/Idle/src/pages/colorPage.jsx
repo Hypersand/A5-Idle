@@ -26,46 +26,46 @@ const dummyData = {
   car_img_urls: ["...", "..."],
   exterior_colors: [
     {
-      exterior_id: 1,
-      exterior_name: "grey",
-      exterior_price: 0,
-      exterior_img_url: grey,
-      exteriror_purchase_rate: "구매자의 32%가 선택",
+      exteriorId: 1,
+      exteriorName: "grey",
+      exteriorPrice: 0,
+      exteriorImgUrl: grey,
+      exteriorPurchaseRate: "구매자의 32%가 선택",
     },
     {
-      exterior_id: 15,
-      exterior_name: "black",
-      exterior_price: 0,
-      exterior_img_url: black,
-      exteriror_purchase_rate: "구매자의 32%가 선택",
+      exteriorId: 15,
+      exteriorName: "black",
+      exteriorPrice: 0,
+      exteriorImgUrl: black,
+      exteriorPurchaseRate: "구매자의 32%가 선택",
     },
     {
-      exterior_id: 3,
-      exterior_name: "white",
-      exterior_price: 0,
-      exterior_img_url: white,
-      exteriror_purchase_rate: "구매자의 32%가 선택",
+      exteriorId: 3,
+      exteriorName: "white",
+      exteriorPrice: 0,
+      exteriorImgUrl: white,
+      exteriorPurchaseRate: "구매자의 32%가 선택",
     },
     {
-      exterior_id: 31,
-      exterior_name: "brown",
-      exterior_price: 100000,
-      exterior_img_url: brown,
-      exteriror_purchase_rate: "구매자의 32%가 선택",
+      exteriorId: 31,
+      exteriorName: "brown",
+      exteriorPrice: 100000,
+      exteriorImgUrl: brown,
+      exteriorPurchaseRate: "구매자의 32%가 선택",
     },
     {
-      exterior_id: 5,
-      exterior_name: "silver",
-      exterior_price: 0,
-      exterior_img_url: silver,
-      exteriror_purchase_rate: "구매자의 32%가 선택",
+      exteriorId: 5,
+      exteriorName: "silver",
+      exteriorPrice: 0,
+      exteriorImgUrl: silver,
+      exteriorPurchaseRate: "구매자의 32%가 선택",
     },
     {
-      exterior_id: 333,
-      exterior_name: "emerald",
-      exterior_price: 0,
-      exterior_img_url: emerald,
-      exteriror_purchase_rate: "구매자의 32%가 선택",
+      exteriorId: 333,
+      exteriorName: "어비스 블랙 펄",
+      exteriorPrice: 0,
+      exteriorImgUrl: emerald,
+      exteriorPurchaseRate: "구매자의 32%가 선택",
     },
   ],
 };
@@ -132,10 +132,7 @@ function ColorPage() {
             <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />
           ))}
         </StTabContainer>
-        {
-          currentTab === EXTERIOR_COLORS ?
-            <Car3D /> : <></>
-        }
+        {currentTab === EXTERIOR_COLORS ? <Car3D /> : <></>}
         <StBottomContainer>
           <StContainer>
             {/* 박스 컨테이너 자리 */}
@@ -239,7 +236,7 @@ const StTabContainer = styled.div`
   display: inline-flex;
   align-items: flex-start;
   gap: 24px;
-`
+`;
 const StContentsContainer = styled.div`
   position: absolute;
   top: 100px;

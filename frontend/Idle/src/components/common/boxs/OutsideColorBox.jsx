@@ -5,19 +5,19 @@ function OutsideColorBox({ data, isSelected, onClick }) {
   const [isGrey, setIsGrey] = useState(false);
 
   useEffect(() => {
-    if (data.exterior_name === "white") {
+    if (data.exteriorName === "white") {
       setIsWhite(true);
-    } else if (data.exterior_name === "grey") {
+    } else if (data.exteriorName === "grey") {
       setIsGrey(true);
     }
   }, []);
   return (
-    <StContainer $isActive={isSelected} onClick={onClick} $img={data.exterior_img_url}>
+    <StContainer $isActive={isSelected} onClick={onClick} $img={data.exteriorImgUrl}>
       <StOutline $isActive={isSelected} />
 
-      <StName $isWhite={isWhite}>{data.exterior_name}</StName>
-      <StRatio $isGrey={isGrey}>{data.exteriror_purchase_rate}</StRatio>
-      <StPrice $isWhite={isWhite}>+ {data.exterior_price} 원</StPrice>
+      <StName $isWhite={isWhite}>{data.exteriorName}</StName>
+      <StRatio $isGrey={isGrey}>{data.exterirorPurchaseRate}</StRatio>
+      <StPrice $isWhite={isWhite}>+ {data.exteriorPrice} 원</StPrice>
     </StContainer>
   );
 }

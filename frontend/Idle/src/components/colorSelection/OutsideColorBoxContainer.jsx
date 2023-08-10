@@ -15,10 +15,10 @@ function OutsideColorBoxContainer({ data }) {
     return data.map((item) => {
       return (
         <OutsideColorBox
-          onClick={() => boxClicked(item.exterior_name, item.exterior_price)}
-          key={item.exterior_id}
+          onClick={() => boxClicked(item.exteriorName, item.exteriorPrice)}
+          key={item.exteriorId}
           data={item}
-          isSelected={car.color.outside.name === item.exterior_name}
+          isSelected={car.color.outside.name === item.exteriorName}
         />
       );
     });
