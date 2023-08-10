@@ -12,8 +12,13 @@ export const TRANSLATE = {
   driving_methods: "구동방식",
   body_types: "바디타입",
   exterior_colors: "외장 색상",
-  interior_colors: "내장 색상"
-}
+  interior_colors: "내장 색상",
+  all: "전체",
+  safety: "안전",
+  style: "스타일&퍼포먼스",
+  protection: "차량 보호",
+  convenience: "편의"
+};
 export const TRIM = "trim";
 export const DETAIL = "detail";
 export const COLOR = "color";
@@ -22,8 +27,14 @@ export const BILL = "bill";
 export const ENGINES = "engines";
 export const DRVING_METHODS = "driving_methods";
 export const BODY_TYPES = "body_types";
-export const EXTERIOR_COLORS = "exterior_colors"
-export const INTERIROR_COLORS = "interior_colors"
+export const EXTERIOR_COLORS = "exterior_colors";
+export const INTERIROR_COLORS = "interior_colors";
+export const ALL = "all";
+export const SAFETY = "safety"
+export const STYLE = "style"
+export const PROTECTION = "protection"
+export const CONVENIENCE = "convenience"
+
 
 export const PEAK_OUTPUT_KR = "최고 출력";
 export const MAX_TORQUE_KR = "최대 토크";
@@ -35,7 +46,7 @@ export function setClickedOptionPage() {
   clickedOptionPage = true;
 }
 export const DEFAULT_ENGINE = {
-  "Exclusive": {
+  Exclusive: {
     name: "가솔린 3.8",
     price: 0,
   },
@@ -43,17 +54,17 @@ export const DEFAULT_ENGINE = {
     name: "가솔린 3.8",
     price: 0,
   },
-  "Prestige": {
+  Prestige: {
     name: "가솔린 3.8",
     price: 0,
   },
-  "Calligraphy": {
+  Calligraphy: {
     name: "가솔린 3.8",
     price: 0,
-  }
-}
+  },
+};
 export const DEFAULT_DRIVING_METHOD = {
-  "Exclusive": {
+  Exclusive: {
     name: "2WD",
     price: 0,
   },
@@ -61,17 +72,17 @@ export const DEFAULT_DRIVING_METHOD = {
     name: "4WD",
     price: 0,
   },
-  "Prestige": {
+  Prestige: {
     name: "2WD",
     price: 0,
   },
-  "Calligraphy": {
+  Calligraphy: {
     name: "2WD",
     price: 0,
-  }
-}
+  },
+};
 export const DEFAULT_BODY_TYPE = {
-  "Exclusive": {
+  Exclusive: {
     name: "7인승",
     price: 0,
   },
@@ -79,17 +90,17 @@ export const DEFAULT_BODY_TYPE = {
     name: "7인승",
     price: 0,
   },
-  "Prestige": {
+  Prestige: {
     name: "7인승",
     price: 0,
   },
-  "Calligraphy": {
+  Calligraphy: {
     name: "7인승",
     price: 0,
-  }
-}
+  },
+};
 export const DEFAULT_EXTERIROR_COLOR = {
-  "Exclusive": {
+  Exclusive: {
     name: "어비스 블랙 펄",
     price: 0,
   },
@@ -97,17 +108,17 @@ export const DEFAULT_EXTERIROR_COLOR = {
     name: "어비스 블랙 펄",
     price: 0,
   },
-  "Prestige": {
+  Prestige: {
     name: "어비스 블랙 펄",
     price: 0,
   },
-  "Calligraphy": {
+  Calligraphy: {
     name: "어비스 블랙 펄",
     price: 0,
-  }
-}
+  },
+};
 export const DEFAULT_INTERIROR_COLOR = {
-  "Exclusive": {
+  Exclusive: {
     name: "인조가죽(블랙)",
     price: 0,
   },
@@ -115,15 +126,15 @@ export const DEFAULT_INTERIROR_COLOR = {
     name: "퀼팅천연(블랙)",
     price: 0,
   },
-  "Prestige": {
+  Prestige: {
     name: "네이비",
     price: 0,
   },
-  "Calligraphy": {
+  Calligraphy: {
     name: "블랙(고급)",
     price: 0,
-  }
-}
+  },
+};
 
 export const defaultOption = [
   {
@@ -150,32 +161,17 @@ export const defaultOption = [
 
 export const emptyCar = {
   trim: {
-    name: "",
-    price: 0,
+    name: "Exclusive",
+    price: 40000000,
   },
   detail: {
-    engine: {
-      name: "",
-      price: 0,
-    },
-    wd: {
-      name: "",
-      price: 0,
-    },
-    bodytype: {
-      name: "",
-      price: 0,
-    },
+    engines: {},
+    driving_methods: {},
+    body_types: {},
   },
   color: {
-    outside: {
-      name: "",
-      price: 0,
-    },
-    inside: {
-      name: "",
-      price: 0,
-    },
+    outside: {},
+    inside: {},
   },
   option: {
     additional: [],
@@ -186,16 +182,27 @@ export const emptyCar = {
     return this.trim.price !== undefined ? this.trim.price : 0;
   },
   getDetailSum: function () {
-    return this.detail.engine.price !== undefined &&
-      this.detail.wd.price !== undefined &&
-      this.detail.bodytype.price !== undefined
-      ? this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price
-      : 0;
+    let sum = 0;
+    if (this.detail.engines.price !== undefined) {
+      sum += this.detail.engines.price;
+    }
+    if (this.detail.driving_methods.price !== undefined) {
+      sum += this.detail.driving_methods.price;
+    }
+    if (this.detail.body_types.price !== undefined) {
+      sum += this.detail.body_types.price;
+    }
+    return sum;
   },
   getColorSum: function () {
-    return this.color.outside.price !== undefined && this.color.inside.price !== undefined
-      ? this.color.outside.price + this.color.inside.price
-      : 0;
+    let sum = 0;
+    if (this.color.outside.price !== undefined) {
+      sum += this.color.outside.price;
+    }
+    if (this.color.inside.price !== undefined) {
+      sum += this.color.inside.price;
+    }
+    return sum;
   },
   getOptionSum: function () {
     let total = 0;
@@ -208,9 +215,9 @@ export const emptyCar = {
   getAllOptionChecked() {
     if (
       this.trim.name !== undefined &&
-      this.detail.engine.name !== undefined &&
-      this.detail.wd.name !== undefined &&
-      this.detail.bodytype.name !== undefined &&
+      this.detail.engines.name !== undefined &&
+      this.detail.driving_methods.name !== undefined &&
+      this.detail.body_types.name !== undefined &&
       this.color.outside.name !== undefined &&
       this.color.inside.name !== undefined
     ) {
@@ -219,4 +226,3 @@ export const emptyCar = {
     return false;
   },
 };
-

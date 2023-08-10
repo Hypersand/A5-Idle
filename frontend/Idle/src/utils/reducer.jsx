@@ -1,8 +1,10 @@
 import {
-  CHANGE_ADDITIONAL_OPTION,
+  PUSH_ADDITIONAL_OPTION,
+  PUSH_CONFUSING_OPTION,
+  POP_ADDITIONAL_OPTION,
+  POP_CONFUSING_OPTION,
   CHANGE_ALL,
   CHANGE_BODY_TYPES,
-  CHANGE_CONFUSING_OPTION,
   CHANGE_DRIVING_METHODS,
   CHANGE_ENGINES,
   CHANGE_INSIDE_COLOR,
@@ -64,7 +66,31 @@ export function carReducer(car, { type, payload }) {
         },
       };
 
-    case CHANGE_ADDITIONAL_OPTION:
+    case PUSH_ADDITIONAL_OPTION:
+      return {
+        ...car,
+        option: {
+          additional: [
+            ...car.option.additional,
+            payload,
+          ],
+          confusing: car.option.confusing,
+        },
+      };
+
+    case PUSH_CONFUSING_OPTION:
+      return {
+        ...car,
+        option: {
+          additional: car.option.additional,
+          confusing: [
+            ...car.option.confusing,
+            payload
+          ],
+        },
+      };
+
+    case POP_ADDITIONAL_OPTION:
       return {
         ...car,
         option: {
@@ -73,7 +99,7 @@ export function carReducer(car, { type, payload }) {
         },
       };
 
-    case CHANGE_CONFUSING_OPTION:
+    case POP_CONFUSING_OPTION:
       return {
         ...car,
         option: {
@@ -81,6 +107,7 @@ export function carReducer(car, { type, payload }) {
           confusing: payload,
         },
       };
+
     case RESET_ALL:
       return {
         ...car,
