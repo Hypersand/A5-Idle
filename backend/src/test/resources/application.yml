@@ -1,7 +1,10 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/IdleDev
-    username: root
+    url: jdbc:h2:mem:test
+    driverClassName: org.h2.Driver
+    username: sa
     password:
+  sql:
+    init:
+      schema-locations: classpath:h2Schema.sql
 

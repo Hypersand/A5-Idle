@@ -5,8 +5,8 @@ INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id)
 INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Prestige', 46240000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/prestige.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', '구매자 15%가 선택', 1);
 INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Calligraphy', 51060000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/calligraphy.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', '구매자 75%가 선택', 1);
 
-INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('김팰리', '010-0000-00', '왕십리 지점', '고객님의 모든 구매 과정에 정성을 다하겠습니다.', 30, null, 37.56462664999, 127.02878456999);
-INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('정현대', '010-0000-00', '한양 대리점', '안녕하세요 믿음을 주는 카마스터 정현대입니다.', 20, null, 37.56462664995, 127.02878456872);
+INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('김팰리', '010-0000-00', '왕십리 지점', '고객님의 모든 구매 과정에 정성을 다하겠습니다.', 30, null, 36.1234, 126.1234);
+INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('정현대', '010-0000-00', '한양 대리점', '안녕하세요 믿음을 주는 카마스터 정현대입니다.', 20, null, 36.1324, 126.1324);
 INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('심포니', '010-0000-00', '마장 대리점', '고객님을 위한 최고의 차량을 추천해드릴게요.', 10, null, 36.1423, 126.1432);
 
 INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('어비스 블랙 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/11.png', 0, '구매자의 30%가 선택');
@@ -525,14 +525,14 @@ INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purch
 INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', '구매자 3%가 선택', 18);
 INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', '구매자 3%가 선택', 19);
 
-INSERT INTO ENGINE (name, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('디젤 2.2', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/5.jpg', 1480000, 202, 45, 11.4, 12.4, '구매자 45%가 선택', '강력한 토크와 탁월한 효율로 여유있는 파워와 높은 연비를 제공하는 디젤 엔진입니다.');
-INSERT INTO ENGINE (name, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('가솔린 3.8', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/6.jpg', 0, 295, 36.2, 8, 9.2, '구매자 55%가 선택', '고효율의 3.8 가솔린 엔진으로 다이내믹한 주행 성능은 물론, 정속성까지 선사합니다.');
+INSERT INTO ENGINE (type, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('디젤 2.2', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/5.jpg', 1480000, 202, 45, 11.4, 12.4, '구매자 45%가 선택', '강력한 토크와 탁월한 효율로 여유있는 파워와 높은 연비를 제공하는 디젤 엔진입니다.');
+INSERT INTO ENGINE (type, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('가솔린 3.8', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/6.jpg', 0, 295, 36.2, 8, 9.2, '구매자 55%가 선택', '고효율의 3.8 가솔린 엔진으로 다이내믹한 주행 성능은 물론, 정속성까지 선사합니다.');
 
-INSERT INTO BODY_TYPE (name, price, description, purchase_rate, img_url) VALUES ('7인승', 0, '2열 가운데 시트를 없에 2열 탑승객의 편의는 물론, 3열 탑승객의 승하차가 편리합니다.', '구매자 50%가 선택', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/7.jpg');
-INSERT INTO BODY_TYPE (name, price, description, purchase_rate, img_url) VALUES ('8인승', 0, '1열 2명, 2열 3명, 3열 3명이 탑승할 수 있는 구조로, 많은 인원이 탑승할 수 있습니다.', '구매자 50%가 선택', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/8.jpg');
+INSERT INTO BODY_TYPE (type, price, description, purchase_rate, img_url) VALUES ('7인승', 0, '2열 가운데 시트를 없에 2열 탑승객의 편의는 물론, 3열 탑승객의 승하차가 편리합니다.', '구매자 50%가 선택', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/7.jpg');
+INSERT INTO BODY_TYPE (type, price, description, purchase_rate, img_url) VALUES ('8인승', 0, '1열 2명, 2열 3명, 3열 3명이 탑승할 수 있는 구조로, 많은 인원이 탑승할 수 있습니다.', '구매자 50%가 선택', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/8.jpg');
 
-INSERT INTO DRIVING_METHOD (name, price, description, img_url, purchase_rate) VALUES ('2WD', 0, '엔진 동려이 전륜 후륜 중 하나로 전달되어 움직입니다. 차체가 가벼워 연료 효율이 높습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', '구매자 60%가 선택');
-INSERT INTO DRIVING_METHOD (name, price, description, img_url, purchase_rate) VALUES ('4WD', 237000, '상시 4륜 구동 시스템으로 주행 환경에 맞춰 전후륜 구동력을 자동배분해 안전성을 높입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', '구매자 40%가 선택');
+INSERT INTO DRIVING_METHOD (type, price, description, img_url, purchase_rate) VALUES ('2WD', 0, '엔진 동려이 전륜 후륜 중 하나로 전달되어 움직입니다. 차체가 가벼워 연료 효율이 높습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', '구매자 60%가 선택');
+INSERT INTO DRIVING_METHOD (type, price, description, img_url, purchase_rate) VALUES ('4WD', 237000, '상시 4륜 구동 시스템으로 주행 환경에 맞춰 전후륜 구동력을 자동배분해 안전성을 높입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', '구매자 40%가 선택');
 
 INSERT INTO TRIM_BODY_TYPE (trim_id, body_type_id) VALUES (1, 1);
 INSERT INTO TRIM_BODY_TYPE (trim_id, body_type_id) VALUES (1, 2);

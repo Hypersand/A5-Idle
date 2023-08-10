@@ -18,12 +18,12 @@ public class FunctionRepositoryImpl implements FunctionRepository {
 
     @Override
     public List<MyTrimFunctionDto> findMyTrimFunctions() {
-        return jdbcTemplate.query("select f.function_id, name, description, trim_id, img_url " +
-                        "from TRIM_FUNCTION tf " +
-                        "join FUNCTIONS f on tf.function_id=f.function_id " +
+        return jdbcTemplate.query("select FUNCTIONS.function_id, name, description, trim_id, img_url " +
+                        "from TRIM_FUNCTION TF " +
+                        "join FUNCTIONS on TF.function_id=FUNCTIONS.function_id " +
                         "where is_my_trim='TRUE' order by trim_id",
                 ((rs, rowNum) -> new MyTrimFunctionDto(
-                        rs.getInt("f.function_id"),
+                        rs.getInt("FUNCTIONS.function_id"),
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getString("img_url"),

@@ -20,8 +20,8 @@ class CarMasterRepositoryImplTest {
     @DisplayName("10KM 이내의 카마스터 찾기")
     void findCarMaster() {
 
-        Double nowLatitude = 37.561583;
-        Double nowLongitude = 127.038417;
+        Double nowLatitude = 36.05;
+        Double nowLongitude = 126.1234;
 
         List<CarMasterDto> availableCarMaster = carMasterRepository.findAvailableCarMaster(nowLatitude, nowLongitude);
         assertThat(availableCarMaster.size()).isEqualTo(2);

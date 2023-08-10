@@ -20,6 +20,7 @@ public class CarMasterRepositoryImpl implements CarMasterRepository{
         return jdbcTemplate.query(
                 "SELECT *, ( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance "+
                 "FROM CAR_MASTER "+
+                "GROUP BY CAR_MASTER_ID, name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude "+
                 "HAVING distance <= 10 "+
                 "ORDER BY distance",
                 ((rs, rowNum) -> new CarMasterDto(
@@ -31,7 +32,6 @@ public class CarMasterRepositoryImpl implements CarMasterRepository{
                         rs.getString("img_url"),
                         rs.getDouble("latitude"),
                         rs.getDouble("longitude")
-                ))
-                ,latitude,longitude,latitude);
+                )),latitude,longitude,latitude);
     }
 }
