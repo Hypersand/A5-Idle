@@ -5,11 +5,11 @@ import lombok.Getter;
 @Getter
 public class MyTrimFunctionDto {
 
-    private int functionId;
-    private String name;
-    private String description;
-    private String imgUrl;
-    private int trim_id;
+    private final int functionId;
+    private final String name;
+    private final String description;
+    private final String imgUrl;
+    private final int trim_id;
 
     public MyTrimFunctionDto(int functionId, String name, String description, String imgUrl, int trim_id) {
         this.functionId = functionId;

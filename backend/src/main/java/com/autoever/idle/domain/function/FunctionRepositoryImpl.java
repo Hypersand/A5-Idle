@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class FunctionRepositoryImpl implements FunctionRepository {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public FunctionRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
