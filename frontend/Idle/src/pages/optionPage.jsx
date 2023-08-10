@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CategoryTabs from "../components/common/tabs/CategoryTabs";
 import WhiteButton from "../components/common/buttons/WhiteButton";
 import BlueButton from "../components/common/buttons/BlueButton";
-import { ReactComponent as ArrowRight } from "../assets/images/arrowOption.svg";
+import { ReactComponent as ArrowLogo } from "../assets/images/arrowOption.svg";
 
 const dummyData = [
   {
@@ -287,6 +287,11 @@ function OptionPage() {
     }
   }
 
+  function ArrowButtonClicked(direction) {
+    const element = scrollBar.current;
+    direction === "LEFT" ? element.scrollLeft -= 200 : element.scrollLeft += 200
+  }
+
   setClickedOptionPage();
   return (
     <>
@@ -300,13 +305,13 @@ function OptionPage() {
         </StContentsContainer>
         <StBottomContainer>
           <ArrowLeftContainer $blurState={blurState}>
-            <ArrowRight />
+            <ArrowLogo onClick={() => { ArrowButtonClicked("LEFT") }} />
           </ArrowLeftContainer>
           <StContainer ref={scrollBar}>
             {dummyData.map((item, idx) => (<OptionBox key={idx} {...item} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />))}
           </StContainer>
           <ArrowRightContainer $blurState={blurState}>
-            <ArrowRight />
+            <ArrowLogo onClick={() => { ArrowButtonClicked("RIGHT") }} />
           </ArrowRightContainer>
           <StConfirmContainer>
             <StConfirmHeader>
@@ -332,6 +337,20 @@ const StContainer = styled.div`
   gap: 8px;
   width: 850px;
   overflow: scroll;
+  &::-webkit-scrollbar {
+    height: 26px;
+    width: 0px
+  }
+  &::-webkit-scrollbar-thumb {
+    height: 3px;
+    border-top: 10px solid ${({ theme }) => theme.Grey_1};
+    border-bottom: 14px solid ${({ theme }) => theme.Grey_1};
+    border-radius: 3px;
+    background: ${({ theme }) => theme.NavyBlue_5};
+  }
+  &::-webkit-scrollbar-track {
+    background-color:  ${({ theme }) => theme.Grey_1};
+  }
 `;
 const ArrowRightContainer = styled.div`
   position: absolute;
@@ -346,6 +365,9 @@ const ArrowRightContainer = styled.div`
   svg{
     position: absolute;
     right: 0;
+  }
+  svg:hover{
+    cursor: pointer;
   }
   display: ${({ $blurState }) => $blurState === BLUR_STATUS.RIGHT_NONE ? "none" : ""};
 `
@@ -363,6 +385,9 @@ const ArrowLeftContainer = styled.div`
     position: absolute;
     right: 0;
   }
+  svg:hover{
+    cursor: pointer;
+  }
   transform: scaleX(-1);
   left: -10px;
   display: ${({ $blurState }) => $blurState === BLUR_STATUS.LEFT_NONE ? "none" : ""};
@@ -378,7 +403,7 @@ const StBottomContainer = styled.div`
   position: absolute;
   display: flex;
   gap: 46px;
-  bottom: 64px;
+  bottom: 38px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
