@@ -225,15 +225,22 @@ const BLUR_STATUS = {
   BOTH_VISIBLE: 0,
 };
 
+function filterData(data, currentTab) {
+  if (currentTab === ALL) return data;
+  return data.filter((item) => item.optionCategory === TRANSLATE[currentTab]);
+}
+
 function OptionPage() {
   const [currentTab, setCurrentTab] = useState(ALL);
   const [selectedOption, setSelectedOption] = useState("");
+  const [filteredData, setFilteredData] = useState(dummyData);
   const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
   const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
   const navigate = useNavigate();
   const scrollBar = useRef();
 
   useEffect(() => {
+    setFilteredData(filterData(dummyData, currentTab));
     if (!scrollBar.current) {
       return;
     }
@@ -252,7 +259,7 @@ function OptionPage() {
     return () => {
       scrollBar.current?.removeEventListener("scroll", getScrollState);
     };
-  }, [scrollBar.current]);
+  }, [scrollBar.current, currentTab]);
 
   function handleTabChange(direction) {
     const currentIndex = tabs.indexOf(currentTab);
@@ -272,6 +279,11 @@ function OptionPage() {
     }
   }
 
+  function TabClicked(idx) {
+    setCurrentTab(() => tabs[idx]);
+    // setFilteredData(filterData(dummyData, currentTab));
+  }
+
   function ArrowButtonClicked(direction) {
     const element = scrollBar.current;
     direction === "LEFT" ? (element.scrollLeft -= 200) : (element.scrollLeft += 200);
@@ -283,7 +295,12 @@ function OptionPage() {
       <StWrapper>
         <StTabContainer>
           {tabs.map((item, idx) => (
-            <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />
+            <CategoryTabs
+              key={idx}
+              text={TRANSLATE[item]}
+              isClicked={item === currentTab}
+              onClick={() => TabClicked(idx)}
+            />
           ))}
         </StTabContainer>
         <StContentsContainer>
@@ -291,6 +308,7 @@ function OptionPage() {
           <OptionMain data={dummyData} currentTab={currentTab} selectedOption={selectedOption} />
           {/* <MainContents currentState={currentTab} data={dummyData} /> */}
         </StContentsContainer>
+
         <StBottomContainer>
           <ArrowLeftContainer $blurState={blurState}>
             <ArrowLogo
@@ -299,8 +317,18 @@ function OptionPage() {
               }}
             />
           </ArrowLeftContainer>
+
           <StContainer ref={scrollBar}>
-            {dummyData.map((item, idx) => (
+            {/**이전 코드 */}
+            {/* {dummyData.map((item, idx) => (
+              <OptionBox
+                key={idx}
+                {...item}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+              />
+            ))} */}
+            {filteredData.map((item, idx) => (
               <OptionBox
                 key={idx}
                 {...item}
@@ -309,6 +337,7 @@ function OptionPage() {
               />
             ))}
           </StContainer>
+
           <ArrowRightContainer $blurState={blurState}>
             <ArrowLogo
               onClick={() => {
@@ -316,6 +345,7 @@ function OptionPage() {
               }}
             />
           </ArrowRightContainer>
+
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>{TRANSLATE[currentTab]} 선택</Title>
