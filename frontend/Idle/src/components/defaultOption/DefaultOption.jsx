@@ -1,18 +1,18 @@
-import FindTrimButton from "./FindTrimButton";
-import Modal from "./Modal";
 import { useState } from "react";
+import DefaultOptionButton from "./defaultOptionButton";
+import Modal from "./Modal";
 
-function FindTrim() {
+function DefaultOption() {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
       {modalVisible ? (
         <Modal setVisible={setModalVisible} />
       ) : (
-        <FindTrimButton onClick={() => setModalVisible(true)} />
+        <DefaultOptionButton onClick={() => setModalVisible(true)} />
       )}
     </>
   );
 }
 
-export default FindTrim;
+export default DefaultOption;
