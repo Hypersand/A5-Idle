@@ -2,8 +2,6 @@ package com.autoever.idle.domain.function.dto;
 
 import lombok.Getter;
 
-import java.util.Objects;
-
 @Getter
 public class MyTrimFunctionDto {
 

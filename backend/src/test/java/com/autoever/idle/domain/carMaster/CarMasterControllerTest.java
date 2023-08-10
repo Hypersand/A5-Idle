@@ -29,9 +29,6 @@ class CarMasterControllerTest {
     void getTest() throws Exception {
         Map<String, Double> info = new HashMap<>();
 
-        info.put("nowLatitude", 37.561583);
-        info.put("nowLongitude", 127.038417);
-
         String content = "{ \"nowLatitude\": 37.561583,\"nowLongitude\": 127.038417}";
 
         mockMvc.perform(MockMvcRequestBuilders.get("/find/car/masters")

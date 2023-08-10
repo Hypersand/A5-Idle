@@ -16,6 +16,7 @@ public class FunctionRepositoryImpl implements FunctionRepository{
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    @Override
     public List<MyTrimFunctionDto> findMyTrimFunctions(){
         return jdbcTemplate.query("select f.function_id, name, description, trim_id, img_url " +
                 "from TRIM_FUNCTION tf " +
