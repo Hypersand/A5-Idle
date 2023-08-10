@@ -52,7 +52,7 @@ const StContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 48px;
-  z-index: 1;
+  z-index: 100;
 `;
 
 const StTitle = styled.div`
@@ -90,4 +90,5 @@ const ModalBackground = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
+  z-index: 100;
 `;

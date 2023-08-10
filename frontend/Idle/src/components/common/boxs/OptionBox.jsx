@@ -200,19 +200,19 @@ const StButtonContainer = styled.div`
   gap: 12px;
 `;
 const ClickedBorder = styled.div`
-  position: absolute;
-  display: ${({ $isSelected, $state }) => {
-    if ($state == "none") {
-      return "none";
-    } else {
-      if ($isSelected) return "";
-      else return "none";
-    }
-  }};
-  width: 192px;
-  border: 2px solid #e7ecf9;
-  height: 156px;
-  top: 1px;
-  left: 1px;
-  z-index: 1;
-`;
+    position: absolute;
+    display: ${({ $isSelected, $state }) => {
+        if ($state == "none") {
+            return "none"
+        } else {
+            if ($isSelected) return ""
+            else return "none"
+        }
+    }};
+    width: 192px;
+    border: 2px solid #E7ECF9;
+    height: 156px;
+    top: 1px;
+    left: 1px;
+    z-index: 0;
+`
