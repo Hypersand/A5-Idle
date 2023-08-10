@@ -40,205 +40,181 @@ const dummyData = [
         wheelLogoImgUrl: "...",
       },
     ],
-  },
-  {
-    "option_name": "현대스마트센스I",
-    "option_price": 1000000,
-    "option_purchase_rate": "구매자의 22% 선택",
-    "option_description": "...",
-    "option_category": "안전",
-    "option_can_select": false,
-    "functions": [
+  }, {
+    optionName: "현대 스마트 센스",
+    optionPrice: 1000000,
+    optionPurchaseRate: "구매자의 22% 선택",
+    optionDescription: "...",
+    optionCategory: "안전",
+    optionCanSelect: true,
+    functions: [
       {
-        "function_name": "네비게이션~~~",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
-      },
-      {
-        "function_name": "후방 주차 충돌방지 보조2",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
-      },
-    ]
-  },
-  {
-    "option_name": "컴포트II",
-    "option_price": 1000000,
-    "option_purchase_rate": "구매자의 22% 선택",
-    "option_description": "...",
-    "option_category": "스타일&퍼포먼스",
-    "option_can_select": false,
-    "functions": [
-      {
-        "function_name": "네비게이션~~~",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
-      },
-      {
-        "function_name": "후방 주차 충돌방지 보조2",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
-      },
-    ]
-  },
-  {
-    "option_name": "빌트인 캠(보조배터리 포함)",
-    "option_price": 1000000,
-    "option_purchase_rate": "구매자의 22% 선택",
-    "option_description": "...",
-    "option_category": "안전",
-    "option_can_select": false,
-    "functions": [
-      {
-        "function_name": "네비게이션~~~",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
-      },
-      {
-        "function_name": "후방 주차 충돌방지 보조2",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
-      },
-    ]
-  },
-  {
-    "option_name": "[N퍼포먼스파츠] 20인치 다크 스퍼터링 휠",
-    "option_price": 1000000,
-    "option_purchase_rate": "구매자의 22% 선택",
-    "option_description": "...",
-    "option_category": "스타일&퍼포먼스",
-    "option_can_select": false,
-    "functions": [
-      {
-        "function_name": "네비게이션~~~",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
-      },
-      {
-        "function_name": "후방 주차 충돌방지 보조2",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
-      },
-    ]
-  },
-  {
-    "option_name": "[N퍼포먼스파츠] 20인치 블랙톤 전면 가공 휠",
-    "option_price": 1000000,
-    "option_purchase_rate": "구매자의 22% 선택",
-    "option_description": "...",
-    "option_category": "스타일&퍼포먼스",
-    "option_can_select": false,
-    "functions": [
-      {
-        functionName: "후방 주차 충돌방지 보조2",
+        functionName: "후방 주차 충돌방지 보조1",
         functionDescription: "...",
-        functionImgUrl: "...",
+        functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠2",
+        functionName: "20인치 다크 스퍼터링 휠1",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
       },
-    ]
+    ],
   },
   {
-    "option_name": "프로텍션 매트 패키지 I",
-    "option_price": 1000000,
-    "option_purchase_rate": "구매자의 22% 선택",
-    "option_description": "...",
-    "option_category": "차량 보호",
-    "option_can_select": false,
-    "functions": [
+    optionName: "컴포트 Ⅱ",
+    optionPrice: 1000000,
+    optionPurchaseRate: "구매자의 22% 선택",
+    optionDescription: "...",
+    optionCategory: "안전",
+    optionCanSelect: true,
+    functions: [
       {
-        "function_name": "네비게이션~~~",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
+        functionName: "후방 주차 충돌방지 보조1",
+        functionDescription: "...",
+        functionImgUrl: hyundai,
+        wheelLogoImgUrl: null,
       },
       {
-        "function_name": "후방 주차 충돌방지 보조2",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
+        functionName: "20인치 다크 스퍼터링 휠1",
+        functionDescription: "...",
+        functionImgUrl: "...",
+        wheelLogoImgUrl: "...",
       },
-    ]
+    ],
   },
   {
-    "option_name": "차량 보호 필름",
-    "option_price": 1000000,
-    "option_purchase_rate": "구매자의 22% 선택",
-    "option_description": "...",
-    "option_category": "차량 보호",
-    "option_can_select": false,
-    "functions": [
+    optionName: "빌트인 캠(보조배터리 포함)",
+    optionPrice: 1000000,
+    optionPurchaseRate: "구매자의 22% 선택",
+    optionDescription: "...",
+    optionCategory: "안전",
+    optionCanSelect: true,
+    functions: [
       {
-        "function_name": "네비게이션~~~",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
+        functionName: "후방 주차 충돌방지 보조1",
+        functionDescription: "...",
+        functionImgUrl: hyundai,
+        wheelLogoImgUrl: null,
       },
       {
-        "function_name": "후방 주차 충돌방지 보조2",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
+        functionName: "20인치 다크 스퍼터링 휠1",
+        functionDescription: "...",
+        functionImgUrl: "...",
+        wheelLogoImgUrl: "...",
       },
-    ]
+    ],
   },
   {
-    "option_name": "2열 통풍시트",
-    "option_price": 1000000,
-    "option_purchase_rate": "구매자의 22% 선택",
-    "option_description": "...",
-    "option_category": "편의",
-    "option_can_select": false,
-    "functions": [
+    optionName: "[N퍼포먼스파츠] 20인치 다크 스퍼터링 휠",
+    optionPrice: 1000000,
+    optionPurchaseRate: "구매자의 22% 선택",
+    optionDescription: "...",
+    optionCategory: "스타일&퍼포먼스",
+    optionCanSelect: true,
+    functions: [
       {
-        "function_name": "네비게이션~~~",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
+        functionName: "후방 주차 충돌방지 보조1",
+        functionDescription: "...",
+        functionImgUrl: hyundai,
+        wheelLogoImgUrl: null,
       },
       {
-        "function_name": "후방 주차 충돌방지 보조2",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
+        functionName: "20인치 다크 스퍼터링 휠1",
+        functionDescription: "...",
+        functionImgUrl: "...",
+        wheelLogoImgUrl: "...",
       },
-    ]
+    ],
   },
   {
-    "option_name": "듀얼 와이드 선루프",
-    "option_price": 1000000,
-    "option_purchase_rate": "구매자의 22% 선택",
-    "option_description": "...",
-    "option_category": "편의",
-    "option_can_select": false,
-    "functions": [
+    optionName: "[N퍼포먼스파츠] 20인치 블랙톤 전면 가공 휠",
+    optionPrice: 1000000,
+    optionPurchaseRate: "구매자의 22% 선택",
+    optionDescription: "...",
+    optionCategory: "스타일&퍼포먼스",
+    optionCanSelect: true,
+    functions: [
       {
-        "function_name": "네비게이션~~~",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
+        functionName: "후방 주차 충돌방지 보조1",
+        functionDescription: "...",
+        functionImgUrl: hyundai,
+        wheelLogoImgUrl: null,
       },
       {
-        "function_name": "후방 주차 충돌방지 보조2",
-        "function_description": "...",
-        "function_img_url": "...",
-        "wheel_logo_img_url": null
+        functionName: "20인치 다크 스퍼터링 휠1",
+        functionDescription: "...",
+        functionImgUrl: "...",
+        wheelLogoImgUrl: "...",
       },
-    ]
-  }
+    ],
+  },
+  {
+    optionName: "프로텍션 매트 패키지 I",
+    optionPrice: 1000000,
+    optionPurchaseRate: "구매자의 22% 선택",
+    optionDescription: "...",
+    optionCategory: "차량 보호",
+    optionCanSelect: true,
+    functions: [
+      {
+        functionName: "후방 주차 충돌방지 보조1",
+        functionDescription: "...",
+        functionImgUrl: hyundai,
+        wheelLogoImgUrl: null,
+      },
+      {
+        functionName: "20인치 다크 스퍼터링 휠1",
+        functionDescription: "...",
+        functionImgUrl: "...",
+        wheelLogoImgUrl: "...",
+      },
+    ],
+  }, {
+    optionName: "차량 보호 필름",
+    optionPrice: 1000000,
+    optionPurchaseRate: "구매자의 22% 선택",
+    optionDescription: "...",
+    optionCategory: "차량 보호",
+    optionCanSelect: true,
+    functions: [
+      {
+        functionName: "후방 주차 충돌방지 보조1",
+        functionDescription: "...",
+        functionImgUrl: hyundai,
+        wheelLogoImgUrl: null,
+      },
+      {
+        functionName: "20인치 다크 스퍼터링 휠1",
+        functionDescription: "...",
+        functionImgUrl: "...",
+        wheelLogoImgUrl: "...",
+      },
+    ],
+  },
+  {
+    optionName: "2열 통풍시트",
+    optionPrice: 1000000,
+    optionPurchaseRate: "구매자의 22% 선택",
+    optionDescription: "...",
+    optionCategory: "편의",
+    optionCanSelect: true,
+    functions: [
+      {
+        functionName: "후방 주차 충돌방지 보조1",
+        functionDescription: "...",
+        functionImgUrl: hyundai,
+        wheelLogoImgUrl: null,
+      },
+      {
+        functionName: "20인치 다크 스퍼터링 휠1",
+        functionDescription: "...",
+        functionImgUrl: "...",
+        wheelLogoImgUrl: "...",
+      },
+    ],
+  },
 ]
 
 const BLUR_STATUS = {
