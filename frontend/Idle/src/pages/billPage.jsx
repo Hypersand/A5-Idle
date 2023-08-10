@@ -1,5 +1,8 @@
 import { styled } from "styled-components";
 import Header from "../components/layout/Header";
+import Car3D from "../components/common/content/Car3D";
+import WhiteButton from "../components/common/buttons/WhiteButton";
+import BlueButton from "../components/common/buttons/BlueButton";
 
 function BillPage() {
   return (
@@ -11,7 +14,20 @@ function BillPage() {
           카마스터 찾기를 통해 구매 상담을 할 수 있어요
         </TitleContainer>
         <BlueBG />
+        <CarContainer>
+          <Car3D />
+        </CarContainer>
         <BlueBgBottom />
+        <StConfirmContainer>
+          <StConfirmText>
+            <p>예상 가격</p>
+            <h1>38,960,000 원</h1>
+          </StConfirmText>
+          <StButtonContainer>
+            <WhiteButton text={"공유하기"} />
+            <BlueButton text={"카마스터 찾기"} />
+          </StButtonContainer>
+        </StConfirmContainer>
       </StContainer >
     </StWrapper >
   );
@@ -69,4 +85,50 @@ const StTitle = styled.h1`
   font-weight: 500;
   line-height: 40px;
   letter-spacing: -0.96px;
+`
+const CarContainer = styled.div`
+    position: absolute;
+    width: 573px;
+    height: 359px;
+    flex-shrink: 0;
+    top: 100px;
+    left: 50px;
+`
+const StConfirmContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap:40px
+`
+const StConfirmText = styled.div`
+  position: absolute;
+    display: flex;
+    flex-direction: column;
+    color: #222;
+    bottom: 30px;
+    gap: 8px;
+    right: 322px;
+  p{
+    font-family: "Hyundai Sans Text KR";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+    text-align: right;
+  }
+  h1{
+    font-family: "Hyundai Sans Head KR";
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: -0.84px;
+  }
+`
+const StButtonContainer = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  right: 128px;
+  bottom: 25px;
 `
