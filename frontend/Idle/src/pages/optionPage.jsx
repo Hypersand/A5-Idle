@@ -403,7 +403,7 @@ const StBottomContainer = styled.div`
   position: absolute;
   display: flex;
   gap: 46px;
-  bottom: 38px;
+  bottom: 36px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -413,8 +413,7 @@ const StBottomContainer = styled.div`
 const StConfirmContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 30px;
+  gap: 38px;
   width: 154px;
 `;
 
