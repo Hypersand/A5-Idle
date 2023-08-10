@@ -1,21 +1,31 @@
 import { styled, keyframes } from "styled-components";
 import { useState } from "react";
 import CloseButton from "./CloseButton";
+import CategoryTabs from "../common/tabs/CategoryTabs";
 
 function Modal({ setVisible }) {
   const [animationstate, setAnimationState] = useState(false);
+  const [currentTab, setCurrentTab] = useState("파워트레인/성능");
+  const tabs = ["파워트레인/성능", "지능형 안전기술", "안전", "외관", "내장", "시트", "편의"];
+
   function clickClose() {
     setAnimationState(true);
     setTimeout(() => {
       setVisible(false);
     }, 1000);
   }
+  function renderCategory() {
+    return tabs.map((item, idx) => (
+      <CategoryTabs key={idx} text={item} isClicked={item === currentTab} />
+    ));
+  }
+
   return (
     <StContainer $animationstate={animationstate}>
       <StCloseButtonContainer>
         <CloseButton onClick={clickClose} />
       </StCloseButtonContainer>
-      <StCategoryContainer></StCategoryContainer>
+      <StCategoryContainer>{renderCategory()}</StCategoryContainer>
       <StContentContainer></StContentContainer>
       <StPaginationContainer></StPaginationContainer>
     </StContainer>
@@ -64,10 +74,9 @@ const StCategoryContainer = styled.div`
   display: flex;
   width: 1024px;
   height: 30px;
-  justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
   margin-top: 17.93px;
+  gap: 20px;
 `;
 
 const StContentContainer = styled.div`
