@@ -44,7 +44,6 @@ function OptionBox({ option_name, option_price, option_purchase_rate, selectedOp
                 $isSelected={isSelected}
                 $state={currentState}
             >
-                <ClickedBorder $isSelected={isSelected} $state={currentState} />
                 <StContent>
                     <StContentHeader>
                         <TitleDetail $isSelected={isSelected} $state={currentState}>{option_purchase_rate}</TitleDetail>
@@ -55,6 +54,7 @@ function OptionBox({ option_name, option_price, option_purchase_rate, selectedOp
                 <StButtonContainer>
                     <ConfusingButton state={currentState} onClick={toggleConfuse} />
                     <AddButton state={currentState} onClick={toggleAdd} />
+                    <ClickedBorder $isSelected={isSelected} $state={currentState} onClick={(e) => { e.stopPropagation() }} />
                 </StButtonContainer>
             </StContainer>
         </>
@@ -190,5 +190,5 @@ const ClickedBorder = styled.div`
     height: 156px;
     top: 1px;
     left: 1px;
-    z-index: 1;
+    z-index: 0;
 `

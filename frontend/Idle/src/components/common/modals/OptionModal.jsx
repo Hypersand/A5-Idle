@@ -65,6 +65,7 @@ const ModalBackground = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
+  z-index: 100;
 `;
 
 const StContainer = styled.div`
@@ -86,7 +87,7 @@ const StTitleContainer = styled.div`
 `;
 
 const StTitle = styled.div`
-  font-family: Hyundai Sans Head KR;
+  font-family: "Hyundai Sans Head KR";
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -96,7 +97,7 @@ const StTitle = styled.div`
 `;
 
 const StDescription1 = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -106,7 +107,7 @@ const StDescription1 = styled.div`
 `;
 
 const StDescription2 = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -116,7 +117,7 @@ const StDescription2 = styled.div`
 `;
 
 const StNote = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
