@@ -29,15 +29,25 @@ function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
           <X onClick={setModalVisible} data-name={"esc"} />
         </StTitleContainer>
 
-        <StDescription1>{data.description1}</StDescription1>
         <img
           src=""
           alt="sampleImage"
           style={{ width: "452px", height: "256px", marginBottom: "16px" }}
         />
-        <StDescription2>{data.description2}</StDescription2>
-        <StNote>{data.note}</StNote>
-        <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
+        <StDescription>{data.description}</StDescription>
+
+        {/** 일단 임시 */}
+        <StNote>
+          * 홈페이지의 사진과 설명은 참고용이며 실제 차량에 탑재되는 기능과 설명은 상이할 수 있으니,
+          차량 구입 전 카마스터를 통해 확인 바랍니다.
+        </StNote>
+        {/* <StNote>
+          {data.note}
+        </StNote> */}
+
+        <StBtnContainer>
+          <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
+        </StBtnContainer>
       </StContainer>
     </ModalContainer>,
     document.getElementById("modal")
@@ -77,6 +87,7 @@ const StContainer = styled.div`
   z-index: 100;
   align-items: center;
   z-index: 10;
+  position: relative;
 `;
 
 const StTitleContainer = styled.div`
@@ -95,7 +106,7 @@ const StTitle = styled.div`
   margin-bottom: 12px;
 `;
 
-const StDescription1 = styled.div`
+const StDescription = styled.div`
   font-family: Hyundai Sans Text KR;
   font-size: 13px;
   font-style: normal;
@@ -103,16 +114,6 @@ const StDescription1 = styled.div`
   line-height: 165%;
   letter-spacing: -0.39px;
   margin-bottom: 28px;
-`;
-
-const StDescription2 = styled.div`
-  font-family: Hyundai Sans Text KR;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.36px;
-  margin-bottom: 20px;
 `;
 
 const StNote = styled.div`
@@ -123,4 +124,9 @@ const StNote = styled.div`
   line-height: 150%;
   letter-spacing: -0.36px;
   margin-bottom: 28px;
+`;
+
+const StBtnContainer = styled.div`
+  position: absolute;
+  bottom: 32px;
 `;
