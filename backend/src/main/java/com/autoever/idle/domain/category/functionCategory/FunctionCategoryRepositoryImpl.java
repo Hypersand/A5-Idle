@@ -1,7 +1,7 @@
 package com.autoever.idle.domain.category.functionCategory;
 
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
-import com.autoever.idle.domain.function.dto.DefaultFunctionResDto;
+import com.autoever.idle.domain.function.dto.DefaultFunctionNameResDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -26,14 +26,14 @@ public class FunctionCategoryRepositoryImpl implements FunctionCategoryRepositor
         );
     }
 
-    public List<DefaultFunctionResDto> getDefaultOptions(Long trimId, Long categoryId) {
+    public List<DefaultFunctionNameResDto> getDefaultOptions(Long trimId, Long categoryId) {
         return jdbcTemplate.query(
                 "select F.name as function_name " +
                 "from FUNCTION_CATEGORY as FC " +
                 "left join FUNCTIONS as F on FC.function_category_id = F.function_category_id " +
                 "left join TRIM_FUNCTION as TF on F.function_id = TF.function_id " +
                 "where TF.is_default = 'TRUE' and TF.trim_id = ? and FC.function_category_id = ?",
-                (rs, rowNum) -> new DefaultFunctionResDto(
+                (rs, rowNum) -> new DefaultFunctionNameResDto(
                         rs.getString("function_name")
                 ),
                 trimId,

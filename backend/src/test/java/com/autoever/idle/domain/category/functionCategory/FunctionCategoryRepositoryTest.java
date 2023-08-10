@@ -1,7 +1,7 @@
 package com.autoever.idle.domain.category.functionCategory;
 
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
-import com.autoever.idle.domain.function.dto.DefaultFunctionResDto;
+import com.autoever.idle.domain.function.dto.DefaultFunctionNameResDto;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -39,7 +39,7 @@ class FunctionCategoryRepositoryTest {
         Long trimId = 1L;
         Long categoryId = 1L;
 
-        List<DefaultFunctionResDto> defaultFunctions = functionCategoryRepository.getDefaultOptions(trimId, categoryId);
+        List<DefaultFunctionNameResDto> defaultFunctions = functionCategoryRepository.getDefaultOptions(trimId, categoryId);
 
         softAssertions.assertThat(defaultFunctions.size()).isEqualTo(5);
     }
