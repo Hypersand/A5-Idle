@@ -2,15 +2,16 @@ import { styled } from "styled-components";
 import OptionContent from "./OptionContent";
 import { useEffect, useState } from "react";
 import { ALL } from "../../utils/constants";
+import { TRANSLATE } from "../../utils/constants";
 
 function OptionMain({ data, currentTab, selectedOption }) {
   const [selectedFunction, setSelectedFunction] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-  //option이 달라지면 currentPage는 0으로
+
   let filteredData;
 
   useEffect(() => {
-    setSelectedFunction(filteredData[0].functions[0]);
+    setSelectedFunction(filteredData.functions[0]);
     setCurrentPage(0);
   }, [selectedOption]);
 
@@ -23,16 +24,19 @@ function OptionMain({ data, currentTab, selectedOption }) {
       }
     } else {
       if (selectedOption === "") {
-        filteredData = data.filter((item) => item.optionCategory === currentTab)[0];
+        filteredData = data.filter((item) => item.optionCategory === TRANSLATE[currentTab]);
       } else {
         filteredData = data.filter(
-          (item) => item.optionCategory === currentTab && item.optionName === selectedOption
+          (item) =>
+            item.optionCategory === TRANSLATE[currentTab] && item.optionName === selectedOption
         );
       }
     }
+
+    if (filteredData.length > 1) filteredData = filteredData[0];
+    Array.isArray(filteredData) ? (filteredData = filteredData[0]) : filteredData;
   }
   filterData();
-
   return (
     <StContainer>
       <StImg src={selectedFunction.functionImgUrl} />

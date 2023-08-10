@@ -4,8 +4,6 @@ import { ReactComponent as ArrowLeft } from "../../assets/images/optionArrowLeft
 import { ReactComponent as ArrowRight } from "../../assets/images/optionArrowRight.svg";
 
 function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
-  // const [currentPage, setCurrentPage] = useState(0);
-
   useEffect(() => {
     setSelectedFunction(() => data[currentPage]);
   }, [currentPage]);

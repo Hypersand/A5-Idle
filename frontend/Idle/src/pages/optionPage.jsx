@@ -30,7 +30,7 @@ const dummyData = [
       {
         functionName: "후방 주차 충돌방지 보조1",
         functionDescription: "...",
-        functionImgUrl: hyundai,
+        functionImgUrl: null,
         wheelLogoImgUrl: null,
       },
       {
@@ -40,7 +40,8 @@ const dummyData = [
         wheelLogoImgUrl: "...",
       },
     ],
-  }, {
+  },
+  {
     optionName: "현대 스마트 센스",
     optionPrice: 1000000,
     optionPurchaseRate: "구매자의 22% 선택",
@@ -49,13 +50,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조2",
         functionDescription: "...",
-        functionImgUrl: hyundai,
+        functionImgUrl: null,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠2",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -71,13 +72,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조3",
         functionDescription: "...",
         functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠3",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -93,13 +94,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조4",
         functionDescription: "...",
         functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠4",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -171,7 +172,8 @@ const dummyData = [
         wheelLogoImgUrl: "...",
       },
     ],
-  }, {
+  },
+  {
     optionName: "차량 보호 필름",
     optionPrice: 1000000,
     optionPurchaseRate: "구매자의 22% 선택",
@@ -215,7 +217,7 @@ const dummyData = [
       },
     ],
   },
-]
+];
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,
@@ -225,11 +227,11 @@ const BLUR_STATUS = {
 
 function OptionPage() {
   const [currentTab, setCurrentTab] = useState(ALL);
-  const [selectedOption, setSelectedOption] = useState("주차보조시스템II");
+  const [selectedOption, setSelectedOption] = useState("");
   const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
   const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
   const navigate = useNavigate();
-  const scrollBar = useRef()
+  const scrollBar = useRef();
 
   useEffect(() => {
     if (!scrollBar.current) {
@@ -239,21 +241,18 @@ function OptionPage() {
       const element = scrollBar.current;
       if (element.scrollLeft === 0) {
         setBlurState(BLUR_STATUS.LEFT_NONE);
-      } else if (
-        element.scrollWidth ===
-        element.clientWidth + element.scrollLeft
-      ) {
+      } else if (element.scrollWidth === element.clientWidth + element.scrollLeft) {
         setBlurState(BLUR_STATUS.RIGHT_NONE);
       } else {
         setBlurState(BLUR_STATUS.BOTH_VISIBLE);
       }
     };
 
-    scrollBar.current?.addEventListener('scroll', getScrollState);
+    scrollBar.current?.addEventListener("scroll", getScrollState);
     return () => {
-      scrollBar.current?.removeEventListener('scroll', getScrollState);
+      scrollBar.current?.removeEventListener("scroll", getScrollState);
     };
-  }, [scrollBar.current])
+  }, [scrollBar.current]);
 
   function handleTabChange(direction) {
     const currentIndex = tabs.indexOf(currentTab);
@@ -275,7 +274,7 @@ function OptionPage() {
 
   function ArrowButtonClicked(direction) {
     const element = scrollBar.current;
-    direction === "LEFT" ? element.scrollLeft -= 200 : element.scrollLeft += 200
+    direction === "LEFT" ? (element.scrollLeft -= 200) : (element.scrollLeft += 200);
   }
 
   setClickedOptionPage();
@@ -294,13 +293,28 @@ function OptionPage() {
         </StContentsContainer>
         <StBottomContainer>
           <ArrowLeftContainer $blurState={blurState}>
-            <ArrowLogo onClick={() => { ArrowButtonClicked("LEFT") }} />
+            <ArrowLogo
+              onClick={() => {
+                ArrowButtonClicked("LEFT");
+              }}
+            />
           </ArrowLeftContainer>
           <StContainer ref={scrollBar}>
-            {dummyData.map((item, idx) => (<OptionBox key={idx} {...item} selectedOption={selectedOption} setSelectedOption={setSelectedOption} />))}
+            {dummyData.map((item, idx) => (
+              <OptionBox
+                key={idx}
+                {...item}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+              />
+            ))}
           </StContainer>
           <ArrowRightContainer $blurState={blurState}>
-            <ArrowLogo onClick={() => { ArrowButtonClicked("RIGHT") }} />
+            <ArrowLogo
+              onClick={() => {
+                ArrowButtonClicked("RIGHT");
+              }}
+            />
           </ArrowRightContainer>
           <StConfirmContainer>
             <StConfirmHeader>
@@ -339,7 +353,7 @@ const StContainer = styled.div`
   overflow: scroll;
   &::-webkit-scrollbar {
     height: 26px;
-    width: 0px
+    width: 0px;
   }
   &::-webkit-scrollbar-thumb {
     height: 3px;
@@ -349,7 +363,7 @@ const StContainer = styled.div`
     background: ${({ theme }) => theme.NavyBlue_5};
   }
   &::-webkit-scrollbar-track {
-    background-color:  ${({ theme }) => theme.Grey_1};
+    background-color: ${({ theme }) => theme.Grey_1};
   }
 `;
 const ArrowRightContainer = styled.div`
@@ -357,41 +371,41 @@ const ArrowRightContainer = styled.div`
   display: flex;
   width: 120px;
   height: 166px;
-  background: linear-gradient(270deg, #F6F6F6 0%, rgba(246, 246, 246, 0.00) 100%);
+  background: linear-gradient(270deg, #f6f6f6 0%, rgba(246, 246, 246, 0) 100%);
   flex-shrink: 0;
   align-items: center;
   right: 170px;
   z-index: 10;
-  svg{
+  svg {
     position: absolute;
     right: 0;
   }
-  svg:hover{
+  svg:hover {
     cursor: pointer;
   }
-  display: ${({ $blurState }) => $blurState === BLUR_STATUS.RIGHT_NONE ? "none" : ""};
-`
+  display: ${({ $blurState }) => ($blurState === BLUR_STATUS.RIGHT_NONE ? "none" : "")};
+`;
 
 const ArrowLeftContainer = styled.div`
   position: absolute;
   display: flex;
   width: 120px;
   height: 166px;
-  background: linear-gradient(270deg, #F6F6F6 0%, rgba(246, 246, 246, 0.00) 100%);
+  background: linear-gradient(270deg, #f6f6f6 0%, rgba(246, 246, 246, 0) 100%);
   flex-shrink: 0;
   align-items: center;
   z-index: 10;
-  svg{
+  svg {
     position: absolute;
     right: 0;
   }
-  svg:hover{
+  svg:hover {
     cursor: pointer;
   }
   transform: scaleX(-1);
   left: -10px;
-  display: ${({ $blurState }) => $blurState === BLUR_STATUS.LEFT_NONE ? "none" : ""};
-`
+  display: ${({ $blurState }) => ($blurState === BLUR_STATUS.LEFT_NONE ? "none" : "")};
+`;
 
 const StWrapper = styled.div`
   display: flex;

@@ -20,9 +20,10 @@ function OptionContent({
       <StOption>{data.optionName}</StOption>
       <StOptionDesc>{data.optionDescription}</StOptionDesc>
       {renderWheelImg()}
+
       <StHr />
       <Functions
-        data={data[0].functions}
+        data={data.functions}
         setSelectedFunction={setSelectedFunction}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
@@ -54,6 +55,9 @@ const StOption = styled.div`
   font-weight: 500;
   line-height: 36px;
   letter-spacing: -0.84px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const StOptionDesc = styled.div`
