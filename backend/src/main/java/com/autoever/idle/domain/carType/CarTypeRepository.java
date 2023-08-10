@@ -1,9 +1,7 @@
 package com.autoever.idle.domain.carType;
 
+import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
-@Repository
 public interface CarTypeRepository{
-    Long findByName(String carTypeName);
+    List<Long> findByName(String carTypeName);
 }
