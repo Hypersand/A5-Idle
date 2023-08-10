@@ -13,14 +13,14 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value="/trims/favorite")
+@RequestMapping(value = "/trims/favorite")
 @Slf4j
 public class MyTrimController {
 
     private final MyTrimService myTrimService;
 
     @GetMapping
-    public ResponseEntity<List<MyTrimFunctionResDto>> findAllMyTrimFunction(){
+    public ResponseEntity<List<MyTrimFunctionResDto>> findAllMyTrimFunction() {
         List<MyTrimFunctionResDto> myTrimFunctions = myTrimService.findMyTrimFunctions();
         return ResponseEntity.ok(myTrimFunctions);
     }

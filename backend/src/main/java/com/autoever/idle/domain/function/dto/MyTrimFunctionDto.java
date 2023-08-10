@@ -21,7 +21,7 @@ public class MyTrimFunctionDto {
 
     @Override
     public int hashCode() {
-        return ((Integer)functionId).hashCode();
+        return ((Integer) functionId).hashCode();
     }
 
     @Override
@@ -32,10 +32,10 @@ public class MyTrimFunctionDto {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()){
+        if (getClass() != obj.getClass()) {
             return false;
         }
         MyTrimFunctionDto myTrimFunctionDto = (MyTrimFunctionDto) obj;
-        return functionId==myTrimFunctionDto.getFunctionId();
+        return functionId == myTrimFunctionDto.getFunctionId();
     }
 }

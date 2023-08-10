@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
-public class FunctionRepositoryImpl implements FunctionRepository{
+public class FunctionRepositoryImpl implements FunctionRepository {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -17,11 +17,11 @@ public class FunctionRepositoryImpl implements FunctionRepository{
     }
 
     @Override
-    public List<MyTrimFunctionDto> findMyTrimFunctions(){
+    public List<MyTrimFunctionDto> findMyTrimFunctions() {
         return jdbcTemplate.query("select f.function_id, name, description, trim_id, img_url " +
-                "from TRIM_FUNCTION tf " +
-                "join FUNCTIONS f on tf.function_id=f.function_id " +
-                "where is_my_trim='TRUE' order by trim_id",
+                        "from TRIM_FUNCTION tf " +
+                        "join FUNCTIONS f on tf.function_id=f.function_id " +
+                        "where is_my_trim='TRUE' order by trim_id",
                 ((rs, rowNum) -> new MyTrimFunctionDto(
                         rs.getInt("f.function_id"),
                         rs.getString("name"),

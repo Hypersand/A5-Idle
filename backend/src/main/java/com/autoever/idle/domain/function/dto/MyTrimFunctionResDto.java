@@ -19,7 +19,7 @@ public class MyTrimFunctionResDto {
         this.imgUrl = imgUrl;
     }
 
-    public static MyTrimFunctionResDto createDto(MyTrimFunctionDto myTrimFunctionDto){
+    public static MyTrimFunctionResDto createDto(MyTrimFunctionDto myTrimFunctionDto) {
         return MyTrimFunctionResDto.builder()
                 .functionId(myTrimFunctionDto.getFunctionId())
                 .name(myTrimFunctionDto.getName())
