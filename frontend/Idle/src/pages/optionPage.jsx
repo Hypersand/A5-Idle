@@ -1,4 +1,4 @@
-import OptionMain from "../components/optionMain/optionMain";
+import OptionMain from "../components/optionMain/OptionMain";
 import { setClickedOptionPage } from "../utils/constants";
 
 const dummyData = [

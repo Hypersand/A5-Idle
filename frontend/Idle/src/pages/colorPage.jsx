@@ -237,8 +237,3 @@ const StTabContainer = styled.div`
   align-items: flex-start;
   gap: 24px;
 `;
-const StContentsContainer = styled.div`
-  position: absolute;
-  top: 100px;
-  left: 128px;
-`;
