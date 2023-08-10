@@ -18,7 +18,7 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-backend/.idea
+backend/.idea/
 *.iws
 *.iml
 *.ipr
@@ -36,3 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 /.gradle/
+/src/main/resources/application-secret.yml
+/.idea/

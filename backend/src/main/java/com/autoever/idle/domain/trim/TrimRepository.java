@@ -1,0 +1,10 @@
+package com.autoever.idle.domain.trim;
+
+import com.autoever.idle.domain.trim.dto.TrimDto;
+
+import java.util.List;
+
+public interface TrimRepository {
+
+    List<TrimDto> findAll(Long carTypeId);
+}
