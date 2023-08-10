@@ -8,6 +8,6 @@ import java.util.List;
 @Repository
 public interface CarMasterRepository {
 
-    public List<CarMasterDto> findAvailableCarMaster(Double latitude, Double longitude);
+    List<CarMasterDto> findAvailableCarMaster(Double latitude, Double longitude);
 
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,9 +21,10 @@ public class CarMasterController {
     private final CarMasterService carMasterService;
 
     @GetMapping
-    public ResponseEntity<List<CarMasterDto>> getAvailableCarMaster(@RequestBody Map<String, Double> location){
+    public ResponseEntity<List<CarMasterDto>> getAvailableCarMaster(@RequestBody Map<String, Double> location) {
         List<CarMasterDto> availableCarMasters = carMasterService.findAvailableCarMaster(location.get("nowLatitude"), location.get("nowLongitude"));
         return ResponseEntity.ok(availableCarMasters);
     }
+
 
 }
