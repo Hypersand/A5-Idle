@@ -21,7 +21,7 @@ public class CarMasterController {
     private final CarMasterService carMasterService;
 
     @GetMapping
-    public ResponseEntity<List<CarMasterDto>> getAvailableCarMaster(@RequestBody Map<String, Double> location) {
+    public ResponseEntity<List<CarMasterDto>> getAvailableCarMaster(@RequestBody Map<String, Double> location) throws Exception{
         List<CarMasterDto> availableCarMasters = carMasterService.findAvailableCarMaster(location.get("nowLatitude"), location.get("nowLongitude"));
         return ResponseEntity.ok(availableCarMasters);
     }
