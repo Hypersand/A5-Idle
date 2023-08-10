@@ -1,18 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { carContext } from "../utils/context";
+import { CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
 import BlueButton from "../components/common/buttons/BlueButton";
+import WhiteButton from "../components/common/buttons/WhiteButton";
 import {
   DEFAULT_EXTERIROR_COLOR,
-  DEFAULT_INTERIROR_COLOR,
   EXTERIOR_COLORS,
   INTERIROR_COLORS,
   TRANSLATE,
 } from "../utils/constants";
-import WhiteButton from "../components/common/buttons/WhiteButton";
 import CategoryTabs from "../components/common/tabs/CategoryTabs";
-import { carContext } from "../utils/context";
-import { CHANGE_INSIDE_COLOR, CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
 import Car3D from "../components/common/content/Car3D";
 import grey from "../assets/images/outsideColor/grey.png";
 import black from "../assets/images/outsideColor/black.png";
@@ -21,6 +20,8 @@ import silver from "../assets/images/outsideColor/silver.png";
 import brown from "../assets/images/outsideColor/brown.png";
 import emerald from "../assets/images/outsideColor/emerald.png";
 import OutsideColorBoxContainer from "../components/colorSelection/OutsideColorBoxContainer";
+import InnerColorBoxContainer from "../components/colorSelection/InnerColorBoxContainer";
+import InnerColorContent from "../components/common/content/InnerColorContent";
 
 const dummyData = {
   car_img_urls: ["...", "..."],
@@ -69,9 +70,29 @@ const dummyData = {
     },
   ],
 };
-
+const innercolorData = {
+  car_interior_colors: [
+    {
+      interior_idx: 1,
+      interior_name: "인조가죽(블랙)",
+      interior_price: 2000,
+      interior_img_url: "...",
+      car_interior_img_url: "../../assets/images/외장색상1.png",
+      interior_purchase_rate: "구매자의 22%가 선택",
+    },
+    {
+      interior_idx: 2,
+      interior_name: "그라파이트 그레이 블랙",
+      interior_price: 1000,
+      interior_img_url: "...",
+      car_interior_img_url: "../../assets/images/외장색상2.png",
+      interior_purchase_rate: "구매자의 32%가 선택",
+    },
+  ],
+};
 function ColorPage() {
   const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS);
+  const [colorIndex, setColorIndex] = useState(1);
   const tabs = [EXTERIOR_COLORS, INTERIROR_COLORS];
   const { car, dispatch } = useContext(carContext);
   const navigate = useNavigate();
@@ -85,18 +106,10 @@ function ColorPage() {
           DEFAULT_EXTERIROR_COLOR[car.trim.name]
         );
         break;
-      case INTERIROR_COLORS:
-        dispatchDefault(
-          car.color.inside,
-          CHANGE_INSIDE_COLOR,
-          DEFAULT_INTERIROR_COLOR[car.trim.name]
-        );
-        break;
       default:
         break;
     }
   }, [currentTab]);
-
   function dispatchDefault(tabState, actionType, defaultPayload) {
     if (tabState.name === undefined) {
       dispatch({
@@ -105,7 +118,6 @@ function ColorPage() {
       });
     }
   }
-
   function handleTabChange(direction) {
     const currentIndex = tabs.indexOf(currentTab);
 
@@ -132,15 +144,19 @@ function ColorPage() {
             <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />
           ))}
         </StTabContainer>
-        {currentTab === EXTERIOR_COLORS ? <Car3D /> : <></>}
+        {currentTab === EXTERIOR_COLORS ? (
+          <Car3D />
+        ) : (
+          <InnerColorContent data={innercolorData} index={colorIndex} />
+        )}
         <StBottomContainer>
           <StContainer>
-            {/* 박스 컨테이너 자리 */}
             {currentTab === EXTERIOR_COLORS ? (
               <OutsideColorBoxContainer data={dummyData.exterior_colors} />
-            ) : null}
+            ) : (
+              <InnerColorBoxContainer data={innercolorData} onClick={setColorIndex} />
+            )}
           </StContainer>
-
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>{TRANSLATE[currentTab]} 선택</Title>
