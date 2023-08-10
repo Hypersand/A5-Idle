@@ -3,8 +3,12 @@ import Header from "../components/layout/Header";
 import Car3D from "../components/common/content/Car3D";
 import WhiteButton from "../components/common/buttons/WhiteButton";
 import BlueButton from "../components/common/buttons/BlueButton";
+import { useContext } from "react";
+import { carContext } from "../utils/context";
 
 function BillPage() {
+  const { car } = useContext(carContext)
+
   return (
     <StWrapper id={"modal"}>
       <StContainer >
@@ -21,7 +25,7 @@ function BillPage() {
         <StConfirmContainer>
           <StConfirmText>
             <p>예상 가격</p>
-            <h1>38,960,000 원</h1>
+            <h1>{car.getAllSum().toLocaleString()} 원</h1>
           </StConfirmText>
           <StButtonContainer>
             <WhiteButton text={"공유하기"} />
@@ -87,26 +91,26 @@ const StTitle = styled.h1`
   letter-spacing: -0.96px;
 `
 const CarContainer = styled.div`
-    position: absolute;
-    width: 573px;
-    height: 359px;
-    flex-shrink: 0;
-    top: 100px;
-    left: 50px;
+  position: absolute;
+  width: 573px;
+  height: 359px;
+  flex-shrink: 0;
+  top: 100px;
+  left: 50px;
 `
 const StConfirmContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap:40px
+  gap:40px;
 `
 const StConfirmText = styled.div`
   position: absolute;
-    display: flex;
-    flex-direction: column;
-    color: #222;
-    bottom: 30px;
-    gap: 8px;
-    right: 322px;
+  display: flex;
+  flex-direction: column;
+  color: #222;
+  top: 580px;
+  gap: 8px;
+  right: 320px;
   p{
     font-family: "Hyundai Sans Text KR";
     font-size: 16px;
@@ -115,6 +119,7 @@ const StConfirmText = styled.div`
     line-height: 24px;
     letter-spacing: -0.48px;
     text-align: right;
+    margin-top: 5px;
   }
   h1{
     font-family: "Hyundai Sans Head KR";
@@ -125,10 +130,10 @@ const StConfirmText = styled.div`
   }
 `
 const StButtonContainer = styled.div`
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  right: 128px;
-  bottom: 25px;
+  left: 998px;
+  top: 580px;
 `
