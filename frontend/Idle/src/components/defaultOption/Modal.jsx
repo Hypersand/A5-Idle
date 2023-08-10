@@ -2,11 +2,113 @@ import { styled, keyframes } from "styled-components";
 import { useState } from "react";
 import CloseButton from "./CloseButton";
 import CategoryTabs from "../common/tabs/CategoryTabs";
+import ItemBox from "./ItemBox";
 
 function Modal({ setVisible }) {
   const [animationstate, setAnimationState] = useState(false);
   const [currentTab, setCurrentTab] = useState("파워트레인/성능");
-  const tabs = ["파워트레인/성능", "지능형 안전기술", "안전", "외관", "내장", "시트", "편의"];
+  const tabs = [
+    {
+      categoryName: "파워트레인/성능",
+      functions: [
+        {
+          functionName: "기능기능기능",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "기능기능기능",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+      ],
+    },
+    {
+      categoryName: "지능형 안전기술",
+      functions: [
+        {
+          functionName: "10에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "11에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "10에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "11에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "10에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "11에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "10에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "11에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "11에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "11에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+      ],
+    },
+    {
+      categoryName: "안전",
+      functions: [
+        {
+          functionName: "10에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "11에어백",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+      ],
+    },
+    {
+      categoryName: "외관",
+      functions: [
+        {
+          functionName: "외관",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+        {
+          functionName: "외관",
+          functionImgUrl: "...",
+          functionDescription: "...",
+        },
+      ],
+    },
+  ];
 
   function clickClose() {
     setAnimationState(true);
@@ -16,8 +118,31 @@ function Modal({ setVisible }) {
   }
   function renderCategory() {
     return tabs.map((item, idx) => (
-      <CategoryTabs key={idx} text={item} isClicked={item === currentTab} />
+      <StCategoryBox key={idx}>
+        <CategoryTabs
+          key={idx}
+          text={item.categoryName}
+          onClick={() => {
+            setCurrentTab(item.categoryName);
+          }}
+          isClicked={item.categoryName === currentTab}
+        />
+      </StCategoryBox>
     ));
+  }
+  function renderItem() {
+    const currentCategory = tabs.find((tab) => tab.categoryName === currentTab);
+    console.log(currentCategory);
+    if (currentCategory) {
+      return currentCategory.functions.map((func, idx) => (
+        <ItemBox
+          key={idx}
+          functionName={func.functionName}
+          functionImgUrl={func.functionImgUrl}
+          functionDescription={func.functionDescription}
+        />
+      ));
+    }
   }
 
   return (
@@ -26,7 +151,7 @@ function Modal({ setVisible }) {
         <CloseButton onClick={clickClose} />
       </StCloseButtonContainer>
       <StCategoryContainer>{renderCategory()}</StCategoryContainer>
-      <StContentContainer></StContentContainer>
+      <StContentContainer>{renderItem()}</StContentContainer>
       <StPaginationContainer></StPaginationContainer>
     </StContainer>
   );
@@ -59,6 +184,10 @@ const StContainer = styled.div`
   `} 1s ease-in-out;
 `;
 
+const StCategoryBox = styled.div`
+  cursor: pointer;
+`;
+
 const StCloseButtonContainer = styled.div`
   display: flex;
   width: 1032px;
@@ -81,11 +210,12 @@ const StCategoryContainer = styled.div`
 
 const StContentContainer = styled.div`
   display: inline-flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: flex-start;
   width: 1024px;
   height: 456px;
-  gap: 32px;
+  gap: 26px;
   border: 1px solid black;
   margin-top: 22.07px;
 `;
