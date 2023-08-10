@@ -2,6 +2,7 @@ import { styled } from "styled-components"
 import { TRANSLATE } from "../../utils/constants"
 import { useContext } from "react"
 import { carContext } from "../../utils/context"
+import ModifyButton from "../common/buttons/ModifyButton"
 
 function BillDetail({ item }) {
     const { car } = useContext(carContext)
@@ -37,7 +38,8 @@ function BillDetail({ item }) {
     return (
         <StContainer>
             <StTitle>
-                {TRANSLATE[item]}
+                <h1>{TRANSLATE[item]}</h1>
+                <ModifyButton />
             </StTitle>
             <StDetailContainer>
                 <h1>{detail ? detail : "아직 선택하지 않았습니다."}</h1>
