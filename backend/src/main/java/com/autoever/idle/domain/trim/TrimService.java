@@ -9,10 +9,13 @@ import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDt
 import com.autoever.idle.domain.function.dto.DefaultFunctionResDto;
 import com.autoever.idle.domain.trim.dto.TrimDto;
 import com.autoever.idle.domain.trim.dto.TrimSelectionResDto;
+import com.autoever.idle.global.exception.custom.InvalidCarException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.autoever.idle.global.exception.ErrorCode.INVALID_CAR;
 
 @Service
 public class TrimService {
@@ -28,8 +31,13 @@ public class TrimService {
     }
 
     public List<TrimSelectionResDto> findAllTrims(String carTypeName) {
-        Long carTypeId = carTypeRepository.findByName(carTypeName);
-        List<TrimDto> trims = trimRepository.findAll(carTypeId);
+        List<Long> carTypeIds = carTypeRepository.findByName(carTypeName);
+        System.out.println(carTypeIds);
+        if (carTypeIds.isEmpty()) {
+            throw new InvalidCarException(INVALID_CAR);
+        }
+
+        List<TrimDto> trims = trimRepository.findAll(carTypeIds.get(0));
         List<FunctionCategoryDto> categories = functionCategoryRepository.findAll();
 
         List<TrimSelectionResDto> trimDtos = new ArrayList<>();

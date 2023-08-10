@@ -1,10 +1,11 @@
 package com.autoever.idle.domain.carType;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+
+import java.util.List;
 
 @Repository
 public class CarTypeRepositoryImpl implements CarTypeRepository {
@@ -15,8 +16,8 @@ public class CarTypeRepositoryImpl implements CarTypeRepository {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public Long findByName(String carTypeName) {
-        return jdbcTemplate.queryForObject("select car_type_id from CAR_TYPE where CAR_TYPE.name = ?",
+    public List<Long> findByName(String carTypeName) {
+        return jdbcTemplate.queryForList("select car_type_id from CAR_TYPE where CAR_TYPE.name = ?",
                 Long.class,
                 carTypeName);
     }
