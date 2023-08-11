@@ -349,7 +349,6 @@ function OptionPage() {
           </ArrowLeftContainer>
 
           <StContainer ref={scrollBar}>
-
             {filteredData.map((item, idx) => (
               <OptionBox
                 key={idx}
@@ -366,7 +365,7 @@ function OptionPage() {
               }}
             />
           </ArrowRightContainer>
-
+          <DefaultOption />
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>{TRANSLATE[currentTab]} 선택</Title>

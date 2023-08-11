@@ -3,11 +3,11 @@ import { ReactComponent as ArrowRightSVG } from "../../assets/images/arrowRight.
 function PaginationButton({ onClickPrev, onClickNext, currentPage, totalPages }) {
   return (
     <StContainer>
-      <ArrowWrapper visible={currentPage !== 1}>
+      <ArrowWrapper $visible={currentPage !== 1}>
         <ArrowLeft onClick={onClickPrev} />
       </ArrowWrapper>
       <StNumber>{currentPage}</StNumber>
-      <ArrowWrapper visible={currentPage !== totalPages}>
+      <ArrowWrapper $visible={currentPage !== totalPages}>
         <ArrowRight onClick={onClickNext} />
       </ArrowWrapper>
     </StContainer>
