@@ -96,13 +96,13 @@ const dummyData = [
       {
         functionName: "후방 주차 충돌방지 보조4",
         functionDescription: "...",
-        functionImgUrl: hyundai,
+        functionImgUrl: null,
         wheelLogoImgUrl: null,
       },
       {
         functionName: "20인치 다크 스퍼터링 휠4",
         functionDescription: "...",
-        functionImgUrl: "...",
+        functionImgUrl: hyundai,
         wheelLogoImgUrl: "...",
       },
     ],
@@ -116,13 +116,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조5",
         functionDescription: "...",
         functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠5",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -138,15 +138,15 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조6",
         functionDescription: "...",
-        functionImgUrl: hyundai,
+        functionImgUrl: null,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠6",
         functionDescription: "...",
-        functionImgUrl: "...",
+        functionImgUrl: hyundai,
         wheelLogoImgUrl: "...",
       },
     ],
@@ -160,13 +160,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조7",
         functionDescription: "...",
         functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠7",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -182,15 +182,15 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조8",
         functionDescription: "...",
-        functionImgUrl: hyundai,
+        functionImgUrl: null,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠8",
         functionDescription: "...",
-        functionImgUrl: "...",
+        functionImgUrl: hyundai,
         wheelLogoImgUrl: "...",
       },
     ],
@@ -204,13 +204,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조9",
         functionDescription: "...",
         functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠9",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -233,14 +233,16 @@ function filterData(data, currentTab) {
 function OptionPage() {
   const [currentTab, setCurrentTab] = useState(ALL);
   const [selectedOption, setSelectedOption] = useState("");
-  const [filteredData, setFilteredData] = useState(dummyData);
+  const [currentPage, setCurrentPage] = useState(0);
   const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
   const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
   const navigate = useNavigate();
   const scrollBar = useRef();
 
+  const [filteredData, setFilteredData] = useState(dummyData);
+  const [selectedFunction, setSelectedFunction] = useState("");
+
   useEffect(() => {
-    setFilteredData(filterData(dummyData, currentTab));
     if (!scrollBar.current) {
       return;
     }
@@ -259,7 +261,27 @@ function OptionPage() {
     return () => {
       scrollBar.current?.removeEventListener("scroll", getScrollState);
     };
-  }, [scrollBar.current, currentTab]);
+  }, [scrollBar.current]);
+
+  useEffect(() => {
+    setFilteredData(filterData(dummyData, currentTab));
+    setCurrentPage(0);
+    setSelectedOption("");
+  }, [currentTab]);
+
+  useEffect(() => {
+    if (selectedOption === "") {
+      setSelectedFunction(filteredData[0].functions[0]);
+    } else {
+      const selected = filteredData.filter((item) => item.optionName === selectedOption);
+      setSelectedFunction(selected[0].functions[0]);
+    }
+    setCurrentPage(0);
+  }, [selectedOption]);
+
+  useEffect(() => {
+    setSelectedFunction(filteredData[0].functions[0]);
+  }, [filteredData]);
 
   function handleTabChange(direction) {
     const currentIndex = tabs.indexOf(currentTab);
@@ -305,7 +327,14 @@ function OptionPage() {
         </StTabContainer>
         <StContentsContainer>
           {/* 메인 컨텐츠 부분 */}
-          <OptionMain data={dummyData} currentTab={currentTab} selectedOption={selectedOption} />
+          <OptionMain
+            data={filteredData}
+            selectedOption={selectedOption}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            setSelectedFunction={setSelectedFunction}
+            selectedFunction={selectedFunction}
+          />
           {/* <MainContents currentState={currentTab} data={dummyData} /> */}
         </StContentsContainer>
 

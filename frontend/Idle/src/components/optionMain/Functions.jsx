@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { styled } from "styled-components";
 import { ReactComponent as ArrowLeft } from "../../assets/images/optionArrowLeft.svg";
 import { ReactComponent as ArrowRight } from "../../assets/images/optionArrowRight.svg";
