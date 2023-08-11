@@ -86,12 +86,7 @@ jobs:
           port: ${{ secrets.EC2_SSH_PORT }}
           script: |
             sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            sudo docker rm -f idle_1
-            sudo docker rmi -f ${{ secrets.DOCKER_USERNAME }}/idle:latest
+            sudo docker rm -f $(docker ps -qa)
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/idle:latest
-            sudo docker run --name=idle_1 \
-            --restart unless-stopped \
-            -p 8080:8080 \
-            -e TZ=Asia/Seoul \
-            -d \
-            ${{ secrets.DOCKER_USERNAME }}/Idle:latest
+            sudo docker-compose up -d
+            sudo docker image prune -f
