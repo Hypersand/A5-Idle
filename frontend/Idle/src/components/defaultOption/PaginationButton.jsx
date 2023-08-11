@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowRightSVG } from "../../assets/images/arrowRight.svg";
-import { ReactComponent as ArrowLeftSVG } from "../../assets/images/arrowLeft.svg";
 function PaginationButton({ onClickPrev, onClickNext, currentPage, totalPages }) {
   return (
     <StContainer>
-      {currentPage !== 1 && <ArrowLeft onClick={onClickPrev} />}
+      <ArrowWrapper visible={currentPage !== 1}>
+        <ArrowLeft onClick={onClickPrev} />
+      </ArrowWrapper>
       <StNumber>{currentPage}</StNumber>
-      {currentPage !== totalPages && <ArrowRight onClick={onClickNext} />}
+      <ArrowWrapper visible={currentPage !== totalPages}>
+        <ArrowRight onClick={onClickNext} />
+      </ArrowWrapper>
     </StContainer>
   );
 }
@@ -33,7 +36,13 @@ const StNumber = styled.div`
   letter-spacing: -0.48px;
 `;
 
-const ArrowLeft = styled(ArrowLeftSVG)`
+const ArrowWrapper = styled.div`
+  display: flex;
+  visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
+`;
+
+const ArrowLeft = styled(ArrowRightSVG)`
+  transform: scaleX(-1);
   cursor: pointer;
 `;
 
