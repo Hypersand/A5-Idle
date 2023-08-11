@@ -18,6 +18,8 @@ function FindTrimContent({ setVisible }) {
   const [optionStatus, setOptionStatus] = useState([]);
   const [showOptionAlert, setShowOptionAlert] = useState(false);
   const { dispatch } = useContext(carContext);
+  //성호: 리듀서로 state줄일 예정 (토요일)
+
   useEffect(() => {
     //백엔드로 요청
     if (initialRender.current) {
