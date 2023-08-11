@@ -9,6 +9,7 @@ import {
   PUSH_CONFUSING_OPTION,
 } from "../../../utils/actionType";
 import { carContext } from "../../../utils/context";
+import palette from "../../../styles/palette";
 
 function OptionBox({
   optionName,
@@ -22,7 +23,7 @@ function OptionBox({
   let state
 
   if (car.option.confusing.filter((item) => item.name === optionName).length !== 0) {
-    state = "cunfuse"
+    state = "confuse"
   } else if (car.option.additional.filter((item) => item.name === optionName).length !== 0) {
     state = "add"
   } else { state = "none" }
@@ -40,20 +41,17 @@ function OptionBox({
       payload: newPayload.filter((item) => item.name !== name),
     });
   }
-
-  console.log(car.option.confusing.filter((item) => item.name === optionName).length !== 0);
   function toggleConfuse(e) {
     e.stopPropagation();
     popPayload(optionName);
-    dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
+    if (state !== "confuse") dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
 
   }
   function toggleAdd(e) {
     e.stopPropagation();
     popPayload(optionName);
-    dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: optionName, price: optionPrice } });
+    if (state !== "add") dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: optionName, price: optionPrice } });
   }
-
   return (
     <>
       <StContainer
@@ -97,31 +95,31 @@ const StContainer = styled.div`
     if ($isSelected) {
       switch ($state) {
         case "none":
-          return "#E7ECF9";
+          return `${palette.NavyBlue_1}`
         case "confuse":
-          return "#9B6D54";
+          return `${palette.Gold_5}`;
         case "add":
-          return "#1A3276";
+          return `${palette.NavyBlue_5}`;
       }
     } else {
       switch ($state) {
         case "none":
-          return "#ddd";
+          return `${palette.Grey_2}`;
         case "confuse":
-          return "#9B6D54";
+          return `${palette.Gold_5}`;
         case "add":
-          return "#1A3276";
+          return `${palette.NavyBlue_5}`;
       }
     }
   }};
   background: ${({ $state }) => {
     switch ($state) {
       case "none":
-        return "#fff";
+        return `${palette.White}`;
       case "confuse":
-        return "#9B6D54";
+        return `${palette.Gold_5}`;
       case "add":
-        return "#1A3276";
+        return `${palette.NavyBlue_5}`;
     }
   }};
   flex-direction: column;
@@ -135,11 +133,11 @@ const StContainer = styled.div`
     background: ${({ $state }) => {
     switch ($state) {
       case "none":
-        return "#e7ecf9";
+        return `${palette.NavyBlue_1};`
       case "confuse":
-        return "#9B6D54";
+        return `${palette.Gold_5}`;
       case "add":
-        return "#1A3276";
+        return `${palette.NavyBlue_5}`;
     }
   }};
     opacity: 0.9;
@@ -164,7 +162,7 @@ const StContentHeader = styled.div`
 `;
 
 const TitleDetail = styled.p`
-  color: ${({ $state }) => ($state === "confuse" ? "rgba(255, 255, 255, 0.50)" : "#96A9DC")};
+  color: ${({ $state }) => ($state === "confuse" ? "rgba(255, 255, 255, 0.50)" : `${palette.NavyBlue_4}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;
@@ -174,7 +172,7 @@ const TitleDetail = styled.p`
 `;
 
 const Title = styled.h1`
-  color: ${({ $state }) => ($state === "none" ? "#222222" : "#ffffff")};
+  color: ${({ $state }) => ($state === "none" ? `${palette.Black}` : `${palette.White}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
@@ -184,7 +182,7 @@ const Title = styled.h1`
 `;
 
 const Price = styled.p`
-  color: ${({ $state }) => ($state === "none" ? "#222222" : "#ffffff")};
+  color: ${({ $state }) => ($state === "none" ? `${palette.Black}` : `${palette.White}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;
@@ -210,7 +208,7 @@ const ClickedBorder = styled.div`
     }
   }};
     width: 192px;
-    border: 2px solid #E7ECF9;
+    border: 2px solid ${palette.NavyBlue_1};
     height: 156px;
     top: 1px;
     left: 1px;

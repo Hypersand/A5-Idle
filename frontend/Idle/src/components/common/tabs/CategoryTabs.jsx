@@ -24,4 +24,5 @@ const StContainer = styled.div`
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.48px;
+  cursor: pointer;
 `;
