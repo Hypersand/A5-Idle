@@ -64,7 +64,7 @@ import { useNavigate } from "react-router-dom";
 //   },
 // ];
 
-function BIllOptionContainer({ added, confused }) {
+function BillOptionContainer({ added, confused }) {
   const navigate = useNavigate();
   function renderAddOptions() {
     return added.map((item, index) => <BillOptionBox isAdded={true} key={index} data={item} />);
@@ -97,7 +97,7 @@ function BIllOptionContainer({ added, confused }) {
   );
 }
 
-export default BIllOptionContainer;
+export default BillOptionContainer;
 
 const StContainer = styled.div`
   width: 831px;

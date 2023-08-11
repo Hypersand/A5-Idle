@@ -6,7 +6,7 @@ import BlueButton from "../components/common/buttons/BlueButton";
 import { useContext } from "react";
 import { carContext } from "../utils/context";
 import BillMain from "../components/BillMain/BillMain";
-import BIllOptionContainer from "../components/BillMain/BIllOptionContainer";
+import BillOptionContainer from "../components/BillMain/BillOptionContainer";
 
 function BillPage() {
   const { car } = useContext(carContext);
@@ -38,7 +38,7 @@ function BillPage() {
         </StConfirmContainer>
         <BillMain />
 
-        <BIllOptionContainer added={car.option.additional} confused={car.option.confusing} />
+        <BillOptionContainer added={car.option.additional} confused={car.option.confusing} />
       </StContainer>
     </StWrapper>
   );
