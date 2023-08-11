@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { styled } from "styled-components";
 import ConfusingButton from "../buttons/ConfusingButton";
 import AddButton from "../buttons/AddButton";
@@ -18,8 +18,14 @@ function OptionBox({
   setSelectedOption,
 }) {
   const { car, dispatch } = useContext(carContext);
-  const [currentState, setCurrentState] = useState("none");
   const isSelected = selectedOption === optionName;
+  let state
+
+  if (car.option.confusing.filter((item) => item.name === optionName).length !== 0) {
+    state = "cunfuse"
+  } else if (car.option.additional.filter((item) => item.name === optionName).length !== 0) {
+    state = "add"
+  } else { state = "none" }
 
   function popPayload(name) {
     let newPayload;
@@ -35,23 +41,17 @@ function OptionBox({
     });
   }
 
+  console.log(car.option.confusing.filter((item) => item.name === optionName).length !== 0);
   function toggleConfuse(e) {
     e.stopPropagation();
     popPayload(optionName);
-    if (currentState === "confuse") setCurrentState("none");
-    else {
-      dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
-      setCurrentState("confuse");
-    }
+    dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
+
   }
   function toggleAdd(e) {
     e.stopPropagation();
     popPayload(optionName);
-    if (currentState === "add") setCurrentState("none");
-    else {
-      dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: optionName, price: optionPrice } });
-      setCurrentState("add");
-    }
+    dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: optionName, price: optionPrice } });
   }
 
   return (
@@ -59,25 +59,25 @@ function OptionBox({
       <StContainer
         onClick={() => setSelectedOption(optionName)}
         $isSelected={isSelected}
-        $state={currentState}
+        $state={state}
       >
-        <ClickedBorder $isSelected={isSelected} $state={currentState} />
+        <ClickedBorder $isSelected={isSelected} $state={state} />
         <StContent>
           <StContentHeader>
-            <TitleDetail $isSelected={isSelected} $state={currentState}>
+            <TitleDetail $isSelected={isSelected} $state={state}>
               {optionPurchaseRate}
             </TitleDetail>
-            <Title $isSelected={isSelected} $state={currentState}>
+            <Title $isSelected={isSelected} $state={state}>
               {optionName}
             </Title>
           </StContentHeader>
-          <Price $isSelected={isSelected} $state={currentState}>
+          <Price $isSelected={isSelected} $state={state}>
             + {optionPrice.toLocaleString()} 원
           </Price>
         </StContent>
         <StButtonContainer>
-          <ConfusingButton state={currentState} onClick={toggleConfuse} />
-          <AddButton state={currentState} onClick={toggleAdd} />
+          <ConfusingButton state={state} onClick={toggleConfuse} />
+          <AddButton state={state} onClick={toggleAdd} />
         </StButtonContainer>
       </StContainer>
     </>
@@ -94,26 +94,26 @@ const StContainer = styled.div`
   padding: 12px 16px;
   border: 2px solid
     ${({ $isSelected, $state }) => {
-      if ($isSelected) {
-        switch ($state) {
-          case "none":
-            return "#E7ECF9";
-          case "confuse":
-            return "#9B6D54";
-          case "add":
-            return "#1A3276";
-        }
-      } else {
-        switch ($state) {
-          case "none":
-            return "#ddd";
-          case "confuse":
-            return "#9B6D54";
-          case "add":
-            return "#1A3276";
-        }
+    if ($isSelected) {
+      switch ($state) {
+        case "none":
+          return "#E7ECF9";
+        case "confuse":
+          return "#9B6D54";
+        case "add":
+          return "#1A3276";
       }
-    }};
+    } else {
+      switch ($state) {
+        case "none":
+          return "#ddd";
+        case "confuse":
+          return "#9B6D54";
+        case "add":
+          return "#1A3276";
+      }
+    }
+  }};
   background: ${({ $state }) => {
     switch ($state) {
       case "none":
@@ -133,15 +133,15 @@ const StContainer = styled.div`
   opacity: ${({ $state }) => ($state ? 1 : 0.2)};
   &:hover {
     background: ${({ $state }) => {
-      switch ($state) {
-        case "none":
-          return "#e7ecf9";
-        case "confuse":
-          return "#9B6D54";
-        case "add":
-          return "#1A3276";
-      }
-    }};
+    switch ($state) {
+      case "none":
+        return "#e7ecf9";
+      case "confuse":
+        return "#9B6D54";
+      case "add":
+        return "#1A3276";
+    }
+  }};
     opacity: 0.9;
     cursor: pointer;
   }
@@ -202,13 +202,13 @@ const StButtonContainer = styled.div`
 const ClickedBorder = styled.div`
     position: absolute;
     display: ${({ $isSelected, $state }) => {
-        if ($state == "none") {
-            return "none"
-        } else {
-            if ($isSelected) return ""
-            else return "none"
-        }
-    }};
+    if ($state == "none") {
+      return "none"
+    } else {
+      if ($isSelected) return ""
+      else return "none"
+    }
+  }};
     width: 192px;
     border: 2px solid #E7ECF9;
     height: 156px;
