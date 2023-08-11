@@ -38,6 +38,9 @@ export const SAFETY = "safety"
 export const STYLE = "style"
 export const PROTECTION = "protection"
 export const CONVENIENCE = "convenience"
+export const CONFUSE = "confuse"
+export const ADD = "add"
+export const NONE = "none"
 
 
 export const PEAK_OUTPUT_KR = "최고 출력";

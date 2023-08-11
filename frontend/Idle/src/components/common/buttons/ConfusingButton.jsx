@@ -1,8 +1,9 @@
 import { styled } from "styled-components"
+import { CONFUSE, NONE } from "../../../utils/constants"
 
 function ConfusingButton({ state, onClick }) {
     return (
-        <StContainer onClick={onClick} $state={state} >{state === "confuse" ? "취소하기" : "고민해보기"}</StContainer>
+        <StContainer onClick={onClick} $state={state} >{state === CONFUSE ? "취소하기" : "고민해보기"}</StContainer>
     )
 }
 
@@ -12,11 +13,11 @@ const StContainer = styled.div`
     display: flex;
     width: 53px;
     padding: 3.5px 12px;
-    border: 0.5px solid ${({ $state }) => $state === "none" ? "#222" : "#fff"};
+    border: 0.5px solid ${({ $state }) => $state === NONE ? "#222" : "#fff"};
     justify-content: center;
     align-items: center;
     gap: 11.624px;
-    color: ${({ $state }) => $state === "none" ? "#222" : "#FFF"};
+    color: ${({ $state }) => $state === NONE ? "#222" : "#FFF"};
     font-family: "Hyundai Sans Text KR";
     font-size: 12px;
     font-style: normal;

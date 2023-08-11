@@ -10,6 +10,7 @@ import {
 } from "../../../utils/actionType";
 import { carContext } from "../../../utils/context";
 import palette from "../../../styles/palette";
+import { ADD, CONFUSE, NONE } from "../../../utils/constants";
 
 function OptionBox({
   optionName,
@@ -23,10 +24,10 @@ function OptionBox({
   let state
 
   if (car.option.confusing.filter((item) => item.name === optionName).length !== 0) {
-    state = "confuse"
+    state = CONFUSE
   } else if (car.option.additional.filter((item) => item.name === optionName).length !== 0) {
-    state = "add"
-  } else { state = "none" }
+    state = ADD
+  } else { state = NONE }
 
   function popPayload(name) {
     let newPayload;
@@ -44,13 +45,13 @@ function OptionBox({
   function toggleConfuse(e) {
     e.stopPropagation();
     popPayload(optionName);
-    if (state !== "confuse") dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
+    if (state !== CONFUSE) dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
 
   }
   function toggleAdd(e) {
     e.stopPropagation();
     popPayload(optionName);
-    if (state !== "add") dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: optionName, price: optionPrice } });
+    if (state !== ADD) dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: optionName, price: optionPrice } });
   }
   return (
     <>
@@ -94,31 +95,31 @@ const StContainer = styled.div`
     ${({ $isSelected, $state }) => {
     if ($isSelected) {
       switch ($state) {
-        case "none":
+        case NONE:
           return `${palette.NavyBlue_1}`
-        case "confuse":
+        case CONFUSE:
           return `${palette.Gold_5}`;
-        case "add":
+        case ADD:
           return `${palette.NavyBlue_5}`;
       }
     } else {
       switch ($state) {
-        case "none":
+        case NONE:
           return `${palette.Grey_2}`;
-        case "confuse":
+        case CONFUSE:
           return `${palette.Gold_5}`;
-        case "add":
+        case ADD:
           return `${palette.NavyBlue_5}`;
       }
     }
   }};
   background: ${({ $state }) => {
     switch ($state) {
-      case "none":
+      case NONE:
         return `${palette.White}`;
-      case "confuse":
+      case CONFUSE:
         return `${palette.Gold_5}`;
-      case "add":
+      case ADD:
         return `${palette.NavyBlue_5}`;
     }
   }};
@@ -127,16 +128,16 @@ const StContainer = styled.div`
   align-items: flex-start;
   gap: 8px;
   flex-shrink: 0;
-  pointer-events: ${({ $state }) => ($state === "block" ? "none" : "")};
+  pointer-events: ${({ $state }) => ($state === "block" ? NONE : "")};
   opacity: ${({ $state }) => ($state ? 1 : 0.2)};
   &:hover {
     background: ${({ $state }) => {
     switch ($state) {
-      case "none":
+      case NONE:
         return `${palette.NavyBlue_1};`
-      case "confuse":
+      case CONFUSE:
         return `${palette.Gold_5}`;
-      case "add":
+      case ADD:
         return `${palette.NavyBlue_5}`;
     }
   }};
@@ -162,7 +163,7 @@ const StContentHeader = styled.div`
 `;
 
 const TitleDetail = styled.p`
-  color: ${({ $state }) => ($state === "confuse" ? "rgba(255, 255, 255, 0.50)" : `${palette.NavyBlue_4}`)};
+  color: ${({ $state }) => ($state === CONFUSE ? "rgba(255, 255, 255, 0.50)" : `${palette.NavyBlue_4}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;
@@ -172,7 +173,7 @@ const TitleDetail = styled.p`
 `;
 
 const Title = styled.h1`
-  color: ${({ $state }) => ($state === "none" ? `${palette.Black}` : `${palette.White}`)};
+  color: ${({ $state }) => ($state === NONE ? `${palette.Black}` : `${palette.White}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
@@ -182,7 +183,7 @@ const Title = styled.h1`
 `;
 
 const Price = styled.p`
-  color: ${({ $state }) => ($state === "none" ? `${palette.Black}` : `${palette.White}`)};
+  color: ${({ $state }) => ($state === NONE ? `${palette.Black}` : `${palette.White}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;
@@ -200,11 +201,11 @@ const StButtonContainer = styled.div`
 const ClickedBorder = styled.div`
     position: absolute;
     display: ${({ $isSelected, $state }) => {
-    if ($state == "none") {
-      return "none"
+    if ($state == NONE) {
+      return NONE
     } else {
       if ($isSelected) return ""
-      else return "none"
+      else return NONE
     }
   }};
     width: 192px;

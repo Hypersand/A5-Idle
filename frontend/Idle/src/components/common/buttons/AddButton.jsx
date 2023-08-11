@@ -1,8 +1,9 @@
 import { styled } from "styled-components"
+import { ADD, CONFUSE, NONE } from "../../../utils/constants"
 
 function AddButton({ state, onClick }) {
     return (
-        <StContainer onClick={onClick} $state={state} >{state === "add" ? "취소하기" : "추가하기"}</StContainer>
+        <StContainer onClick={onClick} $state={state} >{state === ADD ? "취소하기" : "추가하기"}</StContainer>
     )
 }
 
@@ -12,18 +13,18 @@ const StContainer = styled.div`
     display: flex;
     width: 53px;
     padding: 3.5px 12px;
-    border: 0.5px solid ${({ $state }) => $state === "none" ? "#222" : "#fff"};
+    border: 0.5px solid ${({ $state }) => $state === NONE ? "#222" : "#fff"};
     color:${({ $state }) => {
         switch ($state) {
-            case "none":
+            case NONE:
                 return "#fff"
-            case "confuse":
+            case CONFUSE:
                 return "#9B6D54"
-            case "add":
+            case ADD:
                 return "#1A3276"
         }
     }};
-    background: ${({ $state }) => $state === "none" ? "#1A3276" : "#fff"};
+    background: ${({ $state }) => $state === NONE ? "#1A3276" : "#fff"};
     justify-content: center;
     align-items: center;
     gap: 11.624px;
