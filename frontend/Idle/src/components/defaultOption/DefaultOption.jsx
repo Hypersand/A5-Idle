@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DefaultOptionButton from "./defaultOptionButton";
+import DefaultOptionButton from "./DefaultOptionButton";
 import Modal from "./Modal";
 
 function DefaultOption() {
