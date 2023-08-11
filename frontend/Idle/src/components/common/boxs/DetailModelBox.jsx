@@ -48,7 +48,7 @@ function DetailModelBox({ purchase_rate, name, description, price, currentTab, i
             </StContentHeader>
             <Detail $isSelected={isOptionSelected}>{description}</Detail>
           </StTitleContainer>
-          <Price $isSelected={isOptionSelected}>{price.toLocaleString()} 원</Price>
+          <Price $isSelected={isOptionSelected}>+ {price.toLocaleString()} 원</Price>
         </StContent>
       </StContainer>
     </>

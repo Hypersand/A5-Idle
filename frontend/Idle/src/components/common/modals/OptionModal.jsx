@@ -4,10 +4,8 @@ import BlueButton from "../buttons/BlueButton";
 import { ReactComponent as X } from "../../../assets/images/esc.svg";
 import { useContext } from "react";
 import { selectedOptionContext } from "../../../utils/context";
-
 function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
   const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
-
   function selectedBtnClicked() {
     if (selectedOption.includes(data.name)) {
       setModalVisible(false);
@@ -19,7 +17,6 @@ function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
       setModalVisible(false);
     }
   }
-
   return createPortal(
     <ModalContainer onClick={onClick}>
       <ModalBackground onClick={() => setModalVisible(false)} />
@@ -28,24 +25,29 @@ function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
           <StTitle>{data.name}</StTitle>
           <X onClick={setModalVisible} data-name={"esc"} />
         </StTitleContainer>
-
-        <StDescription1>{data.description1}</StDescription1>
         <img
           src=""
           alt="sampleImage"
           style={{ width: "452px", height: "256px", marginBottom: "16px" }}
         />
-        <StDescription2>{data.description2}</StDescription2>
-        <StNote>{data.note}</StNote>
-        <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
+        <StDescription>{data.description}</StDescription>
+        {/** 일단 임시 */}
+        <StNote>
+          * 홈페이지의 사진과 설명은 참고용이며 실제 차량에 탑재되는 기능과 설명은 상이할 수 있으니,
+          차량 구입 전 카마스터를 통해 확인 바랍니다.
+        </StNote>
+        {/* <StNote>
+          {data.note}
+        </StNote> */}
+        <StBtnContainer>
+          <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
+        </StBtnContainer>
       </StContainer>
     </ModalContainer>,
     document.getElementById("modal")
   );
 }
-
 export default OptionModal;
-
 const ModalContainer = styled.div`
   position: absolute;
   top: 0;
@@ -56,7 +58,6 @@ const ModalContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 const ModalBackground = styled.div`
   position: absolute;
   top: 0;
@@ -66,7 +67,6 @@ const ModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
 `;
-
 const StContainer = styled.div`
   width: 452px;
   height: 528px;
@@ -77,14 +77,13 @@ const StContainer = styled.div`
   z-index: 100;
   align-items: center;
   z-index: 10;
+  position: relative;
 `;
-
 const StTitleContainer = styled.div`
   width: 452px;
   display: flex;
   justify-content: space-between;
 `;
-
 const StTitle = styled.div`
   font-family: Hyundai Sans Head KR;
   font-size: 24px;
@@ -94,8 +93,7 @@ const StTitle = styled.div`
   letter-spacing: -0.72px;
   margin-bottom: 12px;
 `;
-
-const StDescription1 = styled.div`
+const StDescription = styled.div`
   font-family: Hyundai Sans Text KR;
   font-size: 13px;
   font-style: normal;
@@ -104,17 +102,6 @@ const StDescription1 = styled.div`
   letter-spacing: -0.39px;
   margin-bottom: 28px;
 `;
-
-const StDescription2 = styled.div`
-  font-family: Hyundai Sans Text KR;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.36px;
-  margin-bottom: 20px;
-`;
-
 const StNote = styled.div`
   font-family: Hyundai Sans Text KR;
   font-size: 12px;
@@ -123,4 +110,8 @@ const StNote = styled.div`
   line-height: 150%;
   letter-spacing: -0.36px;
   margin-bottom: 28px;
+`;
+const StBtnContainer = styled.div`
+  position: absolute;
+  bottom: 32px;
 `;

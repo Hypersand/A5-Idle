@@ -95,6 +95,8 @@ const Circle = styled.div`
   border-radius: 50%;
   background-image: linear-gradient(#ffffff, #ffffff),
     linear-gradient(0deg, #14285e 0%, #14285e45 50%, white 100%);
+  /* background-image: linear-gradient(180deg, #DDE4F8 100%, rgba(231, 235, 246, 0.00) 0%),
+    linear-gradient(0deg, #14285e 0%, #14285e45 50%, white 100%); */
   background-origin: border-box;
   background-clip: content-box, border-box;
   z-index: -1;

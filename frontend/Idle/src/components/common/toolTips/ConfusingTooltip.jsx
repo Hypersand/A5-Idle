@@ -1,4 +1,4 @@
-import { ReactComponent as ConfusingTooltipIcon } from "../../assets/images/confusingTooltip.svg";
+import { ReactComponent as ConfusingTooltipIcon } from "../../../assets/images/confusingTooltip.svg";
 import PropTypes from "prop-types";
 
 function ConfusingTooltip({ isActive }) {
