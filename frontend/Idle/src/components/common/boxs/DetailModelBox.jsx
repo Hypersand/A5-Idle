@@ -1,11 +1,7 @@
 import { styled } from "styled-components";
 import { useContext } from "react";
-import { carContext } from "../../../utils/context";
-import {
-  CHANGE_BODY_TYPES,
-  CHANGE_DRIVING_METHODS,
-  CHANGE_ENGINES,
-} from "../../../utils/actionType";
+import { carContext } from "utils/context";
+import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "utils/actionType";
 
 function DetailModelBox({ purchase_rate, name, description, price, currentTab, isActive = true }) {
   const { car, dispatch } = useContext(carContext);

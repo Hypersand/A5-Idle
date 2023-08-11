@@ -1,7 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import color from "./styles/theme";
 import { Reset } from "./styles/globalStyle";
-import { BrowserRouter } from "react-router-dom";
 import { useReducer } from "react";
 import { carContext } from "./utils/context";
 import { globalCar } from "./utils/globalCar";
@@ -13,11 +12,9 @@ function App() {
   return (
     <ThemeProvider theme={color}>
       <Reset />
-      <BrowserRouter>
-        <carContext.Provider value={{ car, dispatch }}>
-          <Router />
-        </carContext.Provider>
-      </BrowserRouter>
+      <carContext.Provider value={{ car, dispatch }}>
+        <Router />
+      </carContext.Provider>
     </ThemeProvider>
   );
 }

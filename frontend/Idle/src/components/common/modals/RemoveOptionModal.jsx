@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
-import BlueButton from "../buttons/BlueButton";
-import WhiteButton from "../buttons/WhiteButton";
+import BlueButton from "buttons/BlueButton";
+import WhiteButton from "buttons/WhiteButton";
 import { createPortal } from "react-dom";
 import { useContext } from "react";
-import { carContext } from "../../../utils/context";
-import { CHANGE_ADDITIONAL_OPTION } from "../../../utils/actionType";
+import { carContext } from "utils/context";
+import { CHANGE_ADDITIONAL_OPTION } from "utils/actionType";
 /**
  *
  * @param {string} param0

@@ -1,27 +1,27 @@
 import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { carContext } from "../utils/context";
-import { CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
-import BlueButton from "../components/common/buttons/BlueButton";
-import WhiteButton from "../components/common/buttons/WhiteButton";
+import { carContext } from "utils/context";
+import { CHANGE_OUTSIDE_COLOR } from "utils/actionType";
+import BlueButton from "buttons/BlueButton";
+import WhiteButton from "buttons/WhiteButton";
 import {
   DEFAULT_EXTERIROR_COLOR,
   EXTERIOR_COLORS,
   INTERIROR_COLORS,
   TRANSLATE,
-} from "../utils/constants";
-import CategoryTabs from "../components/common/tabs/CategoryTabs";
-import Car3D from "../components/common/content/Car3D";
-import grey from "../assets/images/outsideColor/grey.png";
-import black from "../assets/images/outsideColor/black.png";
-import white from "../assets/images/outsideColor/white.png";
-import silver from "../assets/images/outsideColor/silver.png";
-import brown from "../assets/images/outsideColor/brown.png";
-import emerald from "../assets/images/outsideColor/emerald.png";
-import OutsideColorBoxContainer from "../components/colorSelection/OutsideColorBoxContainer";
-import InnerColorBoxContainer from "../components/colorSelection/InnerColorBoxContainer";
-import InnerColorContent from "../components/common/content/InnerColorContent";
+} from "utils/constants";
+import CategoryTabs from "tabs/CategoryTabs";
+import Car3D from "content/Car3D";
+import grey from "images/outsideColor/grey.png";
+import black from "images/outsideColor/black.png";
+import white from "images/outsideColor/white.png";
+import silver from "images/outsideColor/silver.png";
+import brown from "images/outsideColor/brown.png";
+import emerald from "images/outsideColor/emerald.png";
+import OutsideColorBoxContainer from "colorSelection/OutsideColorBoxContainer";
+import InnerColorBoxContainer from "colorSelection/InnerColorBoxContainer";
+import InnerColorContent from "content/InnerColorContent";
 
 const dummyData = {
   car_img_urls: ["...", "..."],
@@ -77,7 +77,7 @@ const innercolorData = {
       interior_name: "인조가죽(블랙)",
       interior_price: 2000,
       interior_img_url: "...",
-      car_interior_img_url: "../../assets/images/외장색상1.png",
+      car_interior_img_url: "images/외장색상1.png",
       interior_purchase_rate: "구매자의 22%가 선택",
     },
     {
@@ -85,7 +85,7 @@ const innercolorData = {
       interior_name: "그라파이트 그레이 블랙",
       interior_price: 1000,
       interior_img_url: "...",
-      car_interior_img_url: "../../assets/images/외장색상2.png",
+      car_interior_img_url: "images/외장색상2.png",
       interior_purchase_rate: "구매자의 32%가 선택",
     },
   ],

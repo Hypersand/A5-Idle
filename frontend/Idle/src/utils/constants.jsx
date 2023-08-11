@@ -7,7 +7,15 @@ export const TYPE = {
   bill: "견적서 완성",
 };
 
-export const BILL_LIST = ["trim", "engines", "driving_methods", "body_types", "exterior_colors", "interior_colors", "option"]
+export const BILL_LIST = [
+  "trim",
+  "engines",
+  "driving_methods",
+  "body_types",
+  "exterior_colors",
+  "interior_colors",
+  "option",
+];
 
 export const TRANSLATE = {
   trim: "트림",
@@ -21,7 +29,7 @@ export const TRANSLATE = {
   safety: "안전",
   style: "스타일&퍼포먼스",
   protection: "차량 보호",
-  convenience: "편의"
+  convenience: "편의",
 };
 export const TRIM = "trim";
 export const DETAIL = "detail";
@@ -34,11 +42,10 @@ export const BODY_TYPES = "body_types";
 export const EXTERIOR_COLORS = "exterior_colors";
 export const INTERIROR_COLORS = "interior_colors";
 export const ALL = "all";
-export const SAFETY = "safety"
-export const STYLE = "style"
-export const PROTECTION = "protection"
-export const CONVENIENCE = "convenience"
-
+export const SAFETY = "safety";
+export const STYLE = "style";
+export const PROTECTION = "protection";
+export const CONVENIENCE = "convenience";
 
 export const PEAK_OUTPUT_KR = "최고 출력";
 export const MAX_TORQUE_KR = "최대 토크";

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowRight } from "../../assets/images/arrowRight.svg";
 import { Fragment, useState } from "react";
-import DetailOptionModal from ".//DetailOptionModal";
+import DetailOptionModal from "./DetailOptionModal";
 function ItemBox({ functionName, functionImgUrl, functionDescription }) {
   const [showDetail, setShowDetail] = useState(false);
   const stringMaxLength = 34;

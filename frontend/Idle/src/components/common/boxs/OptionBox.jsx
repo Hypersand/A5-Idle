@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
 import { styled } from "styled-components";
-import ConfusingButton from "../buttons/ConfusingButton";
-import AddButton from "../buttons/AddButton";
+import ConfusingButton from "buttons/ConfusingButton";
+import AddButton from "buttons/AddButton";
 import {
   POP_ADDITIONAL_OPTION,
   POP_CONFUSING_OPTION,
   PUSH_ADDITIONAL_OPTION,
   PUSH_CONFUSING_OPTION,
-} from "../../../utils/actionType";
-import { carContext } from "../../../utils/context";
+} from "utils/actionType";
+import { carContext } from "utils/context";
 
 function OptionBox({
   optionName,
@@ -200,19 +200,19 @@ const StButtonContainer = styled.div`
   gap: 12px;
 `;
 const ClickedBorder = styled.div`
-    position: absolute;
-    display: ${({ $isSelected, $state }) => {
-        if ($state == "none") {
-            return "none"
-        } else {
-            if ($isSelected) return ""
-            else return "none"
-        }
-    }};
-    width: 192px;
-    border: 2px solid #E7ECF9;
-    height: 156px;
-    top: 1px;
-    left: 1px;
-    z-index: 0;
-`
+  position: absolute;
+  display: ${({ $isSelected, $state }) => {
+    if ($state == "none") {
+      return "none";
+    } else {
+      if ($isSelected) return "";
+      else return "none";
+    }
+  }};
+  width: 192px;
+  border: 2px solid #e7ecf9;
+  height: 156px;
+  top: 1px;
+  left: 1px;
+  z-index: 0;
+`;

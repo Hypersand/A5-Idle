@@ -1,13 +1,13 @@
 import styled, { keyframes } from "styled-components";
-import BlueButton from "../common/buttons/BlueButton";
-import WhiteButton from "../common/buttons/WhiteButton";
+import BlueButton from "buttons/BlueButton";
+import WhiteButton from "buttons/WhiteButton";
 import { useState, useContext, useEffect, useRef } from "react";
 import FindTrimContentMain from "./FindTrimContentMain";
 import OptionAlert from "./OptionAlert";
-import { selectedOptionContext } from "../../utils/context";
-import { carContext } from "../../utils/context";
-import { emptyCar, defaultOption } from "../../utils/constants";
-import { CHANGE_ALL } from "../../utils/actionType";
+import { selectedOptionContext } from "utils/context";
+import { carContext } from "utils/context";
+import { emptyCar, defaultOption } from "utils/constants";
+import { CHANGE_ALL } from "utils/actionType";
 
 function FindTrimContent({ setVisible }) {
   const initialRender = useRef(true);
@@ -62,7 +62,7 @@ function FindTrimContent({ setVisible }) {
     }, animateTime);
   }
   function clickCheck() {
-    clickExit(4000);
+    clickExit(2500);
     //request 보내기
     //get 받기
     const dummyData = [
@@ -78,6 +78,7 @@ function FindTrimContent({ setVisible }) {
       },
     ];
     setSelectedOption([]);
+    tempCar.option.additional = [];
     dummyData.forEach((item) => {
       setSelectedOption((prevAddOption) => [...prevAddOption, item.option_name]);
       tempCar.option.additional.push({
