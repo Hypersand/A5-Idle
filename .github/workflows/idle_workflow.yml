@@ -52,13 +52,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Set Yaml
-        uses: microsoft/variable-substitution@v1
-        with:
-          files: ./backend/src/main/resources/application.yml
-        env:
-          spring.datasource.url: ${{ secrets.EC2_MYSQL_URL }}
-          spring.datasource.username: ${{ secrets.EC2_MYSQL_USERNAME }}
-          spring.datasource.password: ${{ secrets.EC2_MYSQL_PASSWORD }}
+        run: |
+          sed -i 's|url: ${EC2_MYSQL_URL}|url: ${{ secrets.EC2_MYSQL_URL }}|' ./backend/src/main/resources/application.yml
+          sed -i 's|username: ${EC2_MYSQL_USERNAME}|username: ${{ secrets.EC2_MYSQL_USERNAME }}|' ./backend/src/main/resources/application.yml
+          sed -i 's|password: ${EC2_MYSQL_PASSWORD}|password: ${{ secrets.EC2_MYSQL_PASSWORD }}|' ./backend/src/main/resources/application.yml
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -91,6 +88,5 @@ jobs:
             sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             sudo docker rm -f $(docker ps -qa)
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/idle:latest
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/webserver
             sudo docker-compose up -d
             sudo docker image prune -f
