@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import NormalTrimBox from "../common/boxs/NormalTrimBox";
+import NormalTrimBox from "../common/NormalTrimBox";
 
 function TrimBoxContainer(data) {
   return (

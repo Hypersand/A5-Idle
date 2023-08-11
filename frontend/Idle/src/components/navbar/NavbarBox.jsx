@@ -110,6 +110,7 @@ function renderChecked(type, currenPage, car) {
     case BILL:
       break;
     default:
+
       const keys = Object.keys(options);
       for (let i = 0; i < keys.length; i++) {
         if (options[keys[i]].name === undefined) {
@@ -126,7 +127,7 @@ function renderChecked(type, currenPage, car) {
  * @returns navbar에서 박스 컴포넌트
  */
 function NavbarBox({ type }) {
-  const { car, dispatch } = useContext(carContext);
+  const { car } = useContext(carContext);
   const currentPage = useLocation().pathname.slice(1);
   const [isMatch, setIsMatch] = useState(false);
   const navigate = useNavigate();

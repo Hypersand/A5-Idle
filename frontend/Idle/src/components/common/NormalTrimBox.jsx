@@ -1,38 +1,31 @@
 import { styled } from "styled-components";
-import { ReactComponent as ArrorRight } from "../../../assets/images/arrowRight.svg";
+import { ReactComponent as ArrorRight } from "../../assets/images/arrowRight.svg";
 import { useContext, useState } from "react";
-import { carContext } from "../../../utils/context";
-import TrimDetailModal from "../../trimDetailModal/TrimDetailModal";
-import { CHANGE_TRIM } from "../../../utils/actionType";
+import { carContext } from "../../utils/context";
+import TrimDetailModal from "../TrimDetailModal/TrimDetailModal";
 
-function NormalTrimBox({
-  purchase_rate,
-  name,
-  description,
-  price,
-  default_func,
-  category,
-  isActive = true,
-}) {
-  const { car, dispatch } = useContext(carContext);
+function NormalTrimBox({ purchase_rate, name, desc, price, default_func, category, isActive = true }) {
+  const { car, setCar } = useContext(carContext);
   const [isModal, setIsModal] = useState(false);
 
   function trimClicked(name, price) {
     if (car.trim.name !== name) {
-      const payload = {
-        name: name,
-        price: price,
-      };
-
-      dispatch({ type: CHANGE_TRIM, payload: payload });
+      setCar((prevCar) => ({
+        ...prevCar,
+        trim: {
+          ...prevCar.trim,
+          name: name,
+          price: price,
+        },
+      }));
     }
   }
 
   function setModalOn() {
-    setIsModal(true);
+    setIsModal(true)
   }
   function setModalOff() {
-    setIsModal(false);
+    setIsModal(false)
   }
   const isTrimSelected = car.trim.name === name;
   return (
@@ -48,7 +41,7 @@ function NormalTrimBox({
               <TitleDetail $isSelected={isTrimSelected}>{purchase_rate}</TitleDetail>
               <Title $isSelected={isTrimSelected}>{name}</Title>
             </StContentHeader>
-            <Detail $isSelected={isTrimSelected}>{description}</Detail>
+            <Detail $isSelected={isTrimSelected}>{desc}</Detail>
           </StTitleContainer>
           <Price $isSelected={isTrimSelected}>{price.toLocaleString()} 원</Price>
         </StContent>
@@ -57,15 +50,7 @@ function NormalTrimBox({
           <ArrorRight />
         </PopUpButton>
       </StContainer>
-      {isModal && (
-        <TrimDetailModal
-          trim={name}
-          desc={description}
-          setModalOff={setModalOff}
-          options={default_func}
-          category={category}
-        />
-      )}
+      {isModal && <TrimDetailModal trim={name} desc={desc} setModalOff={setModalOff} options={default_func} category={category} />}
     </>
   );
 }

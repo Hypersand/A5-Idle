@@ -2,19 +2,17 @@ import { useContext } from "react";
 // import { getTrimData } from "../utils/api";
 import TrimBoxContainer from "../components/trimBoxContainer/TrimBoxContainer";
 import { styled } from "styled-components";
-import BlueButton from "../components/common/buttons/BlueButton";
+import BlueButton from "../components/common/BlueButton";
 import { useNavigate } from "react-router-dom";
 import { TRIM_ROUTE } from "../utils/routes";
 import { carContext } from "../utils/context";
 import FindTrim from "../components/findTrim/FindTrim";
 import trimData from "../utils/dummydata/trim.json";
 
-let cachedTrimData = null;
-
 function TrimPage() {
   const { car } = useContext(carContext);
   const navigate = useNavigate();
-  const [trimData, setTrimData] = useState(cachedTrimData);
+  const [trimData, setTrimData] = useState(null);
 
   function nextBTNClicked() {
     navigate("/detail");
@@ -22,7 +20,6 @@ function TrimPage() {
   useEffect(() => {
     getTrimData().then((result) => {
       setTrimData(result);
-      cachedTrimData = result
     });
   }, []);
 
