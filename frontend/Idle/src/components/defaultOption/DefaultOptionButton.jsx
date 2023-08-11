@@ -24,7 +24,7 @@ const StButton = styled.button`
 `;
 
 const StButtonText = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;

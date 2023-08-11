@@ -1,5 +1,6 @@
 import { styled } from "styled-components"
 import { CONFUSE, NONE } from "../../../utils/constants"
+import palette from "../../../styles/palette"
 
 function ConfusingButton({ state, onClick }) {
     return (
@@ -13,11 +14,11 @@ const StContainer = styled.div`
     display: flex;
     width: 53px;
     padding: 3.5px 12px;
-    border: 0.5px solid ${({ $state }) => $state === NONE ? "#222" : "#fff"};
+    border: 0.5px solid ${({ $state }) => $state === NONE ? `${palette.Black}` : `${palette.White}`};
     justify-content: center;
     align-items: center;
     gap: 11.624px;
-    color: ${({ $state }) => $state === NONE ? "#222" : "#FFF"};
+    color: ${({ $state }) => $state === NONE ? `${palette.Black}` : `${palette.White}`};
     font-family: "Hyundai Sans Text KR";
     font-size: 12px;
     font-style: normal;

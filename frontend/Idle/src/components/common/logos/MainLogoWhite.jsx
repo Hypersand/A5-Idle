@@ -29,7 +29,7 @@ const Stdiv = styled.div`
 const Stdivision = styled.span`
   width: 0.549px;
   height: 8.235px;
-  background: #ffffff;
+  background: ${palette.White};
 `;
 const Stspan = styled.span`
   color: ${palette.White};

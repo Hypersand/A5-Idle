@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { carContext } from "../../utils/context";
 import { useLocation, useNavigate } from "react-router-dom";
 import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL, TYPE } from "../../utils/constants";
+import palette from "../../styles/palette";
 /**
  *
  * @param {trim,color~~} type
@@ -162,8 +163,8 @@ const StDiv = styled.div`
   width: 130px;
   min-height: 20px;
   padding: 7px 11px;
-  border: 1px solid ${({ $ismatch }) => ($ismatch ? "#96A9DC" : "#C5C9D2")};
-  background-color: ${({ $ismatch }) => ($ismatch ? "#E7ECF9" : "#f6f6f6")};
+  border: 1px solid ${({ $ismatch }) => ($ismatch ? `${palette.NavyBlue_5}` : `${palette.CoolGrey_1}`)};
+  background-color: ${({ $ismatch }) => ($ismatch ? `${palette.NavyBlue_1}` : `${palette.Grey_1}`)};
   flex-direction: column;
   &:hover {
     background-color: #f3f7ff;

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
+import palette from "../../../styles/palette";
 function OutsideColorBox({ data, isSelected, onClick }) {
   const [isWhite, setIsWhite] = useState(false);
   const [isGrey, setIsGrey] = useState(false);
@@ -28,7 +29,7 @@ const StOutline = styled.div`
   display: ${({ $isActive }) => ($isActive ? "" : "none")};
   position: absolute;
   width: 188px;
-  border: 3px solid white;
+  border: 3px solid ${palette.White};
   height: 64px;
 `;
 
@@ -37,7 +38,7 @@ const StContainer = styled.div`
   width: 194px;
   height: 70px;
   background-color: grey;
-  border: 3px solid ${({ $isActive }) => ($isActive ? "#1A3276" : "#000")};
+  border: 3px solid ${({ $isActive }) => ($isActive ? `${palette.NavyBlue_5}` : `${palette.Black}`)};
   background-image: ${({ $img }) => `url(${$img})`};
   cursor: pointer;
 `;
@@ -46,7 +47,7 @@ const StName = styled.div`
   position: absolute;
   top: 7px;
   left: 12px;
-  color: ${({ $isWhite }) => ($isWhite ? "#000" : "#fff")};
+  color: ${({ $isWhite }) => ($isWhite ? `${palette.Black}` : `${palette.White}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;
@@ -59,7 +60,7 @@ const StRatio = styled.div`
   position: absolute;
   top: 25px;
   left: 12px;
-  color: ${({ $isGrey }) => ($isGrey ? "#ffffff" : "#7B7B7B")};
+  color: ${({ $isGrey }) => ($isGrey ? `${palette.White}` : `${palette.Grey_3}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;
@@ -73,7 +74,7 @@ const StPrice = styled.div`
   position: absolute;
   top: 52px;
   left: 12px;
-  color: ${({ $isWhite }) => ($isWhite ? "#81899E" : "#C5C9D2")};
+  color: ${({ $isWhite }) => ($isWhite ? `${palette.CoolGrey_2}` : `${palette.CoolGrey_1}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;

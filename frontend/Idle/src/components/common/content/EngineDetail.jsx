@@ -1,5 +1,6 @@
 import { styled } from 'styled-components'
 import { CONSUMTION_KR, MAX_TORQUE_KR, PEAK_OUTPUT_KR } from '../../../utils/constants';
+import palette from '../../../styles/palette';
 
 function EngineDetail({ state, data }) {
     return (
@@ -41,7 +42,7 @@ const StHeader = styled.div`
     justify-content: center;
     align-items: center;
     gap: 12px;
-    color: var(--black, #222);
+    color: ${palette.Black};
     font-family: "Hyundai Sans Text KR";
     font-size: 14px;
     font-style: normal;
@@ -62,11 +63,11 @@ const Division = styled.div`
     background-color: ${({ $state }) => {
         switch ($state) {
             case PEAK_OUTPUT_KR:
-                return "#1A3276"
+                return `${palette.NavyBlue_5}`
             case MAX_TORQUE_KR:
-                return "#9B6D54"
+                return `${palette.Gold_5}`
             case CONSUMTION_KR:
-                return "#818992"
+                return `${palette.CoolGrey_2}`
         }
     }} ;
     width: 1px;
@@ -76,11 +77,11 @@ const StDataNumber = styled.h1`
     color: ${({ $state }) => {
         switch ($state) {
             case PEAK_OUTPUT_KR:
-                return "#1A3276"
+                return `${palette.NavyBlue_5}`
             case MAX_TORQUE_KR:
-                return "#9B6D54"
+                return `${palette.Gold_5}`
             case CONSUMTION_KR:
-                return "#818992"
+                return `${palette.CoolGrey_2}`
         }
     }} ;
     font-family: "Hyundai Sans Head KR";
@@ -97,7 +98,7 @@ const StBarContainer = styled.div`
     width: 300px;
     height: 2px;
     padding-right: 0px;
-    background: #DDD;
+    background: ${palette.Grey_2};
     align-items: center;
 `
 const StBar = styled.div`
@@ -116,16 +117,16 @@ const StBar = styled.div`
     background-color: ${({ $state }) => {
         switch ($state) {
             case PEAK_OUTPUT_KR:
-                return "#1A3276"
+                return `${palette.NavyBlue_5}`
             case MAX_TORQUE_KR:
-                return "#9B6D54"
+                return `${palette.Gold_5}`
             case CONSUMTION_KR:
-                return "#818992"
+                return `${palette.CoolGrey_2}`
         }
     }} ;
     transition: width 0.3s linear
 `
 const StBar2 = styled(StBar)`
-    background-color:#C5C9D2;
+    background-color:${palette.CoolGrey_2};
     width : ${({ $value }) => `${$value * 3}%`}
 `

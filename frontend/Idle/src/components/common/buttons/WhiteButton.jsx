@@ -31,7 +31,7 @@ const StButton = styled.button`
   color: ${palette.NavyBlue_5};
   text-align: center;
 
-  /* body2 medium */
+  /* body2 medi'um */
   font-family: Hyundai Sans Text KR;
   font-size: 14px;
   font-style: normal;

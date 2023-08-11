@@ -92,7 +92,7 @@ const StTextBox = styled.div`
 `;
 
 const StTextTitle = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-weight: 700;
   line-height: 16px;
@@ -103,7 +103,7 @@ const StTextTitle = styled.div`
 `;
 
 const StTextSelect = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-weight: 400;
   line-height: 15px;
@@ -114,7 +114,7 @@ const StTextSelect = styled.div`
 
 const StTextPrice = styled.div`
   display: flex;
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;

@@ -29,7 +29,7 @@ const StArrowDown = styled(ArrowDown)`
 const StTextBox = styled.div`
   width: 99px;
   height: 20px;
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;
   font-weight: 600;

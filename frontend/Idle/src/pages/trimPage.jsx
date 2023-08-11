@@ -8,6 +8,7 @@ import { TRIM_ROUTE } from "../utils/routes";
 import { carContext } from "../utils/context";
 import FindTrim from "../components/findTrim/FindTrim";
 import { getTrimData } from "../utils/api";
+import palette from "../styles/palette";
 
 let cachedTrimData = null;
 
@@ -90,8 +91,8 @@ const TrimSelectContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  color: #222;
-  font-family: Hyundai Sans Text KR;
+  color: ${palette.Black};
+  font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -99,8 +100,8 @@ const Title = styled.h1`
   letter-spacing: -0.48px;
 `;
 const Description = styled.p`
-  color: #222;
-  font-family: Hyundai Sans Text KR;
+  color: ${palette.Black};
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;

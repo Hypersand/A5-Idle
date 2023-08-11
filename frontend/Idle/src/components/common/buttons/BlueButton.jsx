@@ -31,7 +31,7 @@ const StButton = styled.button`
   text-align: center;
 
   /* body2 medium */
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

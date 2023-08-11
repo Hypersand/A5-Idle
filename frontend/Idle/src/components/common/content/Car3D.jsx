@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { styled } from "styled-components";
+import palette from "../../../styles/palette";
 
 let dummyData = {
   car_img_urls: [
@@ -93,7 +94,7 @@ const Circle = styled.div`
   height: 71px;
   border: 2px solid transparent;
   border-radius: 50%;
-  background-image: linear-gradient(#ffffff, #ffffff),
+  background-image: linear-gradient(${palette.White}, ${palette.White}),
     linear-gradient(0deg, #14285e 0%, #14285e45 50%, white 100%);
   /* background-image: linear-gradient(180deg, #DDE4F8 100%, rgba(231, 235, 246, 0.00) 0%),
     linear-gradient(0deg, #14285e 0%, #14285e45 50%, white 100%); */

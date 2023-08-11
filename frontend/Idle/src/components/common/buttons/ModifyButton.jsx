@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { ReactComponent as ArrowRight } from "../../../assets/images/arrowRight.svg";
+import palette from "../../../styles/palette";
 
 function ModifyButton() {
     return (
@@ -21,7 +22,7 @@ const StContainer = styled.div`
 `
 
 const StTitle = styled.p`
-    color: #81899E;
+    color: ${palette.CoolGrey_2};
     font-family: "Hyundai Sans Text KR";
     font-size: 16px;
     font-style: normal;
