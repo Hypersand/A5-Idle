@@ -17,6 +17,9 @@ const StButton = styled.button`
   height: 28px;
   gap: 4px;
   cursor: pointer;
+  position: absolute;
+  top: 90%;
+  left: 47%;
 `;
 
 const StButtonText = styled.div`

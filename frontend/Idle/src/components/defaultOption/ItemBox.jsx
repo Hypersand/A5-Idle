@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowRight } from "../../assets/images/arrowRight.svg";
 function ItemBox({ functionName, functionImgUrl, functionDescription }) {
-  const stringMaxLength = 34;
+  const stringMaxLength = 34;    
   function checkLength() {
     if (functionName.length > stringMaxLength) {
       return functionName.slice(0, stringMaxLength) + "...";

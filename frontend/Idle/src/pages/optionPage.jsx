@@ -1,4 +1,3 @@
-import { setClickedOptionPage } from "../utils/constants";
 import DefaultOption from "../components/defaultOption/DefaultOption";
 import { useEffect, useRef, useState } from "react";
 import OptionBox from "../components/common/boxs/OptionBox";
@@ -311,6 +310,7 @@ function OptionPage() {
               />
             ))}
           </StContainer>
+          <DefaultOption />
           <ArrowRightContainer $blurState={blurState}>
             <ArrowLogo
               onClick={() => {
@@ -348,7 +348,7 @@ export default OptionPage;
 
 const StContainer = styled.div`
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: flex-start;
   gap: 8px;
   width: 850px;

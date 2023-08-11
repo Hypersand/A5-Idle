@@ -14,12 +14,15 @@ function PaginationButton({ onClickPrev, onClickNext, currentPage, totalPages })
 export default PaginationButton;
 
 const StContainer = styled.div`
+  flex: 1;
   display: flex;
+  box-sizing: border-box;
   gap: 32px;
   align-items: center;
 `;
 
 const StNumber = styled.div`
+  flex: 1;
   color: ${({ theme }) => theme.NavyBlue_5};
   text-align: center;
   font-family: Hyundai Sans Text KR;

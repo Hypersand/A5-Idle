@@ -4,6 +4,7 @@ import CloseButton from "./CloseButton";
 import CategoryTabs from "../common/tabs/CategoryTabs";
 import ItemBox from "./ItemBox";
 import PaginationButton from "./PaginationButton";
+import { createPortal } from "react-dom";
 
 function Modal({ setVisible }) {
   const pageSize = 10;
@@ -127,7 +128,7 @@ function Modal({ setVisible }) {
     setAnimationState(true);
     setTimeout(() => {
       setVisible(false);
-    }, 1000);
+    }, 900);
   }
   function renderCategory() {
     return tabs.map((item, idx) => (
@@ -162,37 +163,60 @@ function Modal({ setVisible }) {
     }
   }
 
-  return (
-    <StContainer $animationstate={animationstate}>
-      <StCloseButtonContainer>
-        <CloseButton onClick={clickClose} />
-      </StCloseButtonContainer>
-      <StCategoryContainer>{renderCategory()}</StCategoryContainer>
-      <StContentContainer>{renderItem()}</StContentContainer>
-      <StPaginationContainer>
-        <PaginationButton
-          onClickPrev={() => handlePageChange(currentPage - 1)}
-          onClickNext={() => handlePageChange(currentPage + 1)}
-          currentPage={currentPage}
-          totalPages={Math.ceil(
-            tabs.find((tab) => tab.categoryName === currentTab).functions.length / pageSize
-          )}
-        />
-      </StPaginationContainer>
-    </StContainer>
+  return createPortal(
+    <ModalContainer>
+      <ModalBackground>
+        <StContainer $animationstate={animationstate}>
+          <StCloseButtonContainer>
+            <CloseButton onClick={clickClose} />
+          </StCloseButtonContainer>
+          <StCategoryContainer>{renderCategory()}</StCategoryContainer>
+          <StContentContainer>{renderItem()}</StContentContainer>
+          <StPaginationContainer>
+            <PaginationButton
+              onClickPrev={() => handlePageChange(currentPage - 1)}
+              onClickNext={() => handlePageChange(currentPage + 1)}
+              currentPage={currentPage}
+              totalPages={Math.ceil(
+                tabs.find((tab) => tab.categoryName === currentTab).functions.length / pageSize
+              )}
+            />
+          </StPaginationContainer>
+        </StContainer>
+      </ModalBackground>
+    </ModalContainer>,
+    document.getElementById("modal")
   );
 }
 
 export default Modal;
 
+const ModalContainer = styled.div`
+  z-index: 11;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const ModalBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+`;
+
 const StContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  position: absolute;
   width: 1280px;
   height: 692.0703125px;
-  top: 28px;
   background-color: ${({ theme }) => theme.Grey_1};
   transition:
     transform 1s ease-in-out,
