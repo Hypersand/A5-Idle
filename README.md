@@ -28,9 +28,6 @@
   [refactor] 코드 리팩터링
   [asset] 폰트, 이미지 추가
   [chore] 그 외 자잘한 수정
-  [rename] 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우
-  [remove] 파일을 삭제하는 작업만 수행한 경우
-  [test] 테스트 추가, 테스트 리팩토링(프로덕션 코드 변경 X)
   ```
 
 - 이슈 컨벤션
@@ -124,25 +121,6 @@
             Backend
         </td>   <td>
             Backend
-        </td>
-    </tr>
-    <tr align="center">
-        <td>
-            INTJ
-        </td>
-        <td>
-            ISFP
-        </td>
-        <td>
-            ISFP
-        </td>
-                <td>
-            ISTJ
-        </td>
-                <td>
-            ISFJ
-        </td>   <td>
-            INFP
         </td>
     </tr>
 </table>

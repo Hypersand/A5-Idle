@@ -1,12 +1,8 @@
 import { css, createGlobalStyle } from "styled-components";
-// import { FONT_HEAD, FONT_TEXT } from "../utils/routes.jsx";
 import "../styles/font.css";
+
 // prettier-ignore
 const reset = css`
-/* http://meyerweb.com/eric/tools/css/reset/
-   v5.0.1 | 20191019
-   License: none (public domain)
-*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -27,6 +23,13 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  scroll-behavior: smooth;
+}
+img{
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
