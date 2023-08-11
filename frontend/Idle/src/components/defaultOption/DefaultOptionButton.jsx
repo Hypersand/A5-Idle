@@ -1,5 +1,6 @@
 import { ReactComponent as ArrowUpper } from "../../assets/images/arrowUpper.svg";
 import styled from "styled-components";
+import palette from "../../styles/palette";
 
 function DefaultOptionButton({ onClick }) {
   return (
@@ -29,5 +30,5 @@ const StButtonText = styled.div`
   line-height: 20px;
   font-weight: 600;
   letter-spacing: -0.03em;
-  color: ${({ theme }) => theme.Black};
+  color: ${palette.Black};
 `;

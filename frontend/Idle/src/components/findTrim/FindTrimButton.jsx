@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowUpper } from "../../assets/images/arrowUpper.svg";
+import palette from "../../styles/palette";
 
 function FindTrimButton({ onClick }) {
   return (
@@ -19,12 +20,12 @@ const StFindTrimButton = styled.button`
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  border-bottom: 1px solid ${({ theme }) => theme.NavyBlue_4};
+  border-bottom: 1px solid ${palette.NavyBlue_4};
   cursor: pointer;
 `;
 
 const StFindTrimButtonText = styled.div`
-  color: ${({ theme }) => theme.Black};
+  color: ${palette.Black};
   font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;

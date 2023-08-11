@@ -8,6 +8,7 @@ import { selectedOptionContext } from "../../utils/context";
 import { carContext } from "../../utils/context";
 import { emptyCar, defaultOption } from "../../utils/constants";
 import { CHANGE_ALL } from "../../utils/actionType";
+import palette from "../../styles/palette";
 
 function FindTrimContent({ setVisible }) {
   const initialRender = useRef(true);
@@ -125,7 +126,7 @@ const StFindTrimContentContainer = styled.div`
   flex-direction: column;
   width: 1280px;
   height: 580px;
-  background-color: ${({ theme }) => theme.Grey_1};
+  background-color: ${palette.Grey_1};
   transition:
     transform 1s ease-in-out,
     opacity 1s ease-in-out;

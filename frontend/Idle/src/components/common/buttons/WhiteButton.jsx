@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import palette from "../../../styles/palette";
 
 /**
  *
@@ -25,9 +26,9 @@ const StButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  border: 0.5px solid ${({ theme }) => theme.NavyBlue_5};
-  background: ${({ theme }) => theme.White};
-  color: ${({ theme }) => theme.NavyBlue_5};
+  border: 0.5px solid ${palette.NavyBlue_5};
+  background: ${palette.White};
+  color: ${palette.NavyBlue_5};
   text-align: center;
 
   /* body2 medium */

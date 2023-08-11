@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowDown } from "../../assets/images/arrowDown.svg";
 import { useState } from "react";
+import palette from "../../styles/palette";
 
 function OptionDropDown({ category, options }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -47,8 +48,8 @@ const StContainer = styled.li`
     display: flex;
     width: 451px;
     padding: 16px 22.261px;
-    border: 1px solid #DDD;
-    background:#FFF;
+    border: 1px solid ${palette.Grey_2};
+    background:${palette.White};
     display: flex;
     flex-direction: column;
 `
@@ -65,7 +66,7 @@ const Division = styled.div`
     width: 456px;
     margin-top: 12px;
     height: 1px;
-    background-color: ${({ theme }) => theme.Grey_2};
+    background-color: ${palette.Grey_2};
 `
 
 const StListContainer = styled.div`
@@ -80,7 +81,7 @@ const StListContainer = styled.div`
 `;
 
 const StOption = styled.p`
-    color: ${({ theme }) => theme.Black};
+    color: ${palette.Black};
     font-family: "Hyundai Sans Text KR";
     font-size: 14px;
     font-style: normal;

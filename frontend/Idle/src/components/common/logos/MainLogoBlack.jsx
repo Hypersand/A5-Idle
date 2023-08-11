@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as MainLogoImg } from "../../../assets/images/hyundai.svg";
 import WarningModal from "../modals/WarningModal";
 import { useState } from "react";
+import palette from "../../../styles/palette";
 
 function MainLogoBlack() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -36,10 +37,10 @@ const Stdiv = styled.div`
 const Stdivision = styled.span`
   width: 0.549px;
   height: 8.235px;
-  background: #726d69;
+  background: ${palette.CoolGrey_3};
 `;
 const Stspan = styled.span`
-  color: ${({ theme }) => theme.Black};
+  color: ${palette.Black};
   font-family: "Hyundai Sans Head KR";
   font-size: 8.784px;
   font-style: normal;

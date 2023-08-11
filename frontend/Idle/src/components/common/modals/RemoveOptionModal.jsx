@@ -5,6 +5,8 @@ import { createPortal } from "react-dom";
 import { useContext } from "react";
 import { carContext } from "../../../utils/context";
 import { CHANGE_ADDITIONAL_OPTION } from "../../../utils/actionType";
+import palette from "../../../styles/palette";
+
 /**
  *
  * @param {string} param0
@@ -64,7 +66,7 @@ const StContainer = styled.div`
   width: 451px;
   height: 266px;
   padding: 32px 44px 48px 44px;
-  background: ${({ theme }) => theme.White};
+  background: ${palette.White};
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -88,8 +90,8 @@ const StOptionContainer = styled.div`
   min-width: 168px;
   min-height: 68px;
   padding: 12px 24px;
-  border: 1px solid ${({ theme }) => theme.Grey_2};
-  background: ${({ theme }) => theme.White};
+  border: 1px solid ${palette.Grey_2};
+  background: ${palette.White};
   flex-direction: column;
   justify-content: center;
   align-items: center;

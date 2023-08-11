@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowDown } from "../../assets/images/arrowDown.svg";
+import palette from "../../styles/palette";
+
 function CloseButton({ onClick }) {
   return (
     <StButton onClick={onClick}>
@@ -33,5 +35,5 @@ const StTextBox = styled.div`
   font-weight: 600;
   line-height: 20px;
   letter-spacing: -0.42px;
-  color: ${({ theme }) => theme.Black};
+  color: ${palette.Black};
 `;

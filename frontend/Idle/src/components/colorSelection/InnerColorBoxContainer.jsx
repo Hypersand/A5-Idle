@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { carContext } from "../../utils/context";
 import { CHANGE_INSIDE_COLOR } from "../../utils/actionType";
 import InnerColorImg from "../../assets/images/innerColor.png";
+import palette from "../../styles/palette";
 
 function InnerColorBoxContainer({ data, onClick }) {
   const [selectedIndex, setSelectedIndex] = useState(1);
@@ -71,7 +72,7 @@ const StInnerColorBox = styled.div`
   width: 200px;
   height: 164px;
   border: ${({ $isselected }) => ($isselected ? "2px" : "1px")} solid
-    ${({ $isselected, theme }) => ($isselected ? "#6d14b8" : theme.Grey_2)};
+    ${({ $isselected }) => ($isselected ? palette.Purple : palette.Grey_2)};
   gap: 2px;
   cursor: pointer;
 `;
@@ -97,7 +98,7 @@ const StTextTitle = styled.div`
   line-height: 16px;
   letter-spacing: -0.03em;
   text-align: left;
-  color: ${({ theme }) => theme.Black};
+  color: ${palette.Black};
   margin-bottom: 3px;
 `;
 
@@ -108,7 +109,7 @@ const StTextSelect = styled.div`
   line-height: 15px;
   letter-spacing: -0.03em;
   margin-bottom: 4px;
-  color: ${({ theme }) => theme.Grey_3};
+  color: ${palette.Grey_3};
 `;
 
 const StTextPrice = styled.div`
@@ -118,5 +119,5 @@ const StTextPrice = styled.div`
   font-weight: 500;
   line-height: 16px;
   letter-spacing: -0.03em;
-  color: ${({ theme }) => theme.CoolGrey_2};
+  color: ${palette.CoolGrey_2};
 `;

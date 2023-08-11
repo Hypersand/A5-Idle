@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as MainLogoImg } from "../../../assets/images/hyundaiDark.svg";
 import { useNavigate } from "react-router-dom";
+import palette from "../../../styles/palette";
 
 function MainLogoWhite() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const Stdivision = styled.span`
   background: #ffffff;
 `;
 const Stspan = styled.span`
-  color: ${({ theme }) => theme.White};
+  color: ${palette.White};
   font-family: "Hyundai Sans Head KR";
   font-size: 8.784px;
   font-style: normal;

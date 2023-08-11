@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import { styled } from "styled-components";
 import OptionDropDown from "./OptionDropDown";
 import { ReactComponent as EscapeButton } from "../../assets/images/esc.svg";
+import palette from "../../styles/palette";
 
 function TrimDetailModal({ trim, desc, setModalOff, options, category }) {
     return (
@@ -61,7 +62,7 @@ const StModal = styled.div`
     flex-direction: column;
     width: 600px;
     height: 533px;
-    background: ${({ theme }) => theme.White};
+    background: ${palette.White};
     overflow: hidden;
     z-index: 100;
     top:50%;
@@ -71,7 +72,7 @@ const StModal = styled.div`
 const StContainer = styled.div`
     display: inline-flex;
     padding: 32px 0px 24px 10px;
-    background: var(--white, #FFF);
+    background: ${palette.White};
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -83,7 +84,7 @@ const StHeaderContainer = styled.div`
 `
 const Description = styled.p`
     width: 496px;
-    color: var(--black, #222);
+    color: ${palette.Black};
     font-family: "Hyundai Sans Text KR";
     font-size: 13px;
     font-style: normal;
@@ -96,7 +97,7 @@ const StHeader = styled.div`
     width: 496px;
     justify-content: space-between;
     align-items: center;
-    color: var(--black, #222);
+    color: ${palette.Black};
     font-family: "Hyundai Sans Head KR";
     font-size: 24px;
     font-style: normal;
@@ -118,12 +119,12 @@ const StOptionContainer = styled.ul`
   }
   &::-webkit-scrollbar-thumb {
     width: 3px;
-    border-right: 13px solid ${({ theme }) => theme.White};
-    border-left: 13px solid ${({ theme }) => theme.White};
+    border-right: 13px solid ${palette.White};
+    border-left: 13px solid ${palette.White};
     border-radius: 3px;
-    background: ${({ theme }) => theme.NavyBlue_5};
+    background: ${palette.NavyBlue_5};
   }
   &::-webkit-scrollbar-track {
-    background-color:  ${({ theme }) => theme.White};
+    background-color:  ${palette.White};
   }
 `

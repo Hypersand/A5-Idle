@@ -4,6 +4,8 @@ import BlueButton from "../buttons/BlueButton";
 import { ReactComponent as X } from "../../../assets/images/esc.svg";
 import { useContext } from "react";
 import { selectedOptionContext } from "../../../utils/context";
+import palette from "../../../styles/palette";
+
 function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
   const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
   function selectedBtnClicked() {
@@ -72,7 +74,7 @@ const StContainer = styled.div`
   height: 528px;
   display: inline-flex;
   padding: 32px 44px;
-  background: ${({ theme }) => theme.White};
+  background: ${palette.White};
   flex-direction: column;
   z-index: 100;
   align-items: center;
@@ -85,7 +87,7 @@ const StTitleContainer = styled.div`
   justify-content: space-between;
 `;
 const StTitle = styled.div`
-  font-family: Hyundai Sans Head KR;
+  font-family: "Hyundai Sans Head KR";
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -94,7 +96,7 @@ const StTitle = styled.div`
   margin-bottom: 12px;
 `;
 const StDescription = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -103,7 +105,7 @@ const StDescription = styled.div`
   margin-bottom: 28px;
 `;
 const StNote = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
