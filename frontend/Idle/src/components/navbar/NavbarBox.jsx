@@ -213,7 +213,7 @@ const StSelected = styled.div`
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.24px;
-  height: 13px;
+  min-height: 13px;
   margin-bottom: 1px;
   margin-right: 6px;
 `;
