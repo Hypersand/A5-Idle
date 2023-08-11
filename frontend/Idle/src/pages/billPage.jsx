@@ -5,6 +5,7 @@ import WhiteButton from "../components/common/buttons/WhiteButton";
 import BlueButton from "../components/common/buttons/BlueButton";
 import { useContext } from "react";
 import { carContext } from "../utils/context";
+import BillMain from "../components/BillMain/BillMain";
 
 function BillPage() {
   const { car } = useContext(carContext)
@@ -32,13 +33,13 @@ function BillPage() {
             <BlueButton text={"카마스터 찾기"} />
           </StButtonContainer>
         </StConfirmContainer>
+        <BillMain />
       </StContainer >
     </StWrapper >
   );
 }
 
 export default BillPage;
-
 
 const StWrapper = styled.div`
   display: flex;
@@ -47,9 +48,13 @@ const StWrapper = styled.div`
 `;
 const StContainer = styled.div`
   position: relative;
-  width: 1280px;
-  height: 720px;
-  overflow: scroll;
+  position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 1280px;
+    overflow: scroll;
+    justify-content: center;
+    align-items: center;
 `;
 const BlueBG = styled.div`
   width: 1280px;
