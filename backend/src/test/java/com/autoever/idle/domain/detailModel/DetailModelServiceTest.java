@@ -2,8 +2,12 @@ package com.autoever.idle.domain.detailModel;
 
 import com.autoever.idle.domain.detailModel.dto.DetailModelResDto;
 import com.autoever.idle.global.exception.custom.InvalidDetailModelException;
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftlyExtension;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,10 +16,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @DisplayName("DetailModel Service Test")
+@ExtendWith(SoftlyExtension.class)
 class DetailModelServiceTest {
 
     @Autowired
     private DetailModelService detailModelService;
+
+    @InjectSoftAssertions
+    private SoftAssertions softAssertions;
 
     @Test
     @DisplayName("검증한 세부모델 dto의 필드 중 어느 하나라도 비어있으면 예외 발생")
@@ -39,12 +47,9 @@ class DetailModelServiceTest {
         DetailModelResDto detailModelResDto = detailModelService.findAllModels(trimId);
 
         //then
-        assertSoftly(softAssertions -> {
-                    softAssertions.assertThat(detailModelResDto.getEngines().size()).isEqualTo(2);
-                    softAssertions.assertThat(detailModelResDto.getDrivingMethods().size()).isEqualTo(2);
-                    softAssertions.assertThat(detailModelResDto.getBodyTypes().size()).isEqualTo(2);
-                }
-        );
+        softAssertions.assertThat(detailModelResDto.getEngines().size()).isEqualTo(2);
+        softAssertions.assertThat(detailModelResDto.getDrivingMethods().size()).isEqualTo(2);
+        softAssertions.assertThat(detailModelResDto.getBodyTypes().size()).isEqualTo(2);
     }
 
 
