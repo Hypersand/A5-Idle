@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowRight } from "../../assets/images/arrowRight.svg";
+import { Fragment, useState } from "react";
+import DetailOptionModal from ".//DetailOptionModal";
 function ItemBox({ functionName, functionImgUrl, functionDescription }) {
+  const [showDetail, setShowDetail] = useState(false);
   const stringMaxLength = 34;
   function checkLength() {
     if (functionName.length > stringMaxLength) {
@@ -8,15 +11,31 @@ function ItemBox({ functionName, functionImgUrl, functionDescription }) {
     }
     return functionName;
   }
+  function handleClose() {
+    setShowDetail(false);
+  }
   return (
-    <StContainer>
-      <StImg />
-      <StDescription>{checkLength()}</StDescription>
-      <StDetailButton>
-        자세히 보기
-        <ArrowRight />
-      </StDetailButton>
-    </StContainer>
+    <Fragment>
+      <StContainer>
+        <StImg />
+        <StDescription>{checkLength()}</StDescription>
+        <StDetailButton
+          onClick={() => {
+            setShowDetail(true);
+          }}
+        >
+          자세히 보기
+          <ArrowRight />
+        </StDetailButton>
+      </StContainer>
+      {showDetail && (
+        <DetailOptionModal
+          title={functionName}
+          description={functionDescription}
+          onClose={handleClose}
+        />
+      )}
+    </Fragment>
   );
 }
 

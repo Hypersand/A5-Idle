@@ -1,0 +1,131 @@
+import styled from "styled-components";
+import { createPortal } from "react-dom";
+import { ReactComponent as CloseButton } from "../../assets/images/esc.svg";
+
+function DetailOptionModal({ title, description, imgURL, onClose }) {
+  const stringMaxLength = 23;
+  function checkLength() {
+    if (title.length > stringMaxLength) {
+      return title.slice(0, stringMaxLength) + "...";
+    }
+    return title;
+  }
+  return createPortal(
+    <ModalContainer>
+      <ModalBackground />
+      <StContainer>
+        <StBox>
+          <StTitle>
+            {checkLength()}
+            <StCloseButton onClick={onClose} />
+          </StTitle>
+          <StImg />
+        </StBox>
+        <StDescription>{description}</StDescription>
+        <StSubDescription>
+          * 홈페이지의 사진과 설명은 참고용이며 실제 차량에 탑재되는 기능과 설명은 상이할 수 있으니,
+          차량 구입 전 카마스터를 통해 확인 바랍니다.
+        </StSubDescription>
+      </StContainer>
+    </ModalContainer>,
+    document.getElementById("modal")
+  );
+}
+
+export default DetailOptionModal;
+
+const ModalContainer = styled.div`
+  position: absolute;
+  z-index: 14;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const ModalBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+`;
+
+const StBox = styled.div`
+  width: 452px;
+  height: 335px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 32px;
+  margin-left: 44px;
+`;
+
+const StContainer = styled.div`
+  display: flex;
+  z-index: 15;
+  background-color: ${({ theme }) => theme.White};
+  width: 540px;
+  height: 488px;
+  flex-direction: column;
+`;
+
+const StTitle = styled.div`
+  display: flex;
+  width: 452px;
+  height: 32px;
+  color: ${({ theme }) => theme.Black};
+  font-family: Hyundai Sans Head KR;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.72px;
+  justify-content: space-between;
+`;
+
+const StCloseButton = styled(CloseButton)`
+  top: 10%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+const StImg = styled.div`
+  width: 452px;
+  height: 257.514px;
+  flex-shrink: 0;
+  border: 1px black solid;
+`;
+
+const StDescription = styled.div`
+  color: ${({ theme }) => theme.Black};
+  font-family: Hyundai Sans Text KR;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.36px;
+  width: 452px;
+  margin-left: 44px;
+`;
+
+const StSubDescription = styled.div`
+  width: 452px;
+  height: auto;
+  color: ${({ theme }) => theme.Black};
+  font-family: Hyundai Sans Text KR;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.3px;
+  margin-left: 44px;
+  margin-top: 32px;
+`;
