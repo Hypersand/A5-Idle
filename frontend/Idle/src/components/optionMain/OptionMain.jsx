@@ -1,46 +1,38 @@
 import { styled } from "styled-components";
 import OptionContent from "./OptionContent";
-import { useEffect, useState } from "react";
-import { ALL } from "../../utils/constants";
-import { TRANSLATE } from "../../utils/constants";
 
-function OptionMain({ data, currentTab, selectedOption }) {
-  const [selectedFunction, setSelectedFunction] = useState("");
-  const [currentPage, setCurrentPage] = useState(0);
-
+function OptionMain({
+  data,
+  selectedOption,
+  currentPage,
+  setCurrentPage,
+  setSelectedFunction,
+  selectedFunction,
+}) {
   let filteredData;
-
-  useEffect(() => {
-    setSelectedFunction(filteredData.functions[0]);
-    setCurrentPage(0);
-  }, [selectedOption]);
-
   function filterData() {
-    if (currentTab === ALL) {
-      if (selectedOption === "") {
-        filteredData = [data[0]];
-      } else {
-        filteredData = data.filter((item) => item.optionName === selectedOption);
-      }
-    } else {
-      if (selectedOption === "") {
-        filteredData = data.filter((item) => item.optionCategory === TRANSLATE[currentTab]);
-      } else {
-        filteredData = data.filter(
-          (item) =>
-            item.optionCategory === TRANSLATE[currentTab] && item.optionName === selectedOption
-        );
-      }
+    //없으면 첫 데이터
+    if (selectedOption === "") {
+      filteredData = data[0];
     }
-
-    if (filteredData.length > 1) filteredData = filteredData[0];
-    Array.isArray(filteredData) ? (filteredData = filteredData[0]) : filteredData;
+    //있으면 옵션에 해당하는 데이터
+    else {
+      filteredData = data.filter((item) => item.optionName === selectedOption)[0];
+    }
   }
+
   filterData();
+
+  function renderImg() {
+    return selectedFunction === "" ? (
+      <StImg src={filteredData.functions[0].functionImgUrl} />
+    ) : (
+      <StImg src={selectedFunction.functionImgUrl} />
+    );
+  }
   return (
     <StContainer>
-      <StImg src={selectedFunction.functionImgUrl} />
-
+      {renderImg()}
       <OptionContent
         data={filteredData}
         setSelectedFunction={setSelectedFunction}

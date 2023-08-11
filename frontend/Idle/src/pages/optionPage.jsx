@@ -97,13 +97,13 @@ const dummyData = [
       {
         functionName: "후방 주차 충돌방지 보조4",
         functionDescription: "...",
-        functionImgUrl: hyundai,
+        functionImgUrl: null,
         wheelLogoImgUrl: null,
       },
       {
         functionName: "20인치 다크 스퍼터링 휠4",
         functionDescription: "...",
-        functionImgUrl: "...",
+        functionImgUrl: hyundai,
         wheelLogoImgUrl: "...",
       },
     ],
@@ -117,13 +117,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조5",
         functionDescription: "...",
         functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠5",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -139,15 +139,15 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조6",
         functionDescription: "...",
-        functionImgUrl: hyundai,
+        functionImgUrl: null,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠6",
         functionDescription: "...",
-        functionImgUrl: "...",
+        functionImgUrl: hyundai,
         wheelLogoImgUrl: "...",
       },
     ],
@@ -161,13 +161,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조7",
         functionDescription: "...",
         functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠7",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -183,15 +183,15 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조8",
         functionDescription: "...",
-        functionImgUrl: hyundai,
+        functionImgUrl: null,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠8",
         functionDescription: "...",
-        functionImgUrl: "...",
+        functionImgUrl: hyundai,
         wheelLogoImgUrl: "...",
       },
     ],
@@ -205,13 +205,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조9",
         functionDescription: "...",
         functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠9",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -226,13 +226,22 @@ const BLUR_STATUS = {
   BOTH_VISIBLE: 0,
 };
 
+function filterData(data, currentTab) {
+  if (currentTab === ALL) return data;
+  return data.filter((item) => item.optionCategory === TRANSLATE[currentTab]);
+}
+
 function OptionPage() {
   const [currentTab, setCurrentTab] = useState(ALL);
   const [selectedOption, setSelectedOption] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
   const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
   const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
   const navigate = useNavigate();
   const scrollBar = useRef();
+
+  const [filteredData, setFilteredData] = useState(dummyData);
+  const [selectedFunction, setSelectedFunction] = useState("");
 
   useEffect(() => {
     if (!scrollBar.current) {
@@ -255,6 +264,26 @@ function OptionPage() {
     };
   }, [scrollBar.current]);
 
+  useEffect(() => {
+    setFilteredData(filterData(dummyData, currentTab));
+    setCurrentPage(0);
+    setSelectedOption("");
+  }, [currentTab]);
+
+  useEffect(() => {
+    if (selectedOption === "") {
+      setSelectedFunction(filteredData[0].functions[0]);
+    } else {
+      const selected = filteredData.filter((item) => item.optionName === selectedOption);
+      setSelectedFunction(selected[0].functions[0]);
+    }
+    setCurrentPage(0);
+  }, [selectedOption]);
+
+  useEffect(() => {
+    setSelectedFunction(filteredData[0].functions[0]);
+  }, [filteredData]);
+
   function handleTabChange(direction) {
     const currentIndex = tabs.indexOf(currentTab);
 
@@ -273,6 +302,11 @@ function OptionPage() {
     }
   }
 
+  function TabClicked(idx) {
+    setCurrentTab(() => tabs[idx]);
+    // setFilteredData(filterData(dummyData, currentTab));
+  }
+
   function ArrowButtonClicked(direction) {
     const element = scrollBar.current;
     direction === "LEFT" ? (element.scrollLeft -= 200) : (element.scrollLeft += 200);
@@ -284,14 +318,27 @@ function OptionPage() {
       <StWrapper>
         <StTabContainer>
           {tabs.map((item, idx) => (
-            <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />
+            <CategoryTabs
+              key={idx}
+              text={TRANSLATE[item]}
+              isClicked={item === currentTab}
+              onClick={() => TabClicked(idx)}
+            />
           ))}
         </StTabContainer>
         <StContentsContainer>
           {/* 메인 컨텐츠 부분 */}
-          <OptionMain data={dummyData} currentTab={currentTab} selectedOption={selectedOption} />
+          <OptionMain
+            data={filteredData}
+            selectedOption={selectedOption}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            setSelectedFunction={setSelectedFunction}
+            selectedFunction={selectedFunction}
+          />
           {/* <MainContents currentState={currentTab} data={dummyData} /> */}
         </StContentsContainer>
+
         <StBottomContainer>
           <ArrowLeftContainer $blurState={blurState}>
             <ArrowLogo
@@ -300,8 +347,10 @@ function OptionPage() {
               }}
             />
           </ArrowLeftContainer>
+
           <StContainer ref={scrollBar}>
-            {dummyData.map((item, idx) => (
+
+            {filteredData.map((item, idx) => (
               <OptionBox
                 key={idx}
                 {...item}
@@ -310,7 +359,6 @@ function OptionPage() {
               />
             ))}
           </StContainer>
-          <DefaultOption />
           <ArrowRightContainer $blurState={blurState}>
             <ArrowLogo
               onClick={() => {
@@ -318,6 +366,7 @@ function OptionPage() {
               }}
             />
           </ArrowRightContainer>
+
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>{TRANSLATE[currentTab]} 선택</Title>
