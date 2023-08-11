@@ -18,7 +18,6 @@ import java.util.List;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SoftAssertionsExtension.class)
@@ -35,12 +34,12 @@ class MyTrimServiceTest {
 
     @Test
     @DisplayName("내게 맞는 트림 찾기에 들어갈 기능 9가지 반환 메소드")
-    void findMyTrimFunctions(){
+    void findMyTrimFunctions() {
         //given
         List<MyTrimFunctionDto> myTrimFunctionDtoList = new ArrayList<>();
-        myTrimFunctionDtoList.add(new MyTrimFunctionDto(1, "기능1","설명","imgUrl",1));
-        myTrimFunctionDtoList.add(new MyTrimFunctionDto(2, "기능2","설명","imgUrl",1));
-        myTrimFunctionDtoList.add(new MyTrimFunctionDto(4, "기능4","설명","imgUrl",1));
+        myTrimFunctionDtoList.add(new MyTrimFunctionDto(1, "기능1", "설명", "imgUrl", 1));
+        myTrimFunctionDtoList.add(new MyTrimFunctionDto(2, "기능2", "설명", "imgUrl", 1));
+        myTrimFunctionDtoList.add(new MyTrimFunctionDto(4, "기능4", "설명", "imgUrl", 1));
         given(functionRepository.findMyTrimFunctions()).willReturn(myTrimFunctionDtoList);
 
         //when
