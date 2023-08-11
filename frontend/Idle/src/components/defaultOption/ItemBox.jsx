@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowRight } from "../../assets/images/arrowRight.svg";
 function ItemBox({ functionName, functionImgUrl, functionDescription }) {
-  const stringMaxLength = 34;    
+  const stringMaxLength = 34;
   function checkLength() {
     if (functionName.length > stringMaxLength) {
       return functionName.slice(0, stringMaxLength) + "...";
@@ -27,7 +27,8 @@ const StContainer = styled.div`
   align-items: center;
   width: 184px;
   height: 212px;
-  border: 1px black solid;
+  border: 1px solid ${({ theme }) => theme.Grey_2};
+  background-color: ${({ theme }) => theme.White};
 `;
 
 const StImg = styled.div`
