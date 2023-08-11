@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -40,7 +41,7 @@ class MyTrimServiceTest {
         myTrimFunctionDtoList.add(new MyTrimFunctionDto(1, "기능1","설명","imgUrl",1));
         myTrimFunctionDtoList.add(new MyTrimFunctionDto(2, "기능2","설명","imgUrl",1));
         myTrimFunctionDtoList.add(new MyTrimFunctionDto(4, "기능4","설명","imgUrl",1));
-        when(functionRepository.findMyTrimFunctions()).thenReturn(myTrimFunctionDtoList);
+        given(functionRepository.findMyTrimFunctions()).willReturn(myTrimFunctionDtoList);
 
         //when
         List<MyTrimFunctionResDto> myTrimFunctions = myTrimService.findMyTrimFunctions();
