@@ -144,6 +144,7 @@ const StChangeBtn = styled.div`
   text-align: center;
   cursor: pointer;
   width: 87px;
+  display: flex;
 `;
 
 const StOptionType = styled.p`
