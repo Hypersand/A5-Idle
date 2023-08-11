@@ -18,8 +18,6 @@ const StContainer = styled.div`
   align-items: center;
   color: ${({ $isClicked }) => ($isClicked ? "#1A3276" : "#C5C9D2")};
   text-align: center;
-
-  /* body1 medium */
   font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;

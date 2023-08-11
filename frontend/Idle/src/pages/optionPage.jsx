@@ -1,3 +1,4 @@
+import DefaultOption from "../components/defaultOption/DefaultOption";
 import { useEffect, useRef, useState } from "react";
 import OptionBox from "../components/common/boxs/OptionBox";
 import {
@@ -348,15 +349,7 @@ function OptionPage() {
           </ArrowLeftContainer>
 
           <StContainer ref={scrollBar}>
-            {/**이전 코드 */}
-            {/* {dummyData.map((item, idx) => (
-              <OptionBox
-                key={idx}
-                {...item}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-              />
-            ))} */}
+
             {filteredData.map((item, idx) => (
               <OptionBox
                 key={idx}
@@ -366,7 +359,6 @@ function OptionPage() {
               />
             ))}
           </StContainer>
-
           <ArrowRightContainer $blurState={blurState}>
             <ArrowLogo
               onClick={() => {
@@ -405,7 +397,7 @@ export default OptionPage;
 
 const StContainer = styled.div`
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: flex-start;
   gap: 8px;
   width: 850px;

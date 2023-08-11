@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { getTrimData } from "../utils/api";
+// import { getTrimData } from "../utils/api";
 import TrimBoxContainer from "../components/trimBoxContainer/TrimBoxContainer";
 import { styled } from "styled-components";
 import BlueButton from "../components/common/buttons/BlueButton";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { TRIM_ROUTE } from "../utils/routes";
 import { carContext } from "../utils/context";
 import FindTrim from "../components/findTrim/FindTrim";
+import { getTrimData } from "../utils/api";
 
 let cachedTrimData = null;
 
@@ -21,7 +22,7 @@ function TrimPage() {
   useEffect(() => {
     getTrimData().then((result) => {
       setTrimData(result);
-      cachedTrimData = result
+      cachedTrimData = result;
     });
   }, []);
 
