@@ -9,19 +9,22 @@ import { carContext } from "../utils/context";
 import FindTrim from "../components/findTrim/FindTrim";
 import trimData from "../utils/dummydata/trim.json";
 
+let cachedTrimData = null;
+
 function TrimPage() {
   const { car } = useContext(carContext);
   const navigate = useNavigate();
-  // const [trimData, setTrimData] = useState(null);
+  const [trimData, setTrimData] = useState(cachedTrimData);
 
   function nextBTNClicked() {
     navigate("/detail");
   }
-  // useEffect(() => {
-  // getTrimData().then((result) => {
-  // setTrimData(result);
-  // });
-  // }, []);
+  useEffect(() => {
+    getTrimData().then((result) => {
+      setTrimData(result);
+      cachedTrimData = result
+    });
+  }, []);
 
   return (
     <>

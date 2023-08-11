@@ -1,65 +1,58 @@
 import { styled } from "styled-components";
 import { useContext } from "react";
 import { carContext } from "../../../utils/context";
+import {
+  CHANGE_BODY_TYPES,
+  CHANGE_DRIVING_METHODS,
+  CHANGE_ENGINES,
+} from "../../../utils/actionType";
 
 function DetailModelBox({ purchase_rate, name, description, price, currentTab, isActive = true }) {
-    const { car, setCar } = useContext(carContext);
-    function updateDetail(prevCar, currentTab, name, price) {
-        const updatedDetail = {
-            ...prevCar.detail,
-            [currentTab]: {
-                name: name,
-                price: price,
-            },
-        };
-        return {
-            ...prevCar,
-            detail: updatedDetail,
-        };
-    }
+  const { car, dispatch } = useContext(carContext);
 
-    function optionClicked(name, price) {
-        switch (currentTab) {
-            case "engines":
-                if (car.detail.engines.name !== name) {
-                    setCar((prevCar) => updateDetail(prevCar, "engines", name, price));
-                }
-                break;
-            case "driving_methods":
-                if (car.detail.driving_methods.name !== name) {
-                    setCar((prevCar) => updateDetail(prevCar, "driving_methods", name, price));
-                }
-                break;
-            case "body_types":
-                if (car.detail.body_types.name !== name) {
-                    setCar((prevCar) => updateDetail(prevCar, "body_types", name, price));
-                }
-                break;
-            default:
-                break;
+  function optionClicked(name, price) {
+    const payload = { name: name, price: price };
+    switch (currentTab) {
+      case "engines":
+        if (car.detail.engines.name !== name) {
+          dispatch({ type: CHANGE_ENGINES, payload: payload });
         }
+        break;
+      case "driving_methods":
+        if (car.detail.driving_methods.name !== name) {
+          dispatch({ type: CHANGE_DRIVING_METHODS, payload: payload });
+        }
+        break;
+      case "body_types":
+        if (car.detail.body_types.name !== name) {
+          dispatch({ type: CHANGE_BODY_TYPES, payload: payload });
+        }
+        break;
+      default:
+        break;
     }
-    const isOptionSelected = car.detail[currentTab].name === name;
-    return (
-        <>
-            <StContainer
-                onClick={() => optionClicked(name, price)}
-                $isSelected={isOptionSelected}
-                $isActive={isActive}
-            >
-                <StContent>
-                    <StTitleContainer>
-                        <StContentHeader>
-                            <Title $isSelected={isOptionSelected}>{name}</Title>
-                            <TitleDetail $isSelected={isOptionSelected}>{purchase_rate}</TitleDetail>
-                        </StContentHeader>
-                        <Detail $isSelected={isOptionSelected}>{description}</Detail>
-                    </StTitleContainer>
-                    <Price $isSelected={isOptionSelected}>{price.toLocaleString()} 원</Price>
-                </StContent>
-            </StContainer>
-        </>
-    );
+  }
+  const isOptionSelected = car.detail[currentTab].name === name;
+  return (
+    <>
+      <StContainer
+        onClick={() => optionClicked(name, price)}
+        $isSelected={isOptionSelected}
+        $isActive={isActive}
+      >
+        <StContent>
+          <StTitleContainer>
+            <StContentHeader>
+              <Title $isSelected={isOptionSelected}>{name}</Title>
+              <TitleDetail $isSelected={isOptionSelected}>{purchase_rate}</TitleDetail>
+            </StContentHeader>
+            <Detail $isSelected={isOptionSelected}>{description}</Detail>
+          </StTitleContainer>
+          <Price $isSelected={isOptionSelected}>+ {price.toLocaleString()} 원</Price>
+        </StContent>
+      </StContainer>
+    </>
+  );
 }
 
 export default DetailModelBox;
@@ -95,10 +88,10 @@ const StContent = styled.div`
 `;
 
 const StContentHeader = styled.div`
-    display: flex;
-    width: 154px;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  width: 154px;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const StTitleContainer = styled.div`
@@ -121,11 +114,11 @@ const TitleDetail = styled.p`
 const Title = styled.h1`
   color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
   font-family: "Hyundai Sans Text KR";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 24px; /* 150% */
-    letter-spacing: -0.48px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.48px;
 `;
 
 const Detail = styled.p`

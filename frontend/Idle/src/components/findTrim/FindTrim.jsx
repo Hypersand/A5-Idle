@@ -1,5 +1,5 @@
 import FindTrimButton from "./FindTrimButton";
-import FindTrimContent from "./FindTrimContent";
+import Modal from "./Modal";
 import { useState } from "react";
 
 function FindTrim() {
@@ -7,7 +7,7 @@ function FindTrim() {
   return (
     <>
       {modalVisible ? (
-        <FindTrimContent setVisible={setModalVisible} />
+        <Modal setVisible={setModalVisible} />
       ) : (
         <FindTrimButton onClick={() => setModalVisible(true)} />
       )}

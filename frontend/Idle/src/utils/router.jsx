@@ -15,8 +15,8 @@ function Router() {
         <Route path="/detail" element={<DetailModelPage />} />
         <Route path="/color" element={<ColorPage />} />
         <Route path="/option" element={<OptionPage />} />
-        <Route path="/bill" element={<BillPage />} />
       </Route>
+      <Route path="/bill" element={<BillPage />} />
       <Route path="/" element={<MainPage />} />
     </Routes>
   );

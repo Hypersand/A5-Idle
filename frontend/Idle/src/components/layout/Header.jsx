@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import CarNameDropdown from "../carNameDropdown/carNameDropdown"
+import CarNameDropdown from "../carNameDropdown/carNameDropdown";
 import Navbar from "../navbar/Navbar";
 import MainLogoBlack from "../common/logos/MainLogoBlack";
 
