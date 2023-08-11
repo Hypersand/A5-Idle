@@ -59,7 +59,7 @@ const StDescription = styled.div`
   margin-left: 20px;
   margin-top: 12.5px;
   width: 143.76px;
-  height: auto;
+  height: 32px;
   color: ${({ theme }) => theme.Black};
   font-family: Hyundai Sans Text KR;
   font-size: 12px;
