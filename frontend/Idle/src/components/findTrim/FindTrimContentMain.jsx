@@ -105,23 +105,27 @@ function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
     });
   }
 
-  function FindTrimContentMain({ car }) {
-    return (
-      <StFindTrimContentMain>
-        <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>
-        <OptionBoxContainer functionList={functionList} disableFunctionId={disableFunctionId} />
-      </StFindTrimContentMain>
-    );
-  }
+  return (
+    <StFindTrimContentMain>
+      <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>
+      <OptionBoxContainer functionList={functionList} disableFunctionId={disableFunctionId} />
+    </StFindTrimContentMain>
+  );
+}
 
-  export default FindTrimContentMain;
+export default FindTrimContentMain;
 
-  const StFindTrimContentMain = styled.div`
+const StFindTrimContentMain = styled.div`
   width: 1024px;
   height: 384px;
-  border: 2px solid black;
-  display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+`;
+
+const StTrimBoxContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 `;

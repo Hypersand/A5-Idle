@@ -41,27 +41,26 @@ function TrimBox({
       onClick();
     }
   }
-  function TrimBox({ name, content, price, isActive }) {
-    return (
-      <StFindTrimTrimContainer
-        onClick={handleClick}
-        $isactive={isActive.toString()}
-        $isselected={isSelected}
-      >
-        <StTrimBox onClick={handleClick}>
-          <StTrimBoxTitle $isselected={isSelected}>{name}</StTrimBoxTitle>
-          <StTrimBoxContent $isselected={isSelected}>{description}</StTrimBoxContent>
-          <StTrimBoxBottom>
-            <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
-            {isActive ? <TrimBoxOptionStatus status={optionStatus} /> : null}
-          </StTrimBoxBottom>
-        </StTrimBox>
-      </StFindTrimTrimContainer>
-    );
-  }
-  export default TrimBox;
+  return (
+    <StFindTrimTrimContainer
+      onClick={handleClick}
+      $isactive={isActive.toString()}
+      $isselected={isSelected}
+    >
+      <StTrimBox onClick={handleClick}>
+        <StTrimBoxTitle $isselected={isSelected}>{name}</StTrimBoxTitle>
+        <StTrimBoxContent $isselected={isSelected}>{description}</StTrimBoxContent>
+        <StTrimBoxBottom>
+          <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
+          {isActive ? <TrimBoxOptionStatus status={optionStatus} /> : null}
+        </StTrimBoxBottom>
+      </StTrimBox>
+    </StFindTrimTrimContainer>
+  );
+}
+export default TrimBox;
 
-  const StFindTrimTrimContainer = styled.div`
+const StFindTrimTrimContainer = styled.div`
   display: flex;
   width: 200px;
   height: 164px;
@@ -69,12 +68,12 @@ function TrimBox({
   justify-content: space-around;
   border: 1px solid ${({ theme }) => theme.Grey_2};
   background: ${({ theme, $isselected, $isactive }) =>
-      $isselected ? theme.NavyBlue_5 : $isactive === "true" ? theme.White : theme.Grey_4};
+    $isselected ? theme.NavyBlue_5 : $isactive === "true" ? theme.White : theme.Grey_4};
   ${({ $isactive }) => $isactive === "true" && `cursor: pointer`};
   margin-bottom: 12px;
 `;
 
-  const StTrimBox = styled.div`
+const StTrimBox = styled.div`
   width: 160px;
   height: 116px;
   display: flex;
@@ -85,7 +84,7 @@ function TrimBox({
   flex-shrink: 0;
 `;
 
-  const StTrimBoxTitle = styled.div`
+const StTrimBoxTitle = styled.div`
   color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
   font-family: Hyundai Sans Text KR;
   font-size: 22px;
@@ -95,7 +94,7 @@ function TrimBox({
   letter-spacing: -0.66px;
 `;
 
-  const StTrimBoxContent = styled.div`
+const StTrimBoxContent = styled.div`
   color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
   font-family: Hyundai Sans Text KR;
   font-size: 13px;
@@ -106,7 +105,7 @@ function TrimBox({
   opacity: 0.5;
 `;
 
-  const StTrimBoxPrice = styled.div`
+const StTrimBoxPrice = styled.div`
   color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
   font-family: Hyundai Sans Text KR;
   font-size: 16px;
@@ -116,7 +115,7 @@ function TrimBox({
   letter-spacing: -0.48px;
 `;
 
-  const StTrimBoxBottom = styled.div`
+const StTrimBoxBottom = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;

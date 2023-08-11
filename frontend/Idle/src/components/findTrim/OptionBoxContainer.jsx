@@ -25,8 +25,4 @@ const OptionContainer = styled.div`
   flex-wrap: wrap;
   width: 1035px;
   height: 210px;
-
-  position: absolute;
-  bottom: 100px;
-  left: 50px;
 `;
