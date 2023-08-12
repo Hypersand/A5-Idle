@@ -1,20 +1,29 @@
 import { createPortal } from "react-dom";
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 import OptionDropDown from "./OptionDropDown";
 import { ReactComponent as EscapeButton } from "../../assets/images/esc.svg";
 import palette from "../../styles/palette";
+import { useState } from "react";
 
 function TrimDetailModal({ trim, desc, setModalOff, options, category }) {
+    const [animationstate, setAnimationstate] = useState(false);
+
+    function modalOff() {
+        setAnimationstate(true);
+        setTimeout(() => {
+            setModalOff()
+        }, 300);
+    }
     return (
         createPortal(
-            <ModalContainer>
-                <ModalBackground onClick={setModalOff} />
+            <ModalContainer $animationstate={animationstate}>
+                <ModalBackground onClick={modalOff} />
                 <StModal>
                     <StContainer>
                         <StHeaderContainer>
                             <StHeader>
                                 {trim}
-                                <EscapeButton onClick={setModalOff} />
+                                <EscapeButton onClick={modalOff} />
                             </StHeader>
                             <Description>{desc}
                             </Description>
@@ -43,8 +52,27 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.1s ease-in-out;
+  /* opacity: ${({ $animationstate }) => $animationstate ? 0 : 1}; */
+  animation: ${({ $animationstate }) => $animationstate ? fadeOut : fadeIn} 0.3s ease;
+`;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 `;
 
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
 const ModalBackground = styled.div`
   position: absolute;
   top: 0;
