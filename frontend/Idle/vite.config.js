@@ -9,7 +9,8 @@ export default defineConfig({
   plugins: [svgr(), react()],
   resolve: {
     alias: {
-      images: path.resolve(__dirname, "/src/images"),
+      images: path.resolve(__dirname, "/src/assets/images"),
+      outsideColor: path.resolve(__dirname, "/src/assets/images/outsideColor"),
       fonts: path.resolve(__dirname, "/src/fonts"),
       billmain: path.resolve(__dirname, "/src/components/billmain"),
       carNameDropdown: path.resolve(__dirname, "/src/components/carNameDropdown"),

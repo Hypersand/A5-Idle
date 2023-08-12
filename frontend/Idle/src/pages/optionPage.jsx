@@ -1,4 +1,4 @@
-import DefaultOption from "defaultOption/DefaultOption";
+import DefaultOption from "defaultOption/index";
 import { useEffect, useRef, useState } from "react";
 import OptionBox from "boxs/OptionBox";
 import {
@@ -16,7 +16,7 @@ import CategoryTabs from "tabs/CategoryTabs";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
 import { ReactComponent as ArrowLogo } from "../assets/images/arrowOption.svg";
-import OptionMain from "optionMain/OptionMain";
+import OptionMain from "optionMain/index";
 import hyundai from "../assets/images/hyundai.svg";
 
 const dummyData = [

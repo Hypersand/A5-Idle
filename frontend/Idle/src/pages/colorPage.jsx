@@ -13,12 +13,12 @@ import {
 } from "utils/constants";
 import CategoryTabs from "tabs/CategoryTabs";
 import Car3D from "content/Car3D";
-import grey from "images/outsideColor/grey.png";
-import black from "images/outsideColor/black.png";
-import white from "images/outsideColor/white.png";
-import silver from "images/outsideColor/silver.png";
-import brown from "images/outsideColor/brown.png";
-import emerald from "images/outsideColor/emerald.png";
+import grey from "outsideColor/grey.png";
+import black from "outsideColor/black.png";
+import white from "outsideColor/white.png";
+import silver from "outsideColor/silver.png";
+import brown from "outsideColor/brown.png";
+import emerald from "outsideColor/emerald.png";
 import OutsideColorBoxContainer from "colorSelection/OutsideColorBoxContainer";
 import InnerColorBoxContainer from "colorSelection/InnerColorBoxContainer";
 import InnerColorContent from "content/InnerColorContent";
