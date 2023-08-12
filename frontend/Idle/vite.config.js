@@ -13,7 +13,7 @@ export default defineConfig({
       outsideColor: path.resolve(__dirname, "/src/assets/images/outsideColor"),
       fonts: path.resolve(__dirname, "/src/fonts"),
       billmain: path.resolve(__dirname, "/src/components/billmain"),
-      carNameDropdown: path.resolve(__dirname, "/src/components/carNameDropdown"),
+      carDropdown: path.resolve(__dirname, "/src/components/carDropdown"),
       colorSelection: path.resolve(__dirname, "/src/components/colorSelection"),
       boxs: path.resolve(__dirname, "/src/components/common/boxs"),
       buttons: path.resolve(__dirname, "/src/components/common/buttons"),

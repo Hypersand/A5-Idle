@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const carItem = ["Palisade", "Ionic5", "Ionic6"];
 
-function CarNameDropdown() {
+function CarDropdown() {
   return (
     <StSelectBoxWrapper>
       <Select>
@@ -14,7 +14,7 @@ function CarNameDropdown() {
   );
 }
 
-export default CarNameDropdown;
+export default CarDropdown;
 
 const StSelectBoxWrapper = styled.div`
   display: inline-flex;

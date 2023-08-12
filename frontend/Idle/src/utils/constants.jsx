@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
+
 export const TYPE = {
   trim: "트림",
   detail: "세부 모델",
@@ -236,4 +237,13 @@ export const emptyCar = {
     }
     return false;
   },
+};
+
+export const findTrimInitialState = {
+  tempCar: emptyCar,
+  animationstate: false,
+  clickActive: false,
+  selectedOption: [],
+  optionStatus: [],
+  showOptionAlert: false,
 };

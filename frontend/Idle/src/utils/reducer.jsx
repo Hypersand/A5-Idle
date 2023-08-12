@@ -11,7 +11,37 @@ import {
   CHANGE_OUTSIDE_COLOR,
   CHANGE_TRIM,
   RESET_ALL,
+  SET_TEMPCAR,
+  SET_ANIMATIONSTATE,
+  SET_CLICKACTIVE,
+  SET_SELECTEDOPTION,
+  SET_OPTIONSTATUS,
+  SET_SHOWOPTIONALERT,
 } from "./actionType";
+
+export function findTrimReducer(state, { type, payload }) {
+  switch (type) {
+    case SET_TEMPCAR:
+      return { ...state, tempCar: payload };
+    case SET_ANIMATIONSTATE:
+      return { ...state, animationstate: payload };
+    case SET_CLICKACTIVE:
+      return { ...state, clickActive: payload };
+    case SET_SELECTEDOPTION:
+      return { ...state, selectedOption: payload };
+    case SET_OPTIONSTATUS:
+      return { ...state, optionStatus: payload };
+    case SET_SHOWOPTIONALERT:
+      return { ...state, showOptionAlert: payload };
+    case PUSH_CONFUSING_OPTION:
+      return {
+        ...state,
+        selectedOption: [...state.selectedOption, payload],
+      };
+    default:
+      return state;
+  }
+}
 
 export function carReducer(car, { type, payload }) {
   switch (type) {
@@ -70,10 +100,7 @@ export function carReducer(car, { type, payload }) {
       return {
         ...car,
         option: {
-          additional: [
-            ...car.option.additional,
-            payload,
-          ],
+          additional: [...car.option.additional, payload],
           confusing: car.option.confusing,
         },
       };
@@ -83,10 +110,7 @@ export function carReducer(car, { type, payload }) {
         ...car,
         option: {
           additional: car.option.additional,
-          confusing: [
-            ...car.option.confusing,
-            payload
-          ],
+          confusing: [...car.option.confusing, payload],
         },
       };
 

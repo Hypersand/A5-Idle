@@ -1,24 +1,28 @@
 import styled, { keyframes } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import WhiteButton from "buttons/WhiteButton";
-import { useState, useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useReducer } from "react";
 import FindTrimContentMain from "./FindTrimContentMain";
 import OptionAlert from "./OptionAlert";
 import { selectedOptionContext } from "utils/context";
 import { carContext } from "utils/context";
-import { emptyCar, defaultOption } from "utils/constants";
+import { defaultOption } from "utils/constants";
 import { CHANGE_ALL } from "utils/actionType";
+import { findTrimInitialState } from "utils/constants";
+import { findTrimReducer } from "../../utils/reducer";
+import {
+  SET_ANIMATIONSTATE,
+  SET_CLICKACTIVE,
+  SET_SELECTEDOPTION,
+  SET_OPTIONSTATUS,
+  PUSH_SELECTEDOPTION,
+  SET_SHOWOPTIONALERT,
+} from "../../utils/actionType";
 
 function FindTrimContent({ setVisible }) {
   const initialRender = useRef(true);
-  const [tempCar, setTempCar] = useState(emptyCar);
-  const [animationstate, setAnimationState] = useState(false);
-  const [clickActive, setClickActive] = useState(false);
-  const [selectedOption, setSelectedOption] = useState([]);
-  const [optionStatus, setOptionStatus] = useState([]);
-  const [showOptionAlert, setShowOptionAlert] = useState(false);
   const { dispatch } = useContext(carContext);
-  //성호: 리듀서로 state줄일 예정 (토요일)
+  const [state, stateDispatch] = useReducer(findTrimReducer, findTrimInitialState);
 
   useEffect(() => {
     //백엔드로 요청
@@ -48,15 +52,15 @@ function FindTrimContent({ setVisible }) {
         isDefault: true,
         selectPossible: true,
       },
-    ];
+    ];``
     if (dummyData.length === 0) {
-      setOptionStatus(defaultOption);
+      stateDispatch({ type: SET_OPTIONSTATUS, payload: defaultOption });
     }
-    setOptionStatus(dummyData);
-  }, [selectedOption]);
+    stateDispatch({ type: SET_OPTIONSTATUS, payload: dummyData });
+  }, [state.selectedOption]);
 
   function clickExit(animateTime) {
-    setAnimationState(true);
+    stateDispatch({ type: SET_ANIMATIONSTATE, payload: true });
     setTimeout(() => {
       setVisible(false);
     }, animateTime);
@@ -77,29 +81,29 @@ function FindTrimContent({ setVisible }) {
         option_price: 2000000,
       },
     ];
-    setSelectedOption([]);
-    tempCar.option.additional = [];
+    stateDispatch({ type: SET_SELECTEDOPTION, payload: [] });
+    state.tempCar.option.additional = [];
     dummyData.forEach((item) => {
-      setSelectedOption((prevAddOption) => [...prevAddOption, item.option_name]);
-      tempCar.option.additional.push({
+      stateDispatch({ type: PUSH_SELECTEDOPTION, payload: item.option_name });
+      state.tempCar.option.additional.push({
         name: item.option_name,
         price: item.option_price,
       });
     });
-    dispatch({ type: CHANGE_ALL, payload: tempCar });
-    setShowOptionAlert(true);
+    dispatch({ type: CHANGE_ALL, payload: state.tempCar });
+    stateDispatch({ type: SET_SHOWOPTIONALERT, payload: true });
   }
   return (
-    <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
-      <StFindTrimContentContainer $animationstate={animationstate}>
+    <selectedOptionContext.Provider value={{ state, stateDispatch }}>
+      <StFindTrimContentContainer $animationstate={state.animationstate}>
         <StFindTrimContentTitle>
           원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
         </StFindTrimContentTitle>
         <FindTrimContentMain
-          optionStatus={optionStatus}
-          setTempCar={setTempCar}
+          optionStatus={state.optionStatus}
+          setTempCar={stateDispatch}
           onClick={() => {
-            setClickActive(true);
+            stateDispatch({ type: SET_CLICKACTIVE, payload: true });
           }}
         />
         <StFindTrimContentButtonContainer>
@@ -109,10 +113,10 @@ function FindTrimContent({ setVisible }) {
               clickExit(1000);
             }}
           />
-          <BlueButton text={"확인"} isActive={clickActive} onClick={clickCheck} />
+          <BlueButton text={"확인"} isActive={state.clickActive} onClick={clickCheck} />
         </StFindTrimContentButtonContainer>
       </StFindTrimContentContainer>
-      {showOptionAlert && <OptionAlert text={selectedOption} />}
+      {state.showOptionAlert && <OptionAlert text={state.selectedOption} />}
     </selectedOptionContext.Provider>
   );
 }
