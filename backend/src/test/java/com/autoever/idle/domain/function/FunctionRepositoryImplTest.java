@@ -13,7 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class FunctionRepositoryImplTest {
 
-
     @Autowired
     FunctionRepository functionRepository;
 
@@ -22,6 +21,6 @@ class FunctionRepositoryImplTest {
     void findMyTrimFunction(){
         List<MyTrimFunctionDto> myTrimFunctions = functionRepository.findMyTrimFunctions();
 
-        assertThat(myTrimFunctions.size()).isEqualTo(24);
+        assertThat(myTrimFunctions.size()).isEqualTo(25);
     }
 }
