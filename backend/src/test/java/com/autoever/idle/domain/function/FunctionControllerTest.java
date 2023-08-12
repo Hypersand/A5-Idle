@@ -57,7 +57,7 @@ class FunctionControllerTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("기본 기능 카테고리에 따른 기능 목록 반환 API")
     void getAllDefaultFunctions() throws Exception {
         //given
         String requestJson = "{\"trimId\":\"1\"}";
