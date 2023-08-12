@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { ReactComponent as ArrorRight } from "../../../assets/images/arrowRight.svg";
 import { useContext, useState } from "react";
 import { carContext } from "utils/context";
-import TrimDetailModal from "trimDetailModal/TrimDetailModal";
+import TrimDetailModal from "trimDetailModal/index";
 import { CHANGE_TRIM } from "utils/actionType";
 
 function NormalTrimBox({

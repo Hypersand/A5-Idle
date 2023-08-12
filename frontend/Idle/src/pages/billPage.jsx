@@ -5,7 +5,7 @@ import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
 import { useContext } from "react";
 import { carContext } from "utils/context";
-import BillMain from "billMain/BillMain";
+import BillMain from "billMain/index";
 
 function BillPage() {
   const { car } = useContext(carContext);
