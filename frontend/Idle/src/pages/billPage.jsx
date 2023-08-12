@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { carContext } from "../utils/context";
 import BillMain from "../components/BillMain/BillMain";
 import BillOptionContainer from "../components/BillMain/BillOptionContainer";
+import Map from "../components/BillMain/Map";
 
 function BillPage() {
   const { car } = useContext(carContext);
@@ -39,6 +40,8 @@ function BillPage() {
         <BillMain />
 
         <BillOptionContainer added={car.option.additional} confused={car.option.confusing} />
+
+        <Map />
       </StContainer>
     </StWrapper>
   );
