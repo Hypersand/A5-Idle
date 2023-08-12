@@ -46,7 +46,8 @@ public class FunctionCategoryRepositoryImpl implements FunctionCategoryRepositor
     public List<DefaultFunctionResDto> getDefaultOptionsDetail(Long trimId, Long categoryId) {
         String sql = "select f.name as functionName, f.img_url as functionImgUrl, f.description as functionDescription from FUNCTIONS f " +
                 "left join TRIM_FUNCTION tf on f.function_id = tf.function_id " +
-                "where tf.is_default = 'TRUE' and trim_id = ? and f.function_category_id = ?";
+                "where tf.is_default = 'TRUE' and trim_id = ? and f.function_category_id = ? " +
+                "ORDER BY f.name ASC";
 
         Object[] args = { trimId, categoryId };
 
