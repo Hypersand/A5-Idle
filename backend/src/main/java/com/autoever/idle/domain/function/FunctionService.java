@@ -21,7 +21,7 @@ public class FunctionService {
         return functionCategoryRepository.findAll().stream()
                     .map(category -> new DefaultFunctionCategoryNameResDto(
                             category.getCategoryName(),
-                            functionCategoryRepository.getDefaultOptionsByCategory(
+                            functionCategoryRepository.getDefaultOptionsDetail(
                                 trimId, category.getFunctionCategoryId())))
                     .collect(Collectors.toList());
 

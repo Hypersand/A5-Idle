@@ -11,5 +11,5 @@ public interface FunctionCategoryRepository {
 
     List<DefaultFunctionNameResDto> getDefaultOptions(Long trimId, Long categoryId);
 
-    List<DefaultFunctionResDto> getDefaultOptionsByCategory(Long trimId, Long categoryId);
+    List<DefaultFunctionResDto> getDefaultOptionsDetail(Long trimId, Long categoryId);
 }
