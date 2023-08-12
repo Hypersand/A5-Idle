@@ -2,7 +2,6 @@ package com.autoever.idle.domain.function;
 
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@Slf4j
 public class FunctionRepositoryImpl implements FunctionRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -34,8 +32,9 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                         rs.getInt("trim_id")
                 )));
     }
+
     @Override
-    public List<MyTrimDto> findTrimBySelectFunctions(int functionId){
+    public List<MyTrimDto> findTrimBySelectFunctions(int functionId) {
         String query = "WITH TMP_TRIM_FUNCTION AS " +
                 "(       SELECT name, is_default, T.trim_id " +
                 "        FROM TRIM_FUNCTION AS TF " +
@@ -46,8 +45,6 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                 "    LEFT JOIN TMP_TRIM_FUNCTION AS TTF " +
                 "    ON TRIM.trim_id=TTF.trim_id";
         RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimDto.class);
-        List<MyTrimDto> query1 = jdbcTemplate.query(query, rowMapper, functionId);
-        return query1;
-
+        return jdbcTemplate.query(query, rowMapper, functionId);
     }
 }
