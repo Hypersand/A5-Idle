@@ -1,10 +1,8 @@
 package com.autoever.idle.domain.myTrim;
 
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
-import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +16,6 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/trims/favorite")
-@Slf4j
 public class MyTrimController {
 
     private final MyTrimService myTrimService;
@@ -32,7 +29,6 @@ public class MyTrimController {
     @GetMapping(value = "/select/option") //선택지 선택시
     public ResponseEntity<List<MyTrimResDto>> findTrimsBySelectFunctions(@RequestBody List<Map<String, Integer>> functionIdList){
         List<MyTrimResDto> trimBySelectFunctions = myTrimService.findTrimBySelectFunctions(functionIdList);
-        System.out.println(trimBySelectFunctions.size());
         return ResponseEntity.ok(trimBySelectFunctions);
     }
 

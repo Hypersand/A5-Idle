@@ -3,6 +3,8 @@ package com.autoever.idle.domain.myTrim;
 import com.autoever.idle.domain.function.FunctionRepository;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
+import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
+import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -14,8 +16,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -51,6 +57,38 @@ class MyTrimServiceTest {
         softly.assertThat(myTrimFunctions.get(0).getName()).isEqualTo("기능1");
         softly.assertThat(myTrimFunctions.get(1).getName()).isEqualTo("기능2");
         softly.assertThat(myTrimFunctions.get(2).getName()).isEqualTo("기능4");
+    }
+
+    @Test
+    @DisplayName("선택지 선택시")
+    void findTrimBySelectFunctions(){
+        //given
+        List<Map<String, Integer>> functionIdList = new ArrayList<>();
+        Map<String, Integer> functionIdMap = new HashMap<>();
+        functionIdMap.put("functionId",109);
+        functionIdList.add(functionIdMap);
+        List<MyTrimDto> myTrimDtoList = new ArrayList<>();
+        myTrimDtoList.add(new MyTrimDto("Exclusive",null));
+        myTrimDtoList.add(new MyTrimDto("Le Blanc",false));
+        myTrimDtoList.add(new MyTrimDto("Prestige",true));
+        myTrimDtoList.add(new MyTrimDto("Calligraphy",true));
+        given(functionRepository.findTrimBySelectFunctions(anyInt())).willReturn(myTrimDtoList);
+
+        //when
+        List<MyTrimResDto> myTrimResDtoList = myTrimService.findTrimBySelectFunctions(functionIdList);
+
+        //then
+        verify(functionRepository).findTrimBySelectFunctions(anyInt());
+        softly.assertThat(myTrimResDtoList.size()).isEqualTo(4);
+        softly.assertThat(myTrimResDtoList.get(0).getIsDefault()).isEqualTo(null);
+        softly.assertThat(myTrimResDtoList.get(0).getSelectPossible()).isEqualTo(false);
+        softly.assertThat(myTrimResDtoList.get(1).getIsDefault()).isEqualTo(false);
+        softly.assertThat(myTrimResDtoList.get(1).getSelectPossible()).isEqualTo(true);
+        softly.assertThat(myTrimResDtoList.get(2).getIsDefault()).isEqualTo(true);
+        softly.assertThat(myTrimResDtoList.get(2).getSelectPossible()).isEqualTo(true);
+        softly.assertThat(myTrimResDtoList.get(3).getIsDefault()).isEqualTo(true);
+        softly.assertThat(myTrimResDtoList.get(3).getSelectPossible()).isEqualTo(true);
+
     }
 
 }

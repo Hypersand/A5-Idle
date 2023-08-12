@@ -77,7 +77,7 @@ public class MyTrimService {
             } else if (myTrimDto.getIsDefault() == null) { //이번에 조사한 functionId에 대해서 해당 트림이 선택 불가일 경우
                 myTrimResDto.setIsDefault(null);
                 myTrimResDto.setSelectPossible(false);
-            } else if (!myTrimDto.getIsDefault()) { //이번에 조사한 functionId에 대해서 해당 트림에서 선택 옵션일 경우
+            } else if (!myTrimDto.getIsDefault()) { //이번에 조사한 functionId에 대해서 해당 트림에서 선택 옵션일 경ㅆ
                 myTrimResDto.setIsDefault(false);
             }
         }

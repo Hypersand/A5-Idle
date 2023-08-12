@@ -21,6 +21,6 @@ class FunctionRepositoryImplTest {
     void findMyTrimFunction(){
         List<MyTrimFunctionDto> myTrimFunctions = functionRepository.findMyTrimFunctions();
 
-        assertThat(myTrimFunctions.size()).isEqualTo(25);
+        assertThat(myTrimFunctions.size()).isEqualTo(24);
     }
 }
