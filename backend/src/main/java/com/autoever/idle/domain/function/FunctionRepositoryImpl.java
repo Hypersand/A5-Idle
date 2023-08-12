@@ -1,10 +1,14 @@
 package com.autoever.idle.domain.function;
 
+import com.autoever.idle.domain.function.dto.AdditonalFunctionBillDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class FunctionRepositoryImpl implements FunctionRepository {
@@ -28,5 +32,20 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                         rs.getString("img_url"),
                         rs.getInt("trim_id")
                 )));
+    }
+
+    @Override
+    public List<AdditonalFunctionBillDto> findAdditonalFunctions(List<Long> additionalFunctionIds) {
+        StringBuilder queryBuilder = new StringBuilder("select f.function_id functionId, f.function_category_id functionCategory, ")
+                .append("f.img_url functionImgUrl, f.description functionDescription from FUNCTIONS f ")
+                .append("where f.function_id IN (");
+
+        queryBuilder.append(additionalFunctionIds.stream()
+                .map(id -> "?")
+                .collect(Collectors.joining(", ")));
+        queryBuilder.append(")");
+
+        RowMapper rowMapper = new BeanPropertyRowMapper(AdditonalFunctionBillDto.class);
+        return jdbcTemplate.query(queryBuilder.toString(), rowMapper, additionalFunctionIds.toArray());
     }
 }
