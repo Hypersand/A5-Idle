@@ -163,7 +163,7 @@ const StDiv = styled.div`
   width: 130px;
   min-height: 20px;
   padding: 7px 11px;
-  border: 1px solid ${({ $ismatch }) => ($ismatch ? `${palette.NavyBlue_5}` : `${palette.CoolGrey_1}`)};
+  border: 1px solid ${({ $ismatch }) => ($ismatch ? `${palette.NavyBlue_4}` : `${palette.CoolGrey_1}`)};
   background-color: ${({ $ismatch }) => ($ismatch ? `${palette.NavyBlue_1}` : `${palette.Grey_1}`)};
   flex-direction: column;
   &:hover {
