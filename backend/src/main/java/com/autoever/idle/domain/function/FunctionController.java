@@ -3,6 +3,7 @@ package com.autoever.idle.domain.function;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryNameResDto;
 import com.autoever.idle.domain.detailModel.dto.TrimIdRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,11 +20,8 @@ public class FunctionController {
         this.functionService = functionService;
     }
 
+    @GetMapping
     public ResponseEntity<List<DefaultFunctionCategoryNameResDto>> getAllDefaultFunctions(@RequestBody TrimIdRequest trimIdRequest) {
-
-
+        return ResponseEntity.ok(functionService.getAllDefaultFunctionsByCategory(trimIdRequest.getTrimId()));
     }
-
-
-
 }

@@ -1,11 +1,18 @@
 package com.autoever.idle.domain.category.functionCategory;
 
+import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryNameResDto;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
 import com.autoever.idle.domain.function.dto.DefaultFunctionNameResDto;
+import com.autoever.idle.domain.function.dto.DefaultFunctionResDto;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -38,6 +45,18 @@ public class FunctionCategoryRepositoryImpl implements FunctionCategoryRepositor
                 ),
                 trimId,
                 categoryId);
+    }
+
+    public List<DefaultFunctionResDto> getDefaultOptionsByCategory(Long trimId, Long categoryId) {
+        String sql = "select f.name as functionName, f.img_url as functionImgUrl, f.description as functionDescription from FUNCTIONS f " +
+                "left join TRIM_FUNCTION tf on f.function_id = tf.function_id " +
+                "where tf.is_default = 'TRUE' and trim_id = ? and f.function_category_id = ?";
+
+        Object[] args = { trimId, categoryId };
+
+        RowMapper rowMapper = new BeanPropertyRowMapper(DefaultFunctionResDto.class);
+
+        return jdbcTemplate.query(sql, rowMapper, args);
     }
 
 }
