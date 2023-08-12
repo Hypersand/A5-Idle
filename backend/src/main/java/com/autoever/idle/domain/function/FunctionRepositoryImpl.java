@@ -44,7 +44,7 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                 "SELECT TRIM.name, is_default AS isDefault FROM TRIM " +
                 "    LEFT JOIN TMP_TRIM_FUNCTION AS TTF " +
                 "    ON TRIM.trim_id=TTF.trim_id";
-        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimDto.class);
+        RowMapper rowMapper = new BeanPropertyRowMapper(MyTrimDto.class);
         return jdbcTemplate.query(query, rowMapper, functionId);
     }
 }

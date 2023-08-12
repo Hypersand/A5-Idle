@@ -20,9 +20,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -64,9 +64,12 @@ class MyTrimServiceTest {
     void findTrimBySelectFunctions(){
         //given
         List<Map<String, Integer>> functionIdList = new ArrayList<>();
-        Map<String, Integer> functionIdMap = new HashMap<>();
-        functionIdMap.put("functionId",109);
-        functionIdList.add(functionIdMap);
+        Map<String, Integer> functionIdMap1 = new HashMap<>();
+        Map<String, Integer> functionIdMap2 = new HashMap<>();
+        functionIdMap1.put("functionId",109);
+        functionIdMap2.put("functionId",48);
+        functionIdList.add(functionIdMap1);
+        functionIdList.add(functionIdMap2);
         List<MyTrimDto> myTrimDtoList = new ArrayList<>();
         myTrimDtoList.add(new MyTrimDto("Exclusive",null));
         myTrimDtoList.add(new MyTrimDto("Le Blanc",false));
@@ -78,7 +81,7 @@ class MyTrimServiceTest {
         List<MyTrimResDto> myTrimResDtoList = myTrimService.findTrimBySelectFunctions(functionIdList);
 
         //then
-        verify(functionRepository).findTrimBySelectFunctions(anyInt());
+        verify(functionRepository,times(2)).findTrimBySelectFunctions(anyInt());
         softly.assertThat(myTrimResDtoList.size()).isEqualTo(4);
         softly.assertThat(myTrimResDtoList.get(0).getIsDefault()).isEqualTo(null);
         softly.assertThat(myTrimResDtoList.get(0).getSelectPossible()).isEqualTo(false);

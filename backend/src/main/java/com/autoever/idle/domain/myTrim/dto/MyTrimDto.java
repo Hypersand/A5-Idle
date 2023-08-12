@@ -1,10 +1,12 @@
 package com.autoever.idle.domain.myTrim.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
+@NoArgsConstructor
 public class MyTrimDto {
 
     private String name;
