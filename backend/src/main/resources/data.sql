@@ -1046,15 +1046,6 @@ INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 105
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 106, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 107, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 108, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 109, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 110, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 111, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 112, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 113, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 114, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 115, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 116, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 117, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 118, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 119, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 120, 2);
