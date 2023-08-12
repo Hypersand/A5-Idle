@@ -5,6 +5,8 @@ import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
+import com.autoever.idle.global.exception.custom.InvalidFunctionException;
+import com.autoever.idle.global.exception.custom.InvalidMyTrimFunctionException;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -61,27 +63,28 @@ class MyTrimServiceTest {
 
     @Test
     @DisplayName("선택지 선택시")
-    void findTrimBySelectFunctions(){
+    void findTrimBySelectFunctions() {
         //given
         List<Map<String, Integer>> functionIdList = new ArrayList<>();
         Map<String, Integer> functionIdMap1 = new HashMap<>();
         Map<String, Integer> functionIdMap2 = new HashMap<>();
-        functionIdMap1.put("functionId",109);
-        functionIdMap2.put("functionId",48);
+        functionIdMap1.put("functionId", 109);
+        functionIdMap2.put("functionId", 48);
         functionIdList.add(functionIdMap1);
         functionIdList.add(functionIdMap2);
         List<MyTrimDto> myTrimDtoList = new ArrayList<>();
-        myTrimDtoList.add(new MyTrimDto("Exclusive",null));
-        myTrimDtoList.add(new MyTrimDto("Le Blanc",false));
-        myTrimDtoList.add(new MyTrimDto("Prestige",true));
-        myTrimDtoList.add(new MyTrimDto("Calligraphy",true));
+        myTrimDtoList.add(new MyTrimDto("Exclusive", null));
+        myTrimDtoList.add(new MyTrimDto("Le Blanc", false));
+        myTrimDtoList.add(new MyTrimDto("Prestige", true));
+        myTrimDtoList.add(new MyTrimDto("Calligraphy", true));
+        given(functionRepository.checkMyTrimFunction(anyInt())).willReturn("TRUE");
         given(functionRepository.findTrimBySelectFunctions(anyInt())).willReturn(myTrimDtoList);
 
         //when
         List<MyTrimResDto> myTrimResDtoList = myTrimService.findTrimBySelectFunctions(functionIdList);
 
         //then
-        verify(functionRepository,times(2)).findTrimBySelectFunctions(anyInt());
+        verify(functionRepository, times(2)).findTrimBySelectFunctions(anyInt());
         softly.assertThat(myTrimResDtoList.size()).isEqualTo(4);
         softly.assertThat(myTrimResDtoList.get(0).getIsDefault()).isEqualTo(null);
         softly.assertThat(myTrimResDtoList.get(0).getSelectPossible()).isEqualTo(false);
@@ -92,6 +95,38 @@ class MyTrimServiceTest {
         softly.assertThat(myTrimResDtoList.get(3).getIsDefault()).isEqualTo(true);
         softly.assertThat(myTrimResDtoList.get(3).getSelectPossible()).isEqualTo(true);
 
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 기능 예외 처리")
+    void checkFunctionExist() {
+        //given
+        List<Map<String, Integer>> functionIdList = new ArrayList<>();
+        Map<String, Integer> functionIdMap = new HashMap<>();
+        functionIdMap.put("functionId", 157);
+        functionIdList.add(functionIdMap);
+        String returnNull = null;
+        given(functionRepository.checkMyTrimFunction(anyInt())).willReturn(returnNull);
+
+        //when&then
+        softly.assertThatThrownBy(() -> myTrimService.findTrimBySelectFunctions(functionIdList)).isInstanceOf(InvalidFunctionException.class);
+        verify(functionRepository).checkMyTrimFunction(anyInt());
+    }
+
+    @Test
+    @DisplayName("내게 맞는 트림 찾기의 유효한 기능 예외 처리")
+    void checkValidFunction() {
+        //given
+        List<Map<String, Integer>> functionIdList = new ArrayList<>();
+        Map<String, Integer> functionIdMap = new HashMap<>();
+        functionIdMap.put("functionId", 15);
+        functionIdList.add(functionIdMap);
+        String returnFalse = "FALSE";
+        given(functionRepository.checkMyTrimFunction(anyInt())).willReturn(returnFalse);
+
+        //when&then
+        softly.assertThatThrownBy(() -> myTrimService.findTrimBySelectFunctions(functionIdList)).isInstanceOf(InvalidMyTrimFunctionException.class);
+        verify(functionRepository).checkMyTrimFunction(anyInt());
     }
 
 }

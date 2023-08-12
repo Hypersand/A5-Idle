@@ -42,4 +42,16 @@ class FunctionRepositoryImplTest {
         softly.assertThat(myTrimDtoList.get(2).getIsDefault()).isEqualTo(false);
         softly.assertThat(myTrimDtoList.get(3).getIsDefault()).isEqualTo(true);
     }
+
+    @Test
+    @DisplayName("내게 맞는 트림 찾기의 선택지가 유효한 선택지 읺지 테스트")
+    void checkMyTrimFunction(){
+        String returnTrue = functionRepository.checkMyTrimFunction(22);
+        String returnFalse = functionRepository.checkMyTrimFunction(15);
+        String returnNull = functionRepository.checkMyTrimFunction(157);
+
+        softly.assertThat(returnTrue).isEqualTo("TRUE");
+        softly.assertThat(returnFalse).isEqualTo("FALSE");
+        softly.assertThat(returnNull).isNull();
+    }
 }
