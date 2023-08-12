@@ -5,12 +5,16 @@ import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
+import com.autoever.idle.global.exception.custom.InvalidFunctionException;
+import com.autoever.idle.global.exception.custom.InvalidMyTrimFunctionException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static com.autoever.idle.global.exception.ErrorCode.*;
 
 @Service
 public class MyTrimService {
@@ -38,6 +42,7 @@ public class MyTrimService {
         List<MyTrimResDto> myTrimResDtoList = new ArrayList<>();
         for (int requestIdx = 0; requestIdx < functionIdList.size(); requestIdx++) { //선택된 선택지를 하나씩 돌음
             int functionId = functionIdList.get(requestIdx).get("functionId");
+            checkValidFunction(functionId);
             List<MyTrimDto> myTrimDtoList = functionRepository.findTrimBySelectFunctions(functionId);
             if (requestIdx == 0) { //요청으로 들어온 첫번째 선택지로 myTrimResDtoList 를 세팅함
                 initMyTrimResDtoList(myTrimDtoList, myTrimResDtoList);
@@ -46,6 +51,15 @@ public class MyTrimService {
             }
         }
         return myTrimResDtoList;
+    }
+
+    private void checkValidFunction(int functionId) {
+        String isMyTrim = functionRepository.checkMyTrimFunction(functionId);
+        if (isMyTrim == null) {
+            throw new InvalidFunctionException(INVALID_FUNCTION);
+        } else if(isMyTrim.equals("FALSE")) {
+            throw new InvalidMyTrimFunctionException(INVALID_MYTRIM_FUNCTION);
+        }
     }
 
     private void initMyTrimResDtoList(List<MyTrimDto> myTrimDtoList, List<MyTrimResDto> myTrimResDtoList) {

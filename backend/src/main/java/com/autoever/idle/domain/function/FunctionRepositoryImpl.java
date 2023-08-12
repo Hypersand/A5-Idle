@@ -2,6 +2,7 @@ package com.autoever.idle.domain.function;
 
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -31,6 +32,17 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                         rs.getString("img_url"),
                         rs.getInt("trim_id")
                 )));
+    }
+
+    @Override
+    public String checkMyTrimFunction(int functionId) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT is_my_trim FROM FUNCTIONS WHERE function_id=? ",
+                    ((rs, rowNum) -> rs.getString("is_my_trim")),
+                    functionId);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override

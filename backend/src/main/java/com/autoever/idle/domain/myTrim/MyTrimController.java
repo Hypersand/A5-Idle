@@ -27,7 +27,7 @@ public class MyTrimController {
     }
 
     @GetMapping(value = "/select/option") //선택지 선택시
-    public ResponseEntity<List<MyTrimResDto>> findTrimsBySelectFunctions(@RequestBody List<Map<String, Integer>> functionIdList){
+    public ResponseEntity<List<MyTrimResDto>> findTrimsBySelectFunctions(@RequestBody List<Map<String, Integer>> functionIdList) throws Exception{
         List<MyTrimResDto> trimBySelectFunctions = myTrimService.findTrimBySelectFunctions(functionIdList);
         return ResponseEntity.ok(trimBySelectFunctions);
     }
