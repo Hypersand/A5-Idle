@@ -2,6 +2,8 @@ package com.autoever.idle.domain.function;
 
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
+import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -49,5 +51,30 @@ public class FunctionRepositoryImpl implements FunctionRepository {
 
         RowMapper rowMapper = new BeanPropertyRowMapper(AdditionalFunctionBillDto.class);
         return jdbcTemplate.query(queryBuilder.toString(), rowMapper, additionalFunctionIds.toArray());
+    }
+
+    @Override
+    public List<MyTrimDto> findTrimBySelectFunctions(int functionId) {
+        String query = "WITH TMP_TRIM_FUNCTION AS " +
+                "(       SELECT name, is_default, T.trim_id " +
+                "        FROM TRIM_FUNCTION AS TF " +
+                "        JOIN TRIM AS T ON TF.trim_id = T.trim_id " +
+                "        WHERE TF.function_id = ? " +
+                ") " +
+                "SELECT TRIM.name, is_default AS isDefault FROM TRIM " +
+                "    LEFT JOIN TMP_TRIM_FUNCTION AS TTF " +
+                "    ON TRIM.trim_id=TTF.trim_id";
+        RowMapper rowMapper = new BeanPropertyRowMapper(MyTrimDto.class);
+        return jdbcTemplate.query(query, rowMapper, functionId);
+    }
+
+    public String checkMyTrimFunction(int functionId) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT is_my_trim FROM FUNCTIONS WHERE function_id=? ",
+                    ((rs, rowNum) -> rs.getString("is_my_trim")),
+                    functionId);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }
