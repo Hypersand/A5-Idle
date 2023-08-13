@@ -3,14 +3,19 @@ import Header from "../components/layout/Header";
 import Car3D from "../components/common/content/Car3D";
 import WhiteButton from "../components/common/buttons/WhiteButton";
 import BlueButton from "../components/common/buttons/BlueButton";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { carContext } from "../utils/context";
 import BillMain from "../components/BillMain/BillMain";
 import BillOptionContainer from "../components/BillMain/BillOptionContainer";
-import Map from "../components/BillMain/Map";
+import MapModal from "../components/BillMain/MapModal";
 
 function BillPage() {
   const { car } = useContext(carContext);
+  const [carMasterVisible, setCarMasterVisible] = useState(false);
+  function carMasterBtnClicked() {
+    setCarMasterVisible(true);
+  }
+
   return (
     <StWrapper id={"modal"}>
       <StContainer>
@@ -34,14 +39,14 @@ function BillPage() {
           </StConfirmText>
           <StButtonContainer>
             <WhiteButton text={"공유하기"} />
-            <BlueButton text={"카마스터 찾기"} />
+            <BlueButton text={"카마스터 찾기"} onClick={carMasterBtnClicked} />
           </StButtonContainer>
         </StConfirmContainer>
         <BillMain />
 
         <BillOptionContainer added={car.option.additional} confused={car.option.confusing} />
 
-        <Map />
+        {carMasterVisible && <MapModal setCarMasterVisible={setCarMasterVisible} />}
       </StContainer>
     </StWrapper>
   );
