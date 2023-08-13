@@ -38,4 +38,4 @@ jobs:
         run: |
           aws s3 cp \
           --region ap-northeast-2 \
-          . s3://${{ secrets.AWS_S3_BUCKET_NAME }}
+          frontend-artifact s3://${{ secrets.AWS_S3_BUCKET_NAME }}
