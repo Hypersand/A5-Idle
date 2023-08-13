@@ -32,10 +32,9 @@ public class FunctionCategoryRepositoryImpl implements FunctionCategoryRepositor
     public List<DefaultFunctionNameResDto> getDefaultOptions(Long trimId, Long categoryId) {
         return jdbcTemplate.query(
                 "select F.name as function_name " +
-                "from FUNCTION_CATEGORY as FC " +
-                "left join FUNCTIONS as F on FC.function_category_id = F.function_category_id " +
+                "from FUNCTIONS as F " +
                 "left join TRIM_FUNCTION as TF on F.function_id = TF.function_id " +
-                "where TF.is_default = 'TRUE' and TF.trim_id = ? and FC.function_category_id = ?",
+                "where TF.is_default = 'TRUE' and TF.trim_id = ? and F.function_category_id = ?",
                 (rs, rowNum) -> new DefaultFunctionNameResDto(
                         rs.getString("function_name")
                 ),

@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
+
 public class DefaultFunctionResDto {
     private String functionName;
     private String functionImgUrl;
