@@ -1,8 +1,6 @@
 package com.autoever.idle.global.exception;
 
-import com.autoever.idle.global.exception.custom.InvalidCarException;
-import com.autoever.idle.global.exception.custom.InvalidLocationException;
-import com.autoever.idle.global.exception.custom.InvalidDetailModelException;
+import com.autoever.idle.global.exception.custom.*;
 import com.autoever.idle.global.exception.dto.ErrorDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,6 +25,20 @@ public class GlobalExceptionHandler {
   
     @ExceptionHandler({ InvalidDetailModelException.class })
     protected ResponseEntity<ErrorDto> handleInvalidDetailModelException(InvalidDetailModelException e) {
+        return ResponseEntity
+                .badRequest()
+                .body(new ErrorDto(e.getErrorCode().getStatus(), e.getErrorCode().getMessage()));
+    }
+
+    @ExceptionHandler({ InvalidExteriorException.class })
+    protected ResponseEntity<ErrorDto> handleInvalidExteriorException(InvalidExteriorException e) {
+        return ResponseEntity
+                .badRequest()
+                .body(new ErrorDto(e.getErrorCode().getStatus(), e.getErrorCode().getMessage()));
+    }
+
+    @ExceptionHandler({InvalidInteriorException.class })
+    protected ResponseEntity<ErrorDto> handleInvalidInteriorException(InvalidInteriorException e) {
         return ResponseEntity
                 .badRequest()
                 .body(new ErrorDto(e.getErrorCode().getStatus(), e.getErrorCode().getMessage()));
