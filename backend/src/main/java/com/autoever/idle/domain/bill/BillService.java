@@ -5,7 +5,7 @@ import com.autoever.idle.domain.bill.dto.BillResponseDto;
 import com.autoever.idle.domain.exteriorColor.ExteriorColorRepository;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
 import com.autoever.idle.domain.function.FunctionRepository;
-import com.autoever.idle.domain.function.dto.AdditonalFunctionBillDto;
+import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
 import com.autoever.idle.domain.interiorColor.InteriorBillDto;
 import com.autoever.idle.domain.interiorColor.InteriorColorRepository;
 import com.autoever.idle.global.exception.ErrorCode;
@@ -34,7 +34,7 @@ public class BillService {
                 .orElseThrow(() -> new InvalidExteriorException(ErrorCode.INVALID_EXTERIOR));
         InteriorBillDto interiorBillDto = interiorColorRepository.findInteriorBill(billRequestDto.getInteriorId())
                 .orElseThrow(() -> new InvalidInteriorException(ErrorCode.INVALID_INTERIOR));
-        List<AdditonalFunctionBillDto> additonalFunctionBillDtos = functionRepository.findAdditonalFunctions(billRequestDto.getAdditionalFunctionIds());
+        List<AdditionalFunctionBillDto> additonalFunctionBillDtos = functionRepository.findAdditonalFunctions(billRequestDto.getAdditionalFunctionIds());
 
         return new BillResponseDto(exteriorBillDto, interiorBillDto, additonalFunctionBillDtos);
     }

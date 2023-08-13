@@ -1,6 +1,6 @@
 package com.autoever.idle.domain.function;
 
-import com.autoever.idle.domain.function.dto.AdditonalFunctionBillDto;
+import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,9 +35,11 @@ public class FunctionRepositoryImpl implements FunctionRepository {
     }
 
     @Override
-    public List<AdditonalFunctionBillDto> findAdditonalFunctions(List<Long> additionalFunctionIds) {
-        StringBuilder queryBuilder = new StringBuilder("select f.function_id functionId, f.function_category_id functionCategory, ")
+    public List<AdditionalFunctionBillDto> findAdditonalFunctions(List<Long> additionalFunctionIds) {
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("select f.function_id functionId, fc.name functionCategory, ")
                 .append("f.img_url functionImgUrl, f.description functionDescription from FUNCTIONS f ")
+                .append("left join FUNCTION_CATEGORY fc on f.function_category_id = fc.function_category_id ")
                 .append("where f.function_id IN (");
 
         queryBuilder.append(additionalFunctionIds.stream()
@@ -45,7 +47,7 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                 .collect(Collectors.joining(", ")));
         queryBuilder.append(")");
 
-        RowMapper rowMapper = new BeanPropertyRowMapper(AdditonalFunctionBillDto.class);
+        RowMapper rowMapper = new BeanPropertyRowMapper(AdditionalFunctionBillDto.class);
         return jdbcTemplate.query(queryBuilder.toString(), rowMapper, additionalFunctionIds.toArray());
     }
 }
