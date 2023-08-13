@@ -22,17 +22,11 @@ public class FunctionRepositoryImpl implements FunctionRepository {
 
     @Override
     public List<MyTrimFunctionDto> findMyTrimFunctions() {
-        return jdbcTemplate.query("select FUNCTIONS.function_id, name, description, trim_id, img_url " +
+        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimFunctionDto.class);
+        return jdbcTemplate.query("select FUNCTIONS.function_id AS functionId, name, description, trim_id AS trimId, img_url AS imgUrl " +
                         "from TRIM_FUNCTION TF " +
                         "join FUNCTIONS on TF.function_id=FUNCTIONS.function_id " +
-                        "where is_my_trim='TRUE' order by trim_id",
-                ((rs, rowNum) -> new MyTrimFunctionDto(
-                        rs.getInt("FUNCTIONS.function_id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getString("img_url"),
-                        rs.getInt("trim_id")
-                )));
+                        "where is_my_trim='TRUE' order by trim_id", rowMapper);
     }
 
     @Override
