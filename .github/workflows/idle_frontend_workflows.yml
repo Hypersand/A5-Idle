@@ -4,14 +4,13 @@ on:
     branches:
       - main
     paths: 'frontend/Idle/**'
-
-defaults:
-  run:
-    working-directory: frontend/Idle
     
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend/Idle
     
     steps:
       - name: Checkout source code.
