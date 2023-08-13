@@ -1,4 +1,6 @@
 import {
+  PUSH_SELECTED_OPTION,
+  POP_SELECTED_OPTION,
   PUSH_ADDITIONAL_OPTION,
   PUSH_CONFUSING_OPTION,
   POP_ADDITIONAL_OPTION,
@@ -12,31 +14,36 @@ import {
   CHANGE_TRIM,
   RESET_ALL,
   SET_TEMPCAR,
-  SET_ANIMATIONSTATE,
-  SET_CLICKACTIVE,
-  SET_SELECTEDOPTION,
-  SET_OPTIONSTATUS,
-  SET_SHOWOPTIONALERT,
+  SET_ANIMATION_STATE,
+  SET_CLICK_ACTIVE,
+  SET_SELECTED_OPTION,
+  SET_OPTION_STATUS,
+  SET_SHOWOPTION_ALERT,
 } from "./actionType";
 
 export function findTrimReducer(state, { type, payload }) {
   switch (type) {
     case SET_TEMPCAR:
       return { ...state, tempCar: payload };
-    case SET_ANIMATIONSTATE:
+    case SET_ANIMATION_STATE:
       return { ...state, animationstate: payload };
-    case SET_CLICKACTIVE:
+    case SET_CLICK_ACTIVE:
       return { ...state, clickActive: payload };
-    case SET_SELECTEDOPTION:
+    case SET_SELECTED_OPTION:
       return { ...state, selectedOption: payload };
-    case SET_OPTIONSTATUS:
+    case SET_OPTION_STATUS:
       return { ...state, optionStatus: payload };
-    case SET_SHOWOPTIONALERT:
+    case SET_SHOWOPTION_ALERT:
       return { ...state, showOptionAlert: payload };
-    case PUSH_CONFUSING_OPTION:
+    case PUSH_SELECTED_OPTION:
       return {
         ...state,
         selectedOption: [...state.selectedOption, payload],
+      };
+    case POP_SELECTED_OPTION:
+      return {
+        ...state,
+        selectedOption: state.selectedOption.filter((item) => item !== payload),
       };
     default:
       return state;

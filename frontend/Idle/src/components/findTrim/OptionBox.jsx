@@ -1,25 +1,23 @@
 import { styled } from "styled-components";
 import { ReactComponent as OptionChecked } from "../../assets/images/optionChecked.svg";
 import { useContext, useEffect, useState } from "react";
-import { selectedOptionContext } from "utils/context";
 import OptionModal from "modals/OptionModal";
+import { PUSH_SELECTED_OPTION, POP_SELECTED_OPTION } from "../../utils/actionType";
+import { dispatchContext } from "../../utils/context";
 
 function OptionBox({ data, disable = false }) {
   const [isSelected, setIsSelected] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
+  const { stateDispatch } = useContext(dispatchContext);
 
   function boxClicked(e) {
     if (e.target.tagName === "svg" && e.target.dataset.name === "esc") return;
 
     setIsSelected((cur) => !cur);
-
     if (!isSelected) {
-      const newSelectedOption = [...selectedOption, data.name];
-      setSelectedOption(newSelectedOption);
+      stateDispatch({ type: PUSH_SELECTED_OPTION, payload: data.name });
     } else {
-      const newSelectedOption = selectedOption.filter((item) => item !== data.name);
-      setSelectedOption(newSelectedOption);
+      stateDispatch({ type: POP_SELECTED_OPTION, payload: data.name });
     }
   }
 
