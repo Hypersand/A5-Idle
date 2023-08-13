@@ -4,7 +4,7 @@ import com.autoever.idle.domain.carType.CarTypeRepository;
 import com.autoever.idle.domain.category.functionCategory.FunctionCategoryRepository;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResDto;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
-import com.autoever.idle.domain.function.dto.DefaultFunctionResDto;
+import com.autoever.idle.domain.function.dto.DefaultFunctionNameResDto;
 import com.autoever.idle.domain.trim.dto.TrimDto;
 import com.autoever.idle.domain.trim.dto.TrimSelectionResDto;
 import com.autoever.idle.global.exception.custom.InvalidCarException;
@@ -37,7 +37,7 @@ public class TrimService {
         for (TrimDto trim : trims) {
             List<DefaultFunctionCategoryResDto> categoryDtos = new ArrayList<>();
             for (FunctionCategoryDto category : categories) {
-                List<DefaultFunctionResDto> defaultFunctionDtos =
+                List<DefaultFunctionNameResDto> defaultFunctionDtos =
                         functionCategoryRepository.getDefaultOptions(trim.getTrimId(), category.getFunctionCategoryId());
                 DefaultFunctionCategoryResDto defaultCategoryDto = DefaultFunctionCategoryResDto.createDefaultFunctionDto(category, defaultFunctionDtos);
                 categoryDtos.add(defaultCategoryDto);
