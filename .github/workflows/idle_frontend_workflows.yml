@@ -1,4 +1,4 @@
-name: CI Idle Frontend
+name: CD Idle Frontend
 on:
   workflow_dispatch:
   push:
@@ -7,7 +7,7 @@ on:
     paths: 'frontend/Idle/**'
     
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -24,7 +24,12 @@ jobs:
         run: npm ci
 
       - name: Generate build
-        run: npm run build
+        run: npm run build --if-present
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: frontend-artifact
+          path: frontend/Idle/dist
 
       - name: Deploy
         env:
