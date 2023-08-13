@@ -1,6 +1,8 @@
-export async function getTrimData() {
+import { BASE_URL } from "./constants";
+
+export async function CustomAPI(path) {
   try {
-    const response = await fetch("../src/utils/dummydata/trim.json")
+    const response = await fetch(`${BASE_URL}/${path}`)
       .then((response) => response.json())
       .then((json) => {
         return json;

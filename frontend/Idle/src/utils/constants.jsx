@@ -1,4 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
+
+export const BASE_URL = "http://i-want-to-go-autoever.shop"
+
+export const PATH = {
+  TRIM: {
+    URL: `trims?carTypeName=팰리세이드`
+  }
+}
+
 export const TYPE = {
   trim: "트림",
   detail: "세부 모델",
