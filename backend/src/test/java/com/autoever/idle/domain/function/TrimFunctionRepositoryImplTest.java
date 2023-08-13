@@ -21,7 +21,7 @@ class TrimFunctionRepositoryImplTest {
 
     @Test
     @DisplayName("트림의 기본 기능인지 확인 테스트")
-    void checkDefaultFunction(){
+    void checkDefaultFunction() {
         String TRUE = trimFunctionRepository.checkDefaultFunction(1L, 1L);
         String FALSE = trimFunctionRepository.checkDefaultFunction(1L, 140L);
         String NULL = trimFunctionRepository.checkDefaultFunction(1L, 101L);

@@ -2,11 +2,9 @@ package com.autoever.idle.domain.myTrim;
 
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
-import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitReqDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
 import com.autoever.idle.global.exception.GlobalExceptionHandler;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +75,7 @@ class MyTrimControllerTest {
     void findTrimBySelectFunctions() throws Exception {
         //given
         JSONArray jsonArray = new JSONArray();
-        jsonArray.put(new JSONObject().put("functionId",109));
+        jsonArray.put(new JSONObject().put("functionId", 109));
         List<MyTrimResDto> myTrimResDtoList = new ArrayList<>();
         myTrimResDtoList.add(MyTrimResDto.builder().name("Exclusive").isDefault(null).selectPossible(false).build());
         myTrimResDtoList.add(MyTrimResDto.builder().name("Le Blanc").isDefault(false).selectPossible(true).build());
@@ -110,9 +107,9 @@ class MyTrimControllerTest {
     void findOptionBySelectFunctions() throws Exception {
         //given
         JSONArray selectFunctions = new JSONArray();
-        selectFunctions.put(new JSONObject().put("functionId",109));
+        selectFunctions.put(new JSONObject().put("functionId", 109));
         JSONObject submitRequest = new JSONObject().put("trimId", 1);
-        submitRequest.put("selectFunctions",selectFunctions);
+        submitRequest.put("selectFunctions", selectFunctions);
         List<MyTrimOptionDto> myTrimOptionDtoList = new ArrayList<>();
         MyTrimOptionDto myTrimOptionDto = new MyTrimOptionDto(1L, "옵션 이름", 1000000L);
         myTrimOptionDtoList.add(myTrimOptionDto);

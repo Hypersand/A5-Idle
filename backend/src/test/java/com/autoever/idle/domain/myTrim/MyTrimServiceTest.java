@@ -138,13 +138,13 @@ class MyTrimServiceTest {
 
     @Test
     @DisplayName("내게 맞는 트림 찾기 확인버튼 API 테스트")
-    void findOptionBySelects(){
+    void findOptionBySelects() {
         //given
         List<Map<String, Long>> functionIdList = new ArrayList<>();
         Map<String, Long> functionIdMap = new HashMap<>();
-        functionIdMap.put("functionId",1L);
+        functionIdMap.put("functionId", 1L);
         functionIdList.add(functionIdMap);
-        MyTrimSubmitReqDto myTrimSubmitReqDto = new MyTrimSubmitReqDto(1L,functionIdList);
+        MyTrimSubmitReqDto myTrimSubmitReqDto = new MyTrimSubmitReqDto(1L, functionIdList);
         MyTrimOptionDto myTrimOptionDto = new MyTrimOptionDto(1L, "옵션", 400000L);
         given(trimFunctionRepository.checkDefaultFunction(anyLong(), anyLong())).willReturn("FALSE");
         given(functionRepository.findOptionBySelectFunction(any())).willReturn(myTrimOptionDto);
@@ -161,15 +161,15 @@ class MyTrimServiceTest {
 
     @Test
     @DisplayName("트림에 선택된 기능이 존재하지 않는 기능일 경우")
-    void checkTrimFunction(){
+    void checkTrimFunction() {
         //given
         List<Map<String, Long>> functionIdList = new ArrayList<>();
         Map<String, Long> functionIdMap = new HashMap<>();
-        functionIdMap.put("functionId",1L);
+        functionIdMap.put("functionId", 1L);
         functionIdList.add(functionIdMap);
-        MyTrimSubmitReqDto myTrimSubmitReqDto = new MyTrimSubmitReqDto(1L,functionIdList);
+        MyTrimSubmitReqDto myTrimSubmitReqDto = new MyTrimSubmitReqDto(1L, functionIdList);
         given(functionRepository.checkMyTrimFunction(anyInt())).willReturn("TRUE");
-        given(trimFunctionRepository.checkDefaultFunction(anyLong(),anyLong())).willReturn(null);
+        given(trimFunctionRepository.checkDefaultFunction(anyLong(), anyLong())).willReturn(null);
 
         //when&then
         softly.assertThatThrownBy(() -> myTrimService.findOptionBySelectFunctions(myTrimSubmitReqDto))

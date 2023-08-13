@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class TrimFunctionRepositoryImpl implements TrimFunctionRepository{
+public class TrimFunctionRepositoryImpl implements TrimFunctionRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -15,13 +15,13 @@ public class TrimFunctionRepositoryImpl implements TrimFunctionRepository{
 
     @Override
     public String checkDefaultFunction(Long trimId, Long functionId) {
-        try{
+        try {
             return jdbcTemplate.queryForObject("SELECT is_default " +
                             "FROM TRIM_FUNCTION " +
                             "WHERE trim_id=? AND function_id=?",
                     (rs, rowNum) -> rs.getString("is_default"),
                     trimId, functionId);
-        } catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
 

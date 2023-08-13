@@ -62,11 +62,11 @@ public class FunctionRepositoryImpl implements FunctionRepository {
     }
 
     @Override
-    public MyTrimOptionDto findOptionBySelectFunction(Long functionId){
+    public MyTrimOptionDto findOptionBySelectFunction(Long functionId) {
         RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimOptionDto.class);
         return (MyTrimOptionDto) jdbcTemplate.queryForObject("SELECT O.option_id AS optionId, O.name AS optionName, price AS optionPrice FROM FUNCTIONS AS F " +
-                "JOIN `OPTION` AS O ON F.option_id=O.option_id " +
-                "WHERE function_id=?",
+                        "JOIN `OPTION` AS O ON F.option_id=O.option_id " +
+                        "WHERE function_id=?",
                 rowMapper, functionId);
     }
 }
