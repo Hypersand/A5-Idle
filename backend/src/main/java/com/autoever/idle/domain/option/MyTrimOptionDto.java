@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
+@NoArgsConstructor
 @Getter
 public class MyTrimOptionDto {
 
@@ -12,4 +13,9 @@ public class MyTrimOptionDto {
     private String optionName;
     private Long optionPrice;
 
+    public MyTrimOptionDto(Long optionId, String optionName, Long optionPrice) {
+        this.optionId = optionId;
+        this.optionName = optionName;
+        this.optionPrice = optionPrice;
+    }
 }

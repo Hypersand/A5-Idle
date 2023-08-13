@@ -1,10 +1,13 @@
 package com.autoever.idle.domain.myTrim;
 
 import com.autoever.idle.domain.function.FunctionRepository;
+import com.autoever.idle.domain.function.TrimFunctionRepository;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
+import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitReqDto;
+import com.autoever.idle.domain.option.MyTrimOptionDto;
 import com.autoever.idle.global.exception.custom.InvalidFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidMyTrimFunctionException;
 import org.assertj.core.api.SoftAssertions;
@@ -22,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -36,6 +39,9 @@ class MyTrimServiceTest {
 
     @Mock
     private FunctionRepository functionRepository;
+
+    @Mock
+    private TrimFunctionRepository trimFunctionRepository;
 
     @InjectMocks
     private MyTrimService myTrimService;
@@ -127,6 +133,29 @@ class MyTrimServiceTest {
         //when&then
         softly.assertThatThrownBy(() -> myTrimService.findTrimBySelectFunctions(functionIdList)).isInstanceOf(InvalidMyTrimFunctionException.class);
         verify(functionRepository).checkMyTrimFunction(anyInt());
+    }
+
+    @Test
+    @DisplayName("내게 맞는 트림 찾기 확인버튼 API 테스트")
+    void findOptionBySelects(){
+        //given
+        List<Map<String, Long>> functionIdList = new ArrayList<>();
+        Map<String, Long> functionIdMap = new HashMap<>();
+        functionIdMap.put("functionId",1L);
+        functionIdList.add(functionIdMap);
+        MyTrimSubmitReqDto myTrimSubmitReqDto = new MyTrimSubmitReqDto(1L,functionIdList);
+        MyTrimOptionDto myTrimOptionDto = new MyTrimOptionDto(1L, "옵션", 400000L);
+        given(trimFunctionRepository.checkDefaultFunction(anyLong(), any())).willReturn("FALSE");
+        given(functionRepository.findOptionBySelectFunction(any())).willReturn(myTrimOptionDto);
+        given(functionRepository.checkMyTrimFunction(anyInt())).willReturn("TRUE");
+
+        //when
+        List<MyTrimOptionDto> myTrimOptionDtoList = myTrimService.findOptionBySelectFunctions(myTrimSubmitReqDto);
+
+        //then
+        softly.assertThat(myTrimOptionDtoList.size()).isEqualTo(1);
+        softly.assertThat(myTrimOptionDtoList.get(0).getOptionId()).isEqualTo(1L);
+        softly.assertThat(myTrimOptionDtoList.get(0).getOptionName()).isEqualTo("옵션");
     }
 
 }
