@@ -1,10 +1,13 @@
 package com.autoever.idle.domain.myTrim;
 
 import com.autoever.idle.domain.function.FunctionRepository;
+import com.autoever.idle.domain.function.TrimFunctionRepository;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
+import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitReqDto;
+import com.autoever.idle.domain.option.MyTrimOptionDto;
 import com.autoever.idle.global.exception.custom.InvalidFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidMyTrimFunctionException;
 import org.springframework.stereotype.Service;
@@ -20,9 +23,11 @@ import static com.autoever.idle.global.exception.ErrorCode.*;
 public class MyTrimService {
 
     private final FunctionRepository functionRepository;
+    private final TrimFunctionRepository trimFunctionRepository;
 
-    public MyTrimService(FunctionRepository functionRepository) {
+    public MyTrimService(FunctionRepository functionRepository, TrimFunctionRepository trimFunctionRepository) {
         this.functionRepository = functionRepository;
+        this.trimFunctionRepository = trimFunctionRepository;
     }
 
     //내게 맞는 트림 찾기 페이지
@@ -57,7 +62,7 @@ public class MyTrimService {
         String isMyTrim = functionRepository.checkMyTrimFunction(functionId);
         if (isMyTrim == null) {
             throw new InvalidFunctionException(INVALID_FUNCTION);
-        } else if(isMyTrim.equals("FALSE")) {
+        } else if (isMyTrim.equals("FALSE")) {
             throw new InvalidMyTrimFunctionException(INVALID_MYTRIM_FUNCTION);
         }
     }
@@ -95,6 +100,31 @@ public class MyTrimService {
                 myTrimResDto.setIsDefault(false);
             }
         }
+    }
+
+    public List<MyTrimOptionDto> findOptionBySelectFunctions(MyTrimSubmitReqDto myTrimSubmitReqDto) {
+        List<MyTrimOptionDto> myTrimOptionDtoList = new ArrayList<>();
+        Long trimId = myTrimSubmitReqDto.getTrimId();
+        List<Map<String, Long>> functionIdList = myTrimSubmitReqDto.getSelectFunctions();
+        for (int requestIdx = 0; requestIdx < functionIdList.size(); requestIdx++) {
+            Long functionId = functionIdList.get(requestIdx).get("functionId");
+            checkValidFunction(functionId.intValue());
+            Boolean isDefault = getIsDefault(trimId, functionId);
+            if (!isDefault) {
+                MyTrimOptionDto myTrimOptionDto = functionRepository.findOptionBySelectFunction(functionId);
+                myTrimOptionDtoList.add(myTrimOptionDto);
+            }
+        }
+        return myTrimOptionDtoList;
+    }
+
+    private Boolean getIsDefault(Long trimId, Long functionId) {
+        String isDefault = trimFunctionRepository.checkDefaultFunction(trimId, functionId);
+        if (isDefault.equals("TRUE")) {
+            return true;
+        }
+        return false;
+
     }
 
 }

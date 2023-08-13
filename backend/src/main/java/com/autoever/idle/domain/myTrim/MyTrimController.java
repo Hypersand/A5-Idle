@@ -2,6 +2,8 @@ package com.autoever.idle.domain.myTrim;
 
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
+import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitReqDto;
+import com.autoever.idle.domain.option.MyTrimOptionDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,12 @@ public class MyTrimController {
     public ResponseEntity<List<MyTrimResDto>> findTrimsBySelectFunctions(@RequestBody List<Map<String, Integer>> functionIdList) throws Exception{
         List<MyTrimResDto> trimBySelectFunctions = myTrimService.findTrimBySelectFunctions(functionIdList);
         return ResponseEntity.ok(trimBySelectFunctions);
+    }
+
+    @GetMapping(value = "/submit")
+    public ResponseEntity<List<MyTrimOptionDto>> findOptionBySelectFunctions(@RequestBody MyTrimSubmitReqDto myTrimSubmitReqDto){
+        List<MyTrimOptionDto> optionBySelectFunctions = myTrimService.findOptionBySelectFunctions(myTrimSubmitReqDto);
+        return ResponseEntity.ok(optionBySelectFunctions);
     }
 
 }

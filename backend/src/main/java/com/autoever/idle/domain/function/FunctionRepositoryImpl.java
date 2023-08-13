@@ -2,6 +2,7 @@ package com.autoever.idle.domain.function;
 
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
+import com.autoever.idle.domain.option.MyTrimOptionDto;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -56,7 +57,16 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                 "SELECT TRIM.name, is_default AS isDefault FROM TRIM " +
                 "    LEFT JOIN TMP_TRIM_FUNCTION AS TTF " +
                 "    ON TRIM.trim_id=TTF.trim_id";
-        RowMapper rowMapper = new BeanPropertyRowMapper(MyTrimDto.class);
+        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimDto.class);
         return jdbcTemplate.query(query, rowMapper, functionId);
+    }
+
+    @Override
+    public MyTrimOptionDto findOptionBySelectFunction(Long functionId){
+        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimOptionDto.class);
+        return (MyTrimOptionDto) jdbcTemplate.queryForObject("SELECT O.option_id AS optionId, O.name AS optionName, price AS optionPrice FROM FUNCTIONS AS F " +
+                "JOIN `OPTION` AS O ON F.option_id=O.option_id " +
+                "WHERE function_id=?",
+                rowMapper, functionId);
     }
 }
