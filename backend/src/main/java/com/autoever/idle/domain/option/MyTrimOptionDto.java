@@ -13,6 +13,7 @@ public class MyTrimOptionDto {
     private String optionName;
     private Long optionPrice;
 
+    //테스트용도
     public MyTrimOptionDto(Long optionId, String optionName, Long optionPrice) {
         this.optionId = optionId;
         this.optionName = optionName;

@@ -11,6 +11,5 @@ public interface FunctionRepository {
     List<MyTrimFunctionDto> findMyTrimFunctions();
     List<MyTrimDto> findTrimBySelectFunctions(int functionId);
     String checkMyTrimFunction(int functionId);
-
     MyTrimOptionDto findOptionBySelectFunction(Long functionId);
 }
