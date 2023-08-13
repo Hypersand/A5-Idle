@@ -47,5 +47,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY_ID }}
         run: |
           aws s3 sync \
-          . s3://${{ secrets.AWS_S3_BUCKET_NAME }}
+          . s3://${{ secrets.AWS_S3_BUCKET_NAME }}  \
           --region ap-northeast-2 \
