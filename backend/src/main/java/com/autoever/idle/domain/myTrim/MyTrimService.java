@@ -10,6 +10,7 @@ import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitReqDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
 import com.autoever.idle.global.exception.custom.InvalidFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidMyTrimFunctionException;
+import com.autoever.idle.global.exception.custom.InvalidTrimFunctionException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -118,8 +119,12 @@ public class MyTrimService {
         return myTrimOptionDtoList;
     }
 
+
     private Boolean getIsDefault(Long trimId, Long functionId) {
         String isDefault = trimFunctionRepository.checkDefaultFunction(trimId, functionId);
+        if (isDefault == null){
+            throw new InvalidTrimFunctionException(INVALID_TRIM_FUNCTION);
+        }
         if (isDefault.equals("TRUE")) {
             return true;
         }

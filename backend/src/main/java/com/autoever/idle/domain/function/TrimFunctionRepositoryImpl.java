@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.function;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -14,11 +15,16 @@ public class TrimFunctionRepositoryImpl implements TrimFunctionRepository{
 
     @Override
     public String checkDefaultFunction(Long trimId, Long functionId) {
-        return jdbcTemplate.queryForObject("SELECT is_default " +
-                "FROM TRIM_FUNCTION " +
-                "WHERE trim_id=? AND function_id=?",
-                (rs, rowNum) -> rs.getString("is_default"),
-                trimId, functionId);
+        try{
+            return jdbcTemplate.queryForObject("SELECT is_default " +
+                            "FROM TRIM_FUNCTION " +
+                            "WHERE trim_id=? AND function_id=?",
+                    (rs, rowNum) -> rs.getString("is_default"),
+                    trimId, functionId);
+        } catch (EmptyResultDataAccessException e){
+            return null;
+        }
 
     }
+
 }
