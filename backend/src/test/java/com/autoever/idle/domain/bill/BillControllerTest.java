@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -67,7 +68,7 @@ class BillControllerTest {
     void getResultBill() throws Exception {
         //given
         BillRequestDto billRequestDto = new BillRequestDto(1L, 1L, List.of(1L));
-        given(billService.getResultBill(billRequestDto)).willReturn(billResponseDto);
+        given(billService.getResultBill(any())).willReturn(billResponseDto);
 
         //when
         ResultActions resultActions = mockMvc.perform(get("/result/bill")
@@ -77,7 +78,7 @@ class BillControllerTest {
 
         //then
         resultActions.andExpect(status().isOk());
+        resultActions.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        resultActions.andExpect(content().json(objectMapper.writeValueAsString(billResponseDto)));
     }
-
-
 }
