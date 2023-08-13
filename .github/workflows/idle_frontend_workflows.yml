@@ -3,11 +3,11 @@ on:
   push:
     branches:
       - main
-    paths: 'frontend/**'
+    paths: 'frontend/Idle/**'
 
 defaults:
   run:
-    working-directory: frontend
+    working-directory: frontend/Idle
     
 jobs:
   build:
