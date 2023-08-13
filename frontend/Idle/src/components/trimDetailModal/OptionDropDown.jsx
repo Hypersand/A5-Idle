@@ -3,7 +3,7 @@ import { ReactComponent as ArrowDown } from "../../assets/images/arrowDown.svg";
 import { useState } from "react";
 import palette from "../../styles/palette";
 
-function OptionDropDown({ category, options }) {
+function OptionDropDown({ category }) {
     const [isOpen, setIsOpen] = useState(false);
     const [animationstate, setAnimationState] = useState(false);
     function toggleDropDown() {
@@ -21,22 +21,20 @@ function OptionDropDown({ category, options }) {
     }
 
     function render(option, idx) {
-        if (category.function_category_idx === option.category_idx) {
-            return <StOption key={idx}>{option.name}</StOption>;
-        }
+        return <StOption key={idx}>{option.name}</StOption>;
     }
 
     return (
         <StContainer>
             <StTitle onClick={toggleDropDown}>
-                {category.name}
+                {category.categoryName}
                 <StButton $animationstate={animationstate}>
                     <ArrowDown />
                 </StButton>
             </StTitle>
             <StListContainer $isOpen={isOpen} $animationstate={animationstate}>
                 <Division />
-                {options.map((item, idx) => render(item, idx))}
+                {category.functions.map((item, idx) => render(item, idx))}
             </StListContainer>
         </StContainer>
     );
@@ -93,6 +91,6 @@ const StOption = styled.p`
     }
 `
 const StButton = styled.div`
-    transform: ${({ $animationstate }) => ($animationstate ? "rotateY(X)" : "rotateX(180deg)")};
+    transform: ${({ $animationstate }) => (!$animationstate ? "rotateY(X)" : "rotateX(180deg)")};
     transition: transform 0.6s ease;
 `

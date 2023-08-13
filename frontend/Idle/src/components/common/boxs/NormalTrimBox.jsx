@@ -7,12 +7,11 @@ import { CHANGE_TRIM } from "../../../utils/actionType";
 import palette from "../../../styles/palette";
 
 function NormalTrimBox({
-  purchase_rate,
+  purchaseRate,
   name,
   description,
   price,
-  default_func,
-  category,
+  defaultFunctions,
   isActive = true,
 }) {
   const { car, dispatch } = useContext(carContext);
@@ -46,7 +45,7 @@ function NormalTrimBox({
         <StContent>
           <StTitleContainer>
             <StContentHeader>
-              <TitleDetail $isSelected={isTrimSelected}>{purchase_rate}</TitleDetail>
+              <TitleDetail $isSelected={isTrimSelected}>{purchaseRate}</TitleDetail>
               <Title $isSelected={isTrimSelected}>{name}</Title>
             </StContentHeader>
             <Detail $isSelected={isTrimSelected}>{description}</Detail>
@@ -63,8 +62,7 @@ function NormalTrimBox({
           trim={name}
           desc={description}
           setModalOff={setModalOff}
-          options={default_func}
-          category={category}
+          defaultFunctions={defaultFunctions}
         />
       )}
     </>

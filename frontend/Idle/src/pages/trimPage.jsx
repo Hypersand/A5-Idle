@@ -1,14 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-// import { getTrimData } from "../utils/api";
 import TrimBoxContainer from "../components/trimBoxContainer/TrimBoxContainer";
 import { styled } from "styled-components";
 import BlueButton from "../components/common/buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
-import { TRIM_ROUTE } from "../utils/routes";
 import { carContext } from "../utils/context";
 import FindTrim from "../components/findTrim/FindTrim";
-import { getTrimData } from "../utils/api";
+import { CustomAPI } from "../utils/api";
 import palette from "../styles/palette";
+import { PATH } from "../utils/constants";
 
 let cachedTrimData = null;
 
@@ -21,18 +20,19 @@ function TrimPage() {
     navigate("/detail");
   }
   useEffect(() => {
-    getTrimData().then((result) => {
+    CustomAPI(PATH.TRIM.URL).then((result) => {
       setTrimData(result);
+      console.log(result);
       cachedTrimData = result;
     });
   }, []);
-
+  const filteredData = trimData?.filter((item) => item.name === car.trim.name)
   return (
     <>
-      <StImageContainer src={`${TRIM_ROUTE}${car.trim.name}.png`} />
+      {filteredData ? <StImageContainer src={filteredData[0].imgUrl} /> : <p>Loading...</p>}
       <StWrapper>
         <StBottomContainer>
-          {trimData ? <TrimBoxContainer {...trimData} /> : <p>Loading...</p>}
+          {trimData ? <TrimBoxContainer data={trimData} /> : <p>Loading...</p>}
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>트림 선택</Title>

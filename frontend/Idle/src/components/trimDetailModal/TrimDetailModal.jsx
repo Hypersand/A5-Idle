@@ -4,7 +4,7 @@ import OptionDropDown from "./OptionDropDown";
 import { ReactComponent as EscapeButton } from "../../assets/images/esc.svg";
 import palette from "../../styles/palette";
 
-function TrimDetailModal({ trim, desc, setModalOff, options, category }) {
+function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions }) {
     return (
         createPortal(
             <ModalContainer>
@@ -20,8 +20,8 @@ function TrimDetailModal({ trim, desc, setModalOff, options, category }) {
                             </Description>
                         </StHeaderContainer>
                         <StOptionContainer>
-                            {category.map((item, idx) => (
-                                <OptionDropDown key={idx} category={item} options={options} />
+                            {defaultFunctions.map((item, idx) => (
+                                <OptionDropDown key={idx} category={item} />
                             ))}
                         </StOptionContainer>
                     </StContainer>

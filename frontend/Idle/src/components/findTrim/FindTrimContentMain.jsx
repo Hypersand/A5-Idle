@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import TrimBox from "./TrimBox";
-import { getTrimData } from "../../utils/api";
+import { CustomAPI } from "../../utils/api";
 import { useEffect, useState } from "react";
 import OptionBoxContainer from "../findTrim/OptionBoxContainer";
+import { PATH } from "../../utils/constants";
 
 
 function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
@@ -14,7 +15,7 @@ function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await getTrimData();
+        const data = await CustomAPI(PATH.TRIM.URL);
         setDummyData(data.trim);
       } catch (error) {
         console.error("Error fetching trim data:", error);

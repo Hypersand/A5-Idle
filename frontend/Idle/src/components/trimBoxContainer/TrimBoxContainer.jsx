@@ -4,7 +4,7 @@ import NormalTrimBox from "../common/boxs/NormalTrimBox";
 function TrimBoxContainer(data) {
   return (
     <StContainer>
-      {data.trim.map((item, idx) => (
+      {data.data.map((item, idx) => (
         <NormalTrimBox key={idx} {...item} category={data.category} />
       ))}
     </StContainer>
