@@ -1,18 +1,8 @@
 import { styled } from "styled-components";
 import palette from "../../styles/palette";
 import dealer from "../../assets/images/dealer.svg";
-const data = {
-  masterName: "김길동",
-  masterPhoneNumber: "010-1111-1111",
-  masterDealership: "한양대점",
-  masterDescription: "난 김길동이야ㅋㅋ",
-  masterSalesRate: 20,
-  masterImgUrl: "....",
-  masterLatitude: 33.450879,
-  masterLongitude: 126.56994,
-};
 
-function DillerBox({ isSelected, onClick }) {
+function DillerBox({ data, isSelected, onClick }) {
   return (
     <StContainer $isSelected={isSelected} onClick={onClick}>
       <StMainContainer>

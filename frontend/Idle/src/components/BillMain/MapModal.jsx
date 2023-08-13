@@ -4,13 +4,15 @@ import palette from "../../styles/palette";
 import { useState } from "react";
 import esc from "../../assets/images/esc.svg";
 import BlueButton from "../common/buttons/BlueButton";
-import DillerBox from "./DillerBox";
+import DillerBoxContainer from "./DillerBoxContainer";
+import CategoryTabs from "../common/tabs/CategoryTabs";
+
 const data = [
   {
     masterName: "김길동",
     masterPhoneNumber: "010-1111-1111",
     masterDealership: "한양대점",
-    masterDescription: "난 김길동이야ㅋㅋ",
+    masterDescription: "한양대지점 김길동입니다. 최선을 다하겠습니다.",
     masterSalesRate: 20,
     masterImgUrl: "....",
     masterLatitude: 33.450879,
@@ -20,7 +22,27 @@ const data = [
     masterName: "홍길동",
     masterPhoneNumber: "010-1234-1234",
     masterDealership: "왕십리점",
-    masterDescription: "난 홍길동~",
+    masterDescription: "왕십리지점 홍길동입니다. 최선을 다하겠습니다.",
+    masterSalesRate: 20,
+    masterImgUrl: "....",
+    masterLatitude: 33.450936,
+    masterLongitude: 126.569477,
+  },
+  {
+    masterName: "김길동",
+    masterPhoneNumber: "010-1111-1111",
+    masterDealership: "한양대점2",
+    masterDescription: "한양대지점 김길동입니다. 최선을 다하겠습니다.222",
+    masterSalesRate: 20,
+    masterImgUrl: "....",
+    masterLatitude: 33.450879,
+    masterLongitude: 126.56994,
+  },
+  {
+    masterName: "홍길동",
+    masterPhoneNumber: "010-1234-1234",
+    masterDealership: "왕십리점2",
+    masterDescription: "왕십리지점 홍길동입니다. 최선을 다하겠습니다.",
     masterSalesRate: 20,
     masterImgUrl: "....",
     masterLatitude: 33.450936,
@@ -32,6 +54,9 @@ function MapModal({ setCarMasterVisible }) {
   const [addressName, setAddressName] = useState("");
   const [latitude, setLatitude] = useState(33.450701);
   const [longtitude, setLongtitude] = useState(126.570667);
+  const [selectedTab, setSelectedTab] = useState("판매량순");
+
+  const tabs = ["판매량순", "거리순"];
 
   let geocoder = new window.kakao.maps.services.Geocoder();
 
@@ -64,6 +89,23 @@ function MapModal({ setCarMasterVisible }) {
   function XBtnClicked() {
     setCarMasterVisible(false);
   }
+  function tabClicked(name) {
+    setSelectedTab(name);
+  }
+
+  function renderTabs() {
+    return tabs.map((item, index) => {
+      return (
+        <CategoryTabs
+          text={item}
+          key={index}
+          isClicked={selectedTab === item}
+          onClick={() => tabClicked(item)}
+        />
+      );
+    });
+  }
+
   return (
     <StContainer>
       <StBtnContainer>
@@ -79,12 +121,15 @@ function MapModal({ setCarMasterVisible }) {
             <StCurrent>{addressName}</StCurrent>
             <StBtn>위치 수정</StBtn>
           </StPosition>
+
+          <StHr></StHr>
+          <StTabs>{renderTabs()}</StTabs>
+
+          <DillerBoxContainer data={data} />
         </StMain>
       </StMainContainer>
 
       <BlueButton text={"구매 상담 신청"} />
-
-      <DillerBox />
     </StContainer>
   );
 }
@@ -131,6 +176,7 @@ const StTitle = styled.p`
   font-weight: 600;
   line-height: normal;
   margin-bottom: 12px;
+  height: 24px;
 `;
 
 const StPosition = styled.div`
@@ -138,6 +184,13 @@ const StPosition = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
+`;
+const StHr = styled.div`
+  width: 416px;
+  height: 1px;
+  background: #ddd;
+  margin-top: 12px;
+  margin-bottom: 16px;
 `;
 
 const StCurrent = styled.p`
@@ -159,4 +212,11 @@ const StBtn = styled.button`
   font-weight: 400;
   line-height: 20px;
   letter-spacing: -0.42px;
+`;
+
+const StTabs = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
+  height: 28px;
 `;
