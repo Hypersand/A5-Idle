@@ -8,6 +8,8 @@ import com.autoever.idle.domain.function.FunctionRepository;
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
 import com.autoever.idle.domain.interiorColor.InteriorBillDto;
 import com.autoever.idle.domain.interiorColor.InteriorColorRepository;
+import com.autoever.idle.global.exception.custom.InvalidExteriorException;
+import com.autoever.idle.global.exception.custom.InvalidInteriorException;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -25,6 +27,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -91,6 +94,37 @@ class BillServiceTest {
                 isEqualTo(billResponseDto.getAdditonalFunctions().size());
         softAssertions.assertThat(billResponse.getAdditonalFunctions().get(0).getFunctionCategory()).
                 isEqualTo(billResponseDto.getAdditonalFunctions().get(0).getFunctionCategory());
+    }
+
+    @Test
+    @DisplayName("외장 색상 id 요청 값이 정상적이지 않으면 예외 처리")
+    void getResultBill_InvalidExteriorException() {
+        //given
+        List<Long> additionalFunctionIds = List.of(1L);
+        Long exteriorId = 999999999L;
+        BillRequestDto billRequestDto = new BillRequestDto(exteriorId, 1L, additionalFunctionIds);
+
+        //when
+        when(exteriorColorRepository.findExteriorBill(anyLong())).thenReturn(Optional.empty());
+
+        //then
+        softAssertions.assertThatThrownBy(() -> billService.getResultBill(billRequestDto)).isInstanceOf(InvalidExteriorException.class);
+    }
+
+    @Test
+    @DisplayName("내장 색상 id 요청 값이 정상적이지 않으면 예외 처리")
+    void getResultBill_InvalidInteriorException() {
+        //given
+        List<Long> additionalFunctionIds = List.of(1L);
+        Long interiorId = 999999999L;
+        BillRequestDto billRequestDto = new BillRequestDto(1L, interiorId, additionalFunctionIds);
+
+        //when
+        when(exteriorColorRepository.findExteriorBill(anyLong())).thenReturn(Optional.of(exteriorBillDto));
+        when(interiorColorRepository.findInteriorBill(anyLong())).thenReturn(Optional.empty());
+
+        //then
+        softAssertions.assertThatThrownBy(() -> billService.getResultBill(billRequestDto)).isInstanceOf(InvalidInteriorException.class);
     }
 
 }

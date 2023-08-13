@@ -5,6 +5,10 @@ import com.autoever.idle.domain.bill.dto.BillResponseDto;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
 import com.autoever.idle.domain.interiorColor.InteriorBillDto;
+import com.autoever.idle.global.exception.ErrorCode;
+import com.autoever.idle.global.exception.custom.InvalidExteriorException;
+import com.autoever.idle.global.exception.custom.InvalidInteriorException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -80,5 +84,41 @@ class BillControllerTest {
         resultActions.andExpect(status().isOk());
         resultActions.andExpect(content().contentType(MediaType.APPLICATION_JSON));
         resultActions.andExpect(content().json(objectMapper.writeValueAsString(billResponseDto)));
+    }
+
+    @Test
+    @DisplayName("최종 견적서 api 요청 시 외장 색상 id의 값이 적절하지 못하면 에러 발생")
+    void getResultBill_ExteriorError() throws Exception {
+        //given
+        BillRequestDto billRequestDto = new BillRequestDto(99999L, 1L, List.of(1L));
+        given(billService.getResultBill(any())).willThrow(new InvalidExteriorException(ErrorCode.INVALID_EXTERIOR));
+
+        //when
+        ResultActions resultActions = mockMvc.perform(get("/result/bill")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(billRequestDto)))
+                .andDo(print());
+
+        //then
+        resultActions.andExpect(status().is4xxClientError());
+        resultActions.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
+    @Test
+    @DisplayName("최종 견적서 api 요청 시 내장 색상 id의 값이 적절하지 못하면 에러 발생")
+    void getResultBill_InteriorError() throws Exception {
+        //given
+        BillRequestDto billRequestDto = new BillRequestDto(1L, 999999L, List.of(1L));
+        given(billService.getResultBill(any())).willThrow(new InvalidInteriorException(ErrorCode.INVALID_INTERIOR));
+
+        //when
+        ResultActions resultActions = mockMvc.perform(get("/result/bill")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(billRequestDto)))
+                .andDo(print());
+
+        //then
+        resultActions.andExpect(status().is4xxClientError());
+        resultActions.andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 }
