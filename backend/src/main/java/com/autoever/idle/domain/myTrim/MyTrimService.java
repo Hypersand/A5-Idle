@@ -44,7 +44,7 @@ public class MyTrimService {
     }
 
     //내게 맞는 트림 찾기 페이지에서 선택지 선택시
-    public List<MyTrimResDto> findTrimBySelectFunctions(List<Map<String, Integer>> functionIdList) throws IllegalArgumentException { //요청으로 들어온 선택된 선택지 리스트
+    public List<MyTrimResDto> findTrimBySelectFunctions(List<Map<String, Integer>> functionIdList) { //요청으로 들어온 선택된 선택지 리스트
         List<MyTrimResDto> myTrimResDtoList = new ArrayList<>();
         for (int requestIdx = 0; requestIdx < functionIdList.size(); requestIdx++) { //선택된 선택지를 하나씩 돌음
             int functionId = functionIdList.get(requestIdx).get("functionId");
@@ -103,7 +103,7 @@ public class MyTrimService {
         }
     }
 
-    public List<MyTrimOptionDto> findOptionBySelectFunctions(MyTrimSubmitReqDto myTrimSubmitReqDto) {
+    public List<MyTrimOptionDto> findOptionBySelectFunctions(MyTrimSubmitReqDto myTrimSubmitReqDto) throws IllegalArgumentException {
         List<MyTrimOptionDto> myTrimOptionDtoList = new ArrayList<>();
         Long trimId = myTrimSubmitReqDto.getTrimId();
         List<Map<String, Long>> functionIdList = myTrimSubmitReqDto.getSelectFunctions();

@@ -24,8 +24,10 @@ class TrimFunctionRepositoryImplTest {
     void checkDefaultFunction(){
         String TRUE = trimFunctionRepository.checkDefaultFunction(1L, 1L);
         String FALSE = trimFunctionRepository.checkDefaultFunction(1L, 140L);
+        String NULL = trimFunctionRepository.checkDefaultFunction(1L, 101L);
 
         softly.assertThat(TRUE).isEqualTo("TRUE");
         softly.assertThat(FALSE).isEqualTo("FALSE");
+        softly.assertThat(NULL).isNull();
     }
 }

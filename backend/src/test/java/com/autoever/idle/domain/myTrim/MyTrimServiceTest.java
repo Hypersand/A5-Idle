@@ -10,6 +10,7 @@ import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitReqDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
 import com.autoever.idle.global.exception.custom.InvalidFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidMyTrimFunctionException;
+import com.autoever.idle.global.exception.custom.InvalidTrimFunctionException;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -145,7 +146,7 @@ class MyTrimServiceTest {
         functionIdList.add(functionIdMap);
         MyTrimSubmitReqDto myTrimSubmitReqDto = new MyTrimSubmitReqDto(1L,functionIdList);
         MyTrimOptionDto myTrimOptionDto = new MyTrimOptionDto(1L, "옵션", 400000L);
-        given(trimFunctionRepository.checkDefaultFunction(anyLong(), any())).willReturn("FALSE");
+        given(trimFunctionRepository.checkDefaultFunction(anyLong(), anyLong())).willReturn("FALSE");
         given(functionRepository.findOptionBySelectFunction(any())).willReturn(myTrimOptionDto);
         given(functionRepository.checkMyTrimFunction(anyInt())).willReturn("TRUE");
 
@@ -158,4 +159,20 @@ class MyTrimServiceTest {
         softly.assertThat(myTrimOptionDtoList.get(0).getOptionName()).isEqualTo("옵션");
     }
 
+    @Test
+    @DisplayName("트림에 선택된 기능이 존재하지 않는 기능일 경우")
+    void checkTrimFunction(){
+        //given
+        List<Map<String, Long>> functionIdList = new ArrayList<>();
+        Map<String, Long> functionIdMap = new HashMap<>();
+        functionIdMap.put("functionId",1L);
+        functionIdList.add(functionIdMap);
+        MyTrimSubmitReqDto myTrimSubmitReqDto = new MyTrimSubmitReqDto(1L,functionIdList);
+        given(functionRepository.checkMyTrimFunction(anyInt())).willReturn("TRUE");
+        given(trimFunctionRepository.checkDefaultFunction(anyLong(),anyLong())).willReturn(null);
+
+        //when&then
+        softly.assertThatThrownBy(() -> myTrimService.findOptionBySelectFunctions(myTrimSubmitReqDto))
+                .isInstanceOf(InvalidTrimFunctionException.class);
+    }
 }
