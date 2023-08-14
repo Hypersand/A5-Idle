@@ -1,12 +1,10 @@
 package com.autoever.idle.domain.interiorColor.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class InteriorColorDto {
 
     private Long interiorId;
@@ -16,4 +14,15 @@ public class InteriorColorDto {
     private String carInteriorImgUrl;
     private String interiorPurchaseRate;
 
+    protected InteriorColorDto() {
+    }
+
+    public InteriorColorDto(Long interiorId, String interiorName, int interiorPrice, String interiorImgUrl, String carInteriorImgUrl, String interiorPurchaseRate) {
+        this.interiorId = interiorId;
+        this.interiorName = interiorName;
+        this.interiorPrice = interiorPrice;
+        this.interiorImgUrl = interiorImgUrl;
+        this.carInteriorImgUrl = carInteriorImgUrl;
+        this.interiorPurchaseRate = interiorPurchaseRate;
+    }
 }
