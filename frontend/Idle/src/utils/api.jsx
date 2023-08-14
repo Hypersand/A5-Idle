@@ -1,7 +1,6 @@
 export async function getAPI(path, data = {}) {
   try {
     const queryParams = new URLSearchParams(data).toString();
-    console.log(queryParams);
     const response = await fetch(`/api/${path}${queryParams}`, {
       method: "GET",
       headers: {
