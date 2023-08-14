@@ -4,24 +4,24 @@ import { carContext } from "utils/context";
 import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "utils/actionType";
 import palette from "styles/palette";
 
-function DetailModelBox({ purchase_rate, name, description, price, currentTab, isActive = true }) {
+function DetailModelBox({ purchase_rate, type, description, price, currentTab, isActive = true }) {
   const { car, dispatch } = useContext(carContext);
 
-  function optionClicked(name, price) {
-    const payload = { name: name, price: price };
+  function optionClicked(type, price) {
+    const payload = { name: type, price: price };
     switch (currentTab) {
       case "engines":
-        if (car.detail.engines.name !== name) {
+        if (car.detail.engines.name !== type) {
           dispatch({ type: CHANGE_ENGINES, payload: payload });
         }
         break;
       case "drivingMethods":
-        if (car.detail.drivingMethods.name !== name) {
+        if (car.detail.drivingMethods.name !== type) {
           dispatch({ type: CHANGE_DRIVING_METHODS, payload: payload });
         }
         break;
       case "bodyTypes":
-        if (car.detail.bodyTypes.name !== name) {
+        if (car.detail.bodyTypes.name !== type) {
           dispatch({ type: CHANGE_BODY_TYPES, payload: payload });
         }
         break;
@@ -29,18 +29,18 @@ function DetailModelBox({ purchase_rate, name, description, price, currentTab, i
         break;
     }
   }
-  const isOptionSelected = car.detail[currentTab].name === name;
+  const isOptionSelected = car.detail[currentTab].name === type;
   return (
     <>
       <StContainer
-        onClick={() => optionClicked(name, price)}
+        onClick={() => optionClicked(type, price)}
         $isSelected={isOptionSelected}
         $isActive={isActive}
       >
         <StContent>
           <StTitleContainer>
             <StContentHeader>
-              <Title $isSelected={isOptionSelected}>{name}</Title>
+              <Title $isSelected={isOptionSelected}>{type}</Title>
               <TitleDetail $isSelected={isOptionSelected}>{purchase_rate}</TitleDetail>
             </StContentHeader>
             <Detail $isSelected={isOptionSelected}>{description}</Detail>
