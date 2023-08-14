@@ -9,8 +9,8 @@ export const PATH = {
   },
   DETAIL: `trims/models?`,
   COLOR: {
-    EXTERIOR: `trims/exterior/colors`,
-    INTERIOR: `trims/exterior/colors`,
+    EXTERIOR: `trims/exterior/colors?`,
+    INTERIOR: `trims/exterior/colors?`,
   },
   OPTION: {
     DEFAULT: `trims/default/options`,
