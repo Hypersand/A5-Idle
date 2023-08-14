@@ -5,7 +5,7 @@ function Map({ data, latitude, longtitude }) {
     const container = document.getElementById("map");
     const options = {
       center: new window.kakao.maps.LatLng(latitude, longtitude),
-      level: 3,
+      level: 5,
     };
     const map = new window.kakao.maps.Map(container, options);
 
