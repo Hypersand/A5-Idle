@@ -7,7 +7,7 @@ export const PATH = {
     TRIM: `trims/favorite/select/trim`,
     SUBMIT: `trims/favorite/submit`,
   },
-  DETAIL: `trims/models`,
+  DETAIL: `trims/models?`,
   COLOR: {
     EXTERIOR: `trims/exterior/colors`,
     INTERIOR: `trims/exterior/colors`,
@@ -28,14 +28,7 @@ export const TYPE = {
   bill: "견적서 완성",
 };
 
-export const BILL_LIST = [
-  "trim",
-  "engines",
-  "drivingMethods",
-  "bodyTypes",
-  "exterior",
-  "interior",
-];
+export const BILL_LIST = ["trim", "engines", "drivingMethods", "bodyTypes", "exterior", "interior"];
 
 export const TRANSLATE = {
   trim: "트림",
@@ -50,10 +43,10 @@ export const TRANSLATE = {
   style: "스타일&퍼포먼스",
   protection: "차량 보호",
   convenience: "편의",
-  ExclusiveId: 1,
-  LeBlancId: 2,
-  PrestigeId: 3,
-  CalligraphyId: 4,
+  Exclusive: 1,
+  LeBlanc: 2,
+  Prestige: 3,
+  Calligraphy: 4,
 };
 export const TRIM = "trim";
 export const DETAIL = "detail";

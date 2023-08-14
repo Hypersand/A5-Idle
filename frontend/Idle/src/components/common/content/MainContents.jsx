@@ -7,14 +7,14 @@ import EngineContent from "./EngineContent";
 function MainContents({ currentState, data, color = false }) {
   const { car } = useContext(carContext);
   const filteredData = data[currentState].filter((item) => {
-    return item.name === (color ? car.color[currentState].name : car.detail[currentState].name);
+    return item.type === (color ? car.color[currentState].name : car.detail[currentState].name);
   })[0];
   return (
     <StContainer>
       {currentState === ENGINES ? (
         <EngineContent {...filteredData} />
       ) : (
-        <StImage src={filteredData?.img_url} />
+        <StImage src={filteredData?.imgUrl} />
       )}
     </StContainer>
   );
