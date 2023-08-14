@@ -1,31 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import palette from "styles/palette";
 
-let dummyData = {
-  car_img_urls: [
-    "src/assets/car/image_001.png",
-    "src/assets/car/image_002.png",
-    "src/assets/car/image_003.png",
-    "src/assets/car/image_004.png",
-    "src/assets/car/image_005.png",
-    "src/assets/car/image_006.png",
-    "src/assets/car/image_007.png",
-    "src/assets/car/image_008.png",
-    "src/assets/car/image_009.png",
-  ],
-};
-for (let i = 10; i <= 60; i++) {
-  dummyData.car_img_urls.push(`src/assets/car/image_0${i}.png`);
+function preloadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = function () {
+      resolve(img)
+    }
+    img.onerror = img.onabort = function () {
+      reject(src)
+    }
+    img.src = src
+  })
 }
-function Car3D() {
+
+function Car3D({ data = null }) {
   const [currentImg, setCurrentImage] = useState(0);
   const [isMouseDown, setisMouseDown] = useState(false);
   const [beforeX, setBeforeX] = useState(0);
-  const imgCount = dummyData.car_img_urls.length - 1;
+  // const imgCount = data ? data?.carImgUrls.length - 1 : 0;
 
+  // useEffect(() => {
+  //   data[0]?.carImgUrls?.map((item) => { preloadImage(item) })
+
+  // }, [])
   function turnRight() {
-    if (currentImg === imgCount) {
+    if (currentImg === 59) {
       setCurrentImage(0);
     } else {
       setCurrentImage((before) => before + 1);
@@ -33,7 +34,7 @@ function Car3D() {
   }
   function turnLeft() {
     if (currentImg === 0) {
-      setCurrentImage(imgCount);
+      setCurrentImage(59);
     } else {
       setCurrentImage((before) => before - 1);
     }
@@ -60,9 +61,9 @@ function Car3D() {
           onMouseUp={onMouseUp}
           onMouseLeave={onMouseUp}
         >
-          {dummyData.car_img_urls.map((item, idx) => (
-            <StImage key={idx} src={item} $display={currentImg === idx} />
-          ))}
+          {data ? data[0]?.carImgUrls?.map((item, idx) => (
+            <StImage key={idx} src={item.imgUrl} $display={currentImg === idx} />
+          )) : <></>}
         </StImageContainer>
         <Circle />
         <Text>360도 돌려보세요!</Text>

@@ -2,9 +2,9 @@ import { styled } from "styled-components";
 import { ReactComponent as ArrowRight } from "images/arrowRight.svg";
 import palette from "styles/palette";
 
-function ModifyButton() {
+function ModifyButton({ onClick }) {
   return (
-    <StContainer>
+    <StContainer onClick={onClick}>
       <StTitle>변경하기</StTitle>
       <ArrowRight />
     </StContainer>
@@ -19,6 +19,7 @@ const StContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 `;
 
 const StTitle = styled.p`
