@@ -3,40 +3,43 @@ import { CONSUMTION_KR, MAX_TORQUE_KR, PEAK_OUTPUT_KR } from '../../../utils/con
 import palette from '../../../styles/palette';
 
 function EngineDetail({ state, data }) {
-    return (
-        <StDetail>
-            <StHeader>
-                {state}
-                <Division $state={state} />
-                <p>
-                    {data[state].unit}
-                </p>
-            </StHeader>
-            {state === CONSUMTION_KR ?
-                <StDataNumber $state={state}>{`${data[state].value[0]} ~ ${data[state].value[1]}`}</StDataNumber> :
-                <StDataNumber $state={state}>{data[state].value}</StDataNumber>}
-            {state === CONSUMTION_KR ?
-                <StBarContainer>
-                    <StBar2 $value={data[state].value[1]} />
-                    <StBar $value={data[state].value[0]} $state={state} />
-                </StBarContainer> :
-                <StBarContainer>
-                    <StBar $value={data[state].value} $state={state} />
-                </StBarContainer>}
-        </StDetail>
-    )
+  return (
+    <StDetail>
+      <StHeader>
+        {state}
+        <Division $state={state} />
+        <p>{data[state].unit}</p>
+      </StHeader>
+      {state === CONSUMTION_KR ? (
+        <StDataNumber
+          $state={state}
+        >{`${data[state].value[0]} ~ ${data[state].value[1]}`}</StDataNumber>
+      ) : (
+        <StDataNumber $state={state}>{data[state].value}</StDataNumber>
+      )}
+      {state === CONSUMTION_KR ? (
+        <StBarContainer>
+          <StBar2 $value={data[state].value[1]} />
+          <StBar $value={data[state].value[0]} $state={state} />
+        </StBarContainer>
+      ) : (
+        <StBarContainer>
+          <StBar $value={data[state].value} $state={state} />
+        </StBarContainer>
+      )}
+    </StDetail>
+  );
 }
 
-export default EngineDetail
-
+export default EngineDetail;
 
 const StDetail = styled.div`
-    display: flex;
-    width: 300px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-`
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+`;
 const StHeader = styled.div`
     display: flex;
     justify-content: center;

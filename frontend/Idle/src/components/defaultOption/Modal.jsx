@@ -1,7 +1,7 @@
 import { styled, keyframes } from "styled-components";
 import { useEffect, useState } from "react";
 import CloseButton from "./CloseButton";
-import CategoryTabs from "../common/tabs/CategoryTabs";
+import CategoryTabs from "tabs/CategoryTabs";
 import ItemBox from "./ItemBox";
 import PaginationButton from "./PaginationButton";
 import { createPortal } from "react-dom";

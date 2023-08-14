@@ -2,7 +2,7 @@
 import { styled } from "styled-components";
 import { ReactComponent as Checked } from "../../assets/images/checked.svg";
 import { useContext, useEffect, useState } from "react";
-import { carContext } from "../../utils/context";
+import { carContext } from "utils/context";
 import { useLocation, useNavigate } from "react-router-dom";
 import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL, TYPE } from "../../utils/constants";
 import palette from "../../styles/palette";

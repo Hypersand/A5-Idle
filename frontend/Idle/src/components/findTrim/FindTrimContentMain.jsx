@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import TrimBox from "./TrimBox";
-import { getTrimData } from "../../utils/api";
+import { getTrimData } from "utils/api";
 import { useEffect, useState } from "react";
-import OptionBoxContainer from "../findTrim/OptionBoxContainer";
-
+import OptionBoxContainer from "findTrim/OptionBoxContainer";
 
 function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
   const [dummyData, setDummyData] = useState([]);
