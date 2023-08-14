@@ -50,7 +50,7 @@ class InteriorColorServiceTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("트림과 외장 색상에 따라 선택 가능한 내장 색상을 반환한다")
     void findAllInteriorColors() {
         Long trimId = 1L;
         Long exteriorId = 2L;
@@ -58,11 +58,17 @@ class InteriorColorServiceTest {
 
         InteriorColorResDto response = interiorColorService.findAllInteriorColors(1L, 2L);
 
-        softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorId()).isEqualTo(interiorColorDtos.get(0).getInteriorId());
-        softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorName()).isEqualTo(interiorColorDtos.get(0).getInteriorName());
-        softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorPrice()).isEqualTo(interiorColorDtos.get(0).getInteriorPrice());
-        softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorImgUrl()).isEqualTo(interiorColorDtos.get(0).getInteriorImgUrl());
-        softAssertions.assertThat(response.getCarInteriorColors().get(0).getCarInteriorImgUrl()).isEqualTo(interiorColorDtos.get(0).getCarInteriorImgUrl());
-        softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorPurchaseRate()).isEqualTo(interiorColorDtos.get(0).getInteriorPurchaseRate());
+        softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorId())
+                .isEqualTo(interiorColorDtos.get(0).getInteriorId());
+        softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorName())
+                .isEqualTo(interiorColorDtos.get(0).getInteriorName());
+        softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorPrice())
+                .isEqualTo(interiorColorDtos.get(0).getInteriorPrice());
+        softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorImgUrl())
+                .isEqualTo(interiorColorDtos.get(0).getInteriorImgUrl());
+        softAssertions.assertThat(response.getCarInteriorColors().get(0).getCarInteriorImgUrl())
+                .isEqualTo(interiorColorDtos.get(0).getCarInteriorImgUrl());
+        softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorPurchaseRate())
+                .isEqualTo(interiorColorDtos.get(0).getInteriorPurchaseRate());
     }
 }
