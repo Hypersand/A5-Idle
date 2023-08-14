@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
-import palette from "../../styles/palette";
+import palette from "styles/palette";
 
 function TrimBox({
   name,

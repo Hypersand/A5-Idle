@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { styled } from "styled-components";
-import { ReactComponent as ArrowLeft } from "../../assets/images/optionArrowLeft.svg";
-import { ReactComponent as ArrowRight } from "../../assets/images/optionArrowRight.svg";
-import palette from "../../styles/palette";
+import { ReactComponent as ArrowLeft } from "images/optionArrowLeft.svg";
+import { ReactComponent as ArrowRight } from "images/optionArrowRight.svg";
+import palette from "styles/palette";
 
 function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   useEffect(() => {

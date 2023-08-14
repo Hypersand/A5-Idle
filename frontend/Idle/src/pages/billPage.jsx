@@ -1,12 +1,13 @@
 import { styled } from "styled-components";
-import Header from "../components/layout/Header";
-import Car3D from "../components/common/content/Car3D";
-import WhiteButton from "../components/common/buttons/WhiteButton";
-import BlueButton from "../components/common/buttons/BlueButton";
-import { useContext, useState } from "react";
-import { carContext } from "../utils/context";
-import BillMain from "../components/BillMain/BillMain";
-import BillOptionContainer from "../components/BillMain/BillOptionContainer";
+
+import Header from "layout/Header";
+import Car3D from "content/Car3D";
+import WhiteButton from "buttons/WhiteButton";
+import BlueButton from "buttons/BlueButton";
+import { useContext,useState } from "react";
+import { carContext } from "utils/context";
+import BillMain from "billMain/BillMain";
+import BillOptionContainer from "billMain/BillOptionContainer";
 import MapModal from "../components/BillMain/MapModal";
 
 function BillPage() {

@@ -1,34 +1,24 @@
 import { createPortal } from "react-dom";
-import { keyframes, styled } from "styled-components";
+import { styled } from "styled-components";
 import OptionDropDown from "./OptionDropDown";
 import { ReactComponent as EscapeButton } from "images/esc.svg";
-import palette from "styles/palette";
-import { useState } from "react";
 
-function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions }) {
-  const [animationstate, setAnimationstate] = useState(false);
-
-  function modalOff() {
-    setAnimationstate(true);
-    setTimeout(() => {
-      setModalOff();
-    }, 300);
-  }
+function TrimDetailModal({ trim, desc, setModalOff, options, category }) {
   return createPortal(
-    <ModalContainer $animationstate={animationstate}>
-      <ModalBackground onClick={modalOff} />
+    <ModalContainer>
+      <ModalBackground onClick={setModalOff} />
       <StModal>
         <StContainer>
           <StHeaderContainer>
             <StHeader>
               {trim}
-              <EscapeButton onClick={modalOff} />
+              <EscapeButton onClick={setModalOff} />
             </StHeader>
             <Description>{desc}</Description>
           </StHeaderContainer>
           <StOptionContainer>
-            {defaultFunctions.map((item, idx) => (
-              <OptionDropDown key={idx} category={item} />
+            {category.map((item, idx) => (
+              <OptionDropDown key={idx} category={item} options={options} />
             ))}
           </StOptionContainer>
         </StContainer>
@@ -49,27 +39,8 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.1s ease-in-out;
-  /* opacity: ${({ $animationstate }) => ($animationstate ? 0 : 1)}; */
-  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.3s ease;
-`;
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 `;
 
-const fadeOut = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-`;
 const ModalBackground = styled.div`
   position: absolute;
   top: 0;
@@ -87,7 +58,7 @@ const StModal = styled.div`
   flex-direction: column;
   width: 600px;
   height: 533px;
-  background: ${palette.White};
+  background: ${({ theme }) => theme.White};
   overflow: hidden;
   z-index: 100;
   top: 50%;
@@ -97,7 +68,7 @@ const StModal = styled.div`
 const StContainer = styled.div`
   display: inline-flex;
   padding: 32px 0px 24px 10px;
-  background: ${palette.White};
+  background: var(--white, #fff);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -106,7 +77,7 @@ const StContainer = styled.div`
 const StHeaderContainer = styled.div``;
 const Description = styled.p`
   width: 496px;
-  color: ${palette.Black};
+  color: var(--black, #222);
   font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
@@ -119,7 +90,7 @@ const StHeader = styled.div`
   width: 496px;
   justify-content: space-between;
   align-items: center;
-  color: ${palette.Black};
+  color: var(--black, #222);
   font-family: "Hyundai Sans Head KR";
   font-size: 24px;
   font-style: normal;
@@ -141,12 +112,12 @@ const StOptionContainer = styled.ul`
   }
   &::-webkit-scrollbar-thumb {
     width: 3px;
-    border-right: 13px solid ${palette.White};
-    border-left: 13px solid ${palette.White};
+    border-right: 13px solid ${({ theme }) => theme.White};
+    border-left: 13px solid ${({ theme }) => theme.White};
     border-radius: 3px;
-    background: ${palette.NavyBlue_5};
+    background: ${({ theme }) => theme.NavyBlue_5};
   }
   &::-webkit-scrollbar-track {
-    background-color: ${palette.White};
+    background-color: ${({ theme }) => theme.White};
   }
 `;

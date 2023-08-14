@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ReactComponent as ArrowRightSVG } from "../../assets/images/arrowRight.svg";
-import palette from "../../styles/palette";
+import { ReactComponent as ArrowRightSVG } from "images/arrowRight.svg";
+import palette from "styles/palette";
 
 function PaginationButton({ onClickPrev, onClickNext, currentPage, totalPages }) {
   return (

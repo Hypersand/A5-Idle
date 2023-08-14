@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
-import { ENGINES } from "../../../utils/constants";
+import { ENGINES } from "utils/constants";
 import { useContext } from "react";
-import { carContext } from "../../../utils/context";
+import { carContext } from "utils/context";
 import EngineContent from "./EngineContent";
 
 function MainContents({ currentState, data, color = false }) {

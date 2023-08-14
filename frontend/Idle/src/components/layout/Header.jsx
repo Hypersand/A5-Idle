@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
-import CarNameDropdown from "../carNameDropdown/carNameDropdown";
-import Navbar from "../navbar/Navbar";
-import MainLogoBlack from "../common/logos/MainLogoBlack";
+import CarDropdown from "carDropdown/CarDropdown";
+import Navbar from "navbar/index";
+import MainLogoBlack from "logos/MainLogoBlack";
 
 function Header() {
   return (
@@ -10,7 +10,7 @@ function Header() {
         <MainLogoBlack />
       </StLogoContainer>
       <StDropDownContainer>
-        <CarNameDropdown />
+        <CarDropdown />
       </StDropDownContainer>
       <StNavContainer>
         <Navbar />

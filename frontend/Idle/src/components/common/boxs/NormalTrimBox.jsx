@@ -1,18 +1,17 @@
 import { styled } from "styled-components";
-import { ReactComponent as ArrorRight } from "../../../assets/images/arrowRight.svg";
+import { ReactComponent as ArrorRight } from "images/arrowRight.svg";
 import { useContext, useState } from "react";
-import { carContext } from "../../../utils/context";
-import TrimDetailModal from "../../trimDetailModal/TrimDetailModal";
-import { CHANGE_TRIM } from "../../../utils/actionType";
-import palette from "../../../styles/palette";
+import { carContext } from "utils/context";
+import TrimDetailModal from "trimDetailModal/TrimDetailModal";
+import { CHANGE_TRIM } from "utils/actionType";
+import palette from "styles/palette";
 
 function NormalTrimBox({
-  purchase_rate,
+  purchaseRate,
   name,
   description,
   price,
-  default_func,
-  category,
+  defaultFunctions,
   isActive = true,
 }) {
   const { car, dispatch } = useContext(carContext);
@@ -46,7 +45,7 @@ function NormalTrimBox({
         <StContent>
           <StTitleContainer>
             <StContentHeader>
-              <TitleDetail $isSelected={isTrimSelected}>{purchase_rate}</TitleDetail>
+              <TitleDetail $isSelected={isTrimSelected}>{purchaseRate}</TitleDetail>
               <Title $isSelected={isTrimSelected}>{name}</Title>
             </StContentHeader>
             <Detail $isSelected={isTrimSelected}>{description}</Detail>
@@ -63,8 +62,7 @@ function NormalTrimBox({
           trim={name}
           desc={description}
           setModalOff={setModalOff}
-          options={default_func}
-          category={category}
+          defaultFunctions={defaultFunctions}
         />
       )}
     </>
@@ -78,7 +76,8 @@ const StContainer = styled.div`
   width: 150px;
   height: 138px;
   padding: 12px 24px;
-  border: 1px solid ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.Grey_2}`)};
+  border: 1px solid
+    ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.Grey_2}`)};
   background: ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.White}`)};
   flex-direction: column;
   justify-content: center;
@@ -88,7 +87,8 @@ const StContainer = styled.div`
   pointer-events: ${({ $isActive }) => ($isActive ? "" : "none")};
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
-    background: ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`)};
+    background: ${({ $isSelected }) =>
+      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
   }
@@ -171,4 +171,7 @@ const PopUpButton = styled.div`
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.3px;
+  path {
+    fill: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : ``)};
+  }
 `;

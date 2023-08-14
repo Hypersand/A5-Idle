@@ -1,26 +1,24 @@
 import { styled } from "styled-components";
-import { ReactComponent as OptionChecked } from "../../assets/images/optionChecked.svg";
+import { ReactComponent as OptionChecked } from "images/optionChecked.svg";
 import { useContext, useEffect, useState } from "react";
-import { selectedOptionContext } from "../../utils/context";
-import OptionModal from "../common/modals/OptionModal";
-import palette from "../../styles/palette";
+import { PUSH_SELECTED_OPTION, POP_SELECTED_OPTION } from "utils/actionType";
+import { dispatchContext } from "utils/context";
+import OptionModal from "modals/OptionModal";
+import palette from "styles/palette";
 
 function OptionBox({ data, disable = false }) {
   const [isSelected, setIsSelected] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
+  const { stateDispatch } = useContext(dispatchContext);
 
   function boxClicked(e) {
     if (e.target.tagName === "svg" && e.target.dataset.name === "esc") return;
 
     setIsSelected((cur) => !cur);
-
     if (!isSelected) {
-      const newSelectedOption = [...selectedOption, data.name];
-      setSelectedOption(newSelectedOption);
+      stateDispatch({ type: PUSH_SELECTED_OPTION, payload: data.name });
     } else {
-      const newSelectedOption = selectedOption.filter((item) => item !== data.name);
-      setSelectedOption(newSelectedOption);
+      stateDispatch({ type: POP_SELECTED_OPTION, payload: data.name });
     }
   }
 
@@ -67,14 +65,15 @@ const StContainer = styled.div`
   width: 302px;
   height: 32px;
   padding: 16px;
-  border: 1px solid${palette.Grey_2};
+  border: 1px solid ${palette.Grey_2};
   background: ${({ $isSelcted }) => ($isSelcted ? `${palette.NavyBlue_5}` : `${palette.White}`)};
   opacity: ${({ $disable }) => ($disable ? 0.2 : 1)};
   pointer-events: ${({ $disable }) => ($disable ? "none" : "")};
   justify-content: space-between;
   align-items: center;
   &:hover {
-    background-color: ${({ $isSelcted }) => ($isSelcted ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`)};
+    background-color: ${({ $isSelcted }) =>
+      $isSelcted ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
   }
 `;

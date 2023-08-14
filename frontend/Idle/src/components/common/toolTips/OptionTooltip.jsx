@@ -1,4 +1,4 @@
-import { ReactComponent as OptionTooltipIcon } from "../../../assets/images/optionTooltip.svg";
+import { ReactComponent as OptionTooltipIcon } from "images/optionTooltip.svg";
 import PropTypes from "prop-types";
 
 function OptionTooltip({ isActive }) {
