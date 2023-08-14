@@ -136,7 +136,6 @@ public class MyTrimService {
     public List<FunctionIdDto> findNonSelectableFunctionsByTrim(Long trimId) {
         List<MyTrimFunctionResDto> myTrimFunctions = findMyTrimFunctions();
         List<FunctionIdDto> functionIdDtoList = new ArrayList<>();
-        System.out.println(myTrimFunctions.size());
         for (MyTrimFunctionResDto myTrimFunctionResDto : myTrimFunctions) {
             Long functionId = Long.valueOf(myTrimFunctionResDto.getFunctionId());
             FunctionIdDto functionIdDto = trimFunctionRepository.checkNonSelectableFunctionAtTrim(trimId, functionId);
