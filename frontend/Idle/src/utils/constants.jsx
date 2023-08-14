@@ -33,8 +33,8 @@ export const BILL_LIST = [
   "engines",
   "drivingMethods",
   "bodyTypes",
-  "exteriorColors",
-  "interiorColors",
+  "exterior",
+  "interior",
   "option",
 ];
 
@@ -43,8 +43,8 @@ export const TRANSLATE = {
   engines: "엔진",
   drivingMethods: "구동방식",
   bodyTypes: "바디타입",
-  exteriorColors: "외장 색상",
-  interiorColors: "내장 색상",
+  exterior: "외장 색상",
+  interior: "내장 색상",
   option: "옵션",
   all: "전체",
   safety: "안전",
@@ -60,8 +60,8 @@ export const BILL = "bill";
 export const ENGINES = "engines";
 export const DRVING_METHODS = "drivingMethods";
 export const BODY_TYPES = "bodyTypes";
-export const EXTERIOR_COLORS = "exteriorColors";
-export const INTERIROR_COLORS = "interiorColors";
+export const EXTERIOR_COLORS = "exterior";
+export const INTERIROR_COLORS = "interior";
 export const ALL = "all";
 export const SAFETY = "safety"
 export const STYLE = "style"
