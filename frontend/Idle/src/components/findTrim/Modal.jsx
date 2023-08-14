@@ -1,68 +1,57 @@
 import styled, { keyframes } from "styled-components";
-import BlueButton from "../common/buttons/BlueButton";
-import WhiteButton from "../common/buttons/WhiteButton";
-import { useState, useContext, useEffect, useRef } from "react";
-import FindTrimContentMain from "./FindTrimContentMain";
+import BlueButton from "buttons/BlueButton";
+import WhiteButton from "buttons/WhiteButton";
+import { useContext, useEffect, useRef, useReducer } from "react";
+import FindTrimContent from "./FindTrimContent";
 import OptionAlert from "./OptionAlert";
-import { selectedOptionContext } from "../../utils/context";
-import { carContext } from "../../utils/context";
-import { emptyCar, defaultOption } from "../../utils/constants";
-import { CHANGE_ALL } from "../../utils/actionType";
+import { carContext, stateContext, dispatchContext } from "utils/context";
+import { defaultOption } from "utils/constants";
+import { CHANGE_ALL } from "utils/actionType";
+import { findTrimInitialState } from "utils/constants";
+import { findTrimReducer } from "utils/reducer";
+import {
+  SET_ANIMATION_STATE,
+  SET_CLICK_ACTIVE,
+  SET_SELECTED_OPTION,
+  SET_OPTION_STATUS,
+  PUSH_SELECTED_OPTION,
+  SET_SHOWOPTION_ALERT,
+  PUSH_FUNCTION_LIST,
+} from "utils/actionType";
+import palette from "styles/palette";
+import { getAPI, postAPI } from "utils/api";
+import { PATH } from "utils/constants";
 
-function FindTrimContent({ setVisible }) {
+function Modal({ setVisible }) {
   const initialRender = useRef(true);
-  const [tempCar, setTempCar] = useState(emptyCar);
-  const [animationstate, setAnimationState] = useState(false);
-  const [clickActive, setClickActive] = useState(false);
-  const [selectedOption, setSelectedOption] = useState([]);
-  const [optionStatus, setOptionStatus] = useState([]);
-  const [showOptionAlert, setShowOptionAlert] = useState(false);
   const { dispatch } = useContext(carContext);
-  //성호: 리듀서로 state줄일 예정 (토요일)
+  const [state, stateDispatch] = useReducer(findTrimReducer, findTrimInitialState);
 
   useEffect(() => {
-    //백엔드로 요청
     if (initialRender.current) {
       initialRender.current = false;
       return;
     }
-
-    const dummyData = [
-      {
-        name: "Exclusive",
-        isDefault: true,
-        selectPossible: false,
-      },
-      {
-        name: "Le Blanc",
-        isDefault: false,
-        selectPossible: true,
-      },
-      {
-        name: "Prestige",
-        isDefault: false,
-        selectPossible: true,
-      },
-      {
-        name: "Calligraphy",
-        isDefault: true,
-        selectPossible: true,
-      },
-    ];
-    if (dummyData.length === 0) {
-      setOptionStatus(defaultOption);
+    if (state.selectedOption.length === 0) {
+      stateDispatch({ type: SET_OPTION_STATUS, payload: defaultOption });
+      return;
     }
-    setOptionStatus(dummyData);
-  }, [selectedOption]);
+    async function postFunc() {
+      await postAPI(PATH.FIND.OPTION, state.selectedOption).then((res) => {
+        stateDispatch({ type: SET_OPTION_STATUS, payload: res });
+      });
+    }
+    postFunc();
+  }, [state.selectedOption]);
 
   function clickExit(animateTime) {
-    setAnimationState(true);
+    stateDispatch({ type: SET_ANIMATION_STATE, payload: true });
     setTimeout(() => {
       setVisible(false);
     }, animateTime);
   }
   function clickCheck() {
-    clickExit(4000);
+    clickExit(2500);
     //request 보내기
     //get 받기
     const dummyData = [
@@ -77,46 +66,43 @@ function FindTrimContent({ setVisible }) {
         option_price: 2000000,
       },
     ];
-    setSelectedOption([]);
+    stateDispatch({ type: SET_SELECTED_OPTION, payload: [] });
+    state.tempCar.option.additional = [];
     dummyData.forEach((item) => {
-      setSelectedOption((prevAddOption) => [...prevAddOption, item.option_name]);
-      tempCar.option.additional.push({
+      stateDispatch({ type: PUSH_SELECTED_OPTION, payload: item.option_name });
+      state.tempCar.option.additional.push({
         name: item.option_name,
         price: item.option_price,
       });
     });
-    dispatch({ type: CHANGE_ALL, payload: tempCar });
-    setShowOptionAlert(true);
+    dispatch({ type: CHANGE_ALL, payload: state.tempCar });
+    stateDispatch({ type: SET_SHOWOPTION_ALERT, payload: true });
   }
   return (
-    <selectedOptionContext.Provider value={{ selectedOption, setSelectedOption }}>
-      <StFindTrimContentContainer $animationstate={animationstate}>
-        <StFindTrimContentTitle>
-          원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
-        </StFindTrimContentTitle>
-        <FindTrimContentMain
-          optionStatus={optionStatus}
-          setTempCar={setTempCar}
-          onClick={() => {
-            setClickActive(true);
-          }}
-        />
-        <StFindTrimContentButtonContainer>
-          <WhiteButton
-            text={"나가기"}
-            onClick={() => {
-              clickExit(1000);
-            }}
-          />
-          <BlueButton text={"확인"} isActive={clickActive} onClick={clickCheck} />
-        </StFindTrimContentButtonContainer>
-      </StFindTrimContentContainer>
-      {showOptionAlert && <OptionAlert text={selectedOption} />}
-    </selectedOptionContext.Provider>
+    <dispatchContext.Provider value={{ stateDispatch }}>
+      <stateContext.Provider value={{ state }}>
+        <StFindTrimContentContainer $animationstate={state.animationstate}>
+          <StFindTrimContentTitle>
+            원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
+          </StFindTrimContentTitle>
+          <FindTrimContent />
+          <StFindTrimContentButtonContainer>
+            <WhiteButton
+              text={"나가기"}
+              onClick={() => {
+                clickExit(1000);
+              }}
+            />
+            <BlueButton text={"확인"} isActive={state.clickActive} onClick={clickCheck} />
+          </StFindTrimContentButtonContainer>
+        </StFindTrimContentContainer>
+        {state.showOptionAlert && <OptionAlert text={state.selectedOption} />}
+      </stateContext.Provider>
+    </dispatchContext.Provider>
   );
 }
 
-export default FindTrimContent;
+export default Modal;
 
 const StFindTrimContentContainer = styled.div`
   display: flex;
@@ -125,7 +111,7 @@ const StFindTrimContentContainer = styled.div`
   flex-direction: column;
   width: 1280px;
   height: 580px;
-  background-color: ${({ theme }) => theme.Grey_1};
+  background-color: ${palette.Grey_1};
   transition:
     transform 1s ease-in-out,
     opacity 1s ease-in-out;

@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 import { createPortal } from "react-dom";
+import palette from "styles/palette";
 
 function OptionAlert({ text }) {
-  console.log("A");
   return createPortal(
     <StAlertContainer>
       <StAlertTitle>
@@ -31,26 +31,26 @@ const StAlertContainer = styled.div`
   left: 413px;
   padding: 18px 40px 18px 40px;
   gap: 4px;
-  background-color: ${({ theme }) => theme.Black};
+  background-color: ${palette.Black};
   justify-content: center;
 `;
 
 const StAlertTitle = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.03em;
   text-align: center;
-  color: ${({ theme }) => theme.White};
+  color: ${palette.White};
 `;
 
 const StAlertContent = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-weight: 400;
   line-height: 21px;
   letter-spacing: -0.03em;
   text-align: center;
-  color: ${({ theme }) => theme.Grey_3};
+  color: ${palette.Grey_3};
 `;

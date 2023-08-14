@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { styled } from "styled-components";
-import { carContext } from "../../utils/context";
+import { carContext } from "utils/context";
+import palette from "styles/palette";
 
 function EstimatePrice() {
   const { car } = useContext(carContext);
@@ -19,7 +20,7 @@ const StDiv = styled.div`
   width: 130px;
   min-height: 48px;
   padding: 11px 11px;
-  border: 1px solid #c5c9d2;
+  border: 1px solid ${palette.CoolGrey_1};
   flex-direction: column;
 `;
 

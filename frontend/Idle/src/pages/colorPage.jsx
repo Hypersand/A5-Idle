@@ -1,115 +1,103 @@
 import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { carContext } from "../utils/context";
-import { CHANGE_OUTSIDE_COLOR } from "../utils/actionType";
-import BlueButton from "../components/common/buttons/BlueButton";
-import WhiteButton from "../components/common/buttons/WhiteButton";
+import { useNavigate, useParams } from "react-router-dom";
+import { carContext } from "utils/context";
+import BlueButton from "buttons/BlueButton";
+import WhiteButton from "buttons/WhiteButton";
 import {
   DEFAULT_EXTERIROR_COLOR,
   EXTERIOR_COLORS,
   INTERIROR_COLORS,
   TRANSLATE,
-} from "../utils/constants";
-import CategoryTabs from "../components/common/tabs/CategoryTabs";
-import Car3D from "../components/common/content/Car3D";
-import grey from "../assets/images/outsideColor/grey.png";
-import black from "../assets/images/outsideColor/black.png";
-import white from "../assets/images/outsideColor/white.png";
-import silver from "../assets/images/outsideColor/silver.png";
-import brown from "../assets/images/outsideColor/brown.png";
-import emerald from "../assets/images/outsideColor/emerald.png";
-import OutsideColorBoxContainer from "../components/colorSelection/OutsideColorBoxContainer";
-import InnerColorBoxContainer from "../components/colorSelection/InnerColorBoxContainer";
-import InnerColorContent from "../components/common/content/InnerColorContent";
+} from "utils/constants";
+import CategoryTabs from "tabs/CategoryTabs";
+import Car3D from "content/Car3D";
+import OutsideColorBoxContainer from "colorSelection/OutsideColorBoxContainer";
+import InnerColorBoxContainer from "colorSelection/InnerColorBoxContainer";
+import InnerColorContent from "content/InnerColorContent";
+import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR } from "../utils/actionType";
+import { getAPI } from "../utils/api";
+import { DEFAULT_INTERIROR_COLOR, PATH } from "../utils/constants";
 
-const dummyData = {
-  car_img_urls: ["...", "..."],
-  exterior_colors: [
+let cachedExterior = null
+let cachedInterior = {
+  "carInteriorColors": [
     {
-      exteriorId: 1,
-      exteriorName: "grey",
-      exteriorPrice: 0,
-      exteriorImgUrl: grey,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
+      "interiorId": 25,
+      "interiorName": "네이비",
+      "interiorPrice": 0,
+      "interiorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png",
+      "carInteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png",
+      "interiorPurchaseRate": "구매자 50%가 선택"
     },
     {
-      exteriorId: 15,
-      exteriorName: "black",
-      exteriorPrice: 0,
-      exteriorImgUrl: black,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
+      "interiorId": 31,
+      "interiorName": "블랙",
+      "interiorPrice": 0,
+      "interiorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png",
+      "carInteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png",
+      "interiorPurchaseRate": "구매자 45%가 선택"
     },
     {
-      exteriorId: 3,
-      exteriorName: "white",
-      exteriorPrice: 0,
-      exteriorImgUrl: white,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
+      "interiorId": 37,
+      "interiorName": "버건디",
+      "interiorPrice": 0,
+      "interiorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png",
+      "carInteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png",
+      "interiorPurchaseRate": "구매자 5%가 선택"
     },
     {
-      exteriorId: 31,
-      exteriorName: "brown",
-      exteriorPrice: 100000,
-      exteriorImgUrl: brown,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
+      "interiorId": 37,
+      "interiorName": "인조가죽(블랙)",
+      "interiorPrice": 0,
+      "interiorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png",
+      "carInteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png",
+      "interiorPurchaseRate": "구매자 5%가 선택"
     },
     {
-      exteriorId: 5,
-      exteriorName: "silver",
-      exteriorPrice: 0,
-      exteriorImgUrl: silver,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
-    },
-    {
-      exteriorId: 333,
-      exteriorName: "어비스 블랙 펄",
-      exteriorPrice: 0,
-      exteriorImgUrl: emerald,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
-    },
-  ],
-};
-const innercolorData = {
-  car_interior_colors: [
-    {
-      interior_idx: 1,
-      interior_name: "인조가죽(블랙)",
-      interior_price: 2000,
-      interior_img_url: "...",
-      car_interior_img_url: "../../assets/images/외장색상1.png",
-      interior_purchase_rate: "구매자의 22%가 선택",
-    },
-    {
-      interior_idx: 2,
-      interior_name: "그라파이트 그레이 블랙",
-      interior_price: 1000,
-      interior_img_url: "...",
-      car_interior_img_url: "../../assets/images/외장색상2.png",
-      interior_purchase_rate: "구매자의 32%가 선택",
-    },
-  ],
-};
+      "interiorId": 37,
+      "interiorName": "퀼팅천연(블랙)",
+      "interiorPrice": 0,
+      "interiorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png",
+      "carInteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png",
+      "interiorPurchaseRate": "구매자 5%가 선택"
+    }
+  ]
+}
 function ColorPage() {
+  const { tab } = useParams()
+  const [exteriorData, setExteriorData] = useState(cachedExterior)
+  const [interiorData, setInteriorData] = useState(cachedInterior)
   const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS);
-  const [colorIndex, setColorIndex] = useState(1);
   const tabs = [EXTERIOR_COLORS, INTERIROR_COLORS];
   const { car, dispatch } = useContext(carContext);
   const navigate = useNavigate();
+  useEffect(() => {
+    getAPI(PATH.COLOR.EXTERIOR, { trimId: TRANSLATE[car.trim.name] }).then((result) => {
+      setExteriorData(result);
+      cachedExterior = result;
+    });
+  }, []);
 
   useEffect(() => {
-    switch (currentTab) {
+    setCurrentTab(tab)
+    switch (tab) {
       case EXTERIOR_COLORS:
         dispatchDefault(
-          car.color.outside,
-          CHANGE_OUTSIDE_COLOR,
+          car.color.exterior,
+          CHANGE_EXTERIOR_COLOR,
           DEFAULT_EXTERIROR_COLOR[car.trim.name]
         );
         break;
       default:
+        dispatchDefault(
+          car.color.interior,
+          CHANGE_INTERIOR_COLOR,
+          DEFAULT_INTERIROR_COLOR[car.trim.name]
+        );
         break;
     }
-  }, [currentTab]);
+  }, [tab]);
   function dispatchDefault(tabState, actionType, defaultPayload) {
     if (tabState.name === undefined) {
       dispatch({
@@ -123,38 +111,39 @@ function ColorPage() {
 
     if (direction === "next") {
       if (currentIndex !== -1 && currentIndex + 1 < tabs.length) {
-        setCurrentTab(tabs[currentIndex + 1]);
+        navigate(`/color/${tabs[currentIndex + 1]}`);
       } else {
-        navigate("/option");
+        navigate("/option/all");
       }
     } else if (direction === "prev") {
       if (currentIndex > 0) {
-        setCurrentTab(tabs[currentIndex - 1]);
+        navigate(`/color/${tabs[currentIndex - 1]}`);
       } else {
-        navigate("/detail");
+        navigate("/detail/bodyTypes");
       }
     }
   }
-
+  const filteredExteriorData = exteriorData?.filter((item) => { return item.exteriorName === car.color.exterior?.name })
+  const filteredInteriorData = interiorData.carInteriorColors.filter((item) => { return item.interiorName === car.color.interior?.name })
   return (
     <>
       <StWrapper>
         <StTabContainer>
           {tabs.map((item, idx) => (
-            <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />
+            <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} onClick={() => { navigate(`/color/${item}`) }} />
           ))}
         </StTabContainer>
         {currentTab === EXTERIOR_COLORS ? (
-          <Car3D />
+          <Car3D data={filteredExteriorData} />
         ) : (
-          <InnerColorContent data={innercolorData} index={colorIndex} />
+          <InnerColorContent data={filteredInteriorData} />
         )}
         <StBottomContainer>
           <StContainer>
             {currentTab === EXTERIOR_COLORS ? (
-              <OutsideColorBoxContainer data={dummyData.exterior_colors} />
+              <OutsideColorBoxContainer data={exteriorData} />
             ) : (
-              <InnerColorBoxContainer data={innercolorData} onClick={setColorIndex} />
+              <InnerColorBoxContainer data={interiorData} />
             )}
           </StContainer>
           <StConfirmContainer>

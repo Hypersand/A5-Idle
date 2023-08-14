@@ -1,10 +1,11 @@
 /* eslint-disable no-case-declarations */
 import { styled } from "styled-components";
-import { ReactComponent as Checked } from "../../assets/images/checked.svg";
+import { ReactComponent as Checked } from "images/checked.svg";
 import { useContext, useEffect, useState } from "react";
-import { carContext } from "../../utils/context";
+import { carContext } from "utils/context";
 import { useLocation, useNavigate } from "react-router-dom";
-import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL, TYPE } from "../../utils/constants";
+import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL, TYPE } from "utils/constants";
+import palette from "styles/palette";
 /**
  *
  * @param {trim,color~~} type
@@ -12,7 +13,7 @@ import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL, TYPE } from "../.
  * @param {setIsMatch} setIsMatch
  */
 function checkMatch(type, currentPage, setIsMatch) {
-  if (type === currentPage) {
+  if (currentPage.split("/").includes(type)) {
     setIsMatch(true);
   } else {
     setIsMatch(false);
@@ -91,9 +92,16 @@ function getTotalSum(type, car) {
   }
   return total;
 }
+const params = {
+  trim: "",
+  detail: "/engines",
+  color: "/exterior",
+  option: "/all",
+  bill: "",
+}
 
 function boxClicked(type, navigate) {
-  navigate(`/${type}`);
+  navigate(`/${type}${params[type]}`);
 }
 
 function renderChecked(type, currenPage, car) {
@@ -162,8 +170,9 @@ const StDiv = styled.div`
   width: 130px;
   min-height: 20px;
   padding: 7px 11px;
-  border: 1px solid ${({ $ismatch }) => ($ismatch ? "#96A9DC" : "#C5C9D2")};
-  background-color: ${({ $ismatch }) => ($ismatch ? "#E7ECF9" : "#f6f6f6")};
+  border: 1px solid
+    ${({ $ismatch }) => ($ismatch ? `${palette.NavyBlue_4}` : `${palette.CoolGrey_1}`)};
+  background-color: ${({ $ismatch }) => ($ismatch ? `${palette.NavyBlue_1}` : `${palette.Grey_1}`)};
   flex-direction: column;
   &:hover {
     background-color: #f3f7ff;
@@ -213,7 +222,7 @@ const StSelected = styled.div`
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.24px;
-  height: 13px;
+  min-height: 13px;
   margin-bottom: 1px;
   margin-right: 6px;
 `;

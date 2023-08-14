@@ -1,17 +1,17 @@
 import { styled } from "styled-components";
-import { ReactComponent as ArrorRight } from "../../../assets/images/arrowRight.svg";
+import { ReactComponent as ArrorRight } from "images/arrowRight.svg";
 import { useContext, useState } from "react";
-import { carContext } from "../../../utils/context";
-import TrimDetailModal from "../../trimDetailModal/TrimDetailModal";
-import { CHANGE_TRIM } from "../../../utils/actionType";
+import { carContext } from "utils/context";
+import TrimDetailModal from "trimDetailModal/TrimDetailModal";
+import { CHANGE_TRIM } from "utils/actionType";
+import palette from "styles/palette";
 
 function NormalTrimBox({
-  purchase_rate,
+  purchaseRate,
   name,
   description,
   price,
-  default_func,
-  category,
+  defaultFunctions,
   isActive = true,
 }) {
   const { car, dispatch } = useContext(carContext);
@@ -45,7 +45,7 @@ function NormalTrimBox({
         <StContent>
           <StTitleContainer>
             <StContentHeader>
-              <TitleDetail $isSelected={isTrimSelected}>{purchase_rate}</TitleDetail>
+              <TitleDetail $isSelected={isTrimSelected}>{purchaseRate}</TitleDetail>
               <Title $isSelected={isTrimSelected}>{name}</Title>
             </StContentHeader>
             <Detail $isSelected={isTrimSelected}>{description}</Detail>
@@ -62,8 +62,7 @@ function NormalTrimBox({
           trim={name}
           desc={description}
           setModalOff={setModalOff}
-          options={default_func}
-          category={category}
+          defaultFunctions={defaultFunctions}
         />
       )}
     </>
@@ -77,8 +76,9 @@ const StContainer = styled.div`
   width: 150px;
   height: 138px;
   padding: 12px 24px;
-  border: 1px solid ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#DDD")};
-  background: ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#fff")};
+  border: 1px solid
+    ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.Grey_2}`)};
+  background: ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.White}`)};
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -87,7 +87,8 @@ const StContainer = styled.div`
   pointer-events: ${({ $isActive }) => ($isActive ? "" : "none")};
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
-    background: ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#e7ecf9")};
+    background: ${({ $isSelected }) =>
+      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
   }
@@ -117,8 +118,8 @@ const StTitleContainer = styled.div`
 `;
 
 const TitleDetail = styled.p`
-  color: ${({ $isSelected }) => ($isSelected ? "#E7ECF9" : "#1A3276")};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_1}` : `${palette.NavyBlue_5}`)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
@@ -127,8 +128,8 @@ const TitleDetail = styled.p`
 `;
 
 const Title = styled.h1`
-  color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : `${palette.Black}`)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 22px;
   font-style: normal;
   font-weight: 700;
@@ -139,8 +140,8 @@ const Title = styled.h1`
 const Detail = styled.p`
   width: 154px;
   opacity: 0.5;
-  color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : `${palette.Black}`)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -149,8 +150,8 @@ const Detail = styled.p`
 `;
 
 const Price = styled.p`
-  color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : `${palette.Black}`)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -163,11 +164,14 @@ const PopUpButton = styled.div`
   justify-content: center;
   align-items: center;
   gap: 4px;
-  color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : `${palette.Black}`)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.3px;
+  path {
+    fill: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : ``)};
+  }
 `;

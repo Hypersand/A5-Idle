@@ -1,30 +1,27 @@
 import { styled } from "styled-components";
 import { useContext } from "react";
-import { carContext } from "../../../utils/context";
-import {
-  CHANGE_BODY_TYPES,
-  CHANGE_DRIVING_METHODS,
-  CHANGE_ENGINES,
-} from "../../../utils/actionType";
+import { carContext } from "utils/context";
+import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "utils/actionType";
+import palette from "styles/palette";
 
-function DetailModelBox({ purchase_rate, name, description, price, currentTab, isActive = true }) {
+function DetailModelBox({ purchase_rate, type, description, price, currentTab, isActive = true }) {
   const { car, dispatch } = useContext(carContext);
 
-  function optionClicked(name, price) {
-    const payload = { name: name, price: price };
+  function optionClicked(type, price) {
+    const payload = { name: type, price: price };
     switch (currentTab) {
       case "engines":
-        if (car.detail.engines.name !== name) {
+        if (car.detail.engines.name !== type) {
           dispatch({ type: CHANGE_ENGINES, payload: payload });
         }
         break;
-      case "driving_methods":
-        if (car.detail.driving_methods.name !== name) {
+      case "drivingMethods":
+        if (car.detail.drivingMethods.name !== type) {
           dispatch({ type: CHANGE_DRIVING_METHODS, payload: payload });
         }
         break;
-      case "body_types":
-        if (car.detail.body_types.name !== name) {
+      case "bodyTypes":
+        if (car.detail.bodyTypes.name !== type) {
           dispatch({ type: CHANGE_BODY_TYPES, payload: payload });
         }
         break;
@@ -32,18 +29,18 @@ function DetailModelBox({ purchase_rate, name, description, price, currentTab, i
         break;
     }
   }
-  const isOptionSelected = car.detail[currentTab].name === name;
+  const isOptionSelected = car.detail[currentTab].name === type;
   return (
     <>
       <StContainer
-        onClick={() => optionClicked(name, price)}
+        onClick={() => optionClicked(type, price)}
         $isSelected={isOptionSelected}
         $isActive={isActive}
       >
         <StContent>
           <StTitleContainer>
             <StContentHeader>
-              <Title $isSelected={isOptionSelected}>{name}</Title>
+              <Title $isSelected={isOptionSelected}>{type}</Title>
               <TitleDetail $isSelected={isOptionSelected}>{purchase_rate}</TitleDetail>
             </StContentHeader>
             <Detail $isSelected={isOptionSelected}>{description}</Detail>
@@ -62,8 +59,9 @@ const StContainer = styled.div`
   width: 150px;
   height: 138px;
   padding: 12px 24px;
-  border: 1px solid ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#DDD")};
-  background: ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#fff")};
+  border: 1px solid
+    ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.Grey_2}`)};
+  background: ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.White}`)};
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -72,7 +70,8 @@ const StContainer = styled.div`
   pointer-events: ${({ $isActive }) => ($isActive ? "" : "none")};
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
-    background: ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#e7ecf9")};
+    background: ${({ $isSelected }) =>
+      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
   }
@@ -102,7 +101,7 @@ const StTitleContainer = styled.div`
 `;
 
 const TitleDetail = styled.p`
-  color: ${({ $isSelected }) => ($isSelected ? "#E7ECF9" : "#1A3276")};
+  color: ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_1}` : `${palette.NavyBlue_5}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;
@@ -112,7 +111,7 @@ const TitleDetail = styled.p`
 `;
 
 const Title = styled.h1`
-  color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
+  color: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : `${palette.Black}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
@@ -124,7 +123,7 @@ const Title = styled.h1`
 const Detail = styled.p`
   width: 154px;
   opacity: 0.5;
-  color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
+  color: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : `${palette.Black}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
@@ -134,7 +133,7 @@ const Detail = styled.p`
 `;
 
 const Price = styled.p`
-  color: ${({ $isSelected }) => ($isSelected ? "#ffffff" : "#222222")};
+  color: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : `${palette.Black}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;

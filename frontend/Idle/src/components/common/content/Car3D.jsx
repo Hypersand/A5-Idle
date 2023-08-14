@@ -1,28 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
+import palette from "styles/palette";
 
-let dummyData = {
-  car_img_urls: [
-    "../src/assets/car/image_001.png",
-    "../src/assets/car/image_002.png",
-    "../src/assets/car/image_003.png",
-    "../src/assets/car/image_004.png",
-    "../src/assets/car/image_005.png",
-    "../src/assets/car/image_006.png",
-    "../src/assets/car/image_007.png",
-    "../src/assets/car/image_008.png",
-    "../src/assets/car/image_009.png",
-  ],
-};
-for (let i = 10; i <= 60; i++) {
-  dummyData.car_img_urls.push(`../src/assets/car/image_0${i}.png`);
+function preloadImage(src = null) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = function () {
+      resolve(img)
+    }
+    img.onerror = img.onabort = function () {
+      reject(src)
+    }
+    img.src = src
+  })
 }
-function Car3D() {
+
+function Car3D({ data = null }) {
   const [currentImg, setCurrentImage] = useState(0);
   const [isMouseDown, setisMouseDown] = useState(false);
   const [beforeX, setBeforeX] = useState(0);
-  const imgCount = dummyData.car_img_urls.length - 1;
+  let imgCount = data === null ? 0 : data[0]?.carImgUrls.length - 1;
 
+  useEffect(() => {
+    data === null ? "" : data[0]?.carImgUrls?.map((item) => { preloadImage(item.imgUrl) })
+  }, [data])
   function turnRight() {
     if (currentImg === imgCount) {
       setCurrentImage(0);
@@ -59,9 +60,9 @@ function Car3D() {
           onMouseUp={onMouseUp}
           onMouseLeave={onMouseUp}
         >
-          {dummyData.car_img_urls.map((item, idx) => (
-            <StImage key={idx} src={item} $display={currentImg === idx} />
-          ))}
+          {data ? data[0]?.carImgUrls?.map((item, idx) => (
+            <StImage key={idx} src={item.imgUrl} $display={currentImg === idx} />
+          )) : <></>}
         </StImageContainer>
         <Circle />
         <Text>360도 돌려보세요!</Text>
@@ -93,7 +94,7 @@ const Circle = styled.div`
   height: 71px;
   border: 2px solid transparent;
   border-radius: 50%;
-  background-image: linear-gradient(#ffffff, #ffffff),
+  background-image: linear-gradient(${palette.White}, ${palette.White}),
     linear-gradient(0deg, #14285e 0%, #14285e45 50%, white 100%);
   /* background-image: linear-gradient(180deg, #DDE4F8 100%, rgba(231, 235, 246, 0.00) 0%),
     linear-gradient(0deg, #14285e 0%, #14285e45 50%, white 100%); */

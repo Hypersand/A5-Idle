@@ -1,44 +1,45 @@
 import { createPortal } from "react-dom";
 import { styled } from "styled-components";
-import BlueButton from "../buttons/BlueButton";
-import { ReactComponent as X } from "../../../assets/images/esc.svg";
+import BlueButton from "buttons/BlueButton";
+import { ReactComponent as X } from "images/esc.svg";
 import { useContext } from "react";
-import { selectedOptionContext } from "../../../utils/context";
+import { stateContext, dispatchContext } from "utils/context";
+import palette from "styles/palette";
+import { SET_SELECTED_OPTION } from "../../../utils/actionType";
+
 function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
-  const { selectedOption, setSelectedOption } = useContext(selectedOptionContext);
+  const { state } = useContext(stateContext);
+  const { stateDispatch } = useContext(dispatchContext);
   function selectedBtnClicked() {
-    if (selectedOption.includes(data.name)) {
+    if (state.selectedOption.includes(data.name)) {
       setModalVisible(false);
       return;
     } else {
-      const newSelectedOption = [...selectedOption, data.name];
-      setSelectedOption(newSelectedOption);
+      const newSelectedOption = [...state.selectedOption, data.name];
+      stateDispatch({ type: SET_SELECTED_OPTION, payload: newSelectedOption });
       setIsSelected(true);
       setModalVisible(false);
     }
   }
+  console.log(data);
   return createPortal(
     <ModalContainer onClick={onClick}>
       <ModalBackground onClick={() => setModalVisible(false)} />
       <StContainer>
         <StTitleContainer>
           <StTitle>{data.name}</StTitle>
-          <X onClick={setModalVisible} data-name={"esc"} />
+          <StImgX onClick={setModalVisible} data-name={"esc"} />
         </StTitleContainer>
+        <StDescription>{data.description}</StDescription>
         <img
-          src=""
+          src={data.imgUrl}
           alt="sampleImage"
           style={{ width: "452px", height: "256px", marginBottom: "16px" }}
         />
-        <StDescription>{data.description}</StDescription>
-        {/** 일단 임시 */}
         <StNote>
           * 홈페이지의 사진과 설명은 참고용이며 실제 차량에 탑재되는 기능과 설명은 상이할 수 있으니,
           차량 구입 전 카마스터를 통해 확인 바랍니다.
         </StNote>
-        {/* <StNote>
-          {data.note}
-        </StNote> */}
         <StBtnContainer>
           <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
         </StBtnContainer>
@@ -72,7 +73,7 @@ const StContainer = styled.div`
   height: 528px;
   display: inline-flex;
   padding: 32px 44px;
-  background: ${({ theme }) => theme.White};
+  background: ${palette.White};
   flex-direction: column;
   z-index: 100;
   align-items: center;
@@ -85,7 +86,7 @@ const StTitleContainer = styled.div`
   justify-content: space-between;
 `;
 const StTitle = styled.div`
-  font-family: Hyundai Sans Head KR;
+  font-family: "Hyundai Sans Head KR";
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -94,24 +95,30 @@ const StTitle = styled.div`
   margin-bottom: 12px;
 `;
 const StDescription = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.39px;
   margin-bottom: 28px;
+  margin-top: 25px;
 `;
 const StNote = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.36px;
   margin-bottom: 28px;
+  margin-top: 15px;
 `;
 const StBtnContainer = styled.div`
   position: absolute;
   bottom: 32px;
+`;
+
+const StImgX = styled(X)`
+  cursor: pointer;
 `;
