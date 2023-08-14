@@ -9,15 +9,15 @@ function Map({ data, latitude, longtitude }) {
     };
     const map = new window.kakao.maps.Map(container, options);
 
-    // const markerPosition = new window.kakao.maps.LatLng(latitude, longtitude);
-    // new window.kakao.maps.Marker({
-    //   map: map,
-    //   position: markerPosition,
-    // });
+    const markerPosition = new window.kakao.maps.LatLng(latitude, longtitude);
+    new window.kakao.maps.Marker({
+      map: map,
+      position: markerPosition,
+    });
 
     data.forEach((item) => {
       // 마커 이미지의 이미지 크기 입니다
-      const imageSize = new window.kakao.maps.Size(24, 35);
+      const imageSize = new window.kakao.maps.Size(50, 50);
       // 마커 이미지를 생성합니다
       const markerImage = new window.kakao.maps.MarkerImage(item.masterImgUrl, imageSize);
 
