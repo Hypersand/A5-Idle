@@ -154,7 +154,7 @@ function DetailModelPage() {
       <StWrapper>
         <StTabContainer>
           {tabs.map((item, idx) => (
-            <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />
+            <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} onClick={() => { navigate(`/detail/${item}`) }} />
           ))}
         </StTabContainer>
         <StContentsContainer>
