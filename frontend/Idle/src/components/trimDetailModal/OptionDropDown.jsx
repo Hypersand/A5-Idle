@@ -19,12 +19,12 @@ function OptionDropDown({ category }) {
             }, 0);
         }
     }
-  }
+
 
     function render(option, idx) {
         return <StOption key={idx}>{option.name}</StOption>;
     }
-  }
+
 
     return (
         <StContainer>
