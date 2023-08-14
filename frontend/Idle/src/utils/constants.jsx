@@ -35,7 +35,6 @@ export const BILL_LIST = [
   "bodyTypes",
   "exterior",
   "interior",
-  "option",
 ];
 
 export const TRANSLATE = {
