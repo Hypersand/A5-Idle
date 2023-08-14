@@ -3,43 +3,43 @@ import { ReactComponent as ArrowDown } from "../../assets/images/arrowDown.svg";
 import { useState } from "react";
 import palette from "../../styles/palette";
 
-function OptionDropDown({ category, options }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [animationstate, setAnimationState] = useState(false);
-  function toggleDropDown() {
-    if (isOpen) {
-      setAnimationState(!animationstate);
-      setTimeout(() => {
-        setIsOpen(!isOpen);
-      }, 200);
-    } else {
-      setAnimationState(!animationstate);
-      setTimeout(() => {
-        setIsOpen(!isOpen);
-      }, 0);
+function OptionDropDown({ category }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [animationstate, setAnimationState] = useState(false);
+    function toggleDropDown() {
+        if (isOpen) {
+            setAnimationState(!animationstate);
+            setTimeout(() => {
+                setIsOpen(!isOpen);
+            }, 200);
+        } else {
+            setAnimationState(!animationstate);
+            setTimeout(() => {
+                setIsOpen(!isOpen);
+            }, 0);
+        }
     }
-  }
 
-  function render(option, idx) {
-    if (category.function_category_idx === option.category_idx) {
-      return <StOption key={idx}>{option.name}</StOption>;
+
+    function render(option, idx) {
+        return <StOption key={idx}>{option.name}</StOption>;
     }
-  }
 
-  return (
-    <StContainer>
-      <StTitle onClick={toggleDropDown}>
-        {category.name}
-        <StButton $animationstate={animationstate}>
-          <ArrowDown />
-        </StButton>
-      </StTitle>
-      <StListContainer $isOpen={isOpen} $animationstate={animationstate}>
-        <Division />
-        {options.map((item, idx) => render(item, idx))}
-      </StListContainer>
-    </StContainer>
-  );
+
+    return (
+        <StContainer>
+            <StTitle onClick={toggleDropDown}>
+                {category.categoryName}
+                <StButton $animationstate={animationstate}>
+                    <ArrowDown />
+                </StButton>
+            </StTitle>
+            <StListContainer $isOpen={isOpen} $animationstate={animationstate}>
+                <Division />
+                {category.functions.map((item, idx) => render(item, idx))}
+            </StListContainer>
+        </StContainer>
+    );
 }
 
 export default OptionDropDown;
@@ -95,6 +95,6 @@ const StOption = styled.p`
     }
 `
 const StButton = styled.div`
-  transform: ${({ $animationstate }) => ($animationstate ? "rotateY(X)" : "rotateX(180deg)")};
-  transition: transform 0.6s ease;
-`;
+    transform: ${({ $animationstate }) => (!$animationstate ? "rotateY(X)" : "rotateX(180deg)")};
+    transition: transform 0.6s ease;
+`

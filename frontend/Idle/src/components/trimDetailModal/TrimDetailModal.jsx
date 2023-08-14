@@ -5,7 +5,7 @@ import { ReactComponent as EscapeButton } from "../../assets/images/esc.svg";
 import palette from "../../styles/palette";
 import { useState } from "react";
 
-function TrimDetailModal({ trim, desc, setModalOff, options, category }) {
+function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions }) {
     const [animationstate, setAnimationstate] = useState(false);
 
     function modalOff() {
@@ -29,8 +29,8 @@ function TrimDetailModal({ trim, desc, setModalOff, options, category }) {
                             </Description>
                         </StHeaderContainer>
                         <StOptionContainer>
-                            {category.map((item, idx) => (
-                                <OptionDropDown key={idx} category={item} options={options} />
+                            {defaultFunctions.map((item, idx) => (
+                                <OptionDropDown key={idx} category={item} />
                             ))}
                         </StOptionContainer>
                     </StContainer>
