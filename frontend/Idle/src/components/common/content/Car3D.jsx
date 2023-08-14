@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import palette from "styles/palette";
 
-function preloadImage(src) {
+function preloadImage(src = null) {
   return new Promise((resolve, reject) => {
     const img = new Image()
     img.onload = function () {
@@ -19,14 +19,13 @@ function Car3D({ data = null }) {
   const [currentImg, setCurrentImage] = useState(0);
   const [isMouseDown, setisMouseDown] = useState(false);
   const [beforeX, setBeforeX] = useState(0);
-  // const imgCount = data ? data?.carImgUrls.length - 1 : 0;
+  let imgCount = data === null ? 0 : data[0]?.carImgUrls.length - 1;
 
-  // useEffect(() => {
-  //   data[0]?.carImgUrls?.map((item) => { preloadImage(item) })
-
-  // }, [])
+  useEffect(() => {
+    data === null ? "" : data[0]?.carImgUrls?.map((item) => { preloadImage(item.imgUrl) })
+  }, [data])
   function turnRight() {
-    if (currentImg === 59) {
+    if (currentImg === imgCount) {
       setCurrentImage(0);
     } else {
       setCurrentImage((before) => before + 1);
@@ -34,7 +33,7 @@ function Car3D({ data = null }) {
   }
   function turnLeft() {
     if (currentImg === 0) {
-      setCurrentImage(59);
+      setCurrentImage(imgCount);
     } else {
       setCurrentImage((before) => before - 1);
     }
