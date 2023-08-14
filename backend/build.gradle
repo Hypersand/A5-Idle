@@ -48,9 +48,9 @@ jacoco {
 
 jacocoTestReport {
 	reports {
-		html.required = true
-		xml.required = true
-		csv.required = false
+		html.required.set(true)
+		xml.required.set(true)
+		csv.required.set(false)
 	}
 
 	afterEvaluate {
@@ -70,9 +70,9 @@ tasks.jacocoTestCoverageVerification {
 			element = "CLASS"
 
 			limit {
-				counter = "BRANCH"
+				counter = "LINE"
 				value = "COVEREDRATIO"
-				minimum = "0.70".toBigDecimal()
+				minimum = "0.80".toBigDecimal()
 			}
 
 			excludes = [

@@ -89,7 +89,6 @@ class DetailModelControllerTest {
     void showDetailModel() throws Exception {
         //given
         Long trimId = 1L;
-        String requestJson = "{\"trimId\":\"1\"}";
         given(detailModelService.findAllModels(trimId)).willReturn(detailModelResDto);
 
         //when
@@ -97,7 +96,7 @@ class DetailModelControllerTest {
         ResultActions resultActions =
                 mockMvc.perform(get("/trims/models")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestJson))
+                        .param("trimId", trimId.toString()))
                         .andDo(print());
 
         //then
