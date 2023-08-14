@@ -4,9 +4,9 @@ import Car3D from "content/Car3D";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
 import { useContext } from "react";
-import { carContext } from "../utils/context";
-import BillMain from "../components/BillMain/BillMain";
-import BillOptionContainer from "../components/BillMain/BillOptionContainer";
+import { carContext } from "utils/context";
+import BillMain from "billMain/BillMain";
+import BillOptionContainer from "billMain/BillOptionContainer";
 
 function BillPage() {
   const { car } = useContext(carContext);

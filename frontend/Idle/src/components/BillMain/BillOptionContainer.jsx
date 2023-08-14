@@ -1,5 +1,5 @@
 import BillOptionBox from "./BillOptionBox";
-import hyundai from "../../assets/images/hyundai.svg";
+import hyundai from "images/hyundai.svg";
 import { styled } from "styled-components";
 import palette from "../../styles/palette";
 import { useNavigate } from "react-router-dom";

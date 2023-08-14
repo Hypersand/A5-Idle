@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-import palette from "../../../styles/palette";
+import palette from "styles/palette";
 
 let dummyData = {
   car_img_urls: [

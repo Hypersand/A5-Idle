@@ -1,9 +1,9 @@
 import { styled } from "styled-components";
-import { TRANSLATE } from "../../utils/constants";
+import { TRANSLATE } from "utils/constants";
 import { useContext } from "react";
-import { carContext } from "../../utils/context";
-import ModifyButton from "../common/buttons/ModifyButton";
-import palette from "../../styles/palette";
+import { carContext } from "utils/context";
+import ModifyButton from "buttons/ModifyButton";
+import palette from "styles/palette";
 
 function BillDetail({ item }) {
   const { car } = useContext(carContext);

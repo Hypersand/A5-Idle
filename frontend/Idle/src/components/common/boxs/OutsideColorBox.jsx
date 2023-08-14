@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import palette from "../../../styles/palette";
+import palette from "styles/palette";
 function OutsideColorBox({ data, isSelected, onClick }) {
   const [isWhite, setIsWhite] = useState(false);
   const [isGrey, setIsGrey] = useState(false);

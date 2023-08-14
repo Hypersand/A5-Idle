@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import Functions from "./Functions";
-import palette from "../../styles/palette";
+import palette from "styles/palette";
 
 function OptionContent({
   data,

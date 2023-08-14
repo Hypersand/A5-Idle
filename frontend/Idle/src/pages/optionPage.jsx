@@ -15,10 +15,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import CategoryTabs from "tabs/CategoryTabs";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
-import { ReactComponent as ArrowLogo } from "../assets/images/arrowOption.svg";
+import { ReactComponent as ArrowLogo } from "images/arrowOption.svg";
 import OptionMain from "optionMain/index";
-import hyundai from "../assets/images/hyundai.svg";
-import palette from "../styles/palette";
+import hyundai from "images/hyundai.svg";
+import palette from "styles/palette";
 
 const dummyData = [
   {

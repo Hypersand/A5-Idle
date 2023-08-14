@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import palette from "../../styles/palette"
+import palette from "styles/palette";
 
 const carItem = ["Palisade", "Ionic5", "Ionic6"];
 

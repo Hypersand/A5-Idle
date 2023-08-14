@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { styled } from "styled-components";
-import { carContext } from "../../utils/context";
+import { carContext } from "utils/context";
 import {
   POP_ADDITIONAL_OPTION,
   POP_CONFUSING_OPTION,
   PUSH_ADDITIONAL_OPTION,
   PUSH_CONFUSING_OPTION,
-} from "../../utils/actionType";
+} from "utils/actionType";
 
 function BillOptionBox({ isAdded, data }) {
   const { car, dispatch } = useContext(carContext);

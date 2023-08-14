@@ -1,9 +1,9 @@
 import { styled } from "styled-components";
 import { useState, useContext, useEffect } from "react";
-import { carContext } from "../../utils/context";
-import { CHANGE_INTERIOR_COLOR } from "../../utils/actionType";
-import InnerColorImg from "../../assets/images/innerColor.png";
-import palette from "../../styles/palette";
+import { carContext } from "utils/context";
+import { CHANGE_INTERIOR_COLOR } from "utils/actionType";
+import InnerColorImg from "images/innerColor.png";
+import palette from "styles/palette";
 
 function InnerColorBoxContainer({ data, onClick }) {
   const [selectedIndex, setSelectedIndex] = useState(1);

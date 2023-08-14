@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { styled } from "styled-components";
-import { carContext } from "../../utils/context";
-import palette from "../../styles/palette";
+import { carContext } from "utils/context";
+import palette from "styles/palette";
 
 function EstimatePrice() {
   const { car } = useContext(carContext);

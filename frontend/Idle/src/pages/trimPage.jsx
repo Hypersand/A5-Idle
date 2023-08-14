@@ -3,11 +3,11 @@ import TrimBoxContainer from "trimBoxContainer/TrimBoxContainer";
 import { styled } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
-import { carContext } from "../utils/context";
-import FindTrim from "../components/findTrim/index";
-import { CustomAPI } from "../utils/api";
-import palette from "../styles/palette";
-import { PATH } from "../utils/constants";
+import { carContext } from "utils/context";
+import FindTrim from "findTrim/index";
+import { CustomAPI } from "utils/api";
+import palette from "styles/palette";
+import { PATH } from "utils/constants";
 
 let cachedTrimData = null;
 
@@ -26,7 +26,7 @@ function TrimPage() {
       cachedTrimData = result;
     });
   }, []);
-  const filteredData = trimData?.filter((item) => item.name === car.trim.name)
+  const filteredData = trimData?.filter((item) => item.name === car.trim.name);
   return (
     <>
       {filteredData ? <StImageContainer src={filteredData[0].imgUrl} /> : <p>Loading...</p>}
