@@ -9,8 +9,8 @@ export const PATH = {
   },
   DETAIL: `trims/models`,
   COLOR: {
-    EXTERIOR: `trims/exterior/colors`,
-    INTERIOR: `trims/exterior/colors`,
+    EXTERIOR: `trims/exterior/colors?`,
+    INTERIOR: `trims/exterior/colors?`,
   },
   OPTION: {
     DEFAULT: `trims/default/options`,
@@ -50,10 +50,10 @@ export const TRANSLATE = {
   style: "스타일&퍼포먼스",
   protection: "차량 보호",
   convenience: "편의",
-  ExclusiveId: 1,
-  LeBlancId: 2,
-  PrestigeId: 3,
-  CalligraphyId: 4,
+  Exclusive: 1,
+  LeBlanc: 2,
+  Prestige: 3,
+  Calligraphy: 4,
 };
 export const TRIM = "trim";
 export const DETAIL = "detail";

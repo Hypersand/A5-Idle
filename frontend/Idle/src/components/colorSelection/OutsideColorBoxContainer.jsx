@@ -12,7 +12,7 @@ function OutsideColorBoxContainer({ data }) {
   }
 
   function renderBox() {
-    return data.map((item) => {
+    return data?.map((item) => {
       return (
         <OutsideColorBox
           onClick={() => boxClicked(item.exteriorName, item.exteriorPrice)}
