@@ -33,6 +33,177 @@ const dummyData = [
       },
       {
         "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_003.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_004.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_005.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_006.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_007.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_008.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_009.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_010.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_011.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_012.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_013.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_014.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_015.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_016.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_017.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_018.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_019.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_020.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_021.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_022.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_023.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_024.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_025.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_026.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_027.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_028.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_029.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_030.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_031.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_032.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_033.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_034.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_035.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_036.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_037.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_038.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_039.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_040.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_041.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_042.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_043.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_044.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_045.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_046.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_047.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_048.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_049.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_050.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_051.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_052.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_053.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_054.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_055.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_056.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_057.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_058.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_059.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_060.png"
       }
     ]
   },
@@ -60,6 +231,168 @@ const dummyData = [
       },
       {
         "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_006.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_007.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_008.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_009.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_010.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_011.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_012.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_013.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_014.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_015.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_016.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_017.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_018.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_019.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_020.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_021.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_022.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_023.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_024.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_025.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_026.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_027.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_028.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_029.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_030.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_031.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_032.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_033.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_034.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_035.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_036.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_037.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_038.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_039.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_040.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_041.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_042.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_043.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_044.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_045.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_046.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_047.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_048.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_049.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_050.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_051.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_052.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_053.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_054.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_055.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_056.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_057.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_058.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_059.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_060.png"
       }
     ]
   },
@@ -84,24 +417,171 @@ const dummyData = [
       },
       {
         "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_005.png"
-      }
-    ]
-  },
-  {
-    "exteriorId": 5,
-    "exteriorName": "가이아 브라운 펄",
-    "exteriorPrice": 0,
-    "exteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/14.png",
-    "exteriorPurchaseRate": "구매자의 5%가 선택",
-    "carImgUrls": [
-      {
-        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_001.png"
       },
       {
-        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_002.png"
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_006.png"
       },
       {
-        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_003.png"
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_007.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_008.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_009.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_010.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_011.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_012.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_013.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_014.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_015.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_016.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_017.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_018.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_019.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_020.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_021.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_022.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_023.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_024.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_025.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_026.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_027.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_028.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_029.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_030.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_031.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_032.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_033.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_034.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_035.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_036.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_037.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_038.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_039.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_040.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_041.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_042.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_043.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_044.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_045.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_046.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_047.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_048.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_049.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_050.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_051.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_052.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_053.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_054.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_055.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_056.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_057.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_058.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_059.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_060.png"
       }
     ]
   },
@@ -132,6 +612,354 @@ const dummyData = [
       },
       {
         "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_007.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_008.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_009.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_010.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_011.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_012.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_013.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_014.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_015.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_016.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_017.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_018.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_019.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_020.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_021.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_022.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_023.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_024.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_025.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_026.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_027.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_028.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_029.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_030.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_031.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_032.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_033.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_034.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_035.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_036.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_037.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_038.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_039.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_040.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_041.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_042.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_043.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_044.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_045.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_046.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_047.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_048.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_049.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_050.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_051.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_052.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_053.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_054.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_055.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_056.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_057.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_058.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_059.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_060.png"
+      }
+    ]
+  },
+  {
+    "exteriorId": 5,
+    "exteriorName": "가이아 브라운 펄",
+    "exteriorPrice": 0,
+    "exteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/14.png",
+    "exteriorPurchaseRate": "구매자의 5%가 선택",
+    "carImgUrls": [
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_001.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_002.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_003.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_004.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_005.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_006.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_007.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_008.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_009.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_010.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_011.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_012.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_013.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_014.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_015.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_016.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_017.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_018.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_019.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_020.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_021.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_022.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_023.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_024.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_025.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_026.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_027.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_028.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_029.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_030.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_031.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_032.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_033.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_034.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_035.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_036.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_037.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_038.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_039.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_040.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_041.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_042.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_043.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_044.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_045.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_046.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_047.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_048.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_049.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_050.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_051.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_052.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_053.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_054.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_055.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_056.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_057.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_058.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_059.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_060.png"
       }
     ]
   },
@@ -156,6 +984,171 @@ const dummyData = [
       },
       {
         "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_005.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_006.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_007.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_008.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_009.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_010.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_011.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_012.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_013.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_014.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_015.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_016.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_017.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_018.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_019.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_020.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_021.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_022.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_023.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_024.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_025.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_026.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_027.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_028.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_029.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_030.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_031.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_032.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_033.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_034.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_035.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_036.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_037.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_038.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_039.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_040.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_041.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_042.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_043.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_044.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_045.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_046.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_047.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_048.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_049.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_050.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_051.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_052.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_053.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_054.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_055.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_056.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_057.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_058.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_059.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_060.png"
       }
     ]
   }
@@ -227,6 +1220,7 @@ function ColorPage() {
       }
     }
   }
+  const filteredData = dummyData.filter((item) => { return item.exteriorName === car.color.exterior?.name })
 
   return (
     <>
@@ -237,7 +1231,7 @@ function ColorPage() {
           ))}
         </StTabContainer>
         {currentTab === EXTERIOR_COLORS ? (
-          <Car3D />
+          <Car3D data={filteredData} />
         ) : (
           <InnerColorContent data={innercolorData} index={colorIndex} />
         )}
