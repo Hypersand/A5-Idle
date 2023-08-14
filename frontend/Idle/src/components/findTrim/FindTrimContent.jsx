@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import OptionBoxContainer from "findTrim/OptionBoxContainer";
 import { PATH } from "utils/constants";
 
-function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
+function FindTrimContent({ optionStatus, setTempCar, onClick }) {
   const [dummyData, setDummyData] = useState([]);
   const [selected, setSelected] = useState(-1);
   const [functionList, setFunctionList] = useState([]);
@@ -106,16 +106,16 @@ function FindTrimContentMain({ optionStatus, setTempCar, onClick }) {
   }
 
   return (
-    <StFindTrimContentMain>
+    <StFindTrimContent>
       <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>
       <OptionBoxContainer functionList={functionList} disableFunctionId={disableFunctionId} />
-    </StFindTrimContentMain>
+    </StFindTrimContent>
   );
 }
 
-export default FindTrimContentMain;
+export default FindTrimContent;
 
-const StFindTrimContentMain = styled.div`
+const StFindTrimContent = styled.div`
   width: 1024px;
   height: 384px;
   align-items: center;

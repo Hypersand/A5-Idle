@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import WhiteButton from "buttons/WhiteButton";
 import { useContext, useEffect, useRef, useReducer } from "react";
-import FindTrimContentMain from "./FindTrimContentMain";
+import FindTrimContent from "./FindTrimContent";
 import OptionAlert from "./OptionAlert";
 import { carContext, stateContext, dispatchContext } from "utils/context";
 import { defaultOption } from "utils/constants";
@@ -18,14 +18,19 @@ import {
   SET_SHOWOPTION_ALERT,
 } from "utils/actionType";
 import palette from "styles/palette";
+import { CustomAPI } from "utils/api";
+import { PATH } from "utils/constants";
 
-function FindTrimContent({ setVisible }) {
+function Modal({ setVisible }) {
   const initialRender = useRef(true);
   const { dispatch } = useContext(carContext);
   const [state, stateDispatch] = useReducer(findTrimReducer, findTrimInitialState);
 
   useEffect(() => {
     //백엔드로 요청
+    // CustomAPI(PATH.FIND.GET).then((result) => {
+    //   console.log(result);
+    // });
     if (initialRender.current) {
       initialRender.current = false;
       return;
@@ -101,7 +106,7 @@ function FindTrimContent({ setVisible }) {
           <StFindTrimContentTitle>
             원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
           </StFindTrimContentTitle>
-          <FindTrimContentMain
+          <FindTrimContent
             optionStatus={state.optionStatus}
             setTempCar={stateDispatch}
             onClick={() => {
@@ -124,7 +129,7 @@ function FindTrimContent({ setVisible }) {
   );
 }
 
-export default FindTrimContent;
+export default Modal;
 
 const StFindTrimContentContainer = styled.div`
   display: flex;

@@ -20,11 +20,11 @@ function TrimPage() {
     navigate("/detail");
   }
   useEffect(() => {
-    CustomAPI(PATH.TRIM).then((result) => {
-      setTrimData(result);
-      console.log(result);
-      cachedTrimData = result;
-    });
+    // CustomAPI(PATH.TRIM).then((result) => {
+    //   setTrimData(result);
+    //   console.log(result);
+    //   cachedTrimData = result;
+    // });
   }, []);
   const filteredData = trimData?.filter((item) => item.name === car.trim.name);
   return (
