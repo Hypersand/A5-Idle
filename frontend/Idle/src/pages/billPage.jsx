@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
-import Header from "../components/layout/Header";
-import Car3D from "../components/common/content/Car3D";
-import WhiteButton from "../components/common/buttons/WhiteButton";
-import BlueButton from "../components/common/buttons/BlueButton";
+import Header from "layout/Header";
+import Car3D from "content/Car3D";
+import WhiteButton from "buttons/WhiteButton";
+import BlueButton from "buttons/BlueButton";
 import { useContext } from "react";
 import { carContext } from "../utils/context";
 import BillMain from "../components/BillMain/BillMain";
@@ -57,7 +57,6 @@ const StContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 1280px;
-  overflow: scroll;
   justify-content: center;
   align-items: center;
 `;

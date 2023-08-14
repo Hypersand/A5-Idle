@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as MainLogoImg } from "../../../assets/images/hyundai.svg";
-import WarningModal from "../modals/WarningModal";
+import WarningModal from "modals/WarningModal";
 import { useState } from "react";
 import palette from "../../../styles/palette";
 

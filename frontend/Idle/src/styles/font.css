@@ -1,10 +1,10 @@
 @font-face {
   font-family: "Hyundai Sans Head KR";
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansHeadKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansHeadKRRegular.woff");
 }
 @font-face {
   font-family: "Hyundai Sans Text KR";
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
 }
 
 @font-face {
@@ -14,7 +14,7 @@
   font-weight: 500;
   line-height: 44px;
   letter-spacing: -1.08px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
 }
 @font-face {
   font-family: "display small";
@@ -23,7 +23,7 @@
   font-weight: 500;
   line-height: 44px;
   letter-spacing: -1.08px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansHeadKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansHeadKRRegular.woff");
 }
 @font-face {
   font-family: "headline large";
@@ -32,7 +32,7 @@
   font-weight: 500;
   line-height: 40px;
   letter-spacing: -0.96px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansHeadKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansHeadKRRegular.woff");
 }
 @font-face {
   font-family: "headline medium";
@@ -41,7 +41,7 @@
   font-weight: 500;
   line-height: 36px;
   letter-spacing: -0.84px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansHeadKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansHeadKRRegular.woff");
 }
 @font-face {
   font-family: "headline small";
@@ -50,7 +50,7 @@
   font-weight: 500;
   line-height: 32px;
   letter-spacing: -0.72px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansHeadKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansHeadKRRegular.woff");
 }
 @font-face {
   font-family: "title large1";
@@ -59,7 +59,7 @@
   font-weight: 700;
   line-height: 28px;
   letter-spacing: -0.66px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
 }
 @font-face {
   font-family: "title large2";
@@ -68,7 +68,7 @@
   font-weight: 700;
   line-height: 28px;
   letter-spacing: -0.6px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
 }
 
 @font-face {
@@ -78,7 +78,7 @@
   font-weight: 500;
   line-height: 32px;
   letter-spacing: -0.66px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
 }
 @font-face {
   font-family: "title medium2";
@@ -87,7 +87,7 @@
   font-weight: 700;
   line-height: 24px;
   letter-spacing: -0.48px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
 }
 
 @font-face {
@@ -97,7 +97,7 @@
   font-weight: 700;
   line-height: 20px;
   letter-spacing: -0.42px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
 }
 
 @font-face {
@@ -108,7 +108,7 @@
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.48px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
 }
 
 @font-face {
@@ -119,7 +119,7 @@
   font-weight: 500;
   line-height: 20px;
   letter-spacing: -0.42px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
 }
 
 @font-face {
@@ -130,5 +130,5 @@
   font-weight: 500;
   line-height: 16px;
   letter-spacing: -0.36px;
-  src: url("../src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
+  src: url("src/assets/fonts/AnyConv.com__HyundaiSansTextKRRegular.woff");
 }

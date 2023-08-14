@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 import BillDetail from "./BillDetail";
-import { BILL_LIST } from "../../utils/constants";
-import palette from "../../styles/palette";
+import { BILL_LIST } from "utils/constants";
 
 function BillMain() {
   function render(item) {
@@ -32,12 +31,12 @@ const StContainer = styled.div`
   margin-top: 50px;
 `;
 const Division = styled.div`
-  background-color: ${palette.Grey_3};
+  background-color: #7b7b7b;
   width: 830px;
   height: 1px;
 `;
 const StTitle = styled.h1`
-  color: ${palette.Black};
+  color: #222;
   font-family: "Hyundai Sans Text KR";
   font-size: 28px;
   font-style: normal;

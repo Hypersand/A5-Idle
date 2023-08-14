@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import { styled } from "styled-components";
-import BlueButton from "../buttons/BlueButton";
+import BlueButton from "buttons/BlueButton";
 import { ReactComponent as X } from "../../../assets/images/esc.svg";
 import { useContext } from "react";
 import { selectedOptionContext } from "../../../utils/context";

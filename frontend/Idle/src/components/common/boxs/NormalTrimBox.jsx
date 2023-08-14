@@ -169,4 +169,7 @@ const PopUpButton = styled.div`
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.3px;
+  path{
+    fill:${({ $isSelected }) => ($isSelected ? `${palette.White}` : ``)};
+  }
 `;

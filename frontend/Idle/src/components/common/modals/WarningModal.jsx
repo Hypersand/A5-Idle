@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useContext } from "react";
-import BlueButton from "../buttons/BlueButton";
-import WhiteButton from "../buttons/WhiteButton";
-import { RESET_ALL } from "../../../utils/actionType";
-import { carContext } from "../../../utils/context";
+import BlueButton from "buttons/BlueButton";
+import WhiteButton from "buttons/WhiteButton";
+import { RESET_ALL } from "utils/actionType";
+import { carContext } from "utils/context";
 import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
 import palette from "../../../styles/palette";

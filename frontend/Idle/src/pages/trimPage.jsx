@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import TrimBoxContainer from "../components/trimBoxContainer/TrimBoxContainer";
+import TrimBoxContainer from "trimBoxContainer/TrimBoxContainer";
 import { styled } from "styled-components";
-import BlueButton from "../components/common/buttons/BlueButton";
+import BlueButton from "buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
 import { carContext } from "../utils/context";
 import FindTrim from "../components/findTrim/FindTrim";

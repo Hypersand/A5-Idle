@@ -1,5 +1,4 @@
 /* eslint-disable react-refresh/only-export-components */
-
 export const PATH = {
   TRIM: `trims?carTypeName=팰리세이드`,
   FIND: {
@@ -21,7 +20,6 @@ export const PATH = {
   CARMASTER: `find/car/masters`,
   BILL: `result/bill`
 }
-
 export const TYPE = {
   trim: "트림",
   detail: "세부 모델",
@@ -30,7 +28,15 @@ export const TYPE = {
   bill: "견적서 완성",
 };
 
-export const BILL_LIST = ["trim", "engines", "driving_methods", "body_types", "exterior_colors", "interior_colors", "option"]
+export const BILL_LIST = [
+  "trim",
+  "engines",
+  "driving_methods",
+  "body_types",
+  "exterior_colors",
+  "interior_colors",
+  "option",
+];
 
 export const TRANSLATE = {
   trim: "트림",
@@ -44,7 +50,7 @@ export const TRANSLATE = {
   safety: "안전",
   style: "스타일&퍼포먼스",
   protection: "차량 보호",
-  convenience: "편의"
+  convenience: "편의",
 };
 export const TRIM = "trim";
 export const DETAIL = "detail";
@@ -255,4 +261,13 @@ export const emptyCar = {
     }
     return false;
   },
+};
+
+export const findTrimInitialState = {
+  tempCar: emptyCar,
+  animationstate: false,
+  clickActive: false,
+  selectedOption: [],
+  optionStatus: [],
+  showOptionAlert: false,
 };

@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import TrimPage from "../pages/trimPage";
-import DetailModelPage from "../pages/detailModelPage";
-import ColorPage from "../pages/colorPage";
-import OptionPage from "../pages/optionPage";
-import BillPage from "../pages/billPage";
-import MainPage from "../pages/mainPage";
-import Layout from "../components/layout/Layout";
+import TrimPage from "pages/trimPage";
+import DetailModelPage from "pages/detailModelPage";
+import ColorPage from "pages/colorPage";
+import OptionPage from "pages/optionPage";
+import BillPage from "pages/billPage";
+import MainPage from "pages/mainPage";
+import Layout from "layout/Layout";
 
 function Router() {
   return (

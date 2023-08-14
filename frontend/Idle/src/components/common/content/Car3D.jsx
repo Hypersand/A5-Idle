@@ -4,19 +4,19 @@ import palette from "../../../styles/palette";
 
 let dummyData = {
   car_img_urls: [
-    "../src/assets/car/image_001.png",
-    "../src/assets/car/image_002.png",
-    "../src/assets/car/image_003.png",
-    "../src/assets/car/image_004.png",
-    "../src/assets/car/image_005.png",
-    "../src/assets/car/image_006.png",
-    "../src/assets/car/image_007.png",
-    "../src/assets/car/image_008.png",
-    "../src/assets/car/image_009.png",
+    "src/assets/car/image_001.png",
+    "src/assets/car/image_002.png",
+    "src/assets/car/image_003.png",
+    "src/assets/car/image_004.png",
+    "src/assets/car/image_005.png",
+    "src/assets/car/image_006.png",
+    "src/assets/car/image_007.png",
+    "src/assets/car/image_008.png",
+    "src/assets/car/image_009.png",
   ],
 };
 for (let i = 10; i <= 60; i++) {
-  dummyData.car_img_urls.push(`../src/assets/car/image_0${i}.png`);
+  dummyData.car_img_urls.push(`src/assets/car/image_0${i}.png`);
 }
 function Car3D() {
   const [currentImg, setCurrentImage] = useState(0);

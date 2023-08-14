@@ -19,10 +19,12 @@ function OptionDropDown({ category }) {
             }, 0);
         }
     }
+  }
 
     function render(option, idx) {
         return <StOption key={idx}>{option.name}</StOption>;
     }
+  }
 
     return (
         <StContainer>
@@ -40,7 +42,7 @@ function OptionDropDown({ category }) {
     );
 }
 
-export default OptionDropDown
+export default OptionDropDown;
 
 const StContainer = styled.li`
     display: flex;
@@ -52,14 +54,14 @@ const StContainer = styled.li`
     flex-direction: column;
 `
 const StTitle = styled.div`
-    display: flex;
-    width: 451px;
-    justify-content: space-between;
-    align-items: center;
-    &:hover{
-        cursor: pointer;
-    }
-`
+  display: flex;
+  width: 451px;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 const Division = styled.div`
     width: 456px;
     margin-top: 12px;
@@ -68,14 +70,16 @@ const Division = styled.div`
 `
 
 const StListContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    overflow: hidden;
-    height: ${({ $isOpen }) => ($isOpen ? "auto" : "0px")};
-    opacity: ${({ $animationstate }) => ($animationstate ? 1 : 0)};
-    transform: ${({ $animationstate }) => ($animationstate ? "translateY(0)" : "translateY(-10px)")};
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  height: ${({ $isOpen }) => ($isOpen ? "auto" : "0px")};
+  opacity: ${({ $animationstate }) => ($animationstate ? 1 : 0)};
+  transform: ${({ $animationstate }) => ($animationstate ? "translateY(0)" : "translateY(-10px)")};
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 `;
 
 const StOption = styled.p`

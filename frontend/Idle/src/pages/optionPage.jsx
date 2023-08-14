@@ -1,6 +1,6 @@
-import DefaultOption from "../components/defaultOption/DefaultOption";
+import DefaultOption from "defaultOption/index";
 import { useEffect, useRef, useState } from "react";
-import OptionBox from "../components/common/boxs/OptionBox";
+import OptionBox from "boxs/OptionBox";
 import {
   ALL,
   SAFETY,
@@ -9,14 +9,14 @@ import {
   CONVENIENCE,
   setClickedOptionPage,
   TRANSLATE,
-} from "../utils/constants";
+} from "utils/constants";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import CategoryTabs from "../components/common/tabs/CategoryTabs";
-import WhiteButton from "../components/common/buttons/WhiteButton";
-import BlueButton from "../components/common/buttons/BlueButton";
+import CategoryTabs from "tabs/CategoryTabs";
+import WhiteButton from "buttons/WhiteButton";
+import BlueButton from "buttons/BlueButton";
 import { ReactComponent as ArrowLogo } from "../assets/images/arrowOption.svg";
-import OptionMain from "../components/optionMain/OptionMain";
+import OptionMain from "optionMain/index";
 import hyundai from "../assets/images/hyundai.svg";
 import palette from "../styles/palette";
 

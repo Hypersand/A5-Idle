@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 import { useContext } from "react";
-import { carContext } from "../../utils/context";
-import { CHANGE_OUTSIDE_COLOR } from "../../utils/actionType";
-import OutsideColorBox from "../common/boxs/OutsideColorBox";
+import { carContext } from "utils/context";
+import { CHANGE_OUTSIDE_COLOR } from "utils/actionType";
+import OutsideColorBox from "boxs/OutsideColorBox";
 
 function OutsideColorBoxContainer({ data }) {
   const { car, dispatch } = useContext(carContext);
