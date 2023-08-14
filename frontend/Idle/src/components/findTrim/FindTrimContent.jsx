@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import TrimBox from "./TrimBox";
-import { CustomAPI } from "utils/api";
+import { getAPI } from "utils/api";
 import { useEffect, useState, useContext } from "react";
 import OptionBoxContainer from "findTrim/OptionBoxContainer";
 import { PATH } from "utils/constants";
 import { SET_CLICK_ACTIVE } from "utils/actionType";
 import { stateContext, dispatchContext } from "utils/context";
-import { SET_FUNCTION_LIST } from "../../utils/actionType";
+import { PUSH_FUNCTION_LIST } from "../../utils/actionType";
 
 function FindTrimContent() {
   const { stateDispatch } = useContext(dispatchContext);
@@ -17,7 +17,7 @@ function FindTrimContent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await CustomAPI(PATH.TRIM.URL);
+        const data = await getAPI(PATH.TRIM.URL);
         setDummyData(data.trim);
       } catch (error) {
         console.error("Error fetching trim data:", error);
@@ -79,7 +79,7 @@ function FindTrimContent() {
         img_url: "",
       },
     ];
-    stateDispatch({ type: SET_FUNCTION_LIST, payload: payload });
+    stateDispatch({ type: PUSH_FUNCTION_LIST, payload: payload });
     fetchData();
   }, []);
 

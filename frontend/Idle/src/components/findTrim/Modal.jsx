@@ -16,9 +16,10 @@ import {
   SET_OPTION_STATUS,
   PUSH_SELECTED_OPTION,
   SET_SHOWOPTION_ALERT,
+  PUSH_FUNCTION_LIST,
 } from "utils/actionType";
 import palette from "styles/palette";
-import { CustomAPI } from "utils/api";
+import { getAPI } from "utils/api";
 import { PATH } from "utils/constants";
 
 function Modal({ setVisible }) {
@@ -27,10 +28,12 @@ function Modal({ setVisible }) {
   const [state, stateDispatch] = useReducer(findTrimReducer, findTrimInitialState);
 
   useEffect(() => {
-    //백엔드로 요청
-    // CustomAPI(PATH.FIND.GET).then((result) => {
-    //   console.log(result);
-    // });
+    getAPI(PATH.FIND.GET).then((result) => {
+      console.log(result);
+      result.map((item) => {
+        stateDispatch({ type: PUSH_FUNCTION_LIST, payload: item.name });
+      });
+    });
     if (initialRender.current) {
       initialRender.current = false;
       return;

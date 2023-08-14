@@ -18,6 +18,6 @@ export const PUSH_SELECTED_OPTION = "push_selected_option";
 export const POP_SELECTED_OPTION = "pop_selected_option";
 export const SET_OPTION_STATUS = "set_option_status";
 export const SET_SHOWOPTION_ALERT = "set_showoption_alert";
-export const SET_FUNCTION_LIST = "set_function_list";
+export const PUSH_FUNCTION_LIST = "push_function_list";
 export const SET_DISABLE_FUNCTION_ID = "set_disable_function_id";
 export const CLEAR_FUNCTIONS_OPTIONS = "clear_functions_options";

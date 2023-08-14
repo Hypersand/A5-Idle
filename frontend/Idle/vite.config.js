@@ -7,6 +7,17 @@ const __dirname = path.resolve(path.dirname(""));
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [svgr(), react()],
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://i-want-to-go-autoever.shop",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+        secure: false,
+        ws: true,
+      },
+    },
+  },
   resolve: {
     alias: {
       images: path.resolve(__dirname, "/src/assets/images"),

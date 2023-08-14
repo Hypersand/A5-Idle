@@ -1,6 +1,7 @@
 import {
   CLEAR_FUNCTIONS_OPTIONS,
   RESET_ALL,
+  PUSH_FUNCTION_LIST,
   PUSH_SELECTED_OPTION,
   POP_SELECTED_OPTION,
   PUSH_ADDITIONAL_OPTION,
@@ -20,7 +21,6 @@ import {
   SET_SELECTED_OPTION,
   SET_OPTION_STATUS,
   SET_SHOWOPTION_ALERT,
-  SET_FUNCTION_LIST,
   SET_DISABLE_FUNCTION_ID,
 } from "./actionType";
 
@@ -48,10 +48,10 @@ export function findTrimReducer(state, { type, payload }) {
         ...state,
         selectedOption: state.selectedOption.filter((item) => item !== payload),
       };
-    case SET_FUNCTION_LIST:
+    case PUSH_FUNCTION_LIST:
       return {
         ...state,
-        functionList: payload,
+        functionList: [...state.functionList, payload],
       };
     case SET_DISABLE_FUNCTION_ID:
       return {
