@@ -11,7 +11,7 @@ import {
   TRANSLATE,
 } from "utils/constants";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CategoryTabs from "tabs/CategoryTabs";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
@@ -233,7 +233,8 @@ function filterData(data, currentTab) {
 }
 
 function OptionPage() {
-  const [currentTab, setCurrentTab] = useState(ALL);
+  const { tab } = useParams()
+  const [currentTab, setCurrentTab] = useState(tab);
   const [selectedOption, setSelectedOption] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
@@ -266,10 +267,11 @@ function OptionPage() {
   }, [scrollBar.current]);
 
   useEffect(() => {
+    setCurrentTab(tab)
     setFilteredData(filterData(dummyData, currentTab));
     setCurrentPage(0);
     setSelectedOption("");
-  }, [currentTab]);
+  }, [tab]);
 
   useEffect(() => {
     if (selectedOption === "") {
@@ -290,22 +292,21 @@ function OptionPage() {
 
     if (direction === "next") {
       if (currentIndex !== -1 && currentIndex + 1 < tabs.length) {
-        setCurrentTab(tabs[currentIndex + 1]);
+        navigate(`/option/${tabs[currentIndex + 1]}`);
       } else {
         navigate("/bill");
       }
     } else if (direction === "prev") {
       if (currentIndex > 0) {
-        setCurrentTab(tabs[currentIndex - 1]);
+        navigate(`/option/${tabs[currentIndex - 1]}`);
       } else {
-        navigate("/color");
+        navigate("/color/exterior");
       }
     }
   }
 
   function TabClicked(idx) {
-    setCurrentTab(() => tabs[idx]);
-    // setFilteredData(filterData(dummyData, currentTab));
+    navigate(`/option/${tabs[idx]}`)
   }
 
   function ArrowButtonClicked(direction) {
