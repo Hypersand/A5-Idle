@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { createPortal } from "react-dom";
 import { ReactComponent as CloseButton } from "../../assets/images/esc.svg";
+import palette from "../../styles/palette";
 
 function DetailOptionModal({ title, description, imgURL, onClose }) {
   const stringMaxLength = 23;
@@ -68,7 +69,7 @@ const StBox = styled.div`
 const StContainer = styled.div`
   display: flex;
   z-index: 15;
-  background-color: ${({ theme }) => theme.White};
+  background-color: ${palette.White};
   width: 540px;
   height: 488px;
   flex-direction: column;
@@ -78,8 +79,8 @@ const StTitle = styled.div`
   display: flex;
   width: 452px;
   height: 32px;
-  color: ${({ theme }) => theme.Black};
-  font-family: Hyundai Sans Head KR;
+  color: ${palette.Black};
+  font-family: "Hyundai Sans Head KR";
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -105,8 +106,8 @@ const StImg = styled.div`
 `;
 
 const StDescription = styled.div`
-  color: ${({ theme }) => theme.Black};
-  font-family: Hyundai Sans Text KR;
+  color: ${palette.Black};
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -119,8 +120,8 @@ const StDescription = styled.div`
 const StSubDescription = styled.div`
   width: 452px;
   height: auto;
-  color: ${({ theme }) => theme.Black};
-  font-family: Hyundai Sans Text KR;
+  color: ${palette.Black};
+  font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;
   font-weight: 400;

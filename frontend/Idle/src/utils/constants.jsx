@@ -43,10 +43,14 @@ export const BODY_TYPES = "body_types";
 export const EXTERIOR_COLORS = "exterior_colors";
 export const INTERIROR_COLORS = "interior_colors";
 export const ALL = "all";
-export const SAFETY = "safety";
-export const STYLE = "style";
-export const PROTECTION = "protection";
-export const CONVENIENCE = "convenience";
+export const SAFETY = "safety"
+export const STYLE = "style"
+export const PROTECTION = "protection"
+export const CONVENIENCE = "convenience"
+export const CONFUSE = "confuse"
+export const ADD = "add"
+export const NONE = "none"
+
 
 export const PEAK_OUTPUT_KR = "최고 출력";
 export const MAX_TORQUE_KR = "최대 토크";

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import palette from "../../styles/palette"
 
 const carItem = ["Palisade", "Ionic5", "Ionic6"];
 
@@ -22,7 +23,7 @@ const StSelectBoxWrapper = styled.div`
   width: 75px;
   padding: 5px;
   height: 20px;
-  color: ${({ theme }) => theme.Black};
+  color: ${palette.Black};
 `;
 
 const Select = styled.select`

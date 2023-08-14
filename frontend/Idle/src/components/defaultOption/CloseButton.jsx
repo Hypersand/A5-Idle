@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowDown } from "../../assets/images/arrowDown.svg";
+import palette from "../../styles/palette";
+
 function CloseButton({ onClick }) {
   return (
     <StButton onClick={onClick}>
@@ -27,11 +29,11 @@ const StArrowDown = styled(ArrowDown)`
 const StTextBox = styled.div`
   width: 99px;
   height: 20px;
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
   letter-spacing: -0.42px;
-  color: ${({ theme }) => theme.Black};
+  color: ${palette.Black};
 `;

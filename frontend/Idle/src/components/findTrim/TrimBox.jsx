@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
+import palette from "../../styles/palette";
 
 function TrimBox({
   name,
@@ -66,9 +67,9 @@ const StFindTrimTrimContainer = styled.div`
   height: 164px;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid ${({ theme }) => theme.Grey_2};
-  background: ${({ theme, $isselected, $isactive }) =>
-    $isselected ? theme.NavyBlue_5 : $isactive === "true" ? theme.White : theme.Grey_4};
+  border: 1px solid ${palette.Grey_2};
+  background: ${({ $isselected, $isactive }) =>
+    $isselected ? palette.NavyBlue_5 : $isactive === "true" ? palette.White : palette.Grey_4};
   ${({ $isactive }) => $isactive === "true" && `cursor: pointer`};
   margin-bottom: 12px;
 `;
@@ -85,8 +86,8 @@ const StTrimBox = styled.div`
 `;
 
 const StTrimBoxTitle = styled.div`
-  color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isselected }) => ($isselected ? palette.White : palette.Black)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 22px;
   font-style: normal;
   font-weight: 700;
@@ -95,8 +96,8 @@ const StTrimBoxTitle = styled.div`
 `;
 
 const StTrimBoxContent = styled.div`
-  color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isselected }) => ($isselected ? palette.White : palette.Black)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -106,8 +107,8 @@ const StTrimBoxContent = styled.div`
 `;
 
 const StTrimBoxPrice = styled.div`
-  color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isselected }) => ($isselected ? palette.White : palette.Black)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

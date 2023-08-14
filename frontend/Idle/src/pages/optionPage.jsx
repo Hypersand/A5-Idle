@@ -18,6 +18,7 @@ import BlueButton from "buttons/BlueButton";
 import { ReactComponent as ArrowLogo } from "../assets/images/arrowOption.svg";
 import OptionMain from "optionMain/index";
 import hyundai from "../assets/images/hyundai.svg";
+import palette from "../styles/palette";
 
 const dummyData = [
   {
@@ -407,13 +408,13 @@ const StContainer = styled.div`
   }
   &::-webkit-scrollbar-thumb {
     height: 3px;
-    border-top: 10px solid ${({ theme }) => theme.Grey_1};
-    border-bottom: 14px solid ${({ theme }) => theme.Grey_1};
+    border-top: 10px solid ${palette.Grey_1};
+    border-bottom: 14px solid ${palette.Grey_1};
     border-radius: 3px;
-    background: ${({ theme }) => theme.NavyBlue_5};
+    background: ${palette.NavyBlue_5};
   }
   &::-webkit-scrollbar-track {
-    background-color: ${({ theme }) => theme.Grey_1};
+    background-color: ${palette.Grey_1};
   }
 `;
 const ArrowRightContainer = styled.div`

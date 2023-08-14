@@ -1,9 +1,15 @@
 import { styled } from "styled-components";
 import { ReactComponent as OptionChecked } from "../../assets/images/optionChecked.svg";
 import { useContext, useEffect, useState } from "react";
+<<<<<<< HEAD
 import OptionModal from "modals/OptionModal";
 import { PUSH_SELECTED_OPTION, POP_SELECTED_OPTION } from "../../utils/actionType";
 import { dispatchContext } from "../../utils/context";
+=======
+import { selectedOptionContext } from "../../utils/context";
+import OptionModal from "../common/modals/OptionModal";
+import palette from "../../styles/palette";
+>>>>>>> fe-dev
 
 function OptionBox({ data, disable = false }) {
   const [isSelected, setIsSelected] = useState(false);
@@ -64,14 +70,14 @@ const StContainer = styled.div`
   width: 302px;
   height: 32px;
   padding: 16px;
-  border: 1px solid #ddd;
-  background: ${({ $isSelcted }) => ($isSelcted ? "#1A3276" : "#fff")};
+  border: 1px solid${palette.Grey_2};
+  background: ${({ $isSelcted }) => ($isSelcted ? `${palette.NavyBlue_5}` : `${palette.White}`)};
   opacity: ${({ $disable }) => ($disable ? 0.2 : 1)};
   pointer-events: ${({ $disable }) => ($disable ? "none" : "")};
   justify-content: space-between;
   align-items: center;
   &:hover {
-    background-color: ${({ $isSelcted }) => ($isSelcted ? "#1A3276" : "#e7ecf9")};
+    background-color: ${({ $isSelcted }) => ($isSelcted ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`)};
     opacity: 0.9;
   }
 `;
@@ -85,7 +91,7 @@ const StOption = styled.div`
 `;
 
 const StTitle = styled.div`
-  color: ${({ $isSelcted }) => ($isSelcted ? "#fff" : "#000")};
+  color: ${({ $isSelcted }) => ($isSelcted ? `${palette.White}` : `${palette.Black}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;
@@ -95,7 +101,7 @@ const StTitle = styled.div`
 `;
 
 const StBtn = styled.button`
-  color: ${({ $isSelcted }) => ($isSelcted ? "#fff" : "#1A3276")};
+  color: ${({ $isSelcted }) => ($isSelcted ? `${palette.White}` : `${palette.NavyBlue_5}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowDown } from "../../assets/images/arrowDown.svg";
 import { useState } from "react";
+import palette from "../../styles/palette";
 
 function OptionDropDown({ category, options }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,14 +45,14 @@ function OptionDropDown({ category, options }) {
 export default OptionDropDown;
 
 const StContainer = styled.li`
-  display: flex;
-  width: 451px;
-  padding: 16px 22.261px;
-  border: 1px solid #ddd;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-`;
+    display: flex;
+    width: 451px;
+    padding: 16px 22.261px;
+    border: 1px solid ${palette.Grey_2};
+    background:${palette.White};
+    display: flex;
+    flex-direction: column;
+`
 const StTitle = styled.div`
   display: flex;
   width: 451px;
@@ -62,11 +63,11 @@ const StTitle = styled.div`
   }
 `;
 const Division = styled.div`
-  width: 456px;
-  margin-top: 12px;
-  height: 1px;
-  background-color: ${({ theme }) => theme.Grey_2};
-`;
+    width: 456px;
+    margin-top: 12px;
+    height: 1px;
+    background-color: ${palette.Grey_2};
+`
 
 const StListContainer = styled.div`
   display: flex;
@@ -82,17 +83,17 @@ const StListContainer = styled.div`
 `;
 
 const StOption = styled.p`
-  color: ${({ theme }) => theme.Black};
-  font-family: "Hyundai Sans Text KR";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.42px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
+    color: ${palette.Black};
+    font-family: "Hyundai Sans Text KR";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.42px;
+        &:hover{
+        cursor: pointer;
+    }
+`
 const StButton = styled.div`
   transform: ${({ $animationstate }) => ($animationstate ? "rotateY(X)" : "rotateX(180deg)")};
   transition: transform 0.6s ease;

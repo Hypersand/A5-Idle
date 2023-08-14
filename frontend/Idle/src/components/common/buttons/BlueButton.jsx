@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import palette from "../../../styles/palette";
 
 /**
  *
@@ -25,12 +26,12 @@ const StButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  background: ${({ theme }) => theme.NavyBlue_5};
-  color: ${({ theme }) => theme.White};
+  background: ${palette.NavyBlue_5};
+  color: ${palette.White};
   text-align: center;
 
   /* body2 medium */
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

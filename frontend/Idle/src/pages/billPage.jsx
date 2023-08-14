@@ -4,12 +4,12 @@ import Car3D from "content/Car3D";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
 import { useContext } from "react";
-import { carContext } from "utils/context";
-import BillMain from "billMain/index";
+import { carContext } from "../utils/context";
+import BillMain from "../components/BillMain/BillMain";
+import BillOptionContainer from "../components/BillMain/BillOptionContainer";
 
 function BillPage() {
   const { car } = useContext(carContext);
-
   return (
     <StWrapper id={"modal"}>
       <StContainer>
@@ -37,6 +37,8 @@ function BillPage() {
           </StButtonContainer>
         </StConfirmContainer>
         <BillMain />
+
+        <BillOptionContainer added={car.option.additional} confused={car.option.confusing} />
       </StContainer>
     </StWrapper>
   );

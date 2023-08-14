@@ -1,8 +1,9 @@
 import { styled } from "styled-components";
-import { TRANSLATE } from "utils/constants";
+import { TRANSLATE } from "../../utils/constants";
 import { useContext } from "react";
-import { carContext } from "utils/context";
-import ModifyButton from "buttons/ModifyButton";
+import { carContext } from "../../utils/context";
+import ModifyButton from "../common/buttons/ModifyButton";
+import palette from "../../styles/palette";
 
 function BillDetail({ item }) {
   const { car } = useContext(carContext);
@@ -63,7 +64,7 @@ const StTitle = styled.div`
   align-items: flex-start;
   gap: 16px;
   h1 {
-    color: #222;
+    color: ${palette.Black};
     font-family: "Hyundai Sans Head KR";
     font-size: 24px;
     font-style: normal;
@@ -80,7 +81,7 @@ const StDetailContainer = styled.div`
   justify-content: space-between;
   flex-shrink: 0;
   h1 {
-    color: var(--black, #222);
+    color: ${palette.Black};
     font-family: "Hyundai Sans Text KR";
     font-size: 22px;
     font-style: normal;
@@ -89,7 +90,7 @@ const StDetailContainer = styled.div`
     letter-spacing: -0.66px;
   }
   p {
-    color: var(--black, #222);
+    color: ${palette.Black};
     font-family: "Hyundai Sans Text KR";
     font-size: 22px;
     font-style: normal;

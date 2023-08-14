@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { styled } from "styled-components";
 import ConfusingButton from "buttons/ConfusingButton";
 import AddButton from "buttons/AddButton";
@@ -7,8 +7,10 @@ import {
   POP_CONFUSING_OPTION,
   PUSH_ADDITIONAL_OPTION,
   PUSH_CONFUSING_OPTION,
-} from "utils/actionType";
-import { carContext } from "utils/context";
+} from "../../../utils/actionType";
+import { carContext } from "../../../utils/context";
+import palette from "../../../styles/palette";
+import { ADD, CONFUSE, NONE } from "../../../utils/constants";
 
 function OptionBox({
   optionName,
@@ -18,8 +20,14 @@ function OptionBox({
   setSelectedOption,
 }) {
   const { car, dispatch } = useContext(carContext);
-  const [currentState, setCurrentState] = useState("none");
   const isSelected = selectedOption === optionName;
+  let state
+
+  if (car.option.confusing.filter((item) => item.name === optionName).length !== 0) {
+    state = CONFUSE
+  } else if (car.option.additional.filter((item) => item.name === optionName).length !== 0) {
+    state = ADD
+  } else { state = NONE }
 
   function popPayload(name) {
     let newPayload;
@@ -34,50 +42,41 @@ function OptionBox({
       payload: newPayload.filter((item) => item.name !== name),
     });
   }
-
   function toggleConfuse(e) {
     e.stopPropagation();
     popPayload(optionName);
-    if (currentState === "confuse") setCurrentState("none");
-    else {
-      dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
-      setCurrentState("confuse");
-    }
+    if (state !== CONFUSE) dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
+
   }
   function toggleAdd(e) {
     e.stopPropagation();
     popPayload(optionName);
-    if (currentState === "add") setCurrentState("none");
-    else {
-      dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: optionName, price: optionPrice } });
-      setCurrentState("add");
-    }
+    if (state !== ADD) dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: optionName, price: optionPrice } });
   }
-
   return (
     <>
       <StContainer
         onClick={() => setSelectedOption(optionName)}
         $isSelected={isSelected}
-        $state={currentState}
+        $state={state}
       >
-        <ClickedBorder $isSelected={isSelected} $state={currentState} />
+        <ClickedBorder $isSelected={isSelected} $state={state} />
         <StContent>
           <StContentHeader>
-            <TitleDetail $isSelected={isSelected} $state={currentState}>
+            <TitleDetail $isSelected={isSelected} $state={state}>
               {optionPurchaseRate}
             </TitleDetail>
-            <Title $isSelected={isSelected} $state={currentState}>
+            <Title $isSelected={isSelected} $state={state}>
               {optionName}
             </Title>
           </StContentHeader>
-          <Price $isSelected={isSelected} $state={currentState}>
+          <Price $isSelected={isSelected} $state={state}>
             + {optionPrice.toLocaleString()} 원
           </Price>
         </StContent>
         <StButtonContainer>
-          <ConfusingButton state={currentState} onClick={toggleConfuse} />
-          <AddButton state={currentState} onClick={toggleAdd} />
+          <ConfusingButton state={state} onClick={toggleConfuse} />
+          <AddButton state={state} onClick={toggleAdd} />
         </StButtonContainer>
       </StContainer>
     </>
@@ -94,34 +93,34 @@ const StContainer = styled.div`
   padding: 12px 16px;
   border: 2px solid
     ${({ $isSelected, $state }) => {
-      if ($isSelected) {
-        switch ($state) {
-          case "none":
-            return "#E7ECF9";
-          case "confuse":
-            return "#9B6D54";
-          case "add":
-            return "#1A3276";
-        }
-      } else {
-        switch ($state) {
-          case "none":
-            return "#ddd";
-          case "confuse":
-            return "#9B6D54";
-          case "add":
-            return "#1A3276";
-        }
+    if ($isSelected) {
+      switch ($state) {
+        case NONE:
+          return `${palette.NavyBlue_1}`
+        case CONFUSE:
+          return `${palette.Gold_5}`;
+        case ADD:
+          return `${palette.NavyBlue_5}`;
       }
-    }};
+    } else {
+      switch ($state) {
+        case NONE:
+          return `${palette.Grey_2}`;
+        case CONFUSE:
+          return `${palette.Gold_5}`;
+        case ADD:
+          return `${palette.NavyBlue_5}`;
+      }
+    }
+  }};
   background: ${({ $state }) => {
     switch ($state) {
-      case "none":
-        return "#fff";
-      case "confuse":
-        return "#9B6D54";
-      case "add":
-        return "#1A3276";
+      case NONE:
+        return `${palette.White}`;
+      case CONFUSE:
+        return `${palette.Gold_5}`;
+      case ADD:
+        return `${palette.NavyBlue_5}`;
     }
   }};
   flex-direction: column;
@@ -129,19 +128,19 @@ const StContainer = styled.div`
   align-items: flex-start;
   gap: 8px;
   flex-shrink: 0;
-  pointer-events: ${({ $state }) => ($state === "block" ? "none" : "")};
+  pointer-events: ${({ $state }) => ($state === "block" ? NONE : "")};
   opacity: ${({ $state }) => ($state ? 1 : 0.2)};
   &:hover {
     background: ${({ $state }) => {
-      switch ($state) {
-        case "none":
-          return "#e7ecf9";
-        case "confuse":
-          return "#9B6D54";
-        case "add":
-          return "#1A3276";
-      }
-    }};
+    switch ($state) {
+      case NONE:
+        return `${palette.NavyBlue_1};`
+      case CONFUSE:
+        return `${palette.Gold_5}`;
+      case ADD:
+        return `${palette.NavyBlue_5}`;
+    }
+  }};
     opacity: 0.9;
     cursor: pointer;
   }
@@ -164,7 +163,7 @@ const StContentHeader = styled.div`
 `;
 
 const TitleDetail = styled.p`
-  color: ${({ $state }) => ($state === "confuse" ? "rgba(255, 255, 255, 0.50)" : "#96A9DC")};
+  color: ${({ $state }) => ($state === CONFUSE ? "rgba(255, 255, 255, 0.50)" : `${palette.NavyBlue_4}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;
@@ -174,7 +173,7 @@ const TitleDetail = styled.p`
 `;
 
 const Title = styled.h1`
-  color: ${({ $state }) => ($state === "none" ? "#222222" : "#ffffff")};
+  color: ${({ $state }) => ($state === NONE ? `${palette.Black}` : `${palette.White}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
@@ -184,7 +183,7 @@ const Title = styled.h1`
 `;
 
 const Price = styled.p`
-  color: ${({ $state }) => ($state === "none" ? "#222222" : "#ffffff")};
+  color: ${({ $state }) => ($state === NONE ? `${palette.Black}` : `${palette.White}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;
@@ -200,6 +199,7 @@ const StButtonContainer = styled.div`
   gap: 12px;
 `;
 const ClickedBorder = styled.div`
+<<<<<<< HEAD
   position: absolute;
   display: ${({ $isSelected, $state }) => {
     if ($state == "none") {
@@ -216,3 +216,21 @@ const ClickedBorder = styled.div`
   left: 1px;
   z-index: 0;
 `;
+=======
+    position: absolute;
+    display: ${({ $isSelected, $state }) => {
+    if ($state == NONE) {
+      return NONE
+    } else {
+      if ($isSelected) return ""
+      else return NONE
+    }
+  }};
+    width: 192px;
+    border: 2px solid ${palette.NavyBlue_1};
+    height: 156px;
+    top: 1px;
+    left: 1px;
+    z-index: 0;
+`
+>>>>>>> fe-dev
