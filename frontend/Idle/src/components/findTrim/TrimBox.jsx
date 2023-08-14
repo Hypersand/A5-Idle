@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
 import palette from "styles/palette";
+import { useContext } from "react";
+import { stateContext, dispatchContext } from "utils/context";
+import { SET_DISABLE_FUNCTION_ID, SET_TEMPCAR } from "../../utils/actionType";
 
 function TrimBox({
   name,
@@ -8,12 +11,13 @@ function TrimBox({
   price,
   isActive = true,
   isSelected,
-  optionStatus,
+  optionStatusProp,
   onClick,
-  setTempCar,
-  setDisableFunctionId,
   dummyData,
 }) {
+  const { state } = useContext(stateContext);
+  const { stateDispatch } = useContext(dispatchContext);
+
   function handleClick() {
     const carData = dummyData.find((item) => item.name === name);
     // get으로 carData.trim_idx 보내기.
@@ -28,16 +32,13 @@ function TrimBox({
         function_id: 333333,
       },
     ];
-    setDisableFunctionId(dummy);
-    setTempCar((prevTempCar) => {
-      return {
-        ...prevTempCar,
-        trim: {
-          name: carData.name,
-          price: carData.price,
-        },
-      };
-    });
+    stateDispatch({ type: SET_DISABLE_FUNCTION_ID, payload: dummy });
+    const payload = state.tempCar;
+    payload.trim = {
+      name: carData.name,
+      price: carData.price,
+    };
+    stateDispatch({ type: SET_TEMPCAR, payload: payload });
     if (isActive) {
       onClick();
     }
@@ -53,7 +54,7 @@ function TrimBox({
         <StTrimBoxContent $isselected={isSelected}>{description}</StTrimBoxContent>
         <StTrimBoxBottom>
           <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
-          {isActive ? <TrimBoxOptionStatus status={optionStatus} /> : null}
+          {isActive ? <TrimBoxOptionStatus status={optionStatusProp} /> : null}
         </StTrimBoxBottom>
       </StTrimBox>
     </StFindTrimTrimContainer>

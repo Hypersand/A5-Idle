@@ -1,4 +1,6 @@
 import {
+  CLEAR_FUNCTIONS_OPTIONS,
+  RESET_ALL,
   PUSH_SELECTED_OPTION,
   POP_SELECTED_OPTION,
   PUSH_ADDITIONAL_OPTION,
@@ -12,13 +14,14 @@ import {
   CHANGE_INSIDE_COLOR,
   CHANGE_OUTSIDE_COLOR,
   CHANGE_TRIM,
-  RESET_ALL,
   SET_TEMPCAR,
   SET_ANIMATION_STATE,
   SET_CLICK_ACTIVE,
   SET_SELECTED_OPTION,
   SET_OPTION_STATUS,
   SET_SHOWOPTION_ALERT,
+  SET_FUNCTION_LIST,
+  SET_DISABLE_FUNCTION_ID,
 } from "./actionType";
 
 export function findTrimReducer(state, { type, payload }) {
@@ -44,6 +47,22 @@ export function findTrimReducer(state, { type, payload }) {
       return {
         ...state,
         selectedOption: state.selectedOption.filter((item) => item !== payload),
+      };
+    case SET_FUNCTION_LIST:
+      return {
+        ...state,
+        functionList: payload,
+      };
+    case SET_DISABLE_FUNCTION_ID:
+      return {
+        ...state,
+        disableFunctionId: payload,
+      };
+    case CLEAR_FUNCTIONS_OPTIONS:
+      return {
+        ...state,
+        disableFunctionId: [],
+        optionStatus: [],
       };
     default:
       return state;

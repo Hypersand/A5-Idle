@@ -1,15 +1,18 @@
 import styled from "styled-components";
 import TrimBox from "./TrimBox";
 import { CustomAPI } from "utils/api";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import OptionBoxContainer from "findTrim/OptionBoxContainer";
 import { PATH } from "utils/constants";
+import { SET_CLICK_ACTIVE } from "utils/actionType";
+import { stateContext, dispatchContext } from "utils/context";
+import { SET_FUNCTION_LIST } from "../../utils/actionType";
 
-function FindTrimContent({ optionStatus, setTempCar, onClick }) {
+function FindTrimContent() {
+  const { stateDispatch } = useContext(dispatchContext);
+  const { state } = useContext(stateContext);
   const [dummyData, setDummyData] = useState([]);
   const [selected, setSelected] = useState(-1);
-  const [functionList, setFunctionList] = useState([]);
-  const [disableFunctionId, setDisableFunctionId] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -20,7 +23,7 @@ function FindTrimContent({ optionStatus, setTempCar, onClick }) {
         console.error("Error fetching trim data:", error);
       }
     }
-    setFunctionList([
+    const payload = [
       {
         function_id: 111111,
         name: "aaa",
@@ -75,30 +78,30 @@ function FindTrimContent({ optionStatus, setTempCar, onClick }) {
         description: "설명9",
         img_url: "",
       },
-    ]);
+    ];
+    stateDispatch({ type: SET_FUNCTION_LIST, payload: payload });
     fetchData();
   }, []);
 
   function handleClick(index) {
     setSelected(index);
-    onClick();
+    stateDispatch({ type: SET_CLICK_ACTIVE, payload: true });
   }
 
   function renderTrimBox() {
     return dummyData.map((item, index) => {
-      const isActive = optionStatus.length === 0 ? true : optionStatus[index].selectPossible;
+      const isActive =
+        state.optionStatus.length === 0 ? true : state.optionStatus[index].selectPossible;
       const optionStatusProp =
-        optionStatus.length === 0 ? "default" : optionStatus[index].isDefault;
+        state.optionStatus.length === 0 ? "default" : state.optionStatus[index].isDefault;
       return (
         <TrimBox
           key={index}
           {...item}
           isActive={isActive}
-          setTempCar={setTempCar}
-          setDisableFunctionId={setDisableFunctionId}
           isSelected={index === selected}
           onClick={() => handleClick(index)}
-          optionStatus={optionStatusProp}
+          optionStatusPorp={optionStatusProp}
           dummyData={dummyData}
         />
       );
@@ -108,7 +111,10 @@ function FindTrimContent({ optionStatus, setTempCar, onClick }) {
   return (
     <StFindTrimContent>
       <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>
-      <OptionBoxContainer functionList={functionList} disableFunctionId={disableFunctionId} />
+      <OptionBoxContainer
+        functionList={state.functionList}
+        disableFunctionId={state.disableFunctionId}
+      />
     </StFindTrimContent>
   );
 }

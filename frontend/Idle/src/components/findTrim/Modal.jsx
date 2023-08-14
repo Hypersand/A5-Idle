@@ -106,13 +106,7 @@ function Modal({ setVisible }) {
           <StFindTrimContentTitle>
             원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
           </StFindTrimContentTitle>
-          <FindTrimContent
-            optionStatus={state.optionStatus}
-            setTempCar={stateDispatch}
-            onClick={() => {
-              stateDispatch({ type: SET_CLICK_ACTIVE, payload: true });
-            }}
-          />
+          <FindTrimContent />
           <StFindTrimContentButtonContainer>
             <WhiteButton
               text={"나가기"}
