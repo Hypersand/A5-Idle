@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import svgr from "vite-plugin-svgr";
 import VitePluginHtmlEnv from "vite-plugin-html-env";
 import path from "path";
+import vitePluginHtmlEnv from "vite-plugin-html-env";
 
 const isWindow = process.platform === "win32";
 const __dirname = isWindow
@@ -10,7 +11,7 @@ const __dirname = isWindow
   : path.resolve(path.dirname(""));
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [svgr(), react()],
+  plugins: [svgr(), react(), VitePluginHtmlEnv(), vitePluginHtmlEnv({ compiler: true })],
   server: {
     proxy: {
       "/api": {

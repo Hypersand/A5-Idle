@@ -62,7 +62,6 @@ function MapModal({ setCarMasterVisible }) {
 
   const tabs = ["판매량순", "거리순"];
   let geocoder = new window.kakao.maps.services.Geocoder();
-  console.log(latitude, longtitude);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
