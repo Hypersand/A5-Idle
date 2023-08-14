@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
-import { ReactComponent as OptionChecked } from "../../assets/images/optionChecked.svg";
+import { ReactComponent as OptionChecked } from "images/optionChecked.svg";
 import { useContext, useEffect, useState } from "react";
-import { PUSH_SELECTED_OPTION, POP_SELECTED_OPTION } from "../../utils/actionType";
-import { dispatchContext } from "../../utils/context";
-import OptionModal from "../common/modals/OptionModal";
-import palette from "../../styles/palette";
+import { PUSH_SELECTED_OPTION, POP_SELECTED_OPTION } from "utils/actionType";
+import { dispatchContext } from "utils/context";
+import OptionModal from "modals/OptionModal";
+import palette from "styles/palette";
 
 function OptionBox({ data, disable = false }) {
   const [isSelected, setIsSelected] = useState(false);

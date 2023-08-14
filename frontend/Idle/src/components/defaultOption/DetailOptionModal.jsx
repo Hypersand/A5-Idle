@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { createPortal } from "react-dom";
-import { ReactComponent as CloseButton } from "../../assets/images/esc.svg";
-import palette from "../../styles/palette";
+import { ReactComponent as CloseButton } from "images/esc.svg";
+import palette from "styles/palette";
 
 function DetailOptionModal({ title, description, imgURL, onClose }) {
   const stringMaxLength = 23;

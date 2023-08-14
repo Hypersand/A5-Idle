@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ReactComponent as ArrowUpper } from "../../assets/images/arrowUpper.svg";
-import palette from "../../styles/palette";
+import { ReactComponent as ArrowUpper } from "images/arrowUpper.svg";
+import palette from "styles/palette";
 
 function FindTrimButton({ onClick }) {
   return (

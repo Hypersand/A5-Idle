@@ -1,4 +1,4 @@
-import { ReactComponent as FindTrimTooltipIcon } from "../assets/images/findTrimTooltip.svg";
+import { ReactComponent as FindTrimTooltipIcon } from "images/findTrimTooltip.svg";
 import PropTypes from "prop-types";
 
 function FindTrimTooltip({ isActive }) {

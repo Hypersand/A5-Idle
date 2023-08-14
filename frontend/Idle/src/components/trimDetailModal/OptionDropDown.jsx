@@ -1,58 +1,56 @@
 import styled from "styled-components";
-import { ReactComponent as ArrowDown } from "../../assets/images/arrowDown.svg";
+import { ReactComponent as ArrowDown } from "images/arrowDown.svg";
 import { useState } from "react";
-import palette from "../../styles/palette";
+import palette from "styles/palette";
 
 function OptionDropDown({ category }) {
-    const [isOpen, setIsOpen] = useState(false);
-    const [animationstate, setAnimationState] = useState(false);
-    function toggleDropDown() {
-        if (isOpen) {
-            setAnimationState(!animationstate);
-            setTimeout(() => {
-                setIsOpen(!isOpen);
-            }, 200);
-        } else {
-            setAnimationState(!animationstate);
-            setTimeout(() => {
-                setIsOpen(!isOpen);
-            }, 0);
-        }
+  const [isOpen, setIsOpen] = useState(false);
+  const [animationstate, setAnimationState] = useState(false);
+  function toggleDropDown() {
+    if (isOpen) {
+      setAnimationState(!animationstate);
+      setTimeout(() => {
+        setIsOpen(!isOpen);
+      }, 200);
+    } else {
+      setAnimationState(!animationstate);
+      setTimeout(() => {
+        setIsOpen(!isOpen);
+      }, 0);
     }
+  }
 
+  function render(option, idx) {
+    return <StOption key={idx}>{option.name}</StOption>;
+  }
 
-    function render(option, idx) {
-        return <StOption key={idx}>{option.name}</StOption>;
-    }
-
-
-    return (
-        <StContainer>
-            <StTitle onClick={toggleDropDown}>
-                {category.categoryName}
-                <StButton $animationstate={animationstate}>
-                    <ArrowDown />
-                </StButton>
-            </StTitle>
-            <StListContainer $isOpen={isOpen} $animationstate={animationstate}>
-                <Division />
-                {category.functions.map((item, idx) => render(item, idx))}
-            </StListContainer>
-        </StContainer>
-    );
+  return (
+    <StContainer>
+      <StTitle onClick={toggleDropDown}>
+        {category.categoryName}
+        <StButton $animationstate={animationstate}>
+          <ArrowDown />
+        </StButton>
+      </StTitle>
+      <StListContainer $isOpen={isOpen} $animationstate={animationstate}>
+        <Division />
+        {category.functions.map((item, idx) => render(item, idx))}
+      </StListContainer>
+    </StContainer>
+  );
 }
 
 export default OptionDropDown;
 
 const StContainer = styled.li`
-    display: flex;
-    width: 451px;
-    padding: 16px 22.261px;
-    border: 1px solid ${palette.Grey_2};
-    background:${palette.White};
-    display: flex;
-    flex-direction: column;
-`
+  display: flex;
+  width: 451px;
+  padding: 16px 22.261px;
+  border: 1px solid ${palette.Grey_2};
+  background: ${palette.White};
+  display: flex;
+  flex-direction: column;
+`;
 const StTitle = styled.div`
   display: flex;
   width: 451px;
@@ -63,11 +61,11 @@ const StTitle = styled.div`
   }
 `;
 const Division = styled.div`
-    width: 456px;
-    margin-top: 12px;
-    height: 1px;
-    background-color: ${palette.Grey_2};
-`
+  width: 456px;
+  margin-top: 12px;
+  height: 1px;
+  background-color: ${palette.Grey_2};
+`;
 
 const StListContainer = styled.div`
   display: flex;
@@ -83,18 +81,18 @@ const StListContainer = styled.div`
 `;
 
 const StOption = styled.p`
-    color: ${palette.Black};
-    font-family: "Hyundai Sans Text KR";
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: -0.42px;
-        &:hover{
-        cursor: pointer;
-    }
-`
+  color: ${palette.Black};
+  font-family: "Hyundai Sans Text KR";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.42px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 const StButton = styled.div`
-    transform: ${({ $animationstate }) => (!$animationstate ? "rotateY(X)" : "rotateX(180deg)")};
-    transition: transform 0.6s ease;
-`
+  transform: ${({ $animationstate }) => (!$animationstate ? "rotateY(X)" : "rotateX(180deg)")};
+  transition: transform 0.6s ease;
+`;

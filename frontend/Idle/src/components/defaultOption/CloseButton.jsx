@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ReactComponent as ArrowDown } from "../../assets/images/arrowDown.svg";
-import palette from "../../styles/palette";
+import { ReactComponent as ArrowDown } from "images/arrowDown.svg";
+import palette from "styles/palette";
 
 function CloseButton({ onClick }) {
   return (

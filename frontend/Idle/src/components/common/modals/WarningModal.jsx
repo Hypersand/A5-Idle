@@ -6,7 +6,7 @@ import { RESET_ALL } from "utils/actionType";
 import { carContext } from "utils/context";
 import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
-import palette from "../../../styles/palette";
+import palette from "styles/palette";
 
 /**
  *

@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { createPortal } from "react-dom";
-import palette from "../../styles/palette";
+import palette from "styles/palette";
 
 function OptionAlert({ text }) {
   return createPortal(
@@ -10,8 +10,8 @@ function OptionAlert({ text }) {
         {text.length === 1
           ? `'${text[0]}'가 추가되었어요.`
           : text.length === 2
-            ? `'${text[0]}','${text[1]}'가 추가되었어요.`
-            : `'${text[0]}','${text[1]}' 외 ${text.length - 2}개가 추가되었어요.`}
+          ? `'${text[0]}','${text[1]}'가 추가되었어요.`
+          : `'${text[0]}','${text[1]}' 외 ${text.length - 2}개가 추가되었어요.`}
       </StAlertTitle>
       <StAlertContent>옵션 선택 페이지에서 수정이 가능해요</StAlertContent>
     </StAlertContainer>,

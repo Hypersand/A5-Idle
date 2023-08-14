@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import BillDetail from "./BillDetail";
-import { BILL_LIST } from "../../utils/constants";
-import palette from "../../styles/palette";
+import { BILL_LIST } from "utils/constants";
+import palette from "styles/palette";
 
 function BillMain() {
   function render(item) {

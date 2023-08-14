@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { ReactComponent as ArrowRight } from "../../assets/images/arrowRight.svg";
+import { ReactComponent as ArrowRight } from "images/arrowRight.svg";
 import { Fragment, useState } from "react";
-import DetailOptionModal from ".//DetailOptionModal";
-import palette from "../../styles/palette";
+import DetailOptionModal from "./DetailOptionModal";
+import palette from "styles/palette";
 
 function ItemBox({ functionName, functionImgUrl, functionDescription }) {
   const [showDetail, setShowDetail] = useState(false);

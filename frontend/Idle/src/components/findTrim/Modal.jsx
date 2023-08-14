@@ -8,7 +8,7 @@ import { carContext, stateContext, dispatchContext } from "utils/context";
 import { defaultOption } from "utils/constants";
 import { CHANGE_ALL } from "utils/actionType";
 import { findTrimInitialState } from "utils/constants";
-import { findTrimReducer } from "../../utils/reducer";
+import { findTrimReducer } from "utils/reducer";
 import {
   SET_ANIMATION_STATE,
   SET_CLICK_ACTIVE,
@@ -16,8 +16,8 @@ import {
   SET_OPTION_STATUS,
   PUSH_SELECTED_OPTION,
   SET_SHOWOPTION_ALERT,
-} from "../../utils/actionType";
-import palette from "../../styles/palette";
+} from "utils/actionType";
+import palette from "styles/palette";
 
 function FindTrimContent({ setVisible }) {
   const initialRender = useRef(true);

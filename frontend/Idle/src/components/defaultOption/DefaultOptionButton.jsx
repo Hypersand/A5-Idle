@@ -1,6 +1,6 @@
-import { ReactComponent as ArrowUpper } from "../../assets/images/arrowUpper.svg";
+import { ReactComponent as ArrowUpper } from "images/arrowUpper.svg";
 import styled from "styled-components";
-import palette from "../../styles/palette";
+import palette from "styles/palette";
 
 function DefaultOptionButton({ onClick }) {
   return (

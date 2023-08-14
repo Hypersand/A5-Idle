@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import { styled } from "styled-components";
 import OptionDropDown from "./OptionDropDown";
-import { ReactComponent as EscapeButton } from "../../assets/images/esc.svg";
+import { ReactComponent as EscapeButton } from "images/esc.svg";
 
 function TrimDetailModal({ trim, desc, setModalOff, options, category }) {
   return createPortal(

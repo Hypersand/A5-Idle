@@ -7,10 +7,10 @@ import {
   POP_CONFUSING_OPTION,
   PUSH_ADDITIONAL_OPTION,
   PUSH_CONFUSING_OPTION,
-} from "../../../utils/actionType";
-import { carContext } from "../../../utils/context";
-import palette from "../../../styles/palette";
-import { ADD, CONFUSE, NONE } from "../../../utils/constants";
+} from "utils/actionType";
+import { carContext } from "utils/context";
+import palette from "styles/palette";
+import { ADD, CONFUSE, NONE } from "utils/constants";
 
 function OptionBox({
   optionName,

@@ -5,7 +5,7 @@ import CategoryTabs from "tabs/CategoryTabs";
 import ItemBox from "./ItemBox";
 import PaginationButton from "./PaginationButton";
 import { createPortal } from "react-dom";
-import palette from "../../styles/palette";
+import palette from "styles/palette";
 
 function Modal({ setVisible }) {
   const pageSize = 10;
