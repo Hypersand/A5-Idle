@@ -25,6 +25,7 @@ const StLogoContainer = styled.div`
   position: absolute;
   top: 32px;
   left: 128px;
+  z-index: 100;
 `;
 const StDropDownContainer = styled.div`
   position: absolute;
