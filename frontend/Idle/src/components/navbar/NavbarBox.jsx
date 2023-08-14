@@ -92,9 +92,16 @@ function getTotalSum(type, car) {
   }
   return total;
 }
+const params = {
+  trim: "",
+  detail: "engines",
+  color: "exterior",
+  option: "all",
+  bill: "",
+}
 
 function boxClicked(type, navigate) {
-  navigate(`/${type}`);
+  navigate(`/${type}/${params[type]}`);
 }
 
 function renderChecked(type, currenPage, car) {

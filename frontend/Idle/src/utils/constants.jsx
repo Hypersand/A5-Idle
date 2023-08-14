@@ -31,20 +31,20 @@ export const TYPE = {
 export const BILL_LIST = [
   "trim",
   "engines",
-  "driving_methods",
-  "body_types",
-  "exterior_colors",
-  "interior_colors",
+  "drivingMethods",
+  "bodyTypes",
+  "exteriorColors",
+  "interiorColors",
   "option",
 ];
 
 export const TRANSLATE = {
   trim: "트림",
   engines: "엔진",
-  driving_methods: "구동방식",
-  body_types: "바디타입",
-  exterior_colors: "외장 색상",
-  interior_colors: "내장 색상",
+  drivingMethods: "구동방식",
+  bodyTypes: "바디타입",
+  exteriorColors: "외장 색상",
+  interiorColors: "내장 색상",
   option: "옵션",
   all: "전체",
   safety: "안전",
@@ -58,10 +58,10 @@ export const COLOR = "color";
 export const OPTION = "option";
 export const BILL = "bill";
 export const ENGINES = "engines";
-export const DRVING_METHODS = "driving_methods";
-export const BODY_TYPES = "body_types";
-export const EXTERIOR_COLORS = "exterior_colors";
-export const INTERIROR_COLORS = "interior_colors";
+export const DRVING_METHODS = "drivingMethods";
+export const BODY_TYPES = "bodyTypes";
+export const EXTERIOR_COLORS = "exteriorColors";
+export const INTERIROR_COLORS = "interiorColors";
 export const ALL = "all";
 export const SAFETY = "safety"
 export const STYLE = "style"
@@ -202,12 +202,12 @@ export const emptyCar = {
   },
   detail: {
     engines: {},
-    driving_methods: {},
-    body_types: {},
+    drivingMethods: {},
+    bodyTypes: {},
   },
   color: {
-    outside: {},
-    inside: {},
+    exterior: {},
+    interior: {},
   },
   option: {
     additional: [],
@@ -222,21 +222,21 @@ export const emptyCar = {
     if (this.detail.engines.price !== undefined) {
       sum += this.detail.engines.price;
     }
-    if (this.detail.driving_methods.price !== undefined) {
-      sum += this.detail.driving_methods.price;
+    if (this.detail.drivingMethods.price !== undefined) {
+      sum += this.detail.drivingMethods.price;
     }
-    if (this.detail.body_types.price !== undefined) {
-      sum += this.detail.body_types.price;
+    if (this.detail.bodyTypes.price !== undefined) {
+      sum += this.detail.bodyTypes.price;
     }
     return sum;
   },
   getColorSum: function () {
     let sum = 0;
-    if (this.color.outside.price !== undefined) {
-      sum += this.color.outside.price;
+    if (this.color.exterior.price !== undefined) {
+      sum += this.color.exterior.price;
     }
-    if (this.color.inside.price !== undefined) {
-      sum += this.color.inside.price;
+    if (this.color.interior.price !== undefined) {
+      sum += this.color.interior.price;
     }
     return sum;
   },
@@ -252,10 +252,10 @@ export const emptyCar = {
     if (
       this.trim.name !== undefined &&
       this.detail.engines.name !== undefined &&
-      this.detail.driving_methods.name !== undefined &&
-      this.detail.body_types.name !== undefined &&
-      this.color.outside.name !== undefined &&
-      this.color.inside.name !== undefined
+      this.detail.drivingMethods.name !== undefined &&
+      this.detail.bodyTypes.name !== undefined &&
+      this.color.exterior.name !== undefined &&
+      this.color.interior.name !== undefined
     ) {
       return true;
     }

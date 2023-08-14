@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { carContext } from "utils/context";
-import { CHANGE_OUTSIDE_COLOR } from "utils/actionType";
 import BlueButton from "buttons/BlueButton";
 import WhiteButton from "buttons/WhiteButton";
 import {
@@ -22,6 +21,7 @@ import emerald from "outsideColor/emerald.png";
 import OutsideColorBoxContainer from "colorSelection/OutsideColorBoxContainer";
 import InnerColorBoxContainer from "colorSelection/InnerColorBoxContainer";
 import InnerColorContent from "content/InnerColorContent";
+import { CHANGE_EXTERIOR_COLOR } from "../utils/actionType";
 
 const dummyData = {
   car_img_urls: ["...", "..."],
@@ -101,8 +101,8 @@ function ColorPage() {
     switch (currentTab) {
       case EXTERIOR_COLORS:
         dispatchDefault(
-          car.color.outside,
-          CHANGE_OUTSIDE_COLOR,
+          car.color.exterior,
+          CHANGE_EXTERIOR_COLOR,
           DEFAULT_EXTERIROR_COLOR[car.trim.name]
         );
         break;

@@ -17,7 +17,7 @@ function TrimPage() {
   const [trimData, setTrimData] = useState(cachedTrimData);
 
   function nextBTNClicked() {
-    navigate("/detail");
+    navigate("/detail/engines");
   }
   useEffect(() => {
     CustomAPI(PATH.TRIM).then((result) => {
