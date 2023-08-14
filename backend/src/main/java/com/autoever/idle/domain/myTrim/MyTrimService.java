@@ -2,6 +2,7 @@ package com.autoever.idle.domain.myTrim;
 
 import com.autoever.idle.domain.function.FunctionRepository;
 import com.autoever.idle.domain.function.TrimFunctionRepository;
+import com.autoever.idle.domain.function.dto.FunctionIdDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
@@ -122,7 +123,7 @@ public class MyTrimService {
 
     private Boolean getIsDefault(Long trimId, Long functionId) {
         String isDefault = trimFunctionRepository.checkDefaultFunction(trimId, functionId);
-        if (isDefault == null){
+        if (isDefault == null) {
             throw new InvalidTrimFunctionException(INVALID_TRIM_FUNCTION);
         }
         if (isDefault.equals("TRUE")) {
@@ -130,6 +131,20 @@ public class MyTrimService {
         }
         return false;
 
+    }
+
+    public List<FunctionIdDto> findNonSelectableFunctionsByTrim(Long trimId) {
+        List<MyTrimFunctionResDto> myTrimFunctions = findMyTrimFunctions();
+        List<FunctionIdDto> functionIdDtoList = new ArrayList<>();
+        System.out.println(myTrimFunctions.size());
+        for (MyTrimFunctionResDto myTrimFunctionResDto : myTrimFunctions) {
+            Long functionId = Long.valueOf(myTrimFunctionResDto.getFunctionId());
+            FunctionIdDto functionIdDto = trimFunctionRepository.checkNonSelectableFunctionAtTrim(trimId, functionId);
+            if(functionIdDto!=null){
+                functionIdDtoList.add(functionIdDto);
+            }
+        }
+        return functionIdDtoList;
     }
 
 }

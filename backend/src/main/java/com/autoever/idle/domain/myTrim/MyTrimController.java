@@ -1,15 +1,13 @@
 package com.autoever.idle.domain.myTrim;
 
+import com.autoever.idle.domain.function.dto.FunctionIdDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitReqDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -40,4 +38,9 @@ public class MyTrimController {
         return ResponseEntity.ok(optionBySelectFunctions);
     }
 
+    @GetMapping(value = "/select/trim")
+    public ResponseEntity<List<FunctionIdDto>> findNotFunctionsByTrim(@RequestParam Long trimId){
+        List<FunctionIdDto> nonSelectableFunctionsByTrim = myTrimService.findNonSelectableFunctionsByTrim(trimId);
+        return ResponseEntity.ok(nonSelectableFunctionsByTrim);
+    }
 }
