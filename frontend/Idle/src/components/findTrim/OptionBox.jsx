@@ -16,10 +16,18 @@ function OptionBox({ data, disable = false }) {
 
     setIsSelected((cur) => !cur);
     if (!isSelected) {
-      stateDispatch({ type: PUSH_SELECTED_OPTION, payload: data.name });
+      stateDispatch({ type: PUSH_SELECTED_OPTION, payload: data.functionId });
     } else {
-      stateDispatch({ type: POP_SELECTED_OPTION, payload: data.name });
+      stateDispatch({ type: POP_SELECTED_OPTION, payload: data.functionId });
     }
+  }
+
+  function dataNameCalc() {
+    const dataName = data.name;
+    if (dataName.length > 16) {
+      return dataName.slice(0, 16) + "...";
+    }
+    return dataName;
   }
 
   function modalClicked(e) {
@@ -48,7 +56,7 @@ function OptionBox({ data, disable = false }) {
     <StContainer onClick={boxClicked} $isSelcted={isSelected} $disable={disable}>
       <StOption>
         <OptionChecked data-name={data.name} />
-        <StTitle $isSelcted={isSelected}>{data.name}</StTitle>
+        <StTitle $isSelcted={isSelected}>{dataNameCalc()}</StTitle>
       </StOption>
       <StBtn $isSelcted={isSelected} onClick={modalClicked}>
         상세보기

@@ -18,14 +18,18 @@ export async function getAPI(path, data = {}) {
   }
 }
 
-export async function postAPI(path, data = {}) {
+export async function postAPI(path, data) {
+  let sendData = [];
+  data.map((item) => {
+    sendData.push({ functionId: item });
+  });
   try {
-    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/${path}`, {
+    const response = await fetch(`/api/${path}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(sendData),
     })
       .then((response) => response.json())
       .then((json) => {

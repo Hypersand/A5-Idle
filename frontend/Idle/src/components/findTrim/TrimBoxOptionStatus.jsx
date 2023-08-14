@@ -2,9 +2,13 @@ import styled from "styled-components";
 import palette from "styles/palette";
 
 function TrimBoxOptionStatus({ status }) {
+  if (status === "null") {
+    return null;
+  }
+
   return (
     <div>
-      {status === "default" ? null : status === false ? (
+      {status === false ? (
         <StTrimBoxAddOption>추가 옵션</StTrimBoxAddOption>
       ) : (
         <StTrimBoxDefaultOption>기본 제공</StTrimBoxDefaultOption>
