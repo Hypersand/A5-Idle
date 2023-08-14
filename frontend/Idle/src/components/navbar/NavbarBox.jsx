@@ -13,7 +13,7 @@ import palette from "styles/palette";
  * @param {setIsMatch} setIsMatch
  */
 function checkMatch(type, currentPage, setIsMatch) {
-  if (type === currentPage) {
+  if (currentPage.split("/").includes(type)) {
     setIsMatch(true);
   } else {
     setIsMatch(false);
@@ -94,14 +94,14 @@ function getTotalSum(type, car) {
 }
 const params = {
   trim: "",
-  detail: "engines",
-  color: "exterior",
-  option: "all",
+  detail: "/engines",
+  color: "/exterior",
+  option: "/all",
   bill: "",
 }
 
 function boxClicked(type, navigate) {
-  navigate(`/${type}/${params[type]}`);
+  navigate(`/${type}${params[type]}`);
 }
 
 function renderChecked(type, currenPage, car) {
