@@ -3,6 +3,7 @@ package com.autoever.idle.domain.function;
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
+import com.autoever.idle.domain.option.MyTrimOptionDto;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -34,7 +35,7 @@ class FunctionRepositoryImplTest {
 
     @Test
     @DisplayName("내게 맞는 트림 찾기에서 선택지 선택시")
-    void findTrimBySelectFunctions(){
+    void findTrimBySelectFunctions() {
         List<MyTrimDto> myTrimDtoList = functionRepository.findTrimBySelectFunctions(22);
 
         softly.assertThat(myTrimDtoList.size()).isEqualTo(4);
@@ -46,7 +47,7 @@ class FunctionRepositoryImplTest {
 
     @Test
     @DisplayName("내게 맞는 트림 찾기의 선택지가 유효한 선택지 읺지 테스트")
-    void checkMyTrimFunction(){
+    void checkMyTrimFunction() {
         String returnTrue = functionRepository.checkMyTrimFunction(22);
         String returnFalse = functionRepository.checkMyTrimFunction(15);
         String returnNull = functionRepository.checkMyTrimFunction(157);
@@ -71,4 +72,14 @@ class FunctionRepositoryImplTest {
         softly.assertThat(additonalFunctions.get(1).getFunctionId()).isEqualTo(2L);
         softly.assertThat(additonalFunctions.get(0).getFunctionCategory()).isEqualTo("파워트레인/성능");
     }
+
+    @Test
+    @DisplayName("내게 맞는 트림 찾기의 선택지에 따른 옵션 반환 테스트")
+    void findOptionBySelectFunction() {
+        MyTrimOptionDto optionBySelectFunction = functionRepository.findOptionBySelectFunction(17L);
+
+        softly.assertThat(optionBySelectFunction.getOptionName()).isEqualTo("주차보조 시스템 I");
+
+    }
+
 }

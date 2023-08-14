@@ -3,6 +3,7 @@ package com.autoever.idle.domain.function;
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
+import com.autoever.idle.domain.option.MyTrimOptionDto;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,17 +24,11 @@ public class FunctionRepositoryImpl implements FunctionRepository {
 
     @Override
     public List<MyTrimFunctionDto> findMyTrimFunctions() {
-        return jdbcTemplate.query("select FUNCTIONS.function_id, name, description, trim_id, img_url " +
+        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimFunctionDto.class);
+        return jdbcTemplate.query("select FUNCTIONS.function_id AS functionId, name, description, trim_id AS trimId, img_url AS imgUrl " +
                         "from TRIM_FUNCTION TF " +
                         "join FUNCTIONS on TF.function_id=FUNCTIONS.function_id " +
-                        "where is_my_trim='TRUE' order by trim_id",
-                ((rs, rowNum) -> new MyTrimFunctionDto(
-                        rs.getInt("FUNCTIONS.function_id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getString("img_url"),
-                        rs.getInt("trim_id")
-                )));
+                        "where is_my_trim='TRUE' order by trim_id", rowMapper);
     }
 
     @Override
@@ -64,7 +59,7 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                 "SELECT TRIM.name, is_default AS isDefault FROM TRIM " +
                 "    LEFT JOIN TMP_TRIM_FUNCTION AS TTF " +
                 "    ON TRIM.trim_id=TTF.trim_id";
-        RowMapper rowMapper = new BeanPropertyRowMapper(MyTrimDto.class);
+        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimDto.class);
         return jdbcTemplate.query(query, rowMapper, functionId);
     }
 
@@ -76,5 +71,13 @@ public class FunctionRepositoryImpl implements FunctionRepository {
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
+    }
+    @Override
+    public MyTrimOptionDto findOptionBySelectFunction(Long functionId) {
+        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimOptionDto.class);
+        return (MyTrimOptionDto) jdbcTemplate.queryForObject("SELECT O.option_id AS optionId, O.name AS optionName, price AS optionPrice FROM FUNCTIONS AS F " +
+                        "JOIN `OPTION` AS O ON F.option_id=O.option_id " +
+                        "WHERE function_id=?",
+                rowMapper, functionId);
     }
 }
