@@ -1,12 +1,16 @@
 package com.autoever.idle.domain.exteriorColor;
 
 import com.autoever.idle.domain.exteriorColor.dto.CarExteriorImgDto;
+import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorColorDto;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ExteriorColorRepositoryImpl implements ExteriorColorRepository {
@@ -44,5 +48,13 @@ public class ExteriorColorRepositoryImpl implements ExteriorColorRepository {
                         rs.getString("car_exterior_img_url")
                 ),
                 exteriorId);
+    }
+
+    public Optional<ExteriorBillDto> findExteriorBill(Long exteriorId) {
+        String query = "select e.exterior_color_id exteriorId, e.color_img_url exteriorImgUrl " +
+                        "from EXTERIOR_COLOR e where e.exterior_color_id = ?";
+
+        RowMapper rowMapper = new BeanPropertyRowMapper(ExteriorBillDto.class);
+        return jdbcTemplate.query(query, rowMapper, exteriorId).stream().findAny();
     }
 }
