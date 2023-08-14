@@ -4,43 +4,41 @@ import { useContext } from "react";
 import { carContext } from "utils/context";
 import ModifyButton from "buttons/ModifyButton";
 import palette from "styles/palette";
+import { useNavigate } from "react-router-dom";
 
 function BillDetail({ item }) {
   const { car } = useContext(carContext);
-  let detail, price;
+  const navigate = useNavigate();
+  let detail, price, path;
   switch (item) {
     case "trim":
       detail = car.trim.name;
       price = car.getTrimSum();
+      path = `/${item}`;
       break;
     case "engines":
-      detail = car.detail.engines.name;
-      price = car.detail.engines.price;
-      break;
     case "drivingMethods":
-      detail = car.detail.drivingMethods.name;
-      price = car.detail.drivingMethods.price;
-      break;
     case "bodyTypes":
-      detail = car.detail.bodyTypes.name;
-      price = car.detail.bodyTypes.price;
+      detail = car.detail[item].name;
+      price = car.detail[item].price;
+      path = `/detail/${item}`;
       break;
-    case "exterior_colors":
-      detail = car.color.exterior.name;
-      price = car.color.exterior.price;
-      break;
-    case "interior_colors":
-      detail = car.color.interior.name;
-      price = car.color.interior.price;
+    case "exterior":
+    case "interior":
+      detail = car.color[item].name;
+      price = car.color[item].price;
+      path = `/color/${item}`;
       break;
     default:
       break;
   }
+
+
   return (
     <StContainer>
       <StTitle>
         <h1>{TRANSLATE[item]}</h1>
-        <ModifyButton />
+        <ModifyButton onClick={() => { navigate(path) }} />
       </StTitle>
       <StDetailContainer>
         <h1>{detail ? detail : "아직 선택하지 않았습니다."}</h1>
