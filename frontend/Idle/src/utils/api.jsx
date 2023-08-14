@@ -1,6 +1,7 @@
 export async function CustomAPI(path, data = {}) {
   try {
-    const response = await fetch(`${import.meta.env.BASE_URL}/${path}`, {
+    const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/${path}`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
