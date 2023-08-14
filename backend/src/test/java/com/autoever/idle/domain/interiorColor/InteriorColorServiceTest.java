@@ -2,6 +2,7 @@ package com.autoever.idle.domain.interiorColor;
 
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorResDto;
+import com.autoever.idle.global.exception.custom.InvalidTrimException;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -14,9 +15,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SoftAssertionsExtension.class)
@@ -70,5 +73,18 @@ class InteriorColorServiceTest {
                 .isEqualTo(interiorColorDtos.get(0).getCarInteriorImgUrl());
         softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorPurchaseRate())
                 .isEqualTo(interiorColorDtos.get(0).getInteriorPurchaseRate());
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 트림에 대해 예외를 발생한다")
+    void validateTrim() {
+        Long trimId = 12345L;
+        Long exteriorId = 1L;
+
+        when(interiorColorRepository.findInteriorColorByTrimIdAndExteriorId(trimId, exteriorId))
+                .thenReturn(Collections.emptyList());
+
+        softAssertions.assertThatThrownBy(() -> interiorColorService.findAllInteriorColors(trimId, exteriorId))
+                .isInstanceOf(InvalidTrimException.class);
     }
 }
