@@ -15,13 +15,13 @@ function DetailModelBox({ purchase_rate, name, description, price, currentTab, i
           dispatch({ type: CHANGE_ENGINES, payload: payload });
         }
         break;
-      case "driving_methods":
-        if (car.detail.driving_methods.name !== name) {
+      case "drivingMethods":
+        if (car.detail.drivingMethods.name !== name) {
           dispatch({ type: CHANGE_DRIVING_METHODS, payload: payload });
         }
         break;
-      case "body_types":
-        if (car.detail.body_types.name !== name) {
+      case "bodyTypes":
+        if (car.detail.bodyTypes.name !== name) {
           dispatch({ type: CHANGE_BODY_TYPES, payload: payload });
         }
         break;
