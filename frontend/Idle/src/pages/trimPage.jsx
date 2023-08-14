@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
 import { carContext } from "../utils/context";
-import FindTrim from "../components/findTrim/Index";
+import FindTrim from "../components/findTrim/index";
 import { CustomAPI } from "../utils/api";
 import palette from "../styles/palette";
 import { PATH } from "../utils/constants";
