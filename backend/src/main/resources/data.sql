@@ -5,9 +5,23 @@ INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id)
 INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Prestige', 46240000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/prestige.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', '구매자 15%가 선택', 1);
 INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Calligraphy', 51060000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/calligraphy.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', '구매자 75%가 선택', 1);
 
-INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('김팰리', '010-0000-00', '왕십리 지점', '고객님의 모든 구매 과정에 정성을 다하겠습니다.', 30, null, 36.1234, 126.1234);
-INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('정현대', '010-0000-00', '한양 대리점', '안녕하세요 믿음을 주는 카마스터 정현대입니다.', 20, null, 36.1324, 126.1324);
-INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('심포니', '010-0000-00', '마장 대리점', '고객님을 위한 최고의 차량을 추천해드릴게요.', 10, null, 36.1423, 126.1432);
+INSERT INTO BODY_TYPE (type, price, description, purchase_rate, img_url) VALUES ('7인승', 0, '2열 가운데 시트를 없에 2열 탑승객의 편의는 물론, 3열 탑승객의 승하차가 편리합니다.', '구매자 50%가 선택', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/7.jpg');
+INSERT INTO BODY_TYPE (type, price, description, purchase_rate, img_url) VALUES ('8인승', 0, '1열 2명, 2열 3명, 3열 3명이 탑승할 수 있는 구조로, 많은 인원이 탑승할 수 있습니다.', '구매자 50%가 선택', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/8.jpg');
+
+INSERT INTO DRIVING_METHOD (type, price, description, img_url, purchase_rate) VALUES ('2WD', 0, '엔진 동려이 전륜 후륜 중 하나로 전달되어 움직입니다. 차체가 가벼워 연료 효율이 높습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', '구매자 60%가 선택');
+INSERT INTO DRIVING_METHOD (type, price, description, img_url, purchase_rate) VALUES ('4WD', 237000, '상시 4륜 구동 시스템으로 주행 환경에 맞춰 전후륜 구동력을 자동배분해 안전성을 높입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', '구매자 40%가 선택');
+
+INSERT INTO ENGINE (type, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('디젤 2.2', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/5.jpg', 1480000, 202, 45, 11.4, 12.4, '구매자 45%가 선택', '강력한 토크와 탁월한 효율로 여유있는 파워와 높은 연비를 제공하는 디젤 엔진입니다.');
+INSERT INTO ENGINE (type, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('가솔린 3.8', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/6.jpg', 0, 295, 36.2, 8, 9.2, '구매자 55%가 선택', '고효율의 3.8 가솔린 엔진으로 다이내믹한 주행 성능은 물론, 정속성까지 선사합니다.');
+
+INSERT INTO FUNCTION_CATEGORY (name) VALUES ('파워트레인/성능');
+INSERT INTO FUNCTION_CATEGORY (name) VALUES ('지능형 안전기술');
+INSERT INTO FUNCTION_CATEGORY (name) VALUES ('안전');
+INSERT INTO FUNCTION_CATEGORY (name) VALUES ('외관');
+INSERT INTO FUNCTION_CATEGORY (name) VALUES ('내장');
+INSERT INTO FUNCTION_CATEGORY (name) VALUES ('시트');
+INSERT INTO FUNCTION_CATEGORY (name) VALUES ('편의');
+INSERT INTO FUNCTION_CATEGORY (name) VALUES ('멀티미디어');
 
 INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('어비스 블랙 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/11.png', 0, '구매자의 30%가 선택');
 INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('쉬버링 실버 메탈릭', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/12.png', 0, '구매자의 20%가 선택');
@@ -17,8 +31,8 @@ INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES (
 INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('그라파이트 그레이 메탈릭', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/15.png', 0, '구매자의 5%가 선택');
 INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('크리미 화이트 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/16.png', 100000, '구매자의 30%가 선택');
 
-INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_001.png', 1, 1);
 INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_002.png', 1, 2);
+INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_001.png', 1, 1);
 INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_003.png', 1, 3);
 INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_004.png', 1, 4);
 INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_005.png', 1, 5);
@@ -436,12 +450,12 @@ INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_seq
 INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_057.png', 3, 57);
 INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_058.png', 3, 58);
 INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_059.png', 3, 59);
-
 INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_060.png', 3, 60);
+
+
 INSERT INTO TRIM_EXTERIOR_COLOR (trim_id, exterior_color_id) VALUES (4, 1);
 INSERT INTO TRIM_EXTERIOR_COLOR (trim_id, exterior_color_id) VALUES (4, 2);
 INSERT INTO TRIM_EXTERIOR_COLOR (trim_id, exterior_color_id) VALUES (4, 3);
-
 INSERT INTO TRIM_EXTERIOR_COLOR (trim_id, exterior_color_id) VALUES (4, 4);
 INSERT INTO TRIM_EXTERIOR_COLOR (trim_id, exterior_color_id) VALUES (4, 5);
 INSERT INTO TRIM_EXTERIOR_COLOR (trim_id, exterior_color_id) VALUES (4, 6);
@@ -525,15 +539,6 @@ INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purch
 INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', '구매자 3%가 선택', 18);
 INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', '구매자 3%가 선택', 19);
 
-INSERT INTO ENGINE (type, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('디젤 2.2', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/5.jpg', 1480000, 202, 45, 11.4, 12.4, '구매자 45%가 선택', '강력한 토크와 탁월한 효율로 여유있는 파워와 높은 연비를 제공하는 디젤 엔진입니다.');
-INSERT INTO ENGINE (type, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('가솔린 3.8', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/6.jpg', 0, 295, 36.2, 8, 9.2, '구매자 55%가 선택', '고효율의 3.8 가솔린 엔진으로 다이내믹한 주행 성능은 물론, 정속성까지 선사합니다.');
-
-INSERT INTO BODY_TYPE (type, price, description, purchase_rate, img_url) VALUES ('7인승', 0, '2열 가운데 시트를 없에 2열 탑승객의 편의는 물론, 3열 탑승객의 승하차가 편리합니다.', '구매자 50%가 선택', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/7.jpg');
-INSERT INTO BODY_TYPE (type, price, description, purchase_rate, img_url) VALUES ('8인승', 0, '1열 2명, 2열 3명, 3열 3명이 탑승할 수 있는 구조로, 많은 인원이 탑승할 수 있습니다.', '구매자 50%가 선택', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/8.jpg');
-
-INSERT INTO DRIVING_METHOD (type, price, description, img_url, purchase_rate) VALUES ('2WD', 0, '엔진 동려이 전륜 후륜 중 하나로 전달되어 움직입니다. 차체가 가벼워 연료 효율이 높습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', '구매자 60%가 선택');
-INSERT INTO DRIVING_METHOD (type, price, description, img_url, purchase_rate) VALUES ('4WD', 237000, '상시 4륜 구동 시스템으로 주행 환경에 맞춰 전후륜 구동력을 자동배분해 안전성을 높입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', '구매자 40%가 선택');
-
 INSERT INTO TRIM_BODY_TYPE (trim_id, body_type_id) VALUES (1, 1);
 INSERT INTO TRIM_BODY_TYPE (trim_id, body_type_id) VALUES (1, 2);
 INSERT INTO TRIM_BODY_TYPE (trim_id, body_type_id) VALUES (2, 1);
@@ -542,15 +547,6 @@ INSERT INTO TRIM_BODY_TYPE (trim_id, body_type_id) VALUES (3, 1);
 INSERT INTO TRIM_BODY_TYPE (trim_id, body_type_id) VALUES (3, 2);
 INSERT INTO TRIM_BODY_TYPE (trim_id, body_type_id) VALUES (4, 1);
 INSERT INTO TRIM_BODY_TYPE (trim_id, body_type_id) VALUES (4, 2);
-
-INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (1, 1);
-INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (1, 2);
-INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (2, 1);
-INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (2, 2);
-INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (3, 1);
-INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (3, 2);
-INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (4, 1);
-INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (4, 2);
 
 INSERT INTO TRIM_DRIVING_METHOD (trim_id, driving_method_id) VALUES (1, 1);
 INSERT INTO TRIM_DRIVING_METHOD (trim_id, driving_method_id) VALUES (1, 2);
@@ -561,16 +557,14 @@ INSERT INTO TRIM_DRIVING_METHOD (trim_id, driving_method_id) VALUES (3, 2);
 INSERT INTO TRIM_DRIVING_METHOD (trim_id, driving_method_id) VALUES (4, 1);
 INSERT INTO TRIM_DRIVING_METHOD (trim_id, driving_method_id) VALUES (4, 2);
 
-
-INSERT INTO FUNCTION_CATEGORY (name) VALUES ('파워트레인/성능');
-INSERT INTO FUNCTION_CATEGORY (name) VALUES ('지능형 안전기술');
-INSERT INTO FUNCTION_CATEGORY (name) VALUES ('안전');
-INSERT INTO FUNCTION_CATEGORY (name) VALUES ('외관');
-INSERT INTO FUNCTION_CATEGORY (name) VALUES ('내장');
-INSERT INTO FUNCTION_CATEGORY (name) VALUES ('시트');
-INSERT INTO FUNCTION_CATEGORY (name) VALUES ('편의');
-INSERT INTO FUNCTION_CATEGORY (name) VALUES ('멀티미디어');
-
+INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (1, 1);
+INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (1, 2);
+INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (2, 1);
+INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (2, 2);
+INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (3, 1);
+INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (3, 2);
+INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (4, 1);
+INSERT INTO TRIM_ENGINE (trim_id, engine_id) VALUES (4, 2);
 INSERT INTO OPTION_CATEGORY (name) VALUES ('안전');
 INSERT INTO OPTION_CATEGORY (name) VALUES ('스타일&퍼포먼스');
 INSERT INTO OPTION_CATEGORY (name) VALUES ('차량 보호');
@@ -614,314 +608,354 @@ INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_i
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('컨비니언스', 790000, '-', '구매자 10%가 선택', 1);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('컴포트 I', 890000, '-', '구매자 10%가 선택', 1);
 
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('12.3인치 내비게이션(블루링크, 폰 프로젝션, 현대 카페이)', '와이드하고 품격 있는 실내공간을 연출하고 고해상도 대화면으로 뛰어난 시인성과 최첨단 인포테인먼트 기능을 제공합니다.주요기능 : 대화면 HD급 고해상도(1,920x720) 모니터, 내비게이션 자동 무선 업데이트, 개인화 프로필, 서버형 음성인식 시스템, 블루링크', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/95.jpg', null, 'FALSE', 8, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('하이패스', '유료 도로로 진출입시 통행료가 자동결제 되는 장치입니다. 하이패스 시스템은 시동이 걸려있는 상태에서만 작동합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/96.jpg', null, 'FALSE', 8, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후석 대화모드', '운전자의 음성을 운전석 마이크를 통하여 뒷좌석 동승자와의 대화 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/97.jpg', null, 'FALSE', 8, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후석 취침모드', '뒷좌석 동승자가 취침 시, 뒷좌석 스피커가 모두 음소거가 되고 운전석 스피커로만 음원이 출력되어, 뒷좌석을 조용한 공간으로 활용할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/98.jpg', null, 'FALSE', 8, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('멀티미디어용 USB 단자(1열 1개)', 'MP3, USB 저장 장치 또는 iPod 등 외부 음향 기기(또는 음악/동영상 등 미디어 파일 저장 장치)를 차량에 연결하여 차량 스피커를 통하여 음악을 듣거나 차량 오디오 또는 인포테인먼트 시스템으로 재생할 수 있는 편의 장치 입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/100.jpg', null, 'FALSE', 8, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('KRELL 프리미엄 사운드(12스피커, 외장앰프)', '음향의 세밀함과 공간감, 다이내믹함을 추구하며 세계 유수의 사운드 어워드를 수상한 세계적인 하이앤드 오디오 시스템 브랜드인 크렐 사운드 시스템을 적용하였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/krellsound_s.jpg', 19, 'TRUE', 8, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('액티브 노이즈 컨트롤', '실시간으로 차량 내부의 엔진 소음을 분석해 반대 위상의 음파를 출력하여 소음을 저감하고 보다 정숙한 실내 공간을 만들어줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/activenoisecontrol_s.jpg', 19, 'FALSE', 8, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('클러스터(4.2인치 컬러 LCD)', '계기판 중앙에 4.2인치의 컬러 LCD 화면을 탑재하여 주행 중 외부 온도, 연비 정보, 지능형 안전 기술 작동 상태 등 다양한 차량의 상태를 운전자가 직관적으로 확인할 수 있도록 돕는 장치입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/4.2cluster_s.jpg', null, 'FALSE', 8, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('일반 오디오 시스템(8스피커, 블루투스 핸즈프리)', '차량 내부 공간의 음향 특성에 맞게 세심하게 조정된 8개의 스피커를 통하여 기본에 충실한 사운드를 감상할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/99.jpg', null, 'FALSE', 8, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('버튼시동 & 스마트키', '일반 키와는 달리 휴대만으로 도어(트렁크 포함)를 잠그거나 열고, 엔진 시동을 걸 수 있는 장치입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/72.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전동식 파킹 브레이크(오토홀드 포함)', '버튼 조작만으로 파킹 브레이크 작동 또는 해제가 가능하며, 정차 시 자동으로 제동상태를 유지하는 오토 홀드 기능 적용으로 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/43.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('패들 쉬프트', '운전 중 간단한 조작만으로도 스포티한 수동 변속모드를 지원합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/74.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('3존 독립제어 풀오토 에어컨(공기청정모드 포함)', '원하는 온도를 설정하면 자동으로 설정된 온도로 풍량을 조절하여 쾌적한 실내를 완성합니다.
-- 공기 청정 모드 : 일정 시간 동안 외부 공기를 차단하고 내부 순환모드를 가동하여 실내에서 순환하는 공기를 반복적으로 필터링하여 공기질을 개선시키는 기능입니다. 
-- 3존 독립제어 : 운전석이나 동승석 뿐만 아니라 후석에서도 개별 제어가 가능한 에어컨입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/75.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('공기질 센서', '실내 공기질을 실시간으로 확인할 수 있어 공기 청정 모드 사용이나 환기를 유도합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/76.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('마이크로 에어 필터', '미세먼지의 실내 유입의 방지하기 위한 에어필터입니다.
-글로브 박스 뒤쪽에 장착되어 바깥에서 공기 조화 장치를 통하여 차 안으로 들어오는 먼지나 꽃가루 등을 걸러줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/77.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('자외선 차단 유리(윈드실드)', '차량 전방 유리에 자외선을 차단 기능을 적용하여 탑승객은 물론 차량 실내 내장재를 보호합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/78.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('오토 디포그', '전면유리의 김서림을 감지해 스스로 전면 유리 및 앞좌석 유리의 김서림을 없애 운전시야를 확보합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/79.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('레인센서', '스티어링 휠 우측 레버의 와이퍼 조절장치 스위치를 AUTO로 위치하였을 때 주행 중 우천상황을 자동으로 감지하여 와이퍼가 작동 및 조작단계를 자동으로 조절하는 기능입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/80.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('운전석 공조 연동 자동 제어', '시동 후 공조 설정 온도와 실제 온도의 차이가 많이 나는 경우, 공조기 외 스티어링 휠 열선, 시트 열선/통풍을 자동으로 감지하여 통합 제어하는 기능입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/81.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('USB 충전기(1열 1개, 2열 2개, 3열 2개)', '차량용 충전기로서 USB 포트를 통해 각종 스마트폰 및 태블릿 기기 충전이 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/82.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('파워 아웃렛(1열 1개, 2열 1개, 3열 1개)', '시동이 걸린 상태에서 실내에서 전기 제품(예 : 진공청소기, 소형냉장고, 게임기 등)을 사용할 수 있도록 돕습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/83.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('세이프티 파워 윈도우(1/2열)', '유리창이 원터치 자동 닫힘 기능이 작동하여 닫히는 중에 일정한 힘에 의해 막히면 자동으로 닫힘을 멈추고, 일정한 높이만큼 다시 열리는 기능입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/84.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후방 모니터', '후진 주차 시 디스플레이 오디오 또는 내비게이션 화면에 후방 상황을 표시하여 편의성을 높였습니다.
-- 조향연동 기능 : 스티어링 휠 조정 시 그에 따른 예상 주행 궤적도 같이 표시하여 편의성을 높였습니다. 
-- DRM(Driving Rear Monitor) 기능 : 주행 중 후방 영상을 실시간으로 확인하여 룸미러 시야 확보가 불가능 할 때, 후방 상황을 인지할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/85.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('확산형 루프 에어 벤트', '벤트 테두리에 홀(HOLE)을 적용하여 바람이 직접 분사가 아닌 간접(확산) 분사될 수 있도록 구현하여 조금 더 쾌적한 환경을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/86.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('오토라이트 컨트롤', '대시보드 중앙에 위치한 조도센서를 이용하여 외부 밝기에 따라 헤드램프를 자동으로 조절하는 장치입니다. 스티어링 휠 좌측에 위치한 조명 스위치를 「AUTO」 위치에 두면 작동합니다.
-- 대시보드 : 운전석과 조수석 정면에 있으며, 계기판과 센터페시아를 포함합니다.
-※ 스마트/VAN 스마트 트림 선택 시, 위 이미지와는 달리 내장 색상이 블랙으로 적용됩니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/87.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스마트키 원격시동', '차량 탑승 전 스마트키를 이용하여 원격으로 시동을 걸 수 있으며, 냉/난방 장치는 시동을 끄기 전 설정된 상태로 작동이 가능합니다.
-* 차량 10m 이내에서 도어 잠금 버튼을 누른 후 4초 이내에 원격시동 버튼을 2초 이상 누르면 시동이 걸립니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/88.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전방/후방 주차 거리 경고', '범퍼에 내장된 초음파 센서로 장애물과의 거리를 감지하여 거리별로 차별화된 경고음을 울려 주차 편의성 및 안전성을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/89.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전동식 틸트 & 텔레스코픽 스티어링 휠', '조절 스위치를 이용하여 스티어링 휠의 높낮이와 전/후 위치를 조절할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/90.jpg', 24, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스마트폰 무선충전', '중앙 콘솔에 휴대폰 무선 충전을 위한 시스템이 적용되어 있습니다. 또한 엔진에 시동을 끈 후 충전 패드에 휴대폰이 놓여있는 상태에서 운전석 또는 동승석 도어를 열면 게시판에 휴대폰이 무선 충전기에 있습니다라는 경고문 및 경고음(음성안내 적용 차량)으로 알려줍니다.
-* 무선 충전 시스템은 Qi를 지원하는 휴대폰 한 대를 대상으로 무선충전을 지원하며, Qi를 지원하는 휴대폰은 휴대폰 제조사를 통해 확인 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/91.jpg', 23, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스마트 파워 테일게이트', '스위치 및 스마트키 버튼으로 테일게이트 개방이 가능하며, 설정을 통해 개폐 속도 조절 및 열림 높이 조절이 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/92.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('서라운드 뷰 모니터', '차량 앞/뒤/좌/우 360도 모든 상황을 AVN화면을 통해 볼 수 있는 장치로 고화질 카메라 및 디지털 영상 전송 방식을 적용하여 영상 경계선 없이 선명하고 깨끗한 화질을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/93.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후측방 모니터', '방향지시등 스위치 조작과 연동해 차로 변경 시 기존 아웃사이드 미러 대비 더 넓은 후측방 영역을 클러스터에 표시하여 안전한 주행을 도와줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/94.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('디지털 키 2 터치', '스마트폰으로 차량 외부에서 도어를 열고 시동을 걸 수 있습니다. 사용 권한을 다수의 사람과 공유하여 보다 편리함을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/digitalkey_s.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('2열 수동식 도어커튼', '뒷좌석 유리를 통해 들어오는 외부 광선을 차단할 때 사용하는 수동식 커튼입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/manualcurtain_s.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전후석 통합 터치 공조 컨트롤', '터치식으로 2열 공조 제어까지 가능하여 편리한 터치 타입 공조 패널에 공기질 센서, 마이크로 에어 필터, 운전석 공조 연동 자동 제어 등의 공기청정모드가 적용되어 실내 미세먼지를 획기적으로 저감하며 쾌적한 실내 환경을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/81.jpg', null, 'TRUE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('헤드업 디스플레이', '주요 주행 정보를 전면 윈드실드에 표시하며, 밝기가 최적화되어 주간에도 시인성이 뛰어납니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/101-6.jpg', 18, 'TRUE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('파워 아웃렛(콘솔 내부 1개)', '시동이 걸린 상태에서 실내에서 전기 제품(예 : 진공청소기, 소형냉장고, 게임기 등)을 사용할 수 있도록 돕습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/poweroutlet_consol_s.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('USB 충전기(콘솔 내부 1개)', '차량용 충전기로서 USB 포트를 통해 각종 스마트폰 및 태블릿 기기 충전이 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/usbcharger_consol_s.jpg', null, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('러기지 스크린', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/luggagescreen_m.jpg', 9, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('러기지 네트', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/luggagenet_m.jpg', 9, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('러기지 프로텍션 매트', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/112-1.jpg', 8, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('듀얼 와이드 선루프', '후석에 고정 글라스를 적용한 듀얼 파노라믹 선루프로 2/3열의 탑승객에게도 넓은 개방감을 선사합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/104.jpg', 2, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('사이드스텝', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/109.jpg', 5, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('적외선 무릎워머', '※ 적외선 무릎 워머 상품은 사용자의 자세와 체형에 따라 효과가 상이할 수 있습니다.
- ※ 적외선 무릎 워머 상품의 발열부는 고온으로 신체 접촉 시 화상 위험이 있으므로 닿지 않도록 주의바랍니다.
- ※ 적외선 무릎 워머 상품은 실내온도에 따라 발열 온도가 조절되며, 30분 연속 작동 됩니다.
- ※ 적외선 무릎 워머는 전동식 틸트 & 텔레스코픽 스티어링 휠 적용 시 선택이 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/110.jpg', 6, 'FALSE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('냉온장 컵홀더', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/cupholder_s.jpg', 3, 'TRUE', 7, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('1열 열선/통풍시트', '시동이 걸린 상태에서 해당 좌석 히터 스위치를 누르면 강약조절 표시등이 켜져 사용 중임을 나타내고 해당 좌석이 따뜻해지는 열선기능과 시동이 걸린 상태에서 해당 좌석의 통풍 스위치를 누르면 표시등이 켜지면서 해당 좌석에 바람이 나오는 통풍기능이 적용되었습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/65.jpg', null, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('2열 열선시트', '3단계로 온도 조절이 가능한 열선시트를 적용하여 쾌적한 승차감을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/66.jpg', null, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('2열 폴드 & 다이브/슬라이딩 & 리클라이닝 시트', '평면형태의 2열 공간을 제공하는 풀플랫 폴딩 2열시트로 차원이 다른 공간/거주성을 확보해 넉넉한 러기지 공간은 물론 프라이빗 스페이스로 활용할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/67.jpg', null, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('3열 6:4분할 폴딩/리클라이닝 시트', '3열 시트 및 러기지 사이드에 적용된 전자식 스위치로 시트를 폴딩 및 리클라이닝하여 화물 적재 시 편리합니다. 또한 좌석 등받이 부분을 후방으로 눕힐 수 있는 리클라이닝 기능을 적용하여 성인 탑승 및 장거리 이동 시 거주 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/68.jpg', null, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('동승석 전동시트(럼버서포트, 레그레스트, 릴렉션 컴포트)', '동승석의 시트 포지션을 조정하여 동승자의 체형에 맞는 편안한 자세를 유지할 수 있도록 돕는 기능입니다. 허벅지 길이에 맞게 시트를 2way로 조절하는 레그레스트와 탑승자에게 편안한 휴식을 선사하는 릴렉션 컴포트가 적용되었습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/71.jpg', null, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('운전석 에르고 모션 시트(18way, 볼스터 전동조절, 레그레스트, 릴렉션 컴포트, 스트레칭 모드)', '시트 내 공기주머니를 활용하여 주행 시 안락감과 최적의 착좌감을 구현하는 에르고 모션 시트가 적용되었습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/motionseat_s.jpg', null, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스마트 자세제어', '스마트 자세제어 시스템은 전동 시트의 장점을 극대화하는 사양으로 사전에 입력한 운전자의 신체 정보에 따라 시트, 스티어링 휠, 사이드 미러, 헤드업 디스플레이의 위치를 제안하는 기능입니다. 또한 장시간 주행 시 시트의 엉덩이와 허리 쿠션을 자동으로 조절해 탑승자의 피로를 줄이고 졸음을 방지하기도 합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/smartcontrol_s.jpg', 23, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('3열 파워폴딩시트', '러기지 사이드에 있는 버튼으로 3열 시트를 접었다 펼 수 있으며, 2열 시트도 조작할 수 있어 화물 적재시나 3열 이용시 사용자의 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/101-4.jpg', 18, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('윙타입 헤드레스트(2열)', '좌우가 넓은 윙타입의 헤드레스트를 적용하여 더욱 편리합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/wingtypeheadrest_s.jpg', null, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('3열 열선시트', '시동이 걸린 상태에서 해당 좌석 히터 스위치를 누르면 강약조절 표시등이 켜져 사용 중임을 나타내고 해당 좌석이 따뜻해집니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/101-5', 18, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('2열 통풍시트', '시동이 걸린 상태에서 해당 좌석의 통풍 스위치를 누르면 표시등이 켜지면서 해당 좌석에 바람이 나오는 편의장치입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/103.jpg', 20, 'TRUE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('운전석 전동시트(8way, 럼버서포트)', '"운전석의 시트 포지션을 조정하여 운전자의 체형에 맞는 편안한 자세를 유지할 수 있도록 돕는 기능입니다. 팰리세이드는 옵션에 따라 10way 전동 시트와 12way 전동시트(럼버서포트 포함) & 2way 쿠션 익스텐션을 선택할 수 있습니다.
-10way 전동시트 : 운전석 좌하단에 위치한 조작부로 8방향으로 조절 기능(시트백 기울기, 시트 앞/뒤 이동, 쿠션부 앞/뒤 높이 조절)과 허리 지지대 조절 기능을 전동 방식으로 조절합니다.
-12way 전동시트(럼버서포트 포함) & 2way 쿠션 익스텐션 : 운전석 좌하단에 위치한 조작부로 8방향으로 조절 기능(시트백 기울기, 시트 앞/뒤 이동, 쿠션부 앞/뒤 높이 조절)과 4방향으로 허리 지지대를 조절하며 운전자의 허벅지 길이에 맞게 시트 하단부를 조절하는 쿠션 익스텐션이 적용되었습니다."', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/70.png', null, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 실내등(맵램프, 룸램프, 선바이저램프, 러기지램프)', '차량 실내 전체를 비춰주는 룸램프를 LED로 적용하여 어두운 곳에서의 시인성을 향상시킵니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/60.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('가죽 스티어링 휠(열선포함)', '시동 스위치가 「ON」 또는 엔진이 작동 중일때 스티어링 휠 히터 버튼을 누르면 표시등이 켜지면서 스티어링 휠이 따뜻해집니다. 스티어링 휠 히터 버튼을 누른 후 작동 조건에서 약 30분이 지나면 자동으로 작동을 멈춥니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/61.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('클러스터(12.3인치 컬러 LCD)', '컬러 LCD 클러스터(1,920x720)는 시인성이 높고 정보 파악이 용이하며, 주행모드별 차별화된 그래픽으로 즐거운 드라이빙 환경을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/62.jpg', null, 'TRUE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('인조가죽 감싸기', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/63.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('도어 암레스트 리얼스티치', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/64.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('메탈 페달', '자동차의 가속, 브레이크 페달을 메탈로 제작해 드라이빙 시 페달에서 발이 이탈하는 것을 최소화하고 메탈 디자인으로 고급스러운 감성을 전달합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/metalpaddle_s.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스웨이드 내장재(헤드라이닝/필라)', '가죽 뒷면을 부드럽게 가공하여 고급스러운 느낌을 주는 스웨이드로 완성된 내장재를 차량의 A/B/C필라 및 차량 천장 부분에 적용하여 인테리어에서 고급스러운 감성을 전달합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/swade_s.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('콘솔 커버 리얼 알루미늄', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/consolcover_s.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('메탈 리어범퍼스텝', '러기지 룸 앞쪽 하단부를 메탈로 만들어 물건을 싣고 내릴 때나 사람이 올라갈 때 차체를 보호해줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/metalrearbumper_s.jpg', 18, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('메탈 도어스커프', '자동차를 타고 내리는 도어의 문틈 하부를 보호하는 도어스커프 부분을 메탈로 만들어 차체를 보호하고 메탈 디자인으로 고급스러운 감성을 전달합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/metaldoorscuff_s.jpg', 18, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('1열 도어 스피커 메탈 그릴', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/1_doorspeaker_s.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('퀼팅 인조가죽 감싸기(도어트림)', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/quiltingwrapping_s.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('앰비언트 무드램프', '1/2열 도어 가니쉬 하단과, 1열 콘솔 사이드 부에 은은한 조명을 적용하여 고급감을 전달합니다. AVN 설정 화면에서 고객이 직접 64가지 색상 및 전문가 추천 10가지 색상을 선택할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/quiltingwrapping_s.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('디지털 센터 미러', '디지털 미러로 보다 선명하게 후방을 확인할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/dcm_s.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('콘솔 사이드 리얼스티치', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/consolside_s.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 도어 스팟 램프', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/doorspotlamp_m.jpg', 9, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 풋무드 램프', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/footmoodlamp_m.jpg', 9, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('플로어매트 1,2열', '※ 프로텍션 매트 패키지는 사용자의 신발 재질에 따라 일부 미끄러짐이 발생할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/112-2.jpg', 8, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('2열 센터 콘솔(양문형 암레스트, 공기청정기, 냉온장 컵홀더, 앰비언트 무드램프, 터치 스위치 포함)', '양문형 2열 센터 콘솔 암레스트로 콘솔 개폐시 편의성이 우수합니다. 또한 2열 콘솔 부위에 앰비언트 무드램프를 더하여 2열 차별화와 고급감을 향상시켰습니다.
-- 공기청정기 : H13등급 헤파 필터와 활성탄 및 제올라이트 필터를 적용하여 미세먼지와 유해가스를 효과적으로 필터링하여 2열 좌석 중심으로 신선한 공기를 공급합니다. 미세먼지 센서로(PM2.5 레이저) 실내 미세먼지를 측정하여 풍량을 자동 제어합니다.
-- 터치 스위치 : 콘솔 공기청정기, 2열 냉온컵홀더, 후석엔터테인먼트 시스템을 제어 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/2_centerconsol_m.jpg', 15, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('VIP 전용 고급형 카매트(1/2/3열)', '두터운 두께와 더욱 촘촘한 융 원단을 적용하여 보다 고급스러운 인테리어 감성을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/vipcarmat_m.jpg', 15, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스피커 내장형 윙타입 헤드레스트(2열)', '저음역을 강화하고 플랫 주파수 응답 성능을 확보하여 풍부한 베이스와 고퀄리티 사운드 감상이 가능합니다. 또한 후석 엔터테인먼트 시스템과 연동되어 좌/우 헤드레스트 각각 개별적인 사운드 감상이 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/speakerwingtypeheadrest_m.jpg', 15, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('도어트림 스마트폰 무선충전기(2열)', '뒷좌석 도어에 별도의 케이블 없이 무선으로 스마트폰 충전이 가능한 무선 충전기를 장착하여 뒷좌석 탑승객의 편의를 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/doorwirelesscharger_m.jpg', 15, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후석 엔터테인먼트 시스템(2열)', '- ', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/rearentertain_m.jpg', 15, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('퀼팅 나파가죽 시트(블랙/버건디/웜그레이)', null, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/qualting_napa.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('빌트인 공기청정기', '※ 빌트인 공기청정기 전용 에어필터의 권장 사용기간은 6개월이며(하루 2시간 사용 기준), 에어필터는 현대 Shop(Shop.Hyundai.com) 현대브랜드관을 통해 개별 품목 단위로 구매 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/108.jpg', 4, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('천연가죽 시트(블랙)', '팰리세이드는 옵션에 따라 인조가죽, 가죽, 나파가죽, 퀼팅 나파가죽 시트를 선택할 수 있습니다.
- - 인조가죽 시트 : 합성섬유를 이용하여 가죽의 질감을 구현한 인조가죽으로 제작된 시트입니다.
- - 가죽 시트 : 실제 가죽으로 제작되어 편안하며 고급스러운 착좌감을 제공합니다.
- - 나파가죽 시트 : 가죽 표면을 코팅처리하여 가죽의 내구성은 높이면서도 부드러운 감촉을 선사하는 시트입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/realleatherblack.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('운전석 전동시트(10way, 4way 럼버서포트, 쿠션 익스텐션, 자세 메모리 시스템)', '운전석의 시트 포지션을 조정하여 운전자의 체형에 맞는 편안한 자세를 유지할 수 있도록 돕는 기능입니다.
- - 10way 전동시트 : 운전석 좌하단에 위치한 조작부로 8방향으로 조절 기능(시트백 기울기, 시트 앞/뒤 이동, 쿠션부 앞/뒤 높이 조절)과 허리 지지대 조절 기능을 전동 방식으로 조절합니다.
- - 4way 럼버서포트 : 허리 지지대 조절 기능을 4 방향으로 조절합니다.
- - 쿠션 익스텐션 : 운전자의 허벅지 길이에 맞게 시트 하단부를 조절하는 쿠션 익스텐션이 적용되었습니다.
- - 자세 메모리 시스템 : 운전자가 설정한 자세를 2개까지 기억하는 운전석 자세 메모리 시스템을 적용하여 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/70.jpg', null, 'FALSE', 5, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 주간주행등', '주간주행등(DRL)은 낮시간에도 자동으로 켜져 다른 사람들이 차량을 쉽게 볼 수 있도록 합니다. 특히 해질 무렵이나 해뜨기 직전에 차량의 접근을 쉽게 인식하도록 합니다. 차량 시동 후에 자동으로 켜집니다.
-    ※ 광원의 종류
-- 벌브 : 유리구 안에 있는 필라멘트에 전류를 흘려 빛을 내는 광원입니다.
-- LED : 빛을 내는 반도체 소자로 밝은 빛을 내며 효율이 좋은 광원입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/42.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 포지셔닝램프', '안개, 야간과 같이 시야확보가 어려울 경우, 차의 존재 및 차폭을 인지할 수 있도록 하는 역할을 합니다.
-                                                                                                                                                     ※ 광원의 종류
-- 벌브 : 유리구 안에 있는 필라멘트에 전류를 흘려 빛을 내는 광원입니다.
-- LED : 빛을 내는 반도체 소자로 밝은 빛을 내며 효율이 좋은 광원입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/43.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 방향지시등', '차량의 진행 방향을 주변 주행 차량 및 보행자에게 알리는 등화장치입니다.
-                                                                                                                                                     ※ 광원의 종류
-- 벌브 : 유리구 안에 있는 필라멘트에 전류를 흘려 빛을 내는 광원입니다.
-- LED : 빛을 내는 반도체 소자로 밝은 빛을 내며 효율이 좋은 광원입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/44.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('Full LED 헤드램프(프로젝션 타입)', '야간 운전시 전방에 빛을 비춰 운전자의 시야를 확보할 수 있도록 돕습니다.
-                                                                                                                                                     ※ 광원의 종류
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('8단 자동변속기', '전달 효율 증대로 전 엔진 동급 최고의 연비를 구현함은 물론, 최적의 변속 성능으로 드라이빙 감성까지 향상시켜줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/19.jpg', null, 'FALSE', 1, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('ISG 시스템', '신호 대기 상황이거나 정차 중일 때 차의 엔진을 일시 정지하여 연비를 향상시키고, 배출가스 발생을 억제하는 시스템입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/20.jpg', null, 'FALSE', 1, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('통합주행모드', 'COMFORT, ECO, SPORT, SMART 4가지 드라이브 모드를 지원하여 운전자의 니즈에 따른 다양한 주행 모드를 선택할 수 있습니다. 각 주행모드의 상태는 클러스터와 AVN을 통해 확인 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/21.jpg', null, 'FALSE', 1, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('랙구동형 전동식 파워 스티어링(R-MDPS)', '조향 시 운전자의 힘을 유압대신 모터가 바퀴로 전달하는 기술로 모터가 차량 하체에 장착되어 타이어를 제어합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/22.jpg', null, 'FALSE', 1, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전자식 변속버튼', '전자식 변속 버튼을 적용하여 조작 편의성을 높이는 동시에 하이테크적인 이미지를 연출했습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/23.jpg', null, 'FALSE', 1, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('HTRAC', '시시각각 변하는 주행환경에 맞춰 전 / 후 구동력을 능동적으로 배분함으로써 드라이빙의 즐거움을 선사합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/127.jpg', null, 'FALSE', 1, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('험로주행모드', '험로주행모드 : 도로 여건에 따라 SNOW / MUD / SAND 주행모드를 선택할 수 있습니다. 각 주행 모드의 상태는 클러스터를 통해 확인가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/drivemode_s.jpg', null, 'FALSE', 1, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('하이빔 보조', '마주오는 차량 또는 앞 차량의 램프 및 주변 밝기 상태를 감지하여 전조등을 자동으로 상향 또는 하향으로 전환합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/24.jpg', null, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('진동 경고 스티어링 휠', '전방 차량과의 충돌/차량의 차선 이탈/후측방 충돌 위험 시, 운전자 주의 경고 시 스티어링에 진동을 주어 경고합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/25.jpg', null, 'FALSE', 2, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/logo-npp.png');
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스마트 크루즈 컨트롤(스탑앤고 기능 포함)', '전방의 차량을 감지하여 스스로 가속과 감속을 하며 차량의 속도를 일정하게 유지 시켜주고, 차량 정체로 앞차 정차 시 정지하고 전방 차량 출발 시 다시 거리를 유지하며 주행하는 기능입니다.
+※ 단, 자동 정차 시간이 3초 초과 시, 별도 조작으로 출발 가능', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/26.jpg', null, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('내비게이션 기반 스마트 크루즈 컨트롤(안전구간, 곡선로)', '스마트 크루즈 작동 중 고속도로/도시고속도로/자동차전용 도로 내 안전구간 진입 시, 감속 제어를 통해 주행 편의 제공합니다. 또한 곡선 구간 진입 시, 감속 제어를 통해 주행 편의를 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/27.jpg', null, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('고속도로 주행 보조', '고속도로 본선 주행 시 전방 차량과의 거리, 차선 정보, 내비게이션 정보를 이용하여 차량 속도를 제어는 물론 차로 유지를 보조해줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/28.jpg', null, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('차로 유지 보조', '전방 카메라를 이용하여 차선을 인식하고 차로의 중앙으로 주행할 수 있도록 조향을 보조합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/29.jpg', null, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전방 충돌방지 보조(차량/보행자/자전거 탑승자/교차로 대향차)', '전방 카메라와 전방 레이더의 신호를 종합적으로 판단하여 전방 차량, 보행자, 자전거 탑승자와 충돌 위험 상황이 감지될 경우 운전자에게 이를 경고하고, 필요 시 브레이크 작동을 도와줍니다.
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/30.jpg', null, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('차로 이탈방지 보조', '전방 카메라로 주행 차로를 실시간으로 감지하여 차량이 차로를 이탈하려 할 경우, 클러스터에 경고하고 스티어링 휠을 제어하여 안전하게 주행 차로를 유지하도록 보조합니다.
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/31.jpg', null, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('운전자 주의 경고', '차량이 스스로 운전자의 주행 패턴과 차로 내 차량 위치 등을 종합적으로 분석하여 주의 운전이 필요하다고 판단되면, 팝업메시지와 경고음을 통해 운전자 휴식을 유도합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/32.jpg', null, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후측방 충돌 경고(주행)', '
+차로 변경을 위하여 방향지시등 스위치 조작 시, 후측방 충돌 위험이 감지되면 경고를 해줍니다.
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/33.jpg', 22, 'TRUE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후측방 충돌방지 보조(전진 출차)', '평행 주차상태에서 전진 출차 중, 후측방 차량과 충돌 위험이 감지되면 자동으로 제동을 도와줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/34.jpg', 22, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('안전 하차 보조', '정차 후 탑승자가 차에서 내리려고 도어를 열 때, 후측방에서 접근하는 차량이 감지되면 경고를 해줍니다. 또한 전자식 차일드 락이 작동하여 문이 열리지 않도록 도와줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/35.jpg', 22, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후방 교차 충돌방지 보조', '후진 출차 시 후방 교차 차량을 감지하여 운전자에게 경고하고 필요 시에는 브레이크 제어를 통해 후방 교차 충돌방지를 보조합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/36.jpg', 22, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전방 충돌방지 보조(교차 차량/추월시 대향차/측방 접근차)', '선행 차량이 갑자기 속도를 줄이거나, 앞에 정지 차량 혹은 보행자가 나타나는 등 전방 충돌 위험이 감지되면 경고를 해줍니다. 경고 후에도 충돌 위험이 높아지면 자동으로 제동을 도와줍니다. 주행 중 전방의 자전거 탑승자 및 교차로에서 좌회전 시 맞은편에서 다가오는 차량과 충돌 위험이 있다면 자동으로 제동을 도와줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/106-1.jpg', 16, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('내비게이션 기반 스마트 크루즈 컨트롤(진출입로)', '스마트 크루즈 작동 중 고속도로/도시고속도로/자동차전용 도로 내 고속도로 진출입로 주행 시 차로를 판단하여 사전감속 또는 최적 속도에 맞추어 감속을 진행합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/106-2.jpg', 16, 'TRUE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('고속도로 주행 보조 2', '고속도로 / 자동차 전용도로에서 앞차와의 거리와 설정 속도를 유지하며 주행할 뿐 아니라, 곡선로에서도 차로의 중앙을 유지하며 주행할 수 있도록 도와줍니다. 일정 속도 이상으로 주행 시, 스티어링 휠을 잡은 상태에서 방향지시등 스위치를 변경하고자 하는 차로 방향으로 움직이면 자동으로 차로를 변경해 줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/106-3.jpg', 16, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후방 주차 충돌방지 보조', '주차 또는 출차 시 저속 후진 중 후방카메라와 센서로 정후면에 위치한 보행자 및 장애물과의 충돌이 예상되면 운전자에게 경고하고 차량의 제동을 제어하여 충돌방지를 보조합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/102-1.jpg', 17, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('원격 스마트 주차 보조', '주차 보조 기능을 활성화 한 후 주차공간을 발견하게 되면 차량 내 안내에 따라 하차한 다음, 스마트키의 작동 버튼을 누르고만 있으면 차가 스스로 주차합니다. 직각주차 및 평행주차 모두 가능하며, 운전자 탑승 시에도 차량 내부의 작동 버튼을 누르고 있으면 자동 주차 보조를 지원합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/102-2.jpg', 17, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후석 승객 알림', '초음파 센서를 통해 뒷좌석에 남아있는 승객의 움직임을 감지하여 운전자에게 경고함으로써 부주의에 의한 유아 또는 반려 동물 등의 방치 사고를 예방하는 신기술입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/101-1.jpg', 18, 'FALSE', 2, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('10에어백 시스템(1열 어드밴스드/센터사이드, 1/2열 사이드, 운전석 무릎, 전복대응 커튼)', '1열 어드밴스드/센터 사이드, 운전석 무릎,1/2열 사이드, 전복 대응 커튼 에어백으로 탑승자를 보호합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/37.jpg', null, 'FALSE', 3, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('유아용 시트 고정장치(2열 2개/3열 1개)', '영·유아용 시트를 간편하고 안전하게 장착할 수 있는 ISO 규격의 카시트를 고정할 수 있는 장치를 2열에 2개, 3열에 1개 총 3개를 적용하여 사고 시 카시트에 탑승한 유아를 보호합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/38.jpg', null, 'FALSE', 3, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('구동선회 제어기능', '커브구간에서 선회 가속시 구동력과 제동력을 제어해 언더스티어 현상을 억제하고 차량의 주행 민첩성과 주행 안정성을 향상시키는 토크벡터링 (Torque Vectoring) 시스템입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/39.jpg', null, 'FALSE', 3, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('다중 충돌방지 자동 제동 시스템', '차량의 정면 또는 측면 충돌사고로 에어백 전개 시 차량에 적절한 자동 긴급 제동을 통해 2차 사고 및 다중 충돌을 경감시켜줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/40.jpg', null, 'FALSE', 3, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('경사로저속주행장치 ', '가파른 경사길에서 사용자가 원하는 일정한 속도로 안전하게 주행 가능합니다. * 버튼 선택 후 속도 제어가 가능합니다.(전진 : 4~40km/h / 후진 : 2.5km/h)', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/dbc_s.jpg', null, 'FALSE', 3, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 주간주행등', '주간주행등(DRL)은 낮시간에도 자동으로 켜져 다른 사람들이 차량을 쉽게 볼 수 있도록 합니다. 특히 해질 무렵이나 해뜨기 직전에 차량의 접근을 쉽게 인식하도록 합니다. 차량 시동 후에 자동으로 켜집니다.
+※ 광원의 종류
 - 벌브 : 유리구 안에 있는 필라멘트에 전류를 흘려 빛을 내는 광원입니다.
 - LED : 빛을 내는 반도체 소자로 밝은 빛을 내며 효율이 좋은 광원입니다.
-* Full LED 타입 : 상향등과 하향등이 모두 LED가 적용되어 광도가 우수하고 고급스러운 이미지를 연출합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/45.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('아웃사이드 미러(열선, 전동접이, 전동조절, LED 방향지시등)', '주행 중 후측방을 확인할 수 있도록 차량 좌우측에 부착된 거울입니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/42.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 포지셔닝램프', '안개, 야간과 같이 시야확보가 어려울 경우, 차의 존재 및 차폭을 인지할 수 있도록 하는 역할을 합니다.
+※ 광원의 종류
+- 벌브 : 유리구 안에 있는 필라멘트에 전류를 흘려 빛을 내는 광원입니다.
+- LED : 빛을 내는 반도체 소자로 밝은 빛을 내며 효율이 좋은 광원입니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/43.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 방향지시등
+', '차량의 진행 방향을 주변 주행 차량 및 보행자에게 알리는 등화장치입니다.
+※ 광원의 종류
+- 벌브 : 유리구 안에 있는 필라멘트에 전류를 흘려 빛을 내는 광원입니다.
+- LED : 빛을 내는 반도체 소자로 밝은 빛을 내며 효율이 좋은 광원입니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/44.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('Full LED 헤드램프(프로젝션 타입)
+', '야간 운전시 전방에 빛을 비춰 운전자의 시야를 확보할 수 있도록 돕습니다.
+※ 광원의 종류
+- 벌브 : 유리구 안에 있는 필라멘트에 전류를 흘려 빛을 내는 광원입니다.
+- LED : 빛을 내는 반도체 소자로 밝은 빛을 내며 효율이 좋은 광원입니다.
+* Full LED 타입 : 상향등과 하향등이 모두 LED가 적용되어 광도가 우수하고 고급스러운 이미지를 연출합니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/45.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('아웃사이드 미러(열선, 전동접이, 전동조절, LED 방향지시등)
+', '주행 중 후측방을 확인할 수 있도록 차량 좌우측에 부착된 거울입니다.
 방향지시등 : 차량의 진행방향을 주변 주행 차량 및 보행자에게 알리는 램프를 아웃사이드 미러에 적용했습니다.
 열선 기능 : 아웃사이드 미러에 낀 습기를 제거하기 위한 기능입니다.
 전동 접이 기능 : 버튼 조작으로 아웃사이드 미러를 접고 펼 수 있는 기능입니다. 리모컨 키로 도어를 여닫을 때 자동으로 접고 펼 수도 있습니다.
 전동 조절 기능 : 버튼 조작으로 아웃사이드 미러의 화각을 조절하는 기능입니다.
-* 부가기능은 차종별/트림별 상이하게 적용됩니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/46.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('이중접합 차음유리(윈드실드, 1/2열 도어)', '두 겹의 유리로 이루어진 전방 유리의 사이에 소음을 흡수하는 전용 차음필름을 삽입하여 엔진 투과음 및 외부 소음이 실내에 유입되는 것을 감소시켜 탑승자의 운전 쾌적성을 향상시킵니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/47.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('도어 포켓 라이팅(1열)', '스마트 키를 소지하고 차량에 접근하거나 리모컨 키를 이용하여 차량 도어를 오픈 할 때 아웃사이드 도어핸들 안쪽에 불빛을 비춰 야간에 차량의 문을 쉽게 열 수 있도록 배려한 편의 기능입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/48.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('싱글 트윈팁 머플러', '차량 후면부 하단에 부착되는 배기장치로 차량 후면부와 조화감 있는 이미지로 디자인의 완성도를 높여줍니다. 머플러 부착방식에 따라 명칭이 상이합니다.
+* 부가기능은 차종별/트림별 상이하게 적용됩니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/46.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('이중접합 차음유리(윈드실드, 1/2열 도어)
+', '두 겹의 유리로 이루어진 전방 유리의 사이에 소음을 흡수하는 전용 차음필름을 삽입하여 엔진 투과음 및 외부 소음이 실내에 유입되는 것을 감소시켜 탑승자의 운전 쾌적성을 향상시킵니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/47.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('도어 포켓 라이팅(1열)
+', '스마트 키를 소지하고 차량에 접근하거나 리모컨 키를 이용하여 차량 도어를 오픈 할 때 아웃사이드 도어핸들 안쪽에 불빛을 비춰 야간에 차량의 문을 쉽게 열 수 있도록 배려한 편의 기능입니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/48.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('싱글 트윈팁 머플러
+', '차량 후면부 하단에 부착되는 배기장치로 차량 후면부와 조화감 있는 이미지로 디자인의 완성도를 높여줍니다. 머플러 부착방식에 따라 명칭이 상이합니다.
 싱글 타입 : 1개의 머플러로 구성
 트윈 타입 : 한쪽에 2개의 머플러로 구성
-듀얼 타입 : 차량 후면부 좌우에 2개의 머플러가 장착됨', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/49.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 리어콤비램프', '헤드램프와 통일감 있는 콤비램프 디자인을 적용하였으며 보석 느낌의 인너렌즈를 적용하여 고급스러운 감성품질을 제공합니다.
-                                                                                                                                                     ※ 광원의 종류
+듀얼 타입 : 차량 후면부 좌우에 2개의 머플러가 장착됨
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/49.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 리어콤비램프
+', '헤드램프와 통일감 있는 콤비램프 디자인을 적용하였으며 보석 느낌의 인너렌즈를 적용하여 고급스러운 감성품질을 제공합니다.
+※ 광원의 종류
 - 벌브 : 유리구 안에 있는 필라멘트에 전류를 흘려 빛을 내는 광원입니다.
-- LED : 빛을 내는 반도체 소자로 밝은 빛을 내며 효율이 좋은 광원입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/50.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 보조제동등', '기본으로 제공하는 제동등과 별도로 장착되어 브레이크 작동 시 후방 주행 차량에게 제동을 알려 후방 추돌 상황을 방지하는 등화장치입니다.
-                                                                                                                                                     ※ 광원의 종류
+- LED : 빛을 내는 반도체 소자로 밝은 빛을 내며 효율이 좋은 광원입니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/50.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 보조제동등
+', '기본으로 제공하는 제동등과 별도로 장착되어 브레이크 작동 시 후방 주행 차량에게 제동을 알려 후방 추돌 상황을 방지하는 등화장치입니다.
+※ 광원의 종류
 - 벌브 : 유리구 안에 있는 필라멘트에 전류를 흘려 빛을 내는 광원입니다.
-- LED : 빛을 내는 반도체 소자로 밝은 빛을 내며 효율이 좋은 광원입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/51.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후진가이드램프', '후진 시 점선 패턴의 가이드 조명 구현을 통해 주변 차량 및 보행자에게 후진 의도를 효과적으로 전달하여 사고를 예방합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/52.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('리어 스포일러', '주행 시 차량 후면에 발생하는 공기의 와류 현상을 없애주는 장치로 차량의 공력 성능을 향상시킵니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/53.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('크롬 DLO 몰딩', '차량 도어의 몰딩 부분 소재를 크롬으로 적용하여 고급스러운 감성을 전달합니다.
+- LED : 빛을 내는 반도체 소자로 밝은 빛을 내며 효율이 좋은 광원입니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/51.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후진가이드램프
+', '후진 시 점선 패턴의 가이드 조명 구현을 통해 주변 차량 및 보행자에게 후진 의도를 효과적으로 전달하여 사고를 예방합니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/52.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('리어 스포일러
+', '주행 시 차량 후면에 발생하는 공기의 와류 현상을 없애주는 장치로 차량의 공력 성능을 향상시킵니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/53.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('크롬 DLO 몰딩
+', '차량 도어의 몰딩 부분 소재를 크롬으로 적용하여 고급스러운 감성을 전달합니다.
 차량마다 적용부위의 차이가 있습니다.
 - 벨트라인 : 차량의 측면 윈도우의 하단을 감싸는 몰딩 부분
-- DLO(Day-light opening) : 차량의 측면 윈도우를 감싸는 몰딩 부분', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/54.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('루프랙', '차량 위에 짐을 실을 수 있도록 돕는 장치로 화물적재를 위한 보조기구 장착 시 차량 상태 및 안전을 고려하여 장착해야합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/55.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('발수 도어(1열)', '빗물 맺힘이나 서리, 성에 등을 막아주는 발수 적용 유리를 앞도어에 장착하여 운전자의 시계를 확보합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/58.jpg', 23, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('퍼들램프', '아웃사이드 미러 하단에 바닥을 비추는 퍼들램프를 장착하여 야간 승/하차 시 운전자의 시야 확보에 도움을 줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/puddlelamp_s.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('캘리그래피 전용 디자인(휠, 라디에이터 그릴 & 가니쉬, 인테이크 그릴, 바디컬러 클래딩, 프론트 & 리어 크롬 스키드 플레이트)', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/calligraphydesign_s.jpg', null, 'TRUE', 4, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/logo-npp.png');
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('토우히치', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/towhitch_m.jpg', 10, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('듀얼 머플러 패키지', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/107.jpg', 14, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('20인치 다크 스퍼터링 휠', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/113.jpg', 11, 'FALSE', 4, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/logo-npp.png');
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('20인치 블랙톤 전면 가공 휠', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/114.jpg', 13, 'FALSE', 4, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/logo-npp.png');
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('알콘(alcon) 단조 브레이크', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/115-1.jpg', 13, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('123', '-', '123', 13, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('20인치 알로이 휠 & 타이어', null, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/57.jpg', 21, 'FALSE', 4, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/logo-npp.png');
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('베젤리스 인사이드 미러', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/59.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('차량 보호 필름', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/111.jpg', 7, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('메탈페이트 스키드 플레이트', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/56.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('수동식 틸트 & 텔레스 코픽 스티어링 휠', '스티어링 휠의 높이를 신체에 알맞게 조절하기 위한 장치로 조절 레버를 아래로 내린 후 상하 또는 앞뒤로 움직여 위치를 지정합니다. 조절 후에는 조절 레버를 원위치 시켜 스티어링 휠을 고정합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/manualsteering_s.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('18인치 알로이 휠 & 타이어', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18alloywheel.jpg', null, 'FALSE', 4, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('10에어백 시스템(1열 어드밴스드/센터사이드, 1/2열 사이드, 운전석 무릎, 전복대응 커튼)', '1열 어드밴스드/센터 사이드, 운전석 무릎,1/2열 사이드, 전복 대응 커튼 에어백으로 탑승자를 보호합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/37.jpg', null, 'FALSE', 3, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('유아용 시트 고정장치(2열 2개/3열 1개)', '영·유아용 시트를 간편하고 안전하게 장착할 수 있는 ISO 규격의 카시트를 고정할 수 있는 장치를 2열에 2개, 3열에 1개 총 3개를 적용하여 사고 시 카시트에 탑승한 유아를 보호합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/38.jpg', null, 'FALSE', 3, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('구동선회 제어기능', '커브구간에서 선회 가속시 구동력과 제동력을 제어해 언더스티어 현상을 억제하고 차량의 주행 민첩성과 주행 안정성을 향상시키는 토크벡터링 (Torque Vectoring) 시스템입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/39.jpg', null, 'FALSE', 3, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('다중 충돌방지 자동 제동 시스템', '차량의 정면 또는 측면 충돌사고로 에어백 전개 시 차량에 적절한 자동 긴급 제동을 통해 2차 사고 및 다중 충돌을 경감시켜줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/40.jpg', null, 'FALSE', 3, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('경사로저속주행장치 ', '가파른 경사길에서 사용자가 원하는 일정한 속도로 안전하게 주행 가능합니다. * 버튼 선택 후 속도 제어가 가능합니다.(전진 : 4~40km/h / 후진 : 2.5km/h)', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/dbc_s.jpg', null, 'FALSE', 3, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('빌트인 캠(보조배터리 포함)', '빌트인 적용된 영상기록장치로, 내비게이션 화면을 통해 영상 확인 및 앱 연동을 통해 영상 확인 및 SNS 공유가 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/105.jpg', 1, 'FALSE', 3, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('하이빔 보조', '마주오는 차량 또는 앞 차량의 램프 및 주변 밝기 상태를 감지하여 전조등을 자동으로 상향 또는 하향으로 전환합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/24.jpg', null, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('진동 경고 스티어링 휠', '전방 차량과의 충돌/차량의 차선 이탈/후측방 충돌 위험 시, 운전자 주의 경고 시 스티어링에 진동을 주어 경고합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/25.jpg', null, 'FALSE', 2, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/logo-npp.png');
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스마트 크루즈 컨트롤(스탑앤고 기능 포함)', '전방의 차량을 감지하여 스스로 가속과 감속을 하며 차량의 속도를 일정하게 유지 시켜주고, 차량 정체로 앞차 정차 시 정지하고 전방 차량 출발 시 다시 거리를 유지하며 주행하는 기능입니다.
-                                                                                                                                                     ※ 단, 자동 정차 시간이 3초 초과 시, 별도 조작으로 출발 가능', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/26.jpg', null, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('내비게이션 기반 스마트 크루즈 컨트롤(안전구간, 곡선로)', '스마트 크루즈 작동 중 고속도로/도시고속도로/자동차전용 도로 내 안전구간 진입 시, 감속 제어를 통해 주행 편의 제공합니다. 또한 곡선 구간 진입 시, 감속 제어를 통해 주행 편의를 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/27.jpg', null, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('고속도로 주행 보조', '고속도로 본선 주행 시 전방 차량과의 거리, 차선 정보, 내비게이션 정보를 이용하여 차량 속도를 제어는 물론 차로 유지를 보조해줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/28.jpg', null, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('차로 유지 보조', '전방 카메라를 이용하여 차선을 인식하고 차로의 중앙으로 주행할 수 있도록 조향을 보조합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/29.jpg', null, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전방 충돌방지 보조(차량/보행자/자전거 탑승자/교차로 대향차)', '전방 카메라와 전방 레이더의 신호를 종합적으로 판단하여 전방 차량, 보행자, 자전거 탑승자와 충돌 위험 상황이 감지될 경우 운전자에게 이를 경고하고, 필요 시 브레이크 작동을 도와줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/30.jpg', null, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('차로 이탈방지 보조', '전방 카메라로 주행 차로를 실시간으로 감지하여 차량이 차로를 이탈하려 할 경우, 클러스터에 경고하고 스티어링 휠을 제어하여 안전하게 주행 차로를 유지하도록 보조합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/31.jpg', null, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('운전자 주의 경고', '차량이 스스로 운전자의 주행 패턴과 차로 내 차량 위치 등을 종합적으로 분석하여 주의 운전이 필요하다고 판단되면, 팝업메시지와 경고음을 통해 운전자 휴식을 유도합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/32.jpg', null, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후측방 충돌 경고(주행)', '
-차로 변경을 위하여 방향지시등 스위치 조작 시, 후측방 충돌 위험이 감지되면 경고를 해줍니다.
-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/33.jpg', 21, 'TRUE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후측방 충돌방지 보조(전진 출차)', '평행 주차상태에서 전진 출차 중, 후측방 차량과 충돌 위험이 감지되면 자동으로 제동을 도와줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/34.jpg', 21, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('안전 하차 보조', '정차 후 탑승자가 차에서 내리려고 도어를 열 때, 후측방에서 접근하는 차량이 감지되면 경고를 해줍니다. 또한 전자식 차일드 락이 작동하여 문이 열리지 않도록 도와줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/35.jpg', 21, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후방 교차 충돌방지 보조', '후진 출차 시 후방 교차 차량을 감지하여 운전자에게 경고하고 필요 시에는 브레이크 제어를 통해 후방 교차 충돌방지를 보조합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/36.jpg', 21, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전방 충돌방지 보조(교차 차량/추월시 대향차/측방 접근차)', '선행 차량이 갑자기 속도를 줄이거나, 앞에 정지 차량 혹은 보행자가 나타나는 등 전방 충돌 위험이 감지되면 경고를 해줍니다. 경고 후에도 충돌 위험이 높아지면 자동으로 제동을 도와줍니다. 주행 중 전방의 자전거 탑승자 및 교차로에서 좌회전 시 맞은편에서 다가오는 차량과 충돌 위험이 있다면 자동으로 제동을 도와줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/106-1.jpg', 16, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('내비게이션 기반 스마트 크루즈 컨트롤(진출입로)', '스마트 크루즈 작동 중 고속도로/도시고속도로/자동차전용 도로 내 고속도로 진출입로 주행 시 차로를 판단하여 사전감속 또는 최적 속도에 맞추어 감속을 진행합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/106-2.jpg', 16, 'TRUE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('고속도로 주행 보조 2', '고속도로 / 자동차 전용도로에서 앞차와의 거리와 설정 속도를 유지하며 주행할 뿐 아니라, 곡선로에서도 차로의 중앙을 유지하며 주행할 수 있도록 도와줍니다. 일정 속도 이상으로 주행 시, 스티어링 휠을 잡은 상태에서 방향지시등 스위치를 변경하고자 하는 차로 방향으로 움직이면 자동으로 차로를 변경해 줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/106-3.jpg', 16, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후방 주차 충돌방지 보조', '주차 또는 출차 시 저속 후진 중 후방카메라와 센서로 정후면에 위치한 보행자 및 장애물과의 충돌이 예상되면 운전자에게 경고하고 차량의 제동을 제어하여 충돌방지를 보조합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/102-1.jpg', 17, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('원격 스마트 주차 보조', '주차 보조 기능을 활성화 한 후 주차공간을 발견하게 되면 차량 내 안내에 따라 하차한 다음, 스마트키의 작동 버튼을 누르고만 있으면 차가 스스로 주차합니다. 직각주차 및 평행주차 모두 가능하며, 운전자 탑승 시에도 차량 내부의 작동 버튼을 누르고 있으면 자동 주차 보조를 지원합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/102-2.jpg', 17, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후석 승객 알림', '초음파 센서를 통해 뒷좌석에 남아있는 승객의 움직임을 감지하여 운전자에게 경고함으로써 부주의에 의한 유아 또는 반려 동물 등의 방치 사고를 예방하는 신기술입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/101-1.jpg', 18, 'FALSE', 2, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('8단 자동변속기', '전달 효율 증대로 전 엔진 동급 최고의 연비를 구현함은 물론, 최적의 변속 성능으로 드라이빙 감성까지 향상시켜줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/19.jpg', null, 'FALSE', 1, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('ISG 시스템', '신호 대기 상황이거나 정차 중일 때 차의 엔진을 일시 정지하여 연비를 향상시키고, 배출가스 발생을 억제하는 시스템입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/20.jpg', null, 'FALSE', 1, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('통합주행모드', 'COMFORT, ECO, SPORT, SMART 4가지 드라이브 모드를 지원하여 운전자의 니즈에 따른 다양한 주행 모드를 선택할 수 있습니다. 각 주행모드의 상태는 클러스터와 AVN을 통해 확인 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/21.jpg', null, 'FALSE', 1, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('랙구동형 전동식 파워 스티어링(R-MDPS)', '조향 시 운전자의 힘을 유압대신 모터가 바퀴로 전달하는 기술로 모터가 차량 하체에 장착되어 타이어를 제어합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/22.jpg', null, 'FALSE', 1, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전자식 변속버튼', '전자식 변속 버튼을 적용하여 조작 편의성을 높이는 동시에 하이테크적인 이미지를 연출했습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/23.jpg', null, 'FALSE', 1, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('HTRAC', '시시각각 변하는 주행환경에 맞춰 전 / 후 구동력을 능동적으로 배분함으로써 드라이빙의 즐거움을 선사합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/127.jpg', null, 'FALSE', 1, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('험로주행모드', '험로주행모드 : 도로 여건에 따라 SNOW / MUD / SAND 주행모드를 선택할 수 있습니다. 각 주행 모드의 상태는 클러스터를 통해 확인가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/drivemode_s.jpg', null, 'FALSE', 1, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('견인력(750kg → 2,000kg)', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tractionpower_m.jpg', 10, 'FALSE', 1, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('셀프레벨라이저', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/selflevelizer_m.jpg', 10, 'FALSE', 1, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('다크 크롬 라디에이터 그릴', null, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/41.jpg', null, 'FALSE', null, null);
-INSERT INTO FUNCTIONS ( name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('메탈페인트 스키드 플레이트', null, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/56.jpg', null, 'FALSE', null, null);
+- DLO(Day-light opening) : 차량의 측면 윈도우를 감싸는 몰딩 부분
 
-INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (null, 14, 2);
-INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 4, null);
-INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 6, null);
-INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 8, null);
-INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (9, 14, null);
-INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (11, 13, null);
-INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (13, 11, null);
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/54.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('루프랙
+', '차량 위에 짐을 실을 수 있도록 돕는 장치로 화물적재를 위한 보조기구 장착 시 차량 상태 및 안전을 고려하여 장착해야합니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/55.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('발수 도어(1열)
+', '빗물 맺힘이나 서리, 성에 등을 막아주는 발수 적용 유리를 앞도어에 장착하여 운전자의 시계를 확보합니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/58.jpg', 23, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('퍼들램프', '아웃사이드 미러 하단에 바닥을 비추는 퍼들램프를 장착하여 야간 승/하차 시 운전자의 시야 확보에 도움을 줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/puddlelamp_s.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('캘리그래피 전용 디자인(휠, 라디에이터 그릴 & 가니쉬, 인테이크 그릴, 바디컬러 클래딩, 프론트 & 리어 크롬 스키드 플레이트)', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/calligraphydesign_s.jpg', null, 'TRUE', 4, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/logo-npp.png');
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 실내등(맵램프, 룸램프, 선바이저램프, 러기지램프)', '차량 실내 전체를 비춰주는 룸램프를 LED로 적용하여 어두운 곳에서의 시인성을 향상시킵니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/60.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('가죽 스티어링 휠(열선포함)', '시동 스위치가 「ON」 또는 엔진이 작동 중일때 스티어링 휠 히터 버튼을 누르면 표시등이 켜지면서 스티어링 휠이 따뜻해집니다. 스티어링 휠 히터 버튼을 누른 후 작동 조건에서 약 30분이 지나면 자동으로 작동을 멈춥니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/61.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('클러스터(12.3인치 컬러 LCD)', '컬러 LCD 클러스터(1,920x720)는 시인성이 높고 정보 파악이 용이하며, 주행모드별 차별화된 그래픽으로 즐거운 드라이빙 환경을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/62.jpg', null, 'TRUE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('인조가죽 감싸기', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/63.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('도어 암레스트 리얼스티치', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/64.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('메탈 페달', '자동차의 가속, 브레이크 페달을 메탈로 제작해 드라이빙 시 페달에서 발이 이탈하는 것을 최소화하고 메탈 디자인으로 고급스러운 감성을 전달합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/metalpaddle_s.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스웨이드 내장재(헤드라이닝/필라)', '가죽 뒷면을 부드럽게 가공하여 고급스러운 느낌을 주는 스웨이드로 완성된 내장재를 차량의 A/B/C필라 및 차량 천장 부분에 적용하여 인테리어에서 고급스러운 감성을 전달합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/swade_s.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('콘솔 커버 리얼 알루미늄', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/consolcover_s.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('메탈 리어범퍼스텝', '러기지 룸 앞쪽 하단부를 메탈로 만들어 물건을 싣고 내릴 때나 사람이 올라갈 때 차체를 보호해줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/metalrearbumper_s.jpg', 18, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('메탈 도어스커프', '자동차를 타고 내리는 도어의 문틈 하부를 보호하는 도어스커프 부분을 메탈로 만들어 차체를 보호하고 메탈 디자인으로 고급스러운 감성을 전달합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/metaldoorscuff_s.jpg', 18, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('1열 도어 스피커 메탈 그릴', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/1_doorspeaker_s.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('퀼팅 인조가죽 감싸기(도어트림)', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/quiltingwrapping_s.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('앰비언트 무드램프', '1/2열 도어 가니쉬 하단과, 1열 콘솔 사이드 부에 은은한 조명을 적용하여 고급감을 전달합니다. AVN 설정 화면에서 고객이 직접 64가지 색상 및 전문가 추천 10가지 색상을 선택할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/quiltingwrapping_s.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('디지털 센터 미러', '디지털 미러로 보다 선명하게 후방을 확인할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/dcm_s.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('콘솔 사이드 리얼스티치', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/consolside_s.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('1열 열선/통풍시트', '시동이 걸린 상태에서 해당 좌석 히터 스위치를 누르면 강약조절 표시등이 켜져 사용 중임을 나타내고 해당 좌석이 따뜻해지는 열선기능과 시동이 걸린 상태에서 해당 좌석의 통풍 스위치를 누르면 표시등이 켜지면서 해당 좌석에 바람이 나오는 통풍기능이 적용되었습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/65.jpg', null, 'FALSE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('2열 열선시트', '3단계로 온도 조절이 가능한 열선시트를 적용하여 쾌적한 승차감을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/66.jpg', null, 'FALSE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('2열 폴드 & 다이브/슬라이딩 & 리클라이닝 시트', '평면형태의 2열 공간을 제공하는 풀플랫 폴딩 2열시트로 차원이 다른 공간/거주성을 확보해 넉넉한 러기지 공간은 물론 프라이빗 스페이스로 활용할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/67.jpg', null, 'FALSE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('3열 6:4분할 폴딩/리클라이닝 시트', '3열 시트 및 러기지 사이드에 적용된 전자식 스위치로 시트를 폴딩 및 리클라이닝하여 화물 적재 시 편리합니다. 또한 좌석 등받이 부분을 후방으로 눕힐 수 있는 리클라이닝 기능을 적용하여 성인 탑승 및 장거리 이동 시 거주 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/68.jpg', null, 'FALSE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('동승석 전동시트(럼버서포트, 레그레스트, 릴렉션 컴포트)', '동승석의 시트 포지션을 조정하여 동승자의 체형에 맞는 편안한 자세를 유지할 수 있도록 돕는 기능입니다. 허벅지 길이에 맞게 시트를 2way로 조절하는 레그레스트와 탑승자에게 편안한 휴식을 선사하는 릴렉션 컴포트가 적용되었습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/71.jpg', null, 'FALSE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('운전석 에르고 모션 시트(18way, 볼스터 전동조절, 레그레스트, 릴렉션 컴포트, 스트레칭 모드)', '시트 내 공기주머니를 활용하여 주행 시 안락감과 최적의 착좌감을 구현하는 에르고 모션 시트가 적용되었습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/motionseat_s.jpg', null, 'FALSE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스마트 자세제어', '스마트 자세제어 시스템은 전동 시트의 장점을 극대화하는 사양으로 사전에 입력한 운전자의 신체 정보에 따라 시트, 스티어링 휠, 사이드 미러, 헤드업 디스플레이의 위치를 제안하는 기능입니다. 또한 장시간 주행 시 시트의 엉덩이와 허리 쿠션을 자동으로 조절해 탑승자의 피로를 줄이고 졸음을 방지하기도 합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/smartcontrol_s.jpg', 23, 'FALSE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('3열 파워폴딩시트', '러기지 사이드에 있는 버튼으로 3열 시트를 접었다 펼 수 있으며, 2열 시트도 조작할 수 있어 화물 적재시나 3열 이용시 사용자의 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/101-4.jpg', 18, 'FALSE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('윙타입 헤드레스트(2열)', '좌우가 넓은 윙타입의 헤드레스트를 적용하여 더욱 편리합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/wingtypeheadrest_s.jpg', null, 'FALSE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('3열 열선시트', '시동이 걸린 상태에서 해당 좌석 히터 스위치를 누르면 강약조절 표시등이 켜져 사용 중임을 나타내고 해당 좌석이 따뜻해집니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/101-5', 18, 'FALSE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('2열 통풍시트', '시동이 걸린 상태에서 해당 좌석의 통풍 스위치를 누르면 표시등이 켜지면서 해당 좌석에 바람이 나오는 편의장치입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/103.jpg', 20, 'TRUE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('버튼시동 & 스마트키', '일반 키와는 달리 휴대만으로 도어(트렁크 포함)를 잠그거나 열고, 엔진 시동을 걸 수 있는 장치입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/72.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전동식 파킹 브레이크(오토홀드 포함)', '버튼 조작만으로 파킹 브레이크 작동 또는 해제가 가능하며, 정차 시 자동으로 제동상태를 유지하는 오토 홀드 기능 적용으로 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/43.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('패들 쉬프트', '운전 중 간단한 조작만으로도 스포티한 수동 변속모드를 지원합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/74.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('3존 독립제어 풀오토 에어컨(공기청정모드 포함)', '원하는 온도를 설정하면 자동으로 설정된 온도로 풍량을 조절하여 쾌적한 실내를 완성합니다.
+- 공기 청정 모드 : 일정 시간 동안 외부 공기를 차단하고 내부 순환모드를 가동하여 실내에서 순환하는 공기를 반복적으로 필터링하여 공기질을 개선시키는 기능입니다.
+- 3존 독립제어 : 운전석이나 동승석 뿐만 아니라 후석에서도 개별 제어가 가능한 에어컨입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/75.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('공기질 센서', '실내 공기질을 실시간으로 확인할 수 있어 공기 청정 모드 사용이나 환기를 유도합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/76.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('마이크로 에어 필터', '미세먼지의 실내 유입의 방지하기 위한 에어필터입니다.
+글로브 박스 뒤쪽에 장착되어 바깥에서 공기 조화 장치를 통하여 차 안으로 들어오는 먼지나 꽃가루 등을 걸러줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/77.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('자외선 차단 유리(윈드실드)', '차량 전방 유리에 자외선을 차단 기능을 적용하여 탑승객은 물론 차량 실내 내장재를 보호합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/78.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('오토 디포그', '전면유리의 김서림을 감지해 스스로 전면 유리 및 앞좌석 유리의 김서림을 없애 운전시야를 확보합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/79.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('레인센서', '스티어링 휠 우측 레버의 와이퍼 조절장치 스위치를 AUTO로 위치하였을 때 주행 중 우천상황을 자동으로 감지하여 와이퍼가 작동 및 조작단계를 자동으로 조절하는 기능입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/80.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('운전석 공조 연동 자동 제어', '시동 후 공조 설정 온도와 실제 온도의 차이가 많이 나는 경우, 공조기 외 스티어링 휠 열선, 시트 열선/통풍을 자동으로 감지하여 통합 제어하는 기능입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/81.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('USB 충전기(1열 1개, 2열 2개, 3열 2개)', '차량용 충전기로서 USB 포트를 통해 각종 스마트폰 및 태블릿 기기 충전이 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/82.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('파워 아웃렛(1열 1개, 2열 1개, 3열 1개)', '시동이 걸린 상태에서 실내에서 전기 제품(예 : 진공청소기, 소형냉장고, 게임기 등)을 사용할 수 있도록 돕습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/83.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('세이프티 파워 윈도우(1/2열)', '유리창이 원터치 자동 닫힘 기능이 작동하여 닫히는 중에 일정한 힘에 의해 막히면 자동으로 닫힘을 멈추고, 일정한 높이만큼 다시 열리는 기능입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/84.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후방 모니터', '후진 주차 시 디스플레이 오디오 또는 내비게이션 화면에 후방 상황을 표시하여 편의성을 높였습니다.
+- 조향연동 기능 : 스티어링 휠 조정 시 그에 따른 예상 주행 궤적도 같이 표시하여 편의성을 높였습니다.
+- DRM(Driving Rear Monitor) 기능 : 주행 중 후방 영상을 실시간으로 확인하여 룸미러 시야 확보가 불가능 할 때, 후방 상황을 인지할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/85.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('확산형 루프 에어 벤트', '벤트 테두리에 홀(HOLE)을 적용하여 바람이 직접 분사가 아닌 간접(확산) 분사될 수 있도록 구현하여 조금 더 쾌적한 환경을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/86.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('오토라이트 컨트롤', '대시보드 중앙에 위치한 조도센서를 이용하여 외부 밝기에 따라 헤드램프를 자동으로 조절하는 장치입니다. 스티어링 휠 좌측에 위치한 조명 스위치를 「AUTO」 위치에 두면 작동합니다.
+- 대시보드 : 운전석과 조수석 정면에 있으며, 계기판과 센터페시아를 포함합니다.
+※ 스마트/VAN 스마트 트림 선택 시, 위 이미지와는 달리 내장 색상이 블랙으로 적용됩니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/87.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스마트키 원격시동', '차량 탑승 전 스마트키를 이용하여 원격으로 시동을 걸 수 있으며, 냉/난방 장치는 시동을 끄기 전 설정된 상태로 작동이 가능합니다.
+* 차량 10m 이내에서 도어 잠금 버튼을 누른 후 4초 이내에 원격시동 버튼을 2초 이상 누르면 시동이 걸립니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/88.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전방/후방 주차 거리 경고', '범퍼에 내장된 초음파 센서로 장애물과의 거리를 감지하여 거리별로 차별화된 경고음을 울려 주차 편의성 및 안전성을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/89.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전동식 틸트 & 텔레스코픽 스티어링 휠', '조절 스위치를 이용하여 스티어링 휠의 높낮이와 전/후 위치를 조절할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/90.jpg', 24, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스마트폰 무선충전', '중앙 콘솔에 휴대폰 무선 충전을 위한 시스템이 적용되어 있습니다. 또한 엔진에 시동을 끈 후 충전 패드에 휴대폰이 놓여있는 상태에서 운전석 또는 동승석 도어를 열면 게시판에 휴대폰이 무선 충전기에 있습니다 라는 경고문 및 경고음(음성안내 적용 차량)으로 알려줍니다.
+* 무선 충전 시스템은 Qi를 지원하는 휴대폰 한 대를 대상으로 무선충전을 지원하며, Qi를 지원하는 휴대폰은 휴대폰 제조사를 통해 확인 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/91.jpg', 23, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스마트 파워 테일게이트', '스위치 및 스마트키 버튼으로 테일게이트 개방이 가능하며, 설정을 통해 개폐 속도 조절 및 열림 높이 조절이 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/92.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('서라운드 뷰 모니터', '차량 앞/뒤/좌/우 360도 모든 상황을 AVN화면을 통해 볼 수 있는 장치로 고화질 카메라 및 디지털 영상 전송 방식을 적용하여 영상 경계선 없이 선명하고 깨끗한 화질을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/93.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후측방 모니터', '방향지시등 스위치 조작과 연동해 차로 변경 시 기존 아웃사이드 미러 대비 더 넓은 후측방 영역을 클러스터에 표시하여 안전한 주행을 도와줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/94.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('디지털 키 2 터치', '스마트폰으로 차량 외부에서 도어를 열고 시동을 걸 수 있습니다. 사용 권한을 다수의 사람과 공유하여 보다 편리함을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/digitalkey_s.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('2열 수동식 도어커튼', '뒷좌석 유리를 통해 들어오는 외부 광선을 차단할 때 사용하는 수동식 커튼입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/manualcurtain_s.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전후석 통합 터치 공조 컨트롤', '터치식으로 2열 공조 제어까지 가능하여 편리한 터치 타입 공조 패널에 공기질 센서, 마이크로 에어 필터, 운전석 공조 연동 자동 제어 등의 공기청정모드가 적용되어 실내 미세먼지를 획기적으로 저감하며 쾌적한 실내 환경을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/81.jpg', null, 'TRUE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('헤드업 디스플레이', '주요 주행 정보를 전면 윈드실드에 표시하며, 밝기가 최적화되어 주간에도 시인성이 뛰어납니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/101-6.jpg', 18, 'TRUE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('파워 아웃렛(콘솔 내부 1개)', '시동이 걸린 상태에서 실내에서 전기 제품(예 : 진공청소기, 소형냉장고, 게임기 등)을 사용할 수 있도록 돕습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/poweroutlet_consol_s.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('USB 충전기(콘솔 내부 1개)', '차량용 충전기로서 USB 포트를 통해 각종 스마트폰 및 태블릿 기기 충전이 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/usbcharger_consol_s.jpg', null, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('12.3인치 내비게이션(블루링크, 폰 프로젝션, 현대 카페이)', '와이드하고 품격 있는 실내공간을 연출하고 고해상도 대화면으로 뛰어난 시인성과 최첨단 인포테인먼트 기능을 제공합니다.주요기능 : 대화면 HD급 고해상도(1,920x720) 모니터, 내비게이션 자동 무선 업데이트, 개인화 프로필, 서버형 음성인식 시스템, 블루링크', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/95.jpg', null, 'FALSE', 8, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('하이패스', '유료 도로로 진출입시 통행료가 자동결제 되는 장치입니다. 하이패스 시스템은 시동이 걸려있는 상태에서만 작동합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/96.jpg', null, 'FALSE', 8, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후석 대화모드', '운전자의 음성을 운전석 마이크를 통하여 뒷좌석 동승자와의 대화 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/97.jpg', null, 'FALSE', 8, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후석 취침모드', '뒷좌석 동승자가 취침 시, 뒷좌석 스피커가 모두 음소거가 되고 운전석 스피커로만 음원이 출력되어, 뒷좌석을 조용한 공간으로 활용할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/98.jpg', null, 'FALSE', 8, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('멀티미디어용 USB 단자(1열 1개)', 'MP3, USB 저장 장치 또는 iPod 등 외부 음향 기기(또는 음악/동영상 등 미디어 파일 저장 장치)를 차량에 연결하여 차량 스피커를 통하여 음악을 듣거나 차량 오디오 또는 인포테인먼트 시스템으로 재생할 수 있는 편의 장치 입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/100.jpg', null, 'FALSE', 8, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('KRELL 프리미엄 사운드(12스피커, 외장앰프)', '음향의 세밀함과 공간감, 다이내믹함을 추구하며 세계 유수의 사운드 어워드를 수상한 세계적인 하이앤드 오디오 시스템 브랜드인 크렐 사운드 시스템을 적용하였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/krellsound_s.jpg', 19, 'TRUE', 8, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('액티브 노이즈 컨트롤', '실시간으로 차량 내부의 엔진 소음을 분석해 반대 위상의 음파를 출력하여 소음을 저감하고 보다 정숙한 실내 공간을 만들어줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/activenoisecontrol_s.jpg', 19, 'FALSE', 8, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('러기지 스크린', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/luggagescreen_m.jpg', 9, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('러기지 네트', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/luggagenet_m.jpg', 9, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 도어 스팟 램프', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/doorspotlamp_m.jpg', 9, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('LED 풋무드 램프', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/footmoodlamp_m.jpg', 9, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('견인력(750kg → 2,000kg)', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tractionpower_m.jpg', 10, 'FALSE', 1, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('셀프레벨라이저', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/selflevelizer_m.jpg', 10, 'FALSE', 1, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('토우히치', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/towhitch_m.jpg', 10, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('듀얼 머플러 패키지', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/107.jpg', 14, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('러기지 프로텍션 매트', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/112-1.jpg', 8, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('플로어매트 1,2열', '※ 프로텍션 매트 패키지는 사용자의 신발 재질에 따라 일부 미끄러짐이 발생할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/112-2.jpg', 8, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('20인치 다크 스퍼터링 휠', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/113.jpg', 11, 'FALSE', 4, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/logo-npp.png');
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('20인치 블랙톤 전면 가공 휠', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/114.jpg', 13, 'FALSE', 4, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/logo-npp.png');
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('알콘(alcon) 단조 브레이크', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/115-1.jpg', 13, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('2열 센터 콘솔(양문형 암레스트, 공기청정기, 냉온장 컵홀더, 앰비언트 무드램프, 터치 스위치 포함)', '양문형 2열 센터 콘솔 암레스트로 콘솔 개폐시 편의성이 우수합니다. 또한 2열 콘솔 부위에 앰비언트 무드램프를 더하여 2열 차별화와 고급감을 향상시켰습니다.
+- 공기청정기 : H13등급 헤파 필터와 활성탄 및 제올라이트 필터를 적용하여 미세먼지와 유해가스를 효과적으로 필터링하여 2열 좌석 중심으로 신선한 공기를 공급합니다. 미세먼지 센서로(PM2.5 레이저) 실내 미세먼지를 측정하여 풍량을 자동 제어합니다.
+- 터치 스위치 : 콘솔 공기청정기, 2열 냉온컵홀더, 후석엔터테인먼트 시스템을 제어 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/2_centerconsol_m.jpg', 15, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('VIP 전용 고급형 카매트(1/2/3열)', '두터운 두께와 더욱 촘촘한 융 원단을 적용하여 보다 고급스러운 인테리어 감성을 제공합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/vipcarmat_m.jpg', 15, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스피커 내장형 윙타입 헤드레스트(2열)', '저음역을 강화하고 플랫 주파수 응답 성능을 확보하여 풍부한 베이스와 고퀄리티 사운드 감상이 가능합니다. 또한 후석 엔터테인먼트 시스템과 연동되어 좌/우 헤드레스트 각각 개별적인 사운드 감상이 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/speakerwingtypeheadrest_m.jpg', 15, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('도어트림 스마트폰 무선충전기(2열)', '뒷좌석 도어에 별도의 케이블 없이 무선으로 스마트폰 충전이 가능한 무선 충전기를 장착하여 뒷좌석 탑승객의 편의를 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/doorwirelesscharger_m.jpg', 15, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('후석 엔터테인먼트 시스템(2열)', '- ', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/rearentertain_m.jpg', 15, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('다크 크롬 라디에이터 그릴', null, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/41.jpg', null, 'FALSE', null, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('메탈페인트 스키드 플레이트', null, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/56.jpg', null, 'FALSE', null, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('20인치 알로이 휠 & 타이어', null, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/57.jpg', 21, 'FALSE', 4, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/logo-npp.png');
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('베젤리스 인사이드 미러', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/59.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('퀼팅 나파가죽 시트(블랙/버건디/웜그레이)', null, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/qualting_napa.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('빌트인 공기청정기', '※ 빌트인 공기청정기 전용 에어필터의 권장 사용기간은 6개월이며(하루 2시간 사용 기준), 에어필터는 현대 Shop(Shop.Hyundai.com) 현대브랜드관을 통해 개별 품목 단위로 구매 가능합니다.
+
+', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/108.jpg', 4, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('듀얼 와이드 선루프', '후석에 고정 글라스를 적용한 듀얼 파노라믹 선루프로 2/3열의 탑승객에게도 넓은 개방감을 선사합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/104.jpg', 2, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('천연가죽 시트(블랙)', '팰리세이드는 옵션에 따라 인조가죽, 가죽, 나파가죽, 퀼팅 나파가죽 시트를 선택할 수 있습니다.
+ - 인조가죽 시트 : 합성섬유를 이용하여 가죽의 질감을 구현한 인조가죽으로 제작된 시트입니다.
+ - 가죽 시트 : 실제 가죽으로 제작되어 편안하며 고급스러운 착좌감을 제공합니다.
+ - 나파가죽 시트 : 가죽 표면을 코팅처리하여 가죽의 내구성은 높이면서도 부드러운 감촉을 선사하는 시트입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/realleatherblack.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('운전석 전동시트(10way, 4way 럼버서포트, 쿠션 익스텐션, 자세 메모리 시스템)', '운전석의 시트 포지션을 조정하여 운전자의 체형에 맞는 편안한 자세를 유지할 수 있도록 돕는 기능입니다.
+ - 10way 전동시트 : 운전석 좌하단에 위치한 조작부로 8방향으로 조절 기능(시트백 기울기, 시트 앞/뒤 이동, 쿠션부 앞/뒤 높이 조절)과 허리 지지대 조절 기능을 전동 방식으로 조절합니다.
+ - 4way 럼버서포트 : 허리 지지대 조절 기능을 4 방향으로 조절합니다.
+ - 쿠션 익스텐션 : 운전자의 허벅지 길이에 맞게 시트 하단부를 조절하는 쿠션 익스텐션이 적용되었습니다.
+ - 자세 메모리 시스템 : 운전자가 설정한 자세를 2개까지 기억하는 운전석 자세 메모리 시스템을 적용하여 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/70.jpg', null, 'FALSE', 5, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('사이드스텝', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/109.jpg', 5, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('차량 보호 필름', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/111.jpg', 7, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('적외선 무릎워머', '※ 적외선 무릎 워머 상품은 사용자의 자세와 체형에 따라 효과가 상이할 수 있습니다.
+ ※ 적외선 무릎 워머 상품의 발열부는 고온으로 신체 접촉 시 화상 위험이 있으므로 닿지 않도록 주의바랍니다.
+ ※ 적외선 무릎 워머 상품은 실내온도에 따라 발열 온도가 조절되며, 30분 연속 작동 됩니다.
+ ※ 적외선 무릎 워머는 전동식 틸트 & 텔레스코픽 스티어링 휠 적용 시 선택이 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/110.jpg', 6, 'FALSE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('메탈페이트 스키드 플레이트', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/56.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('클러스터(4.2인치 컬러 LCD)', '계기판 중앙에 4.2인치의 컬러 LCD 화면을 탑재하여 주행 중 외부 온도, 연비 정보, 지능형 안전 기술 작동 상태 등 다양한 차량의 상태를 운전자가 직관적으로 확인할 수 있도록 돕는 장치입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/4.2cluster_s.jpg', null, 'FALSE', 8, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('수동식 틸트 & 텔레스 코픽 스티어링 휠', '스티어링 휠의 높이를 신체에 알맞게 조절하기 위한 장치로 조절 레버를 아래로 내린 후 상하 또는 앞뒤로 움직여 위치를 지정합니다. 조절 후에는 조절 레버를 원위치 시켜 스티어링 휠을 고정합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/manualsteering_s.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('일반 오디오 시스템(8스피커, 블루투스 핸즈프리)', '차량 내부 공간의 음향 특성에 맞게 세심하게 조정된 8개의 스피커를 통하여 기본에 충실한 사운드를 감상할 수 있습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/99.jpg', null, 'FALSE', 8, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('빌트인 캠(보조배터리 포함)', '빌트인 적용된 영상기록장치로, 내비게이션 화면을 통해 영상 확인 및 앱 연동을 통해 영상 확인 및 SNS 공유가 가능합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/105.jpg', 1, 'FALSE', 3, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('냉온장 컵홀더', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/cupholder_s.jpg', 3, 'TRUE', 7, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('18인치 알로이 휠 & 타이어', '-', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18alloywheel.jpg', null, 'FALSE', 4, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('운전석 전동시트(8way, 럼버서포트)', '운전석의 시트 포지션을 조정하여 운전자의 체형에 맞는 편안한 자세를 유지할 수 있도록 돕는 기능입니다. 팰리세이드는 옵션에 따라 10way 전동 시트와 12way 전동시트(럼버서포트 포함) & 2way 쿠션 익스텐션을 선택할 수 있습니다.
+10way 전동시트 : 운전석 좌하단에 위치한 조작부로 8방향으로 조절 기능(시트백 기울기, 시트 앞/뒤 이동, 쿠션부 앞/뒤 높이 조절)과 허리 지지대 조절 기능을 전동 방식으로 조절합니다.
+12way 전동시트(럼버서포트 포함) & 2way 쿠션 익스텐션 : 운전석 좌하단에 위치한 조작부로 8방향으로 조절 기능(시트백 기울기, 시트 앞/뒤 이동, 쿠션부 앞/뒤 높이 조절)과 4방향으로 허리 지지대를 조절하며 운전자의 허벅지 길이에 맞게 시트 하단부를 조절하는 쿠션 익스텐션이 적용되었습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/70.png', null, 'FALSE', 6, null);
 
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 1, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 2, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 3, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 4, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 5, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 6, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 7, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 8, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 9, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 11, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 9, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 10, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 11, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 12, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 13, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 14, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 15, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 16, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 17, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 19, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 22, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 24, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 26, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 32, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 18, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 19, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 20, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 24, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 25, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 27, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 28, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 29, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 30, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 31, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 32, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 33, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 34, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 35, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 35, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 36, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 37, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 38, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 39, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 40, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 41, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 42, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 43, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 44, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 43, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 44, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 45, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 46, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 48, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 46, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 49, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 51, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 52, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 53, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 55, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 56, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 57, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 61, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 62, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 63, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 66, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 50, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 64, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 65, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 66, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 67, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 68, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 69, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 71, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 73, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 74, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 75, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 76, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 77, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 75, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 76, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 77, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 78, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 79, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 80, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 80, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 81, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 82, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 83, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 84, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 85, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 86, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 87, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 88, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 89, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 90, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 91, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 94, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 97, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 98, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 101, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 103, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 91, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 92, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 93, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 95, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 96, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 104, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 105, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 106, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 107, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 108, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 109, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 111, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 112, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 114, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 117, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 119, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 120, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 121, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 122, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 123, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 127, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 128, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 118, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 119, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 120, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 129, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 130, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 131, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 134, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 135, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 132, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 133, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 134, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 135, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 136, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 137, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 137, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 138, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 139, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 140, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 141, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 142, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 143, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 144, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 146, 1);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 145, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 147, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 148, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 149, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 3, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 1, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 2, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 3, 2);
@@ -942,8 +976,12 @@ INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 17,
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 18, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 19, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 20, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 21, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 22, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 23, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 24, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 25, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 26, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 27, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 28, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 29, 2);
@@ -969,11 +1007,17 @@ INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 50,
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 51, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 52, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 53, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 54, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 57, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 58, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 64, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 65, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 66, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 67, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 68, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 75, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 71, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 73, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 74, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 76, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 77, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 78, 2);
@@ -996,26 +1040,31 @@ INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 94,
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 95, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 96, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 97, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 101, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 104, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 105, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 106, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 107, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 108, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 118, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 119, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 120, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 121, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 122, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 123, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 132, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 133, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 129, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 130, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 131, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 132, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 134, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 135, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 137, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 138, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 139, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 140, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 141, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 142, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 145, 2);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 149, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 141, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 144, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 145, 2);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 148, 2);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 1, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 2, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 3, 3);
@@ -1079,6 +1128,9 @@ INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 67,
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 68, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 69, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 70, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 71, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 72, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 73, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 74, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 75, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 76, 3);
@@ -1106,6 +1158,7 @@ INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 97,
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 98, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 99, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 100, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 101, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 104, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 105, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 106, 3);
@@ -1126,19 +1179,20 @@ INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 12
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 121, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 122, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 123, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 129, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 130, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 131, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 132, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 133, 3);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 134, 3);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 135, 3);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 136, 3);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 139, 3);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 140, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 134, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 135, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 138, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 139, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 140, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 141, 3);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 142, 3);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 145, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 144, 3);
+INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 145, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 146, 3);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 147, 3);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 1, 4);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 2, 4);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 3, 4);
@@ -1274,3 +1328,15 @@ INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 14
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 141, 4);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 146, 4);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 147, 4);
+
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (null, 14, 2);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 4, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 6, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 8, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (9, 14, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (11, 13, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (13, 11, null);
+
+INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('김팰리', '010-0000-00', '왕십리 지점', '고객님의 모든 구매 과정에 정성을 다하겠습니다.', 30, null, 36.1234, 126.1234);
+INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('정현대', '010-0000-00', '한양 대리점', '안녕하세요 믿음을 주는 카마스터 정현대입니다.', 20, null, 36.1324, 126.1324);
+INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('심포니', '010-0000-00', '마장 대리점', '고객님을 위한 최고의 차량을 추천해드릴게요.', 10, null, 36.1423, 126.1432);
