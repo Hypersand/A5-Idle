@@ -6,7 +6,7 @@ import BlueButton from "buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
 import { TRIM_ROUTE } from "../utils/routes";
 import { carContext } from "../utils/context";
-import FindTrim from "../components/findTrim/FindTrim";
+import FindTrim from "../components/findTrim/index";
 import { getTrimData } from "../utils/api";
 import palette from "../styles/palette";
 

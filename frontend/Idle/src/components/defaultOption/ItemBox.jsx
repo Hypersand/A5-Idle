@@ -1,13 +1,9 @@
 import styled from "styled-components";
 import { ReactComponent as ArrowRight } from "../../assets/images/arrowRight.svg";
 import { Fragment, useState } from "react";
-<<<<<<< HEAD
-import DetailOptionModal from "./DetailOptionModal";
-=======
 import DetailOptionModal from ".//DetailOptionModal";
 import palette from "../../styles/palette";
 
->>>>>>> fe-dev
 function ItemBox({ functionName, functionImgUrl, functionDescription }) {
   const [showDetail, setShowDetail] = useState(false);
   const stringMaxLength = 34;

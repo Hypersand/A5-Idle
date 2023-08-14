@@ -1,15 +1,10 @@
 import { styled } from "styled-components";
 import { ReactComponent as OptionChecked } from "../../assets/images/optionChecked.svg";
 import { useContext, useEffect, useState } from "react";
-<<<<<<< HEAD
-import OptionModal from "modals/OptionModal";
 import { PUSH_SELECTED_OPTION, POP_SELECTED_OPTION } from "../../utils/actionType";
 import { dispatchContext } from "../../utils/context";
-=======
-import { selectedOptionContext } from "../../utils/context";
 import OptionModal from "../common/modals/OptionModal";
 import palette from "../../styles/palette";
->>>>>>> fe-dev
 
 function OptionBox({ data, disable = false }) {
   const [isSelected, setIsSelected] = useState(false);
@@ -70,14 +65,15 @@ const StContainer = styled.div`
   width: 302px;
   height: 32px;
   padding: 16px;
-  border: 1px solid${palette.Grey_2};
+  border: 1px solid ${palette.Grey_2};
   background: ${({ $isSelcted }) => ($isSelcted ? `${palette.NavyBlue_5}` : `${palette.White}`)};
   opacity: ${({ $disable }) => ($disable ? 0.2 : 1)};
   pointer-events: ${({ $disable }) => ($disable ? "none" : "")};
   justify-content: space-between;
   align-items: center;
   &:hover {
-    background-color: ${({ $isSelcted }) => ($isSelcted ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`)};
+    background-color: ${({ $isSelcted }) =>
+      $isSelcted ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
   }
 `;

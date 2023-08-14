@@ -21,13 +21,15 @@ function OptionBox({
 }) {
   const { car, dispatch } = useContext(carContext);
   const isSelected = selectedOption === optionName;
-  let state
+  let state;
 
   if (car.option.confusing.filter((item) => item.name === optionName).length !== 0) {
-    state = CONFUSE
+    state = CONFUSE;
   } else if (car.option.additional.filter((item) => item.name === optionName).length !== 0) {
-    state = ADD
-  } else { state = NONE }
+    state = ADD;
+  } else {
+    state = NONE;
+  }
 
   function popPayload(name) {
     let newPayload;
@@ -45,13 +47,14 @@ function OptionBox({
   function toggleConfuse(e) {
     e.stopPropagation();
     popPayload(optionName);
-    if (state !== CONFUSE) dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
-
+    if (state !== CONFUSE)
+      dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
   }
   function toggleAdd(e) {
     e.stopPropagation();
     popPayload(optionName);
-    if (state !== ADD) dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: optionName, price: optionPrice } });
+    if (state !== ADD)
+      dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: optionName, price: optionPrice } });
   }
   return (
     <>
@@ -93,26 +96,26 @@ const StContainer = styled.div`
   padding: 12px 16px;
   border: 2px solid
     ${({ $isSelected, $state }) => {
-    if ($isSelected) {
-      switch ($state) {
-        case NONE:
-          return `${palette.NavyBlue_1}`
-        case CONFUSE:
-          return `${palette.Gold_5}`;
-        case ADD:
-          return `${palette.NavyBlue_5}`;
+      if ($isSelected) {
+        switch ($state) {
+          case NONE:
+            return `${palette.NavyBlue_1}`;
+          case CONFUSE:
+            return `${palette.Gold_5}`;
+          case ADD:
+            return `${palette.NavyBlue_5}`;
+        }
+      } else {
+        switch ($state) {
+          case NONE:
+            return `${palette.Grey_2}`;
+          case CONFUSE:
+            return `${palette.Gold_5}`;
+          case ADD:
+            return `${palette.NavyBlue_5}`;
+        }
       }
-    } else {
-      switch ($state) {
-        case NONE:
-          return `${palette.Grey_2}`;
-        case CONFUSE:
-          return `${palette.Gold_5}`;
-        case ADD:
-          return `${palette.NavyBlue_5}`;
-      }
-    }
-  }};
+    }};
   background: ${({ $state }) => {
     switch ($state) {
       case NONE:
@@ -132,15 +135,15 @@ const StContainer = styled.div`
   opacity: ${({ $state }) => ($state ? 1 : 0.2)};
   &:hover {
     background: ${({ $state }) => {
-    switch ($state) {
-      case NONE:
-        return `${palette.NavyBlue_1};`
-      case CONFUSE:
-        return `${palette.Gold_5}`;
-      case ADD:
-        return `${palette.NavyBlue_5}`;
-    }
-  }};
+      switch ($state) {
+        case NONE:
+          return `${palette.NavyBlue_1};`;
+        case CONFUSE:
+          return `${palette.Gold_5}`;
+        case ADD:
+          return `${palette.NavyBlue_5}`;
+      }
+    }};
     opacity: 0.9;
     cursor: pointer;
   }
@@ -163,7 +166,8 @@ const StContentHeader = styled.div`
 `;
 
 const TitleDetail = styled.p`
-  color: ${({ $state }) => ($state === CONFUSE ? "rgba(255, 255, 255, 0.50)" : `${palette.NavyBlue_4}`)};
+  color: ${({ $state }) =>
+    $state === CONFUSE ? "rgba(255, 255, 255, 0.50)" : `${palette.NavyBlue_4}`};
   font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;
@@ -199,38 +203,19 @@ const StButtonContainer = styled.div`
   gap: 12px;
 `;
 const ClickedBorder = styled.div`
-<<<<<<< HEAD
   position: absolute;
   display: ${({ $isSelected, $state }) => {
-    if ($state == "none") {
-      return "none";
+    if ($state == NONE) {
+      return NONE;
     } else {
       if ($isSelected) return "";
-      else return "none";
+      else return NONE;
     }
   }};
   width: 192px;
-  border: 2px solid #e7ecf9;
+  border: 2px solid ${palette.NavyBlue_1};
   height: 156px;
   top: 1px;
   left: 1px;
   z-index: 0;
 `;
-=======
-    position: absolute;
-    display: ${({ $isSelected, $state }) => {
-    if ($state == NONE) {
-      return NONE
-    } else {
-      if ($isSelected) return ""
-      else return NONE
-    }
-  }};
-    width: 192px;
-    border: 2px solid ${palette.NavyBlue_1};
-    height: 156px;
-    top: 1px;
-    left: 1px;
-    z-index: 0;
-`
->>>>>>> fe-dev

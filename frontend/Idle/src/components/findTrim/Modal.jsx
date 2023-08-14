@@ -4,7 +4,6 @@ import WhiteButton from "buttons/WhiteButton";
 import { useContext, useEffect, useRef, useReducer } from "react";
 import FindTrimContentMain from "./FindTrimContentMain";
 import OptionAlert from "./OptionAlert";
-<<<<<<< HEAD
 import { carContext, stateContext, dispatchContext } from "utils/context";
 import { defaultOption } from "utils/constants";
 import { CHANGE_ALL } from "utils/actionType";
@@ -18,13 +17,7 @@ import {
   PUSH_SELECTED_OPTION,
   SET_SHOWOPTION_ALERT,
 } from "../../utils/actionType";
-=======
-import { selectedOptionContext } from "../../utils/context";
-import { carContext } from "../../utils/context";
-import { emptyCar, defaultOption } from "../../utils/constants";
-import { CHANGE_ALL } from "../../utils/actionType";
 import palette from "../../styles/palette";
->>>>>>> fe-dev
 
 function FindTrimContent({ setVisible }) {
   const initialRender = useRef(true);
