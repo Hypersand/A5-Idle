@@ -1,7 +1,27 @@
-export async function CustomAPI(path, data = {}) {
+export async function getAPI(path, data = {}) {
+  try {
+    const queryParams = new URLSearchParams(data).toString();
+    const response = await fetch(`/api/${path}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        return json;
+      });
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export async function postAPI(path, data = {}) {
   try {
     const response = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/${path}`, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },

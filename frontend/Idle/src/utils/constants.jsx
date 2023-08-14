@@ -5,7 +5,7 @@ export const PATH = {
     GET: `trims/favorite`,
     OPTION: `trims/favorite/select/option`,
     TRIM: `trims/favorite/select/trim`,
-    SUBMIT: `trims/favorite/submit`
+    SUBMIT: `trims/favorite/submit`,
   },
   DETAIL: `trims/models`,
   COLOR: {
@@ -18,8 +18,8 @@ export const PATH = {
     SELECT: `trims/add/select`,
   },
   CARMASTER: `find/car/masters`,
-  BILL: `result/bill`
-}
+  BILL: `result/bill`,
+};
 export const TYPE = {
   trim: "트림",
   detail: "세부 모델",
@@ -63,14 +63,13 @@ export const BODY_TYPES = "bodyTypes";
 export const EXTERIOR_COLORS = "exterior";
 export const INTERIROR_COLORS = "interior";
 export const ALL = "all";
-export const SAFETY = "safety"
-export const STYLE = "style"
-export const PROTECTION = "protection"
-export const CONVENIENCE = "convenience"
-export const CONFUSE = "confuse"
-export const ADD = "add"
-export const NONE = "none"
-
+export const SAFETY = "safety";
+export const STYLE = "style";
+export const PROTECTION = "protection";
+export const CONVENIENCE = "convenience";
+export const CONFUSE = "confuse";
+export const ADD = "add";
+export const NONE = "none";
 
 export const PEAK_OUTPUT_KR = "최고 출력";
 export const MAX_TORQUE_KR = "최대 토크";
@@ -270,4 +269,6 @@ export const findTrimInitialState = {
   selectedOption: [],
   optionStatus: [],
   showOptionAlert: false,
+  functionList: [],
+  disableFunctionId: [],
 };
