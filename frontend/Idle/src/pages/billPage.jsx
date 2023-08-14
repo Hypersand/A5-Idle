@@ -1,18 +1,25 @@
 import { styled } from "styled-components";
+
 import Header from "layout/Header";
 import Car3D from "content/Car3D";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
-import { useContext } from "react";
+import { useContext,useState } from "react";
 import { carContext } from "utils/context";
 import BillMain from "billMain/BillMain";
 import BillOptionContainer from "billMain/BillOptionContainer";
+import MapModal from "../components/BillMain/MapModal";
 
 function BillPage() {
   const { car } = useContext(carContext);
+  const [carMasterVisible, setCarMasterVisible] = useState(false);
+  function carMasterBtnClicked() {
+    setCarMasterVisible(true);
+  }
+
   return (
-    <StWrapper id={"modal"}>
-      <StContainer>
+    <StWrapper>
+      <StContainer id={"carMasterModal"}>
         <Header />
         <TitleContainer>
           <StTitle>
@@ -33,12 +40,14 @@ function BillPage() {
           </StConfirmText>
           <StButtonContainer>
             <WhiteButton text={"공유하기"} />
-            <BlueButton text={"카마스터 찾기"} />
+            <BlueButton text={"카마스터 찾기"} onClick={carMasterBtnClicked} />
           </StButtonContainer>
         </StConfirmContainer>
         <BillMain />
 
         <BillOptionContainer added={car.option.additional} confused={car.option.confusing} />
+
+        {carMasterVisible && <MapModal setCarMasterVisible={setCarMasterVisible} />}
       </StContainer>
     </StWrapper>
   );
@@ -53,10 +62,10 @@ const StWrapper = styled.div`
 `;
 const StContainer = styled.div`
   position: relative;
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 1280px;
+  overflow: hidden;
   justify-content: center;
   align-items: center;
 `;
