@@ -1,52 +1,46 @@
 import { styled } from "styled-components";
-import { useState, useContext, useEffect } from "react";
-import { carContext } from "../../utils/context";
-import { CHANGE_INSIDE_COLOR } from "../../utils/actionType";
-import InnerColorImg from "../../assets/images/innerColor.png";
+import { useContext, useEffect } from "react";
+import { carContext } from "utils/context";
+import { CHANGE_INTERIOR_COLOR } from "utils/actionType";
+import palette from "styles/palette";
 
-function InnerColorBoxContainer({ data, onClick }) {
-  const [selectedIndex, setSelectedIndex] = useState(1);
+function InnerColorBoxContainer({ data }) {
   const { car, dispatch } = useContext(carContext);
 
   useEffect(() => {
     const payload = {
-      name: data.car_interior_colors[0].interior_name,
-      price: data.car_interior_colors[0].interior_price,
+      name: data.carInteriorColors[0].interiorName,
+      price: data.carInteriorColors[0].interiorPrice,
     };
     dispatch({
-      type: CHANGE_INSIDE_COLOR,
+      type: CHANGE_INTERIOR_COLOR,
       payload: payload,
     });
   }, []);
-  function innerColorClick(index, interior_name, price) {
-    if (car.color.inside.name != interior_name) {
-      const payload = {
-        name: interior_name,
-        price: price,
-      };
+  function innerColorClick(item) {
+    if (car.color.interior.name !== item.interiorName) {
       dispatch({
-        type: CHANGE_INSIDE_COLOR,
-        payload: payload,
+        type: CHANGE_INTERIOR_COLOR,
+        payload: {
+          name: item.interiorName,
+          price: item.interiorPrice,
+        },
       });
-      onClick(index);
-      setSelectedIndex(index);
     }
   }
   function renderInnerColor() {
-    return data.car_interior_colors.map((item, index) => {
+    return data.carInteriorColors.map((item, index) => {
       return (
         <StInnerColorBox
           key={index}
-          $isselected={selectedIndex === item.interior_idx}
-          onClick={() =>
-            innerColorClick(item.interior_idx, item.interior_name, item.interior_price)
-          }
+          $isselected={item.interiorName === car.color.interior.name}
+          onClick={() => (innerColorClick(item))}
         >
-          <StImage src={InnerColorImg} />
+          <StImage src={item.interiorImgUrl} />
           <StTextBox>
-            <StTextTitle>{item.interior_name}</StTextTitle>
-            <StTextSelect>{item.interior_purchase_rate}</StTextSelect>
-            <StTextPrice>+ {item.interior_price} 원</StTextPrice>
+            <StTextTitle>{item.interiorName}</StTextTitle>
+            <StTextSelect>{item.interiorPurchaseRate}</StTextSelect>
+            <StTextPrice>+ {item.interiorPrice} 원</StTextPrice>
           </StTextBox>
         </StInnerColorBox>
       );
@@ -71,7 +65,7 @@ const StInnerColorBox = styled.div`
   width: 200px;
   height: 164px;
   border: ${({ $isselected }) => ($isselected ? "2px" : "1px")} solid
-    ${({ $isselected, theme }) => ($isselected ? "#6d14b8" : theme.Grey_2)};
+    ${({ $isselected }) => ($isselected ? palette.Purple : palette.Grey_2)};
   gap: 2px;
   cursor: pointer;
 `;
@@ -91,32 +85,32 @@ const StTextBox = styled.div`
 `;
 
 const StTextTitle = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-weight: 700;
   line-height: 16px;
   letter-spacing: -0.03em;
   text-align: left;
-  color: ${({ theme }) => theme.Black};
+  color: ${palette.Black};
   margin-bottom: 3px;
 `;
 
 const StTextSelect = styled.div`
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-weight: 400;
   line-height: 15px;
   letter-spacing: -0.03em;
   margin-bottom: 4px;
-  color: ${({ theme }) => theme.Grey_3};
+  color: ${palette.Grey_3};
 `;
 
 const StTextPrice = styled.div`
   display: flex;
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
   letter-spacing: -0.03em;
-  color: ${({ theme }) => theme.CoolGrey_2};
+  color: ${palette.CoolGrey_2};
 `;

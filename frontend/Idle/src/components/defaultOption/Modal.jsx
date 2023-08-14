@@ -1,10 +1,11 @@
 import { styled, keyframes } from "styled-components";
 import { useEffect, useState } from "react";
 import CloseButton from "./CloseButton";
-import CategoryTabs from "../common/tabs/CategoryTabs";
+import CategoryTabs from "tabs/CategoryTabs";
 import ItemBox from "./ItemBox";
 import PaginationButton from "./PaginationButton";
 import { createPortal } from "react-dom";
+import palette from "styles/palette";
 
 function Modal({ setVisible }) {
   const pageSize = 10;
@@ -192,7 +193,7 @@ function Modal({ setVisible }) {
 export default Modal;
 
 const ModalContainer = styled.div`
-  z-index: 11;
+  z-index: 101;
   position: absolute;
   top: 0;
   left: 0;
@@ -217,7 +218,7 @@ const StContainer = styled.div`
   flex-direction: column;
   width: 1280px;
   height: 692.0703125px;
-  background-color: ${({ theme }) => theme.Grey_1};
+  background-color: ${palette.Grey_1};
   transition:
     transform 1s ease-in-out,
     opacity 1s ease-in-out;

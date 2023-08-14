@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import Functions from "./Functions";
+import palette from "styles/palette";
 
 function OptionContent({
   data,
@@ -39,7 +40,7 @@ const StContainer = styled.div`
   height: 310px;
   width: 279px;
   padding: 24px 24px 0px 24px;
-  background: white;
+  background: ${palette.White};
   flex-direction: column;
   align-items: flex-start;
   position: relative;
@@ -48,7 +49,7 @@ const StContainer = styled.div`
 const StOption = styled.div`
   width: 279px;
   height: 36px;
-  color: ${({ theme }) => theme.Black};
+  color: ${palette.Black};
   font-family: "Hyundai Sans Head KR";
   font-size: 28px;
   font-style: normal;
@@ -62,7 +63,7 @@ const StOption = styled.div`
 
 const StOptionDesc = styled.div`
   width: 279px;
-  color: ${({ theme }) => theme.CoolGrey_2};
+  color: ${palette.CoolGrey_2};
   font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
@@ -75,7 +76,7 @@ const StOptionDesc = styled.div`
 const StHr = styled.div`
   width: 279px;
   height: 1px;
-  background-color: ${({ theme }) => theme.Grey_2};
+  background-color: ${palette.Grey_2};
   margin-top: 20px;
   margin-bottom: 32px;
 `;

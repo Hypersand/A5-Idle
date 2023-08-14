@@ -1,19 +1,25 @@
 import styled from "styled-components";
 import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
+import palette from "styles/palette";
+import { useContext } from "react";
+import { stateContext, dispatchContext } from "utils/context";
+import { SET_DISABLE_FUNCTION_ID, SET_TEMPCAR } from "../../utils/actionType";
 
 function TrimBox({
   name,
   description,
   price,
-  isActive = true,
+  isActive = false,
   isSelected,
-  optionStatus,
+  optionStatusProp,
   onClick,
-  setTempCar,
-  setDisableFunctionId,
   dummyData,
 }) {
+  const { state } = useContext(stateContext);
+  const { stateDispatch } = useContext(dispatchContext);
   function handleClick() {
+    if (isSelected) {
+    }
     const carData = dummyData.find((item) => item.name === name);
     // get으로 carData.trim_idx 보내기.
     const dummy = [
@@ -27,16 +33,13 @@ function TrimBox({
         function_id: 333333,
       },
     ];
-    setDisableFunctionId(dummy);
-    setTempCar((prevTempCar) => {
-      return {
-        ...prevTempCar,
-        trim: {
-          name: carData.name,
-          price: carData.price,
-        },
-      };
-    });
+    stateDispatch({ type: SET_DISABLE_FUNCTION_ID, payload: dummy });
+    const payload = state.tempCar;
+    payload.trim = {
+      name: carData.name,
+      price: carData.price,
+    };
+    stateDispatch({ type: SET_TEMPCAR, payload: payload });
     if (isActive) {
       onClick();
     }
@@ -52,7 +55,7 @@ function TrimBox({
         <StTrimBoxContent $isselected={isSelected}>{description}</StTrimBoxContent>
         <StTrimBoxBottom>
           <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
-          {isActive ? <TrimBoxOptionStatus status={optionStatus} /> : null}
+          {isActive ? <TrimBoxOptionStatus status={optionStatusProp} /> : null}
         </StTrimBoxBottom>
       </StTrimBox>
     </StFindTrimTrimContainer>
@@ -66,9 +69,9 @@ const StFindTrimTrimContainer = styled.div`
   height: 164px;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid ${({ theme }) => theme.Grey_2};
-  background: ${({ theme, $isselected, $isactive }) =>
-    $isselected ? theme.NavyBlue_5 : $isactive === "true" ? theme.White : theme.Grey_4};
+  border: 1px solid ${palette.Grey_2};
+  background: ${({ $isselected, $isactive }) =>
+    $isselected ? palette.NavyBlue_5 : $isactive === "true" ? palette.White : palette.Grey_4};
   ${({ $isactive }) => $isactive === "true" && `cursor: pointer`};
   margin-bottom: 12px;
 `;
@@ -85,8 +88,8 @@ const StTrimBox = styled.div`
 `;
 
 const StTrimBoxTitle = styled.div`
-  color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isselected }) => ($isselected ? palette.White : palette.Black)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 22px;
   font-style: normal;
   font-weight: 700;
@@ -95,8 +98,8 @@ const StTrimBoxTitle = styled.div`
 `;
 
 const StTrimBoxContent = styled.div`
-  color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isselected }) => ($isselected ? palette.White : palette.Black)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -106,8 +109,8 @@ const StTrimBoxContent = styled.div`
 `;
 
 const StTrimBoxPrice = styled.div`
-  color: ${({ theme, $isselected }) => ($isselected ? theme.White : theme.Black)};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isselected }) => ($isselected ? palette.White : palette.Black)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

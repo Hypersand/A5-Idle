@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import palette from "styles/palette";
 
 function CategoryTabs({ text, onClick, isClicked = false }) {
   return (
@@ -13,10 +14,10 @@ export default CategoryTabs;
 const StContainer = styled.div`
   display: flex;
   padding: 3px 0px 5px 0px;
-  border-bottom: ${({ $isClicked }) => ($isClicked ? "2px solid #1A3276" : "")};
+  border-bottom: ${({ $isClicked }) => ($isClicked ? `2px solid ${palette.NavyBlue_5}` : "")};
   justify-content: center;
   align-items: center;
-  color: ${({ $isClicked }) => ($isClicked ? "#1A3276" : "#C5C9D2")};
+  color: ${({ $isClicked }) => ($isClicked ? `${palette.NavyBlue_5}` : `${palette.CoolGrey_1}`)};
   text-align: center;
   font-family: "Hyundai Sans Text KR";
   font-size: 16px;
@@ -24,4 +25,6 @@ const StContainer = styled.div`
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.48px;
+  z-index:100;
+  cursor: pointer;
 `;

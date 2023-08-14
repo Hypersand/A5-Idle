@@ -1,4 +1,8 @@
 import {
+  RESET_ALL,
+  PUSH_FUNCTION_LIST,
+  PUSH_SELECTED_OPTION,
+  POP_SELECTED_OPTION,
   PUSH_ADDITIONAL_OPTION,
   PUSH_CONFUSING_OPTION,
   POP_ADDITIONAL_OPTION,
@@ -7,32 +11,78 @@ import {
   CHANGE_BODY_TYPES,
   CHANGE_DRIVING_METHODS,
   CHANGE_ENGINES,
-  CHANGE_INSIDE_COLOR,
-  CHANGE_OUTSIDE_COLOR,
   CHANGE_TRIM,
-  RESET_ALL,
+  SET_TEMPCAR,
+  SET_ANIMATION_STATE,
+  SET_CLICK_ACTIVE,
+  SET_SELECTED_OPTION,
+  SET_OPTION_STATUS,
+  SET_SHOWOPTION_ALERT,
+  SET_DISABLE_FUNCTION_ID,
+  CHANGE_INTERIOR_COLOR,
+  CHANGE_EXTERIOR_COLOR,
 } from "./actionType";
+
+export function findTrimReducer(state, { type, payload }) {
+  switch (type) {
+    case SET_TEMPCAR:
+      return { ...state, tempCar: payload };
+    case SET_ANIMATION_STATE:
+      return { ...state, animationstate: payload };
+    case SET_CLICK_ACTIVE:
+      return { ...state, clickActive: payload };
+    case SET_SELECTED_OPTION:
+      return { ...state, selectedOption: payload };
+    case SET_OPTION_STATUS:
+      return { ...state, optionStatus: payload };
+    case SET_SHOWOPTION_ALERT:
+      return { ...state, showOptionAlert: payload };
+    case PUSH_SELECTED_OPTION:
+      return {
+        ...state,
+        selectedOption: [...state.selectedOption, payload],
+      };
+    case POP_SELECTED_OPTION:
+      return {
+        ...state,
+        selectedOption: state.selectedOption.filter((item) => item !== payload),
+      };
+    case PUSH_FUNCTION_LIST:
+      return {
+        ...state,
+        functionList: [...state.functionList, payload],
+      };
+    case SET_DISABLE_FUNCTION_ID:
+      return {
+        ...state,
+        disableFunctionId: payload,
+      };
+
+    default:
+      return state;
+  }
+}
 
 export function carReducer(car, { type, payload }) {
   switch (type) {
     case CHANGE_TRIM:
       return { ...car, trim: payload };
 
-    case CHANGE_OUTSIDE_COLOR:
+    case CHANGE_EXTERIOR_COLOR:
       return {
         ...car,
         color: {
-          outside: payload,
-          inside: car.color.inside,
+          exterior: payload,
+          interior: car.color.interior,
         },
       };
 
-    case CHANGE_INSIDE_COLOR:
+    case CHANGE_INTERIOR_COLOR:
       return {
         ...car,
         color: {
-          outside: car.color.outside,
-          inside: payload,
+          exterior: car.color.exterior,
+          interior: payload,
         },
       };
 
@@ -41,8 +91,8 @@ export function carReducer(car, { type, payload }) {
         ...car,
         detail: {
           engines: payload,
-          driving_methods: car.detail.driving_methods,
-          body_types: car.detail.body_types,
+          drivingMethods: car.detail.drivingMethods,
+          bodyTypes: car.detail.bodyTypes,
         },
       };
 
@@ -51,8 +101,8 @@ export function carReducer(car, { type, payload }) {
         ...car,
         detail: {
           engines: car.detail.engines,
-          driving_methods: payload,
-          body_types: car.detail.body_types,
+          drivingMethods: payload,
+          bodyTypes: car.detail.bodyTypes,
         },
       };
 
@@ -61,8 +111,8 @@ export function carReducer(car, { type, payload }) {
         ...car,
         detail: {
           engines: car.detail.engines,
-          driving_methods: car.detail.driving_methods,
-          body_types: payload,
+          drivingMethods: car.detail.drivingMethods,
+          bodyTypes: payload,
         },
       };
 
@@ -70,10 +120,7 @@ export function carReducer(car, { type, payload }) {
       return {
         ...car,
         option: {
-          additional: [
-            ...car.option.additional,
-            payload,
-          ],
+          additional: [...car.option.additional, payload],
           confusing: car.option.confusing,
         },
       };
@@ -83,10 +130,7 @@ export function carReducer(car, { type, payload }) {
         ...car,
         option: {
           additional: car.option.additional,
-          confusing: [
-            ...car.option.confusing,
-            payload
-          ],
+          confusing: [...car.option.confusing, payload],
         },
       };
 
@@ -114,12 +158,12 @@ export function carReducer(car, { type, payload }) {
         trim: { name: "Exclusive", price: 40000000 },
         detail: {
           engines: {},
-          driving_methods: {},
-          body_types: {},
+          drivingMethods: {},
+          bodyTypes: {},
         },
         color: {
-          outside: {},
-          inside: {},
+          exterior: {},
+          interior: {},
         },
         option: {
           additional: [],

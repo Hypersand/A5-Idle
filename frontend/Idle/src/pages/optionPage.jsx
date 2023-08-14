@@ -1,6 +1,6 @@
-import DefaultOption from "../components/defaultOption/DefaultOption";
+import DefaultOption from "defaultOption/index";
 import { useEffect, useRef, useState } from "react";
-import OptionBox from "../components/common/boxs/OptionBox";
+import OptionBox from "boxs/OptionBox";
 import {
   ALL,
   SAFETY,
@@ -9,15 +9,16 @@ import {
   CONVENIENCE,
   setClickedOptionPage,
   TRANSLATE,
-} from "../utils/constants";
+} from "utils/constants";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
-import CategoryTabs from "../components/common/tabs/CategoryTabs";
-import WhiteButton from "../components/common/buttons/WhiteButton";
-import BlueButton from "../components/common/buttons/BlueButton";
-import { ReactComponent as ArrowLogo } from "../assets/images/arrowOption.svg";
-import OptionMain from "../components/optionMain/OptionMain";
-import hyundai from "../assets/images/hyundai.svg";
+import { useNavigate, useParams } from "react-router-dom";
+import CategoryTabs from "tabs/CategoryTabs";
+import WhiteButton from "buttons/WhiteButton";
+import BlueButton from "buttons/BlueButton";
+import { ReactComponent as ArrowLogo } from "images/arrowOption.svg";
+import OptionMain from "optionMain/index";
+import hyundai from "images/hyundai.svg";
+import palette from "styles/palette";
 
 const dummyData = [
   {
@@ -97,13 +98,13 @@ const dummyData = [
       {
         functionName: "후방 주차 충돌방지 보조4",
         functionDescription: "...",
-        functionImgUrl: hyundai,
+        functionImgUrl: null,
         wheelLogoImgUrl: null,
       },
       {
         functionName: "20인치 다크 스퍼터링 휠4",
         functionDescription: "...",
-        functionImgUrl: "...",
+        functionImgUrl: hyundai,
         wheelLogoImgUrl: "...",
       },
     ],
@@ -117,13 +118,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조5",
         functionDescription: "...",
         functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠5",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -139,15 +140,15 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조6",
         functionDescription: "...",
-        functionImgUrl: hyundai,
+        functionImgUrl: null,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠6",
         functionDescription: "...",
-        functionImgUrl: "...",
+        functionImgUrl: hyundai,
         wheelLogoImgUrl: "...",
       },
     ],
@@ -161,13 +162,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조7",
         functionDescription: "...",
         functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠7",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -183,15 +184,15 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조8",
         functionDescription: "...",
-        functionImgUrl: hyundai,
+        functionImgUrl: null,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠8",
         functionDescription: "...",
-        functionImgUrl: "...",
+        functionImgUrl: hyundai,
         wheelLogoImgUrl: "...",
       },
     ],
@@ -205,13 +206,13 @@ const dummyData = [
     optionCanSelect: true,
     functions: [
       {
-        functionName: "후방 주차 충돌방지 보조1",
+        functionName: "후방 주차 충돌방지 보조9",
         functionDescription: "...",
         functionImgUrl: hyundai,
         wheelLogoImgUrl: null,
       },
       {
-        functionName: "20인치 다크 스퍼터링 휠1",
+        functionName: "20인치 다크 스퍼터링 휠9",
         functionDescription: "...",
         functionImgUrl: "...",
         wheelLogoImgUrl: "...",
@@ -226,13 +227,23 @@ const BLUR_STATUS = {
   BOTH_VISIBLE: 0,
 };
 
+function filterData(data, currentTab) {
+  if (currentTab === ALL) return data;
+  return data.filter((item) => item.optionCategory === TRANSLATE[currentTab]);
+}
+
 function OptionPage() {
-  const [currentTab, setCurrentTab] = useState(ALL);
+  const { tab } = useParams()
+  const [currentTab, setCurrentTab] = useState(tab);
   const [selectedOption, setSelectedOption] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
   const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
   const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
   const navigate = useNavigate();
   const scrollBar = useRef();
+
+  const [filteredData, setFilteredData] = useState(dummyData);
+  const [selectedFunction, setSelectedFunction] = useState("");
 
   useEffect(() => {
     if (!scrollBar.current) {
@@ -255,22 +266,47 @@ function OptionPage() {
     };
   }, [scrollBar.current]);
 
+  useEffect(() => {
+    setCurrentTab(tab)
+    setFilteredData(filterData(dummyData, currentTab));
+    setCurrentPage(0);
+    setSelectedOption("");
+  }, [tab]);
+
+  useEffect(() => {
+    if (selectedOption === "") {
+      setSelectedFunction(filteredData[0].functions[0]);
+    } else {
+      const selected = filteredData.filter((item) => item.optionName === selectedOption);
+      setSelectedFunction(selected[0].functions[0]);
+    }
+    setCurrentPage(0);
+  }, [selectedOption]);
+
+  useEffect(() => {
+    setSelectedFunction(filteredData[0].functions[0]);
+  }, [filteredData]);
+
   function handleTabChange(direction) {
     const currentIndex = tabs.indexOf(currentTab);
 
     if (direction === "next") {
       if (currentIndex !== -1 && currentIndex + 1 < tabs.length) {
-        setCurrentTab(tabs[currentIndex + 1]);
+        navigate(`/option/${tabs[currentIndex + 1]}`);
       } else {
         navigate("/bill");
       }
     } else if (direction === "prev") {
       if (currentIndex > 0) {
-        setCurrentTab(tabs[currentIndex - 1]);
+        navigate(`/option/${tabs[currentIndex - 1]}`);
       } else {
-        navigate("/color");
+        navigate("/color/exterior");
       }
     }
+  }
+
+  function TabClicked(idx) {
+    navigate(`/option/${tabs[idx]}`)
   }
 
   function ArrowButtonClicked(direction) {
@@ -284,14 +320,27 @@ function OptionPage() {
       <StWrapper>
         <StTabContainer>
           {tabs.map((item, idx) => (
-            <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} />
+            <CategoryTabs
+              key={idx}
+              text={TRANSLATE[item]}
+              isClicked={item === currentTab}
+              onClick={() => TabClicked(idx)}
+            />
           ))}
         </StTabContainer>
         <StContentsContainer>
           {/* 메인 컨텐츠 부분 */}
-          <OptionMain data={dummyData} currentTab={currentTab} selectedOption={selectedOption} />
+          <OptionMain
+            data={filteredData}
+            selectedOption={selectedOption}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            setSelectedFunction={setSelectedFunction}
+            selectedFunction={selectedFunction}
+          />
           {/* <MainContents currentState={currentTab} data={dummyData} /> */}
         </StContentsContainer>
+
         <StBottomContainer>
           <ArrowLeftContainer $blurState={blurState}>
             <ArrowLogo
@@ -300,8 +349,9 @@ function OptionPage() {
               }}
             />
           </ArrowLeftContainer>
+
           <StContainer ref={scrollBar}>
-            {dummyData.map((item, idx) => (
+            {filteredData.map((item, idx) => (
               <OptionBox
                 key={idx}
                 {...item}
@@ -310,7 +360,6 @@ function OptionPage() {
               />
             ))}
           </StContainer>
-          <DefaultOption />
           <ArrowRightContainer $blurState={blurState}>
             <ArrowLogo
               onClick={() => {
@@ -318,6 +367,7 @@ function OptionPage() {
               }}
             />
           </ArrowRightContainer>
+          <DefaultOption />
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>{TRANSLATE[currentTab]} 선택</Title>
@@ -359,13 +409,13 @@ const StContainer = styled.div`
   }
   &::-webkit-scrollbar-thumb {
     height: 3px;
-    border-top: 10px solid ${({ theme }) => theme.Grey_1};
-    border-bottom: 14px solid ${({ theme }) => theme.Grey_1};
+    border-top: 10px solid ${palette.Grey_1};
+    border-bottom: 14px solid ${palette.Grey_1};
     border-radius: 3px;
-    background: ${({ theme }) => theme.NavyBlue_5};
+    background: ${palette.NavyBlue_5};
   }
   &::-webkit-scrollbar-track {
-    background-color: ${({ theme }) => theme.Grey_1};
+    background-color: ${palette.Grey_1};
   }
 `;
 const ArrowRightContainer = styled.div`

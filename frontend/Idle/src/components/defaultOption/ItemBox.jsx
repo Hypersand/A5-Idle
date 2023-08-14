@@ -1,22 +1,43 @@
 import styled from "styled-components";
-import { ReactComponent as ArrowRight } from "../../assets/images/arrowRight.svg";
+import { ReactComponent as ArrowRight } from "images/arrowRight.svg";
+import { Fragment, useState } from "react";
+import DetailOptionModal from "./DetailOptionModal";
+import palette from "styles/palette";
+
 function ItemBox({ functionName, functionImgUrl, functionDescription }) {
-  const stringMaxLength = 34;    
+  const [showDetail, setShowDetail] = useState(false);
+  const stringMaxLength = 34;
   function checkLength() {
     if (functionName.length > stringMaxLength) {
       return functionName.slice(0, stringMaxLength) + "...";
     }
     return functionName;
   }
+  function handleClose() {
+    setShowDetail(false);
+  }
   return (
-    <StContainer>
-      <StImg />
-      <StDescription>{checkLength()}</StDescription>
-      <StDetailButton>
-        자세히 보기
-        <ArrowRight />
-      </StDetailButton>
-    </StContainer>
+    <Fragment>
+      <StContainer>
+        <StImg />
+        <StDescription>{checkLength()}</StDescription>
+        <StDetailButton
+          onClick={() => {
+            setShowDetail(true);
+          }}
+        >
+          자세히 보기
+          <ArrowRight />
+        </StDetailButton>
+      </StContainer>
+      {showDetail && (
+        <DetailOptionModal
+          title={functionName}
+          description={functionDescription}
+          onClose={handleClose}
+        />
+      )}
+    </Fragment>
   );
 }
 
@@ -27,7 +48,8 @@ const StContainer = styled.div`
   align-items: center;
   width: 184px;
   height: 212px;
-  border: 1px black solid;
+  border: 1px solid ${palette.Grey_2};
+  background-color: ${palette.White};
 `;
 
 const StImg = styled.div`
@@ -39,9 +61,9 @@ const StDescription = styled.div`
   margin-left: 20px;
   margin-top: 12.5px;
   width: 143.76px;
-  height: auto;
-  color: ${({ theme }) => theme.Black};
-  font-family: Hyundai Sans Text KR;
+  height: 32px;
+  color: ${palette.Black};
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
@@ -56,8 +78,8 @@ const StDetailButton = styled.button`
   margin-left: 20px;
   margin-top: 12px;
   height: 15px;
-  color: ${({ theme }) => theme.Black};
-  font-family: Hyundai Sans Text KR;
+  color: ${palette.Black};
+  font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;
   font-weight: 400;

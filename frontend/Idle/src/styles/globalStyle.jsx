@@ -1,5 +1,4 @@
 import { css, createGlobalStyle } from "styled-components";
-import "../styles/font.css";
 
 // prettier-ignore
 const reset = css`

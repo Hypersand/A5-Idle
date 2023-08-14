@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { styled } from "styled-components";
-import { ReactComponent as ArrowLeft } from "../../assets/images/optionArrowLeft.svg";
-import { ReactComponent as ArrowRight } from "../../assets/images/optionArrowRight.svg";
+import { ReactComponent as ArrowLeft } from "images/optionArrowLeft.svg";
+import { ReactComponent as ArrowRight } from "images/optionArrowRight.svg";
+import palette from "styles/palette";
 
 function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   useEffect(() => {
@@ -61,7 +62,7 @@ const StContainer = styled.div`
 `;
 const StMain = styled.div`
   display: flex;
-  color: ${({ theme }) => theme.NavyBlue_5};
+  color: ${palette.NavyBlue_5};
   font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;
@@ -76,7 +77,7 @@ const StMain = styled.div`
 
 const StDesc = styled.div`
   width: 280px;
-  color: ${({ theme }) => theme.Black};
+  color: ${palette.Black};
   font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
@@ -89,7 +90,7 @@ const StCircle = styled.div`
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background-color: ${({ $isSelected }) => ($isSelected ? "#1A3276" : "#C5C9D2")};
+  background-color: ${({ $isSelected }) => ($isSelected ? palette.NavyBlue_5 : palette.CoolGrey_1)};
   cursor: pointer;
 `;
 
