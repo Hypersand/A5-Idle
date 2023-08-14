@@ -57,7 +57,6 @@ const StContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 1280px;
-  overflow: scroll;
   justify-content: center;
   align-items: center;
 `;
