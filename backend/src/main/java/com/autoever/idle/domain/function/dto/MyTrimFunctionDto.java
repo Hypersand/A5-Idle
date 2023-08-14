@@ -1,15 +1,19 @@
 package com.autoever.idle.domain.function.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
 @Getter
+@NoArgsConstructor
 public class MyTrimFunctionDto {
 
-    private final int functionId;
-    private final String name;
-    private final String description;
-    private final String imgUrl;
-    private final int trim_id;
+    private int functionId;
+    private String name;
+    private String description;
+    private String imgUrl;
+    private int trim_id;
 
     public MyTrimFunctionDto(int functionId, String name, String description, String imgUrl, int trim_id) {
         this.functionId = functionId;
