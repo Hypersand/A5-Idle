@@ -28,8 +28,8 @@ class EngineRepositoryImplTest {
         //then
         assertSoftly(softAssertions -> {
                     softAssertions.assertThat(engineResDtos.size()).isEqualTo(2);
-                    softAssertions.assertThat(engineResDtos.get(0).getType()).isEqualTo("디젤 2.2");
-                    softAssertions.assertThat(engineResDtos.get(1).getType()).isEqualTo("가솔린 3.8");
+                    softAssertions.assertThat(engineResDtos.get(0).getType()).isEqualTo("가솔린 3.8");
+                    softAssertions.assertThat(engineResDtos.get(1).getType()).isEqualTo("디젤 2.2");
                 }
         );
     }

@@ -19,7 +19,7 @@ public class DrivingMethodRepositoryImpl implements DrivingMethodRepository {
     @Override
     public List<DrivingMethodResDto> findAll(Long trimId) {
         return jdbcTemplate.query("select d.* from DRIVING_METHOD d left join TRIM_DRIVING_METHOD tdm " +
-                "on d.driving_method_id = tdm.driving_method_id where tdm.trim_id = ?",
+                "on d.driving_method_id = tdm.driving_method_id where tdm.trim_id = ? order by d.price asc ",
                 (rs, rowNum) -> new DrivingMethodResDto(
                         rs.getLong("driving_method_id"),
                         rs.getString("type"),

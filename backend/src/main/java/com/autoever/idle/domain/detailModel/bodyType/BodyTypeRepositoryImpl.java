@@ -18,7 +18,7 @@ public class BodyTypeRepositoryImpl implements BodyTypeRepository{
     @Override
     public List<BodyTypeResDto> findAll(Long trimId) {
         return jdbcTemplate.query("select b.* from BODY_TYPE b left join TRIM_BODY_TYPE tbt " +
-                "on b.body_type_id = tbt.body_type_id where tbt.trim_id = ?",
+                "on b.body_type_id = tbt.body_type_id where tbt.trim_id = ? order by b.price asc ",
                 (rs, rowNum) -> new BodyTypeResDto(
                         rs.getLong("body_type_id"),
                         rs.getString("type"),

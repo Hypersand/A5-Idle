@@ -18,7 +18,7 @@ public class EngineRepositoryImpl implements EngineRepository {
     @Override
     public List<EngineResDto> findAll(Long trimId) {
         return jdbcTemplate.query("select e.* from ENGINE e left join TRIM_ENGINE te " +
-                        "on e.engine_id = te.engine_id where te.trim_id = ?",
+                        "on e.engine_id = te.engine_id where te.trim_id = ? order by e.price asc",
                 (rs, rowNum) -> new EngineResDto(
                         rs.getLong("engine_id"),
                         rs.getString("type"),
