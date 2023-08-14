@@ -26,13 +26,13 @@ public class MyTrimController {
         return ResponseEntity.ok(myTrimFunctions);
     }
 
-    @GetMapping(value = "/select/option") //선택지 선택시
+    @PostMapping(value = "/select/option") //선택지 선택시
     public ResponseEntity<List<MyTrimResDto>> findTrimsBySelectFunctions(@RequestBody List<Map<String, Integer>> functionIdList) {
         List<MyTrimResDto> trimBySelectFunctions = myTrimService.findTrimBySelectFunctions(functionIdList);
         return ResponseEntity.ok(trimBySelectFunctions);
     }
 
-    @GetMapping(value = "/submit")
+    @PostMapping(value = "/submit")
     public ResponseEntity<List<MyTrimOptionDto>> findOptionBySelectFunctions(@RequestBody MyTrimSubmitReqDto myTrimSubmitReqDto) {
         List<MyTrimOptionDto> optionBySelectFunctions = myTrimService.findOptionBySelectFunctions(myTrimSubmitReqDto);
         return ResponseEntity.ok(optionBySelectFunctions);
