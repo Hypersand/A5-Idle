@@ -273,4 +273,6 @@ export const findTrimInitialState = {
   selectedOption: [],
   optionStatus: [],
   showOptionAlert: false,
+  functionList: [],
+  disableFunctionId: [],
 };

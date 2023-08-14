@@ -5,7 +5,7 @@ import BlueButton from "buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
 import { carContext } from "utils/context";
 import FindTrim from "findTrim/index";
-import { CustomAPI } from "utils/api";
+import { getAPI } from "utils/api";
 import palette from "styles/palette";
 import { PATH } from "utils/constants";
 
@@ -20,9 +20,8 @@ function TrimPage() {
     navigate("/detail/engines");
   }
   useEffect(() => {
-    CustomAPI(PATH.TRIM).then((result) => {
+    getAPI(PATH.TRIM).then((result) => {
       setTrimData(result);
-      console.log(result);
       cachedTrimData = result;
     });
   }, []);
