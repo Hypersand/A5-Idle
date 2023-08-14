@@ -1,12 +1,16 @@
 package com.autoever.idle.domain.myTrim;
 
 import com.autoever.idle.domain.function.FunctionRepository;
+import com.autoever.idle.domain.function.TrimFunctionRepository;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
+import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitReqDto;
+import com.autoever.idle.domain.option.MyTrimOptionDto;
 import com.autoever.idle.global.exception.custom.InvalidFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidMyTrimFunctionException;
+import com.autoever.idle.global.exception.custom.InvalidTrimFunctionException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,9 +24,11 @@ import static com.autoever.idle.global.exception.ErrorCode.*;
 public class MyTrimService {
 
     private final FunctionRepository functionRepository;
+    private final TrimFunctionRepository trimFunctionRepository;
 
-    public MyTrimService(FunctionRepository functionRepository) {
+    public MyTrimService(FunctionRepository functionRepository, TrimFunctionRepository trimFunctionRepository) {
         this.functionRepository = functionRepository;
+        this.trimFunctionRepository = trimFunctionRepository;
     }
 
     //내게 맞는 트림 찾기 페이지
@@ -38,7 +44,7 @@ public class MyTrimService {
     }
 
     //내게 맞는 트림 찾기 페이지에서 선택지 선택시
-    public List<MyTrimResDto> findTrimBySelectFunctions(List<Map<String, Integer>> functionIdList) throws IllegalArgumentException { //요청으로 들어온 선택된 선택지 리스트
+    public List<MyTrimResDto> findTrimBySelectFunctions(List<Map<String, Integer>> functionIdList) { //요청으로 들어온 선택된 선택지 리스트
         List<MyTrimResDto> myTrimResDtoList = new ArrayList<>();
         for (int requestIdx = 0; requestIdx < functionIdList.size(); requestIdx++) { //선택된 선택지를 하나씩 돌음
             int functionId = functionIdList.get(requestIdx).get("functionId");
@@ -57,7 +63,7 @@ public class MyTrimService {
         String isMyTrim = functionRepository.checkMyTrimFunction(functionId);
         if (isMyTrim == null) {
             throw new InvalidFunctionException(INVALID_FUNCTION);
-        } else if(isMyTrim.equals("FALSE")) {
+        } else if (isMyTrim.equals("FALSE")) {
             throw new InvalidMyTrimFunctionException(INVALID_MYTRIM_FUNCTION);
         }
     }
@@ -95,6 +101,35 @@ public class MyTrimService {
                 myTrimResDto.setIsDefault(false);
             }
         }
+    }
+
+    public List<MyTrimOptionDto> findOptionBySelectFunctions(MyTrimSubmitReqDto myTrimSubmitReqDto) throws IllegalArgumentException {
+        List<MyTrimOptionDto> myTrimOptionDtoList = new ArrayList<>();
+        Long trimId = myTrimSubmitReqDto.getTrimId();
+        List<Map<String, Long>> functionIdList = myTrimSubmitReqDto.getSelectFunctions();
+        for (int requestIdx = 0; requestIdx < functionIdList.size(); requestIdx++) {
+            Long functionId = functionIdList.get(requestIdx).get("functionId");
+            checkValidFunction(functionId.intValue());
+            Boolean isDefault = getIsDefault(trimId, functionId);
+            if (!isDefault) {
+                MyTrimOptionDto myTrimOptionDto = functionRepository.findOptionBySelectFunction(functionId);
+                myTrimOptionDtoList.add(myTrimOptionDto);
+            }
+        }
+        return myTrimOptionDtoList;
+    }
+
+
+    private Boolean getIsDefault(Long trimId, Long functionId) {
+        String isDefault = trimFunctionRepository.checkDefaultFunction(trimId, functionId);
+        if (isDefault == null){
+            throw new InvalidTrimFunctionException(INVALID_TRIM_FUNCTION);
+        }
+        if (isDefault.equals("TRUE")) {
+            return true;
+        }
+        return false;
+
     }
 
 }

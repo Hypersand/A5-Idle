@@ -2,6 +2,7 @@ package com.autoever.idle.domain.myTrim;
 
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
+import com.autoever.idle.domain.option.MyTrimOptionDto;
 import com.autoever.idle.global.exception.GlobalExceptionHandler;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,11 +19,10 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -75,7 +75,7 @@ class MyTrimControllerTest {
     void findTrimBySelectFunctions() throws Exception {
         //given
         JSONArray jsonArray = new JSONArray();
-        jsonArray.put(new JSONObject().put("functionId",109));
+        jsonArray.put(new JSONObject().put("functionId", 109));
         List<MyTrimResDto> myTrimResDtoList = new ArrayList<>();
         myTrimResDtoList.add(MyTrimResDto.builder().name("Exclusive").isDefault(null).selectPossible(false).build());
         myTrimResDtoList.add(MyTrimResDto.builder().name("Le Blanc").isDefault(false).selectPossible(true).build());
@@ -100,5 +100,31 @@ class MyTrimControllerTest {
                 .andExpect(jsonPath("$[2].selectPossible").value(true))
                 .andExpect(jsonPath("$[3].isDefault").value(true))
                 .andExpect(jsonPath("$[3].selectPossible").value(true));
+    }
+
+    @Test
+    @DisplayName("확인 API 테스트")
+    void findOptionBySelectFunctions() throws Exception {
+        //given
+        JSONArray selectFunctions = new JSONArray();
+        selectFunctions.put(new JSONObject().put("functionId", 109));
+        JSONObject submitRequest = new JSONObject().put("trimId", 1);
+        submitRequest.put("selectFunctions", selectFunctions);
+        List<MyTrimOptionDto> myTrimOptionDtoList = new ArrayList<>();
+        MyTrimOptionDto myTrimOptionDto = new MyTrimOptionDto(1L, "옵션 이름", 1000000L);
+        myTrimOptionDtoList.add(myTrimOptionDto);
+        given(myTrimService.findOptionBySelectFunctions(any())).willReturn(myTrimOptionDtoList);
+
+        //when
+        ResultActions resultActions = mockMvc.perform(get("/trims/favorite/submit")
+                .content(submitRequest.toString())
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON));
+
+        //then
+        resultActions.andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$[0].optionName").value("옵션 이름"));
+
     }
 }
