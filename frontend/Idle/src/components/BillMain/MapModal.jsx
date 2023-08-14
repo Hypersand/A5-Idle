@@ -1,11 +1,14 @@
 import { styled } from "styled-components";
 import Map from "./Map";
 import palette from "../../styles/palette";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import esc from "../../assets/images/esc.svg";
 import BlueButton from "../common/buttons/BlueButton";
 import DillerBoxContainer from "./DillerBoxContainer";
 import CategoryTabs from "../common/tabs/CategoryTabs";
+import { createPortal } from "react-dom";
+import Address from "./Address";
+import dealer from "../../assets/images/dealer.svg";
 
 const data = [
   {
@@ -14,9 +17,9 @@ const data = [
     masterDealership: "한양대점",
     masterDescription: "한양대지점 김길동입니다. 최선을 다하겠습니다.",
     masterSalesRate: 20,
-    masterImgUrl: "....",
-    masterLatitude: 33.450879,
-    masterLongitude: 126.56994,
+    masterImgUrl: dealer,
+    masterLatitude: 37.56462664995,
+    masterLongitude: 127.02878456872,
   },
   {
     masterName: "홍길동",
@@ -24,7 +27,7 @@ const data = [
     masterDealership: "왕십리점",
     masterDescription: "왕십리지점 홍길동입니다. 최선을 다하겠습니다.",
     masterSalesRate: 20,
-    masterImgUrl: "....",
+    masterImgUrl: dealer,
     masterLatitude: 33.450936,
     masterLongitude: 126.569477,
   },
@@ -34,7 +37,7 @@ const data = [
     masterDealership: "한양대점2",
     masterDescription: "한양대지점 김길동입니다. 최선을 다하겠습니다.222",
     masterSalesRate: 20,
-    masterImgUrl: "....",
+    masterImgUrl: dealer,
     masterLatitude: 33.450879,
     masterLongitude: 126.56994,
   },
@@ -44,7 +47,7 @@ const data = [
     masterDealership: "왕십리점2",
     masterDescription: "왕십리지점 홍길동입니다. 최선을 다하겠습니다.",
     masterSalesRate: 20,
-    masterImgUrl: "....",
+    masterImgUrl: dealer,
     masterLatitude: 33.450936,
     masterLongitude: 126.569477,
   },
@@ -52,45 +55,70 @@ const data = [
 
 function MapModal({ setCarMasterVisible }) {
   const [addressName, setAddressName] = useState("");
-  const [latitude, setLatitude] = useState(33.450701);
-  const [longtitude, setLongtitude] = useState(126.570667);
+  const [latitude, setLatitude] = useState(0);
+  const [longtitude, setLongtitude] = useState(0);
   const [selectedTab, setSelectedTab] = useState("판매량순");
+  const [addressVisible, setAddressVisible] = useState(false);
 
   const tabs = ["판매량순", "거리순"];
-
   let geocoder = new window.kakao.maps.services.Geocoder();
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        {
-          /**본 코드 */
-        }
-        // setLatitude(position.coords.latitude);
-        // setLongtitude(position.coords.longitude);
-
-        geocoder.coord2Address(longtitude, latitude, function (result, status) {
-          if (status === window.kakao.maps.services.Status.OK) {
-            setAddressName(result[0].road_address.address_name);
+  console.log(latitude, longtitude);
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          {
+            /**본 코드 */
           }
-        });
-      },
-      (e) => {
-        console.error(e);
-      },
-      {
-        enableHighAccuracy: true,
-        maximumAge: 0,
-        timeout: 5000,
+          setLatitude(position.coords.latitude);
+          setLongtitude(position.coords.longitude);
+        },
+        (e) => {
+          console.error(e);
+        },
+        {
+          enableHighAccuracy: true,
+          maximumAge: 0,
+          timeout: 5000,
+        }
+      );
+    }
+  }, []);
+
+  //위치 수정시
+  useEffect(() => {
+    geocoder.coord2Address(longtitude, latitude, function (result, status) {
+      if (status === window.kakao.maps.services.Status.OK) {
+        result[0].road_address === null
+          ? setAddressName(result[0].address.address_name)
+          : setAddressName(result[0].road_address.address_name);
       }
-    );
-  }
+    });
+  }, [latitude, longtitude]);
 
   function XBtnClicked() {
     setCarMasterVisible(false);
   }
-  function tabClicked(name) {
+  function TabClicked(name) {
     setSelectedTab(name);
+  }
+  function ChangeAddressClicked() {
+    setAddressVisible(true);
+  }
+  function CompleteHandler(data) {
+    geocoder.addressSearch(data.address, function (result, status) {
+      if (status === window.kakao.maps.services.Status.OK) {
+        setLatitude(result[0].y);
+        setLongtitude(result[0].x);
+      }
+    });
+    setAddressName(data.address);
+    setAddressVisible(false);
+  }
+
+  function DealerClicked(latitude, longtitude) {
+    setLatitude(latitude);
+    setLongtitude(longtitude);
   }
 
   function renderTabs() {
@@ -100,41 +128,69 @@ function MapModal({ setCarMasterVisible }) {
           text={item}
           key={index}
           isClicked={selectedTab === item}
-          onClick={() => tabClicked(item)}
+          onClick={() => TabClicked(item)}
         />
       );
     });
   }
 
-  return (
-    <StContainer>
-      <StBtnContainer>
-        <StXBtn onClick={XBtnClicked} />
-      </StBtnContainer>
+  return createPortal(
+    <ModalContainer>
+      <ModalBackground onClick={XBtnClicked} />
+      <StContainer>
+        <StBtnContainer>
+          <StXBtn onClick={XBtnClicked} />
+        </StBtnContainer>
 
-      <StMainContainer>
-        <Map data={data} latitude={latitude} longtitude={longtitude} />
+        <StMainContainer>
+          <Map data={data} latitude={latitude} longtitude={longtitude} />
 
-        <StMain>
-          <StTitle>카마스터 찾기</StTitle>
-          <StPosition>
-            <StCurrent>{addressName}</StCurrent>
-            <StBtn>위치 수정</StBtn>
-          </StPosition>
+          {!addressVisible ? (
+            <StMain>
+              <StTitle>카마스터 찾기</StTitle>
+              <StPosition>
+                <StCurrent>{addressName}</StCurrent>
+                <StBtn onClick={ChangeAddressClicked}>위치 수정</StBtn>
+              </StPosition>
 
-          <StHr></StHr>
-          <StTabs>{renderTabs()}</StTabs>
+              <StHr></StHr>
+              <StTabs>{renderTabs()}</StTabs>
 
-          <DillerBoxContainer data={data} />
-        </StMain>
-      </StMainContainer>
+              <DillerBoxContainer data={data} onClick={DealerClicked} />
+            </StMain>
+          ) : (
+            <Address onComplete={CompleteHandler} />
+          )}
+        </StMainContainer>
 
-      <BlueButton text={"구매 상담 신청"} />
-    </StContainer>
+        <BlueButton text={"구매 상담 신청"} />
+      </StContainer>
+    </ModalContainer>,
+    document.getElementById("carMasterModal")
   );
 }
 
 export default MapModal;
+
+const ModalContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const ModalBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+`;
 
 const StContainer = styled.div`
   display: flex;
@@ -146,6 +202,7 @@ const StContainer = styled.div`
   width: 1082px;
   height: 572px;
   border: 1px solid black;
+  z-index: 1;
 `;
 const StMainContainer = styled.div`
   display: flex;

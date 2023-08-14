@@ -3,19 +3,23 @@ import DillerBox from "./DillerBox";
 import { styled } from "styled-components";
 import palette from "../../styles/palette";
 
-function DillerBoxContainer({ data }) {
+function DillerBoxContainer({ data, onClick }) {
   const [selectedDealer, setSelectedDealer] = useState("한양대점");
 
-  function boxClicked(name) {
+  function boxClicked(name, latitude, longtitude) {
+    onClick(latitude, longtitude);
     setSelectedDealer(name);
   }
+
   function renderBox() {
     return data.map((item, index) => {
       return (
         <DillerBox
           key={index}
           data={item}
-          onClick={() => boxClicked(item.masterDealership)}
+          onClick={() =>
+            boxClicked(item.masterDealership, item.masterLatitude, item.masterLongitude)
+          }
           isSelected={selectedDealer === item.masterDealership}
         />
       );

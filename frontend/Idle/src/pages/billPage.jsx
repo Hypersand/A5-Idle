@@ -17,8 +17,8 @@ function BillPage() {
   }
 
   return (
-    <StWrapper id={"modal"}>
-      <StContainer>
+    <StWrapper>
+      <StContainer id={"carMasterModal"}>
         <Header />
         <TitleContainer>
           <StTitle>
@@ -61,11 +61,10 @@ const StWrapper = styled.div`
 `;
 const StContainer = styled.div`
   position: relative;
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 1280px;
-  overflow: scroll;
+  overflow: hidden;
   justify-content: center;
   align-items: center;
 `;
