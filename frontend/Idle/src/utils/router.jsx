@@ -12,9 +12,9 @@ function Router() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/trim" element={<TrimPage />} />
-        <Route path="/detail" element={<DetailModelPage />} />
-        <Route path="/color" element={<ColorPage />} />
-        <Route path="/option" element={<OptionPage />} />
+        <Route path="/detail/:tab" element={<DetailModelPage />} />
+        <Route path="/color/:tab" element={<ColorPage />} />
+        <Route path="/option/:tab" element={<OptionPage />} />
       </Route>
       <Route path="/bill" element={<BillPage />} />
       <Route path="/" element={<MainPage />} />

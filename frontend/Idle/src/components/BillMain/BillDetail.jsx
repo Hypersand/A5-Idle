@@ -17,21 +17,21 @@ function BillDetail({ item }) {
       detail = car.detail.engines.name;
       price = car.detail.engines.price;
       break;
-    case "driving_methods":
-      detail = car.detail.driving_methods.name;
-      price = car.detail.driving_methods.price;
+    case "drivingMethods":
+      detail = car.detail.drivingMethods.name;
+      price = car.detail.drivingMethods.price;
       break;
-    case "body_types":
-      detail = car.detail.body_types.name;
-      price = car.detail.body_types.price;
+    case "bodyTypes":
+      detail = car.detail.bodyTypes.name;
+      price = car.detail.bodyTypes.price;
       break;
     case "exterior_colors":
-      detail = car.color.outside.name;
-      price = car.color.outside.price;
+      detail = car.color.exterior.name;
+      price = car.color.exterior.price;
       break;
     case "interior_colors":
-      detail = car.color.inside.name;
-      price = car.color.inside.price;
+      detail = car.color.interior.name;
+      price = car.color.interior.price;
       break;
     default:
       break;

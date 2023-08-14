@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { carContext } from "utils/context";
-import { CHANGE_OUTSIDE_COLOR } from "utils/actionType";
 import BlueButton from "buttons/BlueButton";
 import WhiteButton from "buttons/WhiteButton";
 import {
@@ -13,63 +12,154 @@ import {
 } from "utils/constants";
 import CategoryTabs from "tabs/CategoryTabs";
 import Car3D from "content/Car3D";
-import grey from "outsideColor/grey.png";
-import black from "outsideColor/black.png";
-import white from "outsideColor/white.png";
-import silver from "outsideColor/silver.png";
-import brown from "outsideColor/brown.png";
-import emerald from "outsideColor/emerald.png";
 import OutsideColorBoxContainer from "colorSelection/OutsideColorBoxContainer";
 import InnerColorBoxContainer from "colorSelection/InnerColorBoxContainer";
 import InnerColorContent from "content/InnerColorContent";
+import { CHANGE_EXTERIOR_COLOR } from "../utils/actionType";
 
-const dummyData = {
-  car_img_urls: ["...", "..."],
-  exterior_colors: [
-    {
-      exteriorId: 1,
-      exteriorName: "grey",
-      exteriorPrice: 0,
-      exteriorImgUrl: grey,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
-    },
-    {
-      exteriorId: 15,
-      exteriorName: "black",
-      exteriorPrice: 0,
-      exteriorImgUrl: black,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
-    },
-    {
-      exteriorId: 3,
-      exteriorName: "white",
-      exteriorPrice: 0,
-      exteriorImgUrl: white,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
-    },
-    {
-      exteriorId: 31,
-      exteriorName: "brown",
-      exteriorPrice: 100000,
-      exteriorImgUrl: brown,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
-    },
-    {
-      exteriorId: 5,
-      exteriorName: "silver",
-      exteriorPrice: 0,
-      exteriorImgUrl: silver,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
-    },
-    {
-      exteriorId: 333,
-      exteriorName: "어비스 블랙 펄",
-      exteriorPrice: 0,
-      exteriorImgUrl: emerald,
-      exteriorPurchaseRate: "구매자의 32%가 선택",
-    },
-  ],
-};
+const dummyData = [
+  {
+    "exteriorId": 1,
+    "exteriorName": "어비스 블랙 펄",
+    "exteriorPrice": 0,
+    "exteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/11.png",
+    "exteriorPurchaseRate": "구매자의 30%가 선택",
+    "carImgUrls": [
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_001.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_002.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_003.png"
+      }
+    ]
+  },
+  {
+    "exteriorId": 2,
+    "exteriorName": "쉬버링 실버 메탈릭",
+    "exteriorPrice": 0,
+    "exteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/12.png",
+    "exteriorPurchaseRate": "구매자의 20%가 선택",
+    "carImgUrls": [
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_001.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_002.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_003.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_004.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_005.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/silver_exterior(accel)/image_006.png"
+      }
+    ]
+  },
+  {
+    "exteriorId": 4,
+    "exteriorName": "문라이트 블루 펄",
+    "exteriorPrice": 0,
+    "exteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/13.png",
+    "exteriorPurchaseRate": "구매자의 10%가 선택",
+    "carImgUrls": [
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_001.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_002.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_003.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_004.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/blue_exterior(accel)/image_005.png"
+      }
+    ]
+  },
+  {
+    "exteriorId": 5,
+    "exteriorName": "가이아 브라운 펄",
+    "exteriorPrice": 0,
+    "exteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/14.png",
+    "exteriorPurchaseRate": "구매자의 5%가 선택",
+    "carImgUrls": [
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_001.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_002.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/brown_exterior(accel)/image_003.png"
+      }
+    ]
+  },
+  {
+    "exteriorId": 6,
+    "exteriorName": "그라파이트 그레이 메탈릭",
+    "exteriorPrice": 0,
+    "exteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/15.png",
+    "exteriorPurchaseRate": "구매자의 5%가 선택",
+    "carImgUrls": [
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_001.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_002.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_003.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_004.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_005.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_006.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/gray_exterior(accel)/image_007.png"
+      }
+    ]
+  },
+  {
+    "exteriorId": 7,
+    "exteriorName": "크리미 화이트 펄",
+    "exteriorPrice": 100000,
+    "exteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/16.png",
+    "exteriorPurchaseRate": "구매자의 30%가 선택",
+    "carImgUrls": [
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_001.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_002.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_003.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_004.png"
+      },
+      {
+        "imgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/white_exterior(accel)/image_005.png"
+      }
+    ]
+  }
+]
 const innercolorData = {
   car_interior_colors: [
     {
@@ -91,6 +181,7 @@ const innercolorData = {
   ],
 };
 function ColorPage() {
+  const { tab } = useParams()
   const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS);
   const [colorIndex, setColorIndex] = useState(1);
   const tabs = [EXTERIOR_COLORS, INTERIROR_COLORS];
@@ -98,18 +189,19 @@ function ColorPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    switch (currentTab) {
+    setCurrentTab(tab)
+    switch (tab) {
       case EXTERIOR_COLORS:
         dispatchDefault(
-          car.color.outside,
-          CHANGE_OUTSIDE_COLOR,
+          car.color.exterior,
+          CHANGE_EXTERIOR_COLOR,
           DEFAULT_EXTERIROR_COLOR[car.trim.name]
         );
         break;
       default:
         break;
     }
-  }, [currentTab]);
+  }, [tab]);
   function dispatchDefault(tabState, actionType, defaultPayload) {
     if (tabState.name === undefined) {
       dispatch({
@@ -123,15 +215,15 @@ function ColorPage() {
 
     if (direction === "next") {
       if (currentIndex !== -1 && currentIndex + 1 < tabs.length) {
-        setCurrentTab(tabs[currentIndex + 1]);
+        navigate(`/color/${tabs[currentIndex + 1]}`);
       } else {
-        navigate("/option");
+        navigate("/option/all");
       }
     } else if (direction === "prev") {
       if (currentIndex > 0) {
-        setCurrentTab(tabs[currentIndex - 1]);
+        navigate(`/color/${tabs[currentIndex - 1]}`);
       } else {
-        navigate("/detail");
+        navigate("/detail/bodyTypes");
       }
     }
   }
@@ -152,7 +244,7 @@ function ColorPage() {
         <StBottomContainer>
           <StContainer>
             {currentTab === EXTERIOR_COLORS ? (
-              <OutsideColorBoxContainer data={dummyData.exterior_colors} />
+              <OutsideColorBoxContainer data={dummyData} />
             ) : (
               <InnerColorBoxContainer data={innercolorData} onClick={setColorIndex} />
             )}

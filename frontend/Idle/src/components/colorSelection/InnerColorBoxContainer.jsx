@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { useState, useContext, useEffect } from "react";
 import { carContext } from "utils/context";
-import { CHANGE_INSIDE_COLOR } from "utils/actionType";
+import { CHANGE_INTERIOR_COLOR } from "utils/actionType";
 import InnerColorImg from "images/innerColor.png";
 import palette from "styles/palette";
 
@@ -15,18 +15,18 @@ function InnerColorBoxContainer({ data, onClick }) {
       price: data.car_interior_colors[0].interior_price,
     };
     dispatch({
-      type: CHANGE_INSIDE_COLOR,
+      type: CHANGE_INTERIOR_COLOR,
       payload: payload,
     });
   }, []);
   function innerColorClick(index, interior_name, price) {
-    if (car.color.inside.name != interior_name) {
+    if (car.color.interor.name != interior_name) {
       const payload = {
         name: interior_name,
         price: price,
       };
       dispatch({
-        type: CHANGE_INSIDE_COLOR,
+        type: CHANGE_INTERIOR_COLOR,
         payload: payload,
       });
       onClick(index);

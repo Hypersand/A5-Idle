@@ -1,14 +1,14 @@
 import { styled } from "styled-components";
 import { useContext } from "react";
 import { carContext } from "utils/context";
-import { CHANGE_OUTSIDE_COLOR } from "utils/actionType";
 import OutsideColorBox from "boxs/OutsideColorBox";
+import { CHANGE_EXTERIOR_COLOR } from "../../utils/actionType";
 
 function OutsideColorBoxContainer({ data }) {
   const { car, dispatch } = useContext(carContext);
 
   function boxClicked(name, price) {
-    dispatch({ type: CHANGE_OUTSIDE_COLOR, payload: { name: name, price: price } });
+    dispatch({ type: CHANGE_EXTERIOR_COLOR, payload: { name: name, price: price } });
   }
 
   function renderBox() {
@@ -18,7 +18,7 @@ function OutsideColorBoxContainer({ data }) {
           onClick={() => boxClicked(item.exteriorName, item.exteriorPrice)}
           key={item.exteriorId}
           data={item}
-          isSelected={car.color.outside.name === item.exteriorName}
+          isSelected={car.color.exterior.name === item.exteriorName}
         />
       );
     });
