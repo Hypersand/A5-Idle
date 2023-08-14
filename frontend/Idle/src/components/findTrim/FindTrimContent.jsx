@@ -3,84 +3,30 @@ import TrimBox from "./TrimBox";
 import { getAPI } from "utils/api";
 import { useEffect, useState, useContext } from "react";
 import OptionBoxContainer from "findTrim/OptionBoxContainer";
-import { PATH } from "utils/constants";
+import { PATH, defaultOption } from "utils/constants";
 import { SET_CLICK_ACTIVE } from "utils/actionType";
 import { stateContext, dispatchContext } from "utils/context";
-import { PUSH_FUNCTION_LIST } from "../../utils/actionType";
+import { PUSH_FUNCTION_LIST, SET_OPTION_STATUS } from "utils/actionType";
 
 function FindTrimContent() {
   const { stateDispatch } = useContext(dispatchContext);
   const { state } = useContext(stateContext);
-  const [dummyData, setDummyData] = useState([]);
+  const [trimInfo, setTrimInfo] = useState([]);
   const [selected, setSelected] = useState(-1);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getAPI(PATH.TRIM.URL);
-        setDummyData(data.trim);
-      } catch (error) {
-        console.error("Error fetching trim data:", error);
-      }
-    }
-    const payload = [
-      {
-        function_id: 111111,
-        name: "aaa",
-        description: "설명1",
-        img_url: "",
-      },
-      {
-        function_id: 222222,
-        name: "bbb",
-        description: "설명2",
-        img_url: "",
-      },
-      {
-        function_id: 333333,
-        name: "ccc",
-        description: "설명3",
-        img_url: "",
-      },
-      {
-        function_id: 444444,
-        name: "ddd",
-        description: "설명4",
-        img_url: "",
-      },
-      {
-        function_id: 555555,
-        name: "eee",
-        description: "설명5",
-        img_url: "",
-      },
-      {
-        function_id: 666666,
-        name: "fff",
-        description: "설명6",
-        img_url: "",
-      },
-      {
-        function_id: 777777,
-        name: "ggg",
-        description: "설명7",
-        img_url: "",
-      },
-      {
-        function_id: 888888,
-        name: "hhh",
-        description: "설명8",
-        img_url: "",
-      },
-      {
-        function_id: 999999,
-        name: "iii",
-        description: "설명9",
-        img_url: "",
-      },
-    ];
-    stateDispatch({ type: PUSH_FUNCTION_LIST, payload: payload });
+    const fetchData = async () => {
+      const result = await getAPI(PATH.FIND.GET);
+      result.map((item) => {
+        stateDispatch({ type: PUSH_FUNCTION_LIST, payload: item });
+      });
+    };
+    const fetchTrimData = async () => {
+      setTrimInfo(await getAPI(PATH.TRIM));
+    };
+    stateDispatch({ type: SET_OPTION_STATUS, payload: defaultOption });
     fetchData();
+    fetchTrimData();
   }, []);
 
   function handleClick(index) {
@@ -89,20 +35,16 @@ function FindTrimContent() {
   }
 
   function renderTrimBox() {
-    return dummyData.map((item, index) => {
-      const isActive =
-        state.optionStatus.length === 0 ? true : state.optionStatus[index].selectPossible;
-      const optionStatusProp =
-        state.optionStatus.length === 0 ? "default" : state.optionStatus[index].isDefault;
+    return trimInfo.map((item, index) => {
       return (
         <TrimBox
           key={index}
           {...item}
-          isActive={isActive}
+          isActive={state.optionStatus[index].selectPossible}
           isSelected={index === selected}
           onClick={() => handleClick(index)}
-          optionStatusPorp={optionStatusProp}
-          dummyData={dummyData}
+          optionStatusProp={state.optionStatus[index].isDefault}
+          dummyData={trimInfo}
         />
       );
     });

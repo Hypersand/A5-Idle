@@ -1,5 +1,4 @@
 import {
-  CLEAR_FUNCTIONS_OPTIONS,
   RESET_ALL,
   PUSH_FUNCTION_LIST,
   PUSH_SELECTED_OPTION,
@@ -58,12 +57,7 @@ export function findTrimReducer(state, { type, payload }) {
         ...state,
         disableFunctionId: payload,
       };
-    case CLEAR_FUNCTIONS_OPTIONS:
-      return {
-        ...state,
-        disableFunctionId: [],
-        optionStatus: [],
-      };
+
     default:
       return state;
   }

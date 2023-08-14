@@ -170,22 +170,22 @@ export const DEFAULT_INTERIROR_COLOR = {
 export const defaultOption = [
   {
     name: "Exclusive",
-    isDefault: "default",
+    isDefault: "null",
     selectPossible: true,
   },
   {
     name: "Le Blanc",
-    isDefault: "default",
+    isDefault: "null",
     selectPossible: true,
   },
   {
     name: "Prestige",
-    isDefault: "default",
+    isDefault: "null",
     selectPossible: true,
   },
   {
     name: "Calligraphy",
-    isDefault: "default",
+    isDefault: "null",
     selectPossible: true,
   },
 ];
@@ -263,7 +263,7 @@ export const findTrimInitialState = {
   animationstate: false,
   clickActive: false,
   selectedOption: [],
-  optionStatus: [],
+  optionStatus: defaultOption,
   showOptionAlert: false,
   functionList: [],
   disableFunctionId: [],

@@ -9,7 +9,7 @@ function TrimBox({
   name,
   description,
   price,
-  isActive = true,
+  isActive = false,
   isSelected,
   optionStatusProp,
   onClick,
@@ -17,8 +17,9 @@ function TrimBox({
 }) {
   const { state } = useContext(stateContext);
   const { stateDispatch } = useContext(dispatchContext);
-
   function handleClick() {
+    if (isSelected) {
+    }
     const carData = dummyData.find((item) => item.name === name);
     // get으로 carData.trim_idx 보내기.
     const dummy = [

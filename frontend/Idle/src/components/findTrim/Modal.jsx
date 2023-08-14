@@ -19,7 +19,7 @@ import {
   PUSH_FUNCTION_LIST,
 } from "utils/actionType";
 import palette from "styles/palette";
-import { getAPI } from "utils/api";
+import { getAPI, postAPI } from "utils/api";
 import { PATH } from "utils/constants";
 
 function Modal({ setVisible }) {
@@ -28,44 +28,20 @@ function Modal({ setVisible }) {
   const [state, stateDispatch] = useReducer(findTrimReducer, findTrimInitialState);
 
   useEffect(() => {
-    getAPI(PATH.FIND.GET).then((result) => {
-      console.log(result);
-      result.map((item) => {
-        stateDispatch({ type: PUSH_FUNCTION_LIST, payload: item.name });
-      });
-    });
     if (initialRender.current) {
       initialRender.current = false;
       return;
     }
-
-    const dummyData = [
-      {
-        name: "Exclusive",
-        isDefault: true,
-        selectPossible: false,
-      },
-      {
-        name: "Le Blanc",
-        isDefault: false,
-        selectPossible: true,
-      },
-      {
-        name: "Prestige",
-        isDefault: false,
-        selectPossible: true,
-      },
-      {
-        name: "Calligraphy",
-        isDefault: true,
-        selectPossible: true,
-      },
-    ];
-    ``;
     if (state.selectedOption.length === 0) {
       stateDispatch({ type: SET_OPTION_STATUS, payload: defaultOption });
+      return;
     }
-    stateDispatch({ type: SET_OPTION_STATUS, payload: dummyData });
+    async function postFunc() {
+      await postAPI(PATH.FIND.OPTION, state.selectedOption).then((res) => {
+        stateDispatch({ type: SET_OPTION_STATUS, payload: res });
+      });
+    }
+    postFunc();
   }, [state.selectedOption]);
 
   function clickExit(animateTime) {
