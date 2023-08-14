@@ -20,7 +20,7 @@ function TrimPage() {
     navigate("/detail");
   }
   useEffect(() => {
-    CustomAPI(PATH.TRIM.URL).then((result) => {
+    CustomAPI(PATH.TRIM).then((result) => {
       setTrimData(result);
       console.log(result);
       cachedTrimData = result;

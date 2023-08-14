@@ -1,11 +1,25 @@
 /* eslint-disable react-refresh/only-export-components */
 
-export const BASE_URL = "http://i-want-to-go-autoever.shop"
-
 export const PATH = {
-  TRIM: {
-    URL: `trims?carTypeName=팰리세이드`
-  }
+  TRIM: `trims?carTypeName=팰리세이드`,
+  FIND: {
+    GET: `trims/favorite`,
+    OPTION: `trims/favorite/select/option`,
+    TRIM: `trims/favorite/select/trim`,
+    SUBMIT: `trims/favorite/submit`
+  },
+  DETAIL: `trims/models`,
+  COLOR: {
+    EXTERIOR: `trims/exterior/colors`,
+    INTERIOR: `trims/exterior/colors`,
+  },
+  OPTION: {
+    DEFAULT: `trims/default/options`,
+    GET: `trims/add/options`,
+    SELECT: `trims/add/select`,
+  },
+  CARMASTER: `find/car/masters`,
+  BILL: `result/bill`
 }
 
 export const TYPE = {
