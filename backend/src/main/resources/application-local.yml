@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/Idle_DB
-    username: root
-    password: 9132wjddus
+    url: ${local.db.url}
+    username: ${local.db.username}
+    password: ${local.db.password}
   sql:
     init:
       mode: always

@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.14'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'jacoco'
 }
 
 group = 'com.autoever'
@@ -35,4 +36,50 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+test {
+	finalizedBy jacocoTestReport
+}
+
+jacoco {
+	toolVersion = "0.8.8" // 버전 명시
+}
+
+jacocoTestReport {
+	reports {
+		html.required = true
+		xml.required = true
+		csv.required = false
+	}
+
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, excludes: [
+					"**/*Application*",
+					"**/dto/**",
+					"**/global/**"
+			])
+		}))
+	}
+}
+
+tasks.jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			element = "CLASS"
+
+			limit {
+				counter = "BRANCH"
+				value = "COVEREDRATIO"
+				minimum = "0.70".toBigDecimal()
+			}
+
+			excludes = [
+					"**/*Application*",
+					"**/dto/**",
+					"**/global/**"
+			]
+		}
+	}
 }
