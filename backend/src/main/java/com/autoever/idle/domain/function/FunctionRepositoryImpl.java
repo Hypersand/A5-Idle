@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.function;
 
+import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
@@ -10,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class FunctionRepositoryImpl implements FunctionRepository {
@@ -30,14 +32,20 @@ public class FunctionRepositoryImpl implements FunctionRepository {
     }
 
     @Override
-    public String checkMyTrimFunction(int functionId) {
-        try {
-            return jdbcTemplate.queryForObject("SELECT is_my_trim FROM FUNCTIONS WHERE function_id=? ",
-                    ((rs, rowNum) -> rs.getString("is_my_trim")),
-                    functionId);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
+    public List<AdditionalFunctionBillDto> findAdditonalFunctions(List<Long> additionalFunctionIds) {
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("select f.function_id functionId, fc.name functionCategory, ")
+                .append("f.img_url functionImgUrl, f.description functionDescription from FUNCTIONS f ")
+                .append("left join FUNCTION_CATEGORY fc on f.function_category_id = fc.function_category_id ")
+                .append("where f.function_id IN (");
+
+        queryBuilder.append(additionalFunctionIds.stream()
+                .map(id -> "?")
+                .collect(Collectors.joining(", ")));
+        queryBuilder.append(")");
+
+        RowMapper rowMapper = new BeanPropertyRowMapper(AdditionalFunctionBillDto.class);
+        return jdbcTemplate.query(queryBuilder.toString(), rowMapper, additionalFunctionIds.toArray());
     }
 
     @Override
@@ -55,6 +63,15 @@ public class FunctionRepositoryImpl implements FunctionRepository {
         return jdbcTemplate.query(query, rowMapper, functionId);
     }
 
+    public String checkMyTrimFunction(int functionId) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT is_my_trim FROM FUNCTIONS WHERE function_id=? ",
+                    ((rs, rowNum) -> rs.getString("is_my_trim")),
+                    functionId);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
     @Override
     public MyTrimOptionDto findOptionBySelectFunction(Long functionId) {
         RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimOptionDto.class);

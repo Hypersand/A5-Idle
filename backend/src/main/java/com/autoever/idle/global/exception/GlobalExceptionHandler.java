@@ -33,8 +33,22 @@ public class GlobalExceptionHandler {
                 .body(new ErrorDto(e.getErrorCode().getStatus(), e.getErrorCode().getMessage()));
     }
 
+    @ExceptionHandler({ InvalidExteriorException.class })
+    protected ResponseEntity<ErrorDto> handleInvalidExteriorException(InvalidExteriorException e) {
+        return ResponseEntity
+                .badRequest()
+                .body(new ErrorDto(e.getErrorCode().getStatus(), e.getErrorCode().getMessage()));
+    }
+
     @ExceptionHandler({InvalidFunctionException.class})
     protected ResponseEntity<ErrorDto> handleInvalidFunctionException(InvalidFunctionException e) {
+        return ResponseEntity
+                .badRequest()
+                .body(new ErrorDto(e.getErrorCode().getStatus(), e.getErrorCode().getMessage()));
+    }
+
+    @ExceptionHandler({InvalidInteriorException.class })
+    protected ResponseEntity<ErrorDto> handleInvalidInteriorException(InvalidInteriorException e) {
         return ResponseEntity
                 .badRequest()
                 .body(new ErrorDto(e.getErrorCode().getStatus(), e.getErrorCode().getMessage()));

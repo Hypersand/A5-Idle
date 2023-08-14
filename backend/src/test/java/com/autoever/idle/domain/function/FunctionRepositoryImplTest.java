@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.function;
 
+import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
@@ -54,6 +55,22 @@ class FunctionRepositoryImplTest {
         softly.assertThat(returnTrue).isEqualTo("TRUE");
         softly.assertThat(returnFalse).isEqualTo("FALSE");
         softly.assertThat(returnNull).isNull();
+    }
+
+    @Test
+    @DisplayName("기능 id 목록을 통해 해당 기능의 카테고리 이름과 정보를 반환한다")
+    void findAdditonalFunctions() {
+        //given
+        List<Long> additionalFunctionIds = List.of(1L, 2L);
+
+        //when
+        List<AdditionalFunctionBillDto> additonalFunctions = functionRepository.findAdditonalFunctions(additionalFunctionIds);
+
+        //then
+        softly.assertThat(additonalFunctions.size()).isEqualTo(2);
+        softly.assertThat(additonalFunctions.get(0).getFunctionId()).isEqualTo(1L);
+        softly.assertThat(additonalFunctions.get(1).getFunctionId()).isEqualTo(2L);
+        softly.assertThat(additonalFunctions.get(0).getFunctionCategory()).isEqualTo("파워트레인/성능");
     }
 
     @Test

@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class InteriorColorRepositoryImpl implements InteriorColorRepository {
@@ -17,6 +18,7 @@ public class InteriorColorRepositoryImpl implements InteriorColorRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
     public List<InteriorColorDto> findInteriorColorByTrimIdAndExteriorId(Long trimId, Long exteriorId) {
         String query = "select IC.interior_color_id as interiorId, IC.color as interiorName, IC.price as interiorPrice, " +
                 "IC.interior_img_url as carInteriorImgUrl, IC.color_img_url as interiorImgUrl, IC.purchase_rate as interiorPurchaseRate "+
@@ -26,5 +28,14 @@ public class InteriorColorRepositoryImpl implements InteriorColorRepository {
 
         RowMapper<InteriorColorDto> rowMapper = BeanPropertyRowMapper.newInstance(InteriorColorDto.class);
         return jdbcTemplate.query(query, rowMapper, trimId, exteriorId);
+    }
+
+    @Override
+    public Optional<InteriorBillDto> findInteriorBill(Long interiorId) {
+        String query = "select i.interior_color_id interiorId, i.color_img_url interiorImgUrl " +
+                "from INTERIOR_COLOR i where i.interior_color_id = ?";
+
+        RowMapper rowMapper = new BeanPropertyRowMapper(InteriorBillDto.class);
+        return jdbcTemplate.query(query, rowMapper, interiorId).stream().findAny();
     }
 }

@@ -60,7 +60,6 @@ class FunctionControllerTest {
     @DisplayName("기본 기능 카테고리에 따른 기능 목록 반환 API")
     void getAllDefaultFunctions() throws Exception {
         //given
-        String requestJson = "{\"trimId\":\"1\"}";
         Long trimId = 1L;
         given(functionService.getAllDefaultFunctionsByCategory(trimId))
                 .willReturn(defaultFunctionAndCategoryList);
@@ -69,7 +68,7 @@ class FunctionControllerTest {
         ResultActions resultActions =
                 mockMvc.perform(get("/trims/default")
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(requestJson))
+                                .param("trimId", trimId.toString()))
                         .andDo(print());
 
 

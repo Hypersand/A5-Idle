@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.myTrim;
 
+import com.autoever.idle.domain.function.dto.FunctionIdDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
@@ -19,12 +20,14 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -84,7 +87,7 @@ class MyTrimControllerTest {
         given(myTrimService.findTrimBySelectFunctions(anyList())).willReturn(myTrimResDtoList);
 
         //when
-        ResultActions resultActions = mockMvc.perform(get("/trims/favorite/select/option")
+        ResultActions resultActions = mockMvc.perform(post("/trims/favorite/select/option")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonArray.toString())
                 .accept(MediaType.APPLICATION_JSON));
@@ -116,7 +119,7 @@ class MyTrimControllerTest {
         given(myTrimService.findOptionBySelectFunctions(any())).willReturn(myTrimOptionDtoList);
 
         //when
-        ResultActions resultActions = mockMvc.perform(get("/trims/favorite/submit")
+        ResultActions resultActions = mockMvc.perform(post("/trims/favorite/submit")
                 .content(submitRequest.toString())
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON));
@@ -126,5 +129,28 @@ class MyTrimControllerTest {
                 .andDo(print())
                 .andExpect(jsonPath("$[0].optionName").value("옵션 이름"));
 
+    }
+
+    @Test
+    @DisplayName("트림 선택시 선택 불가능한 기능 반환")
+    void findNotFunctionsByTrim() throws Exception {
+        //given
+        Map<String, Long> multiValueMap = new HashMap<>();
+        multiValueMap.put("trimId",1L);
+        JSONObject trimIdRequest = new JSONObject();
+        trimIdRequest.put("trimId",1);
+        List<FunctionIdDto> functionIdDtoList = new ArrayList<>();
+        FunctionIdDto functionIdDto = new FunctionIdDto(1L);
+        functionIdDtoList.add(functionIdDto);
+        given(myTrimService.findNonSelectableFunctionsByTrim(anyLong())).willReturn(functionIdDtoList);
+
+        //when
+        ResultActions resultActions = mockMvc.perform(get("/trims/favorite/select/trim")
+                .param("trimId", String.valueOf(1L)));
+
+        //then
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].functionId").value(1L))
+                .andDo(print());
     }
 }

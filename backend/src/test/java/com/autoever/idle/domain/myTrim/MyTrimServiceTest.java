@@ -2,6 +2,7 @@ package com.autoever.idle.domain.myTrim;
 
 import com.autoever.idle.domain.function.FunctionRepository;
 import com.autoever.idle.domain.function.TrimFunctionRepository;
+import com.autoever.idle.domain.function.dto.FunctionIdDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
@@ -174,5 +175,22 @@ class MyTrimServiceTest {
         //when&then
         softly.assertThatThrownBy(() -> myTrimService.findOptionBySelectFunctions(myTrimSubmitReqDto))
                 .isInstanceOf(InvalidTrimFunctionException.class);
+    }
+
+    @Test
+    @DisplayName("트림 선택시 선택할 수 없는 선택지")
+    void findNonSelectableFunctionsByTrim() {
+        //given
+        FunctionIdDto functionIdDto = new FunctionIdDto(2L);
+        List<MyTrimFunctionDto> myTrimFunctionDtoList = new ArrayList<>();
+        myTrimFunctionDtoList.add(new MyTrimFunctionDto(1,"이름","설명","url",1));
+        given(trimFunctionRepository.checkNonSelectableFunctionAtTrim(anyLong(), anyLong())).willReturn(functionIdDto);
+        given(functionRepository.findMyTrimFunctions()).willReturn(myTrimFunctionDtoList);
+
+        //when
+        List<FunctionIdDto> nonSelectableFunctionList = myTrimService.findNonSelectableFunctionsByTrim(1L);
+
+        //then
+        softly.assertThat(nonSelectableFunctionList.get(0).getFunctionId()).isEqualTo(2L);
     }
 }
