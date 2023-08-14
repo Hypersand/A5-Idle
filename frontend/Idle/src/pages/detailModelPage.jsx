@@ -28,83 +28,14 @@ function DetailModelPage() {
   const navigate = useNavigate();
   const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES];
   const { car, dispatch } = useContext(carContext);
-  const [detailData, setDetailData] = useState({
-    engines: [
-      {
-        id: 1,
-        type: "디젤 2.2",
-        price: 1480000,
-        description:
-          "강력한 토크와 탁월한 효율로 여유있는 파워와 높은 연비를 제공하는 디젤 엔진입니다.",
-        purchaseRate: "구매자 45%가 선택",
-        imgUrl: "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/5.jpg",
-        peakOutput: 202,
-        enginemaxTorque: 45.0,
-        minFuel: 11.4,
-        maxFuel: 12.4,
-      },
-      {
-        id: 2,
-        type: "가솔린 3.8",
-        price: 0,
-        description:
-          "고효율의 3.8 가솔린 엔진으로 다이내믹한 주행 성능은 물론, 정속성까지 선사합니다.",
-        purchaseRate: "구매자 55%가 선택",
-        imgUrl: "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/6.jpg",
-        peakOutput: 295,
-        enginemaxTorque: 36.2,
-        minFuel: 8.0,
-        maxFuel: 9.2,
-      },
-    ],
-    drivingMethods: [
-      {
-        id: 1,
-        type: "2WD",
-        price: 0,
-        description:
-          "엔진 동력이 전륜 후륜 중 하나로 전달되어 움직입니다. 차체가 가벼워 연료 효율이 높습니다.",
-        imgUrl: "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg",
-        purchaseRate: "구매자 60%가 선택",
-      },
-      {
-        id: 2,
-        type: "4WD",
-        price: 237000,
-        description:
-          "상시 4륜 구동 시스템으로 주행 환경에 맞춰 전후륜 구동력을 자동배분해 안전성을 높입니다.",
-        imgUrl: "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg",
-        purchaseRate: "구매자 40%가 선택",
-      },
-    ],
-    bodyTypes: [
-      {
-        id: 1,
-        type: "7인승",
-        price: 0,
-        description:
-          "2열 가운데 시트를 없에 2열 탑승객의 편의는 물론, 3열 탑승객의 승하차가 편리합니다.",
-        purchaseRate: "구매자 50%가 선택",
-        imgUrl: "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/7.jpg",
-      },
-      {
-        id: 2,
-        type: "8인승",
-        price: 0,
-        description:
-          "1열 2명, 2열 3명, 3열 3명이 탑승할 수 있는 구조로, 많은 인원이 탑승할 수 있습니다.",
-        purchaseRate: "구매자 50%가 선택",
-        imgUrl: "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/8.jpg",
-      },
-    ],
-  });
+  const [detailData, setDetailData] = useState(cachedData);
 
-  // useEffect(() => {
-  //   getAPI(PATH.DETAIL, { trimId: TRANSLATE[car.trim.name] }).then((res) => {
-  //     setDetailData(res);
-  //     cachedData = res;
-  //   });
-  // }, []);
+  useEffect(() => {
+    getAPI(PATH.DETAIL, { trimId: TRANSLATE[car.trim.name] }).then((res) => {
+      setDetailData(res);
+      cachedData = res;
+    });
+  }, []);
 
   useEffect(() => {
     setCurrentTab(tab);
