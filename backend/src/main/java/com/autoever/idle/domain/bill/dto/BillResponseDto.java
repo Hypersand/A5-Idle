@@ -2,7 +2,7 @@ package com.autoever.idle.domain.bill.dto;
 
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
-import com.autoever.idle.domain.interiorColor.InteriorBillDto;
+import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import lombok.Getter;
 import lombok.Setter;
 
