@@ -23,7 +23,7 @@ class CarMasterRepositoryImplTest {
         Double nowLatitude = 36.05;
         Double nowLongitude = 126.1234;
 
-        List<CarMasterDto> availableCarMaster = carMasterRepository.findAvailableCarMaster(nowLatitude, nowLongitude);
+        List<CarMasterDto> availableCarMaster = carMasterRepository.findSortedCarMasterByDistance(nowLatitude, nowLongitude);
         assertThat(availableCarMaster.size()).isEqualTo(2);
         assertThat(availableCarMaster.get(0).getMasterName()).isEqualTo("김팰리");
         assertThat(availableCarMaster.get(1).getMasterName()).isEqualTo("정현대");

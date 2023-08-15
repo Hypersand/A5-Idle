@@ -17,4 +17,14 @@ public class CarMasterDto {
     private Double masterLatitude;
     private Double masterLongitude;
 
+    //테스트 용점
+    public CarMasterDto(String masterName, String masterPhoneNumber, String masterDealerShip, String masterDescription, String masterImgUrl, Double masterLatitude, Double masterLongitude) {
+        this.masterName = masterName;
+        this.masterPhoneNumber = masterPhoneNumber;
+        this.masterDealerShip = masterDealerShip;
+        this.masterDescription = masterDescription;
+        this.masterImgUrl = masterImgUrl;
+        this.masterLatitude = masterLatitude;
+        this.masterLongitude = masterLongitude;
+    }
 }
