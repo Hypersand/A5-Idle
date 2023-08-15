@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import WhiteButton from "buttons/WhiteButton";
-import { useContext, useEffect, useRef, useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import FindTrimContent from "./FindTrimContent";
 import OptionAlert from "./OptionAlert";
 import { carContext, stateContext, dispatchContext } from "utils/context";
@@ -11,33 +11,26 @@ import { findTrimInitialState } from "utils/constants";
 import { findTrimReducer } from "utils/reducer";
 import {
   SET_ANIMATION_STATE,
-  SET_CLICK_ACTIVE,
   SET_SELECTED_OPTION,
   SET_OPTION_STATUS,
-  PUSH_SELECTED_OPTION,
   SET_SHOWOPTION_ALERT,
-  PUSH_FUNCTION_LIST,
 } from "utils/actionType";
 import palette from "styles/palette";
-import { getAPI, postAPI } from "utils/api";
 import { PATH } from "utils/constants";
+import { optionPostAPI, submitPostAPI } from "../../utils/api";
+import { PUSH_OPTION_ALERT } from "../../utils/actionType";
 
 function Modal({ setVisible }) {
-  const initialRender = useRef(true);
   const { dispatch } = useContext(carContext);
   const [state, stateDispatch] = useReducer(findTrimReducer, findTrimInitialState);
 
   useEffect(() => {
-    if (initialRender.current) {
-      initialRender.current = false;
-      return;
-    }
-    if (state.selectedOption.length === 0) {
+    if (!state.selectedOption.length || state.selectedOption[0] === undefined) {
       stateDispatch({ type: SET_OPTION_STATUS, payload: defaultOption });
       return;
     }
     async function postFunc() {
-      await postAPI(PATH.FIND.OPTION, state.selectedOption).then((res) => {
+      await optionPostAPI(PATH.FIND.OPTION, state.selectedOption).then((res) => {
         stateDispatch({ type: SET_OPTION_STATUS, payload: res });
       });
     }
@@ -52,29 +45,26 @@ function Modal({ setVisible }) {
   }
   function clickCheck() {
     clickExit(2500);
-    //request 보내기
-    //get 받기
-    const dummyData = [
-      {
-        option_id: 1234,
-        option_name: "12.3인치 LCD 클러스터",
-        option_price: 1000000,
-      },
-      {
-        option_id: 1235,
-        option_name: "컴포트2",
-        option_price: 2000000,
-      },
-    ];
-    stateDispatch({ type: SET_SELECTED_OPTION, payload: [] });
-    state.tempCar.option.additional = [];
-    dummyData.forEach((item) => {
-      stateDispatch({ type: PUSH_SELECTED_OPTION, payload: item.option_name });
-      state.tempCar.option.additional.push({
-        name: item.option_name,
-        price: item.option_price,
-      });
+    const payload = {
+      trimId: state.tempCar.trim.trimId,
+      selectFunctions: [],
+    };
+    state.selectedOption.map((item) => {
+      payload.selectFunctions.push({ functionId: item });
     });
+    stateDispatch({ type: SET_SELECTED_OPTION, payload: [] });
+    const postFunc = async () => {
+      const result = await submitPostAPI(PATH.FIND.SUBMIT, payload);
+      state.tempCar.option.additional = [];
+      result.forEach((item) => {
+        stateDispatch({ type: PUSH_OPTION_ALERT, payload: item.optionName });
+        state.tempCar.option.additional.push({
+          name: item.optionName,
+          price: item.optionPrice,
+        });
+      });
+    };
+    postFunc();
     dispatch({ type: CHANGE_ALL, payload: state.tempCar });
     stateDispatch({ type: SET_SHOWOPTION_ALERT, payload: true });
   }
@@ -96,7 +86,7 @@ function Modal({ setVisible }) {
             <BlueButton text={"확인"} isActive={state.clickActive} onClick={clickCheck} />
           </StFindTrimContentButtonContainer>
         </StFindTrimContentContainer>
-        {state.showOptionAlert && <OptionAlert text={state.selectedOption} />}
+        {state.showOptionAlert && <OptionAlert text={state.optionAlert} />}
       </stateContext.Provider>
     </dispatchContext.Provider>
   );
