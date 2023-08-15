@@ -1,4 +1,4 @@
-package com.autoever.idle.domain.interiorColor;
+package com.autoever.idle.domain.interiorColor.dto;
 
 import lombok.AccessLevel;
 import lombok.Getter;
