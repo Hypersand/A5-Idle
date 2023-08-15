@@ -2,9 +2,7 @@ package com.autoever.idle.domain.option;
 
 import com.autoever.idle.domain.option.dto.OptionDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -26,7 +24,7 @@ public class OptionRepositoryImpl implements OptionRepository{
                 "from FUNCTIONS f join TRIM_FUNCTION tf on f.function_id = tf.function_id " +
                 "join `OPTION` o on f.option_id = o.option_id " +
                 "join OPTION_CATEGORY oc on o.option_category_id = oc.option_category_id " +
-                "where tf.trim_id = 1 and tf.is_default = 'false' " +
+                "where tf.trim_id = :trimId and tf.is_default = 'false' " +
                 "group by optionId " +
                 "order by optionPrice";
 

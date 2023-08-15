@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SoftAssertionsExtension.class)
-@DisplayName("Option Controller Test")
+@DisplayName("Option Service Test")
 class OptionServiceTest {
 
     @Mock
