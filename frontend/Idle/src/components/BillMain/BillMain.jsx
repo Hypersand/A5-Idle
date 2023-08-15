@@ -19,7 +19,7 @@ function BillMain({ data }) {
     <StContainer>
       <StTitle>기본 견적</StTitle>
       {BILL_LIST.map((item) => render(item))}
-      <BillOptionContainer added={car.option.additional} confused={car.option.confusing} />
+      <BillOptionContainer added={car.option.additional} confused={car.option.confusing} data={data} />
     </StContainer>
   );
 }

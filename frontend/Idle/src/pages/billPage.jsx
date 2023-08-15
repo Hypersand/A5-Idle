@@ -24,23 +24,23 @@ const dummyData = {
       "functionPrice": 100000000,
       "functionCategory": "안전",
       "functionImgUrl": "...",
-      "functionDescription": "..."
+      "functionDescription": "옵션 설명옵션 설명옵션 설명 옵션 설명옵"
     },
     {
       "functionId": 5678,
-      "functionOptionName": "주차보조시스템II",
+      "functionOptionName": "현대 스마트 센스",
       "functionPrice": 100000000,
       "functionCategory": "내장",
       "functionImgUrl": "...",
-      "functionDescription": "..."
+      "functionDescription": "옵션 설명옵션 설명옵션 설명 옵션 설명옵"
     },
     {
       "functionId": 9123,
-      "functionOptionName": "주차보조시스템II",
+      "functionOptionName": "컴포트 Ⅱ",
       "functionPrice": 100000000,
       "functionCategory": "외장",
       "functionImgUrl": "...",
-      "functionDescription": "..."
+      "functionDescription": "옵션 설명옵션 설명옵션 설명 옵션 설명옵"
     }
   ]
 }

@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 function BillDetail({ item, data }) {
   const { car } = useContext(carContext);
-  console.log(data);
   const navigate = useNavigate();
   let detail, price, path, imgSrc;
   switch (item) {
@@ -39,10 +38,7 @@ function BillDetail({ item, data }) {
     default:
       break;
   }
-
-
   const isColorTab = (item === "exterior" || item === "interior")
-  console.log(isColorTab);
   return (
     <StContainer>
       <StTitle>
