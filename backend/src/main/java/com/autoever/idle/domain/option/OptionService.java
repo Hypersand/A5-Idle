@@ -1,6 +1,5 @@
 package com.autoever.idle.domain.option;
 
-import com.autoever.idle.domain.exteriorColor.dto.ExteriorColorDto;
 import com.autoever.idle.domain.function.FunctionRepository;
 import com.autoever.idle.domain.option.dto.OptionDto;
 import com.autoever.idle.domain.option.dto.OptionFunctionsDto;
