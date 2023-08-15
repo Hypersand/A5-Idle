@@ -4,10 +4,9 @@ import Header from "layout/Header";
 import Car3D from "content/Car3D";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
-import { useContext,useState } from "react";
+import { useContext, useState } from "react";
 import { carContext } from "utils/context";
 import BillMain from "billMain/BillMain";
-import BillOptionContainer from "billMain/BillOptionContainer";
 import MapModal from "../components/BillMain/MapModal";
 
 function BillPage() {
@@ -44,9 +43,6 @@ function BillPage() {
           </StButtonContainer>
         </StConfirmContainer>
         <BillMain />
-
-        <BillOptionContainer added={car.option.additional} confused={car.option.confusing} />
-
         {carMasterVisible && <MapModal setCarMasterVisible={setCarMasterVisible} />}
       </StContainer>
     </StWrapper>
