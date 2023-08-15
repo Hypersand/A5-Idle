@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.function;
 
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
+import com.autoever.idle.domain.function.dto.FunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
@@ -79,5 +80,16 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                         "JOIN `OPTION` AS O ON F.option_id=O.option_id " +
                         "WHERE function_id=?",
                 rowMapper, functionId);
+    }
+
+    @Override
+    public List<FunctionDto> findFunctionsInAdditionalOption(Long optionId) {
+        String query = "select f.function_id functionId, f.name functionName, f.description functionDescription, " +
+                "f.img_url functionImgUrl, f.wheel_logo_img_url wheelLoglImgUrl " +
+                "from FUNCTIONS f left join `OPTION` o on f.option_id = o.option_id " +
+                "where f.option_id = ? and REPLACE(f.name, ' ', '') != REPLACE(o.name, ' ', '')";
+
+        RowMapper rowMapper = new BeanPropertyRowMapper(FunctionDto.class);
+        return jdbcTemplate.query(query, rowMapper, optionId);
     }
 }
