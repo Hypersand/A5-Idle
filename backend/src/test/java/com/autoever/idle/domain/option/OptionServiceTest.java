@@ -38,13 +38,16 @@ class OptionServiceTest {
     @InjectSoftAssertions
     private SoftAssertions softAssertions;
 
-    private List<OptionDto> additionalOptionList = new ArrayList<>();
+    private List<OptionDto> additionalOptionList;
     private List<Long> notActivatedOptionIdList = List.of(1L, 15L);
-    private List<OptionFunctionsDto> optionFunctionsDtoList = new ArrayList<>();
-    private List<FunctionDto> functionDtoList = new ArrayList<>();
+    private List<OptionFunctionsDto> optionFunctionsDtoList;
+    private List<FunctionDto> functionDtoList;
 
     @BeforeEach
     void setUp() {
+        additionalOptionList = new ArrayList<>();
+        optionFunctionsDtoList = new ArrayList<>();
+        functionDtoList = new ArrayList<>();
         functionDtoList.add(new FunctionDto(
                 119L,
                 "러기지 프로텍션 매트",
@@ -52,27 +55,48 @@ class OptionServiceTest {
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/112-1.jpg",
                 null));
 
-        OptionDto optionDto = new OptionDto(8L,
+        OptionDto optionDto1 = new OptionDto(8L,
                 "프로텍션 매트 패키지 I",
-                250000L,
+                550000L,
                 "구매자 10%가 선택",
                 "흠집없이 내 차에 짐을 싣고 싶다면?\n프로텍션 매트 패기지1로 흠집 걱정 없이 짐을 실어보세요.",
                 "차량 보호",
                 "false");
 
-        additionalOptionList.add(optionDto);
+        OptionDto optionDto2 = new OptionDto(7L,
+                "차량 보호 필름",
+                490000L,
+                "구매자 30%가 선택",
+                "흠집으로 부터 차량을 보호하고 싶다면?\n차량 보호 필름을 통해 내 차를 지켜보세요.",
+                "차량 보호",
+                "true");
 
-        OptionFunctionsDto optionFunctionsDto = new OptionFunctionsDto(
-                optionDto.getOptionId(),
-                optionDto.getOptionName(),
-                optionDto.getOptionPrice(),
-                optionDto.getOptionPurchaseRate(),
-                optionDto.getOptionDescription(),
-                optionDto.getOptionCategory(),
-                optionDto.getOptionCanSelect(),
+        additionalOptionList.add(optionDto1);
+        additionalOptionList.add(optionDto2);
+
+        OptionFunctionsDto optionFunctionsDto1 = new OptionFunctionsDto(
+                optionDto1.getOptionId(),
+                optionDto1.getOptionName(),
+                optionDto1.getOptionPrice(),
+                optionDto1.getOptionPurchaseRate(),
+                optionDto1.getOptionDescription(),
+                optionDto1.getOptionCategory(),
+                optionDto1.getOptionCanSelect(),
                 functionDtoList
         );
-        optionFunctionsDtoList.add(optionFunctionsDto);
+
+        OptionFunctionsDto optionFunctionsDto2 = new OptionFunctionsDto(
+                optionDto2.getOptionId(),
+                optionDto2.getOptionName(),
+                optionDto2.getOptionPrice(),
+                optionDto2.getOptionPurchaseRate(),
+                optionDto2.getOptionDescription(),
+                optionDto2.getOptionCategory(),
+                optionDto2.getOptionCanSelect(),
+                functionDtoList
+        );
+        optionFunctionsDtoList.add(optionFunctionsDto1);
+        optionFunctionsDtoList.add(optionFunctionsDto2);
     }
 
     @Test
@@ -90,8 +114,9 @@ class OptionServiceTest {
         List<OptionFunctionsDto> optionFunctions = optionService.getOptionFunctions(optionRequest);
 
         //then
-        softAssertions.assertThat(optionFunctions.get(0).getOptionId()).isEqualTo(additionalOptionList.get(0).getOptionId());
-        softAssertions.assertThat(optionFunctions.get(0).getOptionName()).isEqualTo(additionalOptionList.get(0).getOptionName());
-        softAssertions.assertThat(optionFunctions.get(0).getFunctions().get(0).getFunctionId()).isEqualTo(functionDtoList.get(0).getFunctionId());
+        softAssertions.assertThat(optionFunctions.get(0).getOptionId()).isEqualTo(optionFunctionsDtoList.get(1).getOptionId());
+        softAssertions.assertThat(optionFunctions.get(0).getOptionName()).isEqualTo(optionFunctionsDtoList.get(1).getOptionName());
+        softAssertions.assertThat(optionFunctions.get(0).getFunctions().get(0).getFunctionId()).
+                isEqualTo(optionFunctionsDtoList.get(1).getFunctions().get(0).getFunctionId());
     }
 }
