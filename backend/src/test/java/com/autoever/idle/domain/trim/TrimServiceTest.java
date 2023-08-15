@@ -20,10 +20,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SoftAssertionsExtension.class)
@@ -136,7 +138,9 @@ class TrimServiceTest {
     void findAllTrimsInvalidCarType() {
         String carTypeName = "팰리세";
 
-        assertThrows(InvalidCarException.class,
-                () -> trimService.findAllTrims(carTypeName));
+        when(carTypeRepository.findByName(carTypeName)).thenReturn(Collections.emptyList());
+
+        softAssertions.assertThatThrownBy(() -> trimService.findAllTrims(carTypeName))
+                .isInstanceOf(InvalidCarException.class);
     }
 }
