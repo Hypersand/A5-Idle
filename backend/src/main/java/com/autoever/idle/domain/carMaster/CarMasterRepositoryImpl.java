@@ -24,6 +24,7 @@ public class CarMasterRepositoryImpl implements CarMasterRepository {
                         " description AS masterDescription, img_url AS masterImgUrl, latitude AS masterLatitude, longitude AS masterLongitude," +
                         " ( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance " +
                         "FROM CAR_MASTER " +
+                        "GROUP BY masterName, masterPhoneNumber, masterDealership, masterDescription, masterImgUrl, masterLatitude, masterLongitude " +
                         "HAVING distance <= 10 " +
                         "ORDER BY distance " +
                         "LIMIT 20",
@@ -38,6 +39,7 @@ public class CarMasterRepositoryImpl implements CarMasterRepository {
                         " description AS masterDescription, img_url AS masterImgUrl, latitude AS masterLatitude, longitude AS masterLongitude," +
                         " ( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance " +
                         "FROM CAR_MASTER " +
+                        "GROUP BY sales_rate,masterName, masterPhoneNumber, masterDealership, masterDescription, masterImgUrl, masterLatitude, masterLongitude " +
                         "HAVING distance <= 10 " +
                         "ORDER BY sales_rate desc " +
                         "LIMIT 20",
