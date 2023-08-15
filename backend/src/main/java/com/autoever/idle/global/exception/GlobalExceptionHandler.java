@@ -67,4 +67,11 @@ public class GlobalExceptionHandler {
                 .badRequest()
                 .body(new ErrorDto(e.getErrorCode().getStatus(), e.getErrorCode().getMessage()));
     }
+
+    @ExceptionHandler({InvalidTrimException.class})
+    protected ResponseEntity<ErrorDto> handleInvalidTrimException(InvalidTrimException e) {
+        return ResponseEntity
+                .badRequest()
+                .body(new ErrorDto(e.getErrorCode().getStatus(), e.getErrorCode().getMessage()));
+    }
 }

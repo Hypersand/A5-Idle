@@ -28,6 +28,7 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -75,7 +76,7 @@ class BillControllerTest {
         given(billService.getResultBill(any())).willReturn(billResponseDto);
 
         //when
-        ResultActions resultActions = mockMvc.perform(get("/result/bill")
+        ResultActions resultActions = mockMvc.perform(post("/result/bill")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(billRequestDto)))
                 .andDo(print());
@@ -94,7 +95,7 @@ class BillControllerTest {
         given(billService.getResultBill(any())).willThrow(new InvalidExteriorException(ErrorCode.INVALID_EXTERIOR));
 
         //when
-        ResultActions resultActions = mockMvc.perform(get("/result/bill")
+        ResultActions resultActions = mockMvc.perform(post("/result/bill")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(billRequestDto)))
                 .andDo(print());
@@ -112,7 +113,7 @@ class BillControllerTest {
         given(billService.getResultBill(any())).willThrow(new InvalidInteriorException(ErrorCode.INVALID_INTERIOR));
 
         //when
-        ResultActions resultActions = mockMvc.perform(get("/result/bill")
+        ResultActions resultActions = mockMvc.perform(post("/result/bill")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(billRequestDto)))
                 .andDo(print());

@@ -15,8 +15,8 @@ public class BillController {
         this.billService = billService;
     }
 
-    @GetMapping("/bill")
-    public ResponseEntity<BillResponseDto> getResultBill(BillRequestDto billRequestDto) {
+    @PostMapping("/bill")
+    public ResponseEntity<BillResponseDto> getResultBill(@RequestBody BillRequestDto billRequestDto) {
         BillResponseDto billResponseDto = billService.getResultBill(billRequestDto);
         return ResponseEntity.ok(billResponseDto);
     }
