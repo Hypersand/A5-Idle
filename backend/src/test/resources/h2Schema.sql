@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS FUNCTION_CATEGORY CASCADE;
 DROP TABLE IF EXISTS FUNCTIONS CASCADE;
 DROP TABLE IF EXISTS TRIM_FUNCTION CASCADE;
 DROP TABLE IF EXISTS OPTION_STATUS CASCADE;
+DROP TABLE IF EXISTS TRIM_THUMBNAIL_FUNCTION CASCADE;
 create table if not exists  CAR_MASTER
 (
     car_master_id bigint auto_increment
@@ -242,4 +243,16 @@ create table if not exists  OPTION_STATUS
     foreign key (selected_option_id) references `OPTION` (option_id),
     constraint FK_OPTION_TO_OPTION_STATUS_2
     foreign key (not_activated_option_id) references `OPTION` (option_id)
+    );
+
+create table if not exists TRIM_THUMBNAIL_FUNCTION
+(
+    trim_thumbnail_option_id bigint      NOT NULL,
+    width_pixel              int         NULL,
+    height_pixel             int         NULL,
+    name                     varchar(20) NULL,
+    description              text        NULL,
+    trim_id                  bigint      NOT NULL,
+    constraint FK_TRIM_TO_TRIM_THUMBNAIL_FUNCTION_1
+    foreign key (trim_id) references TRIM (trim_id)
     );
