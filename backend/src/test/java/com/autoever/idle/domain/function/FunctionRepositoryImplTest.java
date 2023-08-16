@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.function;
 
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
+import com.autoever.idle.domain.function.dto.FunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
@@ -58,28 +59,27 @@ class FunctionRepositoryImplTest {
     }
 
     @Test
-    @DisplayName("기능 id 목록을 통해 해당 기능의 카테고리 이름과 정보를 반환한다")
-    void findAdditonalFunctions() {
-        //given
-        List<Long> additionalFunctionIds = List.of(1L, 2L);
-
-        //when
-        List<AdditionalFunctionBillDto> additonalFunctions = functionRepository.findAdditonalFunctions(additionalFunctionIds);
-
-        //then
-        softly.assertThat(additonalFunctions.size()).isEqualTo(2);
-        softly.assertThat(additonalFunctions.get(0).getFunctionId()).isEqualTo(1L);
-        softly.assertThat(additonalFunctions.get(1).getFunctionId()).isEqualTo(2L);
-        softly.assertThat(additonalFunctions.get(0).getFunctionCategory()).isEqualTo("파워트레인/성능");
-    }
-
-    @Test
     @DisplayName("내게 맞는 트림 찾기의 선택지에 따른 옵션 반환 테스트")
     void findOptionBySelectFunction() {
         MyTrimOptionDto optionBySelectFunction = functionRepository.findOptionBySelectFunction(17L);
 
         softly.assertThat(optionBySelectFunction.getOptionName()).isEqualTo("주차보조 시스템 I");
 
+    }
+
+    @Test
+    @DisplayName("추가 옵션이 포함하는 기능 목록을 반환한다")
+    void findFunctionsInAdditionalOption() {
+        //given
+        Long optionId = 8L;
+
+        //when
+        List<FunctionDto> functions = functionRepository.findFunctionsInAdditionalOption(optionId);
+
+        //then
+        softly.assertThat(functions.size()).isEqualTo(2);
+        softly.assertThat(functions.get(0).getFunctionName()).isEqualTo("러기지 프로텍션 매트");
+        softly.assertThat(functions.get(1).getFunctionName()).isEqualTo("플로어매트 1,2열");
     }
 
 }

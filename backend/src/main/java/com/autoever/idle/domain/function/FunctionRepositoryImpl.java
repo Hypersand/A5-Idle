@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.function;
 
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
+import com.autoever.idle.domain.function.dto.FunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
@@ -8,8 +9,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,23 +33,6 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                         "from TRIM_FUNCTION TF " +
                         "join FUNCTIONS on TF.function_id=FUNCTIONS.function_id " +
                         "where is_my_trim='TRUE' order by trim_id", rowMapper);
-    }
-
-    @Override
-    public List<AdditionalFunctionBillDto> findAdditonalFunctions(List<Long> additionalFunctionIds) {
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("select f.function_id functionId, fc.name functionCategory, ")
-                .append("f.img_url functionImgUrl, f.description functionDescription from FUNCTIONS f ")
-                .append("left join FUNCTION_CATEGORY fc on f.function_category_id = fc.function_category_id ")
-                .append("where f.function_id IN (");
-
-        queryBuilder.append(additionalFunctionIds.stream()
-                .map(id -> "?")
-                .collect(Collectors.joining(", ")));
-        queryBuilder.append(")");
-
-        RowMapper rowMapper = new BeanPropertyRowMapper(AdditionalFunctionBillDto.class);
-        return jdbcTemplate.query(queryBuilder.toString(), rowMapper, additionalFunctionIds.toArray());
     }
 
     @Override
@@ -80,4 +67,16 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                         "WHERE function_id=?",
                 rowMapper, functionId);
     }
+
+    @Override
+    public List<FunctionDto> findFunctionsInAdditionalOption(Long optionId) {
+        String query = "select f.function_id functionId, f.name functionName, f.description functionDescription, " +
+                "f.img_url functionImgUrl, f.wheel_logo_img_url wheelLogoImgUrl " +
+                "from FUNCTIONS f left join `OPTION` o on f.option_id = o.option_id " +
+                "where f.option_id = ?";
+
+        RowMapper rowMapper = new BeanPropertyRowMapper(FunctionDto.class);
+        return jdbcTemplate.query(query, rowMapper, optionId);
+    }
+
 }
