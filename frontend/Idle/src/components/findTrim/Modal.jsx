@@ -43,7 +43,7 @@ function Modal({ setVisible }) {
       setVisible(false);
     }, animateTime);
   }
-  function clickCheck() {
+  async function clickCheck() {
     clickExit(2500);
     const payload = {
       trimId: state.tempCar.trim.trimId,
@@ -64,9 +64,10 @@ function Modal({ setVisible }) {
         });
       });
     };
-    postFunc();
-    dispatch({ type: CHANGE_ALL, payload: state.tempCar });
     stateDispatch({ type: SET_SHOWOPTION_ALERT, payload: true });
+    await postFunc().then(() => {
+      dispatch({ type: CHANGE_ALL, payload: state.tempCar });
+    });
   }
   return (
     <dispatchContext.Provider value={{ stateDispatch }}>
