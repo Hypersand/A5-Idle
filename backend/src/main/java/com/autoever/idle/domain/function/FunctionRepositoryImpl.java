@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.function;
 
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
+import com.autoever.idle.domain.function.dto.FunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
@@ -8,8 +9,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -80,4 +84,16 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                         "WHERE function_id=?",
                 rowMapper, functionId);
     }
+
+    @Override
+    public List<FunctionDto> findFunctionsInAdditionalOption(Long optionId) {
+        String query = "select f.function_id functionId, f.name functionName, f.description functionDescription, " +
+                "f.img_url functionImgUrl, f.wheel_logo_img_url wheelLogoImgUrl " +
+                "from FUNCTIONS f left join `OPTION` o on f.option_id = o.option_id " +
+                "where f.option_id = ?";
+
+        RowMapper rowMapper = new BeanPropertyRowMapper(FunctionDto.class);
+        return jdbcTemplate.query(query, rowMapper, optionId);
+    }
+
 }

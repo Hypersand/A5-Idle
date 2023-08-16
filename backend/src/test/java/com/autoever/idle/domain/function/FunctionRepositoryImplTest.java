@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.function;
 
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
+import com.autoever.idle.domain.function.dto.FunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.option.MyTrimOptionDto;
@@ -80,6 +81,21 @@ class FunctionRepositoryImplTest {
 
         softly.assertThat(optionBySelectFunction.getOptionName()).isEqualTo("주차보조 시스템 I");
 
+    }
+
+    @Test
+    @DisplayName("추가 옵션이 포함하는 기능 목록을 반환한다")
+    void findFunctionsInAdditionalOption() {
+        //given
+        Long optionId = 8L;
+
+        //when
+        List<FunctionDto> functions = functionRepository.findFunctionsInAdditionalOption(optionId);
+
+        //then
+        softly.assertThat(functions.size()).isEqualTo(2);
+        softly.assertThat(functions.get(0).getFunctionName()).isEqualTo("러기지 프로텍션 매트");
+        softly.assertThat(functions.get(1).getFunctionName()).isEqualTo("플로어매트 1,2열");
     }
 
 }

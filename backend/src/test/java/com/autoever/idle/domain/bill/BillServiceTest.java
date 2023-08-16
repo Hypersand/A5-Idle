@@ -6,7 +6,7 @@ import com.autoever.idle.domain.exteriorColor.ExteriorColorRepository;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
 import com.autoever.idle.domain.function.FunctionRepository;
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
-import com.autoever.idle.domain.interiorColor.InteriorBillDto;
+import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.interiorColor.InteriorColorRepository;
 import com.autoever.idle.global.exception.custom.InvalidExteriorException;
 import com.autoever.idle.global.exception.custom.InvalidInteriorException;
@@ -22,7 +22,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 

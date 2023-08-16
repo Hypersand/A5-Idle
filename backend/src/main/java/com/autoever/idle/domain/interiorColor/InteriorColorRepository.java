@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.interiorColor;
 
+import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorDto;
 
 import java.util.List;
