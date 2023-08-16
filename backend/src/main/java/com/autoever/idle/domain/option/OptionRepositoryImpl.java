@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.option;
 
 import com.autoever.idle.domain.option.dto.OptionDto;
+import com.autoever.idle.domain.option.dto.SelectedOptionDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -45,6 +46,21 @@ public class OptionRepositoryImpl implements OptionRepository{
         params.addValue("selectedOptionIdList", selectedOptionIdList);
 
         RowMapper<Long> rowMapper = new SingleColumnRowMapper<>(Long.class);
+
+        return jdbcTemplate.query(query, params, rowMapper);
+    }
+
+    @Override
+    public List<SelectedOptionDto> findSelectedOptions(List<Long> optionIdList) {
+        String query = "SELECT o.option_id optionId, o.name optionName, o.price optionPrice, oc.name optionCategory, " +
+                "(SELECT f.img_url FROM FUNCTIONS f WHERE f.option_id = o.option_id LIMIT 1) optionImgUrl, " +
+                "o.description optionDescription " +
+                "FROM `OPTION` o JOIN OPTION_CATEGORY oc ON o.option_category_id = oc.option_category_id " +
+                "WHERE o.option_id IN (:optionIdList)";
+
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("optionIdList", optionIdList);
+        RowMapper rowMapper = new BeanPropertyRowMapper(SelectedOptionDto.class);
 
         return jdbcTemplate.query(query, params, rowMapper);
     }

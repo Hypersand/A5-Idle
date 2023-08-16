@@ -36,23 +36,6 @@ public class FunctionRepositoryImpl implements FunctionRepository {
     }
 
     @Override
-    public List<AdditionalFunctionBillDto> findAdditonalFunctions(List<Long> additionalFunctionIds) {
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("select f.function_id functionId, fc.name functionCategory, ")
-                .append("f.img_url functionImgUrl, f.description functionDescription from FUNCTIONS f ")
-                .append("left join FUNCTION_CATEGORY fc on f.function_category_id = fc.function_category_id ")
-                .append("where f.function_id IN (");
-
-        queryBuilder.append(additionalFunctionIds.stream()
-                .map(id -> "?")
-                .collect(Collectors.joining(", ")));
-        queryBuilder.append(")");
-
-        RowMapper rowMapper = new BeanPropertyRowMapper(AdditionalFunctionBillDto.class);
-        return jdbcTemplate.query(queryBuilder.toString(), rowMapper, additionalFunctionIds.toArray());
-    }
-
-    @Override
     public List<MyTrimDto> findTrimBySelectFunctions(int functionId) {
         String query = "WITH TMP_TRIM_FUNCTION AS " +
                 "(       SELECT name, is_default, T.trim_id " +
