@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.option;
 
 import com.autoever.idle.domain.option.dto.OptionDto;
+import com.autoever.idle.domain.option.dto.SelectedOptionDto;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -51,6 +52,22 @@ class OptionRepositoryImplTest {
         softAssertions.assertThat(notActivatedOptionIdList.size()).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("선택된 옵션 정보를 반환한다")
+    void findSelectedOptions() {
+        //given
+        List<Long> optionIds = List.of(1L, 2L, 10L);
 
+        //when
+        List<SelectedOptionDto> selectedOptions = optionRepository.findSelectedOptions(optionIds);
 
+        //then
+        softAssertions.assertThat(selectedOptions.size()).isEqualTo(3);
+        softAssertions.assertThat(selectedOptions.get(0).getOptionId()).isEqualTo(1L);
+        softAssertions.assertThat(selectedOptions.get(0).getOptionName()).isEqualTo("빌트인 캠(보조배터리 포함)");
+        softAssertions.assertThat(selectedOptions.get(1).getOptionId()).isEqualTo(2L);
+        softAssertions.assertThat(selectedOptions.get(1).getOptionName()).isEqualTo("H Genuine Accessories 트레일러 & 셀");
+        softAssertions.assertThat(selectedOptions.get(2).getOptionId()).isEqualTo(10L);
+        softAssertions.assertThat(selectedOptions.get(2).getOptionName()).isEqualTo("듀얼와이드 선루프");
+    }
 }
