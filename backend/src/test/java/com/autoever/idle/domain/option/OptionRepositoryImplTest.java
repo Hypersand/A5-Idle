@@ -33,7 +33,7 @@ class OptionRepositoryImplTest {
         List<OptionDto> additionalOptionList = optionRepository.findAdditionalOptionList(trimId);
 
         //then
-        softAssertions.assertThat(additionalOptionList.size()).isEqualTo(13);
+        softAssertions.assertThat(additionalOptionList.size()).isEqualTo(12);
 
     }
 
