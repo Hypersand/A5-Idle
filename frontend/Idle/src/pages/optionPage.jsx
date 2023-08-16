@@ -46,19 +46,7 @@ function OptionPage() {
   const [filteredData, setFilteredData] = useState([]);
   const [selectedFunction, setSelectedFunction] = useState("");
 
-  // async function getOptionData() {
-  //   const response = await getAPI(PATH.OPTION.DEFAULT, { trimId: 1 });
-  //   console.log(response);
-  //   setData(response);
-  // }
-
-  useEffect(() => {
-    getAPI(PATH.OPTION.DEFAULT, { trimId: 1 }).then((result) => {
-      setData(result);
-    });
-  }, []);
-  console.log(data);
-  // getOptionData();
+  useEffect(() => {}, []);
 
   useEffect(() => {
     if (!scrollBar.current) {
@@ -82,7 +70,6 @@ function OptionPage() {
   }, [scrollBar.current]);
 
   useEffect(() => {
-    console.log("A");
     setCurrentTab(tab);
     setFilteredData(filterData(data, currentTab));
     setCurrentPage(0);

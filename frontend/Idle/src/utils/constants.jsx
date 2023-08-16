@@ -13,7 +13,7 @@ export const PATH = {
     INTERIOR: `trims/interior/colors?`,
   },
   OPTION: {
-    DEFAULT: `trims/default/options?`,
+    DEFAULT: `trims/default?`,
     GET: `trims/add/options`,
     SELECT: `trims/add/select`,
   },

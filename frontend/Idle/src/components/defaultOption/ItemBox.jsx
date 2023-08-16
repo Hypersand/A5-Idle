@@ -6,7 +6,7 @@ import palette from "styles/palette";
 
 function ItemBox({ functionName, functionImgUrl, functionDescription }) {
   const [showDetail, setShowDetail] = useState(false);
-  const stringMaxLength = 34;
+  const stringMaxLength = 32;
   function checkLength() {
     if (functionName.length > stringMaxLength) {
       return functionName.slice(0, stringMaxLength) + "...";
@@ -19,7 +19,7 @@ function ItemBox({ functionName, functionImgUrl, functionDescription }) {
   return (
     <Fragment>
       <StContainer>
-        <StImg />
+        <StImg $imgUrl={functionImgUrl} />
         <StDescription>{checkLength()}</StDescription>
         <StDetailButton
           onClick={() => {
@@ -33,6 +33,7 @@ function ItemBox({ functionName, functionImgUrl, functionDescription }) {
       {showDetail && (
         <DetailOptionModal
           title={functionName}
+          functionImgUrl={functionImgUrl}
           description={functionDescription}
           onClose={handleClose}
         />
@@ -53,8 +54,11 @@ const StContainer = styled.div`
 `;
 
 const StImg = styled.div`
-  width: 184px;
+  box-sizing: border-box;
+  width: 182px;
   height: 128px;
+  background-image: url(${(props) => props.$imgUrl});
+  background-size: cover;
 `;
 
 const StDescription = styled.div`
