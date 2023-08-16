@@ -28,7 +28,7 @@ function TrimPage() {
   const filteredData = trimData?.filter((item) => item.name === car.trim.name);
   return (
     <>
-      {filteredData ? <StImageContainer src={filteredData[0].imgUrl} /> : <p>Loading...</p>}
+      {filteredData ? <StImageContainer src={filteredData[0]?.imgUrl} /> : <p>Loading...</p>}
       <StWrapper>
         <StBottomContainer>
           {trimData ? <TrimBoxContainer data={trimData} /> : <p>Loading...</p>}

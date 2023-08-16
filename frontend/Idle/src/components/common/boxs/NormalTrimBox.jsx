@@ -5,6 +5,8 @@ import { carContext } from "utils/context";
 import TrimDetailModal from "trimDetailModal/TrimDetailModal";
 import { CHANGE_TRIM } from "utils/actionType";
 import palette from "styles/palette";
+import WarningModal from "../modals/WarningModal";
+import { CLEAR_OPTION } from "../../../utils/actionType";
 
 function NormalTrimBox({
   purchaseRate,
@@ -17,16 +19,29 @@ function NormalTrimBox({
 }) {
   const { car, dispatch } = useContext(carContext);
   const [isModal, setIsModal] = useState(false);
+  const [isWarning, setIsWarning] = useState(false);
+  const [tempPayload, setTempPayload] = useState({})
 
+  function alertSubmit() {
+    dispatch({ type: CLEAR_OPTION, payload: tempPayload })
+    setIsWarning(false)
+  }
   function trimClicked(name, price, trimId) {
+
     if (car.trim.name !== name) {
-      const payload = {
+      setTempPayload({
         trimId: trimId,
         name: name,
         price: price,
-      };
-
-      dispatch({ type: CHANGE_TRIM, payload: payload });
+      })
+      if (car.option.additional.length !== 0) setIsWarning(true)
+      else dispatch({
+        type: CHANGE_TRIM, payload: {
+          trimId: trimId,
+          name: name,
+          price: price,
+        }
+      });
     }
   }
 
@@ -36,6 +51,7 @@ function NormalTrimBox({
   function setModalOff() {
     setIsModal(false);
   }
+  console.log(car);
   const isTrimSelected = car.trim.name === name;
   return (
     <>
@@ -67,6 +83,14 @@ function NormalTrimBox({
           defaultFunctions={defaultFunctions}
         />
       )}
+      {isWarning ? (
+        <WarningModal
+          title={"트림을 변경하시겠습니까?"}
+          setModalVisible={setIsWarning}
+          onSubmitClick={alertSubmit}
+          detail={"현재까지의 변경사항은 저장되지 않습니다."}
+        />
+      ) : null}
     </>
   );
 }
