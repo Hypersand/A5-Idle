@@ -168,6 +168,10 @@ export function carReducer(car, { type, payload }) {
       return {
         ...car,
         trim: payload,
+        color: {
+          exterior: {},
+          interior: {},
+        },
         option: {
           additional: [],
           confusing: [],

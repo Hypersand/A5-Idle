@@ -34,7 +34,7 @@ function NormalTrimBox({
         name: name,
         price: price,
       })
-      if (car.option.additional.length !== 0) setIsWarning(true)
+      if (car.option.additional.length !== 0 || car.color.exterior.name !== undefined) setIsWarning(true)
       else dispatch({
         type: CHANGE_TRIM, payload: {
           trimId: trimId,
