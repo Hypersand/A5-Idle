@@ -1,5 +1,6 @@
 export const globalCar = {
   trim: {
+    trimId: 1,
     name: "Exclusive",
     price: 40000000,
   },

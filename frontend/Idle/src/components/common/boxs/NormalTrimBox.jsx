@@ -10,6 +10,7 @@ function NormalTrimBox({
   purchaseRate,
   name,
   description,
+  trimId,
   price,
   defaultFunctions,
   isActive = true,
@@ -17,9 +18,10 @@ function NormalTrimBox({
   const { car, dispatch } = useContext(carContext);
   const [isModal, setIsModal] = useState(false);
 
-  function trimClicked(name, price) {
+  function trimClicked(name, price, trimId) {
     if (car.trim.name !== name) {
       const payload = {
+        trimId: trimId,
         name: name,
         price: price,
       };
@@ -38,7 +40,7 @@ function NormalTrimBox({
   return (
     <>
       <StContainer
-        onClick={() => trimClicked(name, price)}
+        onClick={() => trimClicked(name, price, trimId)}
         $isSelected={isTrimSelected}
         $isActive={isActive}
       >
@@ -88,7 +90,7 @@ const StContainer = styled.div`
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
     background: ${({ $isSelected }) =>
-      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+    $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
   }
