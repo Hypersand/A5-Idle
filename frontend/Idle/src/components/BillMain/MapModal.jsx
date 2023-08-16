@@ -64,6 +64,21 @@ function MapModal({ setCarMasterVisible }) {
         setAddressName("위치 정보가 존재하지 않습니다. 위치를 수정해주세요");
       }
     });
+    selectedTab === SALERATE
+      ? getAPI(PATH.CARMASTER.SALERATE, {
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        })
+      : getAPI(PATH.CARMASTER.DISTANCE, {
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        });
   }, [latitude, longitude]);
 
   function XBtnClicked() {
