@@ -880,8 +880,6 @@ INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 17
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 18, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 19, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 20, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 24, 1);
-INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('FALSE', 25, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 27, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 28, 1);
 INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 29, 1);
