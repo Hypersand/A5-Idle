@@ -17,7 +17,10 @@ export const PATH = {
     GET: `trims/add/options`,
     SELECT: `trims/add/select`,
   },
-  CARMASTER: `find/car/masters`,
+  CARMASTER: {
+    SALERATE: `find/car/masters/salerate?`,
+    DISTANCE: `find/car/masters/distance?`,
+  },
   BILL: `result/bill`,
 };
 export const TYPE = {
@@ -70,6 +73,8 @@ export const NONE = "none";
 export const PEAK_OUTPUT_KR = "최고 출력";
 export const MAX_TORQUE_KR = "최대 토크";
 export const CONSUMTION_KR = "복합 연비";
+export const DISTANCE = "거리순";
+export const SALERATE = "판매량순";
 
 export let clickedOptionPage = false;
 
