@@ -13,14 +13,15 @@ function BillOptionBox({ isAdded, data }) {
 
   function btnClicked() {
     const payload = {
-      name: data.functionOptionName,
-      price: data.functionPrice,
+      optionId: data?.optionId,
+      name: data?.optionName,
+      price: data?.optionPrice,
     };
     const filteredAdded = car.option.additional.filter(
-      (item) => item.name !== data.functionOptionName
+      (item) => item.name !== data?.optionName
     );
     const filteredConfused = car.option.confusing.filter(
-      (item) => item.name !== data.functionOptionName
+      (item) => item.name !== data?.optionName
     );
 
     if (isAdded) {
@@ -34,16 +35,16 @@ function BillOptionBox({ isAdded, data }) {
 
   return (
     <StContainer>
-      <StImg src={data.functionImgUrl}></StImg>
+      <StImg src={data?.optionImgUrl}></StImg>
       <StContent>
-        <StCategory>{data.functionCategory}</StCategory>
-        <StOptionName>{data.functionOptionName}</StOptionName>
-        <STOptionDesc>{data.functionDescription}</STOptionDesc>
+        <StCategory>{data?.optionCategory}</StCategory>
+        <StOptionName>{data?.optionName}</StOptionName>
+        <STOptionDesc>{data?.optionDescription}</STOptionDesc>
       </StContent>
       <StBtn onClick={btnClicked} $isAdd={isAdded}>
         {isAdded ? "삭제하기" : "확정하기"}
       </StBtn>
-      <StPrice>{data.functionPrice.toLocaleString()} 원</StPrice>
+      <StPrice>{data?.optionPrice.toLocaleString()} 원</StPrice>
     </StContainer>
   );
 }

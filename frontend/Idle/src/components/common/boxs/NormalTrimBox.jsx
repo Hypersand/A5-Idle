@@ -51,7 +51,6 @@ function NormalTrimBox({
   function setModalOff() {
     setIsModal(false);
   }
-  console.log(car);
   const isTrimSelected = car.trim.name === name;
   return (
     <>
