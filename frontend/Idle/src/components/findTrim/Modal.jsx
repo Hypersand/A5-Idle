@@ -96,6 +96,8 @@ function Modal({ setVisible }) {
 export default Modal;
 
 const StFindTrimContentContainer = styled.div`
+  position: relative;
+  left: -45%;
   display: flex;
   justify-content: center;
   align-items: center;
