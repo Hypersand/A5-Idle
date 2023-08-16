@@ -6,7 +6,7 @@ import com.autoever.idle.domain.exteriorColor.ExteriorColorRepository;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
 import com.autoever.idle.domain.function.FunctionRepository;
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
-import com.autoever.idle.domain.interiorColor.InteriorBillDto;
+import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.interiorColor.InteriorColorRepository;
 import com.autoever.idle.global.exception.ErrorCode;
 import com.autoever.idle.global.exception.custom.InvalidExteriorException;
