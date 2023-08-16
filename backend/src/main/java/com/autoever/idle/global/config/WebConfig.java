@@ -12,6 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins(
                         "http://localhost:5173",
+                        "http://127.0.0.1:5173",
                         "http://i-want-to-go-autoever.shop",
                         "http://i-want-to-go-autoever.shop:80",
                         "http://www.i-want-to-go-autoever.shop",
