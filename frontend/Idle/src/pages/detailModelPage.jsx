@@ -31,7 +31,7 @@ function DetailModelPage() {
   const [detailData, setDetailData] = useState(cachedData);
 
   useEffect(() => {
-    getAPI(PATH.DETAIL, { trimId: TRANSLATE[car.trim.name] }).then((res) => {
+    getAPI(PATH.DETAIL, `trimId=${TRANSLATE[car.trim.name]}`).then((res) => {
       setDetailData(res);
       cachedData = res;
     });
@@ -92,7 +92,14 @@ function DetailModelPage() {
           <StWrapper>
             <StTabContainer>
               {tabs.map((item, idx) => (
-                <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} onClick={() => { navigate(`/detail/${item}`) }}  />
+                <CategoryTabs
+                  key={idx}
+                  text={TRANSLATE[item]}
+                  isClicked={item === currentTab}
+                  onClick={() => {
+                    navigate(`/detail/${item}`);
+                  }}
+                />
               ))}
             </StTabContainer>
             <StContentsContainer>

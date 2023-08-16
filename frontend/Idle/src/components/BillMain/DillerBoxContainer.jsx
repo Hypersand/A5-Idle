@@ -4,10 +4,9 @@ import { styled } from "styled-components";
 import palette from "../../styles/palette";
 
 function DillerBoxContainer({ data, onClick }) {
-  const [selectedDealer, setSelectedDealer] = useState("한양대점");
-
-  function boxClicked(name, latitude, longtitude) {
-    onClick(latitude, longtitude);
+  const [selectedDealer, setSelectedDealer] = useState("");
+  function boxClicked(name, latitude, longitude) {
+    onClick(latitude, longitude);
     setSelectedDealer(name);
   }
 
@@ -18,9 +17,9 @@ function DillerBoxContainer({ data, onClick }) {
           key={index}
           data={item}
           onClick={() =>
-            boxClicked(item.masterDealership, item.masterLatitude, item.masterLongitude)
+            boxClicked(item.masterDealerShip, item.masterLatitude, item.masterLongitude)
           }
-          isSelected={selectedDealer === item.masterDealership}
+          isSelected={selectedDealer === item.masterDealerShip}
         />
       );
     });

@@ -1,13 +1,12 @@
 import { styled } from "styled-components";
 import palette from "../../styles/palette";
-import dealer from "../../assets/images/dealer.svg";
 
 function DillerBox({ data, isSelected, onClick }) {
   return (
     <StContainer $isSelected={isSelected} onClick={onClick}>
       <StMainContainer>
         <div>
-          <StImg />
+          <StImg $img={data.masterImgUrl} />
         </div>
 
         <StSubContainer>
@@ -17,7 +16,7 @@ function DillerBox({ data, isSelected, onClick }) {
         </StSubContainer>
       </StMainContainer>
 
-      <StDealerShip>{data.masterDealership}</StDealerShip>
+      <StDealerShip>{data.masterDealerShip}</StDealerShip>
     </StContainer>
   );
 }
@@ -47,7 +46,7 @@ const StMainContainer = styled.div`
 const StImg = styled.div`
   width: 48px;
   height: 49px;
-  background-image: url(${dealer});
+  background-image: ${({ imgUrl }) => `url(${imgUrl})`};
 `;
 const StSubContainer = styled.div`
   display: flex;
@@ -78,7 +77,7 @@ const StPhone = styled.p`
 const StDesc = styled.p`
   color: ${palette.Grey_3};
   font-family: Hyundai Sans Text KR;
-  font-size: 13px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 165%;
