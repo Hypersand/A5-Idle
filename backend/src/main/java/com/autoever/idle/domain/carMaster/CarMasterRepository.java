@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface CarMasterRepository {
 
-    List<CarMasterDto> findAvailableCarMaster(Double latitude, Double longitude);
+    List<CarMasterDto> findSortedCarMasterByDistance(Double latitude, Double longitude);
+    List<CarMasterDto> findSortedCarMasterBySaleRate(Double latitude, Double longitude);
 
 }
