@@ -10,6 +10,7 @@ import { createPortal } from "react-dom";
 import Address from "./Address";
 import { getAPI } from "../../utils/api";
 import { DISTANCE, PATH, SALERATE } from "../../utils/constants";
+const { kakao } = window;
 
 let cachedData = null;
 function MapModal({ setCarMasterVisible }) {
@@ -21,8 +22,7 @@ function MapModal({ setCarMasterVisible }) {
   const [addressVisible, setAddressVisible] = useState(false);
 
   const tabs = [SALERATE, DISTANCE];
-  let geocoder = new window.kakao.maps.services.Geocoder();
-  console.log(latitude, longitude);
+  let geocoder = new kakao.maps.services.Geocoder();
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -56,7 +56,7 @@ function MapModal({ setCarMasterVisible }) {
   //위치 수정시
   useEffect(() => {
     geocoder.coord2Address(longitude, latitude, function (result, status) {
-      if (status === window.kakao.maps.services.Status.OK) {
+      if (status === kakao.maps.services.Status.OK) {
         result[0].road_address === null
           ? setAddressName(result[0].address.address_name)
           : setAddressName(result[0].road_address.address_name);
@@ -92,7 +92,7 @@ function MapModal({ setCarMasterVisible }) {
   }
   function CompleteHandler(data) {
     geocoder.addressSearch(data.address, function (result, status) {
-      if (status === window.kakao.maps.services.Status.OK) {
+      if (status === kakao.maps.services.Status.OK) {
         setLatitude(result[0].y);
         setlongitude(result[0].x);
       }

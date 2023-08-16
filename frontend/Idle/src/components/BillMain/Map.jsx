@@ -1,27 +1,28 @@
 import { useEffect } from "react";
+const { kakao } = window;
 
 function Map({ data, latitude, longitude }) {
   useEffect(() => {
     const container = document.getElementById("map");
     const options = {
-      center: new window.kakao.maps.LatLng(latitude, longitude),
+      center: new kakao.maps.LatLng(latitude, longitude),
       level: 5,
     };
-    const map = new window.kakao.maps.Map(container, options);
+    const map = new kakao.maps.Map(container, options);
 
-    const markerPosition = new window.kakao.maps.LatLng(latitude, longitude);
-    new window.kakao.maps.Marker({
+    const markerPosition = new kakao.maps.LatLng(latitude, longitude);
+    new kakao.maps.Marker({
       map: map,
       position: markerPosition,
     });
 
     data.forEach((item) => {
-      const imageSize = new window.kakao.maps.Size(50, 50);
-      const markerImage = new window.kakao.maps.MarkerImage(item.masterImgUrl, imageSize);
+      const imageSize = new kakao.maps.Size(50, 50);
+      const markerImage = new kakao.maps.MarkerImage(item.masterImgUrl, imageSize);
 
-      new window.kakao.maps.Marker({
+      new kakao.maps.Marker({
         map: map,
-        position: new window.kakao.maps.LatLng(item.masterLatitude, item.masterLongitude),
+        position: new kakao.maps.LatLng(item.masterLatitude, item.masterLongitude),
         title: item.masterDealerShip,
         // image: markerImage,
       });
