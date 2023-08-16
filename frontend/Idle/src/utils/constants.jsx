@@ -10,7 +10,7 @@ export const PATH = {
   DETAIL: `trims/models?`,
   COLOR: {
     EXTERIOR: `trims/exterior/colors?`,
-    INTERIOR: `trims/exterior/colors?`,
+    INTERIOR: `trims/interior/colors?`,
   },
   OPTION: {
     DEFAULT: `trims/default/options`,
@@ -132,36 +132,44 @@ export const DEFAULT_BODY_TYPE = {
 };
 export const DEFAULT_EXTERIROR_COLOR = {
   Exclusive: {
+    exteriorId: 1,
     name: "어비스 블랙 펄",
     price: 0,
   },
   "Le Blanc": {
+    exteriorId: 1,
     name: "어비스 블랙 펄",
     price: 0,
   },
   Prestige: {
+    exteriorId: 1,
     name: "어비스 블랙 펄",
     price: 0,
   },
   Calligraphy: {
+    exteriorId: 1,
     name: "어비스 블랙 펄",
     price: 0,
   },
 };
 export const DEFAULT_INTERIROR_COLOR = {
   Exclusive: {
+    interiorId: 42,
     name: "인조가죽(블랙)",
     price: 0,
   },
   "Le Blanc": {
+    interiorId: 48,
     name: "퀼팅천연(블랙)",
     price: 0,
   },
   Prestige: {
+    interiorId: 24,
     name: "네이비",
     price: 0,
   },
   Calligraphy: {
+    interiorId: 1,
     name: "블랙(고급)",
     price: 0,
   },
