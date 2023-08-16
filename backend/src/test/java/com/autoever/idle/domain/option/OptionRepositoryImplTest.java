@@ -66,8 +66,9 @@ class OptionRepositoryImplTest {
         softAssertions.assertThat(selectedOptions.get(0).getOptionId()).isEqualTo(1L);
         softAssertions.assertThat(selectedOptions.get(0).getOptionName()).isEqualTo("빌트인 캠(보조배터리 포함)");
         softAssertions.assertThat(selectedOptions.get(1).getOptionId()).isEqualTo(2L);
-        softAssertions.assertThat(selectedOptions.get(1).getOptionName()).isEqualTo("H Genuine Accessories 트레일러 & 셀");
+        softAssertions.assertThat(selectedOptions.get(1).getOptionName()).isEqualTo("듀얼와이드 선루프");
         softAssertions.assertThat(selectedOptions.get(2).getOptionId()).isEqualTo(10L);
-        softAssertions.assertThat(selectedOptions.get(2).getOptionName()).isEqualTo("듀얼와이드 선루프");
+        softAssertions.assertThat(selectedOptions.get(2).getOptionName()).isEqualTo("H Genuine Accessories 트레일러 & 셀");
+
     }
 }
