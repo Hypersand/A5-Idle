@@ -1,5 +1,7 @@
 import {
   RESET_ALL,
+  PUSH_OPTION_ALERT,
+  PUSH_DISABLE_FUNCTION_ID,
   PUSH_FUNCTION_LIST,
   PUSH_SELECTED_OPTION,
   POP_SELECTED_OPTION,
@@ -57,7 +59,16 @@ export function findTrimReducer(state, { type, payload }) {
         ...state,
         disableFunctionId: payload,
       };
-
+    case PUSH_DISABLE_FUNCTION_ID:
+      return {
+        ...state,
+        disableFunctionId: [...state.disableFunctionId, payload],
+      };
+    case PUSH_OPTION_ALERT:
+      return {
+        ...state,
+        optionAlert: [...state.optionAlert, payload],
+      };
     default:
       return state;
   }

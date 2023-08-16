@@ -6,8 +6,11 @@ function OptionAlert({ text }) {
   return createPortal(
     <StAlertContainer>
       <StAlertTitle>
-        선택하신 기능이 포함된 옵션인 <br />
-        {text.length === 1
+        {text.length === 0 ? `추가 옵션이 없습니다.` : `선택하신 기능이 포함된 옵션인 `}
+        <br />
+        {text.length === 0
+          ? ``
+          : text.length === 1
           ? `'${text[0]}'가 추가되었어요.`
           : text.length === 2
           ? `'${text[0]}','${text[1]}'가 추가되었어요.`

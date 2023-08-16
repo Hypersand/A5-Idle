@@ -192,6 +192,7 @@ export const defaultOption = [
 
 export const emptyCar = {
   trim: {
+    trimdId: 1,
     name: "Exclusive",
     price: 40000000,
   },
@@ -267,4 +268,5 @@ export const findTrimInitialState = {
   showOptionAlert: false,
   functionList: [],
   disableFunctionId: [],
+  optionAlert: [],
 };
