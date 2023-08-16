@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
-import Map from "./Map";
 import palette from "../../styles/palette";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import esc from "../../assets/images/esc.svg";
 import BlueButton from "../common/buttons/BlueButton";
 import DillerBoxContainer from "./DillerBoxContainer";
@@ -21,8 +20,10 @@ function MapModal({ setCarMasterVisible }) {
   const [selectedTab, setSelectedTab] = useState(SALERATE);
   const [addressVisible, setAddressVisible] = useState(false);
 
+  const map = useRef();
   const tabs = [SALERATE, DISTANCE];
   let geocoder = new kakao.maps.services.Geocoder();
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -53,8 +54,40 @@ function MapModal({ setCarMasterVisible }) {
     }
   }, []);
 
+  useEffect(() => {
+    console.log("data");
+    const container = document.getElementById("map");
+
+    const options = {
+      center: new kakao.maps.LatLng(latitude, longitude),
+      level: 5,
+    };
+    map.current = new kakao.maps.Map(container, options);
+
+    const markerPosition = new kakao.maps.LatLng(latitude, longitude);
+    new kakao.maps.Marker({
+      map: map.current,
+      position: markerPosition,
+    });
+
+    if (data !== null) {
+      data.forEach((item) => {
+        const imageSize = new kakao.maps.Size(50, 50);
+        const markerImage = new kakao.maps.MarkerImage(item.masterImgUrl, imageSize);
+
+        new kakao.maps.Marker({
+          map: map.current,
+          position: new kakao.maps.LatLng(item.masterLatitude, item.masterLongitude),
+          title: item.masterDealerShip,
+          // image: markerImage,
+        });
+      });
+    }
+  }, [data]);
+
   //위치 수정시
   useEffect(() => {
+    console.log(latitude, longitude);
     geocoder.coord2Address(longitude, latitude, function (result, status) {
       if (status === kakao.maps.services.Status.OK) {
         result[0].road_address === null
@@ -117,8 +150,8 @@ function MapModal({ setCarMasterVisible }) {
   }
 
   function DealerClicked(latitude, longitude) {
-    setLatitude(latitude);
-    setlongitude(longitude);
+    const moveLatLon = new kakao.maps.LatLng(latitude, longitude);
+    map.current.panTo(moveLatLon);
   }
 
   function renderTabs() {
@@ -134,42 +167,39 @@ function MapModal({ setCarMasterVisible }) {
     });
   }
 
-  return (
-    data &&
-    createPortal(
-      <ModalContainer>
-        <ModalBackground onClick={XBtnClicked} />
-        <StContainer>
-          <StBtnContainer>
-            <StXBtn onClick={XBtnClicked} />
-          </StBtnContainer>
+  return createPortal(
+    <ModalContainer>
+      <ModalBackground onClick={XBtnClicked} />
+      <StContainer>
+        <StBtnContainer>
+          <StXBtn onClick={XBtnClicked} />
+        </StBtnContainer>
 
-          <StMainContainer>
-            <Map data={data} latitude={latitude} longitude={longitude} />
+        <StMainContainer>
+          <div id="map" style={{ width: "626px", height: "428px" }}></div>;
+          {/* <Map map={map.current} data={data} latitude={latitude} longitude={longitude} /> */}
+          {!addressVisible ? (
+            <StMain>
+              <StTitle>카마스터 찾기</StTitle>
+              <StPosition>
+                <StCurrent>{addressName}</StCurrent>
+                <StBtn onClick={ChangeAddressClicked}>위치 수정</StBtn>
+              </StPosition>
 
-            {!addressVisible ? (
-              <StMain>
-                <StTitle>카마스터 찾기</StTitle>
-                <StPosition>
-                  <StCurrent>{addressName}</StCurrent>
-                  <StBtn onClick={ChangeAddressClicked}>위치 수정</StBtn>
-                </StPosition>
+              <StHr></StHr>
+              <StTabs>{renderTabs()}</StTabs>
 
-                <StHr></StHr>
-                <StTabs>{renderTabs()}</StTabs>
+              {data && <DillerBoxContainer data={data} onClick={DealerClicked} />}
+            </StMain>
+          ) : (
+            <Address onComplete={CompleteHandler} />
+          )}
+        </StMainContainer>
 
-                <DillerBoxContainer data={data} onClick={DealerClicked} />
-              </StMain>
-            ) : (
-              <Address onComplete={CompleteHandler} />
-            )}
-          </StMainContainer>
-
-          <BlueButton text={"구매 상담 신청"} />
-        </StContainer>
-      </ModalContainer>,
-      document.getElementById("carMasterModal")
-    )
+        <BlueButton text={"구매 상담 신청"} />
+      </StContainer>
+    </ModalContainer>,
+    document.getElementById("carMasterModal")
   );
 }
 
