@@ -23,18 +23,19 @@ class OptionRepositoryImplTest {
     @Autowired
     private OptionRepository optionRepository;
 
-//    @Test
-//    @DisplayName("트림 ID에 대한 추가 옵션 정보를 담은 목록을 반환한다")
-//    void findAdditionalOptionList() {
-//        //given
-//        Long trimId = 1L;
-//
-//        //when
-//        List<OptionDto> additionalOptionList = optionRepository.findAdditionalOptionList(trimId);
-//
-//        //then
-//
-//    }
+    @Test
+    @DisplayName("트림 ID에 대한 추가 옵션 정보를 담은 목록을 반환한다")
+    void findAdditionalOptionList() {
+        //given
+        Long trimId = 1L;
+
+        //when
+        List<OptionDto> additionalOptionList = optionRepository.findAdditionalOptionList(trimId);
+
+        //then
+        softAssertions.assertThat(additionalOptionList.size()).isEqualTo(13);
+
+    }
 
     @Test
     @DisplayName("엔진 ID와 선택된 옵션 ID 목록을 통해 비활성화된 옵션 정보를 반환한다")

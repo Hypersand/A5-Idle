@@ -19,12 +19,12 @@ public class OptionRepositoryImpl implements OptionRepository{
 
     @Override
     public List<OptionDto> findAdditionalOptionList(Long trimId) {
-        String query = "select o.option_id optionId, o.name optionName, o.price optionPrice, o.purchase_rate optionPurchaseRate,\n" +
+        String query = "select o.option_id optionId, o.name optionName, o.price optionPrice, o.purchase_rate optionPurchaseRate, " +
                 "o.description optionDescription, oc.name optionCategory " +
                 "from FUNCTIONS f join TRIM_FUNCTION tf on f.function_id = tf.function_id " +
                 "join `OPTION` o on f.option_id = o.option_id " +
                 "join OPTION_CATEGORY oc on o.option_category_id = oc.option_category_id " +
-                "where tf.trim_id = :trimId and tf.is_default = 'false' " +
+                "where tf.trim_id = :trimId and tf.is_default = 'FALSE' " +
                 "group by optionId " +
                 "order by optionPrice";
 

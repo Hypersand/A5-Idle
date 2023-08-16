@@ -18,15 +18,12 @@ public class OptionService {
     private final FunctionRepository functionRepository;
 
     public List<OptionFunctionsDto> getOptionFunctions(OptionRequest optionRequest) {
-        /*TODO
-           1. 해당 트림에 대한 추가 옵션 목록을 불러온다.
-           2. 그 중 선택된 옵션들을 통해 활성화하면 안되는 옵션을 파악한다.
-           3.전체 옵션에 포함된 기능들의 목록을 꺼낸다
-        */
-
         List<OptionDto> additionalOptionList = optionRepository.findAdditionalOptionList(optionRequest.getTrimId());
         List<Long> notActivatedOptionIdList = optionRepository.findNotActivatedOptionIdList(optionRequest.getEngineId(), optionRequest.getSelectedOptionIds());
         List<OptionFunctionsDto> optionFunctionsDtoList = new ArrayList<>();
+
+        System.out.println("------------");
+        System.out.println(functionRepository.findFunctionsInAdditionalOption(13L).get(0).getWheelLogoImgUrl());
 
         for (OptionDto optionDto : additionalOptionList) {
             if (notActivatedOptionIdList.contains(optionDto.getOptionId())) {
@@ -35,8 +32,7 @@ public class OptionService {
 
             optionFunctionsDtoList.add(OptionFunctionsDto.create(
                     optionDto,
-                    functionRepository.findFunctionsInAdditionalOption(optionDto.getOptionId())
-                    )
+                    functionRepository.findFunctionsInAdditionalOption(optionDto.getOptionId()))
             );
 
         }
