@@ -10,21 +10,21 @@ function OptionContent({
   setCurrentPage,
 }) {
   function renderWheelImg() {
-    if (selectedFunction.wheelLogoImgUrl === undefined) return;
-    return selectedFunction.wheelLogoImgUrl !== null ? (
-      <StWheelImg src={selectedFunction.wheelLogoImgUrl} />
+    if (selectedFunction?.wheelLogoImgUrl === undefined) return;
+    return selectedFunction?.wheelLogoImgUrl !== null ? (
+      <StWheelImg src={selectedFunction?.wheelLogoImgUrl} />
     ) : null;
   }
 
   return (
     <StContainer>
-      <StOption>{data.optionName}</StOption>
-      <StOptionDesc>{data.optionDescription}</StOptionDesc>
+      <StOption>{data?.optionName}</StOption>
+      <StOptionDesc>{data?.optionDescription}</StOptionDesc>
       {renderWheelImg()}
 
       <StHr />
       <Functions
-        data={data.functions}
+        data={data?.functions}
         setSelectedFunction={setSelectedFunction}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

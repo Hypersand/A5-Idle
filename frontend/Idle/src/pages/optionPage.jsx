@@ -1,5 +1,5 @@
 import DefaultOption from "defaultOption/index";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext, useLayoutEffect } from "react";
 import OptionBox from "boxs/OptionBox";
 import {
   ALL,
@@ -9,6 +9,7 @@ import {
   CONVENIENCE,
   setClickedOptionPage,
   TRANSLATE,
+  PATH,
 } from "utils/constants";
 import { styled } from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
@@ -19,207 +20,7 @@ import { ReactComponent as ArrowLogo } from "images/arrowOption.svg";
 import OptionMain from "optionMain/index";
 import hyundai from "images/hyundai.svg";
 import palette from "styles/palette";
-
-const dummyData = [
-  {
-    optionName: "주차보조시스템II",
-    optionPrice: 1000000,
-    optionPurchaseRate: "구매자의 22% 선택",
-    optionDescription: "...",
-    optionCategory: "안전",
-    optionCanSelect: true,
-    functions: [
-      {
-        functionName: "후방 주차 충돌방지 보조1",
-        functionDescription: "...",
-        functionImgUrl: null,
-        wheelLogoImgUrl: null,
-      },
-      {
-        functionName: "20인치 다크 스퍼터링 휠1",
-        functionDescription: "...",
-        functionImgUrl: "...",
-        wheelLogoImgUrl: "...",
-      },
-    ],
-  },
-  {
-    optionName: "현대 스마트 센스",
-    optionPrice: 1000000,
-    optionPurchaseRate: "구매자의 22% 선택",
-    optionDescription: "...",
-    optionCategory: "안전",
-    optionCanSelect: true,
-    functions: [
-      {
-        functionName: "후방 주차 충돌방지 보조2",
-        functionDescription: "...",
-        functionImgUrl: null,
-        wheelLogoImgUrl: null,
-      },
-      {
-        functionName: "20인치 다크 스퍼터링 휠2",
-        functionDescription: "...",
-        functionImgUrl: "...",
-        wheelLogoImgUrl: "...",
-      },
-    ],
-  },
-  {
-    optionName: "컴포트 Ⅱ",
-    optionPrice: 1000000,
-    optionPurchaseRate: "구매자의 22% 선택",
-    optionDescription: "...",
-    optionCategory: "안전",
-    optionCanSelect: true,
-    functions: [
-      {
-        functionName: "후방 주차 충돌방지 보조3",
-        functionDescription: "...",
-        functionImgUrl: hyundai,
-        wheelLogoImgUrl: null,
-      },
-      {
-        functionName: "20인치 다크 스퍼터링 휠3",
-        functionDescription: "...",
-        functionImgUrl: "...",
-        wheelLogoImgUrl: "...",
-      },
-    ],
-  },
-  {
-    optionName: "빌트인 캠(보조배터리 포함)",
-    optionPrice: 1000000,
-    optionPurchaseRate: "구매자의 22% 선택",
-    optionDescription: "...",
-    optionCategory: "안전",
-    optionCanSelect: true,
-    functions: [
-      {
-        functionName: "후방 주차 충돌방지 보조4",
-        functionDescription: "...",
-        functionImgUrl: null,
-        wheelLogoImgUrl: null,
-      },
-      {
-        functionName: "20인치 다크 스퍼터링 휠4",
-        functionDescription: "...",
-        functionImgUrl: hyundai,
-        wheelLogoImgUrl: "...",
-      },
-    ],
-  },
-  {
-    optionName: "[N퍼포먼스파츠] 20인치 다크 스퍼터링 휠",
-    optionPrice: 1000000,
-    optionPurchaseRate: "구매자의 22% 선택",
-    optionDescription: "...",
-    optionCategory: "스타일&퍼포먼스",
-    optionCanSelect: true,
-    functions: [
-      {
-        functionName: "후방 주차 충돌방지 보조5",
-        functionDescription: "...",
-        functionImgUrl: hyundai,
-        wheelLogoImgUrl: null,
-      },
-      {
-        functionName: "20인치 다크 스퍼터링 휠5",
-        functionDescription: "...",
-        functionImgUrl: "...",
-        wheelLogoImgUrl: "...",
-      },
-    ],
-  },
-  {
-    optionName: "[N퍼포먼스파츠] 20인치 블랙톤 전면 가공 휠",
-    optionPrice: 1000000,
-    optionPurchaseRate: "구매자의 22% 선택",
-    optionDescription: "...",
-    optionCategory: "스타일&퍼포먼스",
-    optionCanSelect: true,
-    functions: [
-      {
-        functionName: "후방 주차 충돌방지 보조6",
-        functionDescription: "...",
-        functionImgUrl: null,
-        wheelLogoImgUrl: null,
-      },
-      {
-        functionName: "20인치 다크 스퍼터링 휠6",
-        functionDescription: "...",
-        functionImgUrl: hyundai,
-        wheelLogoImgUrl: "...",
-      },
-    ],
-  },
-  {
-    optionName: "프로텍션 매트 패키지 I",
-    optionPrice: 1000000,
-    optionPurchaseRate: "구매자의 22% 선택",
-    optionDescription: "...",
-    optionCategory: "차량 보호",
-    optionCanSelect: true,
-    functions: [
-      {
-        functionName: "후방 주차 충돌방지 보조7",
-        functionDescription: "...",
-        functionImgUrl: hyundai,
-        wheelLogoImgUrl: null,
-      },
-      {
-        functionName: "20인치 다크 스퍼터링 휠7",
-        functionDescription: "...",
-        functionImgUrl: "...",
-        wheelLogoImgUrl: "...",
-      },
-    ],
-  },
-  {
-    optionName: "차량 보호 필름",
-    optionPrice: 1000000,
-    optionPurchaseRate: "구매자의 22% 선택",
-    optionDescription: "...",
-    optionCategory: "차량 보호",
-    optionCanSelect: true,
-    functions: [
-      {
-        functionName: "후방 주차 충돌방지 보조8",
-        functionDescription: "...",
-        functionImgUrl: null,
-        wheelLogoImgUrl: null,
-      },
-      {
-        functionName: "20인치 다크 스퍼터링 휠8",
-        functionDescription: "...",
-        functionImgUrl: hyundai,
-        wheelLogoImgUrl: "...",
-      },
-    ],
-  },
-  {
-    optionName: "2열 통풍시트",
-    optionPrice: 1000000,
-    optionPurchaseRate: "구매자의 22% 선택",
-    optionDescription: "...",
-    optionCategory: "편의",
-    optionCanSelect: true,
-    functions: [
-      {
-        functionName: "후방 주차 충돌방지 보조9",
-        functionDescription: "...",
-        functionImgUrl: hyundai,
-        wheelLogoImgUrl: null,
-      },
-      {
-        functionName: "20인치 다크 스퍼터링 휠9",
-        functionDescription: "...",
-        functionImgUrl: "...",
-        wheelLogoImgUrl: "...",
-      },
-    ],
-  },
-];
+import { getAPI } from "utils/api";
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,
@@ -233,17 +34,31 @@ function filterData(data, currentTab) {
 }
 
 function OptionPage() {
-  const { tab } = useParams()
+  const { tab } = useParams();
   const [currentTab, setCurrentTab] = useState(tab);
   const [selectedOption, setSelectedOption] = useState("");
+  const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
   const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
   const navigate = useNavigate();
   const scrollBar = useRef();
-
-  const [filteredData, setFilteredData] = useState(dummyData);
+  const [filteredData, setFilteredData] = useState([]);
   const [selectedFunction, setSelectedFunction] = useState("");
+
+  // async function getOptionData() {
+  //   const response = await getAPI(PATH.OPTION.DEFAULT, { trimId: 1 });
+  //   console.log(response);
+  //   setData(response);
+  // }
+
+  useEffect(() => {
+    getAPI(PATH.OPTION.DEFAULT, { trimId: 1 }).then((result) => {
+      setData(result);
+    });
+  }, []);
+  console.log(data);
+  // getOptionData();
 
   useEffect(() => {
     if (!scrollBar.current) {
@@ -267,24 +82,25 @@ function OptionPage() {
   }, [scrollBar.current]);
 
   useEffect(() => {
-    setCurrentTab(tab)
-    setFilteredData(filterData(dummyData, currentTab));
+    console.log("A");
+    setCurrentTab(tab);
+    setFilteredData(filterData(data, currentTab));
     setCurrentPage(0);
     setSelectedOption("");
   }, [tab]);
 
   useEffect(() => {
     if (selectedOption === "") {
-      setSelectedFunction(filteredData[0].functions[0]);
+      setSelectedFunction(filteredData[0]?.functions[0]);
     } else {
-      const selected = filteredData.filter((item) => item.optionName === selectedOption);
+      const selected = filteredData?.filter((item) => item.optionName === selectedOption);
       setSelectedFunction(selected[0].functions[0]);
     }
     setCurrentPage(0);
   }, [selectedOption]);
 
   useEffect(() => {
-    setSelectedFunction(filteredData[0].functions[0]);
+    setSelectedFunction(filteredData[0]?.functions[0]);
   }, [filteredData]);
 
   function handleTabChange(direction) {
@@ -306,7 +122,7 @@ function OptionPage() {
   }
 
   function TabClicked(idx) {
-    navigate(`/option/${tabs[idx]}`)
+    navigate(`/option/${tabs[idx]}`);
   }
 
   function ArrowButtonClicked(direction) {
@@ -351,10 +167,9 @@ function OptionPage() {
           </ArrowLeftContainer>
 
           <StContainer ref={scrollBar}>
-            {filteredData.map((item, idx) => (
+            {filteredData?.map((item, idx) => (
               <OptionBox
                 key={idx}
-                {...item}
                 selectedOption={selectedOption}
                 setSelectedOption={setSelectedOption}
               />

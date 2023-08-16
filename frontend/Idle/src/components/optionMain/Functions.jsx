@@ -6,7 +6,7 @@ import palette from "styles/palette";
 
 function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   useEffect(() => {
-    setSelectedFunction(() => data[currentPage]);
+    setSelectedFunction(() => (data ? data[currentPage] : null));
   }, [currentPage]);
 
   function leftBtnClicked() {
@@ -25,7 +25,7 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   function renderCircle() {
     return (
       <StCircleContainer onClick={circleClicked}>
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           if (index === currentPage)
             return <StCircle $isSelected={true} key={index} data-key={index} />;
           else return <StCircle $isSelected={false} key={index} data-key={index} />;
@@ -35,7 +35,7 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   }
 
   function renderMain() {
-    return data.length > 1 ? (
+    return data?.length > 1 ? (
       <StMain>
         <ArrowLeft onClick={leftBtnClicked} style={{ cursor: "pointer" }} />
         {data[currentPage].functionName}
@@ -47,7 +47,7 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   return (
     <StContainer>
       {renderMain()}
-      <StDesc>{data[currentPage].functionDescription}</StDesc>
+      <StDesc>{data && data[currentPage].functionDescription}</StDesc>
 
       {renderCircle()}
     </StContainer>

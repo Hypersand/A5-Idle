@@ -13,13 +13,14 @@ export const PATH = {
     INTERIOR: `trims/exterior/colors?`,
   },
   OPTION: {
-    DEFAULT: `trims/default/options`,
+    DEFAULT: `trims/default/options?`,
     GET: `trims/add/options`,
     SELECT: `trims/add/select`,
   },
   CARMASTER: `find/car/masters`,
   BILL: `result/bill`,
 };
+
 export const TYPE = {
   trim: "트림",
   detail: "세부 모델",
