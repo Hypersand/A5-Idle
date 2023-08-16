@@ -2,12 +2,18 @@ package com.autoever.idle.domain.bill;
 
 import com.autoever.idle.domain.bill.dto.BillRequestDto;
 import com.autoever.idle.domain.bill.dto.BillResponseDto;
+import com.autoever.idle.domain.category.functionCategory.FunctionCategoryRepository;
+import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResDto;
+import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
 import com.autoever.idle.domain.exteriorColor.ExteriorColorRepository;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
 import com.autoever.idle.domain.function.FunctionRepository;
 import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
+import com.autoever.idle.domain.function.dto.DefaultFunctionNameResDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.interiorColor.InteriorColorRepository;
+import com.autoever.idle.domain.option.OptionRepository;
+import com.autoever.idle.domain.option.dto.SelectedOptionDto;
 import com.autoever.idle.global.exception.custom.InvalidExteriorException;
 import com.autoever.idle.global.exception.custom.InvalidInteriorException;
 import org.assertj.core.api.SoftAssertions;
@@ -25,8 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,7 +44,9 @@ class BillServiceTest {
     @Mock
     private InteriorColorRepository interiorColorRepository;
     @Mock
-    private FunctionRepository functionRepository;
+    private FunctionCategoryRepository functionCategoryRepository;
+    @Mock
+    private OptionRepository optionRepository;
 
     @InjectMocks
     private BillService billService;
@@ -49,7 +56,8 @@ class BillServiceTest {
     private BillResponseDto billResponseDto;
     private ExteriorBillDto exteriorBillDto;
     private InteriorBillDto interiorBillDto;
-    private List<AdditionalFunctionBillDto> additionalFunctionBillDtos = new ArrayList<>();
+    private List<DefaultFunctionCategoryResDto> defaultFunctionCategoryResDtos;
+    private List<DefaultFunctionNameResDto> defaultFunctionNameResDtos;
 
     @BeforeEach
     void setUp() {
@@ -62,25 +70,43 @@ class BillServiceTest {
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png"
         );
 
-        AdditionalFunctionBillDto additionalFunctionBillDto = new AdditionalFunctionBillDto(
+        List<SelectedOptionDto> selectedOptionDtos = new ArrayList<>();
+        SelectedOptionDto selectedOptionDto = new SelectedOptionDto(
                 1L,
-                "파워트레인/성능",
-                "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/19.jpg",
-                "전달 효율 증대로 전 엔진 동급 최고의 연비를 구현함은 물론, 최적의 변속 성능으로 드라이빙 감성까지 향상시켜줍니다."
+                "빌트인 캠(보조배터리 포함)",
+                690000L,
+                "안전",
+                "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/105.jpg",
+                "빌트인 캠을 통해 방금 촬영된 운전 영상을 어플로 바로 확인할 수 있어요."
         );
-        additionalFunctionBillDtos.add(additionalFunctionBillDto);
-        billResponseDto = new BillResponseDto(exteriorBillDto, interiorBillDto, additionalFunctionBillDtos);
+        selectedOptionDtos.add(selectedOptionDto);
+
+        defaultFunctionCategoryResDtos = new ArrayList<>();
+        defaultFunctionNameResDtos = new ArrayList<>();
+        defaultFunctionNameResDtos.add(new DefaultFunctionNameResDto("8단 자동변속기"));
+        DefaultFunctionCategoryResDto defaultFunctionCategoryResDto = new DefaultFunctionCategoryResDto(1L, "파워트레인/성능", defaultFunctionNameResDtos);
+        defaultFunctionCategoryResDtos.add(defaultFunctionCategoryResDto);
+        billResponseDto = new BillResponseDto(exteriorBillDto, interiorBillDto, selectedOptionDtos, defaultFunctionCategoryResDtos);
     }
 
     @Test
     @DisplayName("정상적으로 최종 견적서 응답 객체를 반환한다.")
     void getResultBill() {
         //given
-        List<Long> additionalFunctionIds = List.of(1L);
-        BillRequestDto billRequestDto = new BillRequestDto(1L, 1L, additionalFunctionIds);
+        BillRequestDto billRequestDto = new BillRequestDto(1L, 1L, 1L, List.of(1L));
+        List<SelectedOptionDto> selectedOptionDtos = List.of(new SelectedOptionDto(
+                1L,
+                "빌트인 캠(보조배터리 포함)",
+                690000L,
+                "안전",
+                "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/105.jpg",
+                "빌트인 캠을 통해 방금 촬영된 운전 영상을 어플로 바로 확인할 수 있어요."));
+
         when(exteriorColorRepository.findExteriorBill(any())).thenReturn(Optional.of(exteriorBillDto));
         when(interiorColorRepository.findInteriorBill(any())).thenReturn(Optional.of(interiorBillDto));
-        when(functionRepository.findAdditonalFunctions(additionalFunctionIds)).thenReturn(additionalFunctionBillDtos);
+        when(optionRepository.findSelectedOptions(anyList())).thenReturn(selectedOptionDtos);
+        when(functionCategoryRepository.findAll()).thenReturn(List.of(new FunctionCategoryDto(1L, "파워트레인/성능")));
+        when(functionCategoryRepository.getDefaultOptions(any(), any())).thenReturn(defaultFunctionNameResDtos);
 
         BillResponseDto billResponse = billService.getResultBill(billRequestDto);
 
@@ -89,19 +115,18 @@ class BillServiceTest {
                 isEqualTo(billResponseDto.getExterior().getExteriorId());
         softAssertions.assertThat(billResponse.getInterior().getInteriorId()).
                 isEqualTo(billResponseDto.getInterior().getInteriorId());
-        softAssertions.assertThat(billResponse.getAdditonalFunctions().size()).
-                isEqualTo(billResponseDto.getAdditonalFunctions().size());
-        softAssertions.assertThat(billResponse.getAdditonalFunctions().get(0).getFunctionCategory()).
-                isEqualTo(billResponseDto.getAdditonalFunctions().get(0).getFunctionCategory());
+        softAssertions.assertThat(billResponse.getSelectedOptions().size()).
+                isEqualTo(selectedOptionDtos.size());
+        softAssertions.assertThat(billResponse.getDefaultFunctions().get(0).getCategoryId()).
+                isEqualTo(defaultFunctionCategoryResDtos.get(0).getCategoryId());
     }
 
     @Test
     @DisplayName("외장 색상 id 요청 값이 정상적이지 않으면 예외 처리")
     void getResultBill_InvalidExteriorException() {
         //given
-        List<Long> additionalFunctionIds = List.of(1L);
         Long exteriorId = 999999999L;
-        BillRequestDto billRequestDto = new BillRequestDto(exteriorId, 1L, additionalFunctionIds);
+        BillRequestDto billRequestDto = new BillRequestDto(1L, exteriorId, 1L, List.of(1L));
 
         //when
         when(exteriorColorRepository.findExteriorBill(anyLong())).thenReturn(Optional.empty());
@@ -116,7 +141,7 @@ class BillServiceTest {
         //given
         List<Long> additionalFunctionIds = List.of(1L);
         Long interiorId = 999999999L;
-        BillRequestDto billRequestDto = new BillRequestDto(1L, interiorId, additionalFunctionIds);
+        BillRequestDto billRequestDto = new BillRequestDto(1L, interiorId, 1L, List.of(1L));
 
         //when
         when(exteriorColorRepository.findExteriorBill(anyLong())).thenReturn(Optional.of(exteriorBillDto));

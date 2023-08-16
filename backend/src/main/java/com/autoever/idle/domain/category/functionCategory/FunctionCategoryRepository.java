@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface FunctionCategoryRepository {
     List<FunctionCategoryDto> findAll();
-
     List<DefaultFunctionNameResDto> getDefaultOptions(Long trimId, Long categoryId);
-
     List<DefaultFunctionResDto> getDefaultOptionsDetail(Long trimId, Long categoryId);
 }
