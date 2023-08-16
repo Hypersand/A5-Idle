@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { ReactComponent as CloseButton } from "images/esc.svg";
 import palette from "styles/palette";
 
-function DetailOptionModal({ title, description, imgURL, onClose }) {
+function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
   const stringMaxLength = 23;
   function checkLength() {
     if (title.length > stringMaxLength) {
@@ -20,7 +20,7 @@ function DetailOptionModal({ title, description, imgURL, onClose }) {
             {checkLength()}
             <StCloseButton onClick={onClose} />
           </StTitle>
-          <StImg />
+          <StImg $imgUrl={functionImgUrl} />
         </StBox>
         <StDescription>{description}</StDescription>
         <StSubDescription>
@@ -37,7 +37,7 @@ export default DetailOptionModal;
 
 const ModalContainer = styled.div`
   position: absolute;
-  z-index: 14;
+  z-index: 102;
   top: 0;
   left: 0;
   width: 1280px;
@@ -62,7 +62,7 @@ const StBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  margin-top: 32px;
+  margin-top: 24px;
   margin-left: 44px;
 `;
 
@@ -71,7 +71,7 @@ const StContainer = styled.div`
   z-index: 15;
   background-color: ${palette.White};
   width: 540px;
-  height: 488px;
+  height: 550px;
   flex-direction: column;
 `;
 
@@ -102,7 +102,8 @@ const StImg = styled.div`
   width: 452px;
   height: 257.514px;
   flex-shrink: 0;
-  border: 1px black solid;
+  background-image: url(${(props) => props.$imgUrl});
+  background-size: cover;
 `;
 
 const StDescription = styled.div`
@@ -114,7 +115,9 @@ const StDescription = styled.div`
   line-height: 150%;
   letter-spacing: -0.36px;
   width: 452px;
+  height: 120px;
   margin-left: 44px;
+  margin-top: 8px;
 `;
 
 const StSubDescription = styled.div`
@@ -128,5 +131,5 @@ const StSubDescription = styled.div`
   line-height: 150%;
   letter-spacing: -0.3px;
   margin-left: 44px;
-  margin-top: 32px;
+  margin-top: 12px;
 `;

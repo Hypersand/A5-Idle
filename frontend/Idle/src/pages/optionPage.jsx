@@ -46,12 +46,7 @@ function OptionPage() {
   const [filteredData, setFilteredData] = useState([]);
   const [selectedFunction, setSelectedFunction] = useState("");
 
-  useEffect(() => {
-    getAPI(PATH.OPTION.DEFAULT, { trimId: 1 }).then((result) => {
-      setData(result);
-      setData(result);
-    });
-  }, []);
+  useEffect(() => {}, []);
 
   useEffect(() => {
     if (!scrollBar.current) {
@@ -79,7 +74,6 @@ function OptionPage() {
     setFilteredData(filterData(data, currentTab));
     setCurrentPage(0);
     setSelectedOption("");
-    console.log(filteredData);
   }, [tab]);
 
   useEffect(() => {

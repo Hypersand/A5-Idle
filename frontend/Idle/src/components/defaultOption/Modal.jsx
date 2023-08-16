@@ -6,124 +6,28 @@ import ItemBox from "./ItemBox";
 import PaginationButton from "./PaginationButton";
 import { createPortal } from "react-dom";
 import palette from "styles/palette";
+import { getAPI } from "utils/api";
+import { PATH } from "utils/constants";
 
 function Modal({ setVisible }) {
   const pageSize = 10;
   const [animationstate, setAnimationState] = useState(false);
-  const [currentTab, setCurrentTab] = useState("파워트레인/성능");
+  const [data, setData] = useState([]);
+  const [currentTab, setCurrentTab] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [currentTab]);
 
-  const tabs = [
-    {
-      categoryName: "파워트레인/성능",
-      functions: [
-        {
-          functionName: "기능기능기능",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "기능기능기능",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-      ],
-    },
-    {
-      categoryName: "지능형 안전기술",
-      functions: [
-        {
-          functionName: "10에어백 시스템(1열 어드밴스드/센터사이드, 1/2열 사이드미러입니다",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "11에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "10에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "11에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "10에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "11에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "10에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "11에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "11에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "11에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "13 에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-      ],
-    },
-    {
-      categoryName: "안전",
-      functions: [
-        {
-          functionName: "10에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "11에어백",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-      ],
-    },
-    {
-      categoryName: "외관",
-      functions: [
-        {
-          functionName: "외관",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-        {
-          functionName: "외관",
-          functionImgUrl: "...",
-          functionDescription: "...",
-        },
-      ],
-    },
-  ];
+  useEffect(() => {
+    async function fetchGet() {
+      const result = await getAPI(PATH.OPTION.DEFAULT, { trimId: 1 });
+      setData(result);
+      setCurrentTab(result[0].categoryName);
+    }
+    fetchGet();
+  }, []);
 
   function clickClose() {
     setAnimationState(true);
@@ -132,7 +36,7 @@ function Modal({ setVisible }) {
     }, 900);
   }
   function renderCategory() {
-    return tabs.map((item, idx) => (
+    return data.map((item, idx) => (
       <StCategoryBox key={idx}>
         <CategoryTabs
           key={idx}
@@ -149,7 +53,7 @@ function Modal({ setVisible }) {
     setCurrentPage(newPage);
   }
   function renderItem() {
-    const currentCategory = tabs.find((tab) => tab.categoryName === currentTab);
+    const currentCategory = data.find((tab) => tab.categoryName === currentTab);
     if (currentCategory) {
       return currentCategory.functions
         .slice((currentPage - 1) * pageSize, currentPage * pageSize)
@@ -179,7 +83,7 @@ function Modal({ setVisible }) {
               onClickNext={() => handlePageChange(currentPage + 1)}
               currentPage={currentPage}
               totalPages={Math.ceil(
-                tabs.find((tab) => tab.categoryName === currentTab).functions.length / pageSize
+                data.find((tab) => tab.categoryName === currentTab)?.functions.length / pageSize
               )}
             />
           </StPaginationContainer>
