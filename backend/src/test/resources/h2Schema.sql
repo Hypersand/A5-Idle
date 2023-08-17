@@ -247,7 +247,7 @@ create table if not exists  OPTION_STATUS
 
 create table if not exists TRIM_THUMBNAIL_FUNCTION
 (
-    trim_thumbnail_option_id bigint      NOT NULL,
+    trim_thumbnail_function_id bigint      NOT NULL,
     width_pixel              int         NULL,
     height_pixel             int         NULL,
     name                     varchar(20) NULL,

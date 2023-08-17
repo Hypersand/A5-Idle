@@ -7,6 +7,8 @@ import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDt
 import com.autoever.idle.domain.function.dto.DefaultFunctionNameResDto;
 import com.autoever.idle.domain.trim.dto.TrimDto;
 import com.autoever.idle.domain.trim.dto.TrimSelectionResDto;
+import com.autoever.idle.domain.trimThumbnailFunction.TrimThumbnailFunctionRepository;
+import com.autoever.idle.domain.trimThumbnailFunction.dto.TrimThumbnailFunctionDto;
 import com.autoever.idle.global.exception.custom.InvalidCarException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ public class TrimService {
     private final CarTypeRepository carTypeRepository;
     private final TrimRepository trimRepository;
     private final FunctionCategoryRepository functionCategoryRepository;
+    private final TrimThumbnailFunctionRepository trimThumbnailFunctionRepository;
 
     public List<TrimSelectionResDto> findAllTrims(String carTypeName) {
         List<Long> carTypeIds = carTypeRepository.findByName(carTypeName);
@@ -42,7 +45,9 @@ public class TrimService {
                 DefaultFunctionCategoryResDto defaultCategoryDto = DefaultFunctionCategoryResDto.createDefaultFunctionDto(category, defaultFunctionDtos);
                 categoryDtos.add(defaultCategoryDto);
             }
-            TrimSelectionResDto trimDto = TrimSelectionResDto.createDto(trim, categoryDtos);
+
+            List<TrimThumbnailFunctionDto> thumbnailFunctions = trimThumbnailFunctionRepository.findThumbnailFunctionByTrimId(trim.getTrimId());
+            TrimSelectionResDto trimDto = TrimSelectionResDto.createDto(trim, categoryDtos, thumbnailFunctions);
             trimDtos.add(trimDto);
         }
 
