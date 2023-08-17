@@ -242,8 +242,9 @@ const StContainer = styled.div`
 `;
 const ArrowRightContainer = styled.div`
   position: absolute;
+  top: 0;
   display: flex;
-  width: 120px;
+  width: 50px;
   height: 166px;
   background: linear-gradient(270deg, #f6f6f6 0%, rgba(246, 246, 246, 0) 100%);
   flex-shrink: 0;
@@ -262,8 +263,9 @@ const ArrowRightContainer = styled.div`
 
 const ArrowLeftContainer = styled.div`
   position: absolute;
+  top: 0;
   display: flex;
-  width: 120px;
+  width: 50px;
   height: 166px;
   background: linear-gradient(270deg, #f6f6f6 0%, rgba(246, 246, 246, 0) 100%);
   flex-shrink: 0;
