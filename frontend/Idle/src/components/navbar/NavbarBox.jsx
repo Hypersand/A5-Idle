@@ -1,10 +1,11 @@
 /* eslint-disable no-case-declarations */
 import { styled } from "styled-components";
-import { ReactComponent as Checked } from "../../assets/images/checked.svg";
+import { ReactComponent as Checked } from "images/checked.svg";
 import { useContext, useEffect, useState } from "react";
-import { carContext } from "../../utils/context";
+import { carContext } from "utils/context";
 import { useLocation, useNavigate } from "react-router-dom";
-import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL, TYPE } from "../../utils/constants";
+import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL, TYPE } from "utils/constants";
+import palette from "styles/palette";
 /**
  *
  * @param {trim,color~~} type
@@ -12,7 +13,7 @@ import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL, TYPE } from "../.
  * @param {setIsMatch} setIsMatch
  */
 function checkMatch(type, currentPage, setIsMatch) {
-  if (type === currentPage) {
+  if (currentPage.split("/").includes(type)) {
     setIsMatch(true);
   } else {
     setIsMatch(false);
@@ -29,7 +30,7 @@ function renderOption(type, options) {
   let selectedOptions = [];
   switch (type) {
     case TRIM:
-      selectedOptions.push(options.name);
+      options.name !== undefined ? selectedOptions.push(options.name) : null;
       break;
     case OPTION:
       options["additional"].forEach((item) => {
@@ -47,9 +48,11 @@ function renderOption(type, options) {
     default:
       const keys = Object.keys(options);
       keys.forEach((key) => {
-        selectedOptions.push(options[key].name);
+        if (options[key].name !== undefined) selectedOptions.push(options[key].name);
       });
+    // selectedOptions[0] === undefined ? (selectedOptions = []) : selectedOptions;
   }
+
   if (type === DETAIL) {
     return (
       <StForDetail>
@@ -89,9 +92,17 @@ function getTotalSum(type, car) {
   }
   return total;
 }
+const params = {
+  trim: "",
+  detail: "/engines",
+  color: "/exterior",
+  option: "/all",
+  bill: "",
+}
 
-function boxClicked(type, navigate) {
-  navigate(`/${type}`);
+function boxClicked(type, navigate, car, setIsOpen) {
+  if (type === "bill") car.getAllOptionChecked() ? navigate(`/${type}${params[type]}`) : setIsOpen(true)
+  else navigate(`/${type}${params[type]}`)
 }
 
 function renderChecked(type, currenPage, car) {
@@ -108,7 +119,6 @@ function renderChecked(type, currenPage, car) {
     case BILL:
       break;
     default:
-
       const keys = Object.keys(options);
       for (let i = 0; i < keys.length; i++) {
         if (options[keys[i]].name === undefined) {
@@ -124,20 +134,19 @@ function renderChecked(type, currenPage, car) {
  * @param {trim,color,option등 중 어떤 건지} type
  * @returns navbar에서 박스 컴포넌트
  */
-function NavbarBox({ type }) {
+function NavbarBox({ type, setIsOpen }) {
   const { car } = useContext(carContext);
   const currentPage = useLocation().pathname.slice(1);
   const [isMatch, setIsMatch] = useState(false);
   const navigate = useNavigate();
 
   let totalSum = getTotalSum(type, car);
-
   useEffect(() => {
     checkMatch(type, currentPage, setIsMatch);
   }, [currentPage, type]);
 
   return (
-    <StDiv $ismatch={isMatch} onClick={() => boxClicked(type, navigate)}>
+    <StDiv $ismatch={isMatch} onClick={() => boxClicked(type, navigate, car, setIsOpen)}>
       <StTopDiv>
         <StType>{TYPE[type]}</StType>
         <StRightDiv>
@@ -161,10 +170,10 @@ const StDiv = styled.div`
   width: 130px;
   min-height: 20px;
   padding: 7px 11px;
-  border: 1px solid ${({ $ismatch }) => ($ismatch ? "#96A9DC" : "#C5C9D2")};
-  background-color: ${({ $ismatch }) => ($ismatch ? "#E7ECF9" : "#f6f6f6")};
+  border: 1px solid
+    ${({ $ismatch }) => ($ismatch ? `${palette.NavyBlue_4}` : `${palette.CoolGrey_1}`)};
+  background-color: ${({ $ismatch }) => ($ismatch ? `${palette.NavyBlue_1}` : `${palette.Grey_1}`)};
   flex-direction: column;
-  gap: 2px;
   &:hover {
     background-color: #f3f7ff;
     cursor: pointer;
@@ -201,7 +210,7 @@ const StRightDiv = styled.div`
   display: flex;
   width: 78.5px;
   justify-content: flex-end;
-  align-items: flex-start;
+  align-items: center;
   gap: 6px;
   flex-shrink: 0;
 `;
@@ -213,7 +222,7 @@ const StSelected = styled.div`
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.24px;
-  height: 13px;
+  min-height: 13px;
   margin-bottom: 1px;
   margin-right: 6px;
 `;

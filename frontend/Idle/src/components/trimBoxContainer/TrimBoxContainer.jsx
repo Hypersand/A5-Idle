@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
-import NormalTrimBox from "../common/NormalTrimBox";
+import NormalTrimBox from "boxs/NormalTrimBox";
 
 function TrimBoxContainer(data) {
   return (
     <StContainer>
-      {data.trim.map((item, idx) => (
+      {data.data.map((item, idx) => (
         <NormalTrimBox key={idx} {...item} category={data.category} />
       ))}
     </StContainer>

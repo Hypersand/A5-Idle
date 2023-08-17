@@ -1,146 +1,79 @@
-import styled, { keyframes } from "styled-components";
-import BlueButton from "../common/BlueButton";
-import WhiteButton from "../common/WhiteButton";
-import { useState } from "react";
-import FindTrimContentMain from "./FindTrimContentMain";
+import styled from "styled-components";
+import TrimBox from "./TrimBox";
+import { getAPI } from "utils/api";
+import { useEffect, useState, useContext } from "react";
+import OptionBoxContainer from "findTrim/OptionBoxContainer";
+import { PATH, defaultOption } from "utils/constants";
+import { SET_CLICK_ACTIVE } from "utils/actionType";
+import { stateContext, dispatchContext } from "utils/context";
+import { PUSH_FUNCTION_LIST, SET_OPTION_STATUS } from "utils/actionType";
 
-function FindTrimContent({ setVisible }) {
-  const [animationstate, setAnimationState] = useState(false);
-  let tempCar = {
-    trim: {
-      name: "Exclusive",
-      price: 40000000,
-    },
-    detail: {
-      engine: {
-        name: "",
-        price: 0,
-      },
-      wd: {
-        name: "",
-        price: 0,
-      },
-      bodytype: {
-        name: "",
-        price: 0,
-      },
-    },
-    color: {
-      outside: {
-        name: "",
-        price: 0,
-      },
-      inside: {
-        name: "",
-        price: 0,
-      },
-    },
-    option: {
-      additional: [],
-      confusing: [],
-    },
-    bill: {},
-    getTrimSum: function () {
-      return this.trim.price !== undefined ? this.trim.price : 0;
-    },
-    getDetailSum: function () {
-      return this.detail.engine.price !== undefined &&
-        this.detail.wd.price !== undefined &&
-        this.detail.bodytype.price !== undefined
-        ? this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price
-        : 0;
-    },
-    getColorSum: function () {
-      return this.color.outside.price !== undefined && this.color.inside.price !== undefined
-        ? this.color.outside.price + this.color.inside.price
-        : 0;
-    },
-    getOptionSum: function () {
-      let total = 0;
-      this.option.additional.forEach((item) => (total += item.price));
-      return total;
-    },
-    getAllSum: function () {
-      return this.getTrimSum() + this.getColorSum() + this.getDetailSum() + this.getOptionSum();
-    },
-    getAllOptionChecked() {
-      if (
-        this.trim.name !== undefined &&
-        this.detail.engine.name !== undefined &&
-        this.detail.wd.name !== undefined &&
-        this.detail.bodytype.name !== undefined &&
-        this.color.outside.name !== undefined &&
-        this.color.inside.name !== undefined
-      ) {
-        return true;
-      }
-      return false;
-    },
-  };
-  function setModalOff() {
-    setAnimationState(true);
-    setTimeout(() => {
-      setVisible(false);
-    }, 1000);
+function FindTrimContent() {
+  const { stateDispatch } = useContext(dispatchContext);
+  const { state } = useContext(stateContext);
+  const [trimInfo, setTrimInfo] = useState([]);
+  const [selected, setSelected] = useState(-1);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const result = await getAPI(PATH.FIND.GET);
+      result.map((item) => {
+        stateDispatch({ type: PUSH_FUNCTION_LIST, payload: item });
+      });
+    };
+    const fetchGet = async () => {
+      setTrimInfo(await getAPI(PATH.TRIM));
+    };
+    stateDispatch({ type: SET_OPTION_STATUS, payload: defaultOption });
+    fetchPost();
+    fetchGet();
+  }, []);
+
+  function handleClick(index) {
+    setSelected(index);
+    stateDispatch({ type: SET_CLICK_ACTIVE, payload: true });
+  }
+
+  function renderTrimBox() {
+    return trimInfo.map((item, index) => {
+      return (
+        <TrimBox
+          key={index}
+          {...item}
+          isActive={state.optionStatus[index].selectPossible}
+          isSelected={index === selected}
+          setSelected={setSelected}
+          onClick={() => handleClick(index)}
+          optionStatusProp={state.optionStatus[index].isDefault}
+          trimData={trimInfo}
+        />
+      );
+    });
   }
   return (
-    <StFindTrimContentContainer $animationstate={animationstate}>
-      <StFindTrimContentTitle>
-        원하는 기능을 선택하시면 해당 기능이 포함된 트림을 추천해드려요!
-      </StFindTrimContentTitle>
-      <FindTrimContentMain car={tempCar} />
-      <StFindTrimContentButtonContainer>
-        <WhiteButton text={"나가기"} onClick={setModalOff} />
-        <BlueButton text={"확인"} isActive={false} />
-      </StFindTrimContentButtonContainer>
-    </StFindTrimContentContainer>
+    <StFindTrimContent>
+      <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>
+      <OptionBoxContainer
+        functionList={state.functionList}
+        disableFunctionId={state.disableFunctionId}
+      />
+    </StFindTrimContent>
   );
 }
 
 export default FindTrimContent;
 
-const StFindTrimContentContainer = styled.div`
-  display: flex;
-  justify-content: center;
+const StFindTrimContent = styled.div`
+  width: 1024px;
+  height: 384px;
   align-items: center;
-  flex-direction: column;
-  width: 1280px;
-  height: 580px;
-  background-color: ${({ theme }) => theme.Grey_1};
-  transition:
-    transform 1s ease-in-out,
-    opacity 1s ease-in-out;
-  ${({ $animationstate }) => $animationstate === true && "transform: translateY(20%); opacity: 0;"}
-  animation: ${keyframes`
-  0% {
-    transform: translateY(20%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  `} 1s ease-in-out;
-<<<<<<< HEAD
-=======
-  border: 1px black solid;
->>>>>>> 4c8eb7149f814ad1c5d885ad413a785ba668582b
+  justify-content: center;
+  margin-bottom: 20px;
 `;
 
-const StFindTrimContentTitle = styled.div`
-  width: 600px;
-  height: 20px;
-  padding: 22.364px 340px 21.636px 335px;
-  text-align: center;
-`;
-
-const StFindTrimContentButtonContainer = styled.div`
+const StTrimBoxContainer = styled.div`
   display: flex;
-  width: 314px;
-  height: 36px;
-  padding: 5.812px 33.42px;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  border: 1px black solid;
 `;

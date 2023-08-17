@@ -1,58 +1,52 @@
 export const globalCar = {
   trim: {
+    trimId: 1,
     name: "Exclusive",
     price: 40000000,
   },
   detail: {
-    engine: {
-      name: "가솔린",
-      price: 0,
-    },
-    wd: {
-      name: "4wd",
-      price: 1000000,
-    },
-    bodytype: {
-      name: "7인승",
-      price: 2000000,
-    },
+    engines: {},
+    drivingMethods: {},
+    bodyTypes: {},
   },
   color: {
-    outside: {
-      name: "그라파이드 그레이 메탈릭",
-      price: 0,
-    },
-    inside: {
-      name: "퀼팅천연(블랙)",
-      price: 3000000,
-    },
+    exterior: {},
+    interior: {},
   },
   option: {
     additional: [
-      { name: "현대스마트센스", price: 1000000 },
-      { name: "컴포트2", price: 2000000 },
-      { name: "듀얼와이드 선루프", price: 3000000 },
-      { name: "현대스마트센스", price: 1000000 },
-      { name: "컴포트2", price: 2000000 },
-      { name: "듀얼와이드 선루프", price: 3000000 },
+      //   {optionId:11,
+      //   optionName:"Option 1",,
+      // types:asd}
     ],
-    confusing: [{ name: "abc", price: 0 }],
+    confusing: [],
   },
   bill: {},
   getTrimSum: function () {
     return this.trim.price !== undefined ? this.trim.price : 0;
   },
   getDetailSum: function () {
-    return this.detail.engine.price !== undefined &&
-      this.detail.wd.price !== undefined &&
-      this.detail.bodytype.price !== undefined
-      ? this.detail.engine.price + this.detail.wd.price + this.detail.bodytype.price
-      : 0;
+    let sum = 0;
+    if (this.detail.engines.price !== undefined) {
+      sum += this.detail.engines.price;
+    }
+    if (this.detail.drivingMethods.price !== undefined) {
+      sum += this.detail.drivingMethods.price;
+    }
+    if (this.detail.bodyTypes.price !== undefined) {
+      sum += this.detail.bodyTypes.price;
+    }
+    return sum;
   },
   getColorSum: function () {
-    return this.color.outside.price !== undefined && this.color.inside.price !== undefined
-      ? this.color.outside.price + this.color.inside.price
-      : 0;
+    let sum = 0;
+    if (this.color.exterior.price !== undefined) {
+      sum += this.color.exterior.price;
+    }
+    if (this.color.interior.price !== undefined) {
+      sum += this.color.interior.price;
+    }
+    return sum;
   },
   getOptionSum: function () {
     let total = 0;
@@ -65,11 +59,11 @@ export const globalCar = {
   getAllOptionChecked() {
     if (
       this.trim.name !== undefined &&
-      this.detail.engine.name !== undefined &&
-      this.detail.wd.name !== undefined &&
-      this.detail.bodytype.name !== undefined &&
-      this.color.outside.name !== undefined &&
-      this.color.inside.name !== undefined
+      this.detail.engines.name !== undefined &&
+      this.detail.drivingMethods.name !== undefined &&
+      this.detail.bodyTypes.name !== undefined &&
+      this.color.exterior.name !== undefined &&
+      this.color.interior.name !== undefined
     ) {
       return true;
     }
