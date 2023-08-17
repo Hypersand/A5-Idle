@@ -4,14 +4,15 @@ import palette from "../../styles/palette";
 import { useNavigate } from "react-router-dom";
 
 function BillOptionContainer({ added, confused, data }) {
-  const addedData = data.additionalFunctions.filter((item) => added.some((opt) => opt.name === item.functionOptionName))
-  const confusedData = data.additionalFunctions.filter((item) => confused.some((opt) => opt.name === item.functionOptionName))
+  const addedData = data && data?.selectedOptions.filter((item) => added.some((opt) => opt.name === item.optionName))
+  const confusedData = data && data?.selectedOptions.filter((item) => confused.some((opt) => opt.name === item.optionName))
+  console.log(addedData);
   const navigate = useNavigate();
   function renderAddOptions() {
-    return addedData.map((item, index) => <BillOptionBox isAdded={true} key={index} data={item} />);
+    return addedData?.map((item, index) => <BillOptionBox isAdded={true} key={index} data={item} />);
   }
   function renderConfusingOptions() {
-    return confusedData.map((item, index) => <BillOptionBox isAdded={false} key={index} data={item} />);
+    return confusedData?.map((item, index) => <BillOptionBox isAdded={false} key={index} data={item} />);
   }
 
   function changeOptionBtnClicked() {
@@ -27,7 +28,6 @@ function BillOptionContainer({ added, confused, data }) {
 
       <StMain>
         <StChangeBtn onClick={changeOptionBtnClicked}>변경하기 {">"}</StChangeBtn>
-        { }
         <div style={{ display: "flex", flexDirection: "column" }}>
           <StOptionType>추가 옵션</StOptionType>
           <StBlock>{added.length ? renderAddOptions() : "추가한 옵션이 없습니다."}</StBlock>
