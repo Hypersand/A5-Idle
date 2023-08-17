@@ -1,27 +1,27 @@
 /* eslint-disable react-refresh/only-export-components */
 export const PATH = {
-  TRIM: `trims?carTypeName=팰리세이드`,
+  TRIM: `http://api.i-want-to-go-autoever.shop/trims?carTypeName=팰리세이드`,
   FIND: {
-    GET: `trims/favorite`,
-    OPTION: `trims/favorite/select/option`,
-    TRIM: `trims/favorite/select/trim`,
-    SUBMIT: `trims/favorite/submit`,
+    GET: `http://api.i-want-to-go-autoever.shop/trims/favorite`,
+    OPTION: `http://api.i-want-to-go-autoever.shop/trims/favorite/select/option`,
+    TRIM: `http://api.i-want-to-go-autoever.shop/trims/favorite/select/trim`,
+    SUBMIT: `http://api.i-want-to-go-autoever.shop/trims/favorite/submit`,
   },
-  DETAIL: `trims/models?`,
+  DETAIL: `http://api.i-want-to-go-autoever.shop/trims/models?`,
   COLOR: {
-    EXTERIOR: `trims/exterior/colors?`,
-    INTERIOR: `trims/interior/colors?`,
+    EXTERIOR: `http://api.i-want-to-go-autoever.shop/trims/exterior/colors?`,
+    INTERIOR: `http://api.i-want-to-go-autoever.shop/trims/interior/colors?`,
   },
   OPTION: {
-    DEFAULT: `trims/default?`,
-    GET: `trims/add/options`,
-    SELECT: `trims/add/select`,
+    DEFAULT: `http://api.i-want-to-go-autoever.shop/trims/default?`,
+    GET: `http://api.i-want-to-go-autoever.shop/trims/add/options`,
+    SELECT: `http://api.i-want-to-go-autoever.shop/trims/add/select`,
   },
   CARMASTER: {
-    SALERATE: `find/car/masters/salerate?`,
-    DISTANCE: `find/car/masters/distance?`,
+    SALERATE: `http://api.i-want-to-go-autoever.shop/find/car/masters/salerate?`,
+    DISTANCE: `http://api.i-want-to-go-autoever.shop/find/car/masters/distance?`,
   },
-  BILL: `result/bill`,
+  BILL: `http://api.i-want-to-go-autoever.shop/result/bill`,
 };
 
 export const TYPE = {
