@@ -56,7 +56,7 @@ function TrimBox({
         <StTrimBoxTitle $isselected={isSelected}>{name}</StTrimBoxTitle>
         <StTrimBoxContent $isselected={isSelected}>{description}</StTrimBoxContent>
         <StTrimBoxBottom>
-          <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
+          <StTrimBoxPrice $isselected={isSelected}>{price.toLocaleString()} 원</StTrimBoxPrice>
           {isActive ? <TrimBoxOptionStatus status={optionStatusProp} /> : null}
         </StTrimBoxBottom>
       </StTrimBox>
