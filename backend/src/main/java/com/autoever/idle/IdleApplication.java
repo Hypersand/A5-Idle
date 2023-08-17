@@ -9,5 +9,5 @@ public class IdleApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(IdleApplication.class, args);
 	}
-
+//주석
 }
