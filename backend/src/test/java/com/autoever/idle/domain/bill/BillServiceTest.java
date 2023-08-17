@@ -7,13 +7,13 @@ import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCat
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
 import com.autoever.idle.domain.exteriorColor.ExteriorColorRepository;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
-import com.autoever.idle.domain.function.FunctionRepository;
-import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
 import com.autoever.idle.domain.function.dto.DefaultFunctionNameResDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.interiorColor.InteriorColorRepository;
 import com.autoever.idle.domain.option.OptionRepository;
 import com.autoever.idle.domain.option.dto.SelectedOptionDto;
+import com.autoever.idle.domain.trim.TrimRepository;
+import com.autoever.idle.domain.trim.dto.TrimDescriptionDto;
 import com.autoever.idle.global.exception.custom.InvalidExteriorException;
 import com.autoever.idle.global.exception.custom.InvalidInteriorException;
 import org.assertj.core.api.SoftAssertions;
@@ -47,12 +47,15 @@ class BillServiceTest {
     private FunctionCategoryRepository functionCategoryRepository;
     @Mock
     private OptionRepository optionRepository;
+    @Mock
+    private TrimRepository trimRepository;
 
     @InjectMocks
     private BillService billService;
     @InjectSoftAssertions
     private SoftAssertions softAssertions;
 
+    private TrimDescriptionDto trimDescriptionDto;
     private BillResponseDto billResponseDto;
     private ExteriorBillDto exteriorBillDto;
     private InteriorBillDto interiorBillDto;
@@ -61,6 +64,9 @@ class BillServiceTest {
 
     @BeforeEach
     void setUp() {
+        trimDescriptionDto = new TrimDescriptionDto("실용적이고 기본적인 기능을 갖춘 베이직 트림");
+        String trimDescription = trimDescriptionDto.getTrimDescription();
+
         exteriorBillDto = new ExteriorBillDto(
                 1L,
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/12.png"
@@ -86,7 +92,7 @@ class BillServiceTest {
         defaultFunctionNameResDtos.add(new DefaultFunctionNameResDto("8단 자동변속기"));
         DefaultFunctionCategoryResDto defaultFunctionCategoryResDto = new DefaultFunctionCategoryResDto(1L, "파워트레인/성능", defaultFunctionNameResDtos);
         defaultFunctionCategoryResDtos.add(defaultFunctionCategoryResDto);
-        billResponseDto = new BillResponseDto(exteriorBillDto, interiorBillDto, selectedOptionDtos, defaultFunctionCategoryResDtos);
+        billResponseDto = new BillResponseDto(trimDescription, exteriorBillDto, interiorBillDto, selectedOptionDtos, defaultFunctionCategoryResDtos);
     }
 
     @Test
@@ -102,6 +108,7 @@ class BillServiceTest {
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/105.jpg",
                 "빌트인 캠을 통해 방금 촬영된 운전 영상을 어플로 바로 확인할 수 있어요."));
 
+        when(trimRepository.findByTrimId(1L)).thenReturn(trimDescriptionDto);
         when(exteriorColorRepository.findExteriorBill(any())).thenReturn(Optional.of(exteriorBillDto));
         when(interiorColorRepository.findInteriorBill(any())).thenReturn(Optional.of(interiorBillDto));
         when(optionRepository.findSelectedOptions(anyList())).thenReturn(selectedOptionDtos);
@@ -129,6 +136,7 @@ class BillServiceTest {
         BillRequestDto billRequestDto = new BillRequestDto(1L, exteriorId, 1L, List.of(1L));
 
         //when
+        when(trimRepository.findByTrimId(1L)).thenReturn(trimDescriptionDto);
         when(exteriorColorRepository.findExteriorBill(anyLong())).thenReturn(Optional.empty());
 
         //then
@@ -144,6 +152,7 @@ class BillServiceTest {
         BillRequestDto billRequestDto = new BillRequestDto(1L, interiorId, 1L, List.of(1L));
 
         //when
+        when(trimRepository.findByTrimId(1L)).thenReturn(trimDescriptionDto);
         when(exteriorColorRepository.findExteriorBill(anyLong())).thenReturn(Optional.of(exteriorBillDto));
         when(interiorColorRepository.findInteriorBill(anyLong())).thenReturn(Optional.empty());
 
