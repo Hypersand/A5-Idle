@@ -10,6 +10,7 @@ import Address from "./Address";
 import { getAPI } from "../../utils/api";
 import { DISTANCE, PATH, SALERATE } from "../../utils/constants";
 import CustomOverlay from "./CustomOverlay";
+import Temp from "./Temp";
 const { kakao } = window;
 
 let cachedData = null;

@@ -1,59 +1,67 @@
 import "../../styles/CustomOverlay.css";
+import carMasterHyundai from "../../assets/images/carMasterHyundai.svg";
 
 function CustomOverlay(data, address, onClick) {
-  const overlayContainer = document.createElement("div");
-  overlayContainer.classList.add("overlay-container");
+  const container = document.createElement("div");
+  container.classList.add("st-container");
 
   const header = document.createElement("div");
-  header.classList.add("header");
-  overlayContainer.appendChild(header);
+  header.classList.add("st-header");
+  container.appendChild(header);
 
-  const title = document.createElement("h1");
-  title.classList.add("title");
-  title.textContent = data.masterDealerShip;
-  header.appendChild(title);
-
-  const closeButton = document.createElement("button");
-  closeButton.classList.add("close-button");
+  const closeButton = document.createElement("div");
   closeButton.textContent = "X";
   closeButton.addEventListener("click", onClick);
+  closeButton.classList.add("st-btn");
   header.appendChild(closeButton);
 
-  const addressElement = document.createElement("div");
-  addressElement.classList.add("address");
-  addressElement.textContent = address;
-  overlayContainer.appendChild(addressElement);
+  const main = document.createElement("div");
+  main.classList.add("st-main");
+  container.appendChild(main);
 
-  const infoContainer = document.createElement("div");
-  infoContainer.classList.add("info-container");
-  overlayContainer.appendChild(infoContainer);
+  const content = document.createElement("div");
+  content.classList.add("st-content");
+  main.appendChild(content);
 
-  const info = document.createElement("div");
-  info.classList.add("info");
-  infoContainer.appendChild(info);
+  const title = document.createElement("div");
+  title.textContent = "현대자동차 " + data.masterDealerShip;
+  title.classList.add("st-title");
+  content.appendChild(title);
 
-  const subTitle = document.createElement("h1");
-  subTitle.classList.add("sub-title");
-  subTitle.textContent = data.masterName;
-  info.appendChild(subTitle);
+  const name = document.createElement("div");
+  name.textContent = data.masterName;
+  name.classList.add("st-name");
+  content.appendChild(name);
 
-  const subTitleSmall = document.createElement("h3");
-  subTitleSmall.classList.add("sub-title-small");
-  subTitleSmall.textContent = data.masterPhoneNumber;
-  info.appendChild(subTitleSmall);
+  const hr = document.createElement("div");
+  hr.classList.add("st-hr");
+  content.appendChild(hr);
 
-  const description = document.createElement("h2");
-  description.classList.add("description");
+  const image = document.createElement("img");
+  image.src = carMasterHyundai;
+  image.classList.add("st-img");
+  main.appendChild(image);
+
+  const footer = document.createElement("div");
+  footer.classList.add("st-footer");
+  container.appendChild(footer);
+
+  const addressName = document.createElement("div");
+  addressName.textContent = "Address : " + address;
+  addressName.classList.add("st-footer-content");
+  footer.appendChild(addressName);
+
+  const phoneNumber = document.createElement("div");
+  phoneNumber.textContent = "TEL : " + data.masterPhoneNumber;
+  phoneNumber.classList.add("st-footer-content");
+  footer.appendChild(phoneNumber);
+
+  const description = document.createElement("div");
   description.textContent = data.masterDescription;
-  info.appendChild(description);
+  description.classList.add("st-footer-content");
+  footer.appendChild(description);
 
-  const dealerImage = document.createElement("img");
-  dealerImage.classList.add("dealer-image");
-  dealerImage.src = data.masterImgUrl;
-  dealerImage.alt = "Dealer";
-  infoContainer.appendChild(dealerImage);
-
-  return overlayContainer;
+  return container;
 }
 
 export default CustomOverlay;
