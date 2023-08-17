@@ -52,5 +52,3 @@ export default defineConfig({
     },
   },
 });
-// C:\Users\wwwki\OneDrive\바탕 화면\A5-Idle\frontend\Idle\src\styles\globalStyle.jsx
-// C:/Users/wwwki/OneDrive/바탕 화면/A5-Idle/frontend/src/styles/globalStyle
