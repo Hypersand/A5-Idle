@@ -25,7 +25,7 @@ function MapModal({ setCarMasterVisible }) {
   const map = useRef();
   const tabs = [SALERATE, DISTANCE];
   let geocoder = new kakao.maps.services.Geocoder();
-
+  let overlays = [];
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -89,6 +89,7 @@ function MapModal({ setCarMasterVisible }) {
           marker.getPosition().getLat() + 1200 / 2 / 110000,
           marker.getPosition().getLng() + 200 / 2 / 110000
         );
+
         const overlay = new kakao.maps.CustomOverlay({
           content: content,
           map: map.current,
@@ -96,16 +97,33 @@ function MapModal({ setCarMasterVisible }) {
           // image : item.imgUrl
         });
 
-        // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+        overlays.push({ marker, overlay });
+
+        overlay.setMap(null);
+
+        function closeOverlay() {
+          overlay.setMap(null);
+        }
+
         kakao.maps.event.addListener(marker, "click", function () {
           overlay.setMap(map.current);
         });
 
-        overlay.setMap(null);
-        // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-        function closeOverlay() {
-          overlay.setMap(null);
-        }
+        kakao.maps.event.addListener(map.current, "zoom_changed", function () {
+          overlays.forEach((overlayInfo) => {
+            const markerScreenPosition = map.current
+              .getProjection()
+              .pointFromCoords(overlayInfo.marker.getPosition());
+            const overlayScreenPosition = new kakao.maps.Point(
+              markerScreenPosition.x + 15,
+              markerScreenPosition.y - 150
+            );
+            const overlayLatLng = map.current
+              .getProjection()
+              .coordsFromPoint(overlayScreenPosition);
+            overlayInfo.overlay.setPosition(overlayLatLng);
+          });
+        });
       });
     }
   }, [data]);
