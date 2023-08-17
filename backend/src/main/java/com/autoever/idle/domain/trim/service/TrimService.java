@@ -1,6 +1,6 @@
 package com.autoever.idle.domain.trim.service;
 
-import com.autoever.idle.domain.carType.CarTypeRepository;
+import com.autoever.idle.domain.carType.repository.CarTypeRepository;
 import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResponse;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;

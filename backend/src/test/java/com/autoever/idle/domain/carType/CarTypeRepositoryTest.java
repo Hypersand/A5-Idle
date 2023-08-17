@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.carType;
 
+import com.autoever.idle.domain.carType.repository.CarTypeRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

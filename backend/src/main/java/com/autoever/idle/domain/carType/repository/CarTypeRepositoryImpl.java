@@ -1,4 +1,4 @@
-package com.autoever.idle.domain.carType;
+package com.autoever.idle.domain.carType.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
