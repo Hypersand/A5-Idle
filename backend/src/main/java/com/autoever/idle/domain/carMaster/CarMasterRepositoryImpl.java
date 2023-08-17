@@ -21,10 +21,11 @@ public class CarMasterRepositoryImpl implements CarMasterRepository {
         RowMapper rowMapper = BeanPropertyRowMapper.newInstance(CarMasterDto.class);
         return jdbcTemplate.query(
                 "SELECT name AS masterName, phone_number AS masterPhoneNumber, dealership AS masterDealership," +
-                        " description AS masterDescription, img_url AS masterImgUrl, latitude AS masterLatitude, longitude AS masterLongitude," +
+                        " description AS masterDescription, img_url AS masterImgUrl, marker_img_url AS masterMarkerImgUrl," +
+                        "latitude AS masterLatitude, longitude AS masterLongitude, address AS masterAddress," +
                         " ( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance " +
                         "FROM CAR_MASTER " +
-                        "GROUP BY masterName, masterPhoneNumber, masterDealership, masterDescription, masterImgUrl, masterLatitude, masterLongitude " +
+                        "GROUP BY sales_rate,masterName, masterPhoneNumber, masterDealership, masterDescription, masterImgUrl, masterLatitude, masterLongitude, masterMarkerImgUrl, masterAddress " +
                         "HAVING distance <= 10 " +
                         "ORDER BY distance " +
                         "LIMIT 20",
@@ -36,10 +37,11 @@ public class CarMasterRepositoryImpl implements CarMasterRepository {
         RowMapper rowMapper = BeanPropertyRowMapper.newInstance(CarMasterDto.class);
         return jdbcTemplate.query(
                 "SELECT name AS masterName, phone_number AS masterPhoneNumber, dealership AS masterDealership, sales_rate," +
-                        " description AS masterDescription, img_url AS masterImgUrl, latitude AS masterLatitude, longitude AS masterLongitude," +
+                        " description AS masterDescription, img_url AS masterImgUrl, marker_img_url AS masterMarkerImgUrl," +
+                        " latitude AS masterLatitude, longitude AS masterLongitude, address AS masterAddress," +
                         " ( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance " +
                         "FROM CAR_MASTER " +
-                        "GROUP BY sales_rate,masterName, masterPhoneNumber, masterDealership, masterDescription, masterImgUrl, masterLatitude, masterLongitude " +
+                        "GROUP BY sales_rate,masterName, masterPhoneNumber, masterDealership, masterDescription, masterImgUrl, masterLatitude, masterLongitude, masterMarkerImgUrl, masterAddress " +
                         "HAVING distance <= 10 " +
                         "ORDER BY sales_rate desc " +
                         "LIMIT 20",
