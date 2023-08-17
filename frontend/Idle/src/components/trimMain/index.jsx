@@ -1,5 +1,5 @@
 import { useContext, useRef } from "react"
-import { keyframes, styled } from "styled-components"
+import { styled } from "styled-components"
 import { carContext } from "../../utils/context"
 
 function TrimMain(data) {
@@ -110,28 +110,15 @@ const Dot1 = styled.div`
     cursor: pointer;
     transition : all 0.3s ease-in-out;
     background-color: #96A9DC;
-    filter: drop-shadow(0 0 0.5rem white);
+    filter: drop-shadow(0 0 0.2rem white);
     &:hover > .tooltip,
     &:active > .tooltip {
-        /* opacity: 1; */
-        /* height:auto */
-        display : block;
-    }
-
-    /* animation: ${keyframes`
-    0% {
         opacity: 1;
-        scale: 1.0;
-    }
-    50% {
-        opacity: 0.7;
-        scale: 0.8;
-    }
-    100% {
+        top: 5px;
         opacity: 1;
-        scale: 1.0;
+        visibility: visible;
+        pointer-events: auto;
     }
-    `} 3s infinite; */
 `
 const InnerDots = styled.div`
     width: 10px;
@@ -141,8 +128,9 @@ const InnerDots = styled.div`
     transform: translate(50%,50%);
 `
 const OptionToolTip = styled.div`
-    /* opacity: 0; */
-    display: none;
+    opacity: 0;
+    pointer-events:none;
+    top: 10px;
     position: absolute;
     border-radius: 10px;
     z-index: 100;
@@ -151,8 +139,7 @@ const OptionToolTip = styled.div`
     align-items: flex-start;
     gap: 8px;
     width: max-content;
-    transition: all 0.2s linear;
-    transform: translate(-45%,-130%);
+    transform: translate(-42%,-130%);
     color: var(--navy-blue-5, var(--navy-blue-5, #1A3276));
     font-family: "Hyundai Sans Text KR";
     font-size: 13px;
@@ -160,4 +147,18 @@ const OptionToolTip = styled.div`
     font-weight: 400;
     line-height: 165%;
     letter-spacing: -0.39px;
+
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    &::before{
+        position: absolute;
+        content: "";
+        height: 8px;
+        width: 8px;
+        background: #E7ECF9;
+        bottom: -3px;
+        left: 50%;
+        transform: translate(-50%) rotate(45deg);
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
 `
