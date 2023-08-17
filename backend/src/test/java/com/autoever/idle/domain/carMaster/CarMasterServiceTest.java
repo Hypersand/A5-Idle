@@ -38,7 +38,7 @@ class CarMasterServiceTest {
         //given
         List<CarMasterDto> carMasterDtoList = new ArrayList<>();
         CarMasterDto carMasterDto = new CarMasterDto("김팰리", "010111111", "왕십리점",
-                "김팰리입니다", "사진", 36.1234, 126.1234);
+                "김팰리입니다", "사진", "마커", 36.1234, 126.1234, "주소");
         carMasterDtoList.add(carMasterDto);
         given(carMasterRepository.findSortedCarMasterByDistance(anyDouble(), anyDouble())).willReturn(carMasterDtoList);
 
@@ -56,7 +56,7 @@ class CarMasterServiceTest {
         //given
         List<CarMasterDto> carMasterDtoList = new ArrayList<>();
         CarMasterDto carMasterDto = new CarMasterDto("김팰리", "010111111", "왕십리점",
-                "김팰리입니다", "사진", 36.1234, 126.1234);
+                "김팰리입니다", "사진", "마커", 36.1234, 126.1234, "주소");
         carMasterDtoList.add(carMasterDto);
         given(carMasterRepository.findSortedCarMasterBySaleRate(anyDouble(), anyDouble())).willReturn(carMasterDtoList);
 
