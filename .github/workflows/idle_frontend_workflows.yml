@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+        KAKAO_MAP_KEY: ${{ secrets.KAKAO_MAP_KEY }}
     defaults:
       run:
         working-directory: ./frontend/Idle
