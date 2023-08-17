@@ -17,6 +17,7 @@ function OptionBox({
   optionName,
   optionPrice,
   optionPurchaseRate,
+  setTooltipState,
   selectedOption,
   setSelectedOption,
 }) {
@@ -46,6 +47,7 @@ function OptionBox({
     });
   }
   function toggleConfuse(e) {
+    setTooltipState();
     e.stopPropagation();
     popPayload(optionName);
     if (state !== CONFUSE)
@@ -55,6 +57,7 @@ function OptionBox({
       });
   }
   function toggleAdd(e) {
+    setTooltipState();
     e.stopPropagation();
     popPayload(optionName);
     if (state !== ADD)
