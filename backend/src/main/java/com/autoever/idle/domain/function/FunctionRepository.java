@@ -11,8 +11,6 @@ import java.util.List;
 public interface FunctionRepository {
 
     List<MyTrimFunctionDto> findMyTrimFunctions();
-
-    List<AdditionalFunctionBillDto> findAdditonalFunctions(List<Long> additionalFunctionIds);
     List<MyTrimDto> findTrimBySelectFunctions(int functionId);
     String checkMyTrimFunction(int functionId);
     MyTrimOptionDto findOptionBySelectFunction(Long functionId);
