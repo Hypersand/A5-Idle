@@ -22,19 +22,14 @@ public class OptionService {
         List<Long> notActivatedOptionIdList = optionRepository.findNotActivatedOptionIdList(optionRequest.getEngineId(), optionRequest.getSelectedOptionIds());
         List<OptionFunctionsDto> optionFunctionsDtoList = new ArrayList<>();
 
-        System.out.println("------------");
-        System.out.println(functionRepository.findFunctionsInAdditionalOption(13L).get(0).getWheelLogoImgUrl());
-
         for (OptionDto optionDto : additionalOptionList) {
             if (notActivatedOptionIdList.contains(optionDto.getOptionId())) {
                 optionDto.setOptionCanSelect("false");
             }
-
             optionFunctionsDtoList.add(OptionFunctionsDto.create(
                     optionDto,
                     functionRepository.findFunctionsInAdditionalOption(optionDto.getOptionId()))
             );
-
         }
 
         sortByPurchaseRateAndName(optionFunctionsDtoList);

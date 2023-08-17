@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class OptionRepositoryImpl implements OptionRepository{
+public class OptionRepositoryImpl implements OptionRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -38,8 +38,14 @@ public class OptionRepositoryImpl implements OptionRepository{
 
     @Override
     public List<Long> findNotActivatedOptionIdList(Long engineId, List<Long> selectedOptionIdList) {
-        String query = "SELECT os.not_activated_option_id FROM OPTION_STATUS os " +
-                "WHERE os.selected_engine_id = :engineId OR os.selected_option_id IN (:selectedOptionIdList)";
+        String query;
+        if (selectedOptionIdList.isEmpty()) {
+            query = "SELECT os.not_activated_option_id FROM OPTION_STATUS os " +
+                    "WHERE os.selected_engine_id = :engineId";
+        } else {
+            query = "SELECT os.not_activated_option_id FROM OPTION_STATUS os " +
+                    "WHERE os.selected_engine_id = :engineId OR os.selected_option_id IN (:selectedOptionIdList)";
+        }
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("engineId", engineId);
