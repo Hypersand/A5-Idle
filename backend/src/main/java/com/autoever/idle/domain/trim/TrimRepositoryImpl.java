@@ -1,7 +1,10 @@
 package com.autoever.idle.domain.trim;
 
+import com.autoever.idle.domain.trim.dto.TrimDescriptionDto;
 import com.autoever.idle.domain.trim.dto.TrimDto;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -29,5 +32,13 @@ public class TrimRepositoryImpl implements TrimRepository {
                 ),
                 carTypeId
         );
+    }
+
+    public TrimDescriptionDto findByTrimId(Long trimId) {
+        String query = "select description as trimDescription from TRIM where trim_id = ?";
+
+        RowMapper<TrimDescriptionDto> rowMapper = BeanPropertyRowMapper.newInstance(TrimDescriptionDto.class);
+
+        return jdbcTemplate.queryForObject(query, rowMapper, trimId);
     }
 }

@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.trim;
 
+import com.autoever.idle.domain.trim.dto.TrimDescriptionDto;
 import com.autoever.idle.domain.trim.dto.TrimDto;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,5 +33,15 @@ class TrimRepositoryTest {
         List<TrimDto> trims = trimRepository.findAll(carTypeId);
 
         softAssertions.assertThat(trims.size()).isEqualTo(4);
+    }
+
+    @Test
+    @DisplayName("")
+    void findByTrimId() {
+        Long trimId = 1L;
+
+        TrimDescriptionDto trimDescriptionDto = trimRepository.findByTrimId(trimId);
+
+        softAssertions.assertThat(trimDescriptionDto.getTrimDescription()).isEqualTo("실용적이고 기본적인 기능을 갖춘 베이직 트림");
     }
 }

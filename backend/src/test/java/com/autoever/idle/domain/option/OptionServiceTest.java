@@ -38,15 +38,16 @@ class OptionServiceTest {
     @InjectSoftAssertions
     private SoftAssertions softAssertions;
 
-    private List<OptionDto> additionalOptionList;
-    private List<Long> notActivatedOptionIdList = List.of(1L, 15L);
-    private List<OptionFunctionsDto> optionFunctionsDtoList;
+    private List<OptionDto> additionalOptionListSortedByPrice;
+    private List<OptionDto> additionalOptionListSortedByPurchaseRate;
+    private List<Long> notActivatedOptionIdList;
     private List<FunctionDto> functionDtoList;
 
     @BeforeEach
     void setUp() {
-        additionalOptionList = new ArrayList<>();
-        optionFunctionsDtoList = new ArrayList<>();
+        notActivatedOptionIdList = List.of(1L, 15L);
+        additionalOptionListSortedByPrice = new ArrayList<>();
+        additionalOptionListSortedByPurchaseRate = new ArrayList<>();
         functionDtoList = new ArrayList<>();
         functionDtoList.add(new FunctionDto(
                 119L,
@@ -71,52 +72,60 @@ class OptionServiceTest {
                 "차량 보호",
                 "true");
 
-        additionalOptionList.add(optionDto1);
-        additionalOptionList.add(optionDto2);
-
-        OptionFunctionsDto optionFunctionsDto1 = new OptionFunctionsDto(
-                optionDto1.getOptionId(),
-                optionDto1.getOptionName(),
-                optionDto1.getOptionPrice(),
-                optionDto1.getOptionPurchaseRate(),
-                optionDto1.getOptionDescription(),
-                optionDto1.getOptionCategory(),
-                optionDto1.getOptionCanSelect(),
-                functionDtoList
+        OptionDto optionDto3 = new OptionDto(
+                13L,
+                "알콘(alcon) 단조 브레이크 &amp; 20인치 휠",
+                490000L,
+                "구매자 60%가 선택",
+                "현대자동차의 기술력과 노하우가 결합된 커스터마이징 브랜드 N 퍼포먼스의 알콘(alcon)단조 브레이크 & 20인치 휠 패키지",
+                "스타일&퍼포먼스",
+                "true"
         );
 
-        OptionFunctionsDto optionFunctionsDto2 = new OptionFunctionsDto(
-                optionDto2.getOptionId(),
-                optionDto2.getOptionName(),
-                optionDto2.getOptionPrice(),
-                optionDto2.getOptionPurchaseRate(),
-                optionDto2.getOptionDescription(),
-                optionDto2.getOptionCategory(),
-                optionDto2.getOptionCanSelect(),
-                functionDtoList
-        );
-        optionFunctionsDtoList.add(optionFunctionsDto1);
-        optionFunctionsDtoList.add(optionFunctionsDto2);
+        additionalOptionListSortedByPrice.add(optionDto1);
+        additionalOptionListSortedByPrice.add(optionDto2);
+        additionalOptionListSortedByPurchaseRate.add(optionDto2);
+        additionalOptionListSortedByPurchaseRate.add(optionDto3);
     }
 
     @Test
-    @DisplayName("추가 옵션 정보와 포함하는 기능 정보 목록을 반환한다")
+    @DisplayName("추가 옵션 정보는 가격순으로 정렬되고 포함하는 기능 정보 목록을 반환한다")
     void getOptionFunctions() {
         //given
-        Long trimId = 1L;
-        Long engineId = 1L;
         OptionRequest optionRequest = new OptionRequest(1L, List.of(1L, 15L), 1L);
 
         //when
-        when(optionRepository.findAdditionalOptionList(any())).thenReturn(additionalOptionList);
+        when(optionRepository.findAdditionalOptionList(any())).thenReturn(additionalOptionListSortedByPrice);
         when(optionRepository.findNotActivatedOptionIdList(any(), anyList())).thenReturn(notActivatedOptionIdList);
         when(functionRepository.findFunctionsInAdditionalOption(any())).thenReturn(functionDtoList);
         List<OptionFunctionsDto> optionFunctions = optionService.getOptionFunctions(optionRequest);
 
         //then
-        softAssertions.assertThat(optionFunctions.get(0).getOptionId()).isEqualTo(optionFunctionsDtoList.get(1).getOptionId());
-        softAssertions.assertThat(optionFunctions.get(0).getOptionName()).isEqualTo(optionFunctionsDtoList.get(1).getOptionName());
-        softAssertions.assertThat(optionFunctions.get(0).getFunctions().get(0).getFunctionId()).
-                isEqualTo(optionFunctionsDtoList.get(1).getFunctions().get(0).getFunctionId());
+        softAssertions.assertThat(optionFunctions.get(0).getOptionId()).isEqualTo(additionalOptionListSortedByPrice.get(1).getOptionId());
+        softAssertions.assertThat(optionFunctions.get(0).getOptionName()).isEqualTo(additionalOptionListSortedByPrice.get(1).getOptionName());
+        softAssertions.assertThat(optionFunctions.get(1).getOptionId()).isEqualTo(additionalOptionListSortedByPrice.get(0).getOptionId());
+        softAssertions.assertThat(optionFunctions.get(1).getOptionName()).isEqualTo(additionalOptionListSortedByPrice.get(0).getOptionName());
     }
+
+    @Test
+    @DisplayName("추가 옵션의 가격이 똑같으면 구매비율 내림차순으로 정렬한다")
+    void getOptionFunctions_SortingByPurchaseRate() {
+        //given
+        OptionRequest optionRequest = new OptionRequest(1L, List.of(1L, 15L), 1L);
+
+        //when
+        when(optionRepository.findAdditionalOptionList(any())).thenReturn(additionalOptionListSortedByPurchaseRate);
+        when(optionRepository.findNotActivatedOptionIdList(any(), anyList())).thenReturn(notActivatedOptionIdList);
+        when(functionRepository.findFunctionsInAdditionalOption(any())).thenReturn(functionDtoList);
+        List<OptionFunctionsDto> optionFunctions = optionService.getOptionFunctions(optionRequest);
+
+        //then
+        softAssertions.assertThat(optionFunctions.get(0).getOptionId()).isEqualTo(additionalOptionListSortedByPurchaseRate.get(1).getOptionId());
+        softAssertions.assertThat(optionFunctions.get(0).getOptionDescription()).isEqualTo(additionalOptionListSortedByPurchaseRate.get(1).getOptionDescription());
+        softAssertions.assertThat(optionFunctions.get(0).getOptionName()).isEqualTo(additionalOptionListSortedByPurchaseRate.get(1).getOptionName());
+        softAssertions.assertThat(optionFunctions.get(1).getOptionId()).isEqualTo(additionalOptionListSortedByPurchaseRate.get(0).getOptionId());
+        softAssertions.assertThat(optionFunctions.get(1).getOptionDescription()).isEqualTo(additionalOptionListSortedByPurchaseRate.get(0).getOptionDescription());
+        softAssertions.assertThat(optionFunctions.get(1).getOptionName()).isEqualTo(additionalOptionListSortedByPurchaseRate.get(0).getOptionName());
+    }
+
 }
