@@ -9,6 +9,7 @@ import { createPortal } from "react-dom";
 import Address from "./Address";
 import { getAPI } from "../../utils/api";
 import { DISTANCE, PATH, SALERATE } from "../../utils/constants";
+import CustomOverlay from "./CustomOverlay";
 const { kakao } = window;
 
 let cachedData = null;
@@ -55,7 +56,6 @@ function MapModal({ setCarMasterVisible }) {
   }, []);
 
   useEffect(() => {
-    console.log("data");
     const container = document.getElementById("map");
 
     const options = {
@@ -75,19 +75,37 @@ function MapModal({ setCarMasterVisible }) {
         const imageSize = new kakao.maps.Size(50, 50);
         const markerImage = new kakao.maps.MarkerImage(item.masterImgUrl, imageSize);
 
-        new kakao.maps.Marker({
+        const marker = new kakao.maps.Marker({
           map: map.current,
           position: new kakao.maps.LatLng(item.masterLatitude, item.masterLongitude),
           title: item.masterDealerShip,
           // image: markerImage,
         });
+
+        const content = CustomOverlay(item, "경기도", closeOverlay);
+        const overlay = new kakao.maps.CustomOverlay({
+          content: content,
+          map: map.current,
+          position: marker.getPosition(),
+          // image : item.imgUrl
+        });
+
+        // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+        kakao.maps.event.addListener(marker, "click", function () {
+          overlay.setMap(map.current);
+        });
+
+        overlay.setMap(null);
+        // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+        function closeOverlay() {
+          overlay.setMap(null);
+        }
       });
     }
   }, [data]);
 
   //위치 수정시
   useEffect(() => {
-    console.log(latitude, longitude);
     geocoder.coord2Address(longitude, latitude, function (result, status) {
       if (status === kakao.maps.services.Status.OK) {
         result[0].road_address === null
@@ -176,8 +194,7 @@ function MapModal({ setCarMasterVisible }) {
         </StBtnContainer>
 
         <StMainContainer>
-          <div id="map" style={{ width: "626px", height: "428px" }}></div>;
-          {/* <Map map={map.current} data={data} latitude={latitude} longitude={longitude} /> */}
+          <div id="map" style={{ width: "626px", height: "428px" }}></div>
           {!addressVisible ? (
             <StMain>
               <StTitle>카마스터 찾기</StTitle>
