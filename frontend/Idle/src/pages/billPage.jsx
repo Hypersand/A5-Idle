@@ -52,6 +52,7 @@ function BillPage() {
   const [tooltipStatus, setTooltipStatus] = useState(true);
   function carMasterBtnClicked() {
     setCarMasterVisible(true);
+    setTooltipStatus(false);
   }
 
   return (
