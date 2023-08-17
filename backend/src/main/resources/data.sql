@@ -1339,9 +1339,9 @@ INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (11, 13, null);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (13, 11, null);
 
-INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('김팰리', '010-0000-00', '왕십리 지점', '고객님의 모든 구매 과정에 정성을 다하겠습니다.', 30, null, 36.1234, 126.1234);
-INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('정현대', '010-0000-00', '한양 대리점', '안녕하세요 믿음을 주는 카마스터 정현대입니다.', 20, null, 36.1324, 126.1324);
-INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('심포니', '010-0000-00', '마장 대리점', '고객님을 위한 최고의 차량을 추천해드릴게요.', 10, null, 36.1423, 126.1432);
+INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('김팰리', '010-0000-0000', '왕십리 지점', '고객님의 모든 구매 과정에 정성을 다하겠습니다.', 30, null, 36.1234, 126.1234);
+INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('정현대', '010-0000-0000', '한양 대리점', '안녕하세요 믿음을 주는 카마스터 정현대입니다.', 20, null, 36.1324, 126.1324);
+INSERT INTO CAR_MASTER (name, phone_number, dealership, description, sales_rate, img_url, latitude, longitude) VALUES ('심포니', '010-0000-0000', '마장 대리점', '고객님을 위한 최고의 차량을 추천해드릴게요.', 10, null, 36.1423, 126.1432);
 
 INSERT INTO TRIM_THUMBNAIL_FUNCTION (width_pixel, height_pixel, name, trim_id, description) VALUES (300, 72, '베젤리스 인사이드 미러', 1, '-');
 INSERT INTO TRIM_THUMBNAIL_FUNCTION (width_pixel, height_pixel, name, trim_id, description) VALUES (257, 97, '12.3인치 내비게이션', 1, '와이드하고 품격 있는 실내공간을 연출하고 고해상도 대화면으로 뛰어난 시인성과 최첨단 인포테인먼트 기능을 제공합니다.주요기능 : 대화면 HD급 고해상도(1,920x720) 모니터, 내비게이션 자동 무선 업데이트, 개인화 프로필, 서버형 음성인식 시스템, 블루링크');

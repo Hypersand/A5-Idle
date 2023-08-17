@@ -25,7 +25,7 @@ create table if not exists  CAR_MASTER
     car_master_id bigint auto_increment
     primary key,
     name          varchar(10) null,
-    phone_number  varchar(11) null,
+    phone_number  varchar(13) null,
     dealership    varchar(20) null,
     description   text        null,
     sales_rate    int         null,
