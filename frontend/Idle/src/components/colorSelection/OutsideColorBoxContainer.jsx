@@ -7,15 +7,15 @@ import { CHANGE_EXTERIOR_COLOR } from "../../utils/actionType";
 function OutsideColorBoxContainer({ data }) {
   const { car, dispatch } = useContext(carContext);
 
-  function boxClicked(name, price) {
-    dispatch({ type: CHANGE_EXTERIOR_COLOR, payload: { name: name, price: price } });
+  function boxClicked(id, name, price) {
+    dispatch({ type: CHANGE_EXTERIOR_COLOR, payload: { exteriorId: id, name: name, price: price } });
   }
 
   function renderBox() {
     return data?.map((item) => {
       return (
         <OutsideColorBox
-          onClick={() => boxClicked(item.exteriorName, item.exteriorPrice)}
+          onClick={() => boxClicked(item.exteriorId, item.exteriorName, item.exteriorPrice)}
           key={item.exteriorId}
           data={item}
           isSelected={car.color.exterior.name === item.exteriorName}

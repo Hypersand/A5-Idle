@@ -13,9 +13,11 @@ import palette from "styles/palette";
 import { ADD, CONFUSE, NONE } from "utils/constants";
 
 function OptionBox({
+  optionId,
   optionName,
   optionPrice,
   optionPurchaseRate,
+  setTooltipState,
   selectedOption,
   setSelectedOption,
 }) {
@@ -45,16 +47,24 @@ function OptionBox({
     });
   }
   function toggleConfuse(e) {
+    setTooltipState();
     e.stopPropagation();
     popPayload(optionName);
     if (state !== CONFUSE)
-      dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
+      dispatch({
+        type: PUSH_CONFUSING_OPTION,
+        payload: { name: optionName, price: optionPrice, optionId: optionId },
+      });
   }
   function toggleAdd(e) {
+    setTooltipState();
     e.stopPropagation();
     popPayload(optionName);
     if (state !== ADD)
-      dispatch({ type: PUSH_ADDITIONAL_OPTION, payload: { name: optionName, price: optionPrice } });
+      dispatch({
+        type: PUSH_ADDITIONAL_OPTION,
+        payload: { name: optionName, price: optionPrice, optionId: optionId },
+      });
   }
   return (
     <>
@@ -74,7 +84,7 @@ function OptionBox({
             </Title>
           </StContentHeader>
           <Price $isSelected={isSelected} $state={state}>
-            + {optionPrice.toLocaleString()} 원
+            + {optionPrice?.toLocaleString()} 원
           </Price>
         </StContent>
         <StButtonContainer>
@@ -99,7 +109,7 @@ const StContainer = styled.div`
       if ($isSelected) {
         switch ($state) {
           case NONE:
-            return `${palette.NavyBlue_1}`;
+            return `${palette.NavyBlue_5}`;
           case CONFUSE:
             return `${palette.Gold_5}`;
           case ADD:

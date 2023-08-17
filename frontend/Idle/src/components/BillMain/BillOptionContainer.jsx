@@ -1,98 +1,45 @@
 import BillOptionBox from "./BillOptionBox";
-import hyundai from "images/hyundai.svg";
 import { styled } from "styled-components";
 import palette from "../../styles/palette";
 import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import TrimDetailModal from "../trimDetailModal/TrimDetailModal";
+import { carContext } from "../../utils/context"
 
-// const additional = [
-//   {
-//     functionId: 1234,
-//     functionOptionName: "주차보조시스템II",
-//     functionCategory: "안전",
-//     functionImgUrl: hyundai,
-//     functionDescription:
-//       "안전한 차량 경험을 위한 여섯 가지 기능 모음 '컴포트 2'를 통해 편리한 드라이빙을 즐겨보세요",
-//     functionPrice: 100000000,
-//   },
-//   {
-//     functionId: 5678,
-//     functionCategory: "내장",
-//     functionOptionName: "현대 스마트 센스",
-//     functionImgUrl: hyundai,
-//     functionDescription:
-//       "안전한 차량 경험을 위한 여섯 가지 기능 모음 '컴포트 2'를 통해 편리한 드라이빙을 즐겨보세요",
-//     functionPrice: 100000000,
-//   },
-//   {
-//     functionId: 9123,
-//     functionCategory: "외장",
-//     functionOptionName: "컴포트 Ⅱ",
-//     functionImgUrl: hyundai,
-//     functionDescription:
-//       "안전한 차량 경험을 위한 여섯 가지 기능 모음 '컴포트 2'를 통해 편리한 드라이빙을 즐겨보세요",
-//     functionPrice: 100000000,
-//   },
-// ];
-
-// const confusing = [
-//   {
-//     functionId: 1234,
-//     functionOptionName: "[N퍼포먼스파츠] 20인치 다크 스퍼터링 휠",
-//     functionCategory: "안전",
-//     functionImgUrl: hyundai,
-//     functionDescription:
-//       "안전한 차량 경험을 위한 여섯 가지 기능 모음 '컴포트 2'를 통해 편리한 드라이빙을 즐겨보세요",
-//     functionPrice: 100000000,
-//   },
-//   {
-//     functionId: 5678,
-//     functionCategory: "내장",
-//     functionOptionName: "[N퍼포먼스파츠] 20인치 다크 스퍼터링 휠",
-//     functionImgUrl: hyundai,
-//     functionDescription:
-//       "안전한 차량 경험을 위한 여섯 가지 기능 모음 '컴포트 2'를 통해 편리한 드라이빙을 즐겨보세요",
-//     functionPrice: 100000000,
-//   },
-//   {
-//     functionId: 9123,
-//     functionCategory: "외장",
-//     functionOptionName: "[N퍼포먼스파츠] 20인치 다크 스퍼터링 휠",
-//     functionImgUrl: hyundai,
-//     functionDescription:
-//       "안전한 차량 경험을 위한 여섯 가지 기능 모음 '컴포트 2'를 통해 편리한 드라이빙을 즐겨보세요",
-//     functionPrice: 100000000,
-//   },
-// ];
-
-function BillOptionContainer({ added, confused }) {
+function BillOptionContainer({ added, confused, data }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const { car } = useContext(carContext)
+  const addedData = data && data?.selectedOptions.filter((item) => added.some((opt) => opt.name === item.optionName))
+  const confusedData = data && data?.selectedOptions.filter((item) => confused.some((opt) => opt.name === item.optionName))
   const navigate = useNavigate();
   function renderAddOptions() {
-    return added.map((item, index) => <BillOptionBox isAdded={true} key={index} data={item} />);
+    return addedData?.map((item, index) => <BillOptionBox isAdded={true} key={index} data={item} />);
   }
   function renderConfusingOptions() {
-    return confused.map((item, index) => <BillOptionBox isAdded={false} key={index} data={item} />);
+    return confusedData?.map((item, index) => <BillOptionBox isAdded={false} key={index} data={item} />);
   }
 
   function changeOptionBtnClicked() {
-    navigate("/option");
+    navigate("/option/all");
   }
+
   return (
     <StContainer>
       <StTop>
         <StTitle>옵션</StTitle>
-        <StSub>기본 포함 옵션 {">"}</StSub>
+        <StSub onClick={() => { setIsOpen(true) }}>기본 포함 옵션 {">"}</StSub>
       </StTop>
 
       <StMain>
         <StChangeBtn onClick={changeOptionBtnClicked}>변경하기 {">"}</StChangeBtn>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <StOptionType>추가 옵션</StOptionType>
-          <StBlock>{renderAddOptions()}</StBlock>
-
+          <StBlock>{added.length ? renderAddOptions() : "추가한 옵션이 없습니다."}</StBlock>
           <StOptionType>고민 옵션</StOptionType>
-          <StBlock>{renderConfusingOptions()}</StBlock>
+          <StBlock>{confused.length ? renderConfusingOptions() : "고민한 옵션이 없습니다."}</StBlock>
         </div>
       </StMain>
+      {isOpen ? <TrimDetailModal trim={car.trim.name} desc={data?.trimDescription} setModalOff={() => { setIsOpen(false) }} defaultFunctions={data?.defaultFunctions} modalPosition={"carMasterModal"} /> : null}
     </StContainer>
   );
 }
@@ -109,7 +56,7 @@ const StTop = styled.div`
 `;
 const StTitle = styled.div`
   color: ${palette.Black};
-  font-family: Hyundai Sans Head KR;
+  font-family: "Hyundai Sans Head KR";
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -118,13 +65,14 @@ const StTitle = styled.div`
 `;
 const StSub = styled.div`
   color: ${palette.CoolGrey_3};
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: 28px;
   letter-spacing: -0.6px;
   text-align: right;
+  cursor: pointer;
 `;
 
 const StMain = styled.div`
@@ -135,7 +83,7 @@ const StMain = styled.div`
 
 const StChangeBtn = styled.div`
   color: ${palette.CoolGrey_2};
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -151,7 +99,7 @@ const StOptionType = styled.p`
   width: 78px;
   height: 33px;
   color: ${palette.Black};
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 22px;
   font-style: normal;
   font-weight: 700;

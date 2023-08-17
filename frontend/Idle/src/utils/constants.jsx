@@ -10,16 +10,20 @@ export const PATH = {
   DETAIL: `trims/models?`,
   COLOR: {
     EXTERIOR: `trims/exterior/colors?`,
-    INTERIOR: `trims/exterior/colors?`,
+    INTERIOR: `trims/interior/colors?`,
   },
   OPTION: {
-    DEFAULT: `trims/default/options`,
+    DEFAULT: `trims/default?`,
     GET: `trims/add/options`,
     SELECT: `trims/add/select`,
   },
-  CARMASTER: `find/car/masters`,
+  CARMASTER: {
+    SALERATE: `find/car/masters/salerate?`,
+    DISTANCE: `find/car/masters/distance?`,
+  },
   BILL: `result/bill`,
 };
+
 export const TYPE = {
   trim: "트림",
   detail: "세부 모델",
@@ -70,6 +74,8 @@ export const NONE = "none";
 export const PEAK_OUTPUT_KR = "최고 출력";
 export const MAX_TORQUE_KR = "최대 토크";
 export const CONSUMTION_KR = "복합 연비";
+export const DISTANCE = "거리순";
+export const SALERATE = "판매량순";
 
 export let clickedOptionPage = false;
 
@@ -132,36 +138,44 @@ export const DEFAULT_BODY_TYPE = {
 };
 export const DEFAULT_EXTERIROR_COLOR = {
   Exclusive: {
+    exteriorId: 1,
     name: "어비스 블랙 펄",
     price: 0,
   },
   "Le Blanc": {
+    exteriorId: 1,
     name: "어비스 블랙 펄",
     price: 0,
   },
   Prestige: {
+    exteriorId: 1,
     name: "어비스 블랙 펄",
     price: 0,
   },
   Calligraphy: {
+    exteriorId: 1,
     name: "어비스 블랙 펄",
     price: 0,
   },
 };
 export const DEFAULT_INTERIROR_COLOR = {
   Exclusive: {
+    interiorId: 42,
     name: "인조가죽(블랙)",
     price: 0,
   },
   "Le Blanc": {
+    interiorId: 48,
     name: "퀼팅천연(블랙)",
     price: 0,
   },
   Prestige: {
+    interiorId: 24,
     name: "네이비",
     price: 0,
   },
   Calligraphy: {
+    interiorId: 1,
     name: "블랙(고급)",
     price: 0,
   },
@@ -192,6 +206,7 @@ export const defaultOption = [
 
 export const emptyCar = {
   trim: {
+    trimdId: 1,
     name: "Exclusive",
     price: 40000000,
   },
@@ -267,4 +282,5 @@ export const findTrimInitialState = {
   showOptionAlert: false,
   functionList: [],
   disableFunctionId: [],
+  optionAlert: [],
 };

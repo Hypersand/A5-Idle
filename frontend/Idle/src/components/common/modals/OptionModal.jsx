@@ -5,23 +5,30 @@ import { ReactComponent as X } from "images/esc.svg";
 import { useContext } from "react";
 import { stateContext, dispatchContext } from "utils/context";
 import palette from "styles/palette";
-import { SET_SELECTED_OPTION } from "../../../utils/actionType";
+import { PUSH_SELECTED_OPTION } from "../../../utils/actionType";
 
 function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
   const { state } = useContext(stateContext);
   const { stateDispatch } = useContext(dispatchContext);
   function selectedBtnClicked() {
-    if (state.selectedOption.includes(data.name)) {
+    if (state.selectedOption.includes(data.functionId)) {
       setModalVisible(false);
       return;
     } else {
-      const newSelectedOption = [...state.selectedOption, data.name];
-      stateDispatch({ type: SET_SELECTED_OPTION, payload: newSelectedOption });
+      stateDispatch({ type: PUSH_SELECTED_OPTION, payload: data.functionId });
       setIsSelected(true);
       setModalVisible(false);
     }
   }
-  console.log(data);
+
+  // function dataNameCalc() {
+  //   const dataName = data.name;
+  //   if (dataName.length > 23) {
+  //     return dataName.slice(0, 23) + "...";
+  //   }
+  //   return dataName;
+  // }
+
   return createPortal(
     <ModalContainer onClick={onClick}>
       <ModalBackground onClick={() => setModalVisible(false)} />

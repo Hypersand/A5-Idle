@@ -1,27 +1,17 @@
 import { styled } from "styled-components";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { carContext } from "utils/context";
 import { CHANGE_INTERIOR_COLOR } from "utils/actionType";
 import palette from "styles/palette";
 
 function InnerColorBoxContainer({ data }) {
   const { car, dispatch } = useContext(carContext);
-
-  useEffect(() => {
-    const payload = {
-      name: data.carInteriorColors[0].interiorName,
-      price: data.carInteriorColors[0].interiorPrice,
-    };
-    dispatch({
-      type: CHANGE_INTERIOR_COLOR,
-      payload: payload,
-    });
-  }, []);
   function innerColorClick(item) {
     if (car.color.interior.name !== item.interiorName) {
       dispatch({
         type: CHANGE_INTERIOR_COLOR,
         payload: {
+          interiorId: item.interiorId,
           name: item.interiorName,
           price: item.interiorPrice,
         },

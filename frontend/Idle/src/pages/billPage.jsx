@@ -1,21 +1,41 @@
 import { styled } from "styled-components";
-
 import Header from "layout/Header";
 import Car3D from "content/Car3D";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
-import { useContext,useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { carContext } from "utils/context";
 import BillMain from "billMain/BillMain";
-import BillOptionContainer from "billMain/BillOptionContainer";
 import MapModal from "../components/BillMain/MapModal";
+import CarMasterTooltip from "toolTips/carMasterTooltip";
+import { submitPostAPI } from "utils/api";
+import { PATH } from "utils/constants";
+
+let cachedBillData = null;
 
 function BillPage() {
   const { car } = useContext(carContext);
   const [carMasterVisible, setCarMasterVisible] = useState(false);
+  const [tooltipState, setTooltipState] = useState(true);
+  const [billData, setBillData] = useState(cachedBillData);
   function carMasterBtnClicked() {
     setCarMasterVisible(true);
+    setTooltipState(false);
   }
+  let additionalOptionIds = [];
+  car.option.additional.map((item) => additionalOptionIds.push(item.optionId));
+  car.option.confusing.map((item) => additionalOptionIds.push(item.optionId));
+  useEffect(() => {
+    submitPostAPI(PATH.BILL, {
+      trimId: car.trim.trimId,
+      exteriorId: car.color.exterior.exteriorId,
+      interiorId: car.color.interior.interiorId,
+      selectedOptionIds: additionalOptionIds,
+    }).then((result) => {
+      setBillData(result);
+      cachedBillData = result;
+    });
+  }, []);
 
   return (
     <StWrapper>
@@ -39,14 +59,14 @@ function BillPage() {
             <h1>{car.getAllSum().toLocaleString()} 원</h1>
           </StConfirmText>
           <StButtonContainer>
+            <StTooltipContainer>
+              <StTooltip isActive={tooltipState} />
+            </StTooltipContainer>
             <WhiteButton text={"공유하기"} />
             <BlueButton text={"카마스터 찾기"} onClick={carMasterBtnClicked} />
           </StButtonContainer>
         </StConfirmContainer>
-        <BillMain />
-
-        <BillOptionContainer added={car.option.additional} confused={car.option.confusing} />
-
+        <BillMain data={billData} />
         {carMasterVisible && <MapModal setCarMasterVisible={setCarMasterVisible} />}
       </StContainer>
     </StWrapper>
@@ -153,5 +173,14 @@ const StButtonContainer = styled.div`
   flex-direction: column;
   gap: 4px;
   left: 998px;
-  top: 580px;
+  top: 503px;
+`;
+
+const StTooltip = styled(CarMasterTooltip)``;
+
+const StTooltipContainer = styled.div`
+  position: relative;
+  right: 23%;
+  width: 199px;
+  height: 65px;
 `;
