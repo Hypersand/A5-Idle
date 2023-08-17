@@ -16,14 +16,14 @@ function WarningModal({ title, setModalVisible, onSubmitClick, detail = "" }) {
     setAnimationstate(true);
     setTimeout(() => {
       setModalVisible(false);
-    }, 300);
+    }, 200);
   }
   function submitClicked() {
     setAnimationstate(true);
     setTimeout(() => {
       setModalVisible(false);
       onSubmitClick()
-    }, 300);
+    }, 200);
   }
 
   return createPortal(
@@ -64,8 +64,6 @@ const StContainer = styled.div`
     line-height: 24px; /* 150% */
     letter-spacing: -0.48px;
     }
-  transition: opacity 0.1s ease-in-out;
-    animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.3s ease;
 `;
 const fadeIn = keyframes`
   from {
@@ -111,6 +109,8 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.1s ease-in-out;
+    animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.2s ease;
 `;
 const ModalBackground = styled.div`
   position: absolute;
