@@ -10,11 +10,13 @@ import MapModal from "../components/BillMain/MapModal";
 import CarMasterTooltip from "toolTips/carMasterTooltip";
 import { submitPostAPI } from "utils/api";
 import { PATH } from "utils/constants";
+import WarningModal from "../components/common/modals/WarningModal";
 
 let cachedBillData = null;
 
 function BillPage() {
   const { car } = useContext(carContext);
+  const [modalVisible, setModalVisible] = useState(true);
   const [carMasterVisible, setCarMasterVisible] = useState(false);
   const [tooltipState, setTooltipState] = useState(true);
   const [billData, setBillData] = useState(cachedBillData);
@@ -26,7 +28,9 @@ function BillPage() {
   car.option.additional.map((item) => additionalOptionIds.push(item.optionId));
   car.option.confusing.map((item) => additionalOptionIds.push(item.optionId));
   useEffect(() => {
-    if (car.exteriorId !== undefined) {
+    if (car.exteriorId === undefined) {
+      setModalVisible(true);
+    } else {
       submitPostAPI(PATH.BILL, {
         trimId: car.trim.trimId,
         exteriorId: car.color.exterior.exteriorId,
@@ -38,9 +42,19 @@ function BillPage() {
       });
     }
   }, []);
-
   return (
     <StWrapper>
+      {modalVisible && (
+        <WarningModal
+          text={"메인페이지로 이동합니다."}
+          setModalVisible={setModalVisible}
+          onSubmitClick={() => {
+            location.replace("/");
+          }}
+          detail={"현재까지의 변경사항은 저장되지 않습니다."}
+          modalPosition={"modal"}
+        />
+      )}
       <StContainer id={"carMasterModal"}>
         <Header />
         <TitleContainer>
