@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.carMaster;
 
-import com.autoever.idle.domain.carMaster.dto.CarMasterDto;
+import com.autoever.idle.domain.carMaster.dto.CarMasterResponse;
+import com.autoever.idle.domain.carMaster.repository.CarMasterRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -26,23 +27,24 @@ class CarMasterRepositoryImplTest {
     @DisplayName("카마스터 찾기(거리순)")
     void findByDistance() {
 
-        Double nowLatitude = 36.05;
-        Double nowLongitude = 126.1234;
+        Double nowLatitude = 37.5611;
+        Double nowLongitude = 127.0483;
 
-        List<CarMasterDto> carMasterByDistance = carMasterRepository.findSortedCarMasterByDistance(nowLatitude, nowLongitude);
-        softly.assertThat(carMasterByDistance.size()).isEqualTo(2);
-        softly.assertThat(carMasterByDistance.get(0).getMasterName()).isEqualTo("김팰리");
-        softly.assertThat(carMasterByDistance.get(1).getMasterName()).isEqualTo("정현대");
+        List<CarMasterResponse> carMasterByDistance = carMasterRepository.findSortedCarMasterByDistance(nowLatitude, nowLongitude);
+        softly.assertThat(carMasterByDistance.size()).isEqualTo(3);
+        softly.assertThat(carMasterByDistance.get(0).getMasterName()).isEqualTo("정현대");
+        softly.assertThat(carMasterByDistance.get(1).getMasterName()).isEqualTo("심포니");
+        softly.assertThat(carMasterByDistance.get(2).getMasterName()).isEqualTo("김팰리");
     }
 
     @Test
     @DisplayName("카마스터 찾기(판매량순)")
     void findBySaleRate() {
 
-        Double nowLatitude = 36.1324;
-        Double nowLongitude = 126.1324;
+        Double nowLatitude = 37.5611;
+        Double nowLongitude = 127.0483;
 
-        List<CarMasterDto> carMasterByDistance = carMasterRepository.findSortedCarMasterBySaleRate(nowLatitude, nowLongitude);
+        List<CarMasterResponse> carMasterByDistance = carMasterRepository.findSortedCarMasterBySaleRate(nowLatitude, nowLongitude);
         softly.assertThat(carMasterByDistance.size()).isEqualTo(3);
         softly.assertThat(carMasterByDistance.get(0).getMasterName()).isEqualTo("김팰리");
         softly.assertThat(carMasterByDistance.get(1).getMasterName()).isEqualTo("정현대");

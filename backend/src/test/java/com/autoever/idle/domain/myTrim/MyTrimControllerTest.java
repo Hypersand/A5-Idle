@@ -1,9 +1,11 @@
 package com.autoever.idle.domain.myTrim;
 
-import com.autoever.idle.domain.function.dto.FunctionIdDto;
-import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
-import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
-import com.autoever.idle.domain.option.MyTrimOptionDto;
+import com.autoever.idle.domain.function.dto.FunctionIdResponse;
+import com.autoever.idle.domain.function.dto.MyTrimFunctionResponse;
+import com.autoever.idle.domain.myTrim.controller.MyTrimController;
+import com.autoever.idle.domain.myTrim.dto.MyTrimResponse;
+import com.autoever.idle.domain.myTrim.service.MyTrimService;
+import com.autoever.idle.domain.option.dto.MyTrimOptionResponse;
 import com.autoever.idle.global.exception.GlobalExceptionHandler;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -56,11 +58,11 @@ class MyTrimControllerTest {
     @DisplayName("페이지 호출 API")
     void findAllMyTrimFunction() throws Exception {
         //given
-        List<MyTrimFunctionResDto> myTrimFunctionResDtoList = new ArrayList<>();
-        myTrimFunctionResDtoList.add(new MyTrimFunctionResDto(1, "기능1", "설명", "imgUrl1"));
-        myTrimFunctionResDtoList.add(new MyTrimFunctionResDto(2, "기능2", "설명", "imgUrl2"));
-        myTrimFunctionResDtoList.add(new MyTrimFunctionResDto(3, "기능3", "설명", "imgUrl3"));
-        given(myTrimService.findMyTrimFunctions()).willReturn(myTrimFunctionResDtoList);
+        List<MyTrimFunctionResponse> myTrimFunctionResponseList = new ArrayList<>();
+        myTrimFunctionResponseList.add(new MyTrimFunctionResponse(1, "기능1", "설명", "imgUrl1"));
+        myTrimFunctionResponseList.add(new MyTrimFunctionResponse(2, "기능2", "설명", "imgUrl2"));
+        myTrimFunctionResponseList.add(new MyTrimFunctionResponse(3, "기능3", "설명", "imgUrl3"));
+        given(myTrimService.findMyTrimFunctions()).willReturn(myTrimFunctionResponseList);
 
         //when
         ResultActions resultActions = mockMvc.perform(get("/trims/favorite"));
@@ -79,12 +81,12 @@ class MyTrimControllerTest {
         //given
         JSONArray jsonArray = new JSONArray();
         jsonArray.put(new JSONObject().put("functionId", 109));
-        List<MyTrimResDto> myTrimResDtoList = new ArrayList<>();
-        myTrimResDtoList.add(MyTrimResDto.builder().name("Exclusive").isDefault(null).selectPossible(false).build());
-        myTrimResDtoList.add(MyTrimResDto.builder().name("Le Blanc").isDefault(false).selectPossible(true).build());
-        myTrimResDtoList.add(MyTrimResDto.builder().name("Prestige").isDefault(false).selectPossible(true).build());
-        myTrimResDtoList.add(MyTrimResDto.builder().name("Calligraphy").isDefault(true).selectPossible(true).build());
-        given(myTrimService.findTrimBySelectFunctions(anyList())).willReturn(myTrimResDtoList);
+        List<MyTrimResponse> myTrimResponseList = new ArrayList<>();
+        myTrimResponseList.add(MyTrimResponse.builder().name("Exclusive").isDefault(null).selectPossible(false).build());
+        myTrimResponseList.add(MyTrimResponse.builder().name("Le Blanc").isDefault(false).selectPossible(true).build());
+        myTrimResponseList.add(MyTrimResponse.builder().name("Prestige").isDefault(false).selectPossible(true).build());
+        myTrimResponseList.add(MyTrimResponse.builder().name("Calligraphy").isDefault(true).selectPossible(true).build());
+        given(myTrimService.findTrimBySelectFunctions(anyList())).willReturn(myTrimResponseList);
 
         //when
         ResultActions resultActions = mockMvc.perform(post("/trims/favorite/select/option")
@@ -113,10 +115,10 @@ class MyTrimControllerTest {
         selectFunctions.put(new JSONObject().put("functionId", 109));
         JSONObject submitRequest = new JSONObject().put("trimId", 1);
         submitRequest.put("selectFunctions", selectFunctions);
-        List<MyTrimOptionDto> myTrimOptionDtoList = new ArrayList<>();
-        MyTrimOptionDto myTrimOptionDto = new MyTrimOptionDto(1L, "옵션 이름", 1000000L);
-        myTrimOptionDtoList.add(myTrimOptionDto);
-        given(myTrimService.findOptionBySelectFunctions(any())).willReturn(myTrimOptionDtoList);
+        List<MyTrimOptionResponse> myTrimOptionResponseList = new ArrayList<>();
+        MyTrimOptionResponse myTrimOptionResponse = new MyTrimOptionResponse(1L, "옵션 이름", 1000000L);
+        myTrimOptionResponseList.add(myTrimOptionResponse);
+        given(myTrimService.findOptionBySelectFunctions(any())).willReturn(myTrimOptionResponseList);
 
         //when
         ResultActions resultActions = mockMvc.perform(post("/trims/favorite/submit")
@@ -139,10 +141,10 @@ class MyTrimControllerTest {
         multiValueMap.put("trimId",1L);
         JSONObject trimIdRequest = new JSONObject();
         trimIdRequest.put("trimId",1);
-        List<FunctionIdDto> functionIdDtoList = new ArrayList<>();
-        FunctionIdDto functionIdDto = new FunctionIdDto(1L);
-        functionIdDtoList.add(functionIdDto);
-        given(myTrimService.findNonSelectableFunctionsByTrim(anyLong())).willReturn(functionIdDtoList);
+        List<FunctionIdResponse> functionIdResponseList = new ArrayList<>();
+        FunctionIdResponse functionIdResponse = new FunctionIdResponse(1L);
+        functionIdResponseList.add(functionIdResponse);
+        given(myTrimService.findNonSelectableFunctionsByTrim(anyLong())).willReturn(functionIdResponseList);
 
         //when
         ResultActions resultActions = mockMvc.perform(get("/trims/favorite/select/trim")

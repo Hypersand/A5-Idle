@@ -1,8 +1,9 @@
 package com.autoever.idle.domain.category.functionCategory;
 
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
-import com.autoever.idle.domain.function.dto.DefaultFunctionNameResDto;
-import com.autoever.idle.domain.function.dto.DefaultFunctionResDto;
+import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
+import com.autoever.idle.domain.function.dto.DefaultFunctionNameResponse;
+import com.autoever.idle.domain.function.dto.DefaultFunctionResponse;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -45,7 +46,7 @@ class FunctionCategoryRepositoryTest {
         Long trimId = 1L;
         Long categoryId = 1L;
 
-        List<DefaultFunctionNameResDto> defaultFunctions = functionCategoryRepository.getDefaultOptions(trimId, categoryId);
+        List<DefaultFunctionNameResponse> defaultFunctions = functionCategoryRepository.getDefaultOptions(trimId, categoryId);
 
         softAssertions.assertThat(defaultFunctions.size()).isEqualTo(5);
     }
@@ -56,7 +57,7 @@ class FunctionCategoryRepositoryTest {
         Long trimId = 1L;
         Long categoryId = 1L;
 
-        List<DefaultFunctionResDto> defaultOptionsDetail = functionCategoryRepository.getDefaultOptionsDetail(trimId, categoryId);
+        List<DefaultFunctionResponse> defaultOptionsDetail = functionCategoryRepository.getDefaultOptionsDetail(trimId, categoryId);
 
         softAssertions.assertThat(defaultOptionsDetail.size()).isEqualTo(8);
         softAssertions.assertThat(defaultOptionsDetail.get(0).getFunctionName()).isEqualTo("파워트레인/성능");

@@ -1,9 +1,9 @@
 package com.autoever.idle.domain.detailModel;
 
-import com.autoever.idle.domain.detailModel.bodyType.BodyTypeResDto;
-import com.autoever.idle.domain.detailModel.drivingMethod.DrivingMethodResDto;
-import com.autoever.idle.domain.detailModel.dto.DetailModelResDto;
-import com.autoever.idle.domain.detailModel.engine.EngineResDto;
+import com.autoever.idle.domain.detailModel.dto.BodyTypeResponse;
+import com.autoever.idle.domain.detailModel.dto.DrivingMethodResponse;
+import com.autoever.idle.domain.detailModel.dto.DetailModelResponse;
+import com.autoever.idle.domain.detailModel.dto.EngineResponse;
 import com.autoever.idle.global.exception.ErrorCode;
 import com.autoever.idle.global.exception.custom.InvalidDetailModelException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,14 +40,14 @@ class DetailModelControllerTest {
 
     @MockBean
     private DetailModelService detailModelService;
-    private DetailModelResDto detailModelResDto;
+    private DetailModelResponse detailModelResponse;
 
     @BeforeEach
     void setUp() {
-        List<EngineResDto> engines = new ArrayList<>();
-        List<DrivingMethodResDto> drivingMethods = new ArrayList<>();
-        List<BodyTypeResDto> bodyTypes = new ArrayList<>();
-        EngineResDto engineResDto = new EngineResDto(
+        List<EngineResponse> engines = new ArrayList<>();
+        List<DrivingMethodResponse> drivingMethods = new ArrayList<>();
+        List<BodyTypeResponse> bodyTypes = new ArrayList<>();
+        EngineResponse engineResponse = new EngineResponse(
                 1L,
                 "디젤 2.2",
                 1480000,
@@ -60,7 +60,7 @@ class DetailModelControllerTest {
                 12.4
         );
 
-        DrivingMethodResDto drivingMethodResDto = new DrivingMethodResDto(
+        DrivingMethodResponse drivingMethodResponse = new DrivingMethodResponse(
                 1L,
                 "2WD",
                 0,
@@ -69,7 +69,7 @@ class DetailModelControllerTest {
                 "구매자 60%가 선택"
         );
 
-        BodyTypeResDto bodyTypeResDto = new BodyTypeResDto(
+        BodyTypeResponse bodyTypeResponse = new BodyTypeResponse(
                 1L,
                 "7인승",
                 0,
@@ -78,10 +78,10 @@ class DetailModelControllerTest {
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/7.jpg"
         );
 
-        engines.add(engineResDto);
-        drivingMethods.add(drivingMethodResDto);
-        bodyTypes.add(bodyTypeResDto);
-        detailModelResDto = DetailModelResDto.create(engines, drivingMethods, bodyTypes);
+        engines.add(engineResponse);
+        drivingMethods.add(drivingMethodResponse);
+        bodyTypes.add(bodyTypeResponse);
+        detailModelResponse = DetailModelResponse.create(engines, drivingMethods, bodyTypes);
     }
 
     @Test
@@ -89,7 +89,7 @@ class DetailModelControllerTest {
     void showDetailModel() throws Exception {
         //given
         Long trimId = 1L;
-        given(detailModelService.findAllModels(trimId)).willReturn(detailModelResDto);
+        given(detailModelService.findAllModels(trimId)).willReturn(detailModelResponse);
 
         //when
 
@@ -103,7 +103,7 @@ class DetailModelControllerTest {
         resultActions.andExpectAll(
                 status().isOk(),
                 content().contentType(MediaType.APPLICATION_JSON),
-                content().json(objectMapper.writeValueAsString(detailModelResDto)),
+                content().json(objectMapper.writeValueAsString(detailModelResponse)),
                 jsonPath("$.engines[0].type").value("디젤 2.2"),
                 jsonPath("$.drivingMethods[0].type").value("2WD"),
                 jsonPath("$.bodyTypes[0].type").value("7인승")

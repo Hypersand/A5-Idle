@@ -1,12 +1,12 @@
 package com.autoever.idle.domain.bill;
 
-import com.autoever.idle.domain.bill.dto.BillRequestDto;
-import com.autoever.idle.domain.bill.dto.BillResponseDto;
-import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResDto;
+import com.autoever.idle.domain.bill.controller.BillController;
+import com.autoever.idle.domain.bill.dto.BillRequest;
+import com.autoever.idle.domain.bill.dto.BillResponse;
+import com.autoever.idle.domain.bill.service.BillService;
+import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResponse;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
-import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
-import com.autoever.idle.domain.function.dto.DefaultFunctionNameResDto;
-import com.autoever.idle.domain.function.dto.DefaultFunctionResDto;
+import com.autoever.idle.domain.function.dto.DefaultFunctionNameResponse;
 import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.option.dto.SelectedOptionDto;
 import com.autoever.idle.domain.trim.dto.TrimDescriptionDto;
@@ -48,7 +48,7 @@ class BillControllerTest {
     private ObjectMapper objectMapper;
     @MockBean
     private BillService billService;
-    private BillResponseDto billResponseDto;
+    private BillResponse billResponse;
 
     @BeforeEach
     void setUp() {
@@ -75,44 +75,44 @@ class BillControllerTest {
         );
         selectedOptionDtos.add(selectedOptionDto);
 
-        List<DefaultFunctionCategoryResDto> defaultFunctionCategoryResDtos = new ArrayList<>();
-        List<DefaultFunctionNameResDto> defaultFunctionNameResDtos = new ArrayList<>();
-        defaultFunctionNameResDtos.add(new DefaultFunctionNameResDto("8단 자동변속기"));
-        DefaultFunctionCategoryResDto defaultFunctionCategoryResDto = new DefaultFunctionCategoryResDto(1L, "파워트레인/성능", defaultFunctionNameResDtos);
-        defaultFunctionCategoryResDtos.add(defaultFunctionCategoryResDto);
-        billResponseDto = new BillResponseDto(trimDescription, exteriorBillDto, interiorBillDto, selectedOptionDtos, defaultFunctionCategoryResDtos);
+        List<DefaultFunctionCategoryResponse> defaultFunctionCategoryResponses = new ArrayList<>();
+        List<DefaultFunctionNameResponse> defaultFunctionNameResponses = new ArrayList<>();
+        defaultFunctionNameResponses.add(new DefaultFunctionNameResponse("8단 자동변속기"));
+        DefaultFunctionCategoryResponse defaultFunctionCategoryResponse = new DefaultFunctionCategoryResponse(1L, "파워트레인/성능", defaultFunctionNameResponses);
+        defaultFunctionCategoryResponses.add(defaultFunctionCategoryResponse);
+        billResponse = new BillResponse(trimDescription, exteriorBillDto, interiorBillDto, selectedOptionDtos, defaultFunctionCategoryResponses);
     }
 
     @Test
     @DisplayName("최종 견적서 api 호출")
     void getResultBill() throws Exception {
         //given
-        BillRequestDto billRequestDto = new BillRequestDto(1L, 1L, 1L, List.of(1L));
-        given(billService.getResultBill(any())).willReturn(billResponseDto);
+        BillRequest billRequest = new BillRequest(1L, 1L, 1L, List.of(1L));
+        given(billService.getResultBill(any())).willReturn(billResponse);
 
         //when
         ResultActions resultActions = mockMvc.perform(post("/result/bill")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(billRequestDto)))
+                        .content(objectMapper.writeValueAsString(billRequest)))
                 .andDo(print());
 
         //then
         resultActions.andExpect(status().isOk());
         resultActions.andExpect(content().contentType(MediaType.APPLICATION_JSON));
-        resultActions.andExpect(content().json(objectMapper.writeValueAsString(billResponseDto)));
+        resultActions.andExpect(content().json(objectMapper.writeValueAsString(billResponse)));
     }
 
     @Test
     @DisplayName("최종 견적서 api 요청 시 외장 색상 id의 값이 적절하지 못하면 에러 발생")
     void getResultBill_ExteriorError() throws Exception {
         //given
-        BillRequestDto billRequestDto = new BillRequestDto(99999L, 1L, 1L, List.of(1L));
+        BillRequest billRequest = new BillRequest(99999L, 1L, 1L, List.of(1L));
         given(billService.getResultBill(any())).willThrow(new InvalidExteriorException(ErrorCode.INVALID_EXTERIOR));
 
         //when
         ResultActions resultActions = mockMvc.perform(post("/result/bill")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(billRequestDto)))
+                        .content(objectMapper.writeValueAsString(billRequest)))
                 .andDo(print());
 
         //then
@@ -124,13 +124,13 @@ class BillControllerTest {
     @DisplayName("최종 견적서 api 요청 시 내장 색상 id의 값이 적절하지 못하면 에러 발생")
     void getResultBill_InteriorError() throws Exception {
         //given
-        BillRequestDto billRequestDto = new BillRequestDto(1L, 999999L, 1L, List.of(1L));
+        BillRequest billRequest = new BillRequest(1L, 999999L, 1L, List.of(1L));
         given(billService.getResultBill(any())).willThrow(new InvalidInteriorException(ErrorCode.INVALID_INTERIOR));
 
         //when
         ResultActions resultActions = mockMvc.perform(post("/result/bill")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(billRequestDto)))
+                        .content(objectMapper.writeValueAsString(billRequest)))
                 .andDo(print());
 
         //then

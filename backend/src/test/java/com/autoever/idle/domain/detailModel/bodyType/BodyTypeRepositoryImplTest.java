@@ -1,5 +1,7 @@
 package com.autoever.idle.domain.detailModel.bodyType;
 
+import com.autoever.idle.domain.detailModel.bodyType.repository.BodyTypeRepository;
+import com.autoever.idle.domain.detailModel.dto.BodyTypeResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +25,13 @@ class BodyTypeRepositoryImplTest {
         Long trimId = 1L;
 
         //when
-        List<BodyTypeResDto> bodyTypeResDtos = bodyTypeRepository.findAll(trimId);
+        List<BodyTypeResponse> bodyTypeResponses = bodyTypeRepository.findAll(trimId);
 
         //then
         assertSoftly(softAssertions -> {
-            softAssertions.assertThat(bodyTypeResDtos.size()).isEqualTo(2);
-            softAssertions.assertThat(bodyTypeResDtos.get(0).getType()).isEqualTo("7인승");
-            softAssertions.assertThat(bodyTypeResDtos.get(1).getType()).isEqualTo("8인승");
+            softAssertions.assertThat(bodyTypeResponses.size()).isEqualTo(2);
+            softAssertions.assertThat(bodyTypeResponses.get(0).getType()).isEqualTo("7인승");
+            softAssertions.assertThat(bodyTypeResponses.get(1).getType()).isEqualTo("8인승");
                 }
         );
     }

@@ -1,7 +1,9 @@
 package com.autoever.idle.domain.interiorColor;
 
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorDto;
-import com.autoever.idle.domain.interiorColor.dto.InteriorColorResDto;
+import com.autoever.idle.domain.interiorColor.dto.InteriorColorResponse;
+import com.autoever.idle.domain.interiorColor.repository.InteriorColorRepository;
+import com.autoever.idle.domain.interiorColor.service.InteriorColorService;
 import com.autoever.idle.global.exception.custom.InvalidTrimException;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
@@ -36,7 +38,7 @@ class InteriorColorServiceTest {
     InteriorColorRepository interiorColorRepository;
 
     List<InteriorColorDto> interiorColorDtos;
-    InteriorColorResDto interiorColorRes;
+    InteriorColorResponse interiorColorRes;
 
     @BeforeEach
     void setUp() {
@@ -49,7 +51,7 @@ class InteriorColorServiceTest {
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png",
                 "구매자 16%가 선택")
         );
-        interiorColorRes = InteriorColorResDto.createInteriorColorDto(interiorColorDtos);
+        interiorColorRes = InteriorColorResponse.createInteriorColorDto(interiorColorDtos);
     }
 
     @Test
@@ -59,7 +61,7 @@ class InteriorColorServiceTest {
         Long exteriorId = 2L;
         given(interiorColorRepository.findInteriorColorByTrimIdAndExteriorId(trimId, exteriorId)).willReturn(interiorColorDtos);
 
-        InteriorColorResDto response = interiorColorService.findAllInteriorColors(1L, 2L);
+        InteriorColorResponse response = interiorColorService.findAllInteriorColors(1L, 2L);
 
         softAssertions.assertThat(response.getCarInteriorColors().get(0).getInteriorId())
                 .isEqualTo(interiorColorDtos.get(0).getInteriorId());

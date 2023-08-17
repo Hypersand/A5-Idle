@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.trimThumbnailFunction;
 
-import com.autoever.idle.domain.trimThumbnailFunction.dto.TrimThumbnailFunctionDto;
+import com.autoever.idle.domain.trimThumbnailFunction.dto.TrimThumbnailFunctionResponse;
+import com.autoever.idle.domain.trimThumbnailFunction.repository.TrimThumbnailFunctionRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -28,7 +29,7 @@ class TrimThumbnailFunctionRepositoryTest {
     void findThumbnailFunctionByTrimId() {
         Long trimId = 1L;
 
-        List<TrimThumbnailFunctionDto> thumbnailFunctions = trimThumbnailFunctionRepository.findThumbnailFunctionByTrimId(trimId);
+        List<TrimThumbnailFunctionResponse> thumbnailFunctions = trimThumbnailFunctionRepository.findThumbnailFunctionByTrimId(trimId);
 
         softAssertions.assertThat(thumbnailFunctions.get(0).getTrimThumbnailFunctionId()).isEqualTo(1L);
         softAssertions.assertThat(thumbnailFunctions.get(0).getName()).isEqualTo("베젤리스 인사이드 미러");

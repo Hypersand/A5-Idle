@@ -1,7 +1,9 @@
 package com.autoever.idle.domain.exteriorColor;
 
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorColorDto;
-import com.autoever.idle.domain.exteriorColor.dto.ExteriorColorResDto;
+import com.autoever.idle.domain.exteriorColor.dto.ExteriorColorResponse;
+import com.autoever.idle.domain.exteriorColor.repository.ExteriorColorRepository;
+import com.autoever.idle.domain.exteriorColor.service.ExteriorColorService;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -81,7 +83,7 @@ class ExteriorColorServiceTest {
         Long trimId = 1L;
         given(exteriorColorRepository.findExteriorColorsByTrimId(trimId)).willReturn(exteriorColors);
 
-        List<ExteriorColorResDto> response = exteriorColorService.findAllExteriorColors(trimId);
+        List<ExteriorColorResponse> response = exteriorColorService.findAllExteriorColors(trimId);
 
         softAssertions.assertThat(response.get(0).getExteriorId()).isEqualTo(exteriorColors.get(0).getExteriorId());
         softAssertions.assertThat(response.get(0).getExteriorName()).isEqualTo(exteriorColors.get(0).getExteriorName());

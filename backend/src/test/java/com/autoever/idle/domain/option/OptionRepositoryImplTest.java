@@ -2,6 +2,7 @@ package com.autoever.idle.domain.option;
 
 import com.autoever.idle.domain.option.dto.OptionDto;
 import com.autoever.idle.domain.option.dto.SelectedOptionDto;
+import com.autoever.idle.domain.option.repository.OptionRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;

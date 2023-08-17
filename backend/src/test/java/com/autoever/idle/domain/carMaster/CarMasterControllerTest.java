@@ -1,6 +1,8 @@
 package com.autoever.idle.domain.carMaster;
 
-import com.autoever.idle.domain.carMaster.dto.CarMasterDto;
+import com.autoever.idle.domain.carMaster.controller.CarMasterController;
+import com.autoever.idle.domain.carMaster.dto.CarMasterResponse;
+import com.autoever.idle.domain.carMaster.service.CarMasterService;
 import com.autoever.idle.global.exception.GlobalExceptionHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -46,11 +48,11 @@ class CarMasterControllerTest {
     @DisplayName("거리순 정렬 테스트")
     void findByDistance() throws Exception {
         //given
-        List<CarMasterDto> carMasterDtoList = new ArrayList<>();
-        CarMasterDto carMasterDto = new CarMasterDto("김팰리", "010111111", "왕십리점",
-                "김팰리입니다", "사진", 36.1234, 126.1234);
-        carMasterDtoList.add(carMasterDto);
-        given(carMasterService.findSortedCarMasterByDistance(anyDouble(), anyDouble())).willReturn(carMasterDtoList);
+        List<CarMasterResponse> carMasterResponseList = new ArrayList<>();
+        CarMasterResponse carMasterResponse = new CarMasterResponse("김팰리", "010111111", "왕십리점",
+                "김팰리입니다", "사진", "마커이미지", 36.1234, 126.1234, "주소");
+        carMasterResponseList.add(carMasterResponse);
+        given(carMasterService.findSortedCarMasterByDistance(anyDouble(), anyDouble())).willReturn(carMasterResponseList);
 
         //when
         ResultActions resultActions = mockMvc.perform(get("/find/car/masters/distance")
@@ -59,7 +61,7 @@ class CarMasterControllerTest {
 
         //then
         resultActions.andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].masterName").value(carMasterDtoList.get(0).getMasterName()))
+                .andExpect(jsonPath("$[0].masterName").value(carMasterResponseList.get(0).getMasterName()))
                 .andDo(print());
     }
 
@@ -67,11 +69,11 @@ class CarMasterControllerTest {
     @DisplayName("판매량순 정렬 테스트")
     void findBySaleRate() throws Exception {
         //given
-        List<CarMasterDto> carMasterDtoList = new ArrayList<>();
-        CarMasterDto carMasterDto = new CarMasterDto("김팰리", "010111111", "왕십리점",
-                "김팰리입니다", "사진", 36.1234, 126.1234);
-        carMasterDtoList.add(carMasterDto);
-        given(carMasterService.findSortedCarMasterBySaleRate(anyDouble(), anyDouble())).willReturn(carMasterDtoList);
+        List<CarMasterResponse> carMasterResponseList = new ArrayList<>();
+        CarMasterResponse carMasterResponse = new CarMasterResponse("김팰리", "010111111", "왕십리점",
+                "김팰리입니다", "사진", "마커 사진", 36.1234, 126.1234, "주소소");
+        carMasterResponseList.add(carMasterResponse);
+        given(carMasterService.findSortedCarMasterBySaleRate(anyDouble(), anyDouble())).willReturn(carMasterResponseList);
 
         //when
         ResultActions resultActions = mockMvc.perform(get("/find/car/masters/salerate")
@@ -80,7 +82,7 @@ class CarMasterControllerTest {
 
         //then
         resultActions.andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].masterName").value(carMasterDtoList.get(0).getMasterName()))
+                .andExpect(jsonPath("$[0].masterName").value(carMasterResponseList.get(0).getMasterName()))
                 .andDo(print());
     }
 }

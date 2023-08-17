@@ -31,7 +31,9 @@ create table if not exists  CAR_MASTER
     sales_rate    int         null,
     img_url       text        null,
     latitude      double      null,
-    longitude     double      null
+    longitude     double      null,
+    marker_img_url text       null,
+    address       varchar(100) null
     );
 
 create table if not exists  CAR_TYPE
