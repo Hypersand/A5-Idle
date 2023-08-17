@@ -74,16 +74,15 @@ function MapModal({ setCarMasterVisible }) {
     if (data !== null) {
       data.forEach((item) => {
         const imageSize = new kakao.maps.Size(50, 50);
-        const markerImage = new kakao.maps.MarkerImage(item.masterImgUrl, imageSize);
+        const markerImage = new kakao.maps.MarkerImage(item.masterMarkerImgUrl, imageSize);
 
         const marker = new kakao.maps.Marker({
           map: map.current,
           position: new kakao.maps.LatLng(item.masterLatitude, item.masterLongitude),
           title: item.masterDealerShip,
-          // image: markerImage,
+          image: markerImage,
         });
-
-        const content = CustomOverlay(item, "경기도", closeOverlay);
+        const content = CustomOverlay(item, closeOverlay);
 
         const overlayPositon = new kakao.maps.LatLng(
           marker.getPosition().getLat() + 1200 / 2 / 110000,

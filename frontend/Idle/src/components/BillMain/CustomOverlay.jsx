@@ -1,7 +1,7 @@
 import "../../styles/CustomOverlay.css";
 import carMasterHyundai from "../../assets/images/carMasterHyundai.svg";
 
-function CustomOverlay(data, address, onClick) {
+function CustomOverlay(data, onClick) {
   const container = document.createElement("div");
   container.classList.add("st-container");
 
@@ -47,7 +47,7 @@ function CustomOverlay(data, address, onClick) {
   container.appendChild(footer);
 
   const addressName = document.createElement("div");
-  addressName.textContent = "Address : " + address;
+  addressName.textContent = "Address : " + data.masterAddress;
   addressName.classList.add("st-footer-content");
   footer.appendChild(addressName);
 
