@@ -1,5 +1,5 @@
 import { useContext, useRef } from "react"
-import { styled } from "styled-components"
+import { keyframes, styled } from "styled-components"
 import { carContext } from "../../utils/context"
 
 function TrimMain(data) {
@@ -22,7 +22,9 @@ function TrimMain(data) {
             {filteredData ? <StImage id={"here"} src={filteredData[0]?.imgUrl}></StImage> : <p>Loading...</p>}
             <DotContainer >
                 {filteredData[0].thumbnailFunctions.map((item, idx) => (
-                    <Dot1 key={idx} $y={item.heightPixel} $x={item.widthPixel} ref={elem => (dots.current[idx] = elem)} />
+                    <Dot1 key={idx} $y={item.heightPixel} $x={item.widthPixel} ref={elem => (dots.current[idx] = elem)} >
+                        <InnerDots />
+                    </Dot1>
                 ))}
             </DotContainer>
         </StContainer>
@@ -95,16 +97,37 @@ const DotContainer = styled.div`
     right: 0;
     bottom: 0;
     transform: translate(5%,10%);
-    border: 1px solid ;
 `
 const Dot1 = styled.div`
     position: absolute;
     top:${({ $y }) => `${$y}px`};
     left: ${({ $x }) => `${$x}px`};
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    background-color: red;
     transform: translate(-50%,-50%);
     transition : all 0.3s linear;
+    background-color: #96A9DC;
+    filter: drop-shadow(0 0 0.5rem white);
+    /* animation: ${keyframes`
+    0% {
+        opacity: 1;
+        scale: 1.0;
+    }
+    50% {
+        opacity: 0.7;
+        scale: 0.8;
+    }
+    100% {
+        opacity: 1;
+        scale: 1.0;
+    }
+    `} 3s infinite; */
+`
+const InnerDots = styled.div`
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    transform: translate(50%,50%);
 `

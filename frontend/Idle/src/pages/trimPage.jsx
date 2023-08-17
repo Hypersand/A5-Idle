@@ -57,16 +57,6 @@ const StWrapper = styled.div`
   justify-content: center;
 `;
 
-const StImageContainer = styled.img`
-  position: absolute;
-  top: 120px;
-  left: 130px;
-  width: 809px;
-  height: 341px;
-  /* background-image: ${({ $imgUrl }) => `url(${$imgUrl})`};
-  background-repeat:no-repeat */
-`;
-
 const StBottomContainer = styled.div`
   position: absolute;
   display: flex;
