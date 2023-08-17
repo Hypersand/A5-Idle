@@ -1,14 +1,15 @@
 package com.autoever.idle.domain.myTrim;
 
-import com.autoever.idle.domain.function.FunctionRepository;
-import com.autoever.idle.domain.function.TrimFunctionRepository;
-import com.autoever.idle.domain.function.dto.FunctionIdDto;
+import com.autoever.idle.domain.function.repository.FunctionRepository;
+import com.autoever.idle.domain.function.repository.TrimFunctionRepository;
+import com.autoever.idle.domain.function.dto.FunctionIdResponse;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
-import com.autoever.idle.domain.function.dto.MyTrimFunctionResDto;
+import com.autoever.idle.domain.function.dto.MyTrimFunctionResponse;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
-import com.autoever.idle.domain.myTrim.dto.MyTrimResDto;
-import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitReqDto;
-import com.autoever.idle.domain.option.MyTrimOptionDto;
+import com.autoever.idle.domain.myTrim.dto.MyTrimResponse;
+import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitRequest;
+import com.autoever.idle.domain.myTrim.service.MyTrimService;
+import com.autoever.idle.domain.option.dto.MyTrimOptionResponse;
 import com.autoever.idle.global.exception.custom.InvalidFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidMyTrimFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidTrimFunctionException;
@@ -59,7 +60,7 @@ class MyTrimServiceTest {
         given(functionRepository.findMyTrimFunctions()).willReturn(myTrimFunctionDtoList);
 
         //when
-        List<MyTrimFunctionResDto> myTrimFunctions = myTrimService.findMyTrimFunctions();
+        List<MyTrimFunctionResponse> myTrimFunctions = myTrimService.findMyTrimFunctions();
 
         //then
         verify(functionRepository).findMyTrimFunctions();
@@ -89,19 +90,19 @@ class MyTrimServiceTest {
         given(functionRepository.findTrimBySelectFunctions(anyInt())).willReturn(myTrimDtoList);
 
         //when
-        List<MyTrimResDto> myTrimResDtoList = myTrimService.findTrimBySelectFunctions(functionIdList);
+        List<MyTrimResponse> myTrimResponseList = myTrimService.findTrimBySelectFunctions(functionIdList);
 
         //then
         verify(functionRepository, times(2)).findTrimBySelectFunctions(anyInt());
-        softly.assertThat(myTrimResDtoList.size()).isEqualTo(4);
-        softly.assertThat(myTrimResDtoList.get(0).getIsDefault()).isEqualTo(null);
-        softly.assertThat(myTrimResDtoList.get(0).getSelectPossible()).isEqualTo(false);
-        softly.assertThat(myTrimResDtoList.get(1).getIsDefault()).isEqualTo(false);
-        softly.assertThat(myTrimResDtoList.get(1).getSelectPossible()).isEqualTo(true);
-        softly.assertThat(myTrimResDtoList.get(2).getIsDefault()).isEqualTo(true);
-        softly.assertThat(myTrimResDtoList.get(2).getSelectPossible()).isEqualTo(true);
-        softly.assertThat(myTrimResDtoList.get(3).getIsDefault()).isEqualTo(true);
-        softly.assertThat(myTrimResDtoList.get(3).getSelectPossible()).isEqualTo(true);
+        softly.assertThat(myTrimResponseList.size()).isEqualTo(4);
+        softly.assertThat(myTrimResponseList.get(0).getIsDefault()).isEqualTo(null);
+        softly.assertThat(myTrimResponseList.get(0).getSelectPossible()).isEqualTo(false);
+        softly.assertThat(myTrimResponseList.get(1).getIsDefault()).isEqualTo(false);
+        softly.assertThat(myTrimResponseList.get(1).getSelectPossible()).isEqualTo(true);
+        softly.assertThat(myTrimResponseList.get(2).getIsDefault()).isEqualTo(true);
+        softly.assertThat(myTrimResponseList.get(2).getSelectPossible()).isEqualTo(true);
+        softly.assertThat(myTrimResponseList.get(3).getIsDefault()).isEqualTo(true);
+        softly.assertThat(myTrimResponseList.get(3).getSelectPossible()).isEqualTo(true);
 
     }
 
@@ -145,19 +146,19 @@ class MyTrimServiceTest {
         Map<String, Long> functionIdMap = new HashMap<>();
         functionIdMap.put("functionId", 1L);
         functionIdList.add(functionIdMap);
-        MyTrimSubmitReqDto myTrimSubmitReqDto = new MyTrimSubmitReqDto(1L, functionIdList);
-        MyTrimOptionDto myTrimOptionDto = new MyTrimOptionDto(1L, "옵션", 400000L);
+        MyTrimSubmitRequest myTrimSubmitRequest = new MyTrimSubmitRequest(1L, functionIdList);
+        MyTrimOptionResponse myTrimOptionResponse = new MyTrimOptionResponse(1L, "옵션", 400000L);
         given(trimFunctionRepository.checkDefaultFunction(anyLong(), anyLong())).willReturn("FALSE");
-        given(functionRepository.findOptionBySelectFunction(any())).willReturn(myTrimOptionDto);
+        given(functionRepository.findOptionBySelectFunction(any())).willReturn(myTrimOptionResponse);
         given(functionRepository.checkMyTrimFunction(anyInt())).willReturn("TRUE");
 
         //when
-        List<MyTrimOptionDto> myTrimOptionDtoList = myTrimService.findOptionBySelectFunctions(myTrimSubmitReqDto);
+        List<MyTrimOptionResponse> myTrimOptionResponseList = myTrimService.findOptionBySelectFunctions(myTrimSubmitRequest);
 
         //then
-        softly.assertThat(myTrimOptionDtoList.size()).isEqualTo(1);
-        softly.assertThat(myTrimOptionDtoList.get(0).getOptionId()).isEqualTo(1L);
-        softly.assertThat(myTrimOptionDtoList.get(0).getOptionName()).isEqualTo("옵션");
+        softly.assertThat(myTrimOptionResponseList.size()).isEqualTo(1);
+        softly.assertThat(myTrimOptionResponseList.get(0).getOptionId()).isEqualTo(1L);
+        softly.assertThat(myTrimOptionResponseList.get(0).getOptionName()).isEqualTo("옵션");
     }
 
     @Test
@@ -168,12 +169,12 @@ class MyTrimServiceTest {
         Map<String, Long> functionIdMap = new HashMap<>();
         functionIdMap.put("functionId", 1L);
         functionIdList.add(functionIdMap);
-        MyTrimSubmitReqDto myTrimSubmitReqDto = new MyTrimSubmitReqDto(1L, functionIdList);
+        MyTrimSubmitRequest myTrimSubmitRequest = new MyTrimSubmitRequest(1L, functionIdList);
         given(functionRepository.checkMyTrimFunction(anyInt())).willReturn("TRUE");
         given(trimFunctionRepository.checkDefaultFunction(anyLong(), anyLong())).willReturn(null);
 
         //when&then
-        softly.assertThatThrownBy(() -> myTrimService.findOptionBySelectFunctions(myTrimSubmitReqDto))
+        softly.assertThatThrownBy(() -> myTrimService.findOptionBySelectFunctions(myTrimSubmitRequest))
                 .isInstanceOf(InvalidTrimFunctionException.class);
     }
 
@@ -181,14 +182,14 @@ class MyTrimServiceTest {
     @DisplayName("트림 선택시 선택할 수 없는 선택지")
     void findNonSelectableFunctionsByTrim() {
         //given
-        FunctionIdDto functionIdDto = new FunctionIdDto(2L);
+        FunctionIdResponse functionIdResponse = new FunctionIdResponse(2L);
         List<MyTrimFunctionDto> myTrimFunctionDtoList = new ArrayList<>();
         myTrimFunctionDtoList.add(new MyTrimFunctionDto(1,"이름","설명","url",1));
-        given(trimFunctionRepository.checkNonSelectableFunctionAtTrim(anyLong(), anyLong())).willReturn(functionIdDto);
+        given(trimFunctionRepository.checkNonSelectableFunctionAtTrim(anyLong(), anyLong())).willReturn(functionIdResponse);
         given(functionRepository.findMyTrimFunctions()).willReturn(myTrimFunctionDtoList);
 
         //when
-        List<FunctionIdDto> nonSelectableFunctionList = myTrimService.findNonSelectableFunctionsByTrim(1L);
+        List<FunctionIdResponse> nonSelectableFunctionList = myTrimService.findNonSelectableFunctionsByTrim(1L);
 
         //then
         softly.assertThat(nonSelectableFunctionList.get(0).getFunctionId()).isEqualTo(2L);

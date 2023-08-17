@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.exteriorColor;
 
+import com.autoever.idle.domain.exteriorColor.controller.ExteriorColorController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.function;
 
-import com.autoever.idle.domain.function.dto.FunctionIdDto;
+import com.autoever.idle.domain.function.dto.FunctionIdResponse;
+import com.autoever.idle.domain.function.repository.TrimFunctionRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -35,10 +36,10 @@ class TrimFunctionRepositoryImplTest {
     @Test
     @DisplayName("해당 트림에서 기능이 사용 가능한지 확인하는 테스트")
     void checkNonSelectableFunctionAtTrim(){
-        FunctionIdDto NULL = trimFunctionRepository.checkNonSelectableFunctionAtTrim(1L, 17L);
-        FunctionIdDto functionIdDto = trimFunctionRepository.checkNonSelectableFunctionAtTrim(1L, 51L);
+        FunctionIdResponse NULL = trimFunctionRepository.checkNonSelectableFunctionAtTrim(1L, 17L);
+        FunctionIdResponse functionIdResponse = trimFunctionRepository.checkNonSelectableFunctionAtTrim(1L, 51L);
 
         softly.assertThat(NULL).isNull();
-        softly.assertThat(functionIdDto.getFunctionId()).isEqualTo(51L);
+        softly.assertThat(functionIdResponse.getFunctionId()).isEqualTo(51L);
     }
 }

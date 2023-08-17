@@ -1,5 +1,7 @@
 package com.autoever.idle.domain.detailModel.drivingMethod;
 
+import com.autoever.idle.domain.detailModel.drivingMethod.repository.DrivingMethodRepository;
+import com.autoever.idle.domain.detailModel.dto.DrivingMethodResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +25,13 @@ class DrivingMethodRepositoryImplTest {
         Long trimId = 1L;
 
         //when
-        List<DrivingMethodResDto> drivingMethodResDtos = drivingMethodRepository.findAll(trimId);
+        List<DrivingMethodResponse> drivingMethodResponses = drivingMethodRepository.findAll(trimId);
 
         //then
         assertSoftly(softAssertions -> {
-                    softAssertions.assertThat(drivingMethodResDtos.size()).isEqualTo(2);
-                    softAssertions.assertThat(drivingMethodResDtos.get(0).getType()).isEqualTo("2WD");
-                    softAssertions.assertThat(drivingMethodResDtos.get(1).getType()).isEqualTo("4WD");
+                    softAssertions.assertThat(drivingMethodResponses.size()).isEqualTo(2);
+                    softAssertions.assertThat(drivingMethodResponses.get(0).getType()).isEqualTo("2WD");
+                    softAssertions.assertThat(drivingMethodResponses.get(1).getType()).isEqualTo("4WD");
                 }
         );
     }

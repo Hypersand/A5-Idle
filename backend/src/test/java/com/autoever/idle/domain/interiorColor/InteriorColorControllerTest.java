@@ -1,7 +1,9 @@
 package com.autoever.idle.domain.interiorColor;
 
+import com.autoever.idle.domain.interiorColor.controller.InteriorColorController;
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorDto;
-import com.autoever.idle.domain.interiorColor.dto.InteriorColorResDto;
+import com.autoever.idle.domain.interiorColor.dto.InteriorColorResponse;
+import com.autoever.idle.domain.interiorColor.service.InteriorColorService;
 import com.autoever.idle.global.exception.GlobalExceptionHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +38,7 @@ class InteriorColorControllerTest {
     InteriorColorService interiorColorService;
 
     List<InteriorColorDto> interiorColorDtos;
-    InteriorColorResDto interiorColorRes;
+    InteriorColorResponse interiorColorRes;
 
     @BeforeEach
     void setUp() {
@@ -69,7 +71,7 @@ class InteriorColorControllerTest {
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png",
                 "구매자 5%가 선택")
         );
-        interiorColorRes = InteriorColorResDto.createInteriorColorDto(interiorColorDtos);
+        interiorColorRes = InteriorColorResponse.createInteriorColorDto(interiorColorDtos);
     }
 
     @Test

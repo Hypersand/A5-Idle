@@ -3,6 +3,7 @@ package com.autoever.idle.domain.exteriorColor;
 import com.autoever.idle.domain.exteriorColor.dto.CarExteriorImgDto;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorColorDto;
+import com.autoever.idle.domain.exteriorColor.repository.ExteriorColorRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;

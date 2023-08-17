@@ -1,12 +1,12 @@
 package com.autoever.idle.domain.detailModel;
 
-import com.autoever.idle.domain.detailModel.bodyType.BodyTypeRepository;
-import com.autoever.idle.domain.detailModel.bodyType.BodyTypeResDto;
-import com.autoever.idle.domain.detailModel.drivingMethod.DrivingMethodRepository;
-import com.autoever.idle.domain.detailModel.drivingMethod.DrivingMethodResDto;
-import com.autoever.idle.domain.detailModel.dto.DetailModelResDto;
-import com.autoever.idle.domain.detailModel.engine.EngineRepository;
-import com.autoever.idle.domain.detailModel.engine.EngineResDto;
+import com.autoever.idle.domain.detailModel.bodyType.repository.BodyTypeRepository;
+import com.autoever.idle.domain.detailModel.dto.BodyTypeResponse;
+import com.autoever.idle.domain.detailModel.drivingMethod.repository.DrivingMethodRepository;
+import com.autoever.idle.domain.detailModel.dto.DrivingMethodResponse;
+import com.autoever.idle.domain.detailModel.dto.DetailModelResponse;
+import com.autoever.idle.domain.detailModel.engine.repository.EngineRepository;
+import com.autoever.idle.domain.detailModel.dto.EngineResponse;
 import com.autoever.idle.global.exception.custom.InvalidDetailModelException;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
@@ -42,15 +42,15 @@ class DetailModelServiceTest {
     @InjectSoftAssertions
     private SoftAssertions softAssertions;
 
-    private DetailModelResDto detailModelResDto;
+    private DetailModelResponse detailModelResponse;
 
-    private List<EngineResDto> engines = new ArrayList<>();
-    private List<DrivingMethodResDto> drivingMethods = new ArrayList<>();
-    private List<BodyTypeResDto> bodyTypes = new ArrayList<>();
+    private List<EngineResponse> engines = new ArrayList<>();
+    private List<DrivingMethodResponse> drivingMethods = new ArrayList<>();
+    private List<BodyTypeResponse> bodyTypes = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
-        EngineResDto engineResDto = new EngineResDto(
+        EngineResponse engineResponse = new EngineResponse(
                 1L,
                 "디젤 2.2",
                 1480000,
@@ -63,7 +63,7 @@ class DetailModelServiceTest {
                 12.4
         );
 
-        DrivingMethodResDto drivingMethodResDto = new DrivingMethodResDto(
+        DrivingMethodResponse drivingMethodResponse = new DrivingMethodResponse(
                 1L,
                 "2WD",
                 0,
@@ -72,7 +72,7 @@ class DetailModelServiceTest {
                 "구매자 60%가 선택"
         );
 
-        BodyTypeResDto bodyTypeResDto = new BodyTypeResDto(
+        BodyTypeResponse bodyTypeResponse = new BodyTypeResponse(
                 1L,
                 "7인승",
                 0,
@@ -81,10 +81,10 @@ class DetailModelServiceTest {
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/7.jpg"
         );
 
-        engines.add(engineResDto);
-        drivingMethods.add(drivingMethodResDto);
-        bodyTypes.add(bodyTypeResDto);
-        detailModelResDto = DetailModelResDto.create(engines, drivingMethods, bodyTypes);
+        engines.add(engineResponse);
+        drivingMethods.add(drivingMethodResponse);
+        bodyTypes.add(bodyTypeResponse);
+        detailModelResponse = DetailModelResponse.create(engines, drivingMethods, bodyTypes);
     }
 
 
@@ -111,7 +111,7 @@ class DetailModelServiceTest {
         when(engineRepository.findAll(anyLong())).thenReturn(engines);
         when(drivingMethodRepository.findAll(anyLong())).thenReturn(drivingMethods);
         when(bodyTypeRepository.findAll(anyLong())).thenReturn(bodyTypes);
-        DetailModelResDto detailModel = detailModelService.findAllModels(trimId);
+        DetailModelResponse detailModel = detailModelService.findAllModels(trimId);
 
         //then
         softAssertions.assertThat(detailModel.getBodyTypes().size()).isEqualTo(1);

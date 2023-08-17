@@ -1,9 +1,9 @@
 package com.autoever.idle.domain.detailModel;
 
-import com.autoever.idle.domain.detailModel.bodyType.BodyTypeRepository;
-import com.autoever.idle.domain.detailModel.drivingMethod.DrivingMethodRepository;
-import com.autoever.idle.domain.detailModel.dto.DetailModelResDto;
-import com.autoever.idle.domain.detailModel.engine.EngineRepository;
+import com.autoever.idle.domain.detailModel.bodyType.repository.BodyTypeRepository;
+import com.autoever.idle.domain.detailModel.drivingMethod.repository.DrivingMethodRepository;
+import com.autoever.idle.domain.detailModel.dto.DetailModelResponse;
+import com.autoever.idle.domain.detailModel.engine.repository.EngineRepository;
 import com.autoever.idle.global.exception.custom.InvalidDetailModelException;
 import org.springframework.stereotype.Service;
 
@@ -27,17 +27,17 @@ public class DetailModelService {
         this.bodyTypeRepository = bodyTypeRepository;
     }
 
-    public DetailModelResDto findAllModels(Long trimId) {
-        DetailModelResDto detailModelResDto = DetailModelResDto.create(engineRepository.findAll(trimId),
+    public DetailModelResponse findAllModels(Long trimId) {
+        DetailModelResponse detailModelResponse = DetailModelResponse.create(engineRepository.findAll(trimId),
                 drivingMethodRepository.findAll(trimId),
                 bodyTypeRepository.findAll(trimId));
 
-        validateDetailModels(detailModelResDto);
-        return detailModelResDto;
+        validateDetailModels(detailModelResponse);
+        return detailModelResponse;
     }
 
-    private void validateDetailModels(DetailModelResDto detailModelResDto) {
-        if (Stream.of(detailModelResDto.getEngines(), detailModelResDto.getDrivingMethods(), detailModelResDto.getBodyTypes())
+    private void validateDetailModels(DetailModelResponse detailModelResponse) {
+        if (Stream.of(detailModelResponse.getEngines(), detailModelResponse.getDrivingMethods(), detailModelResponse.getBodyTypes())
                 .anyMatch(List::isEmpty)) {
             throw new InvalidDetailModelException(INVALID_DETAIL_MODEL);
         }

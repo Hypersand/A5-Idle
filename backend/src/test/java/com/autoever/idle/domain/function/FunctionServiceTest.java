@@ -1,9 +1,10 @@
 package com.autoever.idle.domain.function;
 
-import com.autoever.idle.domain.category.functionCategory.FunctionCategoryRepository;
-import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryNameResDto;
+import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
+import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryNameResponse;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
-import com.autoever.idle.domain.function.dto.DefaultFunctionResDto;
+import com.autoever.idle.domain.function.dto.DefaultFunctionResponse;
+import com.autoever.idle.domain.function.service.FunctionService;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -34,24 +35,24 @@ class FunctionServiceTest {
 
     @InjectMocks
     private FunctionService functionService;
-    private List<DefaultFunctionResDto> defaultFunctionList = new ArrayList<>();
+    private List<DefaultFunctionResponse> defaultFunctionList = new ArrayList<>();
     private List<FunctionCategoryDto> functionCategoryList = new ArrayList<>();
 
 
     @BeforeEach
     void setUp() {
-        DefaultFunctionResDto defaultFunctionResDto1 = new DefaultFunctionResDto(
+        DefaultFunctionResponse defaultFunctionResponse1 = new DefaultFunctionResponse(
                 "HTRAC",
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/127.jpg",
                 "시시각각 변하는 주행환경에 맞춰 전 / 후 구동력을 능동적으로 배분함으로써 드라이빙의 즐거움을 선사합니다.");
 
-        DefaultFunctionResDto defaultFunctionResDto2 = new DefaultFunctionResDto(
+        DefaultFunctionResponse defaultFunctionResponse2 = new DefaultFunctionResponse(
                 "견인력(750kg → 2,000kg)",
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tractionpower_m.jpg",
                 "-");
 
-        defaultFunctionList.add(defaultFunctionResDto1);
-        defaultFunctionList.add(defaultFunctionResDto2);
+        defaultFunctionList.add(defaultFunctionResponse1);
+        defaultFunctionList.add(defaultFunctionResponse2);
         functionCategoryList.add(new FunctionCategoryDto(1L, "파워트레인/성능"));
     }
 
@@ -65,7 +66,7 @@ class FunctionServiceTest {
         //when
         when(functionCategoryRepository.findAll()).thenReturn(functionCategoryList);
         when(functionCategoryRepository.getDefaultOptionsDetail(any(), any())).thenReturn(defaultFunctionList);
-        List<DefaultFunctionCategoryNameResDto> defaultFunctionsByCategory = functionService.getAllDefaultFunctionsByCategory(trimId);
+        List<DefaultFunctionCategoryNameResponse> defaultFunctionsByCategory = functionService.getAllDefaultFunctionsByCategory(trimId);
 
         //then
         softAssertions.assertThat(defaultFunctionsByCategory.get(0).getCategoryName()).isEqualTo("파워트레인/성능");

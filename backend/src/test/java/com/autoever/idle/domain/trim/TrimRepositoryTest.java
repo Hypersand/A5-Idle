@@ -2,6 +2,7 @@ package com.autoever.idle.domain.trim;
 
 import com.autoever.idle.domain.trim.dto.TrimDescriptionDto;
 import com.autoever.idle.domain.trim.dto.TrimDto;
+import com.autoever.idle.domain.trim.repository.TrimRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

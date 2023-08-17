@@ -1,6 +1,8 @@
 package com.autoever.idle.domain.carMaster;
 
-import com.autoever.idle.domain.carMaster.dto.CarMasterDto;
+import com.autoever.idle.domain.carMaster.dto.CarMasterResponse;
+import com.autoever.idle.domain.carMaster.repository.CarMasterRepository;
+import com.autoever.idle.domain.carMaster.service.CarMasterService;
 import com.autoever.idle.global.exception.custom.InvalidLocationException;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
@@ -36,36 +38,36 @@ class CarMasterServiceTest {
     @DisplayName("10km 이내의 카마스터 찾기(거리순)")
     void findSortedCarMasterByDistance() {
         //given
-        List<CarMasterDto> carMasterDtoList = new ArrayList<>();
-        CarMasterDto carMasterDto = new CarMasterDto("김팰리", "010111111", "왕십리점",
+        List<CarMasterResponse> carMasterResponseList = new ArrayList<>();
+        CarMasterResponse carMasterResponse = new CarMasterResponse("김팰리", "010111111", "왕십리점",
                 "김팰리입니다", "사진", "마커", 36.1234, 126.1234, "주소");
-        carMasterDtoList.add(carMasterDto);
-        given(carMasterRepository.findSortedCarMasterByDistance(anyDouble(), anyDouble())).willReturn(carMasterDtoList);
+        carMasterResponseList.add(carMasterResponse);
+        given(carMasterRepository.findSortedCarMasterByDistance(anyDouble(), anyDouble())).willReturn(carMasterResponseList);
 
         //when
-        List<CarMasterDto> sortedCarMasterByDistance = carMasterService.findSortedCarMasterByDistance(anyDouble(), anyDouble());
+        List<CarMasterResponse> sortedCarMasterByDistance = carMasterService.findSortedCarMasterByDistance(anyDouble(), anyDouble());
 
         //then
         softly.assertThat(sortedCarMasterByDistance.size()).isEqualTo(1);
-        softly.assertThat(sortedCarMasterByDistance.get(0).getMasterName()).isEqualTo(carMasterDtoList.get(0).getMasterName());
+        softly.assertThat(sortedCarMasterByDistance.get(0).getMasterName()).isEqualTo(carMasterResponseList.get(0).getMasterName());
     }
 
     @Test
     @DisplayName("10km 이내의 카마스터 찾기(판매량순)")
     void findSortedCarMasterBySaleRate() {
         //given
-        List<CarMasterDto> carMasterDtoList = new ArrayList<>();
-        CarMasterDto carMasterDto = new CarMasterDto("김팰리", "010111111", "왕십리점",
+        List<CarMasterResponse> carMasterResponseList = new ArrayList<>();
+        CarMasterResponse carMasterResponse = new CarMasterResponse("김팰리", "010111111", "왕십리점",
                 "김팰리입니다", "사진", "마커", 36.1234, 126.1234, "주소");
-        carMasterDtoList.add(carMasterDto);
-        given(carMasterRepository.findSortedCarMasterBySaleRate(anyDouble(), anyDouble())).willReturn(carMasterDtoList);
+        carMasterResponseList.add(carMasterResponse);
+        given(carMasterRepository.findSortedCarMasterBySaleRate(anyDouble(), anyDouble())).willReturn(carMasterResponseList);
 
         //when
-        List<CarMasterDto> sortedCarMasterBySaleRate = carMasterService.findSortedCarMasterBySaleRate(anyDouble(), anyDouble());
+        List<CarMasterResponse> sortedCarMasterBySaleRate = carMasterService.findSortedCarMasterBySaleRate(anyDouble(), anyDouble());
 
         //then
         softly.assertThat(sortedCarMasterBySaleRate.size()).isEqualTo(1);
-        softly.assertThat(sortedCarMasterBySaleRate.get(0).getMasterName()).isEqualTo(carMasterDtoList.get(0).getMasterName());
+        softly.assertThat(sortedCarMasterBySaleRate.get(0).getMasterName()).isEqualTo(carMasterResponseList.get(0).getMasterName());
     }
     @Test
     @DisplayName("잘못된 위치 정보에 대한 예외 테스트")
