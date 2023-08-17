@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.carMaster;
 
-import com.autoever.idle.domain.carMaster.dto.CarMasterDto;
+import com.autoever.idle.domain.carMaster.dto.CarMasterResponse;
+import com.autoever.idle.domain.carMaster.repository.CarMasterRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -29,7 +30,7 @@ class CarMasterRepositoryImplTest {
         Double nowLatitude = 37.5611;
         Double nowLongitude = 127.0483;
 
-        List<CarMasterDto> carMasterByDistance = carMasterRepository.findSortedCarMasterByDistance(nowLatitude, nowLongitude);
+        List<CarMasterResponse> carMasterByDistance = carMasterRepository.findSortedCarMasterByDistance(nowLatitude, nowLongitude);
         softly.assertThat(carMasterByDistance.size()).isEqualTo(3);
         softly.assertThat(carMasterByDistance.get(0).getMasterName()).isEqualTo("정현대");
         softly.assertThat(carMasterByDistance.get(1).getMasterName()).isEqualTo("심포니");
@@ -43,7 +44,7 @@ class CarMasterRepositoryImplTest {
         Double nowLatitude = 37.5611;
         Double nowLongitude = 127.0483;
 
-        List<CarMasterDto> carMasterByDistance = carMasterRepository.findSortedCarMasterBySaleRate(nowLatitude, nowLongitude);
+        List<CarMasterResponse> carMasterByDistance = carMasterRepository.findSortedCarMasterBySaleRate(nowLatitude, nowLongitude);
         softly.assertThat(carMasterByDistance.size()).isEqualTo(3);
         softly.assertThat(carMasterByDistance.get(0).getMasterName()).isEqualTo("김팰리");
         softly.assertThat(carMasterByDistance.get(1).getMasterName()).isEqualTo("정현대");

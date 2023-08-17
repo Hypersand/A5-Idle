@@ -1,8 +1,10 @@
 package com.autoever.idle.domain.option;
 
 import com.autoever.idle.domain.function.dto.FunctionDto;
-import com.autoever.idle.domain.option.dto.OptionFunctionsDto;
+import com.autoever.idle.domain.option.controller.OptionController;
+import com.autoever.idle.domain.option.dto.OptionFunctionsResponse;
 import com.autoever.idle.domain.option.dto.OptionRequest;
+import com.autoever.idle.domain.option.service.OptionService;
 import com.autoever.idle.global.exception.GlobalExceptionHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +40,7 @@ class OptionControllerTest {
     private OptionController optionController;
     private MockMvc mockMvc;
     private ObjectMapper objectMapper = new ObjectMapper();
-    private List<OptionFunctionsDto> optionFunctionsDtoList = new ArrayList<>();
+    private List<OptionFunctionsResponse> optionFunctionsResponseList = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
@@ -55,7 +57,7 @@ class OptionControllerTest {
                 null));
 
 
-        OptionFunctionsDto optionFunctionsDto = new OptionFunctionsDto(
+        OptionFunctionsResponse optionFunctionsResponse = new OptionFunctionsResponse(
                 8L,
                 "프로텍션 매트 패키지 I",
                 250000L,
@@ -65,7 +67,7 @@ class OptionControllerTest {
                 "false",
                 functionDtoList
         );
-        optionFunctionsDtoList.add(optionFunctionsDto);
+        optionFunctionsResponseList.add(optionFunctionsResponse);
     }
 
     @Test
@@ -73,7 +75,7 @@ class OptionControllerTest {
     void getOptionFunctions() throws Exception {
         //given
         OptionRequest optionRequest = new OptionRequest(1L, List.of(1L, 15L), 1L);
-        given(optionService.getOptionFunctions(any())).willReturn(optionFunctionsDtoList);
+        given(optionService.getOptionFunctions(any())).willReturn(optionFunctionsResponseList);
 
         //when
         ResultActions resultActions = mockMvc.perform(post("/trims/add/options")
@@ -84,7 +86,7 @@ class OptionControllerTest {
         //then
         resultActions.andExpect(status().isOk());
         resultActions.andExpect(content().contentType(MediaType.APPLICATION_JSON));
-        resultActions.andExpect(content().json(objectMapper.writeValueAsString(optionFunctionsDtoList)));
+        resultActions.andExpect(content().json(objectMapper.writeValueAsString(optionFunctionsResponseList)));
     }
 
 

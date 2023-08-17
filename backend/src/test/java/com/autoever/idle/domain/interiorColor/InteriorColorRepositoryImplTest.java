@@ -3,6 +3,7 @@ package com.autoever.idle.domain.interiorColor;
 
 import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorDto;
+import com.autoever.idle.domain.interiorColor.repository.InteriorColorRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;

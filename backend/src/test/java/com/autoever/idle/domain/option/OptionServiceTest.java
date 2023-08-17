@@ -1,10 +1,12 @@
 package com.autoever.idle.domain.option;
 
-import com.autoever.idle.domain.function.FunctionRepository;
+import com.autoever.idle.domain.function.repository.FunctionRepository;
 import com.autoever.idle.domain.function.dto.FunctionDto;
 import com.autoever.idle.domain.option.dto.OptionDto;
-import com.autoever.idle.domain.option.dto.OptionFunctionsDto;
+import com.autoever.idle.domain.option.dto.OptionFunctionsResponse;
 import com.autoever.idle.domain.option.dto.OptionRequest;
+import com.autoever.idle.domain.option.repository.OptionRepository;
+import com.autoever.idle.domain.option.service.OptionService;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -98,7 +100,7 @@ class OptionServiceTest {
         when(optionRepository.findAdditionalOptionList(any())).thenReturn(additionalOptionListSortedByPrice);
         when(optionRepository.findNotActivatedOptionIdList(any(), anyList())).thenReturn(notActivatedOptionIdList);
         when(functionRepository.findFunctionsInAdditionalOption(any())).thenReturn(functionDtoList);
-        List<OptionFunctionsDto> optionFunctions = optionService.getOptionFunctions(optionRequest);
+        List<OptionFunctionsResponse> optionFunctions = optionService.getOptionFunctions(optionRequest);
 
         //then
         softAssertions.assertThat(optionFunctions.get(0).getOptionId()).isEqualTo(additionalOptionListSortedByPrice.get(1).getOptionId());
@@ -117,7 +119,7 @@ class OptionServiceTest {
         when(optionRepository.findAdditionalOptionList(any())).thenReturn(additionalOptionListSortedByPurchaseRate);
         when(optionRepository.findNotActivatedOptionIdList(any(), anyList())).thenReturn(notActivatedOptionIdList);
         when(functionRepository.findFunctionsInAdditionalOption(any())).thenReturn(functionDtoList);
-        List<OptionFunctionsDto> optionFunctions = optionService.getOptionFunctions(optionRequest);
+        List<OptionFunctionsResponse> optionFunctions = optionService.getOptionFunctions(optionRequest);
 
         //then
         softAssertions.assertThat(optionFunctions.get(0).getOptionId()).isEqualTo(additionalOptionListSortedByPurchaseRate.get(1).getOptionId());

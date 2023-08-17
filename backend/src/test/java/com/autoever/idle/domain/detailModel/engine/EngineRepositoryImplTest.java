@@ -1,5 +1,7 @@
 package com.autoever.idle.domain.detailModel.engine;
 
+import com.autoever.idle.domain.detailModel.dto.EngineResponse;
+import com.autoever.idle.domain.detailModel.engine.repository.EngineRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +25,13 @@ class EngineRepositoryImplTest {
         Long trimId = 1L;
 
         //when
-        List<EngineResDto> engineResDtos = engineRepository.findAll(trimId);
+        List<EngineResponse> engineResponses = engineRepository.findAll(trimId);
 
         //then
         assertSoftly(softAssertions -> {
-                    softAssertions.assertThat(engineResDtos.size()).isEqualTo(2);
-                    softAssertions.assertThat(engineResDtos.get(0).getType()).isEqualTo("가솔린 3.8");
-                    softAssertions.assertThat(engineResDtos.get(1).getType()).isEqualTo("디젤 2.2");
+                    softAssertions.assertThat(engineResponses.size()).isEqualTo(2);
+                    softAssertions.assertThat(engineResponses.get(0).getType()).isEqualTo("가솔린 3.8");
+                    softAssertions.assertThat(engineResponses.get(1).getType()).isEqualTo("디젤 2.2");
                 }
         );
     }

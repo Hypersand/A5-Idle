@@ -1,10 +1,10 @@
 package com.autoever.idle.domain.function;
 
-import com.autoever.idle.domain.function.dto.AdditionalFunctionBillDto;
 import com.autoever.idle.domain.function.dto.FunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
+import com.autoever.idle.domain.function.repository.FunctionRepository;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
-import com.autoever.idle.domain.option.MyTrimOptionDto;
+import com.autoever.idle.domain.option.dto.MyTrimOptionResponse;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -61,7 +61,7 @@ class FunctionRepositoryImplTest {
     @Test
     @DisplayName("내게 맞는 트림 찾기의 선택지에 따른 옵션 반환 테스트")
     void findOptionBySelectFunction() {
-        MyTrimOptionDto optionBySelectFunction = functionRepository.findOptionBySelectFunction(17L);
+        MyTrimOptionResponse optionBySelectFunction = functionRepository.findOptionBySelectFunction(17L);
 
         softly.assertThat(optionBySelectFunction.getOptionName()).isEqualTo("주차보조 시스템 I");
 
