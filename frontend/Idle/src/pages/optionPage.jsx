@@ -71,7 +71,8 @@ function OptionPage() {
   }, [scrollBar.current]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    debugger;
+    async function fetchData() {
       await submitPostAPI(PATH.OPTION.GET, {
         trimId: car.trim.trimId,
         selectedOptionIds: [],
@@ -79,11 +80,13 @@ function OptionPage() {
       }).then((res) => {
         setData(res);
       });
-    };
+    }
+    console.log("a");
     fetchData();
   }, []);
 
   useEffect(() => {
+    console.log("B");
     setFilteredData(filterData(data, currentTab));
   }, [data, currentTab]);
 
