@@ -11,26 +11,26 @@ import CarMasterTooltip from "toolTips/carMasterTooltip";
 import { submitPostAPI } from "utils/api";
 import { PATH } from "utils/constants";
 
-let cachedBillData = null
+let cachedBillData = null;
 
 function BillPage() {
   const { car } = useContext(carContext);
   const [carMasterVisible, setCarMasterVisible] = useState(false);
-  const [tooltipStatus, setTooltipStatus] = useState(true);
+  const [tooltipState, setTooltipState] = useState(true);
   const [billData, setBillData] = useState(cachedBillData);
   function carMasterBtnClicked() {
     setCarMasterVisible(true);
-    setTooltipStatus(false);
+    setTooltipState(false);
   }
-  let additionalOptionIds = []
-  car.option.additional.map((item) => additionalOptionIds.push(item.optionId))
-  car.option.confusing.map((item) => additionalOptionIds.push(item.optionId))
+  let additionalOptionIds = [];
+  car.option.additional.map((item) => additionalOptionIds.push(item.optionId));
+  car.option.confusing.map((item) => additionalOptionIds.push(item.optionId));
   useEffect(() => {
     submitPostAPI(PATH.BILL, {
-      "trimId": car.trim.trimId,
-      "exteriorId": car.color.exterior.exteriorId,
-      "interiorId": car.color.interior.interiorId,
-      "selectedOptionIds": additionalOptionIds
+      trimId: car.trim.trimId,
+      exteriorId: car.color.exterior.exteriorId,
+      interiorId: car.color.interior.interiorId,
+      selectedOptionIds: additionalOptionIds,
     }).then((result) => {
       setBillData(result);
       cachedBillData = result;
@@ -60,7 +60,7 @@ function BillPage() {
           </StConfirmText>
           <StButtonContainer>
             <StTooltipContainer>
-              <StTooltip isActive={tooltipStatus} />
+              <StTooltip isActive={tooltipState} />
             </StTooltipContainer>
             <WhiteButton text={"공유하기"} />
             <BlueButton text={"카마스터 찾기"} onClick={carMasterBtnClicked} />

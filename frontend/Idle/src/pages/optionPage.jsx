@@ -21,6 +21,7 @@ import OptionMain from "optionMain/index";
 import palette from "styles/palette";
 import { submitPostAPI } from "utils/api";
 import { carContext } from "utils/context";
+import ConfusingTooltip from "toolTips/ConfusingTooltip";
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,
@@ -46,6 +47,7 @@ function OptionPage() {
   const scrollBar = useRef();
   const [filteredData, setFilteredData] = useState([]);
   const [selectedFunction, setSelectedFunction] = useState("");
+  const [tooltipState, setTooltipState] = useState(true);
 
   useEffect(() => {
     if (!scrollBar.current) {
@@ -156,34 +158,38 @@ function OptionPage() {
             selectedFunction={selectedFunction}
           />
         </StContentsContainer>
-
         <StBottomContainer>
-          <ArrowLeftContainer $blurState={blurState}>
-            <ArrowLogo
-              onClick={() => {
-                ArrowButtonClicked("LEFT");
-              }}
-            />
-          </ArrowLeftContainer>
-
-          <StContainer ref={scrollBar}>
-            {filteredData?.map((item, idx) => (
-              <OptionBox
-                {...item}
-                key={idx}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
+          <StWrapper>
+            <ArrowLeftContainer $blurState={blurState}>
+              <ArrowLogo
+                onClick={() => {
+                  ArrowButtonClicked("LEFT");
+                }}
               />
-            ))}
-          </StContainer>
-          <ArrowRightContainer $blurState={blurState}>
-            <ArrowLogo
-              onClick={() => {
-                ArrowButtonClicked("RIGHT");
-              }}
-            />
-          </ArrowRightContainer>
-          <DefaultOption />
+            </ArrowLeftContainer>
+            <StContainer ref={scrollBar}>
+              {filteredData?.map((item, idx) => (
+                <OptionBox
+                  {...item}
+                  key={idx}
+                  selectedOption={selectedOption}
+                  setSelectedOption={setSelectedOption}
+                  setTooltipState={() => setTooltipState(false)}
+                />
+              ))}
+            </StContainer>
+            <ArrowRightContainer $blurState={blurState}>
+              <ArrowLogo
+                onClick={() => {
+                  ArrowButtonClicked("RIGHT");
+                }}
+              />
+            </ArrowRightContainer>
+            <DefaultOption />
+            <StTooltipContainer>
+              <StTooltip isActive={tooltipState} />
+            </StTooltipContainer>
+          </StWrapper>
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>{TRANSLATE[currentTab]} 선택</Title>
@@ -345,4 +351,13 @@ const StContentsContainer = styled.div`
   position: absolute;
   top: 100px;
   left: 128px;
+`;
+
+const StTooltip = styled(ConfusingTooltip)``;
+
+const StTooltipContainer = styled.div`
+  position: absolute;
+  top: 80%;
+  left: -3%;
+  z-index: 10;
 `;
