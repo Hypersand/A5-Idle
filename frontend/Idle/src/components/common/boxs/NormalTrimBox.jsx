@@ -6,7 +6,7 @@ import TrimDetailModal from "trimDetailModal/TrimDetailModal";
 import { CHANGE_TRIM } from "utils/actionType";
 import palette from "styles/palette";
 import WarningModal from "../modals/WarningModal";
-import { CLEAR_OPTION } from "../../../utils/actionType";
+import { CLEAR_OPTION } from "utils/actionType";
 
 function NormalTrimBox({
   purchaseRate,
@@ -56,12 +56,8 @@ function NormalTrimBox({
   const isTrimSelected = car.trim.name === name;
   return (
     <>
-      <StContainer
-        onClick={() => trimClicked(name, price, trimId)}
-        $isSelected={isTrimSelected}
-        $isActive={isActive}
-      >
-        <StContent>
+      <StContainer $isSelected={isTrimSelected} $isActive={isActive}>
+        <StContent onClick={() => trimClicked(name, price, trimId)}>
           <StTitleContainer>
             <StContentHeader>
               <TitleDetail $isSelected={isTrimSelected}>{purchaseRate}</TitleDetail>
@@ -106,7 +102,7 @@ const StContainer = styled.div`
   height: 138px;
   padding: 12px 24px;
   border: 1px solid
-    ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.Grey_2}`)};
+    ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.Purple}`)};
   background: ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.White}`)};
   flex-direction: column;
   justify-content: center;

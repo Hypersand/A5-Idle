@@ -109,7 +109,7 @@ const StContainer = styled.div`
       if ($isSelected) {
         switch ($state) {
           case NONE:
-            return `${palette.NavyBlue_1}`;
+            return `${palette.NavyBlue_5}`;
           case CONFUSE:
             return `${palette.Gold_5}`;
           case ADD:
