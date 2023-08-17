@@ -4,11 +4,19 @@ import { carContext } from "utils/context";
 import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "utils/actionType";
 import palette from "styles/palette";
 
-function DetailModelBox({ purchase_rate, type, description, price, currentTab, isActive = true }) {
+function DetailModelBox({
+  purchase_rate,
+  type,
+  description,
+  id,
+  price,
+  currentTab,
+  isActive = true,
+}) {
   const { car, dispatch } = useContext(carContext);
 
   function optionClicked(type, price) {
-    const payload = { name: type, price: price };
+    const payload = { name: type, price: price, id: id };
     switch (currentTab) {
       case "engines":
         if (car.detail.engines.name !== type) {

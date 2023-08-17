@@ -1,5 +1,5 @@
 import DefaultOption from "defaultOption/index";
-import { useEffect, useRef, useState, useContext, useLayoutEffect } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import OptionBox from "boxs/OptionBox";
 import {
   ALL,
@@ -18,9 +18,9 @@ import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
 import { ReactComponent as ArrowLogo } from "images/arrowOption.svg";
 import OptionMain from "optionMain/index";
-import hyundai from "images/hyundai.svg";
 import palette from "styles/palette";
-import { getAPI } from "utils/api";
+import { submitPostAPI } from "utils/api";
+import { carContext } from "utils/context";
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,
@@ -35,6 +35,7 @@ function filterData(data, currentTab) {
 
 function OptionPage() {
   const { tab } = useParams();
+  const { car } = useContext(carContext);
   const [currentTab, setCurrentTab] = useState(tab);
   const [selectedOption, setSelectedOption] = useState("");
   const [data, setData] = useState([]);
@@ -46,7 +47,19 @@ function OptionPage() {
   const [filteredData, setFilteredData] = useState([]);
   const [selectedFunction, setSelectedFunction] = useState("");
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // submitPostAPI(PATH.OPTION.GET, { trimId:car.trim.trimId,selectedOptionId: });
+    console.log(car);
+  }, []);
+
+  // {
+  //   "trimId":111111,
+  //   "selectedOptionId": [
+  //       1,
+  //       15
+  //   ],
+  //   "engineId": "가솔린"
+  // }
 
   useEffect(() => {
     if (!scrollBar.current) {
