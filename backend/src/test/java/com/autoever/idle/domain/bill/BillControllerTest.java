@@ -9,6 +9,7 @@ import com.autoever.idle.domain.function.dto.DefaultFunctionNameResDto;
 import com.autoever.idle.domain.function.dto.DefaultFunctionResDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.option.dto.SelectedOptionDto;
+import com.autoever.idle.domain.trim.dto.TrimDescriptionDto;
 import com.autoever.idle.global.exception.ErrorCode;
 import com.autoever.idle.global.exception.custom.InvalidExteriorException;
 import com.autoever.idle.global.exception.custom.InvalidInteriorException;
@@ -51,6 +52,9 @@ class BillControllerTest {
 
     @BeforeEach
     void setUp() {
+        TrimDescriptionDto trimDescriptionDto = new TrimDescriptionDto("실용적이고 기본적인 기능을 갖춘 베이직 트림");
+        String trimDescription = trimDescriptionDto.getTrimDescription();
+
         ExteriorBillDto exteriorBillDto = new ExteriorBillDto(
                 1L,
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/12.png"
@@ -76,7 +80,7 @@ class BillControllerTest {
         defaultFunctionNameResDtos.add(new DefaultFunctionNameResDto("8단 자동변속기"));
         DefaultFunctionCategoryResDto defaultFunctionCategoryResDto = new DefaultFunctionCategoryResDto(1L, "파워트레인/성능", defaultFunctionNameResDtos);
         defaultFunctionCategoryResDtos.add(defaultFunctionCategoryResDto);
-        billResponseDto = new BillResponseDto(exteriorBillDto, interiorBillDto, selectedOptionDtos, defaultFunctionCategoryResDtos);
+        billResponseDto = new BillResponseDto(trimDescription, exteriorBillDto, interiorBillDto, selectedOptionDtos, defaultFunctionCategoryResDtos);
     }
 
     @Test

@@ -12,6 +12,9 @@ import com.autoever.idle.domain.interiorColor.InteriorColorRepository;
 import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.option.OptionRepository;
 import com.autoever.idle.domain.option.dto.SelectedOptionDto;
+import com.autoever.idle.domain.trim.TrimRepository;
+import com.autoever.idle.domain.trim.dto.TrimDescriptionDto;
+import com.autoever.idle.domain.trim.dto.TrimDto;
 import com.autoever.idle.global.exception.ErrorCode;
 import com.autoever.idle.global.exception.custom.InvalidExteriorException;
 import com.autoever.idle.global.exception.custom.InvalidInteriorException;
@@ -25,6 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BillService {
 
+    private final TrimRepository trimRepository;
     private final ExteriorColorRepository exteriorColorRepository;
     private final InteriorColorRepository interiorColorRepository;
     private final OptionRepository optionRepository;
@@ -32,6 +36,9 @@ public class BillService {
 
 
     public BillResponseDto getResultBill(BillRequestDto billRequestDto) {
+
+        TrimDescriptionDto trimDescriptionDto = trimRepository.findByTrimId(billRequestDto.getTrimId());
+        String trimDescription = trimDescriptionDto.getTrimDescription();
 
         ExteriorBillDto exteriorBillDto = exteriorColorRepository.findExteriorBill(billRequestDto.getExteriorId())
                 .orElseThrow(() -> new InvalidExteriorException(ErrorCode.INVALID_EXTERIOR));
@@ -56,6 +63,6 @@ public class BillService {
             categoryDtos.add(defaultCategoryDto);
         }
 
-        return new BillResponseDto(exteriorBillDto, interiorBillDto, selectedOptions, categoryDtos);
+        return new BillResponseDto(trimDescription, exteriorBillDto, interiorBillDto, selectedOptions, categoryDtos);
     }
 }

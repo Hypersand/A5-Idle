@@ -13,12 +13,15 @@ import java.util.List;
 @Getter
 @Setter
 public class BillResponseDto {
+
+    private String trimDescription;
     private ExteriorBillDto exterior;
     private InteriorBillDto interior;
     private List<SelectedOptionDto> selectedOptions;
     private List<DefaultFunctionCategoryResDto> defaultFunctions;
 
-    public BillResponseDto(ExteriorBillDto exterior, InteriorBillDto interior, List<SelectedOptionDto> selectedOptions, List<DefaultFunctionCategoryResDto> defaultFunctions) {
+    public BillResponseDto(String trimDescription, ExteriorBillDto exterior, InteriorBillDto interior, List<SelectedOptionDto> selectedOptions, List<DefaultFunctionCategoryResDto> defaultFunctions) {
+        this.trimDescription = trimDescription;
         this.exterior = exterior;
         this.interior = interior;
         this.selectedOptions = selectedOptions;
