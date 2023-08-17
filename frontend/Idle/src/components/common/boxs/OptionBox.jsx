@@ -49,7 +49,10 @@ function OptionBox({
     e.stopPropagation();
     popPayload(optionName);
     if (state !== CONFUSE)
-      dispatch({ type: PUSH_CONFUSING_OPTION, payload: { name: optionName, price: optionPrice } });
+      dispatch({
+        type: PUSH_CONFUSING_OPTION,
+        payload: { name: optionName, price: optionPrice, optionId: optionId },
+      });
   }
   function toggleAdd(e) {
     e.stopPropagation();
