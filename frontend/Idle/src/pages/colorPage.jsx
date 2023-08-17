@@ -19,19 +19,19 @@ import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR } from "../utils/actionTyp
 import { getAPI } from "../utils/api";
 import { DEFAULT_INTERIROR_COLOR, PATH } from "../utils/constants";
 
-let cachedExterior = null
-let cachedInterior = null
+let cachedExterior = null;
+let cachedInterior = null;
 function ColorPage() {
-  const { tab } = useParams()
-  const [exteriorData, setExteriorData] = useState(cachedExterior)
-  const [interiorData, setInteriorData] = useState(cachedInterior)
+  const { tab } = useParams();
+  const [exteriorData, setExteriorData] = useState(cachedExterior);
+  const [interiorData, setInteriorData] = useState(cachedInterior);
   const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS);
   const tabs = [EXTERIOR_COLORS, INTERIROR_COLORS];
   const { car, dispatch } = useContext(carContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setCurrentTab(tab)
+    setCurrentTab(tab);
     switch (tab) {
       case EXTERIOR_COLORS:
         dispatchDefault(
@@ -48,7 +48,7 @@ function ColorPage() {
         );
         break;
       default:
-        break
+        break;
     }
   }, [tab]);
 
@@ -60,11 +60,16 @@ function ColorPage() {
   }, []);
 
   useEffect(() => {
-    getAPI(PATH.COLOR.INTERIOR, { trimId: car.trim.trimId, exteriorId: car.color.exterior.exteriorId }).then((result) => {
-      setInteriorData(result);
-      cachedInterior = result;
-    })
-  }, [exteriorData])
+    if (car.color.exterior.exteriorId !== undefined) {
+      getAPI(PATH.COLOR.INTERIOR, {
+        trimId: car.trim.trimId,
+        exteriorId: car.color.exterior.exteriorId,
+      }).then((result) => {
+        setInteriorData(result);
+        cachedInterior = result;
+      });
+    }
+  }, [exteriorData]);
 
   function dispatchDefault(tabState, actionType, defaultPayload) {
     if (tabState.name === undefined) {
@@ -91,14 +96,23 @@ function ColorPage() {
       }
     }
   }
-  const filteredExteriorData = exteriorData?.filter((item) => { return item.exteriorId === car.color.exterior?.exteriorId })
+  const filteredExteriorData = exteriorData?.filter((item) => {
+    return item.exteriorId === car.color.exterior?.exteriorId;
+  });
 
   return (
     <>
       <StWrapper>
         <StTabContainer>
           {tabs.map((item, idx) => (
-            <CategoryTabs key={idx} text={TRANSLATE[item]} isClicked={item === currentTab} onClick={() => { navigate(`/color/${item}`) }} />
+            <CategoryTabs
+              key={idx}
+              text={TRANSLATE[item]}
+              isClicked={item === currentTab}
+              onClick={() => {
+                navigate(`/color/${item}`);
+              }}
+            />
           ))}
         </StTabContainer>
         {currentTab === EXTERIOR_COLORS ? (

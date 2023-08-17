@@ -2,11 +2,12 @@ import { styled } from "styled-components";
 import palette from "../../styles/palette";
 
 function DillerBox({ data, isSelected, onClick }) {
+  console.log(data);
   return (
     <StContainer $isSelected={isSelected} onClick={onClick}>
       <StMainContainer>
         <div>
-          <StImg $img={data.masterImgUrl} />
+          <StImg src={data.masterImgUrl} />
         </div>
 
         <StSubContainer>
@@ -43,10 +44,9 @@ const StMainContainer = styled.div`
   justify-content: space-between;
 `;
 
-const StImg = styled.div`
+const StImg = styled.img`
   width: 48px;
   height: 49px;
-  background-image: ${({ imgUrl }) => `url(${imgUrl})`};
 `;
 const StSubContainer = styled.div`
   display: flex;

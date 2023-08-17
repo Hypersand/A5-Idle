@@ -6,7 +6,7 @@ import TrimDetailModal from "trimDetailModal/TrimDetailModal";
 import { CHANGE_TRIM } from "utils/actionType";
 import palette from "styles/palette";
 import WarningModal from "../modals/WarningModal";
-import { CLEAR_OPTION } from "../../../utils/actionType";
+import { CLEAR_OPTION } from "utils/actionType";
 
 function NormalTrimBox({
   purchaseRate,
@@ -20,28 +20,30 @@ function NormalTrimBox({
   const { car, dispatch } = useContext(carContext);
   const [isModal, setIsModal] = useState(false);
   const [isWarning, setIsWarning] = useState(false);
-  const [tempPayload, setTempPayload] = useState({})
+  const [tempPayload, setTempPayload] = useState({});
 
   function alertSubmit() {
-    dispatch({ type: CLEAR_OPTION, payload: tempPayload })
-    setIsWarning(false)
+    dispatch({ type: CLEAR_OPTION, payload: tempPayload });
+    setIsWarning(false);
   }
   function trimClicked(name, price, trimId) {
-
     if (car.trim.name !== name) {
       setTempPayload({
         trimId: trimId,
         name: name,
         price: price,
-      })
-      if (car.option.additional.length !== 0 || car.color.exterior.name !== undefined) setIsWarning(true)
-      else dispatch({
-        type: CHANGE_TRIM, payload: {
-          trimId: trimId,
-          name: name,
-          price: price,
-        }
       });
+      if (car.option.additional.length !== 0 || car.color.exterior.name !== undefined)
+        setIsWarning(true);
+      else
+        dispatch({
+          type: CHANGE_TRIM,
+          payload: {
+            trimId: trimId,
+            name: name,
+            price: price,
+          },
+        });
     }
   }
 
@@ -54,12 +56,8 @@ function NormalTrimBox({
   const isTrimSelected = car.trim.name === name;
   return (
     <>
-      <StContainer
-        onClick={() => trimClicked(name, price, trimId)}
-        $isSelected={isTrimSelected}
-        $isActive={isActive}
-      >
-        <StContent>
+      <StContainer $isSelected={isTrimSelected} $isActive={isActive}>
+        <StContent onClick={() => trimClicked(name, price, trimId)}>
           <StTitleContainer>
             <StContentHeader>
               <TitleDetail $isSelected={isTrimSelected}>{purchaseRate}</TitleDetail>
@@ -89,6 +87,7 @@ function NormalTrimBox({
           setModalVisible={setIsWarning}
           onSubmitClick={alertSubmit}
           detail={"현재까지의 변경사항은 저장되지 않습니다."}
+          modalPosition={"modal"}
         />
       ) : null}
     </>
@@ -103,7 +102,7 @@ const StContainer = styled.div`
   height: 138px;
   padding: 12px 24px;
   border: 1px solid
-    ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.Grey_2}`)};
+    ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.Purple}`)};
   background: ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.White}`)};
   flex-direction: column;
   justify-content: center;
@@ -114,7 +113,7 @@ const StContainer = styled.div`
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
     background: ${({ $isSelected }) =>
-    $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
   }

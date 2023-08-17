@@ -10,33 +10,38 @@ import MapModal from "../components/BillMain/MapModal";
 import CarMasterTooltip from "toolTips/carMasterTooltip";
 import { submitPostAPI } from "utils/api";
 import { PATH } from "utils/constants";
+import WarningModal from "../components/common/modals/WarningModal";
 
-let cachedBillData = null
+let cachedBillData = null;
 
 function BillPage() {
   const { car } = useContext(carContext);
+  const [modalVisible, setModalVisible] = useState(false);
   const [carMasterVisible, setCarMasterVisible] = useState(false);
-  const [tooltipStatus, setTooltipStatus] = useState(true);
+  const [tooltipState, setTooltipState] = useState(true);
   const [billData, setBillData] = useState(cachedBillData);
   function carMasterBtnClicked() {
     setCarMasterVisible(true);
-    setTooltipStatus(false);
+    setTooltipState(false);
   }
-  let additionalOptionIds = []
-  car.option.additional.map((item) => additionalOptionIds.push(item.optionId))
-  car.option.confusing.map((item) => additionalOptionIds.push(item.optionId))
+  let additionalOptionIds = [];
+  car.option.additional.map((item) => additionalOptionIds.push(item.optionId));
+  car.option.confusing.map((item) => additionalOptionIds.push(item.optionId));
   useEffect(() => {
-    submitPostAPI(PATH.BILL, {
-      "trimId": car.trim.trimId,
-      "exteriorId": car.color.exterior.exteriorId,
-      "interiorId": car.color.interior.interiorId,
-      "selectedOptionIds": additionalOptionIds
-    }).then((result) => {
-      setBillData(result);
-      cachedBillData = result;
-    });
+    if (car.color.exterior.exteriorId === undefined) {
+      setModalVisible(true);
+    } else {
+      submitPostAPI(PATH.BILL, {
+        trimId: car.trim.trimId,
+        exteriorId: car.color.exterior.exteriorId,
+        interiorId: car.color.interior.interiorId,
+        selectedOptionIds: additionalOptionIds,
+      }).then((result) => {
+        setBillData(result);
+        cachedBillData = result;
+      });
+    }
   }, []);
-
   return (
     <StWrapper>
       <StContainer id={"carMasterModal"}>
@@ -60,7 +65,7 @@ function BillPage() {
           </StConfirmText>
           <StButtonContainer>
             <StTooltipContainer>
-              <StTooltip isActive={tooltipStatus} />
+              <StTooltip isActive={tooltipState} />
             </StTooltipContainer>
             <WhiteButton text={"공유하기"} />
             <BlueButton text={"카마스터 찾기"} onClick={carMasterBtnClicked} />
@@ -68,6 +73,17 @@ function BillPage() {
         </StConfirmContainer>
         <BillMain data={billData} />
         {carMasterVisible && <MapModal setCarMasterVisible={setCarMasterVisible} />}
+        {modalVisible && (
+          <WarningModal
+            title={"메인페이지로 이동합니다."}
+            setModalVisible={setModalVisible}
+            onSubmitClick={() => {
+              location.replace("/");
+            }}
+            detail={"현재까지의 변경사항은 저장되지 않습니다."}
+            modalPosition={"carMasterModal"}
+          />
+        )}
       </StContainer>
     </StWrapper>
   );

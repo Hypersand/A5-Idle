@@ -38,7 +38,7 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
     return data?.length > 1 ? (
       <StMain>
         <ArrowLeft onClick={leftBtnClicked} style={{ cursor: "pointer" }} />
-        {data[currentPage].functionName}
+        {data[currentPage]?.functionName}
         <ArrowRight onClick={rightBtnClicked} style={{ cursor: "pointer" }} />
       </StMain>
     ) : null;
@@ -47,7 +47,7 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   return (
     <StContainer>
       {renderMain()}
-      <StDesc>{data && data[currentPage].functionDescription}</StDesc>
+      <StDesc>{data && data[currentPage]?.functionDescription}</StDesc>
 
       {renderCircle()}
     </StContainer>

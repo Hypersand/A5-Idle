@@ -1,5 +1,5 @@
 import DefaultOption from "defaultOption/index";
-import { useEffect, useRef, useState, useContext, useLayoutEffect } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import OptionBox from "boxs/OptionBox";
 import {
   ALL,
@@ -18,9 +18,10 @@ import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
 import { ReactComponent as ArrowLogo } from "images/arrowOption.svg";
 import OptionMain from "optionMain/index";
-import hyundai from "images/hyundai.svg";
 import palette from "styles/palette";
-import { getAPI } from "utils/api";
+import { submitPostAPI } from "utils/api";
+import { carContext } from "utils/context";
+import ConfusingTooltip from "toolTips/ConfusingTooltip";
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,
@@ -35,6 +36,7 @@ function filterData(data, currentTab) {
 
 function OptionPage() {
   const { tab } = useParams();
+  const { car } = useContext(carContext);
   const [currentTab, setCurrentTab] = useState(tab);
   const [selectedOption, setSelectedOption] = useState("");
   const [data, setData] = useState([]);
@@ -45,8 +47,7 @@ function OptionPage() {
   const scrollBar = useRef();
   const [filteredData, setFilteredData] = useState([]);
   const [selectedFunction, setSelectedFunction] = useState("");
-
-  useEffect(() => {}, []);
+  const [tooltipState, setTooltipState] = useState(true);
 
   useEffect(() => {
     if (!scrollBar.current) {
@@ -70,8 +71,26 @@ function OptionPage() {
   }, [scrollBar.current]);
 
   useEffect(() => {
-    setCurrentTab(tab);
+    async function fetchData() {
+      await submitPostAPI(PATH.OPTION.GET, {
+        trimId: car.trim.trimId,
+        selectedOptionIds: [],
+        engineId: car.detail.engines.id,
+      }).then((res) => {
+        setData(res);
+      });
+    }
+    console.log("a");
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log("B");
     setFilteredData(filterData(data, currentTab));
+  }, [data, currentTab]);
+
+  useEffect(() => {
+    setCurrentTab(tab);
     setCurrentPage(0);
     setSelectedOption("");
   }, [tab]);
@@ -132,7 +151,6 @@ function OptionPage() {
           ))}
         </StTabContainer>
         <StContentsContainer>
-          {/* 메인 컨텐츠 부분 */}
           <OptionMain
             data={filteredData}
             selectedOption={selectedOption}
@@ -141,35 +159,39 @@ function OptionPage() {
             setSelectedFunction={setSelectedFunction}
             selectedFunction={selectedFunction}
           />
-          {/* <MainContents currentState={currentTab} data={dummyData} /> */}
         </StContentsContainer>
-
         <StBottomContainer>
-          <ArrowLeftContainer $blurState={blurState}>
-            <ArrowLogo
-              onClick={() => {
-                ArrowButtonClicked("LEFT");
-              }}
-            />
-          </ArrowLeftContainer>
-
-          <StContainer ref={scrollBar}>
-            {filteredData?.map((item, idx) => (
-              <OptionBox
-                key={idx}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
+          <StWrapper>
+            <ArrowLeftContainer $blurState={blurState}>
+              <ArrowLogo
+                onClick={() => {
+                  ArrowButtonClicked("LEFT");
+                }}
               />
-            ))}
-          </StContainer>
-          <ArrowRightContainer $blurState={blurState}>
-            <ArrowLogo
-              onClick={() => {
-                ArrowButtonClicked("RIGHT");
-              }}
-            />
-          </ArrowRightContainer>
-          <DefaultOption />
+            </ArrowLeftContainer>
+            <StContainer ref={scrollBar}>
+              {filteredData?.map((item, idx) => (
+                <OptionBox
+                  {...item}
+                  key={idx}
+                  selectedOption={selectedOption}
+                  setSelectedOption={setSelectedOption}
+                  setTooltipState={() => setTooltipState(false)}
+                />
+              ))}
+            </StContainer>
+            <ArrowRightContainer $blurState={blurState}>
+              <ArrowLogo
+                onClick={() => {
+                  ArrowButtonClicked("RIGHT");
+                }}
+              />
+            </ArrowRightContainer>
+            <DefaultOption />
+            <StTooltipContainer>
+              <StTooltip isActive={tooltipState} />
+            </StTooltipContainer>
+          </StWrapper>
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>{TRANSLATE[currentTab]} 선택</Title>
@@ -222,8 +244,9 @@ const StContainer = styled.div`
 `;
 const ArrowRightContainer = styled.div`
   position: absolute;
+  top: 0;
   display: flex;
-  width: 120px;
+  width: 50px;
   height: 166px;
   background: linear-gradient(270deg, #f6f6f6 0%, rgba(246, 246, 246, 0) 100%);
   flex-shrink: 0;
@@ -242,8 +265,9 @@ const ArrowRightContainer = styled.div`
 
 const ArrowLeftContainer = styled.div`
   position: absolute;
+  top: 0;
   display: flex;
-  width: 120px;
+  width: 50px;
   height: 166px;
   background: linear-gradient(270deg, #f6f6f6 0%, rgba(246, 246, 246, 0) 100%);
   flex-shrink: 0;
@@ -331,4 +355,13 @@ const StContentsContainer = styled.div`
   position: absolute;
   top: 100px;
   left: 128px;
+`;
+
+const StTooltip = styled(ConfusingTooltip)``;
+
+const StTooltipContainer = styled.div`
+  position: absolute;
+  top: 80%;
+  left: -3%;
+  z-index: 10;
 `;
