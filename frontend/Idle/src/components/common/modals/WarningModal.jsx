@@ -13,7 +13,6 @@ function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", moda
   function clickCancel() {
     setModalVisible(false);
   }
-
   return createPortal(
     <ModalContainer $modalPosition={modalPosition}>
       <ModalBackground />

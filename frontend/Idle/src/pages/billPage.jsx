@@ -16,7 +16,7 @@ let cachedBillData = null;
 
 function BillPage() {
   const { car } = useContext(carContext);
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [carMasterVisible, setCarMasterVisible] = useState(false);
   const [tooltipState, setTooltipState] = useState(true);
   const [billData, setBillData] = useState(cachedBillData);
@@ -28,7 +28,7 @@ function BillPage() {
   car.option.additional.map((item) => additionalOptionIds.push(item.optionId));
   car.option.confusing.map((item) => additionalOptionIds.push(item.optionId));
   useEffect(() => {
-    if (car.exteriorId === undefined) {
+    if (car.color.exterior.exteriorId === undefined) {
       setModalVisible(true);
     } else {
       submitPostAPI(PATH.BILL, {
@@ -44,17 +44,6 @@ function BillPage() {
   }, []);
   return (
     <StWrapper>
-      {modalVisible && (
-        <WarningModal
-          text={"메인페이지로 이동합니다."}
-          setModalVisible={setModalVisible}
-          onSubmitClick={() => {
-            location.replace("/");
-          }}
-          detail={"현재까지의 변경사항은 저장되지 않습니다."}
-          modalPosition={"modal"}
-        />
-      )}
       <StContainer id={"carMasterModal"}>
         <Header />
         <TitleContainer>
@@ -84,6 +73,17 @@ function BillPage() {
         </StConfirmContainer>
         <BillMain data={billData} />
         {carMasterVisible && <MapModal setCarMasterVisible={setCarMasterVisible} />}
+        {modalVisible && (
+          <WarningModal
+            title={"메인페이지로 이동합니다."}
+            setModalVisible={setModalVisible}
+            onSubmitClick={() => {
+              location.replace("/");
+            }}
+            detail={"현재까지의 변경사항은 저장되지 않습니다."}
+            modalPosition={"carMasterModal"}
+          />
+        )}
       </StContainer>
     </StWrapper>
   );
