@@ -71,7 +71,6 @@ function OptionPage() {
   }, [scrollBar.current]);
 
   useEffect(() => {
-    debugger;
     async function fetchData() {
       await submitPostAPI(PATH.OPTION.GET, {
         trimId: car.trim.trimId,
