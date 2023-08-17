@@ -24,6 +24,7 @@ function TrimMain(data) {
                 {filteredData[0].thumbnailFunctions.map((item, idx) => (
                     <Dot1 key={idx} $y={item.heightPixel} $x={item.widthPixel} ref={elem => (dots.current[idx] = elem)} >
                         <InnerDots />
+                        <OptionToolTip className="tooltip">{item.name}</OptionToolTip>
                     </Dot1>
                 ))}
             </DotContainer>
@@ -106,9 +107,17 @@ const Dot1 = styled.div`
     height: 20px;
     border-radius: 50%;
     transform: translate(-50%,-50%);
-    transition : all 0.3s linear;
+    cursor: pointer;
+    transition : all 0.3s ease-in-out;
     background-color: #96A9DC;
     filter: drop-shadow(0 0 0.5rem white);
+    &:hover > .tooltip,
+    &:active > .tooltip {
+        /* opacity: 1; */
+        /* height:auto */
+        display : block;
+    }
+
     /* animation: ${keyframes`
     0% {
         opacity: 1;
@@ -130,4 +139,25 @@ const InnerDots = styled.div`
     border-radius: 50%;
     background-color: white;
     transform: translate(50%,50%);
+`
+const OptionToolTip = styled.div`
+    /* opacity: 0; */
+    display: none;
+    position: absolute;
+    border-radius: 10px;
+    z-index: 100;
+    padding: 4px 12px;
+    background: var(--navy-blue-1, #E7ECF9);
+    align-items: flex-start;
+    gap: 8px;
+    width: max-content;
+    transition: all 0.2s linear;
+    transform: translate(-45%,-130%);
+    color: var(--navy-blue-5, var(--navy-blue-5, #1A3276));
+    font-family: "Hyundai Sans Text KR";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 165%;
+    letter-spacing: -0.39px;
 `
