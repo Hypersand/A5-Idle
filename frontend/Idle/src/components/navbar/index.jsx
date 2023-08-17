@@ -5,14 +5,14 @@ import EstimatePrice from "./EstimatePrice.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 import WarningModal from "../common/modals/WarningModal.jsx";
 import { useContext, useState } from "react";
-import { carContext } from "../../utils/context.jsx"
+import { carContext } from "../../utils/context.jsx";
 
 function navigateTo(car, navigate) {
-  if (car.detail.engines.name === undefined) navigate("/detail/engines")
-  else if (car.detail.drivingMethods.name === undefined) navigate("/detail/drivingMethods")
-  else if (car.detail.bodyTypes.name === undefined) navigate("/detail/bodyTypes")
-  else if (car.color.exterior.name === undefined) navigate("/color/exterior")
-  else if (car.color.interior.name === undefined) navigate("/color/interior")
+  if (car.detail.engines.name === undefined) navigate("/detail/engines");
+  else if (car.detail.drivingMethods.name === undefined) navigate("/detail/drivingMethods");
+  else if (car.detail.bodyTypes.name === undefined) navigate("/detail/bodyTypes");
+  else if (car.color.exterior.name === undefined) navigate("/color/exterior");
+  else if (car.color.interior.name === undefined) navigate("/color/interior");
 }
 
 function Navbar() {
@@ -22,13 +22,26 @@ function Navbar() {
 
   const location = useLocation().pathname.slice(1);
   function render() {
-    return Object.keys(TYPE).map((key, index) => <NavbarBox type={key} key={index} setIsOpen={setIsOpen}></NavbarBox>);
+    return Object.keys(TYPE).map((key, index) => (
+      <NavbarBox type={key} key={index} setIsOpen={setIsOpen}></NavbarBox>
+    ));
   }
   return (
     <StContainer>
       {render()}
       {location !== "bill" && <EstimatePrice />}
-      {isOpen ? <WarningModal title={"모든 옵션을 선택하지 않았습니다."} setModalVisible={setIsOpen} onSubmitClick={() => { setIsOpen(false); navigateTo(car, navigate) }} detail={"선택이 필요한 페이지로 이동하시겠습니까?"} /> : null}
+      {isOpen ? (
+        <WarningModal
+          title={"모든 옵션을 선택하지 않았습니다."}
+          setModalVisible={setIsOpen}
+          onSubmitClick={() => {
+            setIsOpen(false);
+            navigateTo(car, navigate);
+          }}
+          detail={"선택이 필요한 페이지로 이동하시겠습니까?"}
+          modalPosition={"modal"}
+        />
+      ) : null}
     </StContainer>
   );
 }

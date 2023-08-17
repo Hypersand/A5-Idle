@@ -9,13 +9,13 @@ import palette from "styles/palette";
  * @param {string} title 질문내용 (문자열)
  * @returns 모달창
  */
-function WarningModal({ title, setModalVisible, onSubmitClick, detail = "" }) {
+function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", modalPosition }) {
   function clickCancel() {
     setModalVisible(false);
   }
 
   return createPortal(
-    <ModalContainer>
+    <ModalContainer $modalPosition={modalPosition}>
       <ModalBackground />
       <StContainer>
         <StTitle>{title}</StTitle>
@@ -26,7 +26,7 @@ function WarningModal({ title, setModalVisible, onSubmitClick, detail = "" }) {
         </StBtnContainer>
       </StContainer>
     </ModalContainer>,
-    document.getElementById("modal")
+    document.getElementById(modalPosition)
   );
 }
 
@@ -42,16 +42,16 @@ const StContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   z-index: 100;
-  p{color:${palette.Black};
+  p {
+    color: ${palette.Black};
     text-align: center;
-    /* body 1 regular */
     font-family: "Hyundai Sans Text KR";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; /* 150% */
+    line-height: 24px;
     letter-spacing: -0.48px;
-    }
+  }
 `;
 
 const StTitle = styled.div`
@@ -76,7 +76,7 @@ const ModalContainer = styled.div`
   top: 0;
   left: 0;
   width: 1280px;
-  height: 720px;
+  height: ${({ $modalPosition }) => ($modalPosition === "carMasterModal" ? "100%" : "720px")};
   display: flex;
   align-items: center;
   justify-content: center;
