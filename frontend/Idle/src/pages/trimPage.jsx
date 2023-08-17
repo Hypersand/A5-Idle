@@ -8,12 +8,14 @@ import FindTrim from "findTrim/index";
 import { getAPI } from "utils/api";
 import palette from "styles/palette";
 import { PATH } from "utils/constants";
+import FindTrimTooltip from "toolTips/FindTrimTooltip";
 
 let cachedTrimData = null;
 
 function TrimPage() {
   const { car } = useContext(carContext);
   const navigate = useNavigate();
+  const [toolTipStatus, setToolTipStatus] = useState(true);
   const [trimData, setTrimData] = useState(cachedTrimData);
 
   function nextBTNClicked() {
@@ -41,7 +43,8 @@ function TrimPage() {
           </StConfirmContainer>
         </StBottomContainer>
         <TrimSelectContainer>
-          <FindTrim />
+          <FindTrim onClick={setToolTipStatus} />
+          <FindTrimTooltip isActive={toolTipStatus} />
         </TrimSelectContainer>
       </StWrapper>
     </>
@@ -85,8 +88,11 @@ const StConfirmHeader = styled.div`
 `;
 
 const TrimSelectContainer = styled.div`
+  display: flex;
   position: absolute;
   bottom: 18px;
+  left: 45%;
+  gap: 15px;
 `;
 
 const Title = styled.h1`
