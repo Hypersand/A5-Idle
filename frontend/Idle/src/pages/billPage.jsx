@@ -26,15 +26,17 @@ function BillPage() {
   car.option.additional.map((item) => additionalOptionIds.push(item.optionId));
   car.option.confusing.map((item) => additionalOptionIds.push(item.optionId));
   useEffect(() => {
-    submitPostAPI(PATH.BILL, {
-      trimId: car.trim.trimId,
-      exteriorId: car.color.exterior.exteriorId,
-      interiorId: car.color.interior.interiorId,
-      selectedOptionIds: additionalOptionIds,
-    }).then((result) => {
-      setBillData(result);
-      cachedBillData = result;
-    });
+    if (car.exteriorId !== undefined) {
+      submitPostAPI(PATH.BILL, {
+        trimId: car.trim.trimId,
+        exteriorId: car.color.exterior.exteriorId,
+        interiorId: car.color.interior.interiorId,
+        selectedOptionIds: additionalOptionIds,
+      }).then((result) => {
+        setBillData(result);
+        cachedBillData = result;
+      });
+    }
   }, []);
 
   return (

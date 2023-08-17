@@ -19,12 +19,12 @@ function InnerColorBoxContainer({ data }) {
     }
   }
   function renderInnerColor() {
-    return data.carInteriorColors.map((item, index) => {
+    return data?.carInteriorColors.map((item, index) => {
       return (
         <StInnerColorBox
           key={index}
           $isselected={item.interiorName === car.color.interior.name}
-          onClick={() => (innerColorClick(item))}
+          onClick={() => innerColorClick(item)}
         >
           <StImage src={item.interiorImgUrl} />
           <StTextBox>

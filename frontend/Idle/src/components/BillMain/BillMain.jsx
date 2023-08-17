@@ -5,21 +5,27 @@ import palette from "styles/palette";
 import BillOptionContainer from "billMain/BillOptionContainer";
 import { useContext } from "react";
 import { carContext } from "utils/context";
+import React from "react";
+
 function BillMain({ data }) {
   const { car } = useContext(carContext);
-  function render(item) {
-    return (
-      <>
+  function render() {
+    return BILL_LIST.map((item, index) => (
+      <React.Fragment key={index}>
         <BillDetail item={item} data={data} />
         <Division />
-      </>
-    );
+      </React.Fragment>
+    ));
   }
   return (
-    <StContainer>
+    <StContainer key="container">
       <StTitle>기본 견적</StTitle>
-      {BILL_LIST.map((item) => render(item))}
-      <BillOptionContainer added={car.option.additional} confused={car.option.confusing} data={data} />
+      {render()}
+      <BillOptionContainer
+        added={car.option.additional}
+        confused={car.option.confusing}
+        data={data}
+      />
     </StContainer>
   );
 }
