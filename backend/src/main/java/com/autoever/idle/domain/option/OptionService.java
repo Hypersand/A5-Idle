@@ -38,7 +38,7 @@ public class OptionService {
 
     private void sortByPurchaseRateAndName(List<OptionFunctionsDto> optionFunctions) {
         optionFunctions.sort((o1, o2) -> {
-            if (o1.getOptionPrice() == o2.getOptionPrice()) {
+            if (o1.getOptionPrice().equals(o2.getOptionPrice())) {
                 if (o1.getOptionPurchaseRate().equals("NEW")) {
                     return -1;
                 } else if (o2.getOptionPurchaseRate().equals("NEW")) {
