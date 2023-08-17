@@ -118,6 +118,7 @@ const StContainer = styled.div`
     opacity: 0.9;
     cursor: pointer;
   }
+  transition: all 0.2s ease;
 `;
 
 const StContent = styled.div`

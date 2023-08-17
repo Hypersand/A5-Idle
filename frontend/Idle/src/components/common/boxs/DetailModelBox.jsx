@@ -71,10 +71,11 @@ const StContainer = styled.div`
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
     background: ${({ $isSelected }) =>
-      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+    $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
   }
+  transition: all 0.2s ease;
 `;
 
 const StContent = styled.div`

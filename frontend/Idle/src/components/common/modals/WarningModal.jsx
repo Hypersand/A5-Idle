@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import { keyframes, styled } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import WhiteButton from "buttons/WhiteButton";
 import { createPortal } from "react-dom";
 import palette from "styles/palette";
+import { useState } from "react";
 
 /**
  *
@@ -10,19 +11,30 @@ import palette from "styles/palette";
  * @returns 모달창
  */
 function WarningModal({ title, setModalVisible, onSubmitClick, detail = "" }) {
+  const [animationstate, setAnimationstate] = useState(false);
   function clickCancel() {
-    setModalVisible(false);
+    setAnimationstate(true);
+    setTimeout(() => {
+      setModalVisible(false);
+    }, 300);
+  }
+  function submitClicked() {
+    setAnimationstate(true);
+    setTimeout(() => {
+      setModalVisible(false);
+      onSubmitClick()
+    }, 300);
   }
 
   return createPortal(
-    <ModalContainer>
+    <ModalContainer $animationstate={animationstate}>
       <ModalBackground />
       <StContainer>
         <StTitle>{title}</StTitle>
         {detail && <p>{detail}</p>}
         <StBtnContainer>
           <WhiteButton text={"취소"} onClick={clickCancel} />
-          <BlueButton text={"확인"} onClick={() => onSubmitClick()} />
+          <BlueButton text={"확인"} onClick={submitClicked} />
         </StBtnContainer>
       </StContainer>
     </ModalContainer>,
@@ -52,6 +64,25 @@ const StContainer = styled.div`
     line-height: 24px; /* 150% */
     letter-spacing: -0.48px;
     }
+  transition: opacity 0.1s ease-in-out;
+    animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.3s ease;
+`;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 `;
 
 const StTitle = styled.div`

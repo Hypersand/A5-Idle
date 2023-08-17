@@ -27,4 +27,5 @@ const StContainer = styled.div`
   letter-spacing: -0.48px;
   z-index:100;
   cursor: pointer;
+  transition: all 0.2s ease
 `;

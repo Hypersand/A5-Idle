@@ -42,6 +42,7 @@ const StContainer = styled.div`
     top: 120px;
     left: 130px;
     flex-shrink: 0;
+    transition: all 0.2s ease;
 `
 
 const StTitleContainer = styled.div`
@@ -59,6 +60,7 @@ const StTitle = styled.div`
     font-weight: 500;
     line-height: 36px;
     letter-spacing: -0.84px;
+    transition: all 0.2s ease;
 `
 const ColorContainer = styled.div`
     display: flex;
