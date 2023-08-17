@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${EC2_MYSQL_URL}
+    username: ${EC2_MYSQL_USERNAME}
+    password: ${EC2_MYSQL_PASSWORD}
