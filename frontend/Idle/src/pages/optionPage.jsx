@@ -48,20 +48,6 @@ function OptionPage() {
   const [selectedFunction, setSelectedFunction] = useState("");
 
   useEffect(() => {
-    // submitPostAPI(PATH.OPTION.GET, { trimId:car.trim.trimId,selectedOptionId: });
-    console.log(car);
-  }, []);
-
-  // {
-  //   "trimId":111111,
-  //   "selectedOptionId": [
-  //       1,
-  //       15
-  //   ],
-  //   "engineId": "가솔린"
-  // }
-
-  useEffect(() => {
     if (!scrollBar.current) {
       return;
     }
@@ -83,8 +69,24 @@ function OptionPage() {
   }, [scrollBar.current]);
 
   useEffect(() => {
-    setCurrentTab(tab);
+    const fetchData = async () => {
+      await submitPostAPI(PATH.OPTION.GET, {
+        trimId: car.trim.trimId,
+        selectedOptionIds: [],
+        engineId: car.detail.engines.id,
+      }).then((res) => {
+        setData(res);
+      });
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
     setFilteredData(filterData(data, currentTab));
+  }, [data, currentTab]);
+
+  useEffect(() => {
+    setCurrentTab(tab);
     setCurrentPage(0);
     setSelectedOption("");
   }, [tab]);
@@ -145,7 +147,6 @@ function OptionPage() {
           ))}
         </StTabContainer>
         <StContentsContainer>
-          {/* 메인 컨텐츠 부분 */}
           <OptionMain
             data={filteredData}
             selectedOption={selectedOption}
@@ -154,7 +155,6 @@ function OptionPage() {
             setSelectedFunction={setSelectedFunction}
             selectedFunction={selectedFunction}
           />
-          {/* <MainContents currentState={currentTab} data={dummyData} /> */}
         </StContentsContainer>
 
         <StBottomContainer>
@@ -169,6 +169,7 @@ function OptionPage() {
           <StContainer ref={scrollBar}>
             {filteredData?.map((item, idx) => (
               <OptionBox
+                {...item}
                 key={idx}
                 selectedOption={selectedOption}
                 setSelectedOption={setSelectedOption}
