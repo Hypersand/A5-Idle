@@ -11,6 +11,7 @@ import palette from "styles/palette";
  */
 function WarningModal({ title, setModalVisible, onSubmitClick, detail = "" }) {
   function clickCancel() {
+    console.log("here");
     setModalVisible(false);
   }
 
