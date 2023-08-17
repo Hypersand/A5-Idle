@@ -36,7 +36,6 @@ function BillPage() {
       cachedBillData = result;
     });
   }, []);
-  console.log(additionalOptionIds);
 
   return (
     <StWrapper>

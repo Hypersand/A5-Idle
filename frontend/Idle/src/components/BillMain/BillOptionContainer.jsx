@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function BillOptionContainer({ added, confused, data }) {
   const addedData = data && data?.selectedOptions.filter((item) => added.some((opt) => opt.name === item.optionName))
   const confusedData = data && data?.selectedOptions.filter((item) => confused.some((opt) => opt.name === item.optionName))
-  console.log(addedData);
   const navigate = useNavigate();
   function renderAddOptions() {
     return addedData?.map((item, index) => <BillOptionBox isAdded={true} key={index} data={item} />);
