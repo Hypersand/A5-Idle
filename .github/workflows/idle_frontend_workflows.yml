@@ -21,7 +21,7 @@ jobs:
         run: node -v
       - name: Setting env
         run: |
-            echo "VITE_KAKAO_MAP_KEY=$KAKAO_MAP_KEY" >> .env
+            echo "VITE_KAKAO_MAP_KEY=$VITE_KAKAO_MAP_KEY" >> .env
         env:
             VITE_KAKAO_MAP_KEY: ${{ secrets.VITE_KAKAO_MAP_KEY }}
             
