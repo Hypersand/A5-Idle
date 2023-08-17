@@ -1,11 +1,26 @@
 import styled from "styled-components";
 import { ReactComponent as MainLogoImg } from "images/hyundai.svg";
 import WarningModal from "modals/WarningModal";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import palette from "styles/palette";
+import { useLocation, useNavigate } from "react-router-dom";
+import { carContext } from "../../../utils/context";
+import { RESET_ALL } from "../../../utils/actionType";
 
 function MainLogoBlack() {
   const [modalVisible, setModalVisible] = useState(false);
+  const navigate = useNavigate();
+  const { dispatch } = useContext(carContext);
+
+  const pathArr = useLocation().pathname.split("/");
+  const location = pathArr[pathArr.length - 1];
+  let modalPosition;
+  location === "bill" ? (modalPosition = "carMasterModal") : (modalPosition = "modal");
+
+  function resetPage() {
+    dispatch({ type: RESET_ALL, payload: null });
+    navigate("/");
+  }
 
   function logoClicked() {
     setModalVisible(true);
@@ -20,6 +35,8 @@ function MainLogoBlack() {
         <WarningModal
           title={"마이 카마스터를 종료하시겠습니까?"}
           setModalVisible={setModalVisible}
+          onSubmitClick={resetPage}
+          modalPosition={modalPosition}
         />
       ) : null}
     </Stdiv>

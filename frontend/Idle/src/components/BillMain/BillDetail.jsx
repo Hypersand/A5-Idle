@@ -6,34 +6,39 @@ import ModifyButton from "buttons/ModifyButton";
 import palette from "styles/palette";
 import { useNavigate } from "react-router-dom";
 
-function BillDetail({ item }) {
+function BillDetail({ item, data }) {
   const { car } = useContext(carContext);
   const navigate = useNavigate();
-  let detail, price, path;
+  let detail, price, path, imgSrc;
   switch (item) {
     case "trim":
-      detail = car.trim.name;
+      detail = car.trim.name || "아직 선택하지 않았습니다.";
       price = car.getTrimSum();
       path = `/${item}`;
       break;
     case "engines":
     case "drivingMethods":
     case "bodyTypes":
-      detail = car.detail[item].name;
+      detail = car.detail[item].name || "아직 선택하지 않았습니다.";
       price = car.detail[item].price;
       path = `/detail/${item}`;
       break;
     case "exterior":
-    case "interior":
-      detail = car.color[item].name;
+      detail = null;
       price = car.color[item].price;
       path = `/color/${item}`;
+      imgSrc = data?.exterior?.exteriorImgUrl;
+      break;
+    case "interior":
+      detail = null;
+      price = car.color[item].price;
+      path = `/color/${item}`;
+      imgSrc = data?.interior?.interiorImgUrl;
       break;
     default:
       break;
   }
-
-
+  const isColorTab = (item === "exterior" || item === "interior")
   return (
     <StContainer>
       <StTitle>
@@ -41,7 +46,12 @@ function BillDetail({ item }) {
         <ModifyButton onClick={() => { navigate(path) }} />
       </StTitle>
       <StDetailContainer>
-        <h1>{detail ? detail : "아직 선택하지 않았습니다."}</h1>
+        {detail ? <h1>{detail}</h1> : <></>}
+        {isColorTab ?
+          <StColorContent $img={imgSrc} >
+            <p>{car.color[item].name || ""}</p>
+          </StColorContent> :
+          <></>}
         <p>{price ? price.toLocaleString() : "0"} 원</p>
       </StDetailContainer>
     </StContainer>
@@ -97,3 +107,25 @@ const StDetailContainer = styled.div`
     letter-spacing: -0.66px;
   }
 `;
+
+const StColorContent = styled.div`
+  width: 320px;
+  height: 90px;
+  background-image: ${({ $img }) => `url(${$img})`};
+  flex-shrink: 0;
+  position: relative;
+  p {
+    position:absolute;
+    bottom:8px;
+    left:13px;
+    color: ${palette.White};
+    /* body1 medium */
+    font-family: "Hyundai Sans Text KR";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.48px;
+    text-shadow: 2px 2px 6px black;
+  }
+`

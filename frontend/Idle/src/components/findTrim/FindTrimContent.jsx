@@ -15,18 +15,18 @@ function FindTrimContent() {
   const [selected, setSelected] = useState(-1);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchPost = async () => {
       const result = await getAPI(PATH.FIND.GET);
       result.map((item) => {
         stateDispatch({ type: PUSH_FUNCTION_LIST, payload: item });
       });
     };
-    const fetchTrimData = async () => {
+    const fetchGet = async () => {
       setTrimInfo(await getAPI(PATH.TRIM));
     };
     stateDispatch({ type: SET_OPTION_STATUS, payload: defaultOption });
-    fetchData();
-    fetchTrimData();
+    fetchPost();
+    fetchGet();
   }, []);
 
   function handleClick(index) {
@@ -42,14 +42,14 @@ function FindTrimContent() {
           {...item}
           isActive={state.optionStatus[index].selectPossible}
           isSelected={index === selected}
+          setSelected={setSelected}
           onClick={() => handleClick(index)}
           optionStatusProp={state.optionStatus[index].isDefault}
-          dummyData={trimInfo}
+          trimData={trimInfo}
         />
       );
     });
   }
-
   return (
     <StFindTrimContent>
       <StTrimBoxContainer>{renderTrimBox()}</StTrimBoxContainer>

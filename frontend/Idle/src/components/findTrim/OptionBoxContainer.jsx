@@ -6,7 +6,7 @@ function OptionBoxContainer({ functionList, disableFunctionId }) {
     return functionList.map((listItem, index) => {
       let isEnable = false;
       disableFunctionId.forEach((disableItem) => {
-        if (listItem.function_id == disableItem.function_id) {
+        if (listItem.functionId === disableItem) {
           isEnable = true;
         }
       });

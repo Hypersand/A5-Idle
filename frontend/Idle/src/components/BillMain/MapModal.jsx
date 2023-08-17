@@ -1,67 +1,31 @@
 import { styled } from "styled-components";
-import Map from "./Map";
 import palette from "../../styles/palette";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import esc from "../../assets/images/esc.svg";
 import BlueButton from "../common/buttons/BlueButton";
 import DillerBoxContainer from "./DillerBoxContainer";
 import CategoryTabs from "../common/tabs/CategoryTabs";
 import { createPortal } from "react-dom";
 import Address from "./Address";
-import dealer from "../../assets/images/dealer.svg";
+import { getAPI } from "../../utils/api";
+import { DISTANCE, PATH, SALERATE } from "../../utils/constants";
+import CustomOverlay from "./CustomOverlay";
+const { kakao } = window;
 
-const data = [
-  {
-    masterName: "김길동",
-    masterPhoneNumber: "010-1111-1111",
-    masterDealership: "한양대점",
-    masterDescription: "한양대지점 김길동입니다. 최선을 다하겠습니다.",
-    masterSalesRate: 20,
-    masterImgUrl: dealer,
-    masterLatitude: 37.56462664995,
-    masterLongitude: 127.02878456872,
-  },
-  {
-    masterName: "홍길동",
-    masterPhoneNumber: "010-1234-1234",
-    masterDealership: "왕십리점",
-    masterDescription: "왕십리지점 홍길동입니다. 최선을 다하겠습니다.",
-    masterSalesRate: 20,
-    masterImgUrl: dealer,
-    masterLatitude: 33.450936,
-    masterLongitude: 126.569477,
-  },
-  {
-    masterName: "김길동",
-    masterPhoneNumber: "010-1111-1111",
-    masterDealership: "한양대점2",
-    masterDescription: "한양대지점 김길동입니다. 최선을 다하겠습니다.222",
-    masterSalesRate: 20,
-    masterImgUrl: dealer,
-    masterLatitude: 33.450879,
-    masterLongitude: 126.56994,
-  },
-  {
-    masterName: "홍길동",
-    masterPhoneNumber: "010-1234-1234",
-    masterDealership: "왕십리점2",
-    masterDescription: "왕십리지점 홍길동입니다. 최선을 다하겠습니다.",
-    masterSalesRate: 20,
-    masterImgUrl: dealer,
-    masterLatitude: 33.450936,
-    masterLongitude: 126.569477,
-  },
-];
-
+let cachedData = null;
 function MapModal({ setCarMasterVisible }) {
+  const [data, setData] = useState(cachedData);
   const [addressName, setAddressName] = useState("");
   const [latitude, setLatitude] = useState(0);
-  const [longtitude, setLongtitude] = useState(0);
-  const [selectedTab, setSelectedTab] = useState("판매량순");
+  const [longitude, setlongitude] = useState(0);
+  const [selectedTab, setSelectedTab] = useState(SALERATE);
   const [addressVisible, setAddressVisible] = useState(false);
+  const [selectedDealer, setSelectedDealer] = useState("");
 
-  const tabs = ["판매량순", "거리순"];
-  let geocoder = new window.kakao.maps.services.Geocoder();
+  const map = useRef();
+  const tabs = [SALERATE, DISTANCE];
+  let geocoder = new kakao.maps.services.Geocoder();
+  let overlays = [];
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -70,7 +34,15 @@ function MapModal({ setCarMasterVisible }) {
             /**본 코드 */
           }
           setLatitude(position.coords.latitude);
-          setLongtitude(position.coords.longitude);
+          setlongitude(position.coords.longitude);
+
+          getAPI(PATH.CARMASTER.SALERATE, {
+            nowLatitude: position.coords.latitude,
+            nowLongitude: position.coords.longitude,
+          }).then((res) => {
+            setData(res);
+            cachedData = res;
+          });
         },
         (e) => {
           console.error(e);
@@ -84,40 +56,144 @@ function MapModal({ setCarMasterVisible }) {
     }
   }, []);
 
+  useEffect(() => {
+    const container = document.getElementById("map");
+
+    const options = {
+      center: new kakao.maps.LatLng(latitude, longitude),
+      level: 5,
+    };
+    map.current = new kakao.maps.Map(container, options);
+
+    const markerPosition = new kakao.maps.LatLng(latitude, longitude);
+    new kakao.maps.Marker({
+      map: map.current,
+      position: markerPosition,
+    });
+
+    if (data !== null) {
+      data.forEach((item) => {
+        const imageSize = new kakao.maps.Size(50, 50);
+        const markerImage = new kakao.maps.MarkerImage(item.masterMarkerImgUrl, imageSize);
+
+        const marker = new kakao.maps.Marker({
+          map: map.current,
+          position: new kakao.maps.LatLng(item.masterLatitude, item.masterLongitude),
+          title: item.masterDealerShip,
+          image: markerImage,
+        });
+        const content = CustomOverlay(item, closeOverlay);
+
+        const overlayPositon = new kakao.maps.LatLng(
+          marker.getPosition().getLat() + 1200 / 2 / 110000,
+          marker.getPosition().getLng() + 200 / 2 / 110000
+        );
+
+        const overlay = new kakao.maps.CustomOverlay({
+          content: content,
+          map: map.current,
+          position: overlayPositon,
+          // image : item.imgUrl
+        });
+
+        overlays.push({ marker, overlay });
+
+        overlay.setMap(null);
+
+        function closeOverlay() {
+          overlay.setMap(null);
+        }
+
+        kakao.maps.event.addListener(marker, "click", function () {
+          overlay.setMap(map.current);
+        });
+
+        kakao.maps.event.addListener(map.current, "zoom_changed", function () {
+          overlays.forEach((overlayInfo) => {
+            const markerScreenPosition = map.current
+              .getProjection()
+              .pointFromCoords(overlayInfo.marker.getPosition());
+            const overlayScreenPosition = new kakao.maps.Point(
+              markerScreenPosition.x + 15,
+              markerScreenPosition.y - 150
+            );
+            const overlayLatLng = map.current
+              .getProjection()
+              .coordsFromPoint(overlayScreenPosition);
+            overlayInfo.overlay.setPosition(overlayLatLng);
+          });
+        });
+      });
+    }
+  }, [data]);
+
   //위치 수정시
   useEffect(() => {
-    geocoder.coord2Address(longtitude, latitude, function (result, status) {
-      if (status === window.kakao.maps.services.Status.OK) {
+    geocoder.coord2Address(longitude, latitude, function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
         result[0].road_address === null
           ? setAddressName(result[0].address.address_name)
           : setAddressName(result[0].road_address.address_name);
+      } else {
+        setAddressName("위치 정보가 존재하지 않습니다. 위치를 수정해주세요");
       }
     });
-  }, [latitude, longtitude]);
+    selectedTab === SALERATE
+      ? getAPI(PATH.CARMASTER.SALERATE, {
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        })
+      : getAPI(PATH.CARMASTER.DISTANCE, {
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        });
+  }, [latitude, longitude]);
 
   function XBtnClicked() {
     setCarMasterVisible(false);
   }
   function TabClicked(name) {
+    name === SALERATE
+      ? getAPI(PATH.CARMASTER.SALERATE, {
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        })
+      : getAPI(PATH.CARMASTER.DISTANCE, {
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        });
     setSelectedTab(name);
+    setSelectedDealer("");
   }
   function ChangeAddressClicked() {
     setAddressVisible(true);
   }
   function CompleteHandler(data) {
     geocoder.addressSearch(data.address, function (result, status) {
-      if (status === window.kakao.maps.services.Status.OK) {
+      if (status === kakao.maps.services.Status.OK) {
         setLatitude(result[0].y);
-        setLongtitude(result[0].x);
+        setlongitude(result[0].x);
       }
     });
     setAddressName(data.address);
     setAddressVisible(false);
   }
 
-  function DealerClicked(latitude, longtitude) {
-    setLatitude(latitude);
-    setLongtitude(longtitude);
+  function DealerClicked(latitude, longitude) {
+    const moveLatLon = new kakao.maps.LatLng(latitude, longitude);
+    map.current.panTo(moveLatLon);
   }
 
   function renderTabs() {
@@ -142,8 +218,7 @@ function MapModal({ setCarMasterVisible }) {
         </StBtnContainer>
 
         <StMainContainer>
-          <Map data={data} latitude={latitude} longtitude={longtitude} />
-
+          <div id="map" style={{ width: "626px", height: "428px" }}></div>
           {!addressVisible ? (
             <StMain>
               <StTitle>카마스터 찾기</StTitle>
@@ -155,7 +230,14 @@ function MapModal({ setCarMasterVisible }) {
               <StHr></StHr>
               <StTabs>{renderTabs()}</StTabs>
 
-              <DillerBoxContainer data={data} onClick={DealerClicked} />
+              {data && (
+                <DillerBoxContainer
+                  data={data}
+                  onClick={DealerClicked}
+                  selectedDealer={selectedDealer}
+                  setSelectedDealer={setSelectedDealer}
+                />
+              )}
             </StMain>
           ) : (
             <Address onComplete={CompleteHandler} />

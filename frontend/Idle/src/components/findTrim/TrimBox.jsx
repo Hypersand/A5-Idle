@@ -3,58 +3,60 @@ import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
 import palette from "styles/palette";
 import { useContext } from "react";
 import { stateContext, dispatchContext } from "utils/context";
-import { SET_DISABLE_FUNCTION_ID, SET_TEMPCAR } from "../../utils/actionType";
+import {
+  SET_DISABLE_FUNCTION_ID,
+  PUSH_DISABLE_FUNCTION_ID,
+  SET_TEMPCAR,
+} from "../../utils/actionType";
+import { PATH } from "../../utils/constants";
+import { disableFunctionGetAPI } from "../../utils/api";
 
 function TrimBox({
   name,
   description,
   price,
+  trimId,
   isActive = false,
+  setSelected,
   isSelected,
   optionStatusProp,
   onClick,
-  dummyData,
+  trimData,
 }) {
   const { state } = useContext(stateContext);
   const { stateDispatch } = useContext(dispatchContext);
   function handleClick() {
+    stateDispatch({ type: SET_DISABLE_FUNCTION_ID, payload: [] });
     if (isSelected) {
+      setSelected(-1);
+      return;
     }
-    const carData = dummyData.find((item) => item.name === name);
-    // get으로 carData.trim_idx 보내기.
-    const dummy = [
-      {
-        function_id: 111111,
-      },
-      {
-        function_id: 222222,
-      },
-      {
-        function_id: 333333,
-      },
-    ];
-    stateDispatch({ type: SET_DISABLE_FUNCTION_ID, payload: dummy });
-    const payload = state.tempCar;
-    payload.trim = {
-      name: carData.name,
-      price: carData.price,
-    };
-    stateDispatch({ type: SET_TEMPCAR, payload: payload });
     if (isActive) {
+      const fetchGet = async () => {
+        const result = await disableFunctionGetAPI(PATH.FIND.TRIM, { trimId: trimId });
+        result.map((item) => {
+          stateDispatch({ type: PUSH_DISABLE_FUNCTION_ID, payload: item.functionId });
+        });
+      };
+      fetchGet();
+      const carData = trimData.find((item) => item.name === name);
+      const payload = state.tempCar;
+      payload.trim = {
+        trimId: trimId,
+        name: carData.name,
+        price: carData.price,
+      };
+      stateDispatch({ type: SET_TEMPCAR, payload: payload });
       onClick();
     }
   }
   return (
-    <StFindTrimTrimContainer
-      onClick={handleClick}
-      $isactive={isActive.toString()}
-      $isselected={isSelected}
-    >
+    <StFindTrimTrimContainer $isactive={isActive.toString()} $isselected={isSelected}>
       <StTrimBox onClick={handleClick}>
         <StTrimBoxTitle $isselected={isSelected}>{name}</StTrimBoxTitle>
         <StTrimBoxContent $isselected={isSelected}>{description}</StTrimBoxContent>
         <StTrimBoxBottom>
-          <StTrimBoxPrice $isselected={isSelected}>{price} 원</StTrimBoxPrice>
+          <StTrimBoxPrice $isselected={isSelected}>{price.toLocaleString()} 원</StTrimBoxPrice>
           {isActive ? <TrimBoxOptionStatus status={optionStatusProp} /> : null}
         </StTrimBoxBottom>
       </StTrimBox>

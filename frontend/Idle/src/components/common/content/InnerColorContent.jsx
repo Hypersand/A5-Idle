@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { carContext } from "utils/context";
+
 function InnerColorContent({ data }) {
+  const { car } = useContext(carContext);
+  const filteredData = data?.filter((item) => { return item.interiorId == car.color.interior?.interiorId })
   return (
-    data ? <StContainer $url={data[0]?.carInteriorImgUrl} /> : <></>
+    data ? <StContainer $url={filteredData[0]?.carInteriorImgUrl} /> : <></>
   );
 }
 

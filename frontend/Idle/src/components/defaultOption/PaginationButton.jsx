@@ -40,7 +40,7 @@ const StNumber = styled.div`
 
 const ArrowWrapper = styled.div`
   display: flex;
-  visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
+  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
 `;
 
 const ArrowLeft = styled(ArrowRightSVG)`

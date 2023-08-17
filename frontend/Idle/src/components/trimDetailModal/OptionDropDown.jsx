@@ -25,8 +25,8 @@ function OptionDropDown({ category }) {
   }
 
   return (
-    <StContainer>
-      <StTitle onClick={toggleDropDown}>
+    <StContainer onClick={toggleDropDown}>
+      <StTitle>
         {category.categoryName}
         <StButton $animationstate={animationstate}>
           <ArrowDown />
@@ -50,15 +50,15 @@ const StContainer = styled.li`
   background: ${palette.White};
   display: flex;
   flex-direction: column;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const StTitle = styled.div`
   display: flex;
   width: 451px;
   justify-content: space-between;
   align-items: center;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 const Division = styled.div`
   width: 456px;

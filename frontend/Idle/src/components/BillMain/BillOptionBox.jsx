@@ -12,34 +12,17 @@ function BillOptionBox({ isAdded, data }) {
   const { car, dispatch } = useContext(carContext);
 
   function btnClicked() {
-    {
-      /** 본 코드 */
-    }
-    // const payload = {
-    //   name: data.functionOptionName,
-    //   price: data.functionPrice,
-    // };
-
-    {
-      /** 테스트 용 코드 */
-    }
-    const payload = { name: data.name, price: data.price };
-
-    {
-      /** 본 코드 */
-    }
-    // const filteredAdded = car.option.additional.filter(
-    //   (item) => item.name !== data.functionOptionName
-    // );
-    // const filteredConfused = car.option.confusing.filter(
-    //   (item) => item.name !== data.functionOptionName
-    // );
-
-    {
-      /** 테스트 용 코드 */
-    }
-    const filteredAdded = car.option.additional.filter((item) => item.name !== data.name);
-    const filteredConfused = car.option.confusing.filter((item) => item.name !== data.name);
+    const payload = {
+      optionId: data?.optionId,
+      name: data?.optionName,
+      price: data?.optionPrice,
+    };
+    const filteredAdded = car.option.additional.filter(
+      (item) => item.name !== data?.optionName
+    );
+    const filteredConfused = car.option.confusing.filter(
+      (item) => item.name !== data?.optionName
+    );
 
     if (isAdded) {
       dispatch({ type: PUSH_CONFUSING_OPTION, payload: payload });
@@ -52,24 +35,16 @@ function BillOptionBox({ isAdded, data }) {
 
   return (
     <StContainer>
-      {/** 본 코드 */}
-      {/* <StImg src={data.functionImgUrl}></StImg>
+      <StImg src={data?.optionImgUrl}></StImg>
       <StContent>
-        <StCategory>{data.functionCategory}</StCategory>
-        <StOptionName>{data.functionOptionName}</StOptionName>
-        <STOptionDesc>{data.functionOptionDesc}</STOptionDesc>
+        <StCategory>{data?.optionCategory}</StCategory>
+        <StOptionName>{data?.optionName}</StOptionName>
+        <STOptionDesc>{data?.optionDescription === "-" ? "" : data?.optionDescription}</STOptionDesc>
       </StContent>
       <StBtn onClick={btnClicked} $isAdd={isAdded}>
         {isAdded ? "삭제하기" : "확정하기"}
       </StBtn>
-      <StPrice>+ {data.functionPrice.toLocaleString()} 원</StPrice> */}
-
-      {/** 테스트 용 코드 */}
-      <StContent>{data.name}</StContent>
-      <StBtn onClick={btnClicked} $isAdd={isAdded}>
-        {isAdded ? "삭제하기" : "확정하기"}
-      </StBtn>
-      <StPrice>{data.price}</StPrice>
+      <StPrice>{data?.optionPrice.toLocaleString()} 원</StPrice>
     </StContainer>
   );
 }
@@ -108,7 +83,7 @@ const StCategory = styled.div`
 
   color: ${({ theme }) => theme.NavyBlue_5};
   text-align: center;
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -118,15 +93,13 @@ const StCategory = styled.div`
 
 const StOptionName = styled.div`
   color: ${({ theme }) => theme.Black};
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 22px;
   font-style: normal;
   font-weight: 700;
   line-height: 28px;
   letter-spacing: -0.66px;
   text-align: center;
-
-  width: 175px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -135,7 +108,7 @@ const StOptionName = styled.div`
 const STOptionDesc = styled.div`
   width: 202px;
   color: ${({ theme }) => theme.Grey_3};
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -154,7 +127,7 @@ const StBtn = styled.button`
   background-color: ${({ $isAdd }) => ($isAdd ? "#1A3276" : "#9B6D54")};
 
   color: white;
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -166,7 +139,7 @@ const StBtn = styled.button`
 
 const StPrice = styled.div`
   color: ${({ theme }) => theme.Black};
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 22px;
   font-style: normal;
   font-weight: 700;

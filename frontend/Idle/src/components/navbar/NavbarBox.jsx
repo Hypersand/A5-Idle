@@ -100,8 +100,9 @@ const params = {
   bill: "",
 }
 
-function boxClicked(type, navigate) {
-  navigate(`/${type}${params[type]}`);
+function boxClicked(type, navigate, car, setIsOpen) {
+  if (type === "bill") car.getAllOptionChecked() ? navigate(`/${type}${params[type]}`) : setIsOpen(true)
+  else navigate(`/${type}${params[type]}`)
 }
 
 function renderChecked(type, currenPage, car) {
@@ -133,20 +134,19 @@ function renderChecked(type, currenPage, car) {
  * @param {trim,color,option등 중 어떤 건지} type
  * @returns navbar에서 박스 컴포넌트
  */
-function NavbarBox({ type }) {
-  const { car, dispatch } = useContext(carContext);
+function NavbarBox({ type, setIsOpen }) {
+  const { car } = useContext(carContext);
   const currentPage = useLocation().pathname.slice(1);
   const [isMatch, setIsMatch] = useState(false);
   const navigate = useNavigate();
 
   let totalSum = getTotalSum(type, car);
-
   useEffect(() => {
     checkMatch(type, currentPage, setIsMatch);
   }, [currentPage, type]);
 
   return (
-    <StDiv $ismatch={isMatch} onClick={() => boxClicked(type, navigate)}>
+    <StDiv $ismatch={isMatch} onClick={() => boxClicked(type, navigate, car, setIsOpen)}>
       <StTopDiv>
         <StType>{TYPE[type]}</StType>
         <StRightDiv>

@@ -5,7 +5,7 @@ import { ReactComponent as EscapeButton } from "images/esc.svg";
 import palette from "styles/palette";
 import { useState } from "react";
 
-function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions }) {
+function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions, modalPosition }) {
   const [animationstate, setAnimationstate] = useState(false);
 
   function modalOff() {
@@ -22,7 +22,7 @@ function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions }) {
           <StHeaderContainer>
             <StHeader>
               {trim}
-              <EscapeButton onClick={modalOff} />
+              <EscapeButton style={{ cursor: "pointer" }} onClick={modalOff} />
             </StHeader>
             <Description>{desc}</Description>
           </StHeaderContainer>
@@ -34,7 +34,7 @@ function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions }) {
         </StContainer>
       </StModal>
     </ModalContainer>,
-    document.getElementById("modal")
+    document.getElementById(modalPosition)
   );
 }
 
@@ -45,12 +45,11 @@ const ModalContainer = styled.div`
   top: 0;
   left: 0;
   width: 1280px;
-  height: 720px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: opacity 0.1s ease-in-out;
-  /* opacity: ${({ $animationstate }) => ($animationstate ? 0 : 1)}; */
   animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.3s ease;
 `;
 const fadeIn = keyframes`
@@ -133,7 +132,7 @@ const StOptionContainer = styled.ul`
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  height: 400px;
+  height: 370px;
   overflow: auto;
   margin-left: 20px;
   &::-webkit-scrollbar {

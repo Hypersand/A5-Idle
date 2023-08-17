@@ -2,12 +2,15 @@ import { styled } from "styled-components";
 import BillDetail from "./BillDetail";
 import { BILL_LIST } from "utils/constants";
 import palette from "styles/palette";
-
-function BillMain() {
+import BillOptionContainer from "billMain/BillOptionContainer";
+import { useContext } from "react";
+import { carContext } from "utils/context";
+function BillMain({ data }) {
+  const { car } = useContext(carContext);
   function render(item) {
     return (
       <>
-        <BillDetail item={item} />
+        <BillDetail item={item} data={data} />
         <Division />
       </>
     );
@@ -16,6 +19,7 @@ function BillMain() {
     <StContainer>
       <StTitle>기본 견적</StTitle>
       {BILL_LIST.map((item) => render(item))}
+      <BillOptionContainer added={car.option.additional} confused={car.option.confusing} data={data} />
     </StContainer>
   );
 }
