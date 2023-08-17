@@ -22,19 +22,14 @@ public class OptionService {
         List<Long> notActivatedOptionIdList = optionRepository.findNotActivatedOptionIdList(optionRequest.getEngineId(), optionRequest.getSelectedOptionIds());
         List<OptionFunctionsDto> optionFunctionsDtoList = new ArrayList<>();
 
-        System.out.println("------------");
-        System.out.println(functionRepository.findFunctionsInAdditionalOption(13L).get(0).getWheelLogoImgUrl());
-
         for (OptionDto optionDto : additionalOptionList) {
             if (notActivatedOptionIdList.contains(optionDto.getOptionId())) {
                 optionDto.setOptionCanSelect("false");
             }
-
             optionFunctionsDtoList.add(OptionFunctionsDto.create(
                     optionDto,
                     functionRepository.findFunctionsInAdditionalOption(optionDto.getOptionId()))
             );
-
         }
 
         sortByPurchaseRateAndName(optionFunctionsDtoList);
@@ -43,7 +38,7 @@ public class OptionService {
 
     private void sortByPurchaseRateAndName(List<OptionFunctionsDto> optionFunctions) {
         optionFunctions.sort((o1, o2) -> {
-            if (o1.getOptionPrice() == o2.getOptionPrice()) {
+            if (o1.getOptionPrice().equals(o2.getOptionPrice())) {
                 if (o1.getOptionPurchaseRate().equals("NEW")) {
                     return -1;
                 } else if (o2.getOptionPurchaseRate().equals("NEW")) {
