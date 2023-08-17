@@ -5,21 +5,19 @@ export const globalCar = {
     price: 40000000,
   },
   detail: {
-    engines: {
-    },
-    drivingMethods: {
-    },
-    bodyTypes: {
-    },
+    engines: {},
+    drivingMethods: {},
+    bodyTypes: {},
   },
   color: {
-    exterior: {
-    },
-    interior: {
-    },
+    exterior: {},
+    interior: {},
   },
   option: {
     additional: [
+      //   {optionId:11,
+      //   optionName:"Option 1",,
+      // types:asd}
     ],
     confusing: [],
   },

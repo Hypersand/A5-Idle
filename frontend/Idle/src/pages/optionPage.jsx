@@ -1,5 +1,5 @@
 import DefaultOption from "defaultOption/index";
-import { useEffect, useRef, useState, useContext, useLayoutEffect } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import OptionBox from "boxs/OptionBox";
 import {
   ALL,
@@ -18,9 +18,9 @@ import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
 import { ReactComponent as ArrowLogo } from "images/arrowOption.svg";
 import OptionMain from "optionMain/index";
-import hyundai from "images/hyundai.svg";
 import palette from "styles/palette";
-import { getAPI } from "utils/api";
+import { submitPostAPI } from "utils/api";
+import { carContext } from "utils/context";
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,
@@ -35,6 +35,7 @@ function filterData(data, currentTab) {
 
 function OptionPage() {
   const { tab } = useParams();
+  const { car } = useContext(carContext);
   const [currentTab, setCurrentTab] = useState(tab);
   const [selectedOption, setSelectedOption] = useState("");
   const [data, setData] = useState([]);
@@ -45,8 +46,6 @@ function OptionPage() {
   const scrollBar = useRef();
   const [filteredData, setFilteredData] = useState([]);
   const [selectedFunction, setSelectedFunction] = useState("");
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     if (!scrollBar.current) {
@@ -70,8 +69,24 @@ function OptionPage() {
   }, [scrollBar.current]);
 
   useEffect(() => {
-    setCurrentTab(tab);
+    const fetchData = async () => {
+      await submitPostAPI(PATH.OPTION.GET, {
+        trimId: car.trim.trimId,
+        selectedOptionIds: [],
+        engineId: car.detail.engines.id,
+      }).then((res) => {
+        setData(res);
+      });
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
     setFilteredData(filterData(data, currentTab));
+  }, [data, currentTab]);
+
+  useEffect(() => {
+    setCurrentTab(tab);
     setCurrentPage(0);
     setSelectedOption("");
   }, [tab]);
@@ -132,7 +147,6 @@ function OptionPage() {
           ))}
         </StTabContainer>
         <StContentsContainer>
-          {/* 메인 컨텐츠 부분 */}
           <OptionMain
             data={filteredData}
             selectedOption={selectedOption}
@@ -141,7 +155,6 @@ function OptionPage() {
             setSelectedFunction={setSelectedFunction}
             selectedFunction={selectedFunction}
           />
-          {/* <MainContents currentState={currentTab} data={dummyData} /> */}
         </StContentsContainer>
 
         <StBottomContainer>
@@ -156,6 +169,7 @@ function OptionPage() {
           <StContainer ref={scrollBar}>
             {filteredData?.map((item, idx) => (
               <OptionBox
+                {...item}
                 key={idx}
                 selectedOption={selectedOption}
                 setSelectedOption={setSelectedOption}
