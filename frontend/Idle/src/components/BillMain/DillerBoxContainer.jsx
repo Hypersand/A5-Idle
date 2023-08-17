@@ -3,8 +3,8 @@ import DillerBox from "./DillerBox";
 import { styled } from "styled-components";
 import palette from "../../styles/palette";
 
-function DillerBoxContainer({ data, onClick }) {
-  const [selectedDealer, setSelectedDealer] = useState("");
+function DillerBoxContainer({ data, onClick, selectedDealer, setSelectedDealer }) {
+  // const [selectedDealer, setSelectedDealer] = useState("");
   function boxClicked(name, latitude, longitude) {
     onClick(latitude, longitude);
     setSelectedDealer(name);

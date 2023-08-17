@@ -10,7 +10,6 @@ import Address from "./Address";
 import { getAPI } from "../../utils/api";
 import { DISTANCE, PATH, SALERATE } from "../../utils/constants";
 import CustomOverlay from "./CustomOverlay";
-import Temp from "./Temp";
 const { kakao } = window;
 
 let cachedData = null;
@@ -21,6 +20,7 @@ function MapModal({ setCarMasterVisible }) {
   const [longitude, setlongitude] = useState(0);
   const [selectedTab, setSelectedTab] = useState(SALERATE);
   const [addressVisible, setAddressVisible] = useState(false);
+  const [selectedDealer, setSelectedDealer] = useState("");
 
   const map = useRef();
   const tabs = [SALERATE, DISTANCE];
@@ -153,6 +153,7 @@ function MapModal({ setCarMasterVisible }) {
           cachedData = res;
         });
     setSelectedTab(name);
+    setSelectedDealer("");
   }
   function ChangeAddressClicked() {
     setAddressVisible(true);
@@ -207,7 +208,14 @@ function MapModal({ setCarMasterVisible }) {
               <StHr></StHr>
               <StTabs>{renderTabs()}</StTabs>
 
-              {data && <DillerBoxContainer data={data} onClick={DealerClicked} />}
+              {data && (
+                <DillerBoxContainer
+                  data={data}
+                  onClick={DealerClicked}
+                  selectedDealer={selectedDealer}
+                  setSelectedDealer={setSelectedDealer}
+                />
+              )}
             </StMain>
           ) : (
             <Address onComplete={CompleteHandler} />
