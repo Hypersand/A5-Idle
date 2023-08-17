@@ -80,6 +80,7 @@ function NormalTrimBox({
           desc={description}
           setModalOff={setModalOff}
           defaultFunctions={defaultFunctions}
+          modalPosition={"modal"}
         />
       )}
       {isWarning ? (

@@ -2,8 +2,13 @@ import BillOptionBox from "./BillOptionBox";
 import { styled } from "styled-components";
 import palette from "../../styles/palette";
 import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import TrimDetailModal from "../trimDetailModal/TrimDetailModal";
+import { carContext } from "../../utils/context"
 
 function BillOptionContainer({ added, confused, data }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const { car } = useContext(carContext)
   const addedData = data && data?.selectedOptions.filter((item) => added.some((opt) => opt.name === item.optionName))
   const confusedData = data && data?.selectedOptions.filter((item) => confused.some((opt) => opt.name === item.optionName))
   const navigate = useNavigate();
@@ -22,7 +27,7 @@ function BillOptionContainer({ added, confused, data }) {
     <StContainer>
       <StTop>
         <StTitle>옵션</StTitle>
-        <StSub>기본 포함 옵션 {">"}</StSub>
+        <StSub onClick={() => { setIsOpen(true) }}>기본 포함 옵션 {">"}</StSub>
       </StTop>
 
       <StMain>
@@ -34,6 +39,7 @@ function BillOptionContainer({ added, confused, data }) {
           <StBlock>{confused.length ? renderConfusingOptions() : "고민한 옵션이 없습니다."}</StBlock>
         </div>
       </StMain>
+      {isOpen ? <TrimDetailModal trim={car.trim.name} desc={data?.trimDescription} setModalOff={() => { setIsOpen(false) }} defaultFunctions={data?.defaultFunctions} modalPosition={"carMasterModal"} /> : null}
     </StContainer>
   );
 }
@@ -66,6 +72,7 @@ const StSub = styled.div`
   line-height: 28px;
   letter-spacing: -0.6px;
   text-align: right;
+  cursor: pointer;
 `;
 
 const StMain = styled.div`
