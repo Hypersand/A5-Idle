@@ -51,7 +51,7 @@ public class TrimService {
             TrimSelectionResponse trimDto = TrimSelectionResponse.createDto(trim, categoryDtos, thumbnailFunctions);
             trimDtos.add(trimDto);
         }
-
+        System.out.println("");
         return trimDtos;
     }
 }
