@@ -7,47 +7,49 @@ import { useContext, useState } from "react";
 import { carContext } from "utils/context";
 import BillMain from "billMain/BillMain";
 import MapModal from "../components/BillMain/MapModal";
+import CarMasterTooltip from "toolTips/carMasterTooltip";
 
 const dummyData = {
-  "exterior": {
-    "exteriorId": 1,
-    "exteriorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/11.png"
+  exterior: {
+    exteriorId: 1,
+    exteriorImgUrl: "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/11.png",
   },
-  "interior": {
-    "interiorId": 111,
-    "interiorImgUrl": "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png"
+  interior: {
+    interiorId: 111,
+    interiorImgUrl: "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png",
   },
-  "additionalFunctions": [
+  additionalFunctions: [
     {
-      "functionId": 1234,
-      "functionOptionName": "주차보조시스템II",
-      "functionPrice": 100000000,
-      "functionCategory": "안전",
-      "functionImgUrl": "...",
-      "functionDescription": "옵션 설명옵션 설명옵션 설명 옵션 설명옵"
+      functionId: 1234,
+      functionOptionName: "주차보조시스템II",
+      functionPrice: 100000000,
+      functionCategory: "안전",
+      functionImgUrl: "...",
+      functionDescription: "옵션 설명옵션 설명옵션 설명 옵션 설명옵",
     },
     {
-      "functionId": 5678,
-      "functionOptionName": "현대 스마트 센스",
-      "functionPrice": 100000000,
-      "functionCategory": "내장",
-      "functionImgUrl": "...",
-      "functionDescription": "옵션 설명옵션 설명옵션 설명 옵션 설명옵"
+      functionId: 5678,
+      functionOptionName: "현대 스마트 센스",
+      functionPrice: 100000000,
+      functionCategory: "내장",
+      functionImgUrl: "...",
+      functionDescription: "옵션 설명옵션 설명옵션 설명 옵션 설명옵",
     },
     {
-      "functionId": 9123,
-      "functionOptionName": "컴포트 Ⅱ",
-      "functionPrice": 100000000,
-      "functionCategory": "외장",
-      "functionImgUrl": "...",
-      "functionDescription": "옵션 설명옵션 설명옵션 설명 옵션 설명옵"
-    }
-  ]
-}
+      functionId: 9123,
+      functionOptionName: "컴포트 Ⅱ",
+      functionPrice: 100000000,
+      functionCategory: "외장",
+      functionImgUrl: "...",
+      functionDescription: "옵션 설명옵션 설명옵션 설명 옵션 설명옵",
+    },
+  ],
+};
 
 function BillPage() {
   const { car } = useContext(carContext);
   const [carMasterVisible, setCarMasterVisible] = useState(false);
+  const [tooltipStatus, setTooltipStatus] = useState(true);
   function carMasterBtnClicked() {
     setCarMasterVisible(true);
   }
@@ -74,6 +76,9 @@ function BillPage() {
             <h1>{car.getAllSum().toLocaleString()} 원</h1>
           </StConfirmText>
           <StButtonContainer>
+            <StTooltipContainer>
+              <StTooltip isActive={tooltipStatus} />
+            </StTooltipContainer>
             <WhiteButton text={"공유하기"} />
             <BlueButton text={"카마스터 찾기"} onClick={carMasterBtnClicked} />
           </StButtonContainer>
@@ -185,5 +190,14 @@ const StButtonContainer = styled.div`
   flex-direction: column;
   gap: 4px;
   left: 998px;
-  top: 580px;
+  top: 503px;
+`;
+
+const StTooltip = styled(CarMasterTooltip)``;
+
+const StTooltipContainer = styled.div`
+  position: relative;
+  right: 23%;
+  width: 199px;
+  height: 65px;
 `;
