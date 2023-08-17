@@ -206,7 +206,7 @@ export const defaultOption = [
 
 export const emptyCar = {
   trim: {
-    trimdId: 1,
+    trimId: 1,
     name: "Exclusive",
     price: 40000000,
   },
