@@ -39,7 +39,7 @@ function BillOptionBox({ isAdded, data }) {
       <StContent>
         <StCategory>{data?.optionCategory}</StCategory>
         <StOptionName>{data?.optionName}</StOptionName>
-        <STOptionDesc>{data?.optionDescription}</STOptionDesc>
+        <STOptionDesc>{data?.optionDescription === "-" ? "" : data?.optionDescription}</STOptionDesc>
       </StContent>
       <StBtn onClick={btnClicked} $isAdd={isAdded}>
         {isAdded ? "삭제하기" : "확정하기"}

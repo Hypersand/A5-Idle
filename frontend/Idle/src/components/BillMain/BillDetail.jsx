@@ -27,13 +27,13 @@ function BillDetail({ item, data }) {
       detail = null;
       price = car.color[item].price;
       path = `/color/${item}`;
-      imgSrc = data?.exterior.exteriorImgUrl;
+      imgSrc = data?.exterior?.exteriorImgUrl;
       break;
     case "interior":
       detail = null;
       price = car.color[item].price;
       path = `/color/${item}`;
-      imgSrc = data?.interior.interiorImgUrl;
+      imgSrc = data?.interior?.interiorImgUrl;
       break;
     default:
       break;

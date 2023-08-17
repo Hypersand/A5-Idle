@@ -19,7 +19,7 @@ function BillPage() {
   function carMasterBtnClicked() {
     setCarMasterVisible(true);
   }
-  let additionalOptionIds = [10]
+  let additionalOptionIds = []
   car.option.additional.map((item) => additionalOptionIds.push(item.optionId))
   car.option.confusing.map((item) => additionalOptionIds.push(item.optionId))
   useEffect(() => {
@@ -33,6 +33,7 @@ function BillPage() {
       cachedBillData = result;
     });
   }, []);
+  console.log(additionalOptionIds);
 
   return (
     <StWrapper>
