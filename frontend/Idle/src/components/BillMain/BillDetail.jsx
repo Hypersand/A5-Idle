@@ -27,13 +27,13 @@ function BillDetail({ item, data }) {
       detail = null;
       price = car.color[item].price;
       path = `/color/${item}`;
-      imgSrc = data.exterior.exteriorImgUrl;
+      imgSrc = data?.exterior?.exteriorImgUrl;
       break;
     case "interior":
       detail = null;
       price = car.color[item].price;
       path = `/color/${item}`;
-      imgSrc = data.interior.interiorImgUrl;
+      imgSrc = data?.interior?.interiorImgUrl;
       break;
     default:
       break;
@@ -126,5 +126,6 @@ const StColorContent = styled.div`
     font-weight: 500;
     line-height: 24px; /* 150% */
     letter-spacing: -0.48px;
+    text-shadow: 2px 2px 6px black;
   }
 `

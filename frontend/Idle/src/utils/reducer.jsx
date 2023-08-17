@@ -23,6 +23,7 @@ import {
   SET_DISABLE_FUNCTION_ID,
   CHANGE_INTERIOR_COLOR,
   CHANGE_EXTERIOR_COLOR,
+  CLEAR_OPTION,
 } from "./actionType";
 
 export function findTrimReducer(state, { type, payload }) {
@@ -163,6 +164,19 @@ export function carReducer(car, { type, payload }) {
         },
       };
 
+    case CLEAR_OPTION:
+      return {
+        ...car,
+        trim: payload,
+        color: {
+          exterior: {},
+          interior: {},
+        },
+        option: {
+          additional: [],
+          confusing: [],
+        },
+      }
     case RESET_ALL:
       return {
         ...car,

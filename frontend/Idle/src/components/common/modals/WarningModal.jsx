@@ -1,10 +1,6 @@
 import styled from "styled-components";
-import { useContext } from "react";
 import BlueButton from "buttons/BlueButton";
 import WhiteButton from "buttons/WhiteButton";
-import { RESET_ALL } from "utils/actionType";
-import { carContext } from "utils/context";
-import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
 import palette from "styles/palette";
 
@@ -13,28 +9,20 @@ import palette from "styles/palette";
  * @param {string} title 질문내용 (문자열)
  * @returns 모달창
  */
-function WarningModal({ title, setModalVisible }) {
-  const navigate = useNavigate();
-
-  const { dispatch } = useContext(carContext);
-
+function WarningModal({ title, setModalVisible, onSubmitClick, detail = "" }) {
   function clickCancel() {
     setModalVisible(false);
-  }
-  function clickCheck() {
-    dispatch({ type: RESET_ALL, payload: null });
-    navigate("/");
   }
 
   return createPortal(
     <ModalContainer>
       <ModalBackground />
-
       <StContainer>
         <StTitle>{title}</StTitle>
+        {detail && <p>{detail}</p>}
         <StBtnContainer>
           <WhiteButton text={"취소"} onClick={clickCancel} />
-          <BlueButton text={"확인"} onClick={clickCheck} />
+          <BlueButton text={"확인"} onClick={() => onSubmitClick()} />
         </StBtnContainer>
       </StContainer>
     </ModalContainer>,
@@ -51,10 +39,19 @@ const StContainer = styled.div`
   padding: 48px 44px;
   background: ${palette.White};
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 48px;
   z-index: 100;
+  p{color:${palette.Black};
+    text-align: center;
+    /* body 1 regular */
+    font-family: "Hyundai Sans Text KR";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.48px;
+    }
 `;
 
 const StTitle = styled.div`

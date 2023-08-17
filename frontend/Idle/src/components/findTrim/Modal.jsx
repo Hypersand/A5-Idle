@@ -59,6 +59,7 @@ function Modal({ setVisible }) {
       result.forEach((item) => {
         stateDispatch({ type: PUSH_OPTION_ALERT, payload: item.optionName });
         state.tempCar.option.additional.push({
+          optionId: item.optionId,
           name: item.optionName,
           price: item.optionPrice,
         });
