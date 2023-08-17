@@ -84,10 +84,15 @@ function MapModal({ setCarMasterVisible }) {
         });
 
         const content = CustomOverlay(item, "경기도", closeOverlay);
+
+        const overlayPositon = new kakao.maps.LatLng(
+          marker.getPosition().getLat() + 1200 / 2 / 110000,
+          marker.getPosition().getLng() + 200 / 2 / 110000
+        );
         const overlay = new kakao.maps.CustomOverlay({
           content: content,
           map: map.current,
-          position: marker.getPosition(),
+          position: overlayPositon,
           // image : item.imgUrl
         });
 

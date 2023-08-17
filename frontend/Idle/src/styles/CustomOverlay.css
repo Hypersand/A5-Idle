@@ -12,6 +12,18 @@
   border-radius: 1px;
   box-shadow: 0px 0px 5px #444;
   padding: 10px 15px 7px 15px;
+  position: relative;
+}
+
+.st-container::after {
+  content: "";
+  width: 40px;
+  height: 38px;
+  position: absolute;
+  bottom: -37px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: url("../assets/images/carMasterPointer.png");
 }
 
 .st-header {

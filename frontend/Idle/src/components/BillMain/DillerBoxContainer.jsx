@@ -1,4 +1,3 @@
-import { useState } from "react";
 import DillerBox from "./DillerBox";
 import { styled } from "styled-components";
 import palette from "../../styles/palette";
