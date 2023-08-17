@@ -47,7 +47,7 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   return (
     <StContainer>
       {renderMain()}
-      <StDesc>{data && data[currentPage].functionDescription}</StDesc>
+      <StDesc>{data && data[currentPage]?.functionDescription}</StDesc>
 
       {renderCircle()}
     </StContainer>
