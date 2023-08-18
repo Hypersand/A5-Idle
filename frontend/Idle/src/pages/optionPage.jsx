@@ -351,6 +351,7 @@ const StTabContainer = styled.div`
 `;
 const StContentsContainer = styled.div`
   position: absolute;
+  margin-top: 10px;
   top: 100px;
   left: 128px;
 `;
