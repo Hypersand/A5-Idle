@@ -26,7 +26,9 @@ function InnerColorBoxContainer({ data }) {
           $isselected={item.interiorName === car.color.interior.name}
           onClick={() => innerColorClick(item)}
         >
-          <StImage src={item.interiorImgUrl} />
+          <StInnerImageContainer>
+            <StImage src={item.interiorImgUrl} />
+          </StInnerImageContainer>
           <StTextBox>
             <StTextTitle>{item.interiorName}</StTextTitle>
             <StTextSelect>{item.interiorPurchaseRate}</StTextSelect>
@@ -55,14 +57,28 @@ const StInnerColorBox = styled.div`
   width: 200px;
   height: 164px;
   border: 1px solid
-    ${({ $isselected }) => ($isselected ? palette.NavyBlue_5 : palette.Grey_2)};
+  ${({ $isselected }) => ($isselected ? palette.NavyBlue_5 : palette.Grey_2)};
+  background-color: ${palette.White};
   gap: 2px;
   cursor: pointer;
+  &:hover img{
+    scale: 1.05;
+  }
+  &:hover{
+    background-color: ${palette.Grey_1};
+    filter: brightness(1.1);
+  }
 `;
 
+const StInnerImageContainer = styled.div`
+  overflow: hidden;
+  width: 200px;
+  height: 82px;
+`
 const StImage = styled.img`
   width: 100%;
-  height: 50%;
+  height: 100%;
+  transition: all 0.2s ease-in-out;
 `;
 
 const StTextBox = styled.div`
@@ -83,6 +99,7 @@ const StTextTitle = styled.div`
   text-align: left;
   color: ${palette.Black};
   margin-bottom: 3px;
+  width: max-content;
 `;
 
 const StTextSelect = styled.div`
