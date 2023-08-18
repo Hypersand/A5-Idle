@@ -18,6 +18,7 @@ export const globalCar = {
     confusing: [],
   },
   bill: {},
+  carImg: {},
   getTrimSum: function () {
     return this.trim.price !== undefined ? this.trim.price : 0;
   },
@@ -65,5 +66,4 @@ export const globalCar = {
     }
     return false;
   },
-  carImg: "",
 };
