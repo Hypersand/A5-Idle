@@ -14,14 +14,11 @@ export const globalCar = {
     interior: {},
   },
   option: {
-    additional: [
-      //   {optionId:11,
-      //   optionName:"Option 1",,
-      // types:asd}
-    ],
+    additional: [],
     confusing: [],
   },
   bill: {},
+  carImg: {},
   getTrimSum: function () {
     return this.trim.price !== undefined ? this.trim.price : 0;
   },

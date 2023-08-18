@@ -4,19 +4,27 @@ import palette from "../../styles/palette";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import TrimDetailModal from "../trimDetailModal/TrimDetailModal";
-import { carContext } from "../../utils/context"
+import { carContext } from "../../utils/context";
 
 function BillOptionContainer({ added, confused, data }) {
-  const [isOpen, setIsOpen] = useState(false)
-  const { car } = useContext(carContext)
-  const addedData = data && data?.selectedOptions.filter((item) => added.some((opt) => opt.name === item.optionName))
-  const confusedData = data && data?.selectedOptions.filter((item) => confused.some((opt) => opt.name === item.optionName))
+  const [isOpen, setIsOpen] = useState(false);
+  const { car } = useContext(carContext);
+  const addedData =
+    data &&
+    data?.selectedOptions?.filter((item) => added.some((opt) => opt.name === item.optionName));
+  const confusedData =
+    data &&
+    data?.selectedOptions?.filter((item) => confused.some((opt) => opt.name === item.optionName));
   const navigate = useNavigate();
   function renderAddOptions() {
-    return addedData?.map((item, index) => <BillOptionBox isAdded={true} key={index} data={item} />);
+    return addedData?.map((item, index) => (
+      <BillOptionBox isAdded={true} key={index} data={item} />
+    ));
   }
   function renderConfusingOptions() {
-    return confusedData?.map((item, index) => <BillOptionBox isAdded={false} key={index} data={item} />);
+    return confusedData?.map((item, index) => (
+      <BillOptionBox isAdded={false} key={index} data={item} />
+    ));
   }
 
   function changeOptionBtnClicked() {
@@ -27,7 +35,13 @@ function BillOptionContainer({ added, confused, data }) {
     <StContainer>
       <StTop>
         <StTitle>옵션</StTitle>
-        <StSub onClick={() => { setIsOpen(true) }}>기본 포함 옵션 {">"}</StSub>
+        <StSub
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          기본 포함 옵션 {">"}
+        </StSub>
       </StTop>
 
       <StMain>
@@ -36,10 +50,22 @@ function BillOptionContainer({ added, confused, data }) {
           <StOptionType>추가 옵션</StOptionType>
           <StBlock>{added.length ? renderAddOptions() : "추가한 옵션이 없습니다."}</StBlock>
           <StOptionType>고민 옵션</StOptionType>
-          <StBlock>{confused.length ? renderConfusingOptions() : "고민한 옵션이 없습니다."}</StBlock>
+          <StBlock>
+            {confused.length ? renderConfusingOptions() : "고민한 옵션이 없습니다."}
+          </StBlock>
         </div>
       </StMain>
-      {isOpen ? <TrimDetailModal trim={car.trim.name} desc={data?.trimDescription} setModalOff={() => { setIsOpen(false) }} defaultFunctions={data?.defaultFunctions} modalPosition={"carMasterModal"} /> : null}
+      {isOpen ? (
+        <TrimDetailModal
+          trim={car.trim.name}
+          desc={data?.trimDescription}
+          setModalOff={() => {
+            setIsOpen(false);
+          }}
+          defaultFunctions={data?.defaultFunctions}
+          modalPosition={"carMasterModal"}
+        />
+      ) : null}
     </StContainer>
   );
 }

@@ -12,9 +12,9 @@ function FindTrim({ onClick }) {
     <>
       {modalVisible ? (
         <Modal setVisible={setModalVisible} />
-      ) : (
-        <FindTrimButton onClick={findButtonClicked} />
+      ) : (<> </>
       )}
+      <FindTrimButton onClick={findButtonClicked} />
     </>
   );
 }

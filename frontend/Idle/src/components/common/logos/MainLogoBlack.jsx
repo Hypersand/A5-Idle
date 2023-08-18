@@ -5,7 +5,8 @@ import { useContext, useState } from "react";
 import palette from "styles/palette";
 import { useLocation, useNavigate } from "react-router-dom";
 import { carContext } from "../../../utils/context";
-import { RESET_ALL } from "../../../utils/actionType";
+import { CHANGE_ALL } from "../../../utils/actionType";
+import { emptyCar } from "../../../utils/constants";
 
 function MainLogoBlack() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -18,7 +19,7 @@ function MainLogoBlack() {
   location === "bill" ? (modalPosition = "carMasterModal") : (modalPosition = "modal");
 
   function resetPage() {
-    dispatch({ type: RESET_ALL, payload: null });
+    dispatch({ type: CHANGE_ALL, payload: emptyCar });
     navigate("/");
   }
 

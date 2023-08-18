@@ -38,20 +38,26 @@ function BillDetail({ item, data }) {
     default:
       break;
   }
-  const isColorTab = (item === "exterior" || item === "interior")
+  const isColorTab = item === "exterior" || item === "interior";
   return (
     <StContainer>
       <StTitle>
         <h1>{TRANSLATE[item]}</h1>
-        <ModifyButton onClick={() => { navigate(path) }} />
+        <ModifyButton
+          onClick={() => {
+            navigate(path);
+          }}
+        />
       </StTitle>
       <StDetailContainer>
         {detail ? <h1>{detail}</h1> : <></>}
-        {isColorTab ?
-          <StColorContent $img={imgSrc} >
+        {isColorTab ? (
+          <StColorContent $img={imgSrc}>
             <p>{car.color[item].name || ""}</p>
-          </StColorContent> :
-          <></>}
+          </StColorContent>
+        ) : (
+          <></>
+        )}
         <p>{price ? price.toLocaleString() : "0"} 원</p>
       </StDetailContainer>
     </StContainer>
@@ -115,11 +121,10 @@ const StColorContent = styled.div`
   flex-shrink: 0;
   position: relative;
   p {
-    position:absolute;
-    bottom:8px;
-    left:13px;
+    position: absolute;
+    bottom: 8px;
+    left: 13px;
     color: ${palette.White};
-    /* body1 medium */
     font-family: "Hyundai Sans Text KR";
     font-size: 16px;
     font-style: normal;
@@ -128,4 +133,4 @@ const StColorContent = styled.div`
     letter-spacing: -0.48px;
     text-shadow: 2px 2px 6px black;
   }
-`
+`;

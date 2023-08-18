@@ -29,4 +29,8 @@ const StContainer = styled.div`
   letter-spacing: -0.36px;
   text-align: center;
   z-index: 2;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(120%)
+  }
 `;

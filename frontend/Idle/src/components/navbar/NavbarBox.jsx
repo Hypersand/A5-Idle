@@ -178,6 +178,7 @@ const StDiv = styled.div`
     background-color: #f3f7ff;
     cursor: pointer;
   }
+  transition: all 0.2s ease;
 `;
 
 const StTopDiv = styled.div`
