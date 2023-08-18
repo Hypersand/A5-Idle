@@ -207,3 +207,4 @@ const StTooltipContainer = styled.div`
   width: 199px;
   height: 65px;
 `;
+  
