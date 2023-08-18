@@ -54,9 +54,7 @@ function BillPage() {
           카마스터 찾기를 통해 구매 상담을 할 수 있어요
         </TitleContainer>
         <BlueBG />
-        <CarContainer>
-          <Car3D />
-        </CarContainer>
+        <CarContainer $src={JSON.stringify(car.carImg)} />
         <BlueBgBottom />
         <StConfirmContainer>
           <StConfirmText>
@@ -146,11 +144,13 @@ const StTitle = styled.h1`
 `;
 const CarContainer = styled.div`
   position: absolute;
-  width: 573px;
-  height: 359px;
+  width: 860px;
+  height: 471px;
   flex-shrink: 0;
-  top: 100px;
+  top: 130px;
   left: 50px;
+  background-image: url(${({ $src }) => $src});
+  z-index: 100;
 `;
 const StConfirmContainer = styled.div`
   display: flex;

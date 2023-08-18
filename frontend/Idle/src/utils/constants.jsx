@@ -271,6 +271,7 @@ export const emptyCar = {
     }
     return false;
   },
+  carImg: {},
 };
 
 export const findTrimInitialState = {

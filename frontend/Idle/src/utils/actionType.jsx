@@ -24,3 +24,4 @@ export const CLEAR_FUNCTIONS_OPTIONS = "clear_functions_options";
 export const PUSH_DISABLE_FUNCTION_ID = "push_disable_function_id";
 export const PUSH_OPTION_ALERT = "push_option_alert";
 export const CLEAR_OPTION = "clear_option";
+export const SET_CAR_IMG = "set_car_img";
