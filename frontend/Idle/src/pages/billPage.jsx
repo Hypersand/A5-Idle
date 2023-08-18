@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import { carContext } from "utils/context";
 import BillMain from "billMain/BillMain";
 import MapModal from "../components/BillMain/MapModal";
-import CarMasterTooltip from "toolTips/carMasterTooltip";
+import CarMasterTooltip from "toolTips/CarMasterTooltip";
 import { submitPostAPI } from "utils/api";
 import { PATH } from "utils/constants";
 import WarningModal from "../components/common/modals/WarningModal";
