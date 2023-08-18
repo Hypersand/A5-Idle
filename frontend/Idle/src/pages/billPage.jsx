@@ -1,6 +1,5 @@
 import { styled } from "styled-components";
 import Header from "layout/Header";
-import Car3D from "content/Car3D";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
 import { useContext, useEffect, useState } from "react";
