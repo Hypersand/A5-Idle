@@ -206,5 +206,22 @@ const StTooltipContainer = styled.div`
   right: 23%;
   width: 199px;
   height: 65px;
+  animation: bounce 1.5s infinite linear;
+  @keyframes bounce {
+    0% {
+      top: 0;
+    }
+
+    50% {
+      top: -5px;
+    }
+
+    70% {
+      top: -50px;
+    }
+
+    100% {
+      top: 0;
+    }
+  }
 `;
-  
