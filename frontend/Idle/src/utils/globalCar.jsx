@@ -65,4 +65,5 @@ export const globalCar = {
     }
     return false;
   },
+  carImg: "",
 };
