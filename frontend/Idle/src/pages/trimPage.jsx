@@ -40,8 +40,8 @@ function TrimPage() {
             <BlueButton text={"다음"} onClick={nextBTNClicked} />
           </StConfirmContainer>
         </StBottomContainer>
+        <FindTrim onClick={setToolTipStatus} />
         <TrimSelectContainer>
-          <FindTrim onClick={setToolTipStatus} />
           <FindTrimTooltip isActive={toolTipStatus} />
         </TrimSelectContainer>
       </StWrapper>
@@ -83,7 +83,6 @@ const TrimSelectContainer = styled.div`
   display: flex;
   position: absolute;
   bottom: 18px;
-  left: 45%;
   gap: 15px;
 `;
 
