@@ -75,6 +75,7 @@ const StFindTrimTrimContainer = styled.div`
   background: ${({ $isselected, $isactive }) =>
     $isselected ? palette.NavyBlue_5 : $isactive === "true" ? palette.White : palette.Grey_4};
   ${({ $isactive }) => $isactive === "true" && `cursor: pointer`};
+  opacity: ${({ $isactive }) => ($isactive === "true" ? 1 : 0.5)};
   margin-bottom: 12px;
 `;
 

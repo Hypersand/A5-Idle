@@ -158,7 +158,6 @@ const StBottomContainer = styled.div`
   display: flex;
   gap: 46px;
   bottom: 64px;
-  display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 1024px;
