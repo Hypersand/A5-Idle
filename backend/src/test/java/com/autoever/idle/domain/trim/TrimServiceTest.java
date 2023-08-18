@@ -3,6 +3,11 @@ package com.autoever.idle.domain.trim;
 import com.autoever.idle.domain.carType.repository.CarTypeRepository;
 import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
+import com.autoever.idle.domain.exteriorColor.dto.ExteriorImgUrlDto;
+import com.autoever.idle.domain.exteriorColor.dto.TrimThumbnailColorResponse;
+import com.autoever.idle.domain.exteriorColor.repository.ExteriorColorRepository;
+import com.autoever.idle.domain.interiorColor.dto.InteriorImgUrlDto;
+import com.autoever.idle.domain.interiorColor.repository.InteriorColorRepository;
 import com.autoever.idle.domain.trim.dto.TrimDto;
 import com.autoever.idle.domain.trim.dto.TrimSelectionResponse;
 import com.autoever.idle.domain.trim.repository.TrimRepository;
@@ -51,9 +56,18 @@ class TrimServiceTest {
     @Mock
     TrimThumbnailFunctionRepository trimThumbnailFunctionRepository;
 
+    @Mock
+    ExteriorColorRepository exteriorColorRepository;
+
+    @Mock
+    InteriorColorRepository interiorColorRepository;
+
     List<Long> carTypeIds;
     List<FunctionCategoryDto> categories;
     List<TrimThumbnailFunctionResponse> thumbnailFunctions;
+    List<ExteriorImgUrlDto> exteriorImgUrls;
+    List<InteriorImgUrlDto> interiorImgUrls;
+    TrimThumbnailColorResponse thumbnailColor;
     List<TrimDto> trims;
 
     @BeforeEach
@@ -157,6 +171,14 @@ class TrimServiceTest {
                 179
         ));
 
+        exteriorImgUrls = new ArrayList<>();
+        exteriorImgUrls.add(new ExteriorImgUrlDto("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/11.png"));
+        exteriorImgUrls.add(new ExteriorImgUrlDto("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/12.png"));
+
+        interiorImgUrls = new ArrayList<>();
+        interiorImgUrls.add(new InteriorImgUrlDto("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png"));
+
+        thumbnailColor = new TrimThumbnailColorResponse(exteriorImgUrls, interiorImgUrls);
 
         trims = new ArrayList<>();
         trims.add(new TrimDto(
@@ -196,6 +218,8 @@ class TrimServiceTest {
         given(carTypeRepository.findByName(carTypeName)).willReturn(carTypeIds);
         given(functionCategoryRepository.findAll()).willReturn(categories);
         given(trimThumbnailFunctionRepository.findThumbnailFunctionByTrimId(1L)).willReturn(thumbnailFunctions);
+        given(exteriorColorRepository.findExteriorColorImgUrlsByTrimId(1L)).willReturn(exteriorImgUrls);
+        given(interiorColorRepository.findInteriorColorImgUrlsByTrimId(1L)).willReturn(interiorImgUrls);
         given(trimRepository.findAll(carTypeIds.get(0))).willReturn(trims);
 
         List<TrimSelectionResponse> trimResponse = trimService.findAllTrims("팰리세이드");
@@ -224,6 +248,12 @@ class TrimServiceTest {
         softAssertions.assertThat(trimResponse.get(3).getImgUrl()).isEqualTo(trims.get(3).getImgUrl());
         softAssertions.assertThat(trimResponse.get(3).getDescription()).isEqualTo(trims.get(3).getDescription());
         softAssertions.assertThat(trimResponse.get(3).getPurchaseRate()).isEqualTo(trims.get(3).getPurchaseRate());
+        softAssertions.assertThat(trimResponse.get(0).getColors().getExteriorImgUrls().get(0).getExteriorImgUrl())
+                .isEqualTo(exteriorImgUrls.get(0).getExteriorImgUrl());
+        softAssertions.assertThat(trimResponse.get(0).getColors().getExteriorImgUrls().get(1).getExteriorImgUrl())
+                .isEqualTo(exteriorImgUrls.get(1).getExteriorImgUrl());
+        softAssertions.assertThat(trimResponse.get(0).getColors().getInteriorImgUrls().get(0).getInteriorImgUrl())
+                .isEqualTo(interiorImgUrls.get(0).getInteriorImgUrl());
     }
 
     @Test

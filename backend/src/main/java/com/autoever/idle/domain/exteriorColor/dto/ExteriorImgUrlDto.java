@@ -11,4 +11,8 @@ public class ExteriorImgUrlDto {
 
     public ExteriorImgUrlDto() {
     }
+
+    public ExteriorImgUrlDto(String exteriorImgUrl) {
+        this.exteriorImgUrl = exteriorImgUrl;
+    }
 }

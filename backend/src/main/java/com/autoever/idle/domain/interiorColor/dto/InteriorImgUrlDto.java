@@ -11,4 +11,8 @@ public class InteriorImgUrlDto {
 
     public InteriorImgUrlDto() {
     }
+
+    public InteriorImgUrlDto(String interiorImgUrl) {
+        this.interiorImgUrl = interiorImgUrl;
+    }
 }
