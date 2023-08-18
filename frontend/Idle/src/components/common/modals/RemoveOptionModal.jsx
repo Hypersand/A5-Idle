@@ -62,7 +62,6 @@ function RemoveOptionModal({ data, setModalVisible }) {
 export default RemoveOptionModal;
 
 const StContainer = styled.div`
-  display: flex;
   width: 451px;
   height: 266px;
   padding: 32px 44px 48px 44px;
