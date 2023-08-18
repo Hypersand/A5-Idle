@@ -1,4 +1,4 @@
-package com.autoever.idle.domain.carType;
+package com.autoever.idle.domain.carType.repository;
 
 import java.util.List;
 

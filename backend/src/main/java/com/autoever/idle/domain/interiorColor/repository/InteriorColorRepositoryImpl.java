@@ -2,6 +2,7 @@ package com.autoever.idle.domain.interiorColor.repository;
 
 import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorDto;
+import com.autoever.idle.domain.interiorColor.dto.InteriorImgUrlDto;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -38,5 +39,15 @@ public class InteriorColorRepositoryImpl implements InteriorColorRepository {
 
         RowMapper rowMapper = new BeanPropertyRowMapper(InteriorBillDto.class);
         return jdbcTemplate.query(query, rowMapper, interiorId).stream().findAny();
+    }
+
+    public List<InteriorImgUrlDto> findInteriorColorImgUrlsByTrimId(Long trimId) {
+        String query = "select distinct IC.color_img_url as interior_img_url from TRIM_EXTERIOR_COLOR as TEC " +
+                "left join INTERIOR_COLOR as IC on TEC.trim_exterior_color_id = IC.trim_exterior_color_id " +
+                "where TEC.trim_id = ?";
+
+        RowMapper<InteriorImgUrlDto> rowMapper = BeanPropertyRowMapper.newInstance(InteriorImgUrlDto.class);
+
+        return jdbcTemplate.query(query, rowMapper, trimId);
     }
 }
