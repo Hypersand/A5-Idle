@@ -71,7 +71,7 @@ function OptionPage() {
   }, [scrollBar.current]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       await submitPostAPI(PATH.OPTION.GET, {
         trimId: car.trim.trimId,
         selectedOptionIds: [],
@@ -79,7 +79,7 @@ function OptionPage() {
       }).then((res) => {
         setData(res);
       });
-    };
+    }
     fetchData();
   }, []);
 
@@ -134,7 +134,7 @@ function OptionPage() {
     direction === "LEFT" ? (element.scrollLeft -= 200) : (element.scrollLeft += 200);
   }
 
-  setClickedOptionPage();
+  setClickedOptionPage(true);
   return (
     <>
       <StWrapper>

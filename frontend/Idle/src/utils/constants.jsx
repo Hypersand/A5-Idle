@@ -79,8 +79,8 @@ export const SALERATE = "판매량순";
 
 export let clickedOptionPage = false;
 
-export function setClickedOptionPage() {
-  clickedOptionPage = true;
+export function setClickedOptionPage(isTrue) {
+  clickedOptionPage = isTrue;
 }
 export const DEFAULT_ENGINE = {
   Exclusive: {
@@ -206,7 +206,7 @@ export const defaultOption = [
 
 export const emptyCar = {
   trim: {
-    trimdId: 1,
+    trimId: 1,
     name: "Exclusive",
     price: 40000000,
   },
@@ -271,6 +271,7 @@ export const emptyCar = {
     }
     return false;
   },
+  carImg: {},
 };
 
 export const findTrimInitialState = {

@@ -1,20 +1,22 @@
 import { styled } from "styled-components";
 import Header from "layout/Header";
-import Car3D from "content/Car3D";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { carContext } from "utils/context";
 import BillMain from "billMain/BillMain";
 import MapModal from "../components/BillMain/MapModal";
 import CarMasterTooltip from "toolTips/CarMasterTooltip";
 import { submitPostAPI } from "utils/api";
 import { PATH } from "utils/constants";
+import WarningModal from "../components/common/modals/WarningModal";
+import ReactToPrint from "react-to-print";
 
 let cachedBillData = null;
 
 function BillPage() {
   const { car } = useContext(carContext);
+  const [modalVisible, setModalVisible] = useState(false);
   const [carMasterVisible, setCarMasterVisible] = useState(false);
   const [tooltipState, setTooltipState] = useState(true);
   const [billData, setBillData] = useState(cachedBillData);
@@ -23,23 +25,28 @@ function BillPage() {
     setTooltipState(false);
   }
   let additionalOptionIds = [];
+  const billRef = useRef();
   car.option.additional.map((item) => additionalOptionIds.push(item.optionId));
   car.option.confusing.map((item) => additionalOptionIds.push(item.optionId));
-  useEffect(() => {
-    submitPostAPI(PATH.BILL, {
-      trimId: car.trim.trimId,
-      exteriorId: car.color.exterior.exteriorId,
-      interiorId: car.color.interior.interiorId,
-      selectedOptionIds: additionalOptionIds,
-    }).then((result) => {
-      setBillData(result);
-      cachedBillData = result;
-    });
-  }, []);
 
+  useEffect(() => {
+    if (car.color.exterior.exteriorId === undefined) {
+      setModalVisible(true);
+    } else {
+      submitPostAPI(PATH.BILL, {
+        trimId: car.trim.trimId,
+        exteriorId: car.color.exterior.exteriorId,
+        interiorId: car.color.interior.interiorId,
+        selectedOptionIds: additionalOptionIds,
+      }).then((result) => {
+        setBillData(result);
+        cachedBillData = result;
+      });
+    }
+  }, []);
   return (
     <StWrapper>
-      <StContainer id={"carMasterModal"}>
+      <StContainer id={"carMasterModal"} ref={billRef}>
         <Header />
         <TitleContainer>
           <StTitle>
@@ -49,9 +56,7 @@ function BillPage() {
           카마스터 찾기를 통해 구매 상담을 할 수 있어요
         </TitleContainer>
         <BlueBG />
-        <CarContainer>
-          <Car3D />
-        </CarContainer>
+        <CarContainer $src={JSON.stringify(car.carImg)} />
         <BlueBgBottom />
         <StConfirmContainer>
           <StConfirmText>
@@ -62,12 +67,28 @@ function BillPage() {
             <StTooltipContainer>
               <StTooltip isActive={tooltipState} />
             </StTooltipContainer>
-            <WhiteButton text={"공유하기"} />
+
+            <ReactToPrint
+              trigger={() => <WhiteButton text={"공유하기"} />}
+              content={() => billRef.current}
+            ></ReactToPrint>
+
             <BlueButton text={"카마스터 찾기"} onClick={carMasterBtnClicked} />
           </StButtonContainer>
         </StConfirmContainer>
         <BillMain data={billData} />
         {carMasterVisible && <MapModal setCarMasterVisible={setCarMasterVisible} />}
+        {modalVisible && (
+          <WarningModal
+            title={"메인페이지로 이동합니다."}
+            setModalVisible={setModalVisible}
+            onSubmitClick={() => {
+              location.replace("/");
+            }}
+            detail={"현재까지의 변경사항은 저장되지 않습니다."}
+            modalPosition={"carMasterModal"}
+          />
+        )}
       </StContainer>
     </StWrapper>
   );
@@ -130,11 +151,13 @@ const StTitle = styled.h1`
 `;
 const CarContainer = styled.div`
   position: absolute;
-  width: 573px;
-  height: 359px;
+  width: 860px;
+  height: 471px;
   flex-shrink: 0;
-  top: 100px;
+  top: 130px;
   left: 50px;
+  background-image: url(${({ $src }) => $src});
+  z-index: 100;
 `;
 const StConfirmContainer = styled.div`
   display: flex;

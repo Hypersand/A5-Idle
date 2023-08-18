@@ -2,10 +2,14 @@ import styled from "styled-components";
 import { ReactComponent as ArrowDown } from "images/arrowDown.svg";
 import { useState } from "react";
 import palette from "styles/palette";
+import DetailOptionModal from "../defaultOption/DetailOptionModal";
 
-function OptionDropDown({ category }) {
+function OptionDropDown({ category, optionData }) {
   const [isOpen, setIsOpen] = useState(false);
   const [animationstate, setAnimationState] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedFunctionData, setSelectedFunctionData] = useState(null);
+
   function toggleDropDown() {
     if (isOpen) {
       setAnimationState(!animationstate);
@@ -20,8 +24,22 @@ function OptionDropDown({ category }) {
     }
   }
 
+  function optionClicked(optionName) {
+    const selectedOptionData = optionData?.filter(
+      (option) => option.categoryName === category.categoryName
+    )[0].functions;
+    setSelectedFunctionData(
+      selectedOptionData.filter((item) => item.functionName === optionName)[0]
+    );
+    setModalVisible(true);
+  }
+
   function render(option, idx) {
-    return <StOption key={idx}>{option.name}</StOption>;
+    return (
+      <StOption key={idx} onClick={() => optionClicked(option.name)}>
+        {option.name}
+      </StOption>
+    );
   }
 
   return (
@@ -36,6 +54,15 @@ function OptionDropDown({ category }) {
         <Division />
         {category.functions.map((item, idx) => render(item, idx))}
       </StListContainer>
+
+      {modalVisible && (
+        <DetailOptionModal
+          title={selectedFunctionData.functionName}
+          description={selectedFunctionData.functionDescription}
+          functionImgUrl={selectedFunctionData.functionImgUrl}
+          onClose={() => setModalVisible(false)}
+        />
+      )}
     </StContainer>
   );
 }
@@ -82,6 +109,7 @@ const StListContainer = styled.div`
 
 const StOption = styled.p`
   color: ${palette.Black};
+  width: 100%;
   font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;

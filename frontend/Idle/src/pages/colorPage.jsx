@@ -15,9 +15,9 @@ import Car3D from "content/Car3D";
 import OutsideColorBoxContainer from "colorSelection/OutsideColorBoxContainer";
 import InnerColorBoxContainer from "colorSelection/InnerColorBoxContainer";
 import InnerColorContent from "content/InnerColorContent";
-import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR } from "../utils/actionType";
-import { getAPI } from "../utils/api";
-import { DEFAULT_INTERIROR_COLOR, PATH } from "../utils/constants";
+import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "utils/actionType";
+import { getAPI } from "utils/api";
+import { DEFAULT_INTERIROR_COLOR, PATH } from "utils/constants";
 
 let cachedExterior = null;
 let cachedInterior = null;
@@ -56,6 +56,7 @@ function ColorPage() {
     getAPI(PATH.COLOR.EXTERIOR, { trimId: car.trim.trimId }).then((result) => {
       setExteriorData(result);
       cachedExterior = result;
+      dispatch({ type: SET_CAR_IMG, payload: result[0].carImgUrls[0].imgUrl });
     });
   }, []);
 

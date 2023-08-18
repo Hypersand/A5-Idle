@@ -99,7 +99,7 @@ export default Modal;
 const ModalContainer = styled.div`
   z-index: 101;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 1280px;
   height: 720px;
@@ -109,7 +109,7 @@ const ModalContainer = styled.div`
 `;
 const ModalBackground = styled.div`
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -118,6 +118,8 @@ const ModalBackground = styled.div`
 
 const StContainer = styled.div`
   display: flex;
+  position: absolute;
+  bottom: 0;
   align-items: center;
   flex-direction: column;
   width: 1280px;
@@ -150,7 +152,7 @@ const StCloseButtonContainer = styled.div`
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  border: 3px solid rgba(255, 122, 0, 0.3);
+  border: 3px solid rgba(255, 201, 150, 0.506);
   margin-top: 6.07px;
 `;
 

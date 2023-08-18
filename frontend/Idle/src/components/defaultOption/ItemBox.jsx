@@ -18,14 +18,14 @@ function ItemBox({ functionName, functionImgUrl, functionDescription }) {
   }
   return (
     <Fragment>
-      <StContainer>
-        <StImg $imgUrl={functionImgUrl} />
+      <StContainer onClick={() => {
+        setShowDetail(true);
+      }}>
+        <StImgContainer>
+          <StImg src={functionImgUrl} />
+        </StImgContainer>
         <StDescription>{checkLength()}</StDescription>
-        <StDetailButton
-          onClick={() => {
-            setShowDetail(true);
-          }}
-        >
+        <StDetailButton>
           자세히 보기
           <ArrowRight />
         </StDetailButton>
@@ -51,14 +51,25 @@ const StContainer = styled.div`
   height: 212px;
   border: 1px solid ${palette.Grey_2};
   background-color: ${palette.White};
+  &:hover img{
+    scale: 1.03;
+  }
+  &:hover{
+    background-color: ${palette.Grey_1};
+    filter: brightness(1.05);
+    cursor: pointer;
+  }
 `;
-
-const StImg = styled.div`
-  box-sizing: border-box;
+const StImgContainer = styled.div`
   width: 182px;
   height: 128px;
-  background-image: url(${(props) => props.$imgUrl});
-  background-size: cover;
+  overflow: hidden;
+`
+const StImg = styled.img`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s ease-in-out;
 `;
 
 const StDescription = styled.div`
