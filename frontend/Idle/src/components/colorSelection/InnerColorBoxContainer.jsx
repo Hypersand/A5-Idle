@@ -54,8 +54,8 @@ const StInnerColorBox = styled.div`
   box-sizing: border-box;
   width: 200px;
   height: 164px;
-  border: ${({ $isselected }) => ($isselected ? "2px" : "1px")} solid
-    ${({ $isselected }) => ($isselected ? palette.Purple : palette.Grey_2)};
+  border: 1px solid
+    ${({ $isselected }) => ($isselected ? palette.NavyBlue_5 : palette.Grey_2)};
   gap: 2px;
   cursor: pointer;
 `;
