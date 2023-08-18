@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.trim.dto;
 
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResponse;
+import com.autoever.idle.domain.exteriorColor.dto.TrimThumbnailColorResponse;
 import com.autoever.idle.domain.trimThumbnailFunction.dto.TrimThumbnailFunctionResponse;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,8 +20,9 @@ public class TrimSelectionResponse {
     private String purchaseRate;
     private List<DefaultFunctionCategoryResponse> defaultFunctions;
     private List<TrimThumbnailFunctionResponse> thumbnailFunctions;
+    private TrimThumbnailColorResponse colors;
 
-    public static TrimSelectionResponse createDto(TrimDto trim, List<DefaultFunctionCategoryResponse> functionCategoryDtos, List<TrimThumbnailFunctionResponse> thumbnailFunctions) {
+    public static TrimSelectionResponse createDto(TrimDto trim, List<DefaultFunctionCategoryResponse> functionCategoryDtos, List<TrimThumbnailFunctionResponse> thumbnailFunctions, TrimThumbnailColorResponse colors) {
         return TrimSelectionResponse.builder()
                 .trimId(trim.getTrimId())
                 .name(trim.getName())
@@ -30,6 +32,7 @@ public class TrimSelectionResponse {
                 .purchaseRate(trim.getPurchaseRate())
                 .defaultFunctions(functionCategoryDtos)
                 .thumbnailFunctions(thumbnailFunctions)
+                .colors(colors)
                 .build();
     }
 }
