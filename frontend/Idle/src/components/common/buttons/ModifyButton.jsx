@@ -20,6 +20,10 @@ const StContainer = styled.div`
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(120%)
+  }
 `;
 
 const StTitle = styled.p`

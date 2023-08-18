@@ -4,6 +4,7 @@ import { ReactComponent as CloseButton } from "images/esc.svg";
 import palette from "styles/palette";
 
 function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
+  console.log(onclose);
   const stringMaxLength = 23;
   function checkLength() {
     if (title.length > stringMaxLength) {

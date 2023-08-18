@@ -41,6 +41,6 @@ const StButton = styled.button`
   pointer-events: ${({ $isActive }) => ($isActive ? "" : "none")};
   &:hover {
     cursor: pointer;
-    opacity: 0.9;
+    filter: brightness(120%)
   }
 `;

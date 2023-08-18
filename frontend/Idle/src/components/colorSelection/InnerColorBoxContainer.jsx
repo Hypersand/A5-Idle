@@ -19,14 +19,16 @@ function InnerColorBoxContainer({ data }) {
     }
   }
   function renderInnerColor() {
-    return data.carInteriorColors.map((item, index) => {
+    return data?.carInteriorColors.map((item, index) => {
       return (
         <StInnerColorBox
           key={index}
           $isselected={item.interiorName === car.color.interior.name}
-          onClick={() => (innerColorClick(item))}
+          onClick={() => innerColorClick(item)}
         >
-          <StImage src={item.interiorImgUrl} />
+          <StInnerImageContainer>
+            <StImage src={item.interiorImgUrl} />
+          </StInnerImageContainer>
           <StTextBox>
             <StTextTitle>{item.interiorName}</StTextTitle>
             <StTextSelect>{item.interiorPurchaseRate}</StTextSelect>
@@ -54,15 +56,29 @@ const StInnerColorBox = styled.div`
   box-sizing: border-box;
   width: 200px;
   height: 164px;
-  border: ${({ $isselected }) => ($isselected ? "2px" : "1px")} solid
-    ${({ $isselected }) => ($isselected ? palette.Purple : palette.Grey_2)};
+  border: 1px solid
+  ${({ $isselected }) => ($isselected ? palette.NavyBlue_5 : palette.Grey_2)};
+  background-color: ${palette.White};
   gap: 2px;
   cursor: pointer;
+  &:hover img{
+    scale: 1.03;
+  }
+  &:hover{
+    background-color: ${palette.Grey_1};
+    filter: brightness(1.1);
+  }
 `;
 
+const StInnerImageContainer = styled.div`
+  overflow: hidden;
+  width: 200px;
+  height: 82px;
+`
 const StImage = styled.img`
   width: 100%;
-  height: 50%;
+  height: 100%;
+  transition: all 0.2s ease-in-out;
 `;
 
 const StTextBox = styled.div`
@@ -83,6 +99,7 @@ const StTextTitle = styled.div`
   text-align: left;
   color: ${palette.Black};
   margin-bottom: 3px;
+  width: max-content;
 `;
 
 const StTextSelect = styled.div`

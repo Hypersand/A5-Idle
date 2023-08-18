@@ -21,6 +21,7 @@ import {
   SET_OPTION_STATUS,
   SET_SHOWOPTION_ALERT,
   SET_DISABLE_FUNCTION_ID,
+  SET_CAR_IMG,
   CHANGE_INTERIOR_COLOR,
   CHANGE_EXTERIOR_COLOR,
   CLEAR_OPTION,
@@ -176,7 +177,7 @@ export function carReducer(car, { type, payload }) {
           additional: [],
           confusing: [],
         },
-      }
+      };
     case RESET_ALL:
       return {
         ...car,
@@ -199,6 +200,11 @@ export function carReducer(car, { type, payload }) {
       return {
         ...car,
         ...payload,
+      };
+    case SET_CAR_IMG:
+      return {
+        ...car,
+        carImg: payload,
       };
   }
 }

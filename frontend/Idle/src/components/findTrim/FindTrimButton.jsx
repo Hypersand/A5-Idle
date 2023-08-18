@@ -14,6 +14,8 @@ function FindTrimButton({ onClick }) {
 export default FindTrimButton;
 
 const StFindTrimButton = styled.button`
+  position: absolute;
+  bottom: 18px;
   width: 102px;
   height: 32px;
   display: flex;

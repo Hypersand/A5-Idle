@@ -73,7 +73,7 @@ function MapModal({ setCarMasterVisible }) {
 
     if (data !== null) {
       data.forEach((item) => {
-        const imageSize = new kakao.maps.Size(50, 50);
+        const imageSize = new kakao.maps.Size(50, 70);
         const markerImage = new kakao.maps.MarkerImage(item.masterMarkerImgUrl, imageSize);
 
         const marker = new kakao.maps.Marker({
