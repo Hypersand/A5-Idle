@@ -97,6 +97,7 @@ function Modal({ setVisible }) {
 export default Modal;
 
 const StFindTrimContentContainer = styled.div`
+  box-shadow: 0px -3px 9px ${palette.Grey_3};
   position: absolute;
   left: 0;
   display: flex;
