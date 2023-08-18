@@ -40,7 +40,10 @@ const StContainer = styled.div`
   background-color: grey;
   border: 3px solid ${({ $isActive }) => ($isActive ? `${palette.NavyBlue_5}` : `${palette.Black}`)};
   background-image: ${({ $img }) => `url(${$img})`};
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(120%)
+  }
 `;
 
 const StName = styled.div`
