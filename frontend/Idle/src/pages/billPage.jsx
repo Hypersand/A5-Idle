@@ -2,14 +2,15 @@ import { styled } from "styled-components";
 import Header from "layout/Header";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { carContext } from "utils/context";
 import BillMain from "billMain/BillMain";
 import MapModal from "../components/BillMain/MapModal";
-import CarMasterTooltip from "toolTips/carMasterTooltip";
+import CarMasterTooltip from "toolTips/CarMasterTooltip";
 import { submitPostAPI } from "utils/api";
 import { PATH } from "utils/constants";
 import WarningModal from "../components/common/modals/WarningModal";
+import ReactToPrint from "react-to-print";
 
 let cachedBillData = null;
 
@@ -24,8 +25,10 @@ function BillPage() {
     setTooltipState(false);
   }
   let additionalOptionIds = [];
+  const billRef = useRef();
   car.option.additional.map((item) => additionalOptionIds.push(item.optionId));
   car.option.confusing.map((item) => additionalOptionIds.push(item.optionId));
+
   useEffect(() => {
     if (car.color.exterior.exteriorId === undefined) {
       setModalVisible(true);
@@ -43,7 +46,7 @@ function BillPage() {
   }, []);
   return (
     <StWrapper>
-      <StContainer id={"carMasterModal"}>
+      <StContainer id={"carMasterModal"} ref={billRef}>
         <Header />
         <TitleContainer>
           <StTitle>
@@ -64,7 +67,12 @@ function BillPage() {
             <StTooltipContainer>
               <StTooltip isActive={tooltipState} />
             </StTooltipContainer>
-            <WhiteButton text={"공유하기"} />
+
+            <ReactToPrint
+              trigger={() => <WhiteButton text={"공유하기"} />}
+              content={() => billRef.current}
+            ></ReactToPrint>
+
             <BlueButton text={"카마스터 찾기"} onClick={carMasterBtnClicked} />
           </StButtonContainer>
         </StConfirmContainer>

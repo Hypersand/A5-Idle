@@ -123,4 +123,23 @@
             Backend
         </td>
     </tr>
+      <tr align="center">
+        <td>
+            INTJ
+        </td>
+        <td>
+            ISFP
+        </td>
+        <td>
+            ISFP
+        </td>
+                <td>
+            ISTJ
+        </td>
+                <td>
+            ISFJ
+        </td>   <td>
+            INFP
+        </td>
+    </tr>
 </table>
