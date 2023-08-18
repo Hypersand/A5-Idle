@@ -28,9 +28,10 @@ export default OutsideColorBox;
 const StOutline = styled.div`
   display: ${({ $isActive }) => ($isActive ? "" : "none")};
   position: absolute;
-  width: 188px;
-  border: 3px solid ${palette.White};
-  height: 64px;
+    width: 184px;
+    border: 3px solid #FFF;
+    height: 60px;
+    transform: translate(2px, 2px);
 `;
 
 const StContainer = styled.div`
@@ -38,9 +39,13 @@ const StContainer = styled.div`
   width: 194px;
   height: 70px;
   background-color: grey;
-  border: 3px solid ${({ $isActive }) => ($isActive ? `${palette.NavyBlue_5}` : `${palette.Black}`)};
+  outline: ${({ $isActive }) => ($isActive ? "2px" : "1px")} solid ${({ $isActive }) => ($isActive ? `${palette.NavyBlue_5}` : `${palette.Black}`)};
+  outline-offset:  ${({ $isActive }) => ($isActive ? "-2px" : "-1px")};
   background-image: ${({ $img }) => `url(${$img})`};
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(120%)
+  }
 `;
 
 const StName = styled.div`

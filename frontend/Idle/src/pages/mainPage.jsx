@@ -2,9 +2,11 @@ import { styled } from "styled-components";
 import hyundaiVideo from "images/palisadeVideo.mp4";
 import MainLogoWhite from "logos/MainLogoWhite";
 import { useNavigate } from "react-router-dom";
+import { setClickedOptionPage } from "../utils/constants";
 
 function MainPage() {
   const navigate = useNavigate();
+  setClickedOptionPage(false);
   return (
     <>
       <StLogo>

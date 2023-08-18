@@ -1,7 +1,7 @@
 export async function getAPI(path, data = {}) {
   try {
     const queryParams = new URLSearchParams(data).toString();
-    const response = await fetch(`/api/${path}${queryParams}`, {
+    const response = await fetch(`${path}${queryParams}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export async function getAPI(path, data = {}) {
 export async function disableFunctionGetAPI(path, data = {}) {
   try {
     const queryParams = new URLSearchParams(data).toString();
-    const response = await fetch(`/api/${path}?${queryParams}`, {
+    const response = await fetch(`${path}?${queryParams}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export async function optionPostAPI(path, data) {
     sendData.push({ functionId: item });
   });
   try {
-    const response = await fetch(`/api/${path}`, {
+    const response = await fetch(`${path}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +64,7 @@ export async function optionPostAPI(path, data) {
 
 export async function submitPostAPI(path, data) {
   try {
-    const response = await fetch(`/api/${path}`, {
+    const response = await fetch(`${path}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
