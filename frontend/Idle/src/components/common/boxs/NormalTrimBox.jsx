@@ -7,6 +7,8 @@ import { CHANGE_TRIM } from "utils/actionType";
 import palette from "styles/palette";
 import WarningModal from "../modals/WarningModal";
 import { CLEAR_OPTION } from "utils/actionType";
+import { PATH, TRANSLATE } from "../../../utils/constants";
+import { getAPI } from "../../../utils/api";
 
 function NormalTrimBox({
   purchaseRate,
@@ -21,6 +23,7 @@ function NormalTrimBox({
   const [isModal, setIsModal] = useState(false);
   const [isWarning, setIsWarning] = useState(false);
   const [tempPayload, setTempPayload] = useState({});
+  const [optionData, setOptionData] = useState(null);
 
   function alertSubmit() {
     dispatch({ type: CLEAR_OPTION, payload: tempPayload });
@@ -47,9 +50,12 @@ function NormalTrimBox({
     }
   }
 
-  function setModalOn() {
+  async function setModalOn() {
     setIsModal(true);
+    const result = await getAPI(PATH.OPTION.DEFAULT, { trimId: TRANSLATE[name] });
+    setOptionData(result);
   }
+
   function setModalOff() {
     setIsModal(false);
   }
@@ -79,6 +85,7 @@ function NormalTrimBox({
           setModalOff={setModalOff}
           defaultFunctions={defaultFunctions}
           modalPosition={"modal"}
+          optionData={optionData}
         />
       )}
       {isWarning ? (

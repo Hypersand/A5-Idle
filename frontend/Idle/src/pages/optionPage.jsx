@@ -80,12 +80,10 @@ function OptionPage() {
         setData(res);
       });
     }
-    console.log("a");
     fetchData();
   }, []);
 
   useEffect(() => {
-    console.log("B");
     setFilteredData(filterData(data, currentTab));
   }, [data, currentTab]);
 
