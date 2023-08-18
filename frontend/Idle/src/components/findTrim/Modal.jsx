@@ -43,8 +43,7 @@ function Modal({ setVisible }) {
       setVisible(false);
     }, animateTime);
   }
-  async function clickCheck() {
-    clickExit(2500);
+  async function postFunc() {
     const payload = {
       trimId: state.tempCar.trim.trimId,
       selectFunctions: [],
@@ -53,18 +52,19 @@ function Modal({ setVisible }) {
       payload.selectFunctions.push({ functionId: item });
     });
     stateDispatch({ type: SET_SELECTED_OPTION, payload: [] });
-    const postFunc = async () => {
-      const result = await submitPostAPI(PATH.FIND.SUBMIT, payload);
-      state.tempCar.option.additional = [];
-      result.forEach((item) => {
-        stateDispatch({ type: PUSH_OPTION_ALERT, payload: item.optionName });
-        state.tempCar.option.additional.push({
-          optionId: item.optionId,
-          name: item.optionName,
-          price: item.optionPrice,
-        });
+    const result = await submitPostAPI(PATH.FIND.SUBMIT, payload);
+    state.tempCar.option.additional = [];
+    result.forEach((item) => {
+      stateDispatch({ type: PUSH_OPTION_ALERT, payload: item.optionName });
+      state.tempCar.option.additional.push({
+        optionId: item.optionId,
+        name: item.optionName,
+        price: item.optionPrice,
       });
-    };
+    });
+  }
+  async function clickCheck() {
+    clickExit(2500);
     stateDispatch({ type: SET_SHOWOPTION_ALERT, payload: true });
     await postFunc().then(() => {
       dispatch({ type: CHANGE_ALL, payload: state.tempCar });
