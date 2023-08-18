@@ -110,8 +110,8 @@ const StFindTrimContentContainer = styled.div`
   z-index: 1;
   background-color: ${palette.Grey_1};
   transition:
-    transform 1s ease-in-out,
-    opacity 1s ease-in-out;
+    transform 0.7s ease-in-out,
+    opacity 0.7s ease-in-out;
   ${({ $animationstate }) => $animationstate === true && "transform: translateY(20%); opacity: 0;"}
   animation: ${keyframes`
   0% {
@@ -122,7 +122,7 @@ const StFindTrimContentContainer = styled.div`
     transform: translateY(0);
     opacity: 1;
   }
-  `} 1s ease-in-out;
+  `} 0.7s ease-in-out;
 `;
 
 const StFindTrimContentTitle = styled.div`
