@@ -62,7 +62,7 @@ const StInnerColorBox = styled.div`
   gap: 2px;
   cursor: pointer;
   &:hover img{
-    scale: 1.05;
+    scale: 1.03;
   }
   &:hover{
     background-color: ${palette.Grey_1};
