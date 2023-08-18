@@ -48,7 +48,7 @@ export const TRANSLATE = {
   protection: "차량 보호",
   convenience: "편의",
   Exclusive: 1,
-  LeBlanc: 2,
+  "Le Blanc": 2,
   Prestige: 3,
   Calligraphy: 4,
 };

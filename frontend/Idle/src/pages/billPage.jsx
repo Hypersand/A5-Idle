@@ -157,7 +157,6 @@ const CarContainer = styled.div`
   top: 130px;
   left: 50px;
   background-image: url(${({ $src }) => $src});
-  z-index: 100;
 `;
 const StConfirmContainer = styled.div`
   display: flex;
