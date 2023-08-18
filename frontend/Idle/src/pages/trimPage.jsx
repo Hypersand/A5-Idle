@@ -83,6 +83,7 @@ const TrimSelectContainer = styled.div`
   display: flex;
   position: absolute;
   bottom: 18px;
+  left: 55%;
   gap: 15px;
 `;
 
