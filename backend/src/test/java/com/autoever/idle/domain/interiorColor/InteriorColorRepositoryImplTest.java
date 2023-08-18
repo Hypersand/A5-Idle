@@ -3,6 +3,7 @@ package com.autoever.idle.domain.interiorColor;
 
 import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorDto;
+import com.autoever.idle.domain.interiorColor.dto.InteriorImgUrlDto;
 import com.autoever.idle.domain.interiorColor.repository.InteriorColorRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
@@ -60,5 +61,16 @@ class InteriorColorRepositoryImplTest {
         //then
         softAssertions.assertThat(interiorBillDto.getInteriorId()).isEqualTo(1L);
         softAssertions.assertThat(interiorBillDto.getInteriorImgUrl()).isNotEmpty();
+    }
+
+    @Test
+    @DisplayName("트림에서 선택 가능한 내장 색상을 반환한다")
+    void findInteriorColorImgUrlsByTrimId() {
+        Long trimId = 2L;
+
+        List<InteriorImgUrlDto> interiorColorImgUrls = interiorColorRepository.findInteriorColorImgUrlsByTrimId(trimId);
+
+        softAssertions.assertThat(interiorColorImgUrls.get(0).getInteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png");
+        softAssertions.assertThat(interiorColorImgUrls.get(1).getInteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png");
     }
 }

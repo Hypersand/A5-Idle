@@ -3,6 +3,7 @@ package com.autoever.idle.domain.exteriorColor;
 import com.autoever.idle.domain.exteriorColor.dto.CarExteriorImgDto;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorColorDto;
+import com.autoever.idle.domain.exteriorColor.dto.ExteriorImgUrlDto;
 import com.autoever.idle.domain.exteriorColor.repository.ExteriorColorRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
@@ -59,5 +60,20 @@ class ExteriorColorRepositoryTest {
         //then
         softAssertions.assertThat(exteriorBillDto.getExteriorId()).isEqualTo(1L);
         softAssertions.assertThat(exteriorBillDto.getExteriorImgUrl()).isNotEmpty();
+    }
+
+    @Test
+    @DisplayName("트림에서 선택 가능한 외장 색상을 반환한다")
+    void findExteriorColorImgUrlsByTrimId() {
+        Long trimId = 2L;
+
+        List<ExteriorImgUrlDto> exteriorColorImgUrls = exteriorColorRepository.findExteriorColorImgUrlsByTrimId(trimId);
+
+        softAssertions.assertThat(exteriorColorImgUrls.get(0).getExteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/11.png");
+        softAssertions.assertThat(exteriorColorImgUrls.get(1).getExteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/12.png");
+        softAssertions.assertThat(exteriorColorImgUrls.get(2).getExteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/13.png");
+        softAssertions.assertThat(exteriorColorImgUrls.get(3).getExteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/14.png");
+        softAssertions.assertThat(exteriorColorImgUrls.get(4).getExteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/15.png");
+        softAssertions.assertThat(exteriorColorImgUrls.get(5).getExteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/16.png");
     }
 }
