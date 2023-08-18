@@ -79,8 +79,8 @@ export const SALERATE = "판매량순";
 
 export let clickedOptionPage = false;
 
-export function setClickedOptionPage() {
-  clickedOptionPage = true;
+export function setClickedOptionPage(isTrue) {
+  clickedOptionPage = isTrue;
 }
 export const DEFAULT_ENGINE = {
   Exclusive: {

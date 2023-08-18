@@ -80,12 +80,10 @@ function OptionPage() {
         setData(res);
       });
     }
-    console.log("a");
     fetchData();
   }, []);
 
   useEffect(() => {
-    console.log("B");
     setFilteredData(filterData(data, currentTab));
   }, [data, currentTab]);
 
@@ -136,7 +134,7 @@ function OptionPage() {
     direction === "LEFT" ? (element.scrollLeft -= 200) : (element.scrollLeft += 200);
   }
 
-  setClickedOptionPage();
+  setClickedOptionPage(true);
   return (
     <>
       <StWrapper>
