@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import { keyframes, styled } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import WhiteButton from "buttons/WhiteButton";
 import { createPortal } from "react-dom";
 import palette from "styles/palette";
+import { useState } from "react";
 
 /**
  *
@@ -10,18 +11,29 @@ import palette from "styles/palette";
  * @returns 모달창
  */
 function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", modalPosition }) {
+  const [animationstate, setAnimationstate] = useState(false);
   function clickCancel() {
-    setModalVisible(false);
+    setAnimationstate(true);
+    setTimeout(() => {
+      setModalVisible(false);
+    }, 200);
+  }
+  function submitClicked() {
+    setAnimationstate(true);
+    setTimeout(() => {
+      setModalVisible(false);
+      onSubmitClick()
+    }, 200);
   }
   return createPortal(
-    <ModalContainer $modalPosition={modalPosition}>
+    <ModalContainer $animationstate={animationstate} $modalPosition={modalPosition}>
       <ModalBackground />
       <StContainer>
         <StTitle>{title}</StTitle>
         {detail && <p>{detail}</p>}
         <StBtnContainer>
           <WhiteButton text={"취소"} onClick={clickCancel} />
-          <BlueButton text={"확인"} onClick={() => onSubmitClick()} />
+          <BlueButton text={"확인"} onClick={submitClicked} />
         </StBtnContainer>
       </StContainer>
     </ModalContainer>,
@@ -52,6 +64,23 @@ const StContainer = styled.div`
     letter-spacing: -0.48px;
   }
 `;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
 
 const StTitle = styled.div`
   width: 100%;
@@ -79,6 +108,8 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.1s ease-in-out;
+    animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.2s ease;
 `;
 const ModalBackground = styled.div`
   position: absolute;

@@ -1,19 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TrimBoxContainer from "trimBoxContainer/TrimBoxContainer";
 import { styled } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
-import { carContext } from "utils/context";
 import FindTrim from "findTrim/index";
 import { getAPI } from "utils/api";
 import palette from "styles/palette";
 import { PATH } from "utils/constants";
 import FindTrimTooltip from "toolTips/FindTrimTooltip";
+import TrimMain from "../components/trimMain";
 
 let cachedTrimData = null;
 
 function TrimPage() {
-  const { car } = useContext(carContext);
   const navigate = useNavigate();
   const [toolTipStatus, setToolTipStatus] = useState(true);
   const [trimData, setTrimData] = useState(cachedTrimData);
@@ -27,10 +26,9 @@ function TrimPage() {
       cachedTrimData = result;
     });
   }, []);
-  const filteredData = trimData?.filter((item) => item.name === car.trim.name);
   return (
     <>
-      {filteredData ? <StImageContainer src={filteredData[0]?.imgUrl} /> : <p>Loading...</p>}
+      {trimData ? <TrimMain data={trimData} /> : <p>Loading...</p>}
       <StWrapper>
         <StBottomContainer>
           {trimData ? <TrimBoxContainer data={trimData} /> : <p>Loading...</p>}
@@ -57,12 +55,6 @@ const StWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-const StImageContainer = styled.img`
-  position: absolute;
-  top: 120px;
-  left: 130px;
 `;
 
 const StBottomContainer = styled.div`
