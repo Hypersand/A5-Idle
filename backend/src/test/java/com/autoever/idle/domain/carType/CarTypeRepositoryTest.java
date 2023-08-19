@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.carType;
 
+import com.autoever.idle.domain.carType.dto.CarTypeDto;
 import com.autoever.idle.domain.carType.repository.CarTypeRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,6 +33,16 @@ class CarTypeRepositoryTest {
         List<Long> carTypeIds = carTypeRepository.findByName(carTypeName);
 
         softAssertions.assertThat(carTypeIds.size()).isEqualTo(1L);
+    }
+
+    @Test
+    @DisplayName("카테고리별 모든 차종 찾기")
+    void findByCategory() {
+        Long carCategoryId = 8L;
+
+        List<CarTypeDto> carTypeDtoList = carTypeRepository.findByCategory(carCategoryId);
+        softAssertions.assertThat(carTypeDtoList.size()).isEqualTo(8);
+
     }
 
 }
