@@ -13,7 +13,7 @@ function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
   }
   return createPortal(
     <ModalContainer>
-      <ModalBackground />
+      <ModalBackground onClick={onClose} />
       <StContainer>
         <StBox>
           <StTitle>

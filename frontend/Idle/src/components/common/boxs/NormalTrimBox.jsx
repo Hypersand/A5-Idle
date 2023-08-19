@@ -207,4 +207,7 @@ const PopUpButton = styled.div`
   path {
     fill: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : ``)};
   }
+  &:hover{
+    text-decoration:underline;
+  }
 `;

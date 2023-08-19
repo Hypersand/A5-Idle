@@ -97,7 +97,7 @@ const Division = styled.div`
 const StListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
   overflow: hidden;
   height: ${({ $isOpen }) => ($isOpen ? "auto" : "0px")};
   opacity: ${({ $animationstate }) => ($animationstate ? 1 : 0)};
@@ -108,8 +108,12 @@ const StListContainer = styled.div`
 `;
 
 const StOption = styled.p`
+  display: block;
   color: ${palette.Black};
   width: 100%;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  height: fit-content;
   font-family: "Hyundai Sans Text KR";
   font-size: 14px;
   font-style: normal;
@@ -118,6 +122,7 @@ const StOption = styled.p`
   letter-spacing: -0.42px;
   &:hover {
     cursor: pointer;
+    text-decoration: underline;
   }
 `;
 const StButton = styled.div`
