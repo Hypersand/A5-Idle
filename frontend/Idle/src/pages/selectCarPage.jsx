@@ -88,6 +88,66 @@ const data = [
           "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-hybrid-45side.png",
         logoImgUrl: null,
       },
+      {
+        carName: "투싼",
+        carPrice: 26030000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tucson-23my-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+      {
+        carName: "투싼 Hybirid",
+        carPrice: 30270000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tucson-hybrid-23my-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+      {
+        carName: "싼타페",
+        carPrice: 32770000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-23my-45side.png",
+        logoImgUrl: null,
+      },
+      {
+        carName: "싼타페 Hybrid",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-hybrid-45side.png",
+        logoImgUrl: null,
+      },
+      {
+        carName: "팰리세이드",
+        carPrice: 38960000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/palisade-24my-45side.png",
+        logoImgUrl: null,
+      },
+      {
+        carName: "베뉴",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
+        logoImgUrl: null,
+      },
+      {
+        carName: "디 올 뉴 코나",
+        carPrice: 24860000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+      {
+        carName: "디 올 뉴 코다 H",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
     ],
   },
   {
@@ -112,8 +172,14 @@ const data = [
   },
 ];
 
-function filterData(data, selectedTab) {
-  return data.filter((item) => item.carCategoryName === selectedTab);
+function filterData(data, selectedTab, currentPage) {
+  const tabData = data.filter((item) => item.carCategoryName === selectedTab)[0].carTypeDtoList;
+  const maxPage = Math.ceil(tabData.length / 8);
+  const filteredData = [];
+  for (let i = (currentPage - 1) * 8; i < currentPage * 8; i++) {
+    filteredData.push(tabData[i]);
+  }
+  return { filteredData, maxPage };
 }
 
 function btnClicked(navigate, selectedCar, setWarningModalVisible) {
@@ -128,14 +194,24 @@ function tabClicked(item, setSelectedTab, setSelectedCar) {
   setSelectedCar(null);
 }
 
+function leftBtnClicked(currentPage, setCurrentPage, maxPage) {
+  if (currentPage === 1) setCurrentPage(maxPage);
+  else setCurrentPage((cur) => cur - 1);
+}
+function RightBtnClicked(currentPage, setCurrentPage, maxPage) {
+  if (currentPage + 1 > maxPage) setCurrentPage(1);
+  else setCurrentPage((cur) => cur + 1);
+}
+
 function SelectCarPage() {
-  const [selectedTab, setSelectedTab] = useState("수소/전기차");
+  const [selectedTab, setSelectedTab] = useState("SUV");
   const [selectedCar, setSelectedCar] = useState(null);
   const [warningModalVisible, setWarningModalVisible] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const tabs = ["수소/전기차", "N", "승용", "SUV", "소형트럭&택시", "트럭", "버스"];
   const navigate = useNavigate();
-  const filteredData = filterData(data, selectedTab);
+  const { filteredData, maxPage } = filterData(data, selectedTab, currentPage);
 
   function renderTabs() {
     return tabs.map((item, index) => {
@@ -163,12 +239,20 @@ function SelectCarPage() {
         </StHeader>
 
         <CarSelectionContainer
-          data={filteredData[0].carTypeDtoList}
+          data={filteredData}
           setSelectedCar={setSelectedCar}
           selectedCar={selectedCar}
         />
         <StPage>
-          <LeftArrow style={{ cursor: "pointer" }} />1<RightArrow style={{ cursor: "pointer" }} />
+          <LeftArrow
+            style={{ cursor: "pointer" }}
+            onClick={() => leftBtnClicked(currentPage, setCurrentPage, maxPage)}
+          />
+          {currentPage}
+          <RightArrow
+            style={{ cursor: "pointer" }}
+            onClick={() => RightBtnClicked(currentPage, setCurrentPage, maxPage)}
+          />
         </StPage>
         <StBtn onClick={() => btnClicked(navigate, selectedCar, setWarningModalVisible)}>
           마이 카마스터 시작하기
