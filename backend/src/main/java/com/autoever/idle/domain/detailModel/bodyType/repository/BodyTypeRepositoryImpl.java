@@ -1,19 +1,17 @@
 package com.autoever.idle.domain.detailModel.bodyType.repository;
 
 import com.autoever.idle.domain.detailModel.dto.BodyTypeResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class BodyTypeRepositoryImpl implements BodyTypeRepository{
 
     private final JdbcTemplate jdbcTemplate;
-
-    public BodyTypeRepositoryImpl(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     @Override
     public List<BodyTypeResponse> findAll(Long trimId) {

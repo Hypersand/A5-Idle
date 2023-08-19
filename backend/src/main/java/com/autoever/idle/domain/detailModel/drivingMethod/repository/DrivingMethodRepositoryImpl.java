@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.detailModel.drivingMethod.repository;
 
 import com.autoever.idle.domain.detailModel.dto.DrivingMethodResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -8,13 +9,10 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class DrivingMethodRepositoryImpl implements DrivingMethodRepository {
 
     private final JdbcTemplate jdbcTemplate;
-
-    public DrivingMethodRepositoryImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     @Override
     public List<DrivingMethodResponse> findAll(Long trimId) {
