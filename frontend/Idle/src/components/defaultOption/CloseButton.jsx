@@ -20,6 +20,9 @@ const StButton = styled.button`
   width: 99px;
   height: 28px;
   cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+  }
 `;
 
 const StArrowDown = styled(ArrowDown)`

@@ -16,7 +16,6 @@ export default FindTrimButton;
 const StFindTrimButton = styled.button`
   position: absolute;
   bottom: 18px;
-  width: 102px;
   height: 32px;
   display: flex;
   flex-direction: column;
@@ -29,9 +28,7 @@ const StFindTrimButton = styled.button`
 const StFindTrimButtonText = styled.div`
   color: ${palette.Black};
   font-family: "Hyundai Sans Text KR";
-  font-size: 14px;
+  font-size: 15px;
   font-style: normal;
-  font-weight: 500;
   line-height: 20px;
-  letter-spacing: -0.42px;
 `;

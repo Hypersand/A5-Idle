@@ -22,7 +22,7 @@ const StContainer = styled.div`
   cursor: pointer;
   &:hover {
     cursor: pointer;
-    filter: brightness(120%)
+    filter: brightness(120%);
   }
 `;
 
