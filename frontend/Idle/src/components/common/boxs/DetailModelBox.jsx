@@ -4,6 +4,21 @@ import { carContext } from "utils/context";
 import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "utils/actionType";
 import palette from "styles/palette";
 
+function checkOptionBeforeEngineChanged(car, setModalVisible) {
+  let optionsToBeRemoved = [];
+  if (car.detail.engines.name === "가솔린 3.8") return optionsToBeRemoved;
+
+  car.option.additional.forEach((item) => {
+    if (item.name === "듀얼 머플러 패키지") optionsToBeRemoved.push(item);
+  });
+  car.option.confusing.forEach((item) => {
+    if (item.name === "듀얼 머플러 패키지") optionsToBeRemoved.push(item);
+  });
+
+  optionsToBeRemoved.length > 0 && setModalVisible(true);
+  return optionsToBeRemoved;
+}
+
 function DetailModelBox({
   purchase_rate,
   type,
@@ -12,6 +27,8 @@ function DetailModelBox({
   price,
   currentTab,
   isActive = true,
+  setOptionsToBeRemoved,
+  setModalVisible,
 }) {
   const { car, dispatch } = useContext(carContext);
 
@@ -19,6 +36,11 @@ function DetailModelBox({
     const payload = { name: type, price: price, id: id };
     switch (currentTab) {
       case "engines":
+        // eslint-disable-next-line no-case-declarations
+        const optionRemoved = checkOptionBeforeEngineChanged(car, setModalVisible);
+        setOptionsToBeRemoved(optionRemoved);
+        if (optionRemoved.length > 0) break;
+
         if (car.detail.engines.name !== type) {
           dispatch({ type: CHANGE_ENGINES, payload: payload });
         }
@@ -79,7 +101,7 @@ const StContainer = styled.div`
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
     background: ${({ $isSelected }) =>
-    $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
   }

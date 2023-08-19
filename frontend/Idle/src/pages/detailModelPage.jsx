@@ -19,16 +19,21 @@ import { carContext } from "utils/context";
 import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "utils/actionType";
 import { PATH } from "utils/constants";
 import { getAPI } from "../utils/api";
+import RemoveOptionModal from "../components/common/modals/RemoveOptionModal";
 
 let cachedData = null;
 
 function DetailModelPage() {
   const { tab } = useParams();
   const [currentTab, setCurrentTab] = useState(tab);
-  const navigate = useNavigate();
-  const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES];
   const { car, dispatch } = useContext(carContext);
   const [detailData, setDetailData] = useState(cachedData);
+
+  const [warningModalVisible, setWarningModalVisible] = useState(false);
+  const [optionsToBeRemoved, setOptionsToBeRemoved] = useState([]);
+
+  const navigate = useNavigate();
+  const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES];
 
   useEffect(() => {
     getAPI(PATH.DETAIL, `trimId=${TRANSLATE[car.trim.name]}`).then((res) => {
@@ -108,7 +113,13 @@ function DetailModelPage() {
             <StBottomContainer>
               <StContainer>
                 {detailData[currentTab].map((item, idx) => (
-                  <DetailModelBox key={idx} {...item} currentTab={currentTab} />
+                  <DetailModelBox
+                    key={idx}
+                    {...item}
+                    currentTab={currentTab}
+                    setOptionsToBeRemoved={setOptionsToBeRemoved}
+                    setModalVisible={setWarningModalVisible}
+                  />
                 ))}
               </StContainer>
               <StConfirmContainer>
@@ -132,6 +143,13 @@ function DetailModelPage() {
                 </StButtonContainer>
               </StConfirmContainer>
             </StBottomContainer>
+
+            {warningModalVisible && (
+              <RemoveOptionModal
+                data={optionsToBeRemoved}
+                setModalVisible={setWarningModalVisible}
+              />
+            )}
           </StWrapper>
         </>
       )}
