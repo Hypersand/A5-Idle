@@ -8,6 +8,7 @@ import { ReactComponent as LeftArrow } from "../assets/images/optionArrowLeft.sv
 import { ReactComponent as RightArrow } from "../assets/images/optionArrowRight.svg";
 import { useNavigate } from "react-router-dom";
 import WarningModal from "../components/common/modals/WarningModal";
+import { CAR_SELECTION_NUM } from "../utils/constants";
 const data = [
   {
     carCategoryId: 1,
@@ -342,9 +343,9 @@ const data = [
 
 function filterData(data, selectedTab, currentPage) {
   const tabData = data.filter((item) => item.carCategoryName === selectedTab)[0].carTypeDtoList;
-  const maxPage = Math.ceil(tabData.length / 8);
+  const maxPage = Math.ceil(tabData.length / CAR_SELECTION_NUM);
   const filteredData = [];
-  for (let i = (currentPage - 1) * 8; i < currentPage * 8; i++) {
+  for (let i = (currentPage - 1) * CAR_SELECTION_NUM; i < currentPage * CAR_SELECTION_NUM; i++) {
     tabData[i] !== undefined ? filteredData.push(tabData[i]) : null;
   }
   return { filteredData, maxPage };
