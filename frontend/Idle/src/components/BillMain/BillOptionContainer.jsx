@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import TrimDetailModal from "../trimDetailModal/TrimDetailModal";
 import { carContext } from "../../utils/context";
+import ModifyButton from "../common/buttons/ModifyButton";
 
 function BillOptionContainer({ added, confused, data }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +46,7 @@ function BillOptionContainer({ added, confused, data }) {
       </StTop>
 
       <StMain>
-        <StChangeBtn onClick={changeOptionBtnClicked}>변경하기 {">"}</StChangeBtn>
+        <ModifyButton onClick={changeOptionBtnClicked} />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <StOptionType>추가 옵션</StOptionType>
           <StBlock>{added.length ? renderAddOptions() : "추가한 옵션이 없습니다."}</StBlock>
@@ -105,20 +106,6 @@ const StMain = styled.div`
   display: flex;
   gap: 67px;
   margin-top: 16px;
-`;
-
-const StChangeBtn = styled.div`
-  color: ${palette.CoolGrey_2};
-  font-family: "Hyundai Sans Text KR";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: -0.48px;
-  text-align: center;
-  cursor: pointer;
-  width: 87px;
-  display: flex;
 `;
 
 const StOptionType = styled.p`

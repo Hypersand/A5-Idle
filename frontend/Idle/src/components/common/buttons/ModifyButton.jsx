@@ -6,7 +6,7 @@ function ModifyButton({ onClick }) {
   return (
     <StContainer onClick={onClick}>
       <StTitle>변경하기</StTitle>
-      <ArrowRight />
+      <StArrow />
     </StContainer>
   );
 }
@@ -17,7 +17,7 @@ const StContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
   gap: 8px;
   cursor: pointer;
   &:hover {
@@ -35,4 +35,11 @@ const StTitle = styled.p`
   line-height: 24px;
   letter-spacing: -0.48px;
   text-align: center;
+  align-items: center;
 `;
+
+const StArrow = styled(ArrowRight)`
+  path{
+    fill: ${palette.CoolGrey_2};
+  }
+`

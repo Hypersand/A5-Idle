@@ -118,6 +118,7 @@ const StColorContent = styled.div`
   width: 320px;
   height: 90px;
   background-image: ${({ $img }) => `url(${$img})`};
+  background-repeat: round;
   flex-shrink: 0;
   position: relative;
   p {
