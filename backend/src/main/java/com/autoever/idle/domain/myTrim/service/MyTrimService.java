@@ -12,6 +12,7 @@ import com.autoever.idle.domain.option.dto.MyTrimOptionResponse;
 import com.autoever.idle.global.exception.custom.InvalidFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidMyTrimFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidTrimFunctionException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,15 +23,11 @@ import java.util.stream.Collectors;
 import static com.autoever.idle.global.exception.ErrorCode.*;
 
 @Service
+@RequiredArgsConstructor
 public class MyTrimService {
 
     private final FunctionRepository functionRepository;
     private final TrimFunctionRepository trimFunctionRepository;
-
-    public MyTrimService(FunctionRepository functionRepository, TrimFunctionRepository trimFunctionRepository) {
-        this.functionRepository = functionRepository;
-        this.trimFunctionRepository = trimFunctionRepository;
-    }
 
     //내게 맞는 트림 찾기 페이지
     public List<MyTrimFunctionResponse> findMyTrimFunctions() {
