@@ -14,6 +14,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class OptionService {
+    private static String NEW = "NEW";
+    private static String FALSE = "false";
 
     private final OptionRepository optionRepository;
     private final FunctionRepository functionRepository;
@@ -25,7 +27,7 @@ public class OptionService {
 
         for (OptionDto optionDto : additionalOptionList) {
             if (notActivatedOptionIdList.contains(optionDto.getOptionId())) {
-                optionDto.setOptionCanSelect("false");
+                optionDto.setOptionCanSelect(FALSE);
             }
             optionFunctionsResponseList.add(OptionFunctionsResponse.create(
                     optionDto,
@@ -41,30 +43,48 @@ public class OptionService {
         optionFunctions.sort((o1, o2) -> {
             if (o1.getOptionPrice().equals(o2.getOptionPrice())) {
                 return sortWhenSameOptionPrice(o1, o2);
-            } else if (o1.getOptionPrice() < o2.getOptionPrice()) {
-                return -1;
-            } else {
-                return 1;
             }
+            if (o1.getOptionPrice() < o2.getOptionPrice()) {
+                return -1;
+            }
+            return 1;
         });
     }
 
     private int sortWhenSameOptionPrice(OptionFunctionsResponse o1, OptionFunctionsResponse o2) {
-        if (o1.getOptionPurchaseRate().equals("NEW")) {
-            return -1;
-        } else if (o2.getOptionPurchaseRate().equals("NEW")) {
-            return 1;
+        int comparedNewOptions = compareIfNewOptions(o1, o2);
+        if (comparedNewOptions != 0) {
+            return comparedNewOptions;
         }
 
-        double rate1 = Double.parseDouble(o1.getOptionPurchaseRate().split("%")[0].split(" ")[1]);
-        double rate2 = Double.parseDouble(o2.getOptionPurchaseRate().split("%")[0].split(" ")[1]);
+        return compareRatesAndNames(o1, o2);
+    }
+
+    private int compareIfNewOptions(OptionFunctionsResponse o1, OptionFunctionsResponse o2) {
+        return o1.getOptionPurchaseRate().equals(NEW) ? -1 :
+                o2.getOptionPurchaseRate().equals(NEW) ? 1 : 0;
+    }
+
+    private int compareRatesAndNames(OptionFunctionsResponse o1, OptionFunctionsResponse o2) {
+        double rate1 = extractRate(o1.getOptionPurchaseRate());
+        double rate2 = extractRate(o2.getOptionPurchaseRate());
 
         if (rate1 == rate2) {
             return o2.getOptionName().compareTo(o1.getOptionName());
-        } else if (rate1 < rate2) {
-            return 1;
-        } else {
-            return -1;
         }
+        if (rate1 < rate2) {
+            return 1;
+        }
+
+        return -1;
     }
+
+    private double extractRate(String purchaseRate) {
+        String[] splitRate = purchaseRate.split("%")[0].split(" ");
+        if (splitRate.length > 1) {
+            return Double.parseDouble(splitRate[1]);
+        }
+        return 0;
+    }
+
 }
