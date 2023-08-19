@@ -2,7 +2,6 @@ import { styled } from "styled-components";
 import palette from "../../styles/palette";
 
 function DillerBox({ data, isSelected, onClick }) {
-  console.log(data);
   return (
     <StContainer $isSelected={isSelected} onClick={onClick}>
       <StMainContainer>
