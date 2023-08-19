@@ -3,7 +3,6 @@ package com.autoever.idle.domain.carMaster.controller;
 import com.autoever.idle.domain.carMaster.dto.CarMasterResponse;
 import com.autoever.idle.domain.carMaster.service.CarMasterService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/find/car/masters")
