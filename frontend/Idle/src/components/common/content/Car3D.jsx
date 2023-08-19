@@ -24,14 +24,14 @@ function Car3D({ data = null }) {
   useEffect(() => {
     data === null ? "" : data[0]?.carImgUrls?.map((item) => { preloadImage(item.imgUrl) })
   }, [data])
-  function turnRight() {
+  function turnLeft() {
     if (currentImg === imgCount) {
       setCurrentImage(0);
     } else {
       setCurrentImage((before) => before + 1);
     }
   }
-  function turnLeft() {
+  function turnRight() {
     if (currentImg === 0) {
       setCurrentImage(imgCount);
     } else {
@@ -40,8 +40,14 @@ function Car3D({ data = null }) {
   }
   function turnCar(e) {
     if (isMouseDown && e.clientX != beforeX) {
-      e.clientX > beforeX ? turnLeft() : turnRight();
-      setBeforeX(e.clientX);
+      console.log(e.clientX - beforeX);
+      if (e.clientX - beforeX > 1) {
+        turnRight()
+        setBeforeX(e.clientX);
+      } else if (beforeX - e.clientX > 1) {
+        turnLeft()
+        setBeforeX(e.clientX);
+      }
     }
   }
 
