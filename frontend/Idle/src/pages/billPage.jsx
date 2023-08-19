@@ -119,7 +119,7 @@ const BlueBgBottom = styled(BlueBG)`
   position: absolute;
   height: 267px;
   top: 414px;
-  z-index: -2;
+  z-index: -1;
 `;
 const TitleContainer = styled.div`
   position: absolute;
@@ -157,7 +157,6 @@ const CarContainer = styled.div`
   top: 130px;
   left: 50px;
   background-image: url(${({ $src }) => $src});
-  z-index: 100;
 `;
 const StConfirmContainer = styled.div`
   display: flex;

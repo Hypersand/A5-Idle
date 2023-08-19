@@ -227,5 +227,4 @@ const ClickedBorder = styled.div`
   height: 156px;
   top: 1px;
   left: 1px;
-  z-index: 0;
 `;

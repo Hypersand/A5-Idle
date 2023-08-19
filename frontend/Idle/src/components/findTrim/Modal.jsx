@@ -107,7 +107,7 @@ const StFindTrimContentContainer = styled.div`
   flex-direction: column;
   width: 1280px;
   height: 580px;
-  z-index: 1;
+  z-index: 2;
   background-color: ${palette.Grey_1};
   transition:
     transform 0.7s ease-in-out,

@@ -142,7 +142,7 @@ const OptionToolTip = styled.div`
     top: 10px;
     position: absolute;
     border-radius: 10px;
-    z-index: 100;
+    z-index: 1;
     padding: 4px 12px;
     background: var(--navy-blue-1, #E7ECF9);
     align-items: flex-start;

@@ -27,7 +27,7 @@ function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", moda
   }
   return createPortal(
     <ModalContainer $modalPosition={modalPosition}>
-      <ModalBackground />
+      <ModalBackground onClick={clickCancel} />
       <StContainer $animationstate={animationstate}>
         <StTitle>{title}</StTitle>
         {detail && <p>{detail}</p>}
@@ -56,7 +56,6 @@ const StContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
   p {
     color: ${palette.Black};
     text-align: center;
@@ -114,6 +113,7 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3;
 `;
 const ModalBackground = styled.div`
   position: absolute;
@@ -123,5 +123,4 @@ const ModalBackground = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
-  z-index: 100;
 `;

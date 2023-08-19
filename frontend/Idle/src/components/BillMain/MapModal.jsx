@@ -140,19 +140,19 @@ function MapModal({ setCarMasterVisible }) {
     });
     selectedTab === SALERATE
       ? getAPI(PATH.CARMASTER.SALERATE, {
-          nowLatitude: latitude,
-          nowLongitude: longitude,
-        }).then((res) => {
-          setData(res);
-          cachedData = res;
-        })
+        nowLatitude: latitude,
+        nowLongitude: longitude,
+      }).then((res) => {
+        setData(res);
+        cachedData = res;
+      })
       : getAPI(PATH.CARMASTER.DISTANCE, {
-          nowLatitude: latitude,
-          nowLongitude: longitude,
-        }).then((res) => {
-          setData(res);
-          cachedData = res;
-        });
+        nowLatitude: latitude,
+        nowLongitude: longitude,
+      }).then((res) => {
+        setData(res);
+        cachedData = res;
+      });
   }, [latitude, longitude]);
 
   function XBtnClicked() {
@@ -161,19 +161,19 @@ function MapModal({ setCarMasterVisible }) {
   function TabClicked(name) {
     name === SALERATE
       ? getAPI(PATH.CARMASTER.SALERATE, {
-          nowLatitude: latitude,
-          nowLongitude: longitude,
-        }).then((res) => {
-          setData(res);
-          cachedData = res;
-        })
+        nowLatitude: latitude,
+        nowLongitude: longitude,
+      }).then((res) => {
+        setData(res);
+        cachedData = res;
+      })
       : getAPI(PATH.CARMASTER.DISTANCE, {
-          nowLatitude: latitude,
-          nowLongitude: longitude,
-        }).then((res) => {
-          setData(res);
-          cachedData = res;
-        });
+        nowLatitude: latitude,
+        nowLongitude: longitude,
+      }).then((res) => {
+        setData(res);
+        cachedData = res;
+      });
     setSelectedTab(name);
     setSelectedDealer("");
   }
@@ -271,6 +271,7 @@ const ModalBackground = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
+  z-index: 1;
 `;
 
 const StContainer = styled.div`

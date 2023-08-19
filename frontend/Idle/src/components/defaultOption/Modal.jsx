@@ -97,7 +97,7 @@ function Modal({ setVisible }) {
 export default Modal;
 
 const ModalContainer = styled.div`
-  z-index: 101;
+  z-index: 1;
   position: absolute;
   bottom: 0;
   left: 0;

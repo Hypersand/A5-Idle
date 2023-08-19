@@ -1,8 +1,8 @@
 import { createPortal } from "react-dom";
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import { ReactComponent as X } from "images/esc.svg";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { stateContext, dispatchContext } from "utils/context";
 import palette from "styles/palette";
 import { PUSH_SELECTED_OPTION } from "../../../utils/actionType";
@@ -10,24 +10,32 @@ import { PUSH_SELECTED_OPTION } from "../../../utils/actionType";
 function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
   const { state } = useContext(stateContext);
   const { stateDispatch } = useContext(dispatchContext);
+  const [animationstate, setAnimationState] = useState(false);
+
+  function clickClose() {
+    setAnimationState(true);
+    setTimeout(() => {
+      setModalVisible(false)
+    }, 300);
+  }
   function selectedBtnClicked() {
     if (state.selectedOption.includes(data.functionId)) {
-      setModalVisible(false);
+      clickClose()
       return;
     } else {
       stateDispatch({ type: PUSH_SELECTED_OPTION, payload: data.functionId });
       setIsSelected(true);
-      setModalVisible(false);
+      clickClose()
     }
   }
 
   return createPortal(
     <ModalContainer onClick={onClick}>
-      <ModalBackground onClick={() => setModalVisible(false)} />
-      <StContainer>
+      <ModalBackground onClick={clickClose} />
+      <StContainer $animationstate={animationstate}>
         <StTitleContainer>
           <StTitle>{data.name}</StTitle>
-          <StImgX onClick={setModalVisible} data-name={"esc"} />
+          <StImgX onClick={clickClose} data-name={"esc"} />
         </StTitleContainer>
         <StDescription>{data.description}</StDescription>
         <img
@@ -57,7 +65,9 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;  
 `;
+
 const ModalBackground = styled.div`
   position: absolute;
   top: 0;
@@ -66,7 +76,6 @@ const ModalBackground = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
-  z-index: 1;
 `;
 const StContainer = styled.div`
   width: 452px;
@@ -75,11 +84,30 @@ const StContainer = styled.div`
   padding: 32px 44px;
   background: ${palette.White};
   flex-direction: column;
-  z-index: 100;
   align-items: center;
-  z-index: 10;
   position: relative;
+  z-index: 3;  
+  transition: opacity 0.5s ease-in-out;
+  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.5s ease;
 `;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
 const StTitleContainer = styled.div`
   width: 452px;
   display: flex;
