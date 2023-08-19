@@ -2,9 +2,9 @@ package com.autoever.idle.domain.myTrim.controller;
 
 import com.autoever.idle.domain.function.dto.FunctionIdResponse;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResponse;
-import com.autoever.idle.domain.myTrim.service.MyTrimService;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResponse;
 import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitRequest;
+import com.autoever.idle.domain.myTrim.service.MyTrimService;
 import com.autoever.idle.domain.option.dto.MyTrimOptionResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

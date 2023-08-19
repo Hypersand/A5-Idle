@@ -1,7 +1,7 @@
 package com.autoever.idle.domain.trim.controller;
 
-import com.autoever.idle.domain.trim.service.TrimService;
 import com.autoever.idle.domain.trim.dto.TrimSelectionResponse;
+import com.autoever.idle.domain.trim.service.TrimService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
