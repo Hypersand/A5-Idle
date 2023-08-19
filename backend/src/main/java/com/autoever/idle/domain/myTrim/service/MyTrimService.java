@@ -73,17 +73,9 @@ public class MyTrimService {
         MyTrimResponse myTrimResponse;
         for (MyTrimDto myTrimDto : myTrimDtoList) {
             if (myTrimDto.getIsDefault() == null) { //트림에 해당 기능이 존재하지 않으면
-                myTrimResponse = MyTrimResponse.builder()
-                        .name(myTrimDto.getName())
-                        .isDefault(null)
-                        .selectPossible(false)
-                        .build();
+                myTrimResponse = new MyTrimResponse(myTrimDto.getName(), myTrimDto.getIsDefault(), false);
             } else { //트림에 해당 기능이 존재하면
-                myTrimResponse = MyTrimResponse.builder()
-                        .name(myTrimDto.getName())
-                        .isDefault(myTrimDto.getIsDefault())
-                        .selectPossible(true)
-                        .build();
+                myTrimResponse = new MyTrimResponse(myTrimDto.getName(), myTrimDto.getIsDefault(), true);
             }
             myTrimResponseList.add(myTrimResponse);
         }
@@ -139,7 +131,7 @@ public class MyTrimService {
         for (MyTrimFunctionResponse myTrimFunctionResponse : myTrimFunctions) {
             Long functionId = Long.valueOf(myTrimFunctionResponse.getFunctionId());
             FunctionIdResponse functionIdResponse = trimFunctionRepository.checkNonSelectableFunctionAtTrim(trimId, functionId);
-            if(functionIdResponse !=null){
+            if (functionIdResponse != null) {
                 functionIdResponseList.add(functionIdResponse);
             }
         }
