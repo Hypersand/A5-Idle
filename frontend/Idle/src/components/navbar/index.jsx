@@ -18,12 +18,19 @@ function navigateTo(car, navigate) {
 function Navbar() {
   const { car } = useContext(carContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [isEngineChecked, setIsEngineChekced] = useState(false);
+
   const navigate = useNavigate();
 
   const location = useLocation().pathname.slice(1);
   function render() {
     return Object.keys(TYPE).map((key, index) => (
-      <NavbarBox type={key} key={index} setIsOpen={setIsOpen}></NavbarBox>
+      <NavbarBox
+        type={key}
+        key={index}
+        setIsOpen={setIsOpen}
+        setIsEngineChekced={setIsEngineChekced}
+      ></NavbarBox>
     ));
   }
   return (
@@ -42,6 +49,18 @@ function Navbar() {
           modalPosition={"modal"}
         />
       ) : null}
+      {isEngineChecked && (
+        <WarningModal
+          title={"옵션 선택을 위해선 엔진을 선택해야 합니다."}
+          setModalVisible={setIsEngineChekced}
+          onSubmitClick={() => {
+            setIsEngineChekced(false);
+            navigate("/detail/engines");
+          }}
+          detail={"선택이 필요한 페이지로 이동하시겠습니까?"}
+          modalPosition={"modal"}
+        />
+      )}
     </StContainer>
   );
 }
