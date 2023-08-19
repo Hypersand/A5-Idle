@@ -6,7 +6,7 @@ import palette from "styles/palette";
 
 function ItemBox({ functionName, functionImgUrl, functionDescription }) {
   const [showDetail, setShowDetail] = useState(false);
-  const stringMaxLength = 32;
+  const stringMaxLength = 100;
   function checkLength() {
     if (functionName.length > stringMaxLength) {
       return functionName.slice(0, stringMaxLength) + "...";
@@ -59,6 +59,9 @@ const StContainer = styled.div`
     filter: brightness(1.05);
     cursor: pointer;
   }
+  &:hover button{
+    text-decoration: underline;
+  }
 `;
 const StImgContainer = styled.div`
   width: 182px;
@@ -79,26 +82,22 @@ const StDescription = styled.div`
   height: 32px;
   color: ${palette.Black};
   font-family: "Hyundai Sans Text KR";
-  font-size: 12px;
+  font-size: 13px;
   font-style: normal;
-  font-weight: 700;
   line-height: 16px;
-  letter-spacing: -0.36px;
 `;
 
 const StDetailButton = styled.button`
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-left: 20px;
-  margin-top: 12px;
+  margin-left: 115px;
+  margin-top: 16px;
   height: 15px;
   color: ${palette.Black};
   font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.3px;
   cursor: pointer;
 `;
