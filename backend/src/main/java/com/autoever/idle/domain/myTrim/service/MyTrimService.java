@@ -36,7 +36,7 @@ public class MyTrimService {
 
         List<MyTrimFunctionDto> myTrimFunctionDtoSet = myTrimFunctions.stream().distinct().collect(Collectors.toList());
         for (MyTrimFunctionDto myTrimFunctionDto : myTrimFunctionDtoSet) {
-            myTrimFunctionResponseList.add(MyTrimFunctionResponse.createDto(myTrimFunctionDto));
+            myTrimFunctionResponseList.add(MyTrimFunctionResponse.createResponse(myTrimFunctionDto));
         }
         return myTrimFunctionResponseList;
     }
@@ -70,7 +70,7 @@ public class MyTrimService {
         MyTrimResponse myTrimResponse;
         for (MyTrimDto myTrimDto : myTrimDtoList) {
             if (myTrimDto.getIsDefault() == null) { //트림에 해당 기능이 존재하지 않으면
-                myTrimResponse = new MyTrimResponse(myTrimDto.getName(), myTrimDto.getIsDefault(), false);
+                myTrimResponse = new MyTrimResponse(myTrimDto.getName(), null, false);
             } else { //트림에 해당 기능이 존재하면
                 myTrimResponse = new MyTrimResponse(myTrimDto.getName(), myTrimDto.getIsDefault(), true);
             }
@@ -97,8 +97,8 @@ public class MyTrimService {
         List<MyTrimOptionResponse> myTrimOptionResponseList = new ArrayList<>();
         Long trimId = myTrimSubmitRequest.getTrimId();
         List<Map<String, Long>> functionIdList = myTrimSubmitRequest.getSelectFunctions();
-        for (int requestIdx = 0; requestIdx < functionIdList.size(); requestIdx++) {
-            Long functionId = functionIdList.get(requestIdx).get("functionId");
+        for (Map<String, Long> stringLongMap : functionIdList) {
+            Long functionId = stringLongMap.get("functionId");
             checkValidFunction(functionId.intValue());
             Boolean isDefault = getIsDefault(trimId, functionId);
             if (!isDefault) {
@@ -115,10 +115,7 @@ public class MyTrimService {
         if (isDefault == null) {
             throw new InvalidTrimFunctionException(INVALID_TRIM_FUNCTION);
         }
-        if (isDefault.equals("TRUE")) {
-            return true;
-        }
-        return false;
+        return isDefault.equals("TRUE");
 
     }
 

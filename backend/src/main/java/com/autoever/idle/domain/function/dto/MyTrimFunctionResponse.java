@@ -17,7 +17,7 @@ public class MyTrimFunctionResponse {
         this.imgUrl = imgUrl;
     }
 
-    public static MyTrimFunctionResponse createDto(MyTrimFunctionDto myTrimFunctionDto) {
+    public static MyTrimFunctionResponse createResponse(MyTrimFunctionDto myTrimFunctionDto) {
         return new MyTrimFunctionResponse(myTrimFunctionDto.getFunctionId(), myTrimFunctionDto.getName(),
                 myTrimFunctionDto.getDescription(),myTrimFunctionDto.getImgUrl());
 
