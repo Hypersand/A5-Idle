@@ -1,27 +1,27 @@
 /* eslint-disable react-refresh/only-export-components */
 export const PATH = {
-  TRIM: `http://api.i-want-to-go-autoever.shop/trims?carTypeName=팰리세이드`,
+  TRIM: `https://api.i-want-to-go-autoever.shop/trims?carTypeName=팰리세이드`,
   FIND: {
-    GET: `http://api.i-want-to-go-autoever.shop/trims/favorite`,
-    OPTION: `http://api.i-want-to-go-autoever.shop/trims/favorite/select/option`,
-    TRIM: `http://api.i-want-to-go-autoever.shop/trims/favorite/select/trim`,
-    SUBMIT: `http://api.i-want-to-go-autoever.shop/trims/favorite/submit`,
+    GET: `https://api.i-want-to-go-autoever.shop/trims/favorite`,
+    OPTION: `https://api.i-want-to-go-autoever.shop/trims/favorite/select/option`,
+    TRIM: `https://api.i-want-to-go-autoever.shop/trims/favorite/select/trim`,
+    SUBMIT: `https://api.i-want-to-go-autoever.shop/trims/favorite/submit`,
   },
-  DETAIL: `http://api.i-want-to-go-autoever.shop/trims/models?`,
+  DETAIL: `https://api.i-want-to-go-autoever.shop/trims/models?`,
   COLOR: {
-    EXTERIOR: `http://api.i-want-to-go-autoever.shop/trims/exterior/colors?`,
-    INTERIOR: `http://api.i-want-to-go-autoever.shop/trims/interior/colors?`,
+    EXTERIOR: `https://api.i-want-to-go-autoever.shop/trims/exterior/colors?`,
+    INTERIOR: `https://api.i-want-to-go-autoever.shop/trims/interior/colors?`,
   },
   OPTION: {
-    DEFAULT: `http://api.i-want-to-go-autoever.shop/trims/default?`,
-    GET: `http://api.i-want-to-go-autoever.shop/trims/add/options`,
-    SELECT: `http://api.i-want-to-go-autoever.shop/trims/add/select`,
+    DEFAULT: `https://api.i-want-to-go-autoever.shop/trims/default?`,
+    GET: `https://api.i-want-to-go-autoever.shop/trims/add/options`,
+    SELECT: `https://api.i-want-to-go-autoever.shop/trims/add/select`,
   },
   CARMASTER: {
-    SALERATE: `http://api.i-want-to-go-autoever.shop/find/car/masters/salerate?`,
-    DISTANCE: `http://api.i-want-to-go-autoever.shop/find/car/masters/distance?`,
+    SALERATE: `https://api.i-want-to-go-autoever.shop/find/car/masters/salerate?`,
+    DISTANCE: `https://api.i-want-to-go-autoever.shop/find/car/masters/distance?`,
   },
-  BILL: `http://api.i-want-to-go-autoever.shop/result/bill`,
+  BILL: `https://api.i-want-to-go-autoever.shop/result/bill`,
 };
 
 export const TYPE = {

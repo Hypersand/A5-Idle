@@ -72,7 +72,7 @@ const StInnerColorBox = styled.div`
 
 const StInnerImageContainer = styled.div`
   overflow: hidden;
-  width: 200px;
+  width: 198px;
   height: 82px;
 `
 const StImage = styled.img`
