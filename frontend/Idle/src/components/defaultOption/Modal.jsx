@@ -126,8 +126,8 @@ const StContainer = styled.div`
   height: 692.0703125px;
   background-color: ${palette.Grey_1};
   transition:
-    transform 1s ease-in-out,
-    opacity 1s ease-in-out;
+    transform 0.8s ease-in-out,
+    opacity 0.8s ease-in-out;
   ${({ $animationstate }) => $animationstate === true && "transform: translateY(20%); opacity: 0;"}
   animation: ${keyframes`
   0% {

@@ -26,9 +26,9 @@ function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", moda
     }, 200);
   }
   return createPortal(
-    <ModalContainer $animationstate={animationstate} $modalPosition={modalPosition}>
+    <ModalContainer $modalPosition={modalPosition}>
       <ModalBackground />
-      <StContainer>
+      <StContainer $animationstate={animationstate}>
         <StTitle>{title}</StTitle>
         {detail && <p>{detail}</p>}
         <StBtnContainer>
@@ -67,6 +67,8 @@ const StContainer = styled.div`
     line-height: 24px;
     letter-spacing: -0.48px;
   }
+  transition: opacity 0.1s ease-in-out;
+  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.2s ease;
 `;
 const fadeIn = keyframes`
   from {
@@ -112,8 +114,6 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.1s ease-in-out;
-  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.2s ease;
 `;
 const ModalBackground = styled.div`
   position: absolute;
