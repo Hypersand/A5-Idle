@@ -1,6 +1,7 @@
 import { useContext, useRef } from "react"
 import { styled } from "styled-components"
 import { carContext } from "../../utils/context"
+import ExteriorBoxContainer from "./ExteriorBoxContainer";
 
 function TrimMain(data) {
     const { car } = useContext(carContext)
@@ -13,6 +14,7 @@ function TrimMain(data) {
                 <ColorContainer>
                     <ColorDetailContainer>
                         외장
+                        {filteredData ? <ExteriorBoxContainer colors={filteredData[0].colors.exteriorImgUrls} /> : <></>}
                     </ColorDetailContainer>
                     <ColorDetailContainer>
                         내장
