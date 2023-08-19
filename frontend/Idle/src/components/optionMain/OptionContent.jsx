@@ -19,7 +19,7 @@ function OptionContent({
   return (
     <StContainer>
       <StOption>{data?.optionName}</StOption>
-      <StOptionDesc>{data?.optionDescription}</StOptionDesc>
+      <StOptionDesc>{data?.optionDescription === "-" ? "" : data?.optionDescription}</StOptionDesc>
       {renderWheelImg()}
 
       <StHr />
