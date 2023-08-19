@@ -5,7 +5,7 @@ import palette from "styles/palette";
 function CloseButton({ onClick }) {
   return (
     <StButton onClick={onClick}>
-      <StArrowDown />
+      <StArrowContainer />
       <StTextBox>추가 옵션 선택하기</StTextBox>
     </StButton>
   );
@@ -40,3 +40,21 @@ const StTextBox = styled.div`
   letter-spacing: -0.42px;
   color: ${palette.Black};
 `;
+
+const StArrowContainer = styled(StArrowDown)`
+position: relative;
+animation: bounceTop 1.3s infinite ease-in-out;
+@keyframes bounceTop {
+  0% {
+    top: -1px;
+  }
+
+  50% {
+    top: 2px;
+  }
+
+  100% {
+    top: -1px;
+  }
+}
+`

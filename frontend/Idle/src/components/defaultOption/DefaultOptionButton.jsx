@@ -5,7 +5,7 @@ import palette from "styles/palette";
 function DefaultOptionButton({ onClick }) {
   return (
     <StButton onClick={onClick}>
-      <ArrowUpper />
+      <StArrowContainer />
       <StButtonText>기본 옵션 보기</StButtonText>
     </StButton>
   );
@@ -31,3 +31,21 @@ const StButtonText = styled.div`
   line-height: 20px;
   color: ${palette.Black};
 `;
+
+const StArrowContainer = styled(ArrowUpper)`
+position: relative;
+animation: bounceTop 1.3s infinite ease-in-out;
+@keyframes bounceTop {
+  0% {
+    top: 1px;
+  }
+
+  50% {
+    top: -2px;
+  }
+
+  100% {
+    top: 1px;
+  }
+}
+`
