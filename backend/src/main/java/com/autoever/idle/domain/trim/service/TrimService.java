@@ -1,9 +1,9 @@
 package com.autoever.idle.domain.trim.service;
 
 import com.autoever.idle.domain.carType.repository.CarTypeRepository;
-import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResponse;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
+import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorImgUrlDto;
 import com.autoever.idle.domain.exteriorColor.dto.TrimThumbnailColorResponse;
 import com.autoever.idle.domain.exteriorColor.repository.ExteriorColorRepository;
@@ -13,8 +13,8 @@ import com.autoever.idle.domain.interiorColor.repository.InteriorColorRepository
 import com.autoever.idle.domain.trim.dto.TrimDto;
 import com.autoever.idle.domain.trim.dto.TrimSelectionResponse;
 import com.autoever.idle.domain.trim.repository.TrimRepository;
-import com.autoever.idle.domain.trimThumbnailFunction.repository.TrimThumbnailFunctionRepository;
 import com.autoever.idle.domain.trimThumbnailFunction.dto.TrimThumbnailFunctionResponse;
+import com.autoever.idle.domain.trimThumbnailFunction.repository.TrimThumbnailFunctionRepository;
 import com.autoever.idle.global.exception.custom.InvalidCarException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
