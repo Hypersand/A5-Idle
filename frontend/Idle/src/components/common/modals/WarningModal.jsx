@@ -22,7 +22,7 @@ function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", moda
     setAnimationstate(true);
     setTimeout(() => {
       setModalVisible(false);
-      onSubmitClick()
+      onSubmitClick();
     }, 200);
   }
   return createPortal(
@@ -44,6 +44,10 @@ function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", moda
 export default WarningModal;
 
 const StContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   width: 450px;
   height: 113px;
@@ -109,7 +113,7 @@ const ModalContainer = styled.div`
   align-items: center;
   justify-content: center;
   transition: opacity 0.1s ease-in-out;
-    animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.2s ease;
+  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.2s ease;
 `;
 const ModalBackground = styled.div`
   position: absolute;

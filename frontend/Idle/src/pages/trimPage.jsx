@@ -42,7 +42,9 @@ function TrimPage() {
         </StBottomContainer>
         <FindTrim onClick={setToolTipStatus} />
         <TrimSelectContainer>
-          <FindTrimTooltip isActive={toolTipStatus} />
+          <StTooltipContainer>
+            <StTooltip isActive={toolTipStatus} />
+          </StTooltipContainer>
         </TrimSelectContainer>
       </StWrapper>
     </>
@@ -105,3 +107,27 @@ const Description = styled.p`
   line-height: 165%;
   letter-spacing: -0.39px;
 `;
+
+const StTooltipContainer = styled.div`
+  position: relative;
+  animation: bounce 1.3s infinite linear;
+  @keyframes bounce {
+    0% {
+      right: 0;
+    }
+
+    50% {
+      right: -5px;
+    }
+
+    70% {
+      right: -50px;
+    }
+
+    100% {
+      right: 0;
+    }
+  }
+`;
+
+const StTooltip = styled(FindTrimTooltip)``;

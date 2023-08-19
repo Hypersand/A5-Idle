@@ -4,8 +4,12 @@ import WhiteButton from "buttons/WhiteButton";
 import { createPortal } from "react-dom";
 import { useContext } from "react";
 import { carContext } from "utils/context";
-import { CHANGE_ADDITIONAL_OPTION } from "utils/actionType";
 import palette from "styles/palette";
+import {
+  CHANGE_ENGINES,
+  POP_ADDITIONAL_OPTION,
+  POP_CONFUSING_OPTION,
+} from "../../../utils/actionType";
 
 /**
  *
@@ -20,12 +24,24 @@ function RemoveOptionModal({ data, setModalVisible }) {
   let priceSum = 0;
 
   function confirmClicked() {
-    let options = car.option.additional;
+    const addedOptions = car.option.additional;
+    const confusedoptions = car.option.confusing;
 
-    data.forEach((ele) => {
-      options = options.filter((item) => item.name !== ele.name);
+    let filteredAddedOption;
+    let filteredConfusedOption;
+    data.forEach((item) => {
+      filteredAddedOption = addedOptions.filter((ele) => {
+        ele.name !== item.name;
+      });
+      filteredConfusedOption = confusedoptions.filter((ele) => {
+        ele.name !== item.name;
+      });
     });
-    dispatch({ type: CHANGE_ADDITIONAL_OPTION, payload: options });
+
+    dispatch({ type: POP_ADDITIONAL_OPTION, payload: filteredAddedOption });
+    dispatch({ type: POP_CONFUSING_OPTION, payload: filteredConfusedOption });
+    dispatch({ type: CHANGE_ENGINES, payload: { name: "가솔린 3.8", price: 0, id: 2 } });
+
     setModalVisible(false);
   }
 
@@ -51,7 +67,7 @@ function RemoveOptionModal({ data, setModalVisible }) {
 
         <StBtnContainer>
           <WhiteButton text={"취소"} onClick={() => setModalVisible(false)} />
-          <BlueButton text={"확인"} onClick={() => confirmClicked()} />
+          <BlueButton text={"확인"} onClick={confirmClicked} />
         </StBtnContainer>
       </StContainer>
     </ModalContainer>,
@@ -62,7 +78,6 @@ function RemoveOptionModal({ data, setModalVisible }) {
 export default RemoveOptionModal;
 
 const StContainer = styled.div`
-  display: flex;
   width: 451px;
   height: 266px;
   padding: 32px 44px 48px 44px;

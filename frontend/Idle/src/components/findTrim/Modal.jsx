@@ -43,8 +43,7 @@ function Modal({ setVisible }) {
       setVisible(false);
     }, animateTime);
   }
-  async function clickCheck() {
-    clickExit(2500);
+  async function postFunc() {
     const payload = {
       trimId: state.tempCar.trim.trimId,
       selectFunctions: [],
@@ -53,18 +52,19 @@ function Modal({ setVisible }) {
       payload.selectFunctions.push({ functionId: item });
     });
     stateDispatch({ type: SET_SELECTED_OPTION, payload: [] });
-    const postFunc = async () => {
-      const result = await submitPostAPI(PATH.FIND.SUBMIT, payload);
-      state.tempCar.option.additional = [];
-      result.forEach((item) => {
-        stateDispatch({ type: PUSH_OPTION_ALERT, payload: item.optionName });
-        state.tempCar.option.additional.push({
-          optionId: item.optionId,
-          name: item.optionName,
-          price: item.optionPrice,
-        });
+    const result = await submitPostAPI(PATH.FIND.SUBMIT, payload);
+    state.tempCar.option.additional = [];
+    result.forEach((item) => {
+      stateDispatch({ type: PUSH_OPTION_ALERT, payload: item.optionName });
+      state.tempCar.option.additional.push({
+        optionId: item.optionId,
+        name: item.optionName,
+        price: item.optionPrice,
       });
-    };
+    });
+  }
+  async function clickCheck() {
+    clickExit(2500);
     stateDispatch({ type: SET_SHOWOPTION_ALERT, payload: true });
     await postFunc().then(() => {
       dispatch({ type: CHANGE_ALL, payload: state.tempCar });
@@ -97,6 +97,7 @@ function Modal({ setVisible }) {
 export default Modal;
 
 const StFindTrimContentContainer = styled.div`
+  box-shadow: 0px -3px 9px ${palette.Grey_3};
   position: absolute;
   left: 0;
   display: flex;
@@ -109,8 +110,8 @@ const StFindTrimContentContainer = styled.div`
   z-index: 1;
   background-color: ${palette.Grey_1};
   transition:
-    transform 1s ease-in-out,
-    opacity 1s ease-in-out;
+    transform 0.7s ease-in-out,
+    opacity 0.7s ease-in-out;
   ${({ $animationstate }) => $animationstate === true && "transform: translateY(20%); opacity: 0;"}
   animation: ${keyframes`
   0% {
@@ -121,7 +122,7 @@ const StFindTrimContentContainer = styled.div`
     transform: translateY(0);
     opacity: 1;
   }
-  `} 1s ease-in-out;
+  `} 0.7s ease-in-out;
 `;
 
 const StFindTrimContentTitle = styled.div`
