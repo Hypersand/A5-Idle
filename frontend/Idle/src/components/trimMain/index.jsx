@@ -2,6 +2,7 @@ import { useContext, useRef } from "react"
 import { styled } from "styled-components"
 import { carContext } from "../../utils/context"
 import ExteriorBoxContainer from "./ExteriorBoxContainer";
+import InteriorBoxContainer from "./InteriorBoxContainer";
 
 function TrimMain(data) {
     const { car } = useContext(carContext)
@@ -12,13 +13,14 @@ function TrimMain(data) {
             <StTitleContainer>
                 <StTitle>{car.trim.name}</StTitle>
                 <ColorContainer>
-                    <ColorDetailContainer>
+                    <ExteriorContainer>
                         외장
                         {filteredData ? <ExteriorBoxContainer colors={filteredData[0].colors.exteriorImgUrls} /> : <></>}
-                    </ColorDetailContainer>
-                    <ColorDetailContainer>
+                    </ExteriorContainer>
+                    <InteriorContainer>
                         내장
-                    </ColorDetailContainer>
+                        {filteredData ? <InteriorBoxContainer colors={filteredData[0].colors.interiorImgUrls} /> : <></>}
+                    </InteriorContainer>
                 </ColorContainer>
             </StTitleContainer>
             {filteredData ? <StImage id={"here"} src={filteredData[0]?.imgUrl}></StImage> : <p>Loading...</p>}
@@ -70,7 +72,7 @@ const ColorContainer = styled.div`
     align-items: flex-start;
     gap: 16px;
 `
-const ColorDetailContainer = styled.div`
+const ExteriorContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,6 +86,9 @@ const ColorDetailContainer = styled.div`
         line-height: 20px;
         letter-spacing: -0.42px;
     }   
+`
+const InteriorContainer = styled(ExteriorContainer)`
+    align-items: baseline;
 `
 
 const StImage = styled.img`

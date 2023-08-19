@@ -1,7 +1,6 @@
 import { styled } from "styled-components"
 
 function ExteriorBoxContainer({ colors }) {
-    console.log(colors);
     return (
         <StContainer>
             {colors.map((item, idx) => (<StImageBox key={idx} src={item.exteriorImgUrl} />))}
