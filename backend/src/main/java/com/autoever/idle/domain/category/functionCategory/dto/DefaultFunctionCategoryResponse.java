@@ -19,12 +19,8 @@ public class DefaultFunctionCategoryResponse {
         this.categoryName = categoryName;
         this.functions = functions;
     }
-
-    public static DefaultFunctionCategoryResponse createDefaultFunctionDto(FunctionCategoryDto categoryDto, List<DefaultFunctionNameResponse> functions) {
-        return DefaultFunctionCategoryResponse.builder()
-                .categoryId(categoryDto.getFunctionCategoryId())
-                .categoryName(categoryDto.getCategoryName())
-                .functions(functions)
-                .build();
+    
+    public DefaultFunctionCategoryResponse(FunctionCategoryDto categoryDto, List<DefaultFunctionNameResponse> functions) {
+        this(categoryDto.getFunctionCategoryId(), categoryDto.getCategoryName(), functions);
     }
 }

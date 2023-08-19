@@ -50,7 +50,7 @@ public class TrimService {
             for (FunctionCategoryDto category : categories) {
                 List<DefaultFunctionNameResponse> defaultFunctionDtos =
                         functionCategoryRepository.getDefaultOptions(trim.getTrimId(), category.getFunctionCategoryId());
-                DefaultFunctionCategoryResponse defaultCategoryDto = DefaultFunctionCategoryResponse.createDefaultFunctionDto(category, defaultFunctionDtos);
+                DefaultFunctionCategoryResponse defaultCategoryDto = new DefaultFunctionCategoryResponse(category, defaultFunctionDtos);
                 categoryDtos.add(defaultCategoryDto);
             }
 

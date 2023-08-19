@@ -1,17 +1,68 @@
 import styled from "styled-components";
+import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
+import palette from "styles/palette";
+import { useContext } from "react";
+import { stateContext, dispatchContext } from "utils/context";
+import {
+  SET_DISABLE_FUNCTION_ID,
+  PUSH_DISABLE_FUNCTION_ID,
+  SET_TEMPCAR,
+} from "../../utils/actionType";
+import { PATH } from "../../utils/constants";
+import { disableFunctionGetAPI } from "../../utils/api";
 
-function TrimBox({ name, content, price, isActive }) {
+function TrimBox({
+  name,
+  description,
+  price,
+  trimId,
+  isActive = false,
+  setSelected,
+  isSelected,
+  optionStatusProp,
+  onClick,
+  trimData,
+}) {
+  const { state } = useContext(stateContext);
+  const { stateDispatch } = useContext(dispatchContext);
+  function handleClick() {
+    stateDispatch({ type: SET_DISABLE_FUNCTION_ID, payload: [] });
+    if (isSelected) {
+      setSelected(-1);
+      return;
+    }
+    if (isActive) {
+      const fetchGet = async () => {
+        const result = await disableFunctionGetAPI(PATH.FIND.TRIM, { trimId: trimId });
+        result.map((item) => {
+          stateDispatch({ type: PUSH_DISABLE_FUNCTION_ID, payload: item.functionId });
+        });
+      };
+      fetchGet();
+      const carData = trimData.find((item) => item.name === name);
+      const payload = state.tempCar;
+      payload.trim = {
+        trimId: trimId,
+        name: carData.name,
+        price: carData.price,
+      };
+      stateDispatch({ type: SET_TEMPCAR, payload: payload });
+      onClick();
+    }
+  }
   return (
-    <StFindTrimTrimContainer $isactive={isActive.toString()}>
-      <StTrimBoxActive>
-        <StTrimBoxTitle>{name}</StTrimBoxTitle>
-        <StTrimBoxContent>{content}</StTrimBoxContent>
-        <StTrimBoxPrice>{price}</StTrimBoxPrice>
-      </StTrimBoxActive>
+    <StFindTrimTrimContainer $isactive={isActive.toString()} $isselected={isSelected}>
+      <StTrimBox onClick={handleClick}>
+        <StTrimBoxTitle $isselected={isSelected}>{name}</StTrimBoxTitle>
+        <StTrimBoxContent $isselected={isSelected}>{description}</StTrimBoxContent>
+        <StTrimBoxBottom>
+          <StTrimBoxPrice $isselected={isSelected}>{price.toLocaleString()} 원</StTrimBoxPrice>
+          {isActive ? <TrimBoxOptionStatus status={optionStatusProp} /> : null}
+        </StTrimBoxBottom>
+      </StTrimBox>
     </StFindTrimTrimContainer>
   );
 }
-
 export default TrimBox;
 
 const StFindTrimTrimContainer = styled.div`
@@ -19,12 +70,15 @@ const StFindTrimTrimContainer = styled.div`
   width: 200px;
   height: 164px;
   align-items: center;
-  justify-content: center;
-  border: 1px solid ${({ theme }) => theme.Grey_2};
-  background: ${({ theme, isactive }) => (isactive == "true" ? theme.White : theme.Grey_2)};
+  justify-content: space-around;
+  border: 1px solid ${palette.Grey_2};
+  background: ${({ $isselected, $isactive }) =>
+    $isselected ? palette.NavyBlue_5 : $isactive === "true" ? palette.White : palette.Grey_4};
+  ${({ $isactive }) => $isactive === "true" && `cursor: pointer`};
+  margin-bottom: 12px;
 `;
 
-const StTrimBoxActive = styled.div`
+const StTrimBox = styled.div`
   width: 160px;
   height: 116px;
   display: flex;
@@ -36,8 +90,8 @@ const StTrimBoxActive = styled.div`
 `;
 
 const StTrimBoxTitle = styled.div`
-  color: ${({ theme }) => theme.Black};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isselected }) => ($isselected ? palette.White : palette.Black)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 22px;
   font-style: normal;
   font-weight: 700;
@@ -46,8 +100,8 @@ const StTrimBoxTitle = styled.div`
 `;
 
 const StTrimBoxContent = styled.div`
-  color: ${({ theme }) => theme.Black};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isselected }) => ($isselected ? palette.White : palette.Black)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -57,11 +111,17 @@ const StTrimBoxContent = styled.div`
 `;
 
 const StTrimBoxPrice = styled.div`
-  color: ${({ theme }) => theme.Black};
-  font-family: Hyundai Sans Text KR;
+  color: ${({ $isselected }) => ($isselected ? palette.White : palette.Black)};
+  font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.48px;
+`;
+
+const StTrimBoxBottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;

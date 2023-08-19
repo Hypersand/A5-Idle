@@ -1,9 +1,10 @@
 package com.autoever.idle.domain.detailModel.dto;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 public class BodyTypeResponse {
     private Long id;

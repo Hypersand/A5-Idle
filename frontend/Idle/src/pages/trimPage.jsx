@@ -1,33 +1,39 @@
 import { useContext, useEffect, useState } from "react";
-import { getTrimData } from "../utils/api";
-import TrimBoxContainer from "../components/trimBoxContainer/TrimBoxContainer";
+import TrimBoxContainer from "trimBoxContainer/TrimBoxContainer";
 import { styled } from "styled-components";
-import BlueButton from "../components/common/BlueButton";
+import BlueButton from "buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
-import { TRIM_ROUTE } from "../utils/routes";
-import { carContext } from "../utils/context";
-import FindTrim from "../components/findTrim/FindTrim";
+import { carContext } from "utils/context";
+import FindTrim from "findTrim/index";
+import { getAPI } from "utils/api";
+import palette from "styles/palette";
+import { PATH } from "utils/constants";
+import FindTrimTooltip from "toolTips/FindTrimTooltip";
+
+let cachedTrimData = null;
 
 function TrimPage() {
   const { car } = useContext(carContext);
   const navigate = useNavigate();
-  const [trimData, setTrimData] = useState(null);
+  const [toolTipStatus, setToolTipStatus] = useState(true);
+  const [trimData, setTrimData] = useState(cachedTrimData);
 
   function nextBTNClicked() {
-    navigate("/detail");
+    navigate("/detail/engines");
   }
   useEffect(() => {
-    getTrimData().then((result) => {
+    getAPI(PATH.TRIM).then((result) => {
       setTrimData(result);
+      cachedTrimData = result;
     });
   }, []);
-
+  const filteredData = trimData?.filter((item) => item.name === car.trim.name);
   return (
     <>
-      <StImageContainer src={`${TRIM_ROUTE}${car.trim.name}.png`} />
+      {filteredData ? <StImageContainer src={filteredData[0]?.imgUrl} /> : <p>Loading...</p>}
       <StWrapper>
         <StBottomContainer>
-          {trimData ? <TrimBoxContainer {...trimData} /> : <p>Loading...</p>}
+          {trimData ? <TrimBoxContainer data={trimData} /> : <p>Loading...</p>}
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>트림 선택</Title>
@@ -37,7 +43,8 @@ function TrimPage() {
           </StConfirmContainer>
         </StBottomContainer>
         <TrimSelectContainer>
-          <FindTrim />
+          <FindTrim onClick={setToolTipStatus} />
+          <FindTrimTooltip isActive={toolTipStatus} />
         </TrimSelectContainer>
       </StWrapper>
     </>
@@ -81,13 +88,16 @@ const StConfirmHeader = styled.div`
 `;
 
 const TrimSelectContainer = styled.div`
+  display: flex;
   position: absolute;
   bottom: 18px;
+  left: 45%;
+  gap: 15px;
 `;
 
 const Title = styled.h1`
-  color: #222;
-  font-family: Hyundai Sans Text KR;
+  color: ${palette.Black};
+  font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -95,8 +105,8 @@ const Title = styled.h1`
   letter-spacing: -0.48px;
 `;
 const Description = styled.p`
-  color: #222;
-  font-family: Hyundai Sans Text KR;
+  color: ${palette.Black};
+  font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;

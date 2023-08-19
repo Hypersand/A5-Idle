@@ -44,13 +44,8 @@ public class BillService {
         InteriorBillDto interiorBillDto = interiorColorRepository.findInteriorBill(billRequest.getInteriorId())
                 .orElseThrow(() -> new InvalidInteriorException(ErrorCode.INVALID_INTERIOR));
 
-        List<SelectedOptionDto> selectedOptions;
-
-        if (billRequest.getSelectedOptionIds().isEmpty()) {
-            selectedOptions = new ArrayList<>();
-        } else {
-            selectedOptions = optionRepository.findSelectedOptions(billRequest.getSelectedOptionIds());
-        }
+        List<SelectedOptionDto> selectedOptions =
+                billRequest.getSelectedOptionIds().isEmpty() ? new ArrayList<>() : optionRepository.findSelectedOptions(billRequest.getSelectedOptionIds());
 
         List<FunctionCategoryDto> categories = functionCategoryRepository.findAll();
         List<DefaultFunctionCategoryResponse> categoryDtos = new ArrayList<>();
@@ -58,7 +53,7 @@ public class BillService {
         for (FunctionCategoryDto category : categories) {
             List<DefaultFunctionNameResponse> defaultFunctionDtos =
                     functionCategoryRepository.getDefaultOptions(billRequest.getTrimId(), category.getFunctionCategoryId());
-            DefaultFunctionCategoryResponse defaultCategoryDto = DefaultFunctionCategoryResponse.createDefaultFunctionDto(category, defaultFunctionDtos);
+            DefaultFunctionCategoryResponse defaultCategoryDto = new DefaultFunctionCategoryResponse(category, defaultFunctionDtos);
             categoryDtos.add(defaultCategoryDto);
         }
 
