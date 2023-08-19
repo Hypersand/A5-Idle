@@ -40,7 +40,7 @@ const StContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 12px 8px;
+  gap: 14px 10px;
   width: 824px;
   flex-wrap: wrap;
 `;
