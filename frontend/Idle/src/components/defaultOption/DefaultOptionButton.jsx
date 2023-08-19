@@ -5,7 +5,7 @@ import palette from "styles/palette";
 function DefaultOptionButton({ onClick }) {
   return (
     <StButton onClick={onClick}>
-      <ArrowUpper />
+      <StArrowContainer />
       <StButtonText>기본 옵션 보기</StButtonText>
     </StButton>
   );
@@ -14,21 +14,38 @@ function DefaultOptionButton({ onClick }) {
 export default DefaultOptionButton;
 
 const StButton = styled.button`
-  width: 76px;
   height: 28px;
   gap: 4px;
   cursor: pointer;
   position: absolute;
   top: 90%;
   left: 47%;
+  &:hover{
+    text-decoration: underline;
+  }
 `;
 
 const StButtonText = styled.div`
   font-family: "Hyundai Sans Text KR";
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
   line-height: 20px;
-  font-weight: 600;
-  letter-spacing: -0.03em;
   color: ${palette.Black};
 `;
+
+const StArrowContainer = styled(ArrowUpper)`
+position: relative;
+animation: bounceTop 1.3s infinite ease-in-out;
+@keyframes bounceTop {
+  0% {
+    top: 1px;
+  }
+
+  50% {
+    top: -2px;
+  }
+
+  100% {
+    top: 1px;
+  }
+}
+`

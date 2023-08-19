@@ -41,7 +41,7 @@ function TrimPage() {
           </StConfirmContainer>
         </StBottomContainer>
         <FindTrim onClick={setToolTipStatus} />
-        <TrimSelectContainer>
+        <TrimSelectContainer onClick={() => { setToolTipStatus(false) }}>
           <StTooltipContainer>
             <StTooltip isActive={toolTipStatus} />
           </StTooltipContainer>
@@ -84,7 +84,7 @@ const StConfirmHeader = styled.div`
 const TrimSelectContainer = styled.div`
   display: flex;
   position: absolute;
-  bottom: 18px;
+  bottom: 10px;
   left: 55%;
   gap: 15px;
 `;
@@ -110,18 +110,18 @@ const Description = styled.p`
 
 const StTooltipContainer = styled.div`
   position: relative;
-  animation: bounce 1.3s infinite linear;
-  @keyframes bounce {
+  animation: bounceRight 1.3s infinite linear;
+  @keyframes bounceRight {
     0% {
       right: 0;
     }
 
     50% {
-      right: -5px;
+      right: -3px;
     }
 
     70% {
-      right: -50px;
+      right: -7px;
     }
 
     100% {

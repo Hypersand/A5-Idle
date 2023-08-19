@@ -201,7 +201,7 @@ function OptionPage() {
               />
             </ArrowRightContainer>
             <DefaultOption />
-            <StTooltipContainer>
+            <StTooltipContainer onClick={() => setTooltipState(false)}>
               <StTooltip isActive={tooltipState} />
             </StTooltipContainer>
           </StWrapper>

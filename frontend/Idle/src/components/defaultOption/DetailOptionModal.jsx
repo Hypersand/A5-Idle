@@ -1,10 +1,18 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { createPortal } from "react-dom";
 import { ReactComponent as CloseButton } from "images/esc.svg";
 import palette from "styles/palette";
+import { useState } from "react";
 
 function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
   const stringMaxLength = 23;
+  const [animationstate, setAnimationState] = useState(false);
+  function clickClose() {
+    setAnimationState(true);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  }
   function checkLength() {
     if (title.length > stringMaxLength) {
       return title.slice(0, stringMaxLength) + "...";
@@ -13,12 +21,12 @@ function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
   }
   return createPortal(
     <ModalContainer>
-      <ModalBackground />
-      <StContainer>
+      <ModalBackground onClick={clickClose} />
+      <StContainer $animationstate={animationstate}>
         <StBox>
           <StTitle>
             {checkLength()}
-            <StCloseButton onClick={onClose} />
+            <StCloseButton onClick={clickClose} />
           </StTitle>
           <StImg $imgUrl={functionImgUrl} />
         </StBox>
@@ -73,8 +81,26 @@ const StContainer = styled.div`
   width: 540px;
   height: 550px;
   flex-direction: column;
+  transition: opacity 0.5s ease-in-out;
+  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.5s ease;
+`;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 `;
 
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
 const StTitle = styled.div`
   display: flex;
   width: 452px;

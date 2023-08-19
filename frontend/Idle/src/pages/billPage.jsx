@@ -64,7 +64,7 @@ function BillPage() {
             <h1>{car.getAllSum().toLocaleString()} 원</h1>
           </StConfirmText>
           <StButtonContainer>
-            <StTooltipContainer>
+            <StTooltipContainer onClick={() => { setTooltipState(false) }}>
               <StTooltip isActive={tooltipState} />
             </StTooltipContainer>
 
@@ -206,18 +206,18 @@ const StTooltipContainer = styled.div`
   right: 23%;
   width: 199px;
   height: 65px;
-  animation: bounce 1.5s infinite linear;
-  @keyframes bounce {
+  animation: bounceTop 1.3s infinite linear;
+  @keyframes bounceTop {
     0% {
       top: 0;
     }
 
     50% {
-      top: -5px;
+      top: -3px;
     }
 
     70% {
-      top: -50px;
+      top: -7px;
     }
 
     100% {

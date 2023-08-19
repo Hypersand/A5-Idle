@@ -14,9 +14,9 @@ function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions, modalPosit
     }, 300);
   }
   return createPortal(
-    <ModalContainer $animationstate={animationstate}>
+    <ModalContainer>
       <ModalBackground onClick={modalOff} />
-      <StModal>
+      <StModal $animationstate={animationstate}>
         <StContainer>
           <StHeaderContainer>
             <StHeader>
@@ -48,8 +48,6 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.1s ease-in-out;
-  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.3s ease;
 `;
 const fadeIn = keyframes`
   from {
@@ -91,6 +89,8 @@ const StModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: opacity 0.1s ease-in-out;
+  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.3s ease;
 `;
 const StContainer = styled.div`
   display: inline-flex;
