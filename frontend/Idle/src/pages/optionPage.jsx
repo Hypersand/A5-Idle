@@ -34,12 +34,13 @@ function filterData(data, currentTab) {
   return data.filter((item) => item.optionCategory === TRANSLATE[currentTab]);
 }
 
+let cachedOptionData = [];
 function OptionPage() {
   const { tab } = useParams();
   const { car } = useContext(carContext);
   const [currentTab, setCurrentTab] = useState(tab);
   const [selectedOption, setSelectedOption] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(cachedOptionData);
   const [currentPage, setCurrentPage] = useState(0);
   const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
   const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
@@ -77,7 +78,9 @@ function OptionPage() {
         selectedOptionIds: [],
         engineId: car.detail.engines.id,
       }).then((res) => {
+        if (res === cachedOptionData) return
         setData(res);
+        cachedOptionData = res;
       });
     }
     fetchData();
@@ -292,8 +295,7 @@ const StWrapper = styled.div`
 const StBottomContainer = styled.div`
   position: absolute;
   display: flex;
-  gap: 46px;
-  bottom: 36px;
+  bottom: 38px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -303,7 +305,7 @@ const StBottomContainer = styled.div`
 const StConfirmContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 38px;
+  gap: 39px;
   width: 154px;
 `;
 
