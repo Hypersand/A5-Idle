@@ -12,17 +12,89 @@ const data = [
   {
     carCategoryId: 1,
     carCategoryName: "수소/전기차",
-    carTypeDtoList: [],
+    carTypeDtoList: [
+      {
+        carName: "베뉴",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
+        logoImgUrl: null,
+      },
+      {
+        carName: "디 올 뉴 코나",
+        carPrice: 24860000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+      {
+        carName: "디 올 뉴 코다 H",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+    ],
   },
   {
     carCategoryId: 2,
     carCategoryName: "N",
-    carTypeDtoList: [],
+    carTypeDtoList: [
+      {
+        carName: "베뉴",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
+        logoImgUrl: null,
+      },
+      {
+        carName: "디 올 뉴 코나",
+        carPrice: 24860000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+      {
+        carName: "디 올 뉴 코다 H",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+    ],
   },
   {
     carCategoryId: 3,
     carCategoryName: "승용",
-    carTypeDtoList: [],
+    carTypeDtoList: [
+      {
+        carName: "베뉴",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
+        logoImgUrl: null,
+      },
+      {
+        carName: "디 올 뉴 코나",
+        carPrice: 24860000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+      {
+        carName: "디 올 뉴 코다 H",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+    ],
   },
   {
     carCategoryId: 4,
@@ -153,22 +225,118 @@ const data = [
   {
     carCategoryId: 5,
     carCategoryName: "MPV",
-    carTypeDtoList: [],
+    carTypeDtoList: [
+      {
+        carName: "베뉴",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
+        logoImgUrl: null,
+      },
+      {
+        carName: "디 올 뉴 코나",
+        carPrice: 24860000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+      {
+        carName: "디 올 뉴 코다 H",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+    ],
   },
   {
     carCategoryId: 6,
     carCategoryName: "소형트럭&택시",
-    carTypeDtoList: [],
+    carTypeDtoList: [
+      {
+        carName: "베뉴",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
+        logoImgUrl: null,
+      },
+      {
+        carName: "디 올 뉴 코나",
+        carPrice: 24860000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+      {
+        carName: "디 올 뉴 코다 H",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+    ],
   },
   {
     carCategoryId: 7,
     carCategoryName: "버스",
-    carTypeDtoList: [],
+    carTypeDtoList: [
+      {
+        carName: "베뉴",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
+        logoImgUrl: null,
+      },
+      {
+        carName: "디 올 뉴 코나",
+        carPrice: 24860000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+      {
+        carName: "디 올 뉴 코다 H",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+    ],
   },
   {
     carCategoryId: 8,
     carCategoryName: "트럭",
-    carTypeDtoList: [],
+    carTypeDtoList: [
+      {
+        carName: "베뉴",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
+        logoImgUrl: null,
+      },
+      {
+        carName: "디 올 뉴 코나",
+        carPrice: 24860000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+      {
+        carName: "디 올 뉴 코다 H",
+        carPrice: 21460000,
+        carImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
+        logoImgUrl:
+          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
+      },
+    ],
   },
 ];
 
@@ -177,7 +345,7 @@ function filterData(data, selectedTab, currentPage) {
   const maxPage = Math.ceil(tabData.length / 8);
   const filteredData = [];
   for (let i = (currentPage - 1) * 8; i < currentPage * 8; i++) {
-    filteredData.push(tabData[i]);
+    tabData[i] !== undefined ? filteredData.push(tabData[i]) : null;
   }
   return { filteredData, maxPage };
 }
@@ -212,7 +380,7 @@ function SelectCarPage() {
   const tabs = ["수소/전기차", "N", "승용", "SUV", "소형트럭&택시", "트럭", "버스"];
   const navigate = useNavigate();
   const { filteredData, maxPage } = filterData(data, selectedTab, currentPage);
-
+  console.log(filteredData);
   function renderTabs() {
     return tabs.map((item, index) => {
       return (
