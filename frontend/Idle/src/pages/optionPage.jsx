@@ -22,6 +22,7 @@ import palette from "styles/palette";
 import { submitPostAPI } from "utils/api";
 import { carContext } from "utils/context";
 import ConfusingTooltip from "toolTips/ConfusingTooltip";
+import WarningModal from "../components/common/modals/WarningModal";
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,
@@ -29,25 +30,36 @@ const BLUR_STATUS = {
   BOTH_VISIBLE: 0,
 };
 
+function navigateTo(car, navigate) {
+  if (car.detail.engines.name === undefined) navigate("/detail/engines");
+  else if (car.detail.drivingMethods.name === undefined) navigate("/detail/drivingMethods");
+  else if (car.detail.bodyTypes.name === undefined) navigate("/detail/bodyTypes");
+  else if (car.color.exterior.name === undefined) navigate("/color/exterior");
+  else if (car.color.interior.name === undefined) navigate("/color/interior");
+}
+
+
 function filterData(data, currentTab) {
   if (currentTab === ALL) return data;
   return data.filter((item) => item.optionCategory === TRANSLATE[currentTab]);
 }
 
+let cachedOptionData = [];
 function OptionPage() {
-  const { tab } = useParams();
   const { car } = useContext(carContext);
+  const { tab } = useParams();
   const [currentTab, setCurrentTab] = useState(tab);
   const [selectedOption, setSelectedOption] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(cachedOptionData);
   const [currentPage, setCurrentPage] = useState(0);
-  const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
   const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
-  const navigate = useNavigate();
-  const scrollBar = useRef();
   const [filteredData, setFilteredData] = useState([]);
   const [selectedFunction, setSelectedFunction] = useState("");
   const [tooltipState, setTooltipState] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
+  const scrollBar = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!scrollBar.current) {
@@ -77,7 +89,9 @@ function OptionPage() {
         selectedOptionIds: [],
         engineId: car.detail.engines.id,
       }).then((res) => {
+        if (res === cachedOptionData) return
         setData(res);
+        cachedOptionData = res;
       });
     }
     fetchData();
@@ -114,13 +128,14 @@ function OptionPage() {
       if (currentIndex !== -1 && currentIndex + 1 < tabs.length) {
         navigate(`/option/${tabs[currentIndex + 1]}`);
       } else {
-        navigate("/bill");
+        if (car.getAllOptionChecked()) navigate("/bill");
+        setIsOpen(true)
       }
     } else if (direction === "prev") {
       if (currentIndex > 0) {
         navigate(`/option/${tabs[currentIndex - 1]}`);
       } else {
-        navigate("/color/exterior");
+        navigate("/color/interior");
       }
     }
   }
@@ -212,6 +227,18 @@ function OptionPage() {
           </StConfirmContainer>
         </StBottomContainer>
       </StWrapper>
+      {isOpen ? (
+        <WarningModal
+          title={"모든 옵션을 선택하지 않았습니다."}
+          setModalVisible={setIsOpen}
+          onSubmitClick={() => {
+            setIsOpen(false);
+            navigateTo(car, navigate);
+          }}
+          detail={"선택이 필요한 페이지로 이동하시겠습니까?"}
+          modalPosition={"modal"}
+        />
+      ) : null}
     </>
   );
 }
@@ -292,8 +319,7 @@ const StWrapper = styled.div`
 const StBottomContainer = styled.div`
   position: absolute;
   display: flex;
-  gap: 46px;
-  bottom: 36px;
+  bottom: 38px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -303,7 +329,7 @@ const StBottomContainer = styled.div`
 const StConfirmContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 38px;
+  gap: 39px;
   width: 154px;
 `;
 
@@ -351,8 +377,7 @@ const StTabContainer = styled.div`
 `;
 const StContentsContainer = styled.div`
   position: absolute;
-  margin-top: 10px;
-  top: 100px;
+  top: 110px;
   left: 128px;
 `;
 
