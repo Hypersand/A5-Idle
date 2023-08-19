@@ -2,7 +2,6 @@ import { useContext, useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { carContext } from "utils/context";
 import palette from "styles/palette";
-import CountingAnimation from "./CountingAnimation";
 
 function EstimatePrice() {
   const { car } = useContext(carContext);
@@ -29,7 +28,7 @@ function EstimatePrice() {
     <StDiv>
       <StTitle>예상 가격</StTitle>
       <StPrice>
-        <CountingAnimation startValue={Math.round(prevMoney)} endValue={Math.round(targetMoney)} duration={500} />
+        {Math.round(prevMoney).toLocaleString()}
         원
       </StPrice>
     </StDiv>
