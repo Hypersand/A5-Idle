@@ -25,7 +25,6 @@ public class CarTypeService {
             List<CarTypeDto> carTypeDtoList = carTypeRepository.findByCategory(categoryDto.getCarCategoryId());
             CarCategoryResponse carCategoryResponse =
                     new CarCategoryResponse(categoryDto.getCarCategoryId(), categoryDto.getCarCategoryName(), carTypeDtoList);
-            System.out.println(carCategoryResponse.getCarCategoryName());
             responseList.add(carCategoryResponse);
         }
         return responseList;
