@@ -18,7 +18,7 @@ public class CarTypeController {
     private final CarTypeService carTypeService;
 
     @GetMapping
-    public ResponseEntity<List<CarCategoryResponse>> getCarTypeByCategory(){
+    public ResponseEntity<List<CarCategoryResponse>> getAllCarType(){
         List<CarCategoryResponse> allCarType = carTypeService.getAllCarType();
         return ResponseEntity.ok(allCarType);
     }
