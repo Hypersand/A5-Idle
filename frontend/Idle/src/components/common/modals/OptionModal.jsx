@@ -21,14 +21,6 @@ function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
     }
   }
 
-  // function dataNameCalc() {
-  //   const dataName = data.name;
-  //   if (dataName.length > 23) {
-  //     return dataName.slice(0, 23) + "...";
-  //   }
-  //   return dataName;
-  // }
-
   return createPortal(
     <ModalContainer onClick={onClick}>
       <ModalBackground onClick={() => setModalVisible(false)} />
@@ -74,6 +66,7 @@ const ModalBackground = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
+  z-index: 1;
 `;
 const StContainer = styled.div`
   width: 452px;
