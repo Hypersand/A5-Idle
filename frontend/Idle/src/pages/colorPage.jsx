@@ -18,6 +18,7 @@ import InnerColorContent from "content/InnerColorContent";
 import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "utils/actionType";
 import { getAPI } from "utils/api";
 import { DEFAULT_INTERIROR_COLOR, PATH } from "utils/constants";
+import WarningModal from "../components/common/modals/WarningModal";
 
 let cachedExterior = null;
 let cachedInterior = null;
@@ -28,6 +29,7 @@ function ColorPage() {
   const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS);
   const tabs = [EXTERIOR_COLORS, INTERIROR_COLORS];
   const { car, dispatch } = useContext(carContext);
+  const [isEngineChecked, setIsEngineChekced] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -87,6 +89,10 @@ function ColorPage() {
       if (currentIndex !== -1 && currentIndex + 1 < tabs.length) {
         navigate(`/color/${tabs[currentIndex + 1]}`);
       } else {
+        if (car.detail.engines.name === undefined) {
+          setIsEngineChekced(true);
+          return;
+        }
         navigate("/option/all");
       }
     } else if (direction === "prev") {
@@ -145,6 +151,18 @@ function ColorPage() {
             </StButtonContainer>
           </StConfirmContainer>
         </StBottomContainer>
+        {isEngineChecked && (
+          <WarningModal
+            title={"옵션 선택을 위해선 엔진을 선택해야 합니다."}
+            setModalVisible={setIsEngineChekced}
+            onSubmitClick={() => {
+              setIsEngineChekced(false);
+              navigate("/detail/engines");
+            }}
+            detail={"선택이 필요한 페이지로 이동하시겠습니까?"}
+            modalPosition={"modal"}
+          />
+        )}
       </StWrapper>
     </>
   );

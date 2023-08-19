@@ -86,18 +86,22 @@ export const DEFAULT_ENGINE = {
   Exclusive: {
     name: "가솔린 3.8",
     price: 0,
+    id: 2,
   },
   "Le Blanc": {
     name: "가솔린 3.8",
     price: 0,
+    id: 2,
   },
   Prestige: {
     name: "가솔린 3.8",
     price: 0,
+    id: 2,
   },
   Calligraphy: {
     name: "가솔린 3.8",
     price: 0,
+    id: 2,
   },
 };
 export const DEFAULT_DRIVING_METHOD = {
