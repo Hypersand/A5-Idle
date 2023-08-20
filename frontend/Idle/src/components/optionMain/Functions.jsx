@@ -38,7 +38,8 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
     return data?.length > 1 ? (
       <StMain>
         <ArrowLeft onClick={leftBtnClicked} style={{ cursor: "pointer" }} />
-        {data[currentPage]?.functionName}
+        <StFunctionName>{data[currentPage]?.functionName}</StFunctionName>
+        {/* <StFullFunctionName>{data[currentPage]?.functionName}</StFullFunctionName> */}
         <ArrowRight onClick={rightBtnClicked} style={{ cursor: "pointer" }} />
       </StMain>
     ) : null;
@@ -47,8 +48,22 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   return (
     <StContainer>
       {renderMain()}
-      {data ? <StDesc>{data[currentPage]?.functionDescription === "-" ? "" : data[currentPage]?.functionDescription}</StDesc> : <></>}
-
+      {data ? (
+        <>
+          <StDesc>
+            {data[currentPage]?.functionDescription === "-"
+              ? ""
+              : data[currentPage]?.functionDescription}
+          </StDesc>
+          {/* <StFullDesc>
+            {data[currentPage]?.functionDescription === "-"
+              ? ""
+              : data[currentPage]?.functionDescription}
+          </StFullDesc> */}
+        </>
+      ) : (
+        <></>
+      )}
 
       {renderCircle()}
     </StContainer>
@@ -76,6 +91,29 @@ const StMain = styled.div`
   margin-bottom: 16px;
 `;
 
+// const StFullDesc = styled.div`
+//   width: 350px;
+//   padding: 15px 20px;
+//   background-color: #444444;
+//   border-radius: 5px;
+//   color: #ffffff;
+//   position: absolute;
+//   bottom: 130px;
+//   left: -20px;
+//   display: none;
+//   transition: all ease 0.5s;
+
+//   font-family: "Hyundai Sans Text KR";
+//   font-size: 13px;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: 165%;
+//   letter-spacing: -0.39px;
+// `;
+// &:hover ~ ${StFullDesc} {
+//   display: block;
+// }
+
 const StDesc = styled.div`
   width: 280px;
   color: ${palette.Black};
@@ -85,6 +123,9 @@ const StDesc = styled.div`
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.39px;
+  height: 80px;
+  overflow: hidden;
+  white-space: break-spaces;
 `;
 
 const StCircle = styled.div`
@@ -103,4 +144,24 @@ const StCircleContainer = styled.div`
   bottom: 0;
   left: 50%;
   transform: translate(-50%);
+`;
+
+// const StFullFunctionName = styled.div`
+//   top: 60px;
+//   position: absolute;
+//   width: 240px;
+//   padding: 15px 20px;
+//   background-color: #444444;
+//   border-radius: 5px;
+//   color: #ffffff;
+//   display: none;
+// `;
+/* &:hover ~ ${StFullFunctionName} {
+    display: block;
+  } */
+
+const StFunctionName = styled.div`
+  height: 20px;
+  width: 240px;
+  overflow: hidden;
 `;

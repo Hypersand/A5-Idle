@@ -62,6 +62,8 @@ const StOption = styled.div`
 `;
 
 const StOptionDesc = styled.div`
+  height: 60px;
+  overflow: hidden;
   width: 279px;
   color: ${palette.CoolGrey_2};
   font-family: "Hyundai Sans Text KR";
@@ -71,6 +73,7 @@ const StOptionDesc = styled.div`
   line-height: 165%;
   letter-spacing: -0.39px;
   margin-top: 8px;
+  white-space: break-spaces;
 `;
 
 const StHr = styled.div`
