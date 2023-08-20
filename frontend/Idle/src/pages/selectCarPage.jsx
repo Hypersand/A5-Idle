@@ -398,7 +398,7 @@ function SelectCarPage() {
     <StWrapper>
       <StContainer id="carSelectModal">
         <StLogo>
-          <MainLogoBlack />
+          <MainLogoBlack modalPosition={"carSelectModal"} />
         </StLogo>
 
         <StHeader>
