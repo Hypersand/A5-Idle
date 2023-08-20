@@ -169,15 +169,16 @@ const CarContainer = styled.div`
   background-image: url(${({ $src }) => $src});  
   animation: ${keyframes`
   0% {
-    transform: translateX(20%);
+    transform: translateX(20%)translateY(-3%);
     opacity: 0;
   }
   50% {
-    transform: translateX(20%);
+    transform: translateX(20%)translateY(-3%);
     opacity: 0;
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(0) translateY(0%);
+    
     opacity: 1;
   }
   `} 1.5s ease-in-out;
