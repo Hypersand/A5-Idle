@@ -277,7 +277,7 @@ const ArrowRightContainer = styled.div`
   flex-shrink: 0;
   align-items: center;
   right: 170px;
-  z-index: 10;
+  z-index: 1;
   svg {
     position: absolute;
     right: 0;
@@ -297,7 +297,7 @@ const ArrowLeftContainer = styled.div`
   background: linear-gradient(270deg, #f6f6f6 0%, rgba(246, 246, 246, 0) 100%);
   flex-shrink: 0;
   align-items: center;
-  z-index: 10;
+  z-index: 1;
   svg {
     position: absolute;
     right: 0;
@@ -387,5 +387,5 @@ const StTooltipContainer = styled.div`
   position: absolute;
   top: 80%;
   left: -3%;
-  z-index: 10;
+  z-index: 1;
 `;

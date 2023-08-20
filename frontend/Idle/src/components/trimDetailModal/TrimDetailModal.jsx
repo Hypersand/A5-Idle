@@ -48,6 +48,7 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 `;
 const fadeIn = keyframes`
   from {
@@ -85,7 +86,7 @@ const StModal = styled.div`
   height: 533px;
   background: ${palette.White};
   overflow: hidden;
-  z-index: 100;
+  z-index: 2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

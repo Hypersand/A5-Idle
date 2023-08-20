@@ -28,7 +28,7 @@ const StContainer = styled.div`
   line-height: 16px;
   letter-spacing: -0.36px;
   text-align: center;
-  z-index: 2;
+  z-index: 1;
   &:hover {
     cursor: pointer;
     filter: brightness(120%)

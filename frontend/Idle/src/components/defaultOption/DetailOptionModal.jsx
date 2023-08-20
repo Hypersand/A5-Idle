@@ -45,7 +45,7 @@ export default DetailOptionModal;
 
 const ModalContainer = styled.div`
   position: absolute;
-  z-index: 102;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 1280px;
@@ -76,7 +76,7 @@ const StBox = styled.div`
 
 const StContainer = styled.div`
   display: flex;
-  z-index: 15;
+  z-index: 2;
   background-color: ${palette.White};
   width: 540px;
   height: 550px;

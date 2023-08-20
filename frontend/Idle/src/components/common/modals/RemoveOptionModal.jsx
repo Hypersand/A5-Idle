@@ -85,7 +85,7 @@ const StContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
 `;
 
 const StTitle = styled.div`
@@ -154,4 +154,5 @@ const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 `;
