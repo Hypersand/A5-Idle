@@ -37,8 +37,8 @@ function TrimPage() {
   }, []);
 
   function handleMouseEnter() {
-    if (loaderIdx < preLoadData.length) {
-      preLoadData[loaderIdx].map((item) => preloadImage(item.imgUrl))
+    if ((loaderIdx / 2) < preLoadData.length) {
+      preLoadData[Math.floor(loaderIdx / 2)].map((item, idx) => { idx % 2 === (loaderIdx % 2) && preloadImage(item.imgUrl) })
       setLoaderIdx((prev) => prev + 1)
     }
   }
