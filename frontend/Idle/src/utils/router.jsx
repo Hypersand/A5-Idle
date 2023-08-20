@@ -6,6 +6,7 @@ import OptionPage from "pages/optionPage";
 import BillPage from "pages/billPage";
 import MainPage from "pages/mainPage";
 import Layout from "layout/Layout";
+import SelectCarPage from "../pages/selectCarPage";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
       </Route>
       <Route path="/bill" element={<BillPage />} />
       <Route path="/" element={<MainPage />} />
+      <Route path="/selectCar" element={<SelectCarPage />} />
     </Routes>
   );
 }

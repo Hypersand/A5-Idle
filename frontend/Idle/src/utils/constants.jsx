@@ -77,6 +77,8 @@ export const CONSUMTION_KR = "복합 연비";
 export const DISTANCE = "거리순";
 export const SALERATE = "판매량순";
 
+export const CAR_SELECTION_NUM = 8;
+
 export let clickedOptionPage = false;
 
 export function setClickedOptionPage(isTrue) {

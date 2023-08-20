@@ -18,7 +18,7 @@ function MainPage() {
           카마스터 연결까지
         </StTitle>
         <StSub>마이 카마스터와 함께해요</StSub>
-        <StBtn onClick={() => navigate("/trim")}>마이 카마스터 시작하기</StBtn>
+        <StBtn onClick={() => navigate("/selectCar")}>마이 카마스터 시작하기</StBtn>
       </StContainer>
       <StVideo autoPlay muted loop>
         <source src={hyundaiVideo} type="video/mp4"></source>
