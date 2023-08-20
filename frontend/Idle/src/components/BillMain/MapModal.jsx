@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import palette from "../../styles/palette";
 import { useEffect, useRef, useState } from "react";
-import esc from "../../assets/images/esc.svg";
+import { ReactComponent as EscapeButton } from "images/esc.svg";
 import BlueButton from "../common/buttons/BlueButton";
 import DillerBoxContainer from "./DillerBoxContainer";
 import CategoryTabs from "../common/tabs/CategoryTabs";
@@ -140,19 +140,19 @@ function MapModal({ setCarMasterVisible }) {
     });
     selectedTab === SALERATE
       ? getAPI(PATH.CARMASTER.SALERATE, {
-        nowLatitude: latitude,
-        nowLongitude: longitude,
-      }).then((res) => {
-        setData(res);
-        cachedData = res;
-      })
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        })
       : getAPI(PATH.CARMASTER.DISTANCE, {
-        nowLatitude: latitude,
-        nowLongitude: longitude,
-      }).then((res) => {
-        setData(res);
-        cachedData = res;
-      });
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        });
   }, [latitude, longitude]);
 
   function XBtnClicked() {
@@ -161,19 +161,19 @@ function MapModal({ setCarMasterVisible }) {
   function TabClicked(name) {
     name === SALERATE
       ? getAPI(PATH.CARMASTER.SALERATE, {
-        nowLatitude: latitude,
-        nowLongitude: longitude,
-      }).then((res) => {
-        setData(res);
-        cachedData = res;
-      })
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        })
       : getAPI(PATH.CARMASTER.DISTANCE, {
-        nowLatitude: latitude,
-        nowLongitude: longitude,
-      }).then((res) => {
-        setData(res);
-        cachedData = res;
-      });
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        });
     setSelectedTab(name);
     setSelectedDealer("");
   }
@@ -214,7 +214,7 @@ function MapModal({ setCarMasterVisible }) {
       <ModalBackground onClick={XBtnClicked} />
       <StContainer>
         <StBtnContainer>
-          <StXBtn onClick={XBtnClicked} />
+          <EscapeButton onClick={XBtnClicked} />
         </StBtnContainer>
 
         <StMainContainer>
@@ -296,11 +296,6 @@ const StBtnContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-`;
-const StXBtn = styled.button`
-  background-image: url(${esc});
-  width: 24px;
-  height: 24px;
 `;
 
 const StMain = styled.div`
