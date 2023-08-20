@@ -2,11 +2,35 @@ import { styled } from "styled-components";
 import hyundaiVideo from "images/palisadeVideo.mp4";
 import MainLogoWhite from "logos/MainLogoWhite";
 import { useNavigate } from "react-router-dom";
-import { setClickedOptionPage } from "../utils/constants";
+import { PATH, setClickedOptionPage } from "../utils/constants";
+import { useEffect } from "react";
+import { getAPI } from "../utils/api";
+
+function preloadImage(src = null) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = function () {
+      resolve(img)
+    }
+    img.onerror = img.onabort = function () {
+      reject(src)
+    }
+    img.src = src
+  })
+}
+function preloadImages(srcs) {
+  return Promise.all(srcs.map((item) => { preloadImage(item.imgUrl); }));
+}
 
 function MainPage() {
   const navigate = useNavigate();
   setClickedOptionPage(false);
+  useEffect(() => {
+    getAPI(PATH.COLOR.EXTERIOR, { trimId: 4 }).then((result) => {
+      result.map((item) => { preloadImages(item.carImgUrls) })
+    });
+  }, []);
+
   return (
     <>
       <StLogo>

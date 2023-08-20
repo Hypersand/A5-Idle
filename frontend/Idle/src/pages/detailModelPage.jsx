@@ -28,7 +28,6 @@ function DetailModelPage() {
   const [currentTab, setCurrentTab] = useState(tab);
   const { car, dispatch } = useContext(carContext);
   const [detailData, setDetailData] = useState(cachedData);
-
   const [warningModalVisible, setWarningModalVisible] = useState(false);
   const [optionsToBeRemoved, setOptionsToBeRemoved] = useState([]);
 
