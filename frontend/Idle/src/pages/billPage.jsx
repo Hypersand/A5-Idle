@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 import Header from "layout/Header";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
@@ -119,7 +119,17 @@ const BlueBgBottom = styled(BlueBG)`
   position: absolute;
   height: 267px;
   top: 414px;
-  z-index: -1;
+  z-index: -1;  
+  animation: ${keyframes`
+  0% {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  `} 0.7s ease-in-out;
 `;
 const TitleContainer = styled.div`
   position: absolute;
@@ -156,7 +166,21 @@ const CarContainer = styled.div`
   flex-shrink: 0;
   top: 130px;
   left: 50px;
-  background-image: url(${({ $src }) => $src});
+  background-image: url(${({ $src }) => $src});  
+  animation: ${keyframes`
+  0% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  `} 1.5s ease-in-out;
 `;
 const StConfirmContainer = styled.div`
   display: flex;
