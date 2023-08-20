@@ -1,20 +1,19 @@
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 import BillDetail from "./BillDetail";
 import { BILL_LIST } from "utils/constants";
 import palette from "styles/palette";
 import BillOptionContainer from "billMain/BillOptionContainer";
 import { useContext } from "react";
 import { carContext } from "utils/context";
-import React from "react";
 
 function BillMain({ data }) {
   const { car } = useContext(carContext);
   function render() {
     return BILL_LIST.map((item, index) => (
-      <React.Fragment key={index}>
+      <AnimationContainer key={index * 2} $duration={index}>
         <BillDetail item={item} data={data} />
         <Division />
-      </React.Fragment>
+      </AnimationContainer>
     ));
   }
   return (
@@ -38,7 +37,7 @@ const StContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-right: 120px;
-  gap: 32px;
+  gap: 16px;
   margin-top: 50px;
 `;
 const Division = styled.div`
@@ -54,4 +53,28 @@ const StTitle = styled.h1`
   font-weight: 700;
   line-height: 28px;
   letter-spacing: -1.08px;
+  margin-bottom: 20px;
 `;
+
+const AnimationContainer = styled.div`
+  display: flex;
+  width: 831px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  animation: ${keyframes`
+  0% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  50%{
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    
+    opacity: 1;
+  }
+  `} ${({ $duration }) => `${$duration / 3 + 0.5}s`} ease;
+`

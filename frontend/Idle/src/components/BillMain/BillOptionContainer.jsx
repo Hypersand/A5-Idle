@@ -1,5 +1,5 @@
 import BillOptionBox from "./BillOptionBox";
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 import palette from "../../styles/palette";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
@@ -75,6 +75,20 @@ export default BillOptionContainer;
 
 const StContainer = styled.div`
   width: 831px;
+  animation: ${keyframes`
+  0% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  50%{
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  `} 2.5s ease;
 `;
 
 const StTop = styled.div`
