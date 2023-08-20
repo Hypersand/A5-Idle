@@ -8,9 +8,9 @@ import palette from "styles/palette";
  * @param {boolean} isActive 비/활성화상태 (default : true)
  * @returns 버튼
  */
-function BlueButton({ text, onClick, isActive = true }) {
+function BlueButton({ text, onClick, onMouseEnter, isActive = true }) {
   return (
-    <StButton $isActive={isActive} onClick={onClick}>
+    <StButton $isActive={isActive} onClick={onClick} onMouseEnter={onMouseEnter}>
       {text}
     </StButton>
   );

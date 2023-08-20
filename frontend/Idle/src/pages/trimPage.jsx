@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TrimBoxContainer from "trimBoxContainer/TrimBoxContainer";
 import { styled } from "styled-components";
 import BlueButton from "buttons/BlueButton";
@@ -9,6 +9,8 @@ import palette from "styles/palette";
 import { PATH } from "utils/constants";
 import FindTrimTooltip from "toolTips/FindTrimTooltip";
 import TrimMain from "../components/trimMain";
+import { preloadContext } from "../utils/context";
+import { preloadImage } from "../utils/preloader";
 
 let cachedTrimData = null;
 
@@ -16,6 +18,7 @@ function TrimPage() {
   const navigate = useNavigate();
   const [toolTipStatus, setToolTipStatus] = useState(true);
   const [trimData, setTrimData] = useState(cachedTrimData);
+  const { preLoadData, setPreLoadData, loaderIdx, setLoaderIdx } = useContext(preloadContext)
 
   function nextBTNClicked() {
     navigate("/detail/engines");
@@ -26,9 +29,23 @@ function TrimPage() {
       cachedTrimData = result;
     });
   }, []);
+
+  useEffect(() => {
+    getAPI(PATH.COLOR.EXTERIOR, { trimId: 4 }).then((result) => {
+      result.map((item) => { setPreLoadData((prev) => [...prev, item.carImgUrls]) })
+    });
+  }, []);
+
+  function handleMouseEnter() {
+    if (loaderIdx < preLoadData.length) {
+      preLoadData[loaderIdx].map((item) => preloadImage(item.imgUrl))
+      setLoaderIdx((prev) => prev + 1)
+    }
+  }
+
   return (
     <>
-      {trimData ? <TrimMain data={trimData} /> : <p>Loading...</p>}
+      {trimData ? <TrimMain data={trimData} onMouseEnter={handleMouseEnter} /> : <p>Loading...</p>}
       <StWrapper>
         <StBottomContainer>
           {trimData ? <TrimBoxContainer data={trimData} /> : <p>Loading...</p>}
@@ -37,10 +54,10 @@ function TrimPage() {
               <Title>트림 선택</Title>
               <Description>원하는 트림을 선택해주세요.</Description>
             </StConfirmHeader>
-            <BlueButton text={"다음"} onClick={nextBTNClicked} />
+            <BlueButton text={"다음"} onClick={nextBTNClicked} onMouseEnter={handleMouseEnter} />
           </StConfirmContainer>
         </StBottomContainer>
-        <FindTrim onClick={setToolTipStatus} />
+        <FindTrim onClick={setToolTipStatus} onMouseEnter={handleMouseEnter} />
         <TrimSelectContainer onClick={() => { setToolTipStatus(false) }}>
           <StTooltipContainer>
             <StTooltip isActive={toolTipStatus} />

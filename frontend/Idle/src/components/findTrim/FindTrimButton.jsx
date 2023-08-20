@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { ReactComponent as ArrowUpper } from "images/arrowUpper.svg";
 import palette from "styles/palette";
 
-function FindTrimButton({ onClick }) {
+function FindTrimButton({ onClick, onMouseEnter }) {
   return (
     <StFindTrimButton onClick={onClick}>
       <StArrowContainer />
-      <StFindTrimButtonText>내게 맞는 트림 찾기</StFindTrimButtonText>
+      <StFindTrimButtonText onMouseEnter={onMouseEnter}>내게 맞는 트림 찾기</StFindTrimButtonText>
     </StFindTrimButton>
   );
 }
