@@ -25,7 +25,7 @@ public class OptionService {
 
         for (OptionDto optionDto : additionalOptionList) {
             if (notActivatedOptionIdList.contains(optionDto.getOptionId())) {
-                optionDto.setOptionCanSelect("false");
+                optionDto.setOptionCanSelect(false);
             }
             optionFunctionsResponseList.add(OptionFunctionsResponse.create(
                     optionDto,
@@ -40,27 +40,31 @@ public class OptionService {
     private void sortByPurchaseRateAndName(List<OptionFunctionsResponse> optionFunctions) {
         optionFunctions.sort((o1, o2) -> {
             if (o1.getOptionPrice().equals(o2.getOptionPrice())) {
-                if (o1.getOptionPurchaseRate().equals("NEW")) {
-                    return -1;
-                } else if (o2.getOptionPurchaseRate().equals("NEW")) {
-                    return 1;
-                }
-
-                double rate1 = Double.parseDouble(o1.getOptionPurchaseRate().split("%")[0].split(" ")[1]);
-                double rate2 = Double.parseDouble(o2.getOptionPurchaseRate().split("%")[0].split(" ")[1]);
-
-                if (rate1 == rate2) {
-                    return o2.getOptionName().compareTo(o1.getOptionName());
-                } else if (rate1 < rate2) {
-                    return 1;
-                } else {
-                    return -1;
-                }
+                return sortWhenSameOptionPrice(o1, o2);
             } else if (o1.getOptionPrice() < o2.getOptionPrice()) {
                 return -1;
             } else {
                 return 1;
             }
         });
+    }
+
+    private int sortWhenSameOptionPrice(OptionFunctionsResponse o1, OptionFunctionsResponse o2) {
+        if (o1.getOptionPurchaseRate().equals("NEW")) {
+            return -1;
+        } else if (o2.getOptionPurchaseRate().equals("NEW")) {
+            return 1;
+        }
+
+        double rate1 = Double.parseDouble(o1.getOptionPurchaseRate().split("%")[0].split(" ")[1]);
+        double rate2 = Double.parseDouble(o2.getOptionPurchaseRate().split("%")[0].split(" ")[1]);
+
+        if (rate1 == rate2) {
+            return o2.getOptionName().compareTo(o1.getOptionName());
+        } else if (rate1 < rate2) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }

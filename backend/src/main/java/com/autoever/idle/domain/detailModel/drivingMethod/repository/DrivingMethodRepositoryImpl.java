@@ -1,34 +1,32 @@
 package com.autoever.idle.domain.detailModel.drivingMethod.repository;
 
 import com.autoever.idle.domain.detailModel.dto.DrivingMethodResponse;
-import org.springframework.jdbc.core.JdbcTemplate;
+import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class DrivingMethodRepositoryImpl implements DrivingMethodRepository {
 
-    private final JdbcTemplate jdbcTemplate;
-
-    public DrivingMethodRepositoryImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
+    private final NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
     public List<DrivingMethodResponse> findAll(Long trimId) {
-        return jdbcTemplate.query("select d.* from DRIVING_METHOD d left join TRIM_DRIVING_METHOD tdm " +
-                "on d.driving_method_id = tdm.driving_method_id where tdm.trim_id = ? order by d.price asc ",
-                (rs, rowNum) -> new DrivingMethodResponse(
-                        rs.getLong("driving_method_id"),
-                        rs.getString("type"),
-                        rs.getInt("price"),
-                        rs.getString("description"),
-                        rs.getString("img_url"),
-                        rs.getString("purchase_rate")
-                ),
-                trimId
-        );
+        String query = "select d.driving_method_id id, d.type, d.price, d.description, d.img_url, " +
+                "d.purchase_rate from DRIVING_METHOD d left join TRIM_DRIVING_METHOD tdm " +
+                "on d.driving_method_id = tdm.driving_method_id " +
+                "where tdm.trim_id = :trimId order by d.price asc";
+
+        RowMapper<DrivingMethodResponse> rowMapper = new BeanPropertyRowMapper<>(DrivingMethodResponse.class);
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("trimId", trimId);
+
+        return jdbcTemplate.query(query, param, rowMapper);
     }
 }

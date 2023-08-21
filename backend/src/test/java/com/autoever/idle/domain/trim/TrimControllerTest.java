@@ -96,17 +96,12 @@ public class TrimControllerTest {
                 "실용적이고 기본적인 기능을 갖춘 베이직 트림",
                 "구매자 10%가 선택"));
 
-        TrimSelectionResponse selection = TrimSelectionResponse.builder()
-                .trimId(trims.get(0).getTrimId())
-                .name(trims.get(0).getName())
-                .price(trims.get(0).getPrice())
-                .description(trims.get(0).getDescription())
-                .imgUrl(trims.get(0).getImgUrl())
-                .purchaseRate(trims.get(0).getPurchaseRate())
-                .defaultFunctions(functionCategoryDtos)
-                .thumbnailFunctions(thumbnailFunctions)
-                .colors(thumbnailColor)
-                .build();
+        TrimSelectionResponse selection = new TrimSelectionResponse(
+                trims.get(0),
+                functionCategoryDtos,
+                thumbnailFunctions,
+                thumbnailColor
+        );
 
         response = new ArrayList<>();
         response.add(selection);

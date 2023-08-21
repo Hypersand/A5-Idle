@@ -1,5 +1,6 @@
 SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS CAR_MASTER;
+DROP TABLE IF EXISTS CAR_CATEGORY;
 DROP TABLE IF EXISTS CAR_TYPE;
 DROP TABLE IF EXISTS TRIM;
 DROP TABLE IF EXISTS ENGINE;
@@ -36,12 +37,27 @@ create table if not exists  CAR_MASTER
     address       varchar(100) null
     );
 
-create table if not exists  CAR_TYPE
+create table if not exists CAR_CATEGORY
 (
-    car_type_id bigint auto_increment
+    car_category_id bigint auto_increment
     primary key,
-    name        varchar(10) null
-    );
+    name        varchar(20) null
+);
+
+create table if not exists CAR_TYPE
+(
+    car_type_id     bigint auto_increment
+    primary key,
+    name            varchar(10) null,
+    isNew           varchar(5)  null,
+    price           int         null,
+    img_url         text        null,
+    logo_url        text        null,
+    car_category_id bigint      null,
+    constraint FK_CAR_CATEGORY_TO_CAR_TYPE_1
+    foreign key (car_category_id) references CAR_CATEGORY (car_category_id)
+);
+
 
 create table if not exists  TRIM
 (

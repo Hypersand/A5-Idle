@@ -1,4 +1,20 @@
-INSERT INTO CAR_TYPE (name) VALUES ('팰리세이드');
+INSERT INTO CAR_CATEGORY (name) VALUES ('수소/전기차');
+INSERT INTO CAR_CATEGORY (name) VALUES ('N');
+INSERT INTO CAR_CATEGORY (name) VALUES ('승용');
+INSERT INTO CAR_CATEGORY (name) VALUES ('SUV');
+INSERT INTO CAR_CATEGORY (name) VALUES ('MPV');
+INSERT INTO CAR_CATEGORY (name) VALUES ('소형트럭&택시');
+INSERT INTO CAR_CATEGORY (name) VALUES ('버스');
+INSERT INTO CAR_CATEGORY (name) VALUES ('트럭');
+
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('팰리세이드', 3896, 'TRUE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/palisade-24my-45side.png', null, 4);
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('베뉴', 2146, 'TRUE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png', null, 4);
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('디 올 뉴 코나', 2486, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png', 4);
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('디 올 뉴 코다 H', 2146, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png', 4);
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('투싼', 2603, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tucson-23my-45side.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png', 4);
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('투싼 Hybirid', 3027, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tucson-hybrid-23my-45side.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png', 4);
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('싼타페', 3277, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-23my-45side.png', null, 4);
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('싼타페 Hybrid', 2146, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-hybrid-45side.png', null, 4);
 
 INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Exclusive', 38960000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/exclusive.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', '구매자 10%가 선택', 1);
 INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Le Blanc', 41980000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/leblanc.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', 'NEW', 1);
@@ -590,7 +606,7 @@ INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_i
 .※ 트레일러 패키지의 토우모드는 가솔린 3.8 HTRAC 사양에 한하여 적용됩니다.', '구매자 10%가 선택', 2);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('20인치 다크 스퍼터링 휠', 840000, '현대자동차의 기술력과 노하우가 결합된 커스터마이징 브랜드 N 퍼포먼스의 다크 스파터링 휠', '구매자 15%가 선택', 2);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('테스트', 123123, '123123', '123', 1);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('알콘(alcon) 단조 브레이크 &amp; 20인치 휠', 3660000, '현대자동차의 기술력과 노하우가 결합된 커스터마이징 브랜드 N 퍼포먼스의 알콘(alcon)단조 브레이크 & 20인치 휠 패키지', '구매자 10%가 선택', 2);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('알콘(alcon) 단조 브레이크 & 20인치 휠', 3660000, '현대자동차의 기술력과 노하우가 결합된 커스터마이징 브랜드 N 퍼포먼스의 알콘(alcon)단조 브레이크 & 20인치 휠 패키지', '구매자 10%가 선택', 2);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('듀얼 머플러 패키지', 840000, '싱글 머플러가 아쉽다면?
 듀얼 머플러 패키지를 통해 멋스러운 드라이빙 감성을 더해보세요.', '구매자 10%가 선택', 2);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('VIP 패키지', 5740000, '보다 고급스러운 인테리어를 원한다면 캘리그라피만의 VIP 패키지를 통해 2열 추가 편의 기능과 더욱 고급화된 실내 인테리어를 적용할 수 있어요', '구매자 10%가 선택', 2);
@@ -758,7 +774,7 @@ INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, functi
 INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('스마트 자세제어', '스마트 자세제어 시스템은 전동 시트의 장점을 극대화하는 사양으로 사전에 입력한 운전자의 신체 정보에 따라 시트, 스티어링 휠, 사이드 미러, 헤드업 디스플레이의 위치를 제안하는 기능입니다. 또한 장시간 주행 시 시트의 엉덩이와 허리 쿠션을 자동으로 조절해 탑승자의 피로를 줄이고 졸음을 방지하기도 합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/smartcontrol_s.jpg', 23, 'FALSE', 6, null);
 INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('3열 파워폴딩시트', '러기지 사이드에 있는 버튼으로 3열 시트를 접었다 펼 수 있으며, 2열 시트도 조작할 수 있어 화물 적재시나 3열 이용시 사용자의 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/101-4.jpg', 18, 'FALSE', 6, null);
 INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('윙타입 헤드레스트(2열)', '좌우가 넓은 윙타입의 헤드레스트를 적용하여 더욱 편리합니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/wingtypeheadrest_s.jpg', null, 'FALSE', 6, null);
-INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('3열 열선시트', '시동이 걸린 상태에서 해당 좌석 히터 스위치를 누르면 강약조절 표시등이 켜져 사용 중임을 나타내고 해당 좌석이 따뜻해집니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/101-5', 18, 'FALSE', 6, null);
+INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('3열 열선시트', '시동이 걸린 상태에서 해당 좌석 히터 스위치를 누르면 강약조절 표시등이 켜져 사용 중임을 나타내고 해당 좌석이 따뜻해집니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/101-5.jpg', 18, 'FALSE', 6, null);
 INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('2열 통풍시트', '시동이 걸린 상태에서 해당 좌석의 통풍 스위치를 누르면 표시등이 켜지면서 해당 좌석에 바람이 나오는 편의장치입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/103.jpg', 20, 'TRUE', 6, null);
 INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('버튼시동 & 스마트키', '일반 키와는 달리 휴대만으로 도어(트렁크 포함)를 잠그거나 열고, 엔진 시동을 걸 수 있는 장치입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/72.jpg', null, 'FALSE', 7, null);
 INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('전동식 파킹 브레이크(오토홀드 포함)', '버튼 조작만으로 파킹 브레이크 작동 또는 해제가 가능하며, 정차 시 자동으로 제동상태를 유지하는 오토 홀드 기능 적용으로 편의성을 높였습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/43.jpg', null, 'FALSE', 7, null);
@@ -1333,9 +1349,13 @@ INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 147
 
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (null, 14, 2);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 4, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (4, 15, null);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 6, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (6, 15, null);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 8, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (8, 15, null);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (9, 14, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (14, 9, null);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (11, 13, null);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (13, 11, null);
 

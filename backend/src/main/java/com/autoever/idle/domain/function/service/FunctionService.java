@@ -1,7 +1,7 @@
 package com.autoever.idle.domain.function.service;
 
-import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryNameResponse;
+import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

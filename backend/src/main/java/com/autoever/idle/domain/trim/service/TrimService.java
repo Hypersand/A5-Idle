@@ -1,9 +1,9 @@
 package com.autoever.idle.domain.trim.service;
 
 import com.autoever.idle.domain.carType.repository.CarTypeRepository;
-import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResponse;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
+import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorImgUrlDto;
 import com.autoever.idle.domain.exteriorColor.dto.TrimThumbnailColorResponse;
 import com.autoever.idle.domain.exteriorColor.repository.ExteriorColorRepository;
@@ -13,8 +13,8 @@ import com.autoever.idle.domain.interiorColor.repository.InteriorColorRepository
 import com.autoever.idle.domain.trim.dto.TrimDto;
 import com.autoever.idle.domain.trim.dto.TrimSelectionResponse;
 import com.autoever.idle.domain.trim.repository.TrimRepository;
-import com.autoever.idle.domain.trimThumbnailFunction.repository.TrimThumbnailFunctionRepository;
 import com.autoever.idle.domain.trimThumbnailFunction.dto.TrimThumbnailFunctionResponse;
+import com.autoever.idle.domain.trimThumbnailFunction.repository.TrimThumbnailFunctionRepository;
 import com.autoever.idle.global.exception.custom.InvalidCarException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -50,7 +50,7 @@ public class TrimService {
             for (FunctionCategoryDto category : categories) {
                 List<DefaultFunctionNameResponse> defaultFunctionDtos =
                         functionCategoryRepository.getDefaultOptions(trim.getTrimId(), category.getFunctionCategoryId());
-                DefaultFunctionCategoryResponse defaultCategoryDto = DefaultFunctionCategoryResponse.createDefaultFunctionDto(category, defaultFunctionDtos);
+                DefaultFunctionCategoryResponse defaultCategoryDto = new DefaultFunctionCategoryResponse(category, defaultFunctionDtos);
                 categoryDtos.add(defaultCategoryDto);
             }
 
@@ -58,10 +58,14 @@ public class TrimService {
             List<ExteriorImgUrlDto> exteriorImgUrls = exteriorColorRepository.findExteriorColorImgUrlsByTrimId(trim.getTrimId());
             List<InteriorImgUrlDto> interiorImgUrls = interiorColorRepository.findInteriorColorImgUrlsByTrimId(trim.getTrimId());
             TrimThumbnailColorResponse colors = new TrimThumbnailColorResponse(exteriorImgUrls, interiorImgUrls);
-            TrimSelectionResponse trimDto = TrimSelectionResponse.createDto(trim, categoryDtos, thumbnailFunctions, colors);
+            TrimSelectionResponse trimDto = new TrimSelectionResponse(
+                    trim,
+                    categoryDtos,
+                    thumbnailFunctions,
+                    colors
+            );
             trimDtos.add(trimDto);
         }
-        System.out.println("");
         return trimDtos;
     }
 }

@@ -82,10 +82,10 @@ class MyTrimControllerTest {
         JSONArray jsonArray = new JSONArray();
         jsonArray.put(new JSONObject().put("functionId", 109));
         List<MyTrimResponse> myTrimResponseList = new ArrayList<>();
-        myTrimResponseList.add(MyTrimResponse.builder().name("Exclusive").isDefault(null).selectPossible(false).build());
-        myTrimResponseList.add(MyTrimResponse.builder().name("Le Blanc").isDefault(false).selectPossible(true).build());
-        myTrimResponseList.add(MyTrimResponse.builder().name("Prestige").isDefault(false).selectPossible(true).build());
-        myTrimResponseList.add(MyTrimResponse.builder().name("Calligraphy").isDefault(true).selectPossible(true).build());
+        myTrimResponseList.add(new MyTrimResponse("Exclusive", null, false));
+        myTrimResponseList.add(new MyTrimResponse("Le Blanc", false, true));
+        myTrimResponseList.add(new MyTrimResponse("Prestige", false, true));
+        myTrimResponseList.add(new MyTrimResponse("Calligraphy", true, true));
         given(myTrimService.findTrimBySelectFunctions(anyList())).willReturn(myTrimResponseList);
 
         //when
