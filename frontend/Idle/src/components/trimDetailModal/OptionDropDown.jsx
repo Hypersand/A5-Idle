@@ -4,7 +4,7 @@ import { useState } from "react";
 import palette from "styles/palette";
 import DetailOptionModal from "defaultOption/DetailOptionModal";
 
-function OptionDropDown({ category, optionData }) {
+function OptionDropDown({ category, optionData, modalPosition }) {
   const [isOpen, setIsOpen] = useState(false);
   const [animationstate, setAnimationState] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -61,6 +61,7 @@ function OptionDropDown({ category, optionData }) {
           description={selectedFunctionData.functionDescription}
           functionImgUrl={selectedFunctionData.functionImgUrl}
           onClose={() => setModalVisible(false)}
+          modalPosition={modalPosition}
         />
       )}
     </StContainer>
