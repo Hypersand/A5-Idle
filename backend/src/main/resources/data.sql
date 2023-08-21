@@ -1349,9 +1349,13 @@ INSERT INTO TRIM_FUNCTION (is_default, function_id, trim_id) VALUES ('TRUE', 147
 
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (null, 14, 2);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 4, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (4, 15, null);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 6, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (6, 15, null);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (15, 8, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (8, 15, null);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (9, 14, null);
+INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (14, 9, null);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (11, 13, null);
 INSERT INTO OPTION_STATUS (selected_option_id, not_activated_option_id, selected_engine_id) VALUES (13, 11, null);
 
