@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react"
 import { styled } from "styled-components"
-import { carContext } from "../../utils/context"
+import { carContext } from "utils/context"
 import ExteriorBoxContainer from "./ExteriorBoxContainer";
 import InteriorBoxContainer from "./InteriorBoxContainer";
 

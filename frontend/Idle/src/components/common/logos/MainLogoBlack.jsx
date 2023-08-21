@@ -4,9 +4,9 @@ import WarningModal from "modals/WarningModal";
 import { useContext, useState } from "react";
 import palette from "styles/palette";
 import { useLocation, useNavigate } from "react-router-dom";
-import { carContext } from "../../../utils/context";
-import { CHANGE_ALL } from "../../../utils/actionType";
-import { emptyCar } from "../../../utils/constants";
+import { carContext } from "utils/context";
+import { CHANGE_ALL } from "utils/actionType";
+import { emptyCar } from "utils/constants";
 
 function MainLogoBlack({ modalPosition = null }) {
   const [modalVisible, setModalVisible] = useState(false);

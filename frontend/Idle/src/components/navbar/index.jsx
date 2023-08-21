@@ -3,9 +3,9 @@ import { TYPE } from "utils/constants.jsx";
 import { styled } from "styled-components";
 import EstimatePrice from "./EstimatePrice.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
-import WarningModal from "../common/modals/WarningModal.jsx";
+import WarningModal from "modals/WarningModal.jsx";
 import { useContext, useState } from "react";
-import { carContext } from "../../utils/context.jsx";
+import { carContext } from "utils/context.jsx";
 
 function navigateTo(car, navigate) {
   if (car.detail.engines.name === undefined) navigate("/detail/engines");
