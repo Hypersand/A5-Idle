@@ -58,7 +58,6 @@ function ColorPage() {
     getAPI(PATH.COLOR.EXTERIOR, { trimId: car.trim.trimId }).then((result) => {
       setExteriorData(result);
       cachedExterior = result;
-      console.log(result);
       dispatch({ type: SET_CAR_IMG, payload: result[0].carImgUrls[0].imgUrl });
     });
   }, []);

@@ -1,5 +1,5 @@
 import DefaultOption from "defaultOption/index";
-import { useEffect, useRef, useState, useContext, useLayoutEffect } from "react";
+import { useRef, useState, useContext, useLayoutEffect } from "react";
 import OptionBox from "boxs/OptionBox";
 import {
   ALL,
@@ -60,6 +60,7 @@ function OptionPage() {
   const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
   const scrollBar = useRef();
   const navigate = useNavigate();
+  let selectedOptionIds = []
 
   useLayoutEffect(() => {
     if (!scrollBar.current) {
@@ -83,10 +84,13 @@ function OptionPage() {
   }, [scrollBar.current]);
 
   useLayoutEffect(() => {
+    selectedOptionIds = []
+    car.option.additional.map((item) => selectedOptionIds.push(item.optionId))
+    car.option.confusing.map((item) => selectedOptionIds.push(item.optionId))
     async function fetchData() {
       await submitPostAPI(PATH.OPTION.GET, {
         trimId: car.trim.trimId,
-        selectedOptionIds: [],
+        selectedOptionIds: selectedOptionIds,
         engineId: car.detail.engines.id,
       }).then((res) => {
         if (res === cachedOptionData) return
@@ -95,7 +99,7 @@ function OptionPage() {
       });
     }
     fetchData();
-  }, []);
+  }, [car.option]);
 
   useLayoutEffect(() => {
     setFilteredData(filterData(data, currentTab));
