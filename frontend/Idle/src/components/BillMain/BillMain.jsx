@@ -26,40 +26,42 @@ function BillMain({ data }) {
         confused={car.option.confusing}
         data={data}
       />
-      <StDelivery>
-        <StContentTitle>
-          탁송
-          <StPrice>+0 원</StPrice>
-        </StContentTitle>
-        <StDeliveryContent>
-          <StDeliveryContentBox>
-            탁송 지역
-            <LocationButton location={"서울"} />
-            <LocationButton location={"서울특별시"} />
-          </StDeliveryContentBox>
-        </StDeliveryContent>
-      </StDelivery>
-      <StHr />
-      <StSale>
-        <StSaleTitle>할인/포인트</StSaleTitle>
-        <StSaleContent>
-          <StBtn>{"할인/포인트 선택하기"}</StBtn>
-          <StSaleDescription>
-            할인 및 사용 가능한 포인트를 입력하고 차량의 할인 금액을 확인해 보세요. <br />
-            개별소비세 감면 혜택도 할인/포인트를 선택하시면 적용됩니다.
-          </StSaleDescription>
-        </StSaleContent>
-      </StSale>
-      <StHr />
-      <StSale>
-        <StSaleTitle>결제 방법</StSaleTitle>
-        <StSaleContent>
-          <StBtn>{"결제수단 선택하기"}</StBtn>
-          <StSaleDescription>
-            결제수단을 선택하고 지불조건 및 납입사항을 확인하세요.
-          </StSaleDescription>
-        </StSaleContent>
-      </StSale>
+      <StExtraContainer>
+        <StDelivery>
+          <StContentTitle>
+            탁송
+            <StPrice>+0 원</StPrice>
+          </StContentTitle>
+          <StDeliveryContent>
+            <StDeliveryContentBox>
+              탁송 지역
+              <LocationButton location={"서울"} />
+              <LocationButton location={"서울특별시"} />
+            </StDeliveryContentBox>
+          </StDeliveryContent>
+        </StDelivery>
+        <StHr />
+        <StSale>
+          <StSaleTitle>할인/포인트</StSaleTitle>
+          <StSaleContent>
+            <StBtn>{"할인/포인트 선택하기"}</StBtn>
+            <StSaleDescription>
+              할인 및 사용 가능한 포인트를 입력하고 차량의 할인 금액을 확인해 보세요. <br />
+              개별소비세 감면 혜택도 할인/포인트를 선택하시면 적용됩니다.
+            </StSaleDescription>
+          </StSaleContent>
+        </StSale>
+        <StHr />
+        <StSale>
+          <StSaleTitle>결제 방법</StSaleTitle>
+          <StSaleContent>
+            <StBtn>{"결제수단 선택하기"}</StBtn>
+            <StSaleDescription>
+              결제수단을 선택하고 지불조건 및 납입사항을 확인하세요.
+            </StSaleDescription>
+          </StSaleContent>
+        </StSale>
+      </StExtraContainer>
     </StContainer>
   );
 }
@@ -232,4 +234,22 @@ const StSaleDescription = styled.div`
   line-height: 21px;
   letter-spacing: -0.03em;
   text-align: center;
+`;
+
+const StExtraContainer = styled.div`
+  animation: ${keyframes`
+  0% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  50%{
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    
+    opacity: 1;
+  }
+  `} 1s ease;
 `;
