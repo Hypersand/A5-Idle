@@ -18,12 +18,15 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -74,13 +77,15 @@ class OptionControllerTest {
     @DisplayName("추가 옵션 선택 페이지 API를 정상적으로 호출한다")
     void getOptionFunctions() throws Exception {
         //given
-        OptionRequest optionRequest = new OptionRequest(1L, List.of(1L, 15L), 1L);
         given(optionService.getOptionFunctions(any())).willReturn(optionFunctionsResponseList);
+        MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
+        multiValueMap.add("trimId", "1");
+        multiValueMap.add("selectedOptionIds", "1,15");
+        multiValueMap.add("engineId", "2");
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/trims/add/options")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(optionRequest)))
+        ResultActions resultActions = mockMvc.perform(get("/trims/add/options")
+                        .queryParams(multiValueMap))
                 .andDo(print());
 
         //then
