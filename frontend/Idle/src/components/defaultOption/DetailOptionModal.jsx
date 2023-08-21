@@ -5,7 +5,6 @@ import palette from "styles/palette";
 import { useState } from "react";
 
 function DetailOptionModal({ title, description, functionImgUrl, onClose, modalPosition }) {
-  const stringMaxLength = 23;
   const [animationstate, setAnimationState] = useState(false);
   function clickClose() {
     setAnimationState(true);
@@ -13,19 +12,13 @@ function DetailOptionModal({ title, description, functionImgUrl, onClose, modalP
       onClose();
     }, 300);
   }
-  function checkLength() {
-    if (title.length > stringMaxLength) {
-      return title.slice(0, stringMaxLength) + "...";
-    }
-    return title;
-  }
   return createPortal(
     <ModalContainer>
       <ModalBackground onClick={clickClose} />
       <StContainer $animationstate={animationstate}>
         <StBox>
           <StTitle>
-            {checkLength()}
+            {title}
             <StCloseButton onClick={clickClose} />
           </StTitle>
           <StImg $imgUrl={functionImgUrl} />
@@ -69,7 +62,7 @@ const StBox = styled.div`
   height: 335px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 45px;
   margin-top: 24px;
   margin-left: 44px;
 `;
@@ -121,6 +114,7 @@ const StCloseButton = styled(CloseButton)`
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: translate(90%, 0%);
   cursor: pointer;
 `;
 
