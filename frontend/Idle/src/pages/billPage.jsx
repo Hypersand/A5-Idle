@@ -7,11 +7,11 @@ import { carContext } from "utils/context";
 import BillMain from "billMain/BillMain";
 import MapModal from "billMain/MapModal";
 import CarMasterTooltip from "toolTips/CarMasterTooltip";
-import { submitPostAPI } from "utils/api";
 import { PATH } from "utils/constants";
 import WarningModal from "modals/WarningModal";
 import ReactToPrint from "react-to-print";
 import ServerErrorPage from "./ServerErrorPage";
+import { getWithQueryAPI } from "../utils/api";
 
 let cachedBillData = null;
 
@@ -34,7 +34,7 @@ function BillPage() {
     if (car.color.exterior.exteriorId === undefined) {
       setModalVisible(true);
     } else {
-      submitPostAPI(PATH.BILL, {
+      getWithQueryAPI(PATH.BILL, {
         trimId: car.trim.trimId,
         exteriorId: car.color.exterior.exteriorId,
         interiorId: car.color.interior.interiorId,

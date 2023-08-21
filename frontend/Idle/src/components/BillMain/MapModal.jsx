@@ -7,9 +7,9 @@ import DillerBoxContainer from "./DillerBoxContainer";
 import CategoryTabs from "tabs/CategoryTabs";
 import { createPortal } from "react-dom";
 import Address from "./Address";
-import { getAPI } from "utils/api";
 import { DISTANCE, PATH, SALERATE } from "utils/constants";
 import CustomOverlay from "./CustomOverlay";
+import { getWithoutQueryAPI } from "utils/api";
 const { kakao } = window;
 
 let cachedData = null;
@@ -36,7 +36,7 @@ function MapModal({ setCarMasterVisible }) {
           setLatitude(position.coords.latitude);
           setlongitude(position.coords.longitude);
 
-          getAPI(PATH.CARMASTER.SALERATE, {
+          getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
             nowLatitude: position.coords.latitude,
             nowLongitude: position.coords.longitude,
           }).then((res) => {
@@ -139,14 +139,14 @@ function MapModal({ setCarMasterVisible }) {
       }
     });
     selectedTab === SALERATE
-      ? getAPI(PATH.CARMASTER.SALERATE, {
+      ? getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
           nowLatitude: latitude,
           nowLongitude: longitude,
         }).then((res) => {
           setData(res);
           cachedData = res;
         })
-      : getAPI(PATH.CARMASTER.DISTANCE, {
+      : getWithoutQueryAPI(PATH.CARMASTER.DISTANCE, {
           nowLatitude: latitude,
           nowLongitude: longitude,
         }).then((res) => {
@@ -160,14 +160,14 @@ function MapModal({ setCarMasterVisible }) {
   }
   function TabClicked(name) {
     name === SALERATE
-      ? getAPI(PATH.CARMASTER.SALERATE, {
+      ? getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
           nowLatitude: latitude,
           nowLongitude: longitude,
         }).then((res) => {
           setData(res);
           cachedData = res;
         })
-      : getAPI(PATH.CARMASTER.DISTANCE, {
+      : getWithoutQueryAPI(PATH.CARMASTER.DISTANCE, {
           nowLatitude: latitude,
           nowLongitude: longitude,
         }).then((res) => {

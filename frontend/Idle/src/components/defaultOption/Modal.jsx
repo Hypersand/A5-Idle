@@ -6,7 +6,7 @@ import ItemBox from "./ItemBox";
 import PaginationButton from "./PaginationButton";
 import { createPortal } from "react-dom";
 import palette from "styles/palette";
-import { getAPI } from "utils/api";
+import { getWithoutQueryAPI } from "utils/api";
 import { PATH } from "utils/constants";
 import { carContext } from "utils/context";
 
@@ -24,7 +24,7 @@ function Modal({ setVisible }) {
 
   useEffect(() => {
     async function fetchGet() {
-      const result = await getAPI(PATH.OPTION.DEFAULT, { trimId: car.trim.trimId });
+      const result = await getWithoutQueryAPI(PATH.OPTION.DEFAULT, { trimId: car.trim.trimId });
       setData(result);
       setCurrentTab(result[0].categoryName);
     }

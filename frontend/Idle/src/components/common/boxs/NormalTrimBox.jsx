@@ -8,7 +8,7 @@ import palette from "styles/palette";
 import WarningModal from "modals/WarningModal";
 import { CLEAR_OPTION } from "utils/actionType";
 import { PATH, TRANSLATE } from "utils/constants";
-import { getAPI } from "utils/api";
+import { getWithoutQueryAPI } from "utils/api";
 
 function NormalTrimBox({
   purchaseRate,
@@ -52,7 +52,7 @@ function NormalTrimBox({
 
   async function setModalOn() {
     setIsModal(true);
-    const result = await getAPI(PATH.OPTION.DEFAULT, { trimId: TRANSLATE[name] });
+    const result = await getWithoutQueryAPI(PATH.OPTION.DEFAULT, { trimId: TRANSLATE[name] });
     setOptionData(result);
   }
 

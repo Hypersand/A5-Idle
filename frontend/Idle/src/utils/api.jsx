@@ -1,4 +1,4 @@
-export async function getAPI(path, data = {}) {
+export async function getWithoutQueryAPI(path, data = {}) {
   try {
     const queryParams = new URLSearchParams(data).toString();
     console.log(queryParams);
@@ -19,7 +19,7 @@ export async function getAPI(path, data = {}) {
   }
 }
 
-export async function disableFunctionGetAPI(path, data = {}) {
+export async function getWithQueryAPI(path, data = {}) {
   try {
     const queryParams = new URLSearchParams(data).toString();
     const response = await fetch(`${path}?${queryParams}`, {

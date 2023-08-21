@@ -23,7 +23,7 @@ import { carContext } from "utils/context";
 import ServerErrorPage from "./ServerErrorPage";
 import ConfusingTooltip from "toolTips/ConfusingTooltip";
 import WarningModal from "modals/WarningModal";
-import { disableFunctionGetAPI } from "utils/api";
+import { getWithQueryAPI } from "utils/api";
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,
@@ -88,7 +88,7 @@ function OptionPage() {
     car.option.additional.map((item) => selectedOptionIds.push(item.optionId));
     car.option.confusing.map((item) => selectedOptionIds.push(item.optionId));
     async function fetchData() {
-      await disableFunctionGetAPI(PATH.OPTION.GET, {
+      await getWithQueryAPI(PATH.OPTION.GET, {
         trimId: car.trim.trimId,
         selectedOptionIds: [selectedOptionIds],
         engineId: car.detail.engines.id,
