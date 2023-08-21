@@ -45,7 +45,7 @@ public class FunctionCategoryRepositoryImpl implements FunctionCategoryRepositor
 
         String sql = "select f.name as functionName, f.img_url as functionImgUrl, f.description as functionDescription from FUNCTIONS f " +
                 "left join TRIM_FUNCTION tf on f.function_id = tf.function_id " +
-                "where tf.is_default = 'TRUE' and trim_id = :trimId and f.function_category_id = :cagetoryId " +
+                "where tf.is_default = 'TRUE' and trim_id = :trimId and f.function_category_id = :categoryId " +
                 "ORDER BY f.name ASC";
 
         RowMapper<DefaultFunctionResponse> rowMapper = new BeanPropertyRowMapper<>(DefaultFunctionResponse.class);

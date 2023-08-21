@@ -16,7 +16,7 @@ public class CarCategoryRepositoryImpl implements CarCategoryRepository{
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<CarCategoryDto> findAll(){
-        RowMapper<CarCategoryDto> rowMapper = new BeanPropertyRowMapper<>();
+        RowMapper<CarCategoryDto> rowMapper = new BeanPropertyRowMapper<>(CarCategoryDto.class);
         return jdbcTemplate.query("SELECT car_category_id AS carCategoryId, name AS carCategoryName FROM CAR_CATEGORY",rowMapper);
     }
 }

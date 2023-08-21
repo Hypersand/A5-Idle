@@ -26,7 +26,8 @@ public class ExteriorColorRepositoryImpl implements ExteriorColorRepository {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("trimId", trimId);
 
-        String query = "select ec.exterior_color_id, ec.color, ec.color_img_url, ec.price, ec.purchase_rate " +
+        String query = "select ec.exterior_color_id as exteriorId, ec.color as exteriorName, " +
+                "ec.color_img_url as exteriorImgUrl, ec.price as exteriorPrice, ec.purchase_rate as exteriorPurchaseRate " +
                 "from TRIM_EXTERIOR_COLOR as tec " +
                 "left join EXTERIOR_COLOR as ec on tec.exterior_color_id = ec.exterior_color_id " +
                 "where trim_id = :trimId order by ec.price asc";
@@ -40,7 +41,7 @@ public class ExteriorColorRepositoryImpl implements ExteriorColorRepository {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("exteriorId", exteriorId);
 
-        String query = "select car_exterior_img_url from CAR_EXTERIOR_IMAGE where exterior_color_id = :exteriorId";
+        String query = "select car_exterior_img_url as imgUrl from CAR_EXTERIOR_IMAGE where exterior_color_id = :exteriorId";
 
         RowMapper<CarExteriorImgDto> rowMapper = new BeanPropertyRowMapper<>(CarExteriorImgDto.class);
 

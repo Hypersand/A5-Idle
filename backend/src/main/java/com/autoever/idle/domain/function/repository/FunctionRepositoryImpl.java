@@ -23,7 +23,7 @@ public class FunctionRepositoryImpl implements FunctionRepository {
 
     @Override
     public List<MyTrimFunctionDto> findMyTrimFunctions() {
-        RowMapper<MyTrimFunctionDto> rowMapper = new BeanPropertyRowMapper<>();
+        RowMapper<MyTrimFunctionDto> rowMapper = new BeanPropertyRowMapper<>(MyTrimFunctionDto.class);
         return jdbcTemplate.query("select FUNCTIONS.function_id AS functionId, name, description, trim_id AS trimId, img_url AS imgUrl " +
                 "from TRIM_FUNCTION TF " +
                 "join FUNCTIONS on TF.function_id=FUNCTIONS.function_id " +
@@ -43,7 +43,7 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                 "    ON TRIM.trim_id=TTF.trim_id";
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("functionId", functionId);
-        RowMapper<MyTrimDto> rowMapper = new BeanPropertyRowMapper();
+        RowMapper<MyTrimDto> rowMapper = new BeanPropertyRowMapper<>(MyTrimDto.class);
         return jdbcTemplate.query(query, params, rowMapper);
     }
 
@@ -62,7 +62,7 @@ public class FunctionRepositoryImpl implements FunctionRepository {
     public MyTrimOptionResponse findOptionBySelectFunction(Long functionId) {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("functionId", functionId);
-        RowMapper<MyTrimOptionResponse> rowMapper = new BeanPropertyRowMapper<>();
+        RowMapper<MyTrimOptionResponse> rowMapper = new BeanPropertyRowMapper<>(MyTrimOptionResponse.class);
         return jdbcTemplate.queryForObject("SELECT O.option_id AS optionId, O.name AS optionName, price AS optionPrice FROM FUNCTIONS AS F " +
                         "JOIN `OPTION` AS O ON F.option_id=O.option_id " +
                         "WHERE function_id=:functionId",
@@ -78,7 +78,7 @@ public class FunctionRepositoryImpl implements FunctionRepository {
 
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("optionId", optionId);
-        RowMapper<FunctionDto> rowMapper = new BeanPropertyRowMapper<>();
+        RowMapper<FunctionDto> rowMapper = new BeanPropertyRowMapper<>(FunctionDto.class);
         return jdbcTemplate.query(query, param, rowMapper);
     }
 
