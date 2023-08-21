@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
 import FindTrim from "findTrim/index";
-import { getAPI } from "utils/api";
+import { getWithoutQueryAPI } from "utils/api";
 import palette from "styles/palette";
 import { PATH } from "utils/constants";
 import FindTrimTooltip from "toolTips/FindTrimTooltip";
@@ -26,7 +26,7 @@ function TrimPage() {
     navigate("/detail/engines");
   }
   useEffect(() => {
-    getAPI(PATH.TRIM)
+    getWithoutQueryAPI(PATH.TRIM)
       .then((result) => {
         setTrimData(result);
         cachedTrimData = result;
@@ -34,8 +34,11 @@ function TrimPage() {
       .catch((error) => {
         if (error) return <ServerErrorPage />;
       });
+  }, []);
+
+  useEffect(() => {
     setPreLoadData([]);
-    getAPI(PATH.COLOR.EXTERIOR, { trimId: 4 })
+    getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: 4 })
       .then((result) => {
         result.map((item) => {
           setPreLoadData((prev) => [...prev, item.carImgUrls]);

@@ -16,7 +16,7 @@ import OutsideColorBoxContainer from "colorSelection/OutsideColorBoxContainer";
 import InnerColorBoxContainer from "colorSelection/InnerColorBoxContainer";
 import InnerColorContent from "content/InnerColorContent";
 import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "utils/actionType";
-import { getAPI } from "utils/api";
+import { getWithoutQueryAPI } from "utils/api";
 import { DEFAULT_INTERIROR_COLOR, PATH } from "utils/constants";
 import WarningModal from "modals/WarningModal";
 import ServerErrorPage from "./ServerErrorPage";
@@ -56,7 +56,7 @@ function ColorPage() {
   }, [tab]);
 
   useEffect(() => {
-    getAPI(PATH.COLOR.EXTERIOR, { trimId: car.trim.trimId })
+    getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: car.trim.trimId })
       .then((result) => {
         setExteriorData(result);
         cachedExterior = result;
@@ -69,7 +69,7 @@ function ColorPage() {
 
   useEffect(() => {
     if (car.color.exterior.exteriorId !== undefined) {
-      getAPI(PATH.COLOR.INTERIOR, {
+      getWithoutQueryAPI(PATH.COLOR.INTERIOR, {
         trimId: car.trim.trimId,
         exteriorId: car.color.exterior.exteriorId,
       })

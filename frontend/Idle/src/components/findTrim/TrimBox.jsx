@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { stateContext, dispatchContext } from "utils/context";
 import { SET_DISABLE_FUNCTION_ID, PUSH_DISABLE_FUNCTION_ID, SET_TEMPCAR } from "utils/actionType";
 import { PATH } from "utils/constants";
-import { disableFunctionGetAPI } from "utils/api";
+import { getWithQueryAPI } from "utils/api";
 
 function TrimBox({
   name,
@@ -29,7 +29,7 @@ function TrimBox({
     }
     if (isActive) {
       const fetchGet = async () => {
-        const result = await disableFunctionGetAPI(PATH.FIND.TRIM, { trimId: trimId });
+        const result = await getWithQueryAPI(PATH.FIND.TRIM, { trimId: trimId });
         result.map((item) => {
           stateDispatch({ type: PUSH_DISABLE_FUNCTION_ID, payload: item.functionId });
         });
