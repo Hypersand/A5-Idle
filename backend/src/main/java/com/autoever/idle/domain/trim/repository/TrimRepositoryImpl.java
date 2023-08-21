@@ -4,39 +4,38 @@ import com.autoever.idle.domain.trim.dto.TrimDescriptionDto;
 import com.autoever.idle.domain.trim.dto.TrimDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
 public class TrimRepositoryImpl implements TrimRepository {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<TrimDto> findAll(Long carTypeId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("carTypeId", carTypeId);
+
+        RowMapper<TrimDto> rowMapper = new BeanPropertyRowMapper<>(TrimDto.class);
+
         return jdbcTemplate.query(
-                "select * from TRIM where TRIM.car_type_id = ?",
-                (rs, rowNum) -> new TrimDto(
-                        rs.getLong("trim_id"),
-                        rs.getString("name"),
-                        rs.getInt("price"),
-                        rs.getString("img_url"),
-                        rs.getString("description"),
-                        rs.getString("purchase_rate")
-                ),
-                carTypeId
-        );
+                "select trim_id, name, price, img_url, description, purchase_rate from TRIM where car_type_id = :carTypeId",
+                param, rowMapper);
     }
 
     public TrimDescriptionDto findByTrimId(Long trimId) {
-        String query = "select description as trimDescription from TRIM where trim_id = ?";
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("trimId", trimId);
 
-        RowMapper<TrimDescriptionDto> rowMapper = new BeanPropertyRowMapper<>();
+        String query = "select description as trimDescription from TRIM where trim_id = :trimId";
 
-        return jdbcTemplate.queryForObject(query, rowMapper, trimId);
+        RowMapper<TrimDescriptionDto> rowMapper = new BeanPropertyRowMapper<>(TrimDescriptionDto.class);
+
+        return jdbcTemplate.queryForObject(query, param, rowMapper);
     }
 }
