@@ -6,9 +6,12 @@ import { useContext, useState } from "react";
 import TrimDetailModal from "../trimDetailModal/TrimDetailModal";
 import { carContext } from "../../utils/context";
 import ModifyButton from "../common/buttons/ModifyButton";
+import { getAPI } from "../../utils/api";
+import { PATH, TRANSLATE } from "../../utils/constants";
 
 function BillOptionContainer({ added, confused, data }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [optionData, setOptionData] = useState(null);
   const { car } = useContext(carContext);
   const addedData =
     data &&
@@ -32,14 +35,20 @@ function BillOptionContainer({ added, confused, data }) {
     navigate("/option/all");
   }
 
+  async function setModalOn() {
+    setIsOpen(true);
+    const result = await getAPI(PATH.OPTION.DEFAULT, { trimId: TRANSLATE[car.trim.name] });
+    setOptionData(result);
+  }
+  function setModalOff() {
+    setIsOpen(false);
+  }
   return (
     <StContainer>
       <StTop>
         <StTitle>옵션</StTitle>
         <StSub
-          onClick={() => {
-            setIsOpen(true);
-          }}
+          onClick={setModalOn}
         >
           기본 포함 옵션 {">"}
         </StSub>
@@ -61,11 +70,10 @@ function BillOptionContainer({ added, confused, data }) {
         <TrimDetailModal
           trim={car.trim.name}
           desc={data?.trimDescription}
-          setModalOff={() => {
-            setIsOpen(false);
-          }}
+          setModalOff={setModalOff}
           defaultFunctions={data?.defaultFunctions}
           modalPosition={"carMasterModal"}
+          optionData={optionData}
         />
       ) : null}
     </StContainer>

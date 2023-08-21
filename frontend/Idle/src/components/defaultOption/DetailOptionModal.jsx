@@ -4,8 +4,7 @@ import { ReactComponent as CloseButton } from "images/esc.svg";
 import palette from "styles/palette";
 import { useState } from "react";
 
-function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
-  const stringMaxLength = 23;
+function DetailOptionModal({ title, description, functionImgUrl, onClose, modalPosition }) {
   const [animationstate, setAnimationState] = useState(false);
   function clickClose() {
     setAnimationState(true);
@@ -13,19 +12,13 @@ function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
       onClose();
     }, 300);
   }
-  function checkLength() {
-    if (title.length > stringMaxLength) {
-      return title.slice(0, stringMaxLength) + "...";
-    }
-    return title;
-  }
   return createPortal(
     <ModalContainer>
       <ModalBackground onClick={clickClose} />
       <StContainer $animationstate={animationstate}>
         <StBox>
           <StTitle>
-            {checkLength()}
+            {title}
             <StCloseButton onClick={clickClose} />
           </StTitle>
           <StImg $imgUrl={functionImgUrl} />
@@ -37,19 +30,19 @@ function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
         </StSubDescription>
       </StContainer>
     </ModalContainer>,
-    document.getElementById("modal")
+    document.getElementById(modalPosition)
   );
 }
 
 export default DetailOptionModal;
 
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  width: 1280px;
-  height: 720px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,7 +62,7 @@ const StBox = styled.div`
   height: 335px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 45px;
   margin-top: 24px;
   margin-left: 44px;
 `;
@@ -124,6 +117,7 @@ const StCloseButton = styled(CloseButton)`
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: translate(90%, 0%);
   cursor: pointer;
 `;
 

@@ -37,6 +37,7 @@ function TrimPage() {
   }, []);
 
   useEffect(() => {
+    setPreLoadData([]);
     getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: 4 })
       .then((result) => {
         result.map((item) => {
@@ -56,7 +57,7 @@ function TrimPage() {
       setLoaderIdx((prev) => prev + 1);
     }
   }
-
+  console.log(preLoadData);
   return (
     <>
       {trimData ? <TrimMain data={trimData} onMouseEnter={handleMouseEnter} /> : <Loading />}

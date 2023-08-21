@@ -6,13 +6,6 @@ import palette from "styles/palette";
 
 function ItemBox({ functionName, functionImgUrl, functionDescription }) {
   const [showDetail, setShowDetail] = useState(false);
-  const stringMaxLength = 100;
-  function checkLength() {
-    if (functionName.length > stringMaxLength) {
-      return functionName.slice(0, stringMaxLength) + "...";
-    }
-    return functionName;
-  }
   function handleClose() {
     setShowDetail(false);
   }
@@ -26,7 +19,7 @@ function ItemBox({ functionName, functionImgUrl, functionDescription }) {
         <StImgContainer>
           <StImg src={functionImgUrl} />
         </StImgContainer>
-        <StDescription>{checkLength()}</StDescription>
+        <StDescription>{functionName}</StDescription>
         <StDetailButton>
           자세히 보기
           <ArrowRight />
@@ -38,6 +31,7 @@ function ItemBox({ functionName, functionImgUrl, functionDescription }) {
           functionImgUrl={functionImgUrl}
           description={functionDescription}
           onClose={handleClose}
+          modalPosition={"modal"}
         />
       )}
     </Fragment>

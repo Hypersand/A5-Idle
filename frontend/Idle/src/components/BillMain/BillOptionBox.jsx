@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { styled } from "styled-components";
 import { carContext } from "utils/context";
 import {
@@ -7,8 +7,10 @@ import {
   PUSH_ADDITIONAL_OPTION,
   PUSH_CONFUSING_OPTION,
 } from "utils/actionType";
+import DetailOptionModal from "../defaultOption/DetailOptionModal";
 
 function BillOptionBox({ isAdded, data }) {
+  const [isOpen, setIsOpen] = useState(false)
   const { car, dispatch } = useContext(carContext);
 
   function btnClicked() {
@@ -35,16 +37,31 @@ function BillOptionBox({ isAdded, data }) {
 
   return (
     <StContainer>
-      <StImg src={data?.optionImgUrl}></StImg>
-      <StContent>
-        <StCategory>{data?.optionCategory}</StCategory>
-        <StOptionName>{data?.optionName}</StOptionName>
-        <STOptionDesc>{data?.optionDescription === "-" ? "" : data?.optionDescription}</STOptionDesc>
-      </StContent>
+      <StHoverContainer onClick={() => { setIsOpen(true) }}>
+        <StImageContainer>
+          <StImg src={data?.optionImgUrl}></StImg>
+        </StImageContainer>
+        <StContent>
+          <StCategory className="optionCategory">{data?.optionCategory}</StCategory>
+          <StOptionName className="optionName">{data?.optionName}</StOptionName>
+          <STOptionDesc className="optionDesc">{data?.optionDescription === "-" ? "" : data?.optionDescription}</STOptionDesc>
+        </StContent>
+      </StHoverContainer>
       <StBtn onClick={btnClicked} $isAdd={isAdded}>
         {isAdded ? "삭제하기" : "확정하기"}
       </StBtn>
       <StPrice>{data?.optionPrice.toLocaleString()} 원</StPrice>
+      {isOpen && (
+        <DetailOptionModal
+          title={data?.optionName}
+          description={data?.optionDescription === "-" ? "" : data?.optionDescription}
+          functionImgUrl={data?.optionImgUrl}
+          onClose={() => {
+            setIsOpen(false)
+          }}
+          modalPosition={"carMasterModal"}
+        />
+      )}
     </StContainer>
   );
 }
@@ -57,11 +74,13 @@ const StContainer = styled.div`
   background: ${({ theme }) => theme.White};
   justify-content: space-between;
   align-items: center;
+
 `;
 
 const StImg = styled.img`
-  width: 154px;
-  height: 120px;
+  width: 100%;
+  height: 100%;
+
 `;
 
 const StContent = styled.div`
@@ -73,6 +92,7 @@ const StContent = styled.div`
   align-items: flex-start;
   gap: 8px;
   flex-shrink: 0;
+  margin-left: 20px;
 `;
 const StCategory = styled.div`
   display: flex;
@@ -99,9 +119,10 @@ const StOptionName = styled.div`
   font-weight: 700;
   line-height: 28px;
   letter-spacing: -0.66px;
-  text-align: center;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
   text-overflow: ellipsis;
 `;
 
@@ -148,3 +169,21 @@ const StPrice = styled.div`
   text-align: right;
   width: 160px;
 `;
+
+const StImageContainer = styled.div`
+  overflow: hidden;
+  width: 154px;
+  height: 120px;
+`
+const StHoverContainer = styled.div`
+  display: flex;
+  &:hover img{
+    scale: 1.05;
+  }
+  &:hover .optionName{
+    text-decoration: underline;
+  }
+  &:hover .optionDesc{
+    text-decoration: underline;
+  }
+`

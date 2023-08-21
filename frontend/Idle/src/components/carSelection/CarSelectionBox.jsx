@@ -8,6 +8,8 @@ function CarSelectionBox({ isSelected, data, setSelectedCar }) {
       <StName>{data.carName}</StName>
       <StPrice>{data.carPrice.toLocaleString()}원~</StPrice>
       {data.logoImgUrl && <StWheel src={data.logoImgUrl}></StWheel>}
+      {/* {data.isNew && <StNew></StNew>} */}
+      <StNew>New</StNew>
     </StContainer>
   );
 }
@@ -15,6 +17,7 @@ function CarSelectionBox({ isSelected, data, setSelectedCar }) {
 export default CarSelectionBox;
 
 const StContainer = styled.div`
+  position: relative;
   cursor: pointer;
   display: flex;
   width: 241px;
@@ -68,4 +71,24 @@ const StPrice = styled.div`
 const StWheel = styled.img`
   width: 66px;
   height: 18px;
+`;
+
+const StNew = styled.div`
+  position: absolute;
+  width: 33px;
+  height: 24px;
+  top: 0;
+  left: 0;
+  padding: 0px 8px;
+  background: ${palette.NavyBlue_4};
+
+  color: ${palette.NavyBlue_5};
+  font-family: "Hyundai Sans Text KR";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.48px;
+  text-align: center;
+  border-radius: 3px;
 `;

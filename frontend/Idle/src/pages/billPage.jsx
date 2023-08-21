@@ -1,4 +1,4 @@
-import { keyframes, styled } from "styled-components";
+import { css, keyframes, styled } from "styled-components";
 import Header from "layout/Header";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
@@ -21,6 +21,20 @@ function BillPage() {
   const [carMasterVisible, setCarMasterVisible] = useState(false);
   const [tooltipState, setTooltipState] = useState(true);
   const [billData, setBillData] = useState(cachedBillData);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    const position = window.scrollY;
+    setScrollPosition(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   function carMasterBtnClicked() {
     setCarMasterVisible(true);
     setTooltipState(false);
@@ -49,6 +63,10 @@ function BillPage() {
         });
     }
   }, []);
+  function scrollTop() {
+    document.documentElement.scrollTop = 0;
+  }
+
   return (
     <StWrapper>
       <StContainer id={"carMasterModal"} ref={billRef}>
@@ -64,7 +82,7 @@ function BillPage() {
         <CarContainer $src={JSON.stringify(car.carImg)} />
         <BlueBgBottom />
         <StConfirmContainer>
-          <StConfirmText>
+          <StConfirmText onClick={scrollTop} $scrollPosition={scrollPosition}>
             <p>예상 가격</p>
             <h1>{car.getAllSum().toLocaleString()} 원</h1>
           </StConfirmText>
@@ -126,7 +144,7 @@ const BlueBG = styled.div`
 `;
 const BlueBgBottom = styled(BlueBG)`
   position: absolute;
-  height: 267px;
+  height: 100%;
   top: 414px;
   z-index: -1;
   animation: ${keyframes`
@@ -194,17 +212,35 @@ const CarContainer = styled.div`
 `;
 const StConfirmContainer = styled.div`
   display: flex;
+  position:absolute;
   flex-direction: row;
+  top:420px;
+  right: 100px;
   gap: 40px;
+    justify-content: center;
+    align-items: flex-end;
 `;
+const fixedAnimation = css`
+  position:fixed;
+  flex-direction: column;
+  right: 60px;
+  bottom: 120px;
+  height: fit-content;
+  border-radius: 8px;
+  padding: 10px 20px 10px 20px;
+  border: 1px ridge #dde4f8;
+  background-color: white;
+`
 const StConfirmText = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
   color: #222;
   top: 580px;
   gap: 8px;
   right: 320px;
+  cursor: pointer;
+  ${({ $scrollPosition }) =>
+    $scrollPosition > 500 ? fixedAnimation : ""};
   p {
     font-family: "Hyundai Sans Text KR";
     font-size: 16px;
@@ -224,7 +260,6 @@ const StConfirmText = styled.div`
   }
 `;
 const StButtonContainer = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
   gap: 4px;
