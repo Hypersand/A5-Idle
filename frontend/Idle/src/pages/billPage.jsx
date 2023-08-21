@@ -11,6 +11,7 @@ import { submitPostAPI } from "utils/api";
 import { PATH } from "utils/constants";
 import WarningModal from "../components/common/modals/WarningModal";
 import ReactToPrint from "react-to-print";
+import ServerErrorPage from "./ServerErrorPage";
 
 let cachedBillData = null;
 
@@ -38,10 +39,14 @@ function BillPage() {
         exteriorId: car.color.exterior.exteriorId,
         interiorId: car.color.interior.interiorId,
         selectedOptionIds: additionalOptionIds,
-      }).then((result) => {
-        setBillData(result);
-        cachedBillData = result;
-      });
+      })
+        .then((result) => {
+          setBillData(result);
+          cachedBillData = result;
+        })
+        .catch((error) => {
+          if (error) return <ServerErrorPage />;
+        });
     }
   }, []);
   return (
@@ -64,7 +69,11 @@ function BillPage() {
             <h1>{car.getAllSum().toLocaleString()} 원</h1>
           </StConfirmText>
           <StButtonContainer>
-            <StTooltipContainer onClick={() => { setTooltipState(false) }}>
+            <StTooltipContainer
+              onClick={() => {
+                setTooltipState(false);
+              }}
+            >
               <StTooltip isActive={tooltipState} />
             </StTooltipContainer>
 
@@ -119,7 +128,7 @@ const BlueBgBottom = styled(BlueBG)`
   position: absolute;
   height: 267px;
   top: 414px;
-  z-index: -1;  
+  z-index: -1;
   animation: ${keyframes`
   0% {
     transform: translateY(20%);
@@ -166,7 +175,7 @@ const CarContainer = styled.div`
   flex-shrink: 0;
   top: 130px;
   left: 50px;
-  background-image: url(${({ $src }) => $src});  
+  background-image: url(${({ $src }) => $src});
   animation: ${keyframes`
   0% {
     transform: translateX(20%)translateY(-3%);

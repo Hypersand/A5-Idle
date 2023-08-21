@@ -21,6 +21,7 @@ import OptionMain from "optionMain/index";
 import palette from "styles/palette";
 import { submitPostAPI } from "utils/api";
 import { carContext } from "utils/context";
+import ServerErrorPage from "./ServerErrorPage";
 import ConfusingTooltip from "toolTips/ConfusingTooltip";
 import WarningModal from "../components/common/modals/WarningModal";
 
@@ -37,7 +38,6 @@ function navigateTo(car, navigate) {
   else if (car.color.exterior.name === undefined) navigate("/color/exterior");
   else if (car.color.interior.name === undefined) navigate("/color/interior");
 }
-
 
 function filterData(data, currentTab) {
   if (currentTab === ALL) return data;
@@ -60,7 +60,7 @@ function OptionPage() {
   const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
   const scrollBar = useRef();
   const navigate = useNavigate();
-  let selectedOptionIds = []
+  let selectedOptionIds = [];
 
   useLayoutEffect(() => {
     if (!scrollBar.current) {
@@ -84,19 +84,23 @@ function OptionPage() {
   }, [scrollBar.current]);
 
   useLayoutEffect(() => {
-    selectedOptionIds = []
-    car.option.additional.map((item) => selectedOptionIds.push(item.optionId))
-    car.option.confusing.map((item) => selectedOptionIds.push(item.optionId))
+    selectedOptionIds = [];
+    car.option.additional.map((item) => selectedOptionIds.push(item.optionId));
+    car.option.confusing.map((item) => selectedOptionIds.push(item.optionId));
     async function fetchData() {
       await submitPostAPI(PATH.OPTION.GET, {
         trimId: car.trim.trimId,
         selectedOptionIds: selectedOptionIds,
         engineId: car.detail.engines.id,
-      }).then((res) => {
-        if (res === cachedOptionData) return
-        setData(res);
-        cachedOptionData = res;
-      });
+      })
+        .then((res) => {
+          if (res === cachedOptionData) return;
+          setData(res);
+          cachedOptionData = res;
+        })
+        .catch((error) => {
+          if (error) return <ServerErrorPage />;
+        });
     }
     fetchData();
   }, [car.option]);
@@ -133,7 +137,7 @@ function OptionPage() {
         navigate(`/option/${tabs[currentIndex + 1]}`);
       } else {
         if (car.getAllOptionChecked()) navigate("/bill");
-        setIsOpen(true)
+        setIsOpen(true);
       }
     } else if (direction === "prev") {
       if (currentIndex > 0) {

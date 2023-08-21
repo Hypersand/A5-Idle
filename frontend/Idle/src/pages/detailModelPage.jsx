@@ -20,6 +20,7 @@ import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "utils
 import { PATH } from "utils/constants";
 import { getAPI } from "../utils/api";
 import RemoveOptionModal from "../components/common/modals/RemoveOptionModal";
+import ServerErrorPage from "./ServerErrorPage";
 
 let cachedData = null;
 
@@ -35,10 +36,14 @@ function DetailModelPage() {
   const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES];
 
   useEffect(() => {
-    getAPI(PATH.DETAIL, `trimId=${TRANSLATE[car.trim.name]}`).then((res) => {
-      setDetailData(res);
-      cachedData = res;
-    });
+    getAPI(PATH.DETAIL, `trimId=${TRANSLATE[car.trim.name]}`)
+      .then((res) => {
+        setDetailData(res);
+        cachedData = res;
+      })
+      .catch((error) => {
+        if (error) return <ServerErrorPage />;
+      });
   }, []);
 
   useEffect(() => {

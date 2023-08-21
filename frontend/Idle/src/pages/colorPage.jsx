@@ -19,6 +19,7 @@ import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "utils
 import { getAPI } from "utils/api";
 import { DEFAULT_INTERIROR_COLOR, PATH } from "utils/constants";
 import WarningModal from "../components/common/modals/WarningModal";
+import ServerErrorPage from "./ServerErrorPage";
 
 let cachedExterior = null;
 let cachedInterior = null;
@@ -55,11 +56,15 @@ function ColorPage() {
   }, [tab]);
 
   useEffect(() => {
-    getAPI(PATH.COLOR.EXTERIOR, { trimId: car.trim.trimId }).then((result) => {
-      setExteriorData(result);
-      cachedExterior = result;
-      dispatch({ type: SET_CAR_IMG, payload: result[0].carImgUrls[0].imgUrl });
-    });
+    getAPI(PATH.COLOR.EXTERIOR, { trimId: car.trim.trimId })
+      .then((result) => {
+        setExteriorData(result);
+        cachedExterior = result;
+        dispatch({ type: SET_CAR_IMG, payload: result[0].carImgUrls[0].imgUrl });
+      })
+      .catch((error) => {
+        if (error) return <ServerErrorPage />;
+      });
   }, []);
 
   useEffect(() => {
@@ -67,10 +72,14 @@ function ColorPage() {
       getAPI(PATH.COLOR.INTERIOR, {
         trimId: car.trim.trimId,
         exteriorId: car.color.exterior.exteriorId,
-      }).then((result) => {
-        setInteriorData(result);
-        cachedInterior = result;
-      });
+      })
+        .then((result) => {
+          setInteriorData(result);
+          cachedInterior = result;
+        })
+        .catch((error) => {
+          if (error) return <ServerErrorPage />;
+        });
     }
   }, [exteriorData]);
 

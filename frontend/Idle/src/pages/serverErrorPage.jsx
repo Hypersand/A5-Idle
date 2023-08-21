@@ -2,16 +2,16 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import MainLogoWhite from "logos/MainLogoWhite";
 
-function ErrorPage() {
+function ServerErrorPage() {
   return (
     <StContainer>
       <StLogoContainer>
         <MainLogoWhite />
       </StLogoContainer>
       <StContent>
-        <StTitle>PAGE</StTitle>
-        <StTitle>NOT</StTitle>
-        <StTitle>FOUND</StTitle>
+        <StTitle>SORRY,</StTitle>
+        <StTitle>SERVER</StTitle>
+        <StTitle>ERROR</StTitle>
         <StBoxContainer>
           <StHyperLink to="/">메인페이지로 이동</StHyperLink>
         </StBoxContainer>
@@ -20,8 +20,7 @@ function ErrorPage() {
   );
 }
 
-export default ErrorPage;
-
+export default ServerErrorPage;
 const StContainer = styled.div`
   background-image: url("https://www.hyundai-autoever.com/common/images/img-error-bg.jpg");
   position: absolute;
