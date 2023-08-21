@@ -1,12 +1,13 @@
 package com.autoever.idle.domain.carType.dto;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CarTypeDto {
     private String carName;
     private Long carPrice;
