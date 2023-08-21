@@ -96,9 +96,8 @@ public class MyTrimService {
     public List<MyTrimOptionResponse> findOptionBySelectFunctions(MyTrimSubmitRequest myTrimSubmitRequest) throws IllegalArgumentException {
         List<MyTrimOptionResponse> myTrimOptionResponseList = new ArrayList<>();
         Long trimId = myTrimSubmitRequest.getTrimId();
-        List<Map<String, Long>> functionIdList = myTrimSubmitRequest.getSelectFunctions();
-        for (Map<String, Long> stringLongMap : functionIdList) {
-            Long functionId = stringLongMap.get("functionId");
+        List<Long> functionIdList = myTrimSubmitRequest.getSelectFunctions();
+        for (Long functionId : functionIdList) {
             checkValidFunction(functionId.intValue());
             Boolean isDefault = getIsDefault(trimId, functionId);
             if (!isDefault) {
