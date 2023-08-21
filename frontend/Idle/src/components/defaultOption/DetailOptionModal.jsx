@@ -4,7 +4,7 @@ import { ReactComponent as CloseButton } from "images/esc.svg";
 import palette from "styles/palette";
 import { useState } from "react";
 
-function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
+function DetailOptionModal({ title, description, functionImgUrl, onClose, modalPosition }) {
   const stringMaxLength = 23;
   const [animationstate, setAnimationState] = useState(false);
   function clickClose() {
@@ -37,19 +37,19 @@ function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
         </StSubDescription>
       </StContainer>
     </ModalContainer>,
-    document.getElementById("modal")
+    document.getElementById(modalPosition)
   );
 }
 
 export default DetailOptionModal;
 
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  width: 1280px;
-  height: 720px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

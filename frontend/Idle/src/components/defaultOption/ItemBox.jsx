@@ -36,6 +36,7 @@ function ItemBox({ functionName, functionImgUrl, functionDescription }) {
           functionImgUrl={functionImgUrl}
           description={functionDescription}
           onClose={handleClose}
+          modalPosition={"modal"}
         />
       )}
     </Fragment>

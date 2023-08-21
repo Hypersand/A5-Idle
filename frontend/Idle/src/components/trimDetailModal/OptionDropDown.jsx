@@ -61,6 +61,7 @@ function OptionDropDown({ category, optionData }) {
           description={selectedFunctionData.functionDescription}
           functionImgUrl={selectedFunctionData.functionImgUrl}
           onClose={() => setModalVisible(false)}
+          modalPosition={"modal"}
         />
       )}
     </StContainer>
