@@ -70,7 +70,6 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
       </StMain>
     ) : null;
   }
-  console.log(isFNameOverFlow);
   return (
     <StContainer>
       {renderMain()}

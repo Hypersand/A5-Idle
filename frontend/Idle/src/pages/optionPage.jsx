@@ -19,11 +19,11 @@ import BlueButton from "buttons/BlueButton";
 import { ReactComponent as ArrowLogo } from "images/arrowOption.svg";
 import OptionMain from "optionMain/index";
 import palette from "styles/palette";
-import { submitPostAPI } from "utils/api";
 import { carContext } from "utils/context";
 import ServerErrorPage from "./ServerErrorPage";
 import ConfusingTooltip from "toolTips/ConfusingTooltip";
 import WarningModal from "modals/WarningModal";
+import { disableFunctionGetAPI } from "utils/api";
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,
@@ -88,9 +88,9 @@ function OptionPage() {
     car.option.additional.map((item) => selectedOptionIds.push(item.optionId));
     car.option.confusing.map((item) => selectedOptionIds.push(item.optionId));
     async function fetchData() {
-      await submitPostAPI(PATH.OPTION.GET, {
+      await disableFunctionGetAPI(PATH.OPTION.GET, {
         trimId: car.trim.trimId,
-        selectedOptionIds: selectedOptionIds,
+        selectedOptionIds: [selectedOptionIds],
         engineId: car.detail.engines.id,
       })
         .then((res) => {
