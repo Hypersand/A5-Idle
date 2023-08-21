@@ -18,12 +18,12 @@ public class OptionFunctionsResponse {
     private String optionPurchaseRate;
     private String optionDescription;
     private String optionCategory;
-    private String optionCanSelect = "true";
+    private boolean optionCanSelect = true;
     private List<FunctionDto> functions;
 
     public OptionFunctionsResponse(Long optionId, String optionName, Long optionPrice,
                                    String optionPurchaseRate, String optionDescription,
-                                   String optionCategory, String optionCanSelect, List<FunctionDto> functions) {
+                                   String optionCategory, boolean optionCanSelect, List<FunctionDto> functions) {
         this.optionId = optionId;
         this.optionName = optionName;
         this.optionPrice = optionPrice;
@@ -42,7 +42,7 @@ public class OptionFunctionsResponse {
                 optionDto.getOptionPurchaseRate(),
                 optionDto.getOptionDescription(),
                 optionDto.getOptionCategory(),
-                optionDto.getOptionCanSelect(),
+                optionDto.isOptionCanSelect(),
                 functions
         );
     }

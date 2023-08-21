@@ -25,7 +25,7 @@ public class OptionService {
 
         for (OptionDto optionDto : additionalOptionList) {
             if (notActivatedOptionIdList.contains(optionDto.getOptionId())) {
-                optionDto.setOptionCanSelect("false");
+                optionDto.setOptionCanSelect(false);
             }
             optionFunctionsResponseList.add(OptionFunctionsResponse.create(
                     optionDto,
