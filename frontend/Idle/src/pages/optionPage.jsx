@@ -96,7 +96,6 @@ function OptionPage() {
         if (res === cachedOptionData) return
         setData(res);
         cachedOptionData = res;
-        console.log(res);
       });
     }
     fetchData();
