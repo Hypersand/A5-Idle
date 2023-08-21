@@ -83,9 +83,15 @@ function Modal({ setVisible, onMouseEnter }) {
               text={"나가기"}
               onClick={() => {
                 clickExit(1000);
-              }} onMouseEnter={onMouseEnter}
+              }}
+              onMouseEnter={onMouseEnter}
             />
-            <BlueButton text={"확인"} isActive={state.clickActive} onClick={clickCheck} onMouseEnter={onMouseEnter} />
+            <BlueButton
+              text={"확인"}
+              isActive={state.clickActive}
+              onClick={clickCheck}
+              onMouseEnter={onMouseEnter}
+            />
           </StFindTrimContentButtonContainer>
         </StFindTrimContentContainer>
         {state.showOptionAlert && <OptionAlert text={state.optionAlert} />}

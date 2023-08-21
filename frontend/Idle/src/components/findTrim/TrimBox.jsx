@@ -77,6 +77,21 @@ const StFindTrimTrimContainer = styled.div`
   ${({ $isactive }) => $isactive === "true" && `cursor: pointer`};
   opacity: ${({ $isactive }) => ($isactive === "true" ? 1 : 0.5)};
   margin-bottom: 12px;
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: ${({ $isselected }) =>
+      $isselected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+    opacity: 0.9;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px #898989;
+  }
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StTrimBox = styled.div`
