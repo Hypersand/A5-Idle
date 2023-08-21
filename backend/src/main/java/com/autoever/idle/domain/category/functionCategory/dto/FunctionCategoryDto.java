@@ -1,5 +1,8 @@
 package com.autoever.idle.domain.category.functionCategory.dto;
 
+import lombok.Getter;
+
+@Getter
 public class FunctionCategoryDto {
 
     private Long functionCategoryId;
@@ -8,13 +11,5 @@ public class FunctionCategoryDto {
     public FunctionCategoryDto(Long functionCategoryId, String categoryName) {
         this.functionCategoryId = functionCategoryId;
         this.categoryName = categoryName;
-    }
-
-    public Long getFunctionCategoryId() {
-        return functionCategoryId;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
     }
 }
