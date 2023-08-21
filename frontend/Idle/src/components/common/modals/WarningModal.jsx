@@ -108,7 +108,7 @@ const ModalContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 1280px;
+  width: 100%;
   height: ${({ $modalPosition }) => ($modalPosition === "carMasterModal" ? "100%" : "720px")};
   display: flex;
   align-items: center;
