@@ -4,6 +4,7 @@ import com.autoever.idle.domain.exteriorColor.dto.CarExteriorImgDto;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorColorDto;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorImgUrlDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,13 +15,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@RequiredArgsConstructor
 public class ExteriorColorRepositoryImpl implements ExteriorColorRepository {
 
     private final JdbcTemplate jdbcTemplate;
-
-    public ExteriorColorRepositoryImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     public List<ExteriorColorDto> findExteriorColorsByTrimId(Long trimId) {
         String query = "select ec.exterior_color_id, ec.color, ec.color_img_url, ec.price, ec.purchase_rate " +

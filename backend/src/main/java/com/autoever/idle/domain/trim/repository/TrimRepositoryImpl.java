@@ -2,6 +2,7 @@ package com.autoever.idle.domain.trim.repository;
 
 import com.autoever.idle.domain.trim.dto.TrimDescriptionDto;
 import com.autoever.idle.domain.trim.dto.TrimDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,13 +12,10 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class TrimRepositoryImpl implements TrimRepository {
 
     private final JdbcTemplate jdbcTemplate;
-
-    public TrimRepositoryImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     public List<TrimDto> findAll(Long carTypeId) {
         return jdbcTemplate.query(

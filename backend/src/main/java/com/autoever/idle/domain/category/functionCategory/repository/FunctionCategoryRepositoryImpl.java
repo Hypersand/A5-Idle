@@ -3,6 +3,7 @@ package com.autoever.idle.domain.category.functionCategory.repository;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
 import com.autoever.idle.domain.function.dto.DefaultFunctionNameResponse;
 import com.autoever.idle.domain.function.dto.DefaultFunctionResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,12 +13,10 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class FunctionCategoryRepositoryImpl implements FunctionCategoryRepository {
-    private final JdbcTemplate jdbcTemplate;
 
-    public FunctionCategoryRepositoryImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
+    private final JdbcTemplate jdbcTemplate;
 
     public List<FunctionCategoryDto> findAll() {
         return jdbcTemplate.query(

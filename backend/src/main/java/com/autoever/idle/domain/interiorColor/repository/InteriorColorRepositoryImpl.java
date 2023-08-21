@@ -3,6 +3,7 @@ package com.autoever.idle.domain.interiorColor.repository;
 import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorImgUrlDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,14 +13,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@RequiredArgsConstructor
 public class InteriorColorRepositoryImpl implements InteriorColorRepository {
 
     private final JdbcTemplate jdbcTemplate;
-
-    public InteriorColorRepositoryImpl(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
 
     public List<InteriorColorDto> findInteriorColorByTrimIdAndExteriorId(Long trimId, Long exteriorId) {
         String query = "select IC.interior_color_id as interiorId, IC.color as interiorName, IC.price as interiorPrice, " +

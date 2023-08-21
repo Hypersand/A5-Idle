@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.trimThumbnailFunction.repository;
 
 import com.autoever.idle.domain.trimThumbnailFunction.dto.TrimThumbnailFunctionResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -9,13 +10,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class TrimThumbnailFunctionRepositoryImpl implements TrimThumbnailFunctionRepository {
 
-    private JdbcTemplate jdbcTemplate;
-
-    public TrimThumbnailFunctionRepositoryImpl(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private final JdbcTemplate jdbcTemplate;
 
     @Override
     public List<TrimThumbnailFunctionResponse> findThumbnailFunctionByTrimId(Long trimId) {
