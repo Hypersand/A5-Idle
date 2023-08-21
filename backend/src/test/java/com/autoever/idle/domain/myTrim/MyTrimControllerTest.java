@@ -20,6 +20,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -111,20 +113,17 @@ class MyTrimControllerTest {
     @DisplayName("확인 API 테스트")
     void findOptionBySelectFunctions() throws Exception {
         //given
-        JSONArray selectFunctions = new JSONArray();
-        selectFunctions.put(new JSONObject().put("functionId", 109));
-        JSONObject submitRequest = new JSONObject().put("trimId", 1);
-        submitRequest.put("selectFunctions", selectFunctions);
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("trimId", "1");
+        params.add("selectFunctions", "51,17");
         List<MyTrimOptionResponse> myTrimOptionResponseList = new ArrayList<>();
         MyTrimOptionResponse myTrimOptionResponse = new MyTrimOptionResponse(1L, "옵션 이름", 1000000L);
         myTrimOptionResponseList.add(myTrimOptionResponse);
         given(myTrimService.findOptionBySelectFunctions(any())).willReturn(myTrimOptionResponseList);
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/trims/favorite/submit")
-                .content(submitRequest.toString())
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON));
+        ResultActions resultActions = mockMvc.perform(get("/trims/favorite/submit")
+                .queryParams(params));
 
         //then
         resultActions.andExpect(status().isOk())
@@ -138,9 +137,9 @@ class MyTrimControllerTest {
     void findNotFunctionsByTrim() throws Exception {
         //given
         Map<String, Long> multiValueMap = new HashMap<>();
-        multiValueMap.put("trimId",1L);
+        multiValueMap.put("trimId", 1L);
         JSONObject trimIdRequest = new JSONObject();
-        trimIdRequest.put("trimId",1);
+        trimIdRequest.put("trimId", 1);
         List<FunctionIdResponse> functionIdResponseList = new ArrayList<>();
         FunctionIdResponse functionIdResponse = new FunctionIdResponse(1L);
         functionIdResponseList.add(functionIdResponse);

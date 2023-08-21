@@ -142,10 +142,8 @@ class MyTrimServiceTest {
     @DisplayName("내게 맞는 트림 찾기 확인버튼 API 테스트")
     void findOptionBySelects() {
         //given
-        List<Map<String, Long>> functionIdList = new ArrayList<>();
-        Map<String, Long> functionIdMap = new HashMap<>();
-        functionIdMap.put("functionId", 1L);
-        functionIdList.add(functionIdMap);
+        List<Long> functionIdList = new ArrayList<>();
+        functionIdList.add(1L);
         MyTrimSubmitRequest myTrimSubmitRequest = new MyTrimSubmitRequest(1L, functionIdList);
         MyTrimOptionResponse myTrimOptionResponse = new MyTrimOptionResponse(1L, "옵션", 400000L);
         given(trimFunctionRepository.checkDefaultFunction(anyLong(), anyLong())).willReturn("FALSE");
@@ -165,10 +163,10 @@ class MyTrimServiceTest {
     @DisplayName("트림에 선택된 기능이 존재하지 않는 기능일 경우")
     void checkTrimFunction() {
         //given
-        List<Map<String, Long>> functionIdList = new ArrayList<>();
+        List<Long> functionIdList = new ArrayList<>();
         Map<String, Long> functionIdMap = new HashMap<>();
         functionIdMap.put("functionId", 1L);
-        functionIdList.add(functionIdMap);
+        functionIdList.add(1L);
         MyTrimSubmitRequest myTrimSubmitRequest = new MyTrimSubmitRequest(1L, functionIdList);
         given(functionRepository.checkMyTrimFunction(anyInt())).willReturn("TRUE");
         given(trimFunctionRepository.checkDefaultFunction(anyLong(), anyLong())).willReturn(null);
