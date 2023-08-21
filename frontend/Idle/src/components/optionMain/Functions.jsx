@@ -20,13 +20,6 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
       : ref.scrollWidth > ref.clientWidth
       ? setIsFNameOverFlow(true)
       : setIsFNameOverFlow(false);
-    // target === "desc"
-    //   ? ref.scrollHeight > ref.clientHeight
-    //     ? setIsDescOverFlow(true)
-    //     : setIsDescOverFlow(false)
-    //   : ref.scrollHeight > ref.clientHeight
-    //   ? setIsFNameOverFlow(true)
-    //   : setIsFNameOverFlow(false);
   }
 
   useEffect(() => {
@@ -198,12 +191,10 @@ const StWrapper = styled.div`
 
 const move = keyframes`
     0% {
-      /* transform: translateX(0); */
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
     }
     100% {
-      /* transform: translateX(-50%); */
       -webkit-transform: translate3d(-100%, 0, 0);
       transform: translate3d(-100%, 0, 0);
     }
