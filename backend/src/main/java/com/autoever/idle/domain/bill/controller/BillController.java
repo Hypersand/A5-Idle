@@ -4,10 +4,7 @@ import com.autoever.idle.domain.bill.dto.BillRequest;
 import com.autoever.idle.domain.bill.dto.BillResponse;
 import com.autoever.idle.domain.bill.service.BillService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/result")
@@ -19,8 +16,8 @@ public class BillController {
         this.billService = billService;
     }
 
-    @PostMapping("/bill")
-    public ResponseEntity<BillResponse> getResultBill(@RequestBody BillRequest billRequest) {
+    @GetMapping("/bill")
+    public ResponseEntity<BillResponse> getResultBill(BillRequest billRequest) {
         BillResponse billResponse = billService.getResultBill(billRequest);
         return ResponseEntity.ok(billResponse);
     }
