@@ -85,7 +85,7 @@ class MyTrimControllerTest {
         jsonArray.put(new JSONObject().put("functionId", 109));
 
         LinkedMultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("functionId","101,17");
+        params.add("functionIds","101,17");
         List<MyTrimResponse> myTrimResponseList = new ArrayList<>();
         myTrimResponseList.add(new MyTrimResponse("Exclusive", null, false));
         myTrimResponseList.add(new MyTrimResponse("Le Blanc", false, true));
