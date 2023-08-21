@@ -119,9 +119,10 @@ const StOptionName = styled.div`
   font-weight: 700;
   line-height: 28px;
   letter-spacing: -0.66px;
-  text-align: center;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
   text-overflow: ellipsis;
 `;
 
