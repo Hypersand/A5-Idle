@@ -40,10 +40,10 @@ function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions, modalPosit
 export default TrimDetailModal;
 
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 1280px;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -92,6 +92,9 @@ const StModal = styled.div`
   transform: translate(-50%, -50%);
   transition: opacity 0.1s ease-in-out;
   animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.3s ease;
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 const StContainer = styled.div`
   display: inline-flex;

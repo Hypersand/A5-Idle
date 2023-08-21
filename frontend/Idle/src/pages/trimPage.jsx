@@ -9,9 +9,10 @@ import palette from "styles/palette";
 import { PATH } from "utils/constants";
 import FindTrimTooltip from "toolTips/FindTrimTooltip";
 import TrimMain from "../components/trimMain";
-import { preloadContext } from "../utils/context";
-import { preloadImage } from "../utils/preloader";
+import { preloadContext } from "utils/context";
+import { preloadImage } from "utils/preloader";
 import Loading from "../components/common/loading/Loading";
+import ServerErrorPage from "./ServerErrorPage";
 
 let cachedTrimData = null;
 
@@ -19,31 +20,41 @@ function TrimPage() {
   const navigate = useNavigate();
   const [toolTipStatus, setToolTipStatus] = useState(true);
   const [trimData, setTrimData] = useState(cachedTrimData);
-  const { preLoadData, setPreLoadData, loaderIdx, setLoaderIdx } = useContext(preloadContext)
+  const { preLoadData, setPreLoadData, loaderIdx, setLoaderIdx } = useContext(preloadContext);
 
   function nextBTNClicked() {
     navigate("/detail/engines");
   }
   useEffect(() => {
-    getAPI(PATH.TRIM).then((result) => {
-      setTrimData(result);
-      cachedTrimData = result;
-    });
-  }, []);
-
-  useEffect(() => {
-    getAPI(PATH.COLOR.EXTERIOR, { trimId: 4 }).then((result) => {
-      result.map((item) => { setPreLoadData((prev) => [...prev, item.carImgUrls]) })
-    });
+    getAPI(PATH.TRIM)
+      .then((result) => {
+        setTrimData(result);
+        cachedTrimData = result;
+      })
+      .catch((error) => {
+        if (error) return <ServerErrorPage />;
+      });
+    setPreLoadData([]);
+    getAPI(PATH.COLOR.EXTERIOR, { trimId: 4 })
+      .then((result) => {
+        result.map((item) => {
+          setPreLoadData((prev) => [...prev, item.carImgUrls]);
+        });
+      })
+      .catch((error) => {
+        if (error) return <ServerErrorPage />;
+      });
   }, []);
 
   function handleMouseEnter() {
-    if ((loaderIdx / 2) < preLoadData.length) {
-      preLoadData[Math.floor(loaderIdx / 2)].map((item, idx) => { idx % 2 === (loaderIdx % 2) && preloadImage(item.imgUrl) })
-      setLoaderIdx((prev) => prev + 1)
+    if (loaderIdx / 2 < preLoadData.length) {
+      preLoadData[Math.floor(loaderIdx / 2)].map((item, idx) => {
+        idx % 2 === loaderIdx % 2 && preloadImage(item.imgUrl);
+      });
+      setLoaderIdx((prev) => prev + 1);
     }
   }
-
+  console.log(preLoadData);
   return (
     <>
       {trimData ? <TrimMain data={trimData} onMouseEnter={handleMouseEnter} /> : <Loading />}
@@ -59,7 +70,11 @@ function TrimPage() {
           </StConfirmContainer>
         </StBottomContainer>
         <FindTrim onClick={setToolTipStatus} onMouseEnter={handleMouseEnter} />
-        <TrimSelectContainer onClick={() => { setToolTipStatus(false) }}>
+        <TrimSelectContainer
+          onClick={() => {
+            setToolTipStatus(false);
+          }}
+        >
           <StTooltipContainer>
             <StTooltip isActive={toolTipStatus} />
           </StTooltipContainer>

@@ -76,6 +76,9 @@ const StContainer = styled.div`
   flex-direction: column;
   transition: opacity 0.5s ease-in-out;
   animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.5s ease;
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 const fadeIn = keyframes`
   from {

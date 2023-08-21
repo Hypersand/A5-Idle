@@ -106,6 +106,12 @@ const StContainer = styled.div`
     cursor: pointer;
   }
   transition: all 0.2s ease;
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StContent = styled.div`

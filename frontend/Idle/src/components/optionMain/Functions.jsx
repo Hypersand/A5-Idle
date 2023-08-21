@@ -1,10 +1,31 @@
-import { useEffect } from "react";
-import { styled } from "styled-components";
+import { useEffect, useRef, useState } from "react";
+import { keyframes, styled } from "styled-components";
 import { ReactComponent as ArrowLeft } from "images/optionArrowLeft.svg";
 import { ReactComponent as ArrowRight } from "images/optionArrowRight.svg";
 import palette from "styles/palette";
 
 function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
+  const [isDescOverFlow, setIsDescOverFlow] = useState(false);
+  const [isFNameOverFlow, setIsFNameOverFlow] = useState(false);
+
+  const descRef = useRef();
+  const fNameRef = useRef();
+  function checkOverFlow(ref, target) {
+    if (ref === undefined || ref === null) return;
+    target === "desc"
+      ? ref.scrollHeight > ref.clientHeight
+        ? setIsDescOverFlow(true)
+        : setIsDescOverFlow(false)
+      : ref.scrollWidth > ref.clientWidth
+      ? setIsFNameOverFlow(true)
+      : setIsFNameOverFlow(false);
+  }
+
+  useEffect(() => {
+    checkOverFlow(descRef.current, "desc");
+    checkOverFlow(fNameRef.current, "fName");
+  }, [data]);
+
   useEffect(() => {
     setSelectedFunction(() => (data ? data[currentPage] : null));
   }, [currentPage]);
@@ -38,17 +59,43 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
     return data?.length > 1 ? (
       <StMain>
         <ArrowLeft onClick={leftBtnClicked} style={{ cursor: "pointer" }} />
-        {data[currentPage]?.functionName}
+
+        <StWrapper ref={fNameRef} $isOverFlow={isFNameOverFlow}>
+          <StFunctionName $isOverFlow={isFNameOverFlow}>
+            {data[currentPage]?.functionName}
+          </StFunctionName>
+        </StWrapper>
+
         <ArrowRight onClick={rightBtnClicked} style={{ cursor: "pointer" }} />
       </StMain>
     ) : null;
   }
-
+  console.log(isFNameOverFlow);
   return (
     <StContainer>
       {renderMain()}
-      {data ? <StDesc>{data[currentPage]?.functionDescription === "-" ? "" : data[currentPage]?.functionDescription}</StDesc> : <></>}
-
+      {data ? (
+        <>
+          <StDesc
+            ref={descRef}
+            $isOverFlow={isDescOverFlow}
+            onMouseEnter={() => {
+              console.log(123);
+            }}
+          >
+            {data[currentPage]?.functionDescription === "-"
+              ? ""
+              : data[currentPage]?.functionDescription}
+          </StDesc>
+          <StFullDesc>
+            {data[currentPage]?.functionDescription === "-"
+              ? ""
+              : data[currentPage]?.functionDescription}
+          </StFullDesc>
+        </>
+      ) : (
+        <></>
+      )}
 
       {renderCircle()}
     </StContainer>
@@ -76,15 +123,42 @@ const StMain = styled.div`
   margin-bottom: 16px;
 `;
 
-const StDesc = styled.div`
-  width: 280px;
-  color: ${palette.Black};
+const StFullDesc = styled.div`
+  width: 350px;
+  padding: 15px 20px;
+  background-color: #4d4d4d;
+  border-radius: 5px;
+  color: #ffffff;
+  position: absolute;
+  bottom: 0px;
+  left: 820px;
+  display: none;
+  transition: all ease 0.5s;
+  white-space: break-spaces;
+  box-shadow: 0px 0px 10px #444;
+
   font-family: "Hyundai Sans Text KR";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.39px;
+`;
+
+const StDesc = styled.div`
+  width: 280px;
+  color: ${palette.Black};
+  font-family: "Hyundai Sans Text KR";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 165%;
+  letter-spacing: -0.39px;
+  white-space: break-spaces;
+  max-height: 140px;
+  &:hover ~ ${StFullDesc} {
+    display: ${({ $isOverFlow }) => ($isOverFlow ? "block" : "none")};
+  }
 `;
 
 const StCircle = styled.div`
@@ -101,6 +175,33 @@ const StCircleContainer = styled.div`
   justify-content: center;
   position: absolute;
   bottom: 0;
-  left: 50%;
+  left: 80%;
   transform: translate(-50%);
+`;
+
+const StWrapper = styled.div`
+  position: relative;
+  height: 20px;
+  width: 240px;
+  display: flex;
+  justify-content: ${({ $isOverFlow }) => ($isOverFlow ? "flex-start" : "center")};
+  overflow: hidden;
+`;
+
+const move = keyframes`
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+`;
+
+const StFunctionName = styled.div`
+  height: 100%;
+  position: absolute;
+  white-space: nowrap;
+  animation: ${({ $isOverFlow }) => ($isOverFlow ? move : null)} 20s linear infinite;
 `;

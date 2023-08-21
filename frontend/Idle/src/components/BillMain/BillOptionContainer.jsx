@@ -65,6 +65,7 @@ function BillOptionContainer({ added, confused, data }) {
           </StBlock>
         </div>
       </StMain>
+      <hr />
       {isOpen ? (
         <TrimDetailModal
           trim={car.trim.name}

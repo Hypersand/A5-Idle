@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as ArrowDown } from "images/arrowDown.svg";
 import { useState } from "react";
 import palette from "styles/palette";
-import DetailOptionModal from "../defaultOption/DetailOptionModal";
+import DetailOptionModal from "defaultOption/DetailOptionModal";
 
 function OptionDropDown({ category, optionData, modalPosition }) {
   const [isOpen, setIsOpen] = useState(false);

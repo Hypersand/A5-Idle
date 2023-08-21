@@ -188,6 +188,9 @@ const StDiv = styled.div`
     cursor: pointer;
   }
   transition: all 0.2s ease;
+
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StTopDiv = styled.div`
@@ -235,6 +238,10 @@ const StSelected = styled.div`
   min-height: 13px;
   margin-bottom: 1px;
   margin-right: 6px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const StForDetail = styled.div`

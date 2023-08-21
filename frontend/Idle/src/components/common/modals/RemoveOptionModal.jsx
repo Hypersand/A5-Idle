@@ -5,11 +5,7 @@ import { createPortal } from "react-dom";
 import { useContext } from "react";
 import { carContext } from "utils/context";
 import palette from "styles/palette";
-import {
-  CHANGE_ENGINES,
-  POP_ADDITIONAL_OPTION,
-  POP_CONFUSING_OPTION,
-} from "../../../utils/actionType";
+import { CHANGE_ENGINES, POP_ADDITIONAL_OPTION, POP_CONFUSING_OPTION } from "utils/actionType";
 
 /**
  *
@@ -86,6 +82,8 @@ const StContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 2;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StTitle = styled.div`
@@ -146,10 +144,12 @@ const ModalBackground = styled.div`
   backdrop-filter: blur(5px);
 `;
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
   top: 0;
   left: 0;
-  width: 1280px;
+  width: 100%;
   height: 720px;
   display: flex;
   align-items: center;

@@ -58,7 +58,7 @@ function BillDetail({ item, data }) {
         ) : (
           <></>
         )}
-        <p>{price ? price.toLocaleString() : "0"} 원</p>
+        <p>+{price ? price.toLocaleString() : "0"} 원</p>
       </StDetailContainer>
     </StContainer>
   );
