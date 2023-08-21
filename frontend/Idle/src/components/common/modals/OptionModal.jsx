@@ -89,6 +89,8 @@ const StContainer = styled.div`
   z-index: 3;
   transition: opacity 0.5s ease-in-out;
   animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.5s ease;
+
+  border-radius: 5px;
 `;
 const fadeIn = keyframes`
   from {

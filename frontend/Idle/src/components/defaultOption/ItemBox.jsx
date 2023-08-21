@@ -18,9 +18,11 @@ function ItemBox({ functionName, functionImgUrl, functionDescription }) {
   }
   return (
     <Fragment>
-      <StContainer onClick={() => {
-        setShowDetail(true);
-      }}>
+      <StContainer
+        onClick={() => {
+          setShowDetail(true);
+        }}
+      >
         <StImgContainer>
           <StImg src={functionImgUrl} />
         </StImgContainer>
@@ -51,23 +53,28 @@ const StContainer = styled.div`
   height: 212px;
   border: 1px solid ${palette.Grey_2};
   background-color: ${palette.White};
-  &:hover img{
+  &:hover img {
     scale: 1.03;
   }
-  &:hover{
+  &:hover {
     background-color: ${palette.Grey_1};
     filter: brightness(1.05);
     cursor: pointer;
   }
-  &:hover button{
+  &:hover button {
     text-decoration: underline;
   }
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 const StImgContainer = styled.div`
   width: 182px;
   height: 128px;
   overflow: hidden;
-`
+`;
 const StImg = styled.img`
   box-sizing: border-box;
   width: 100%;

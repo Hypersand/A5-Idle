@@ -26,9 +26,11 @@ const StOutline = styled.div`
   display: ${({ $isActive }) => ($isActive ? "" : "none")};
   position: absolute;
   width: 184px;
-  border: 3px solid #FFF;
+  border: 3px solid #fff;
   height: 65px;
   transform: translate(2px, 2px);
+
+  border-radius: 5px;
 `;
 
 const StContainer = styled.div`
@@ -36,13 +38,20 @@ const StContainer = styled.div`
   width: 194px;
   height: 75px;
   background-color: grey;
-  outline: ${({ $isActive }) => ($isActive ? "2px" : "1px")} solid ${({ $isActive }) => ($isActive ? `${palette.NavyBlue_5}` : `${palette.Black}`)};
-  outline-offset:  ${({ $isActive }) => ($isActive ? "-2px" : "-1px")};
+  outline: ${({ $isActive }) => ($isActive ? "2px" : "1px")} solid
+    ${({ $isActive }) => ($isActive ? `${palette.NavyBlue_5}` : `${palette.Black}`)};
+  outline-offset: ${({ $isActive }) => ($isActive ? "-2px" : "-1px")};
   background-image: ${({ $img }) => `url(${$img})`};
   &:hover {
     cursor: pointer;
-    filter: brightness(105%)
+    filter: brightness(105%);
   }
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StName = styled.div`

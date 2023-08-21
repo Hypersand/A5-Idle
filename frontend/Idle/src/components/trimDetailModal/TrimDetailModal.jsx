@@ -92,6 +92,9 @@ const StModal = styled.div`
   transform: translate(-50%, -50%);
   transition: opacity 0.1s ease-in-out;
   animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.3s ease;
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 const StContainer = styled.div`
   display: inline-flex;

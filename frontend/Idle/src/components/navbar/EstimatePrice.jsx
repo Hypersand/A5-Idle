@@ -27,10 +27,7 @@ function EstimatePrice() {
   return (
     <StDiv>
       <StTitle>예상 가격</StTitle>
-      <StPrice>
-        {Math.round(prevMoney).toLocaleString()}
-        원
-      </StPrice>
+      <StPrice>{Math.round(prevMoney).toLocaleString()}원</StPrice>
     </StDiv>
   );
 }
@@ -44,6 +41,9 @@ const StDiv = styled.div`
   padding: 11px 11px;
   border: 1px solid ${palette.CoolGrey_1};
   flex-direction: column;
+
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StTitle = styled.div`

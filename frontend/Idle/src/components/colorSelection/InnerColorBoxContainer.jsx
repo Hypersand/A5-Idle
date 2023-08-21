@@ -57,18 +57,25 @@ const StInnerColorBox = styled.div`
   box-sizing: border-box;
   width: 200px;
   height: 164px;
-  outline: ${({ $isSelected }) => ($isSelected ? "2px" : "1px")} solid ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.Grey_2}`)};
-  outline-offset:  ${({ $isSelected }) => ($isSelected ? "-2px" : "-1px")};
+  outline: ${({ $isSelected }) => ($isSelected ? "2px" : "1px")} solid
+    ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.Grey_2}`)};
+  outline-offset: ${({ $isSelected }) => ($isSelected ? "-2px" : "-1px")};
   background-color: ${palette.White};
   gap: 2px;
   cursor: pointer;
-  &:hover img{
+  &:hover img {
     scale: 1.03;
   }
-  &:hover{
+  &:hover {
     background-color: ${palette.Grey_1};
     filter: brightness(1.1);
   }
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StInnerImageContainer = styled.div`
@@ -76,7 +83,7 @@ const StInnerImageContainer = styled.div`
   width: 196px;
   height: 83px;
   transform: translate(2px, 2px);
-`
+`;
 const StImage = styled.img`
   width: 100%;
   height: 100%;
@@ -125,7 +132,7 @@ const StOutline = styled.div`
   display: ${({ $isSelected }) => ($isSelected ? "" : "none")};
   position: absolute;
   width: 190px;
-  border: 3px solid #FFF;
+  border: 3px solid #fff;
   height: 150px;
   transform: translate(2px, 2px);
   z-index: 1;

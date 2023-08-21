@@ -21,11 +21,25 @@ const StContainer = styled.div`
   height: 212px;
   padding: 8px 0px;
   border: 1px solid ${({ $isSelected }) => ($isSelected ? palette.NavyBlue_4 : palette.CoolGrey_1)};
-  background: ${({ $isSelected }) => ($isSelected ? palette.NavyBlue_1 : palette.Grey_1)};
+  background: ${({ $isSelected }) => ($isSelected ? palette.NavyBlue_5 : palette.Grey_1)};
+  color: ${({ $isSelected }) => ($isSelected ? palette.White : palette.Black)};
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+
+  &:hover {
+    background-color: ${({ $isSelected }) =>
+      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+    opacity: 0.9;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px #898989;
+  }
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StImg = styled.img`
@@ -33,7 +47,6 @@ const StImg = styled.img`
   height: 130px;
 `;
 const StName = styled.div`
-  color: ${palette.Black};
   font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;

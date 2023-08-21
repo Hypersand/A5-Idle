@@ -188,6 +188,9 @@ const StDiv = styled.div`
     cursor: pointer;
   }
   transition: all 0.2s ease;
+
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StTopDiv = styled.div`
