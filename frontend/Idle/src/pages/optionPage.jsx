@@ -1,5 +1,5 @@
 import DefaultOption from "defaultOption/index";
-import { useEffect, useRef, useState, useContext } from "react";
+import { useEffect, useRef, useState, useContext, useLayoutEffect } from "react";
 import OptionBox from "boxs/OptionBox";
 import {
   ALL,
@@ -61,7 +61,7 @@ function OptionPage() {
   const scrollBar = useRef();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!scrollBar.current) {
       return;
     }
@@ -82,7 +82,7 @@ function OptionPage() {
     };
   }, [scrollBar.current]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     async function fetchData() {
       await submitPostAPI(PATH.OPTION.GET, {
         trimId: car.trim.trimId,
@@ -97,17 +97,17 @@ function OptionPage() {
     fetchData();
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setFilteredData(filterData(data, currentTab));
   }, [data, currentTab]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setCurrentTab(tab);
     setCurrentPage(0);
     setSelectedOption("");
   }, [tab]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (selectedOption === "") {
       setSelectedFunction(filteredData[0]?.functions[0]);
     } else {
@@ -117,7 +117,7 @@ function OptionPage() {
     setCurrentPage(0);
   }, [selectedOption]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setSelectedFunction(filteredData[0]?.functions[0]);
   }, [filteredData]);
 
