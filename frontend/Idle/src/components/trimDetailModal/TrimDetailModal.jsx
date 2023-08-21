@@ -27,7 +27,7 @@ function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions, modalPosit
           </StHeaderContainer>
           <StOptionContainer>
             {defaultFunctions.map((item, idx) => (
-              <OptionDropDown key={idx} category={item} optionData={optionData} />
+              <OptionDropDown key={idx} category={item} optionData={optionData} modalPosition={modalPosition} />
             ))}
           </StOptionContainer>
         </StContainer>
