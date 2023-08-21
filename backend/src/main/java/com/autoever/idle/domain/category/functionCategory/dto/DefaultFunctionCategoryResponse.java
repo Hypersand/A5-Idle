@@ -1,13 +1,16 @@
 package com.autoever.idle.domain.category.functionCategory.dto;
 
 import com.autoever.idle.domain.function.dto.DefaultFunctionNameResponse;
-import lombok.Builder;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-@Builder
 @Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DefaultFunctionCategoryResponse {
 
     private Long categoryId;
