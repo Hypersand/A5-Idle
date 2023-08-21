@@ -14,7 +14,7 @@ export async function getAPI(path, data = {}) {
     return response;
   } catch (error) {
     console.error(error);
-    return null;
+    return { error };
   }
 }
 
@@ -34,7 +34,7 @@ export async function disableFunctionGetAPI(path, data = {}) {
     return response;
   } catch (error) {
     console.error(error);
-    return null;
+    return error;
   }
 }
 
@@ -58,7 +58,7 @@ export async function optionPostAPI(path, data) {
     return response;
   } catch (error) {
     console.error(error);
-    return null;
+    return error;
   }
 }
 
@@ -78,6 +78,6 @@ export async function submitPostAPI(path, data) {
     return response;
   } catch (error) {
     console.error(error);
-    return null;
+    return error;
   }
 }

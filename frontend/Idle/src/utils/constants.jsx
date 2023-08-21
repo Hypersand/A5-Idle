@@ -291,3 +291,6 @@ export const findTrimInitialState = {
   disableFunctionId: [],
   optionAlert: [],
 };
+
+export const optionModalWarningMent =
+  "* 홈페이지의 사진과 설명은 참고용이며 실제 차량에 탑재되는 기능과 설명은 상이할 수 있으니, 차량 구입 전 카마스터를 통해 확인 바랍니다.";

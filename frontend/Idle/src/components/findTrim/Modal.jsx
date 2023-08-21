@@ -17,8 +17,8 @@ import {
 } from "utils/actionType";
 import palette from "styles/palette";
 import { PATH } from "utils/constants";
-import { optionPostAPI, submitPostAPI } from "../../utils/api";
-import { PUSH_OPTION_ALERT } from "../../utils/actionType";
+import { optionPostAPI, submitPostAPI } from "utils/api";
+import { PUSH_OPTION_ALERT } from "utils/actionType";
 
 function Modal({ setVisible, onMouseEnter }) {
   const { dispatch } = useContext(carContext);

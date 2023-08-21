@@ -5,10 +5,10 @@ import { carContext } from "utils/context";
 import TrimDetailModal from "trimDetailModal/TrimDetailModal";
 import { CHANGE_TRIM } from "utils/actionType";
 import palette from "styles/palette";
-import WarningModal from "../modals/WarningModal";
+import WarningModal from "modals/WarningModal";
 import { CLEAR_OPTION } from "utils/actionType";
-import { PATH, TRANSLATE } from "../../../utils/constants";
-import { getAPI } from "../../../utils/api";
+import { PATH, TRANSLATE } from "utils/constants";
+import { getAPI } from "utils/api";
 
 function NormalTrimBox({
   purchaseRate,

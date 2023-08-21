@@ -1,14 +1,14 @@
 import { styled } from "styled-components";
-import palette from "../../styles/palette";
+import palette from "styles/palette";
 import { useEffect, useRef, useState } from "react";
 import { ReactComponent as EscapeButton } from "images/esc.svg";
-import BlueButton from "../common/buttons/BlueButton";
+import BlueButton from "buttons/BlueButton";
 import DillerBoxContainer from "./DillerBoxContainer";
-import CategoryTabs from "../common/tabs/CategoryTabs";
+import CategoryTabs from "tabs/CategoryTabs";
 import { createPortal } from "react-dom";
 import Address from "./Address";
-import { getAPI } from "../../utils/api";
-import { DISTANCE, PATH, SALERATE } from "../../utils/constants";
+import { getAPI } from "utils/api";
+import { DISTANCE, PATH, SALERATE } from "utils/constants";
 import CustomOverlay from "./CustomOverlay";
 const { kakao } = window;
 
@@ -301,6 +301,7 @@ const StBtnContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
+  cursor: pointer;
 `;
 
 const StMain = styled.div`

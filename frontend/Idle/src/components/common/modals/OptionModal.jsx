@@ -5,7 +5,8 @@ import { ReactComponent as X } from "images/esc.svg";
 import { useContext, useState } from "react";
 import { stateContext, dispatchContext } from "utils/context";
 import palette from "styles/palette";
-import { PUSH_SELECTED_OPTION } from "../../../utils/actionType";
+import { PUSH_SELECTED_OPTION } from "utils/actionType";
+import { optionModalWarningMent } from "utils/constants";
 
 function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
   const { state } = useContext(stateContext);
@@ -43,10 +44,7 @@ function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
           alt="sampleImage"
           style={{ width: "452px", height: "256px", marginBottom: "16px" }}
         />
-        <StNote>
-          * 홈페이지의 사진과 설명은 참고용이며 실제 차량에 탑재되는 기능과 설명은 상이할 수 있으니,
-          차량 구입 전 카마스터를 통해 확인 바랍니다.
-        </StNote>
+        <StNote>{optionModalWarningMent}</StNote>
         <StBtnContainer>
           <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
         </StBtnContainer>

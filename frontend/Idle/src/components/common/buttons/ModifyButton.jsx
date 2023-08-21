@@ -39,7 +39,7 @@ const StTitle = styled.p`
 `;
 
 const StArrow = styled(ArrowRight)`
-  path{
+  path {
     fill: ${palette.CoolGrey_2};
   }
-`
+`;
