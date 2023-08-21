@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import TrimDetailModal from "../trimDetailModal/TrimDetailModal";
 import { carContext } from "../../utils/context";
 import ModifyButton from "../common/buttons/ModifyButton";
-import { getAPI } from "../../utils/api";
+import { getWithQueryAPI } from "../../utils/api";
 import { PATH, TRANSLATE } from "../../utils/constants";
 
 function BillOptionContainer({ added, confused, data }) {
@@ -37,7 +37,7 @@ function BillOptionContainer({ added, confused, data }) {
 
   async function setModalOn() {
     setIsOpen(true);
-    const result = await getAPI(PATH.OPTION.DEFAULT, { trimId: TRANSLATE[car.trim.name] });
+    const result = await getWithQueryAPI(PATH.OPTION.DEFAULT, { trimId: TRANSLATE[car.trim.name] });
     setOptionData(result);
   }
   function setModalOff() {

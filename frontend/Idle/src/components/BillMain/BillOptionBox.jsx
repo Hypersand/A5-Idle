@@ -71,7 +71,6 @@ export default BillOptionBox;
 const StContainer = styled.div`
   display: flex;
   width: 676px;
-  background: ${({ theme }) => theme.White};
   justify-content: space-between;
   align-items: center;
 
