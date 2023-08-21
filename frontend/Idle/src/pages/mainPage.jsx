@@ -9,42 +9,55 @@ function MainPage() {
   setClickedOptionPage(false);
 
   return (
-    <>
-      <StLogo>
-        <MainLogoWhite />
-      </StLogo>
+    <StWrapper>
       <StContainer>
-        <StTitle>
-          내게 맞는 견적부터 <br />
-          카마스터 연결까지
-        </StTitle>
-        <StSub>마이 카마스터와 함께해요</StSub>
-        <StBtn onClick={() => navigate("/selectCar")}>마이 카마스터 시작하기</StBtn>
+        <StLogo>
+          <MainLogoWhite />
+        </StLogo>
+        <StMain>
+          <StTitle>
+            내게 맞는 견적부터 <br />
+            카마스터 연결까지
+          </StTitle>
+          <StSub>마이 카마스터와 함께해요</StSub>
+          <StBtn onClick={() => navigate("/selectCar")}>마이 카마스터 시작하기</StBtn>
+        </StMain>
+        <StVideo autoPlay muted loop>
+          <source src={hyundaiVideo} type="video/mp4"></source>
+        </StVideo>
       </StContainer>
-      <StVideo autoPlay muted loop>
-        <source src={hyundaiVideo} type="video/mp4"></source>
-      </StVideo>
-    </>
+    </StWrapper>
   );
 }
 
 export default MainPage;
 
+const StWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const StContainer = styled.div`
+  position: relative;
+  width: 1280px;
+  height: 720px;
+`;
+
 const StVideo = styled.video`
   object-fit: fill;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: absolute;
 `;
 
 const StLogo = styled.div`
   z-index: 1;
   position: absolute;
-  top: 29px;
+  top: 32px;
   left: 128px;
 `;
 
-const StContainer = styled.div`
+const StMain = styled.div`
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -84,4 +97,15 @@ const StBtn = styled.button`
   font-weight: 500;
   margin-top: 50px;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.93;
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
