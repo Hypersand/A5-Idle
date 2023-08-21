@@ -3,7 +3,7 @@ package com.autoever.idle.domain.trim.dto;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResponse;
 import com.autoever.idle.domain.exteriorColor.dto.TrimThumbnailColorResponse;
 import com.autoever.idle.domain.trimThumbnailFunction.dto.TrimThumbnailFunctionResponse;
-import lombok.*;
+import lombok.Getter;
 
 import java.util.List;
 
