@@ -64,7 +64,7 @@ class OptionControllerTest {
                 "구매자 10%가 선택",
                 "흠집없이 내 차에 짐을 싣고 싶다면?\n프로텍션 매트 패기지1로 흠집 걱정 없이 짐을 실어보세요.",
                 "차량 보호",
-                "false",
+                false,
                 functionDtoList
         );
         optionFunctionsResponseList.add(optionFunctionsResponse);
