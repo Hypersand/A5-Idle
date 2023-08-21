@@ -51,8 +51,8 @@ class CarTypeControllerTest {
         //given
         List<CarCategoryResponse> responseList = new ArrayList<>();
         List<CarTypeDto> carTypeDtoList = new ArrayList<>();
-        carTypeDtoList.add(new CarTypeDto("팰리세이드",40000L,"이미지","로고"));
-        carTypeDtoList.add(new CarTypeDto("베뉴",50000L,"이미지","로고"));
+        carTypeDtoList.add(new CarTypeDto("팰리세이드",40000L, "TRUE","이미지","로고"));
+        carTypeDtoList.add(new CarTypeDto("베뉴",50000L,"FALSE","이미지","로고"));
         responseList.add(new CarCategoryResponse(1L,"SUV",carTypeDtoList));
         given(carTypeService.getAllCarType()).willReturn(responseList);
 
@@ -63,6 +63,7 @@ class CarTypeControllerTest {
         resultActions.andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].carCategoryName").value("SUV"))
                 .andExpect(jsonPath("$[0].carTypeDtoList[0].carName").value("팰리세이드"))
+                .andExpect(jsonPath("$[0].carTypeDtoList[0].carIsNew").value(true))
                 .andDo(print());
     }
 
