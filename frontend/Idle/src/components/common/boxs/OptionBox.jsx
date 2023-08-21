@@ -161,6 +161,12 @@ const StContainer = styled.div`
     opacity: 0.9;
     cursor: pointer;
   }
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StContent = styled.div`

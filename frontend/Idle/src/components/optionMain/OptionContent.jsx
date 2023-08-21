@@ -81,7 +81,7 @@ const StOption = styled.div`
 const StFullOptionDesc = styled.div`
   width: 350px;
   padding: 15px 20px;
-  background-color: #626262;
+  background-color: #4d4d4d;
   border-radius: 5px;
   color: #ffffff;
   position: absolute;
