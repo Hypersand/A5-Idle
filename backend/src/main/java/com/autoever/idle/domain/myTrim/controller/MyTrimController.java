@@ -28,8 +28,8 @@ public class MyTrimController {
     }
 
     @GetMapping(value = "/select/option") //선택지 선택시
-    public ResponseEntity<List<MyTrimResponse>> findTrimsBySelectFunctions(List<Map<String, Integer>> functionIdList) {
-        List<MyTrimResponse> trimBySelectFunctions = myTrimService.findTrimBySelectFunctions(functionIdList);
+    public ResponseEntity<List<MyTrimResponse>> findTrimsBySelectFunctions(@RequestParam List<Integer> functionId) {
+        List<MyTrimResponse> trimBySelectFunctions = myTrimService.findTrimBySelectFunctions(functionId);
         return ResponseEntity.ok(trimBySelectFunctions);
     }
 

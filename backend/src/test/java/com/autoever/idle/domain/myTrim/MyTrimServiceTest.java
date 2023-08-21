@@ -74,13 +74,9 @@ class MyTrimServiceTest {
     @DisplayName("선택지 선택시")
     void findTrimBySelectFunctions() {
         //given
-        List<Map<String, Integer>> functionIdList = new ArrayList<>();
-        Map<String, Integer> functionIdMap1 = new HashMap<>();
-        Map<String, Integer> functionIdMap2 = new HashMap<>();
-        functionIdMap1.put("functionId", 109);
-        functionIdMap2.put("functionId", 48);
-        functionIdList.add(functionIdMap1);
-        functionIdList.add(functionIdMap2);
+        List<Integer> functionIdList = new ArrayList<>();
+        functionIdList.add(109);
+        functionIdList.add(48);
         List<MyTrimDto> myTrimDtoList = new ArrayList<>();
         myTrimDtoList.add(new MyTrimDto("Exclusive", null));
         myTrimDtoList.add(new MyTrimDto("Le Blanc", false));
@@ -110,10 +106,8 @@ class MyTrimServiceTest {
     @DisplayName("존재하지 않는 기능 예외 처리")
     void checkFunctionExist() {
         //given
-        List<Map<String, Integer>> functionIdList = new ArrayList<>();
-        Map<String, Integer> functionIdMap = new HashMap<>();
-        functionIdMap.put("functionId", 157);
-        functionIdList.add(functionIdMap);
+        List<Integer> functionIdList = new ArrayList<>();
+        functionIdList.add(157);
         String returnNull = null;
         given(functionRepository.checkMyTrimFunction(anyInt())).willReturn(returnNull);
 
@@ -126,10 +120,8 @@ class MyTrimServiceTest {
     @DisplayName("내게 맞는 트림 찾기의 유효한 기능 예외 처리")
     void checkValidFunction() {
         //given
-        List<Map<String, Integer>> functionIdList = new ArrayList<>();
-        Map<String, Integer> functionIdMap = new HashMap<>();
-        functionIdMap.put("functionId", 15);
-        functionIdList.add(functionIdMap);
+        List<Integer> functionIdList = new ArrayList<>();
+        functionIdList.add(18);
         String returnFalse = "FALSE";
         given(functionRepository.checkMyTrimFunction(anyInt())).willReturn(returnFalse);
 

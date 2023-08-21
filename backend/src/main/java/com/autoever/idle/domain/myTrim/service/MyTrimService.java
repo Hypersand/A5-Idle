@@ -42,10 +42,10 @@ public class MyTrimService {
     }
 
     //내게 맞는 트림 찾기 페이지에서 선택지 선택시
-    public List<MyTrimResponse> findTrimBySelectFunctions(List<Map<String, Integer>> functionIdList) { //요청으로 들어온 선택된 선택지 리스트
+    public List<MyTrimResponse> findTrimBySelectFunctions(List<Integer> functionIdList) { //요청으로 들어온 선택된 선택지 리스트
         List<MyTrimResponse> myTrimResponseList = new ArrayList<>();
         for (int requestIdx = 0; requestIdx < functionIdList.size(); requestIdx++) { //선택된 선택지를 하나씩 돌음
-            int functionId = functionIdList.get(requestIdx).get("functionId");
+            int functionId = functionIdList.get(requestIdx);
             checkValidFunction(functionId);
             List<MyTrimDto> myTrimDtoList = functionRepository.findTrimBySelectFunctions(functionId);
             if (requestIdx == 0) { //요청으로 들어온 첫번째 선택지로 myTrimResDtoList 를 세팅함
