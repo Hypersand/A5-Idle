@@ -1,7 +1,6 @@
 package com.autoever.idle.domain.bill;
 
 import com.autoever.idle.domain.bill.controller.BillController;
-import com.autoever.idle.domain.bill.dto.BillRequest;
 import com.autoever.idle.domain.bill.dto.BillResponse;
 import com.autoever.idle.domain.bill.service.BillService;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResponse;
@@ -117,7 +116,7 @@ class BillControllerTest {
         multiValueMap.add("exteriorId", "0");
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/result/bill")
+        ResultActions resultActions = mockMvc.perform(get("/result/bill")
                         .queryParams(multiValueMap))
                 .andDo(print());
 
@@ -133,7 +132,7 @@ class BillControllerTest {
         multiValueMap.set("interiorId", "0");
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/result/bill")
+        ResultActions resultActions = mockMvc.perform(get("/result/bill")
                         .queryParams(multiValueMap))
                 .andDo(print());
 

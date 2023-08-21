@@ -26,7 +26,7 @@ public class CarTypeRepositoryImpl implements CarTypeRepository {
         RowMapper rowMapper = BeanPropertyRowMapper.newInstance(CarTypeDto.class);
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("categoryId", categoryId);
-        return jdbcTemplate.query("SELECT name AS carName, price AS carPrice, img_url AS carImgUrl, logo_url AS logoImgUrl " +
+        return jdbcTemplate.query("SELECT name AS carName, price AS carPrice, isNew AS carIsNew, img_url AS carImgUrl, logo_url AS logoImgUrl " +
                 "FROM CAR_TYPE WHERE car_category_id = :categoryId", param, rowMapper);
     }
 }
