@@ -83,6 +83,9 @@ class MyTrimControllerTest {
         //given
         JSONArray jsonArray = new JSONArray();
         jsonArray.put(new JSONObject().put("functionId", 109));
+
+        LinkedMultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("functionId","101,17");
         List<MyTrimResponse> myTrimResponseList = new ArrayList<>();
         myTrimResponseList.add(new MyTrimResponse("Exclusive", null, false));
         myTrimResponseList.add(new MyTrimResponse("Le Blanc", false, true));
@@ -91,11 +94,7 @@ class MyTrimControllerTest {
         given(myTrimService.findTrimBySelectFunctions(anyList())).willReturn(myTrimResponseList);
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/trims/favorite/select/option")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonArray.toString())
-                .accept(MediaType.APPLICATION_JSON));
-
+        ResultActions resultActions = mockMvc.perform(get("/trims/favorite/select/option").queryParams(params));
         //then
         resultActions.andExpect(status().isOk())
                 .andDo(print())
