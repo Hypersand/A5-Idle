@@ -108,26 +108,26 @@ const StContainer = styled.div`
   padding: 12px 16px;
   border: 1px solid
     ${({ $isSelected, $state }) => {
-    if ($isSelected) {
-      switch ($state) {
-        case NONE:
-          return `${palette.NavyBlue_5}`;
-        case CONFUSE:
-          return `${palette.Gold_5}`;
-        case ADD:
-          return `${palette.NavyBlue_5}`;
+      if ($isSelected) {
+        switch ($state) {
+          case NONE:
+            return `${palette.NavyBlue_5}`;
+          case CONFUSE:
+            return `${palette.Gold_5}`;
+          case ADD:
+            return `${palette.NavyBlue_5}`;
+        }
+      } else {
+        switch ($state) {
+          case NONE:
+            return `${palette.Grey_2}`;
+          case CONFUSE:
+            return `${palette.Gold_5}`;
+          case ADD:
+            return `${palette.NavyBlue_5}`;
+        }
       }
-    } else {
-      switch ($state) {
-        case NONE:
-          return `${palette.Grey_2}`;
-        case CONFUSE:
-          return `${palette.Gold_5}`;
-        case ADD:
-          return `${palette.NavyBlue_5}`;
-      }
-    }
-  }};
+    }};
   background: ${({ $state }) => {
     switch ($state) {
       case NONE:
@@ -149,18 +149,18 @@ const StContainer = styled.div`
   opacity: ${({ $optionCanSelect }) => ($optionCanSelect ? 1 : 0.2)};
   &:hover {
     background: ${({ $state }) => {
-    switch ($state) {
-      case NONE:
-        return `${palette.NavyBlue_1};`;
-      case CONFUSE:
-        return `${palette.Gold_5}`;
-      case ADD:
-        return `${palette.NavyBlue_5}`;
-    }
-  }};
+      switch ($state) {
+        case NONE:
+          return `${palette.NavyBlue_1};`;
+        case CONFUSE:
+          return `${palette.Gold_5}`;
+        case ADD:
+          return `${palette.NavyBlue_5}`;
+      }
+    }};
     opacity: 0.9;
     cursor: pointer;
-  };
+  }
 `;
 
 const StContent = styled.div`
