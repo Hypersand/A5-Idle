@@ -12,7 +12,6 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   const fNameRef = useRef();
   function checkOverFlow(ref, target) {
     if (ref === undefined || ref === null) return;
-    console.log(target, ref.scrollWidth, ref.clientWidth);
     target === "desc"
       ? ref.scrollHeight > ref.clientHeight
         ? setIsDescOverFlow(true)
