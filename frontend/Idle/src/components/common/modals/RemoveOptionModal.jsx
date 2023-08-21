@@ -146,10 +146,12 @@ const ModalBackground = styled.div`
   backdrop-filter: blur(5px);
 `;
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
   top: 0;
   left: 0;
-  width: 1280px;
+  width: 100%;
   height: 720px;
   display: flex;
   align-items: center;

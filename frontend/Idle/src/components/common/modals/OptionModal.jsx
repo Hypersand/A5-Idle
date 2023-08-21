@@ -15,17 +15,17 @@ function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
   function clickClose() {
     setAnimationState(true);
     setTimeout(() => {
-      setModalVisible(false)
+      setModalVisible(false);
     }, 300);
   }
   function selectedBtnClicked() {
     if (state.selectedOption.includes(data.functionId)) {
-      clickClose()
+      clickClose();
       return;
     } else {
       stateDispatch({ type: PUSH_SELECTED_OPTION, payload: data.functionId });
       setIsSelected(true);
-      clickClose()
+      clickClose();
     }
   }
 
@@ -57,15 +57,17 @@ function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
 }
 export default OptionModal;
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
   top: 0;
   left: 0;
-  width: 1280px;
+  width: 100%;
   height: 720px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;  
+  z-index: 2;
 `;
 
 const ModalBackground = styled.div`
@@ -86,7 +88,7 @@ const StContainer = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  z-index: 3;  
+  z-index: 3;
   transition: opacity 0.5s ease-in-out;
   animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.5s ease;
 `;
