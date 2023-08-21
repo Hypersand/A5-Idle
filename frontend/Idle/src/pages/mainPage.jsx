@@ -7,6 +7,7 @@ import { setClickedOptionPage } from "../utils/constants";
 function MainPage() {
   const navigate = useNavigate();
   setClickedOptionPage(false);
+
   return (
     <>
       <StLogo>

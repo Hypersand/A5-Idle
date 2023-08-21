@@ -4,10 +4,10 @@ import { carContext } from "../../utils/context"
 import ExteriorBoxContainer from "./ExteriorBoxContainer";
 import InteriorBoxContainer from "./InteriorBoxContainer";
 
-function TrimMain(data) {
+function TrimMain({ data, onMouseEnter }) {
     const { car } = useContext(carContext)
     const dots = useRef([]);
-    const filteredData = data?.data?.filter((item) => item.name === car.trim.name);
+    const filteredData = data?.filter((item) => item.name === car.trim.name);
     return (
         <StContainer>
             <StTitleContainer>
@@ -26,7 +26,7 @@ function TrimMain(data) {
             {filteredData ? <StImage id={"here"} src={filteredData[0]?.imgUrl}></StImage> : <p>Loading...</p>}
             <DotContainer >
                 {filteredData[0].thumbnailFunctions.map((item, idx) => (
-                    <Dot1 key={idx} $y={item.heightPixel} $x={item.widthPixel} ref={elem => (dots.current[idx] = elem)} >
+                    <Dot1 onMouseEnter={onMouseEnter} key={idx} $y={item.heightPixel} $x={item.widthPixel} ref={elem => (dots.current[idx] = elem)} >
                         <InnerDots />
                         <OptionToolTip className="tooltip">{item.name}</OptionToolTip>
                     </Dot1>
