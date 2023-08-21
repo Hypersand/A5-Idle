@@ -86,6 +86,8 @@ const StContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 2;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StTitle = styled.div`

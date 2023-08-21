@@ -287,6 +287,9 @@ const StContainer = styled.div`
   height: 572px;
   border: 1px solid black;
   z-index: 1;
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 const StMainContainer = styled.div`
   display: flex;
