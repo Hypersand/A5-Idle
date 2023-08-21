@@ -117,7 +117,7 @@ class BillControllerTest {
         multiValueMap.add("exteriorId", "0");
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/result/bill")
+        ResultActions resultActions = mockMvc.perform(get("/result/bill")
                         .queryParams(multiValueMap))
                 .andDo(print());
 
@@ -133,7 +133,7 @@ class BillControllerTest {
         multiValueMap.set("interiorId", "0");
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/result/bill")
+        ResultActions resultActions = mockMvc.perform(get("/result/bill")
                         .queryParams(multiValueMap))
                 .andDo(print());
 
