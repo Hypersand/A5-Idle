@@ -22,7 +22,24 @@ function BillPage() {
   const [tooltipState, setTooltipState] = useState(true);
   const [billData, setBillData] = useState(cachedBillData);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [prevMoney, setPrevMoney] = useState(car.getAllSum());
+  const [targetMoney, setTargetMoney] = useState(car.getAllSum());
 
+  useEffect(() => {
+    setTargetMoney(car.getAllSum());
+  }, [car.getAllSum()]);
+
+  const updateAnimation = () => {
+    if (prevMoney !== targetMoney) {
+      setPrevMoney(prevMoney + (targetMoney - prevMoney) * 0.25);
+    }
+  };
+
+  useEffect(() => {
+    if (prevMoney !== targetMoney) {
+      requestAnimationFrame(updateAnimation);
+    }
+  }, [prevMoney, targetMoney]);
   const handleScroll = () => {
     const position = window.scrollY;
     setScrollPosition(position);
@@ -84,7 +101,7 @@ function BillPage() {
         <StConfirmContainer>
           <StConfirmText onClick={scrollTop} $scrollPosition={scrollPosition}>
             <p>예상 가격</p>
-            <h1>{car.getAllSum().toLocaleString()} 원</h1>
+            <h1>{Math.round(prevMoney).toLocaleString()} 원</h1>
           </StConfirmText>
           <StButtonContainer>
             <StTooltipContainer
