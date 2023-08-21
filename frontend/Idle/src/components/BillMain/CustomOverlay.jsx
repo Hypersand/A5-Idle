@@ -1,5 +1,5 @@
-import "../../styles/CustomOverlay.css";
-import carMasterHyundai from "../../assets/images/carMasterHyundai.svg";
+import "styles/CustomOverlay.css";
+import carMasterHyundai from "images/carMasterHyundai.svg";
 
 function CustomOverlay(data, onClick) {
   const container = document.createElement("div");

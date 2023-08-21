@@ -18,8 +18,8 @@ import MainContents from "content/MainContents";
 import { carContext } from "utils/context";
 import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "utils/actionType";
 import { PATH } from "utils/constants";
-import { getAPI } from "../utils/api";
-import RemoveOptionModal from "../components/common/modals/RemoveOptionModal";
+import { getAPI } from "utils/api";
+import RemoveOptionModal from "modals/RemoveOptionModal";
 import ServerErrorPage from "./ServerErrorPage";
 
 let cachedData = null;

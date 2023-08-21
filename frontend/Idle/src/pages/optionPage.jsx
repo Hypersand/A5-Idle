@@ -23,7 +23,7 @@ import { submitPostAPI } from "utils/api";
 import { carContext } from "utils/context";
 import ServerErrorPage from "./ServerErrorPage";
 import ConfusingTooltip from "toolTips/ConfusingTooltip";
-import WarningModal from "../components/common/modals/WarningModal";
+import WarningModal from "modals/WarningModal";
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,

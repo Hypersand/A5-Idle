@@ -5,11 +5,7 @@ import { createPortal } from "react-dom";
 import { useContext } from "react";
 import { carContext } from "utils/context";
 import palette from "styles/palette";
-import {
-  CHANGE_ENGINES,
-  POP_ADDITIONAL_OPTION,
-  POP_CONFUSING_OPTION,
-} from "../../../utils/actionType";
+import { CHANGE_ENGINES, POP_ADDITIONAL_OPTION, POP_CONFUSING_OPTION } from "utils/actionType";
 
 /**
  *

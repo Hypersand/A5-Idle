@@ -5,10 +5,10 @@ import { carContext } from "utils/context";
 import TrimDetailModal from "trimDetailModal/TrimDetailModal";
 import { CHANGE_TRIM } from "utils/actionType";
 import palette from "styles/palette";
-import WarningModal from "../modals/WarningModal";
+import WarningModal from "modals/WarningModal";
 import { CLEAR_OPTION } from "utils/actionType";
-import { PATH, TRANSLATE } from "../../../utils/constants";
-import { getAPI } from "../../../utils/api";
+import { PATH, TRANSLATE } from "utils/constants";
+import { getAPI } from "utils/api";
 
 function NormalTrimBox({
   purchaseRate,
@@ -120,7 +120,7 @@ const StContainer = styled.div`
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
     background: ${({ $isSelected }) =>
-    $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
   }
@@ -207,7 +207,7 @@ const PopUpButton = styled.div`
   path {
     fill: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : ``)};
   }
-  &:hover{
-    text-decoration:underline;
+  &:hover {
+    text-decoration: underline;
   }
 `;

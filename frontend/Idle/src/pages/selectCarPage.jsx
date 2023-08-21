@@ -1,14 +1,14 @@
 import { styled } from "styled-components";
 import CarSelectionContainer from "../components/carSelection/CarSelectionContainer";
-import MainLogoBlack from "../components/common/logos/MainLogoBlack";
+import MainLogoBlack from "logos/MainLogoBlack";
 import palette from "styles/palette";
-import CategoryTabs from "../components/common/tabs/CategoryTabs";
+import CategoryTabs from "tabs/CategoryTabs";
 import { useState } from "react";
-import { ReactComponent as LeftArrow } from "../assets/images/optionArrowLeft.svg";
-import { ReactComponent as RightArrow } from "../assets/images/optionArrowRight.svg";
+import { ReactComponent as LeftArrow } from "images/optionArrowLeft.svg";
+import { ReactComponent as RightArrow } from "images/optionArrowRight.svg";
 import { useNavigate } from "react-router-dom";
-import WarningModal from "../components/common/modals/WarningModal";
-import { CAR_SELECTION_NUM } from "../utils/constants";
+import WarningModal from "modals/WarningModal";
+import { CAR_SELECTION_NUM } from "utils/constants";
 const data = [
   {
     carCategoryId: 1,

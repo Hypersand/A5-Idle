@@ -18,7 +18,7 @@ import InnerColorContent from "content/InnerColorContent";
 import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "utils/actionType";
 import { getAPI } from "utils/api";
 import { DEFAULT_INTERIROR_COLOR, PATH } from "utils/constants";
-import WarningModal from "../components/common/modals/WarningModal";
+import WarningModal from "modals/WarningModal";
 import ServerErrorPage from "./ServerErrorPage";
 
 let cachedExterior = null;

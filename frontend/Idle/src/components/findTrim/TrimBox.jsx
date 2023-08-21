@@ -3,13 +3,9 @@ import TrimBoxOptionStatus from "./TrimBoxOptionStatus";
 import palette from "styles/palette";
 import { useContext } from "react";
 import { stateContext, dispatchContext } from "utils/context";
-import {
-  SET_DISABLE_FUNCTION_ID,
-  PUSH_DISABLE_FUNCTION_ID,
-  SET_TEMPCAR,
-} from "../../utils/actionType";
-import { PATH } from "../../utils/constants";
-import { disableFunctionGetAPI } from "../../utils/api";
+import { SET_DISABLE_FUNCTION_ID, PUSH_DISABLE_FUNCTION_ID, SET_TEMPCAR } from "utils/actionType";
+import { PATH } from "utils/constants";
+import { disableFunctionGetAPI } from "utils/api";
 
 function TrimBox({
   name,

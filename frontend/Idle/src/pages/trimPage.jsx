@@ -9,9 +9,9 @@ import palette from "styles/palette";
 import { PATH } from "utils/constants";
 import FindTrimTooltip from "toolTips/FindTrimTooltip";
 import TrimMain from "../components/trimMain";
-import { preloadContext } from "../utils/context";
-import { preloadImage } from "../utils/preloader";
-import Loading from "../components/common/loading/Loading";
+import { preloadContext } from "utils/context";
+import { preloadImage } from "utils/preloader";
+import Loading from "components/common/loading/Loading";
 import ServerErrorPage from "./ServerErrorPage";
 
 let cachedTrimData = null;

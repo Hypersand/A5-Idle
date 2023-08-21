@@ -30,8 +30,6 @@ const StButton = styled.button`
   background: ${palette.White};
   color: ${palette.NavyBlue_5};
   text-align: center;
-
-  /* body2 medi'um */
   font-family: Hyundai Sans Text KR;
   font-size: 14px;
   font-style: normal;
@@ -42,6 +40,6 @@ const StButton = styled.button`
   pointer-events: ${({ $isActive }) => ($isActive ? "" : "none")};
   &:hover {
     cursor: pointer;
-    filter: brightness(96%)
+    filter: brightness(96%);
   }
 `;

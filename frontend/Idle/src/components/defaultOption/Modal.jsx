@@ -8,7 +8,7 @@ import { createPortal } from "react-dom";
 import palette from "styles/palette";
 import { getAPI } from "utils/api";
 import { PATH } from "utils/constants";
-import { carContext } from "../../utils/context"
+import { carContext } from "utils/context";
 
 function Modal({ setVisible }) {
   const pageSize = 10;
