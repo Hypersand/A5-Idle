@@ -26,7 +26,7 @@ function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions, modalPosit
             <Description>{desc}</Description>
           </StHeaderContainer>
           <StOptionContainer>
-            {defaultFunctions.map((item, idx) => (
+            {defaultFunctions?.map((item, idx) => (
               <OptionDropDown key={idx} category={item} optionData={optionData} />
             ))}
           </StOptionContainer>
@@ -40,10 +40,10 @@ function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions, modalPosit
 export default TrimDetailModal;
 
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 1280px;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
