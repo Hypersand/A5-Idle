@@ -1,10 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { ReactComponent as ArrowLeft } from "images/optionArrowLeft.svg";
 import { ReactComponent as ArrowRight } from "images/optionArrowRight.svg";
 import palette from "styles/palette";
 
 function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
+  const [isOverFlow, setIsOverFlow] = useState(false);
+  const descRef = useRef();
+
+  function checkOverFlow(ref) {
+    if (ref === undefined) return;
+
+    ref.scrollHeight > ref.clientHeight ? setIsOverFlow(true) : setIsOverFlow(false);
+  }
+
+  useEffect(() => {
+    checkOverFlow(descRef.current);
+  }, [data]);
+
   useEffect(() => {
     setSelectedFunction(() => (data ? data[currentPage] : null));
   }, [currentPage]);
@@ -44,22 +57,22 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
       </StMain>
     ) : null;
   }
-
+  console.log(isOverFlow);
   return (
     <StContainer>
       {renderMain()}
       {data ? (
         <>
-          <StDesc>
+          <StDesc ref={descRef} $isOverFlow={isOverFlow}>
             {data[currentPage]?.functionDescription === "-"
               ? ""
               : data[currentPage]?.functionDescription}
           </StDesc>
-          {/* <StFullDesc>
+          <StFullDesc>
             {data[currentPage]?.functionDescription === "-"
               ? ""
               : data[currentPage]?.functionDescription}
-          </StFullDesc> */}
+          </StFullDesc>
         </>
       ) : (
         <></>
@@ -91,28 +104,25 @@ const StMain = styled.div`
   margin-bottom: 16px;
 `;
 
-// const StFullDesc = styled.div`
-//   width: 350px;
-//   padding: 15px 20px;
-//   background-color: #444444;
-//   border-radius: 5px;
-//   color: #ffffff;
-//   position: absolute;
-//   bottom: 130px;
-//   left: -20px;
-//   display: none;
-//   transition: all ease 0.5s;
+const StFullDesc = styled.div`
+  width: 350px;
+  padding: 15px 20px;
+  background-color: #444444;
+  border-radius: 5px;
+  color: #ffffff;
+  position: absolute;
+  bottom: 130px;
+  left: -20px;
+  display: none;
+  transition: all ease 0.5s;
 
-//   font-family: "Hyundai Sans Text KR";
-//   font-size: 13px;
-//   font-style: normal;
-//   font-weight: 400;
-//   line-height: 165%;
-//   letter-spacing: -0.39px;
-// `;
-// &:hover ~ ${StFullDesc} {
-//   display: block;
-// }
+  font-family: "Hyundai Sans Text KR";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 165%;
+  letter-spacing: -0.39px;
+`;
 
 const StDesc = styled.div`
   width: 280px;
@@ -123,9 +133,13 @@ const StDesc = styled.div`
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.39px;
-  height: 80px;
+  height: 90px;
   overflow: hidden;
   white-space: break-spaces;
+
+  &:hover ~ ${StFullDesc} {
+    display: ${({ $isOverFlow }) => ($isOverFlow ? "block" : "none")};
+  }
 `;
 
 const StCircle = styled.div`
