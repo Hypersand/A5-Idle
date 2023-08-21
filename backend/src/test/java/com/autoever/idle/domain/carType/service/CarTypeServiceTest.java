@@ -43,14 +43,14 @@ class CarTypeServiceTest {
 
     @Test
     @DisplayName("getAllType()메소드 테스트")
-    void getAllType(){
+    void getAllType() {
         //given
         List<CarCategoryDto> carCategoryDtoList = new ArrayList<>();
-        carCategoryDtoList.add(new CarCategoryDto(1L,"승용"));
-        carCategoryDtoList.add(new CarCategoryDto(2L,"SUV"));
+        carCategoryDtoList.add(new CarCategoryDto(1L, "승용"));
+        carCategoryDtoList.add(new CarCategoryDto(2L, "SUV"));
         List<CarTypeDto> carTypeDtoList = new ArrayList<>();
-        carTypeDtoList.add(new CarTypeDto("팰리세이드",40000L,"이미지url","로고url"));
-        carTypeDtoList.add(new CarTypeDto("베뉴",50000L,"이미지url","로고url"));
+        carTypeDtoList.add(new CarTypeDto("팰리세이드", 40000L, "TRUE", "이미지url", "로고url"));
+        carTypeDtoList.add(new CarTypeDto("베뉴", 50000L, "FALSE", "이미지url", "로고url"));
         given(carCategoryRepository.findAll()).willReturn(carCategoryDtoList);
         given(carTypeRepository.findByCategory(any())).willReturn(carTypeDtoList);
 
@@ -58,7 +58,7 @@ class CarTypeServiceTest {
         List<CarCategoryResponse> responseList = carTypeService.getAllCarType();
 
         //then
-        verify(carTypeRepository,times(2)).findByCategory(any());
+        verify(carTypeRepository, times(2)).findByCategory(any());
         softly.assertThat(responseList.size()).isEqualTo(2);
         softly.assertThat(responseList.get(0).getCarCategoryName()).isEqualTo("승용");
         softly.assertThat(responseList.get(0).getCarTypeDtoList()).isEqualTo(carTypeDtoList);
