@@ -21,7 +21,8 @@ const StContainer = styled.div`
   height: 212px;
   padding: 8px 0px;
   border: 1px solid ${({ $isSelected }) => ($isSelected ? palette.NavyBlue_4 : palette.CoolGrey_1)};
-  background: ${({ $isSelected }) => ($isSelected ? palette.NavyBlue_1 : palette.Grey_1)};
+  background: ${({ $isSelected }) => ($isSelected ? palette.NavyBlue_5 : palette.Grey_1)};
+  color: ${({ $isSelected }) => ($isSelected ? palette.White : palette.Black)};
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -46,7 +47,6 @@ const StImg = styled.img`
   height: 130px;
 `;
 const StName = styled.div`
-  color: ${palette.Black};
   font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-style: normal;
