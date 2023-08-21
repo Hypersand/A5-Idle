@@ -1,21 +1,37 @@
 import { useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 import { ReactComponent as ArrowLeft } from "images/optionArrowLeft.svg";
 import { ReactComponent as ArrowRight } from "images/optionArrowRight.svg";
 import palette from "styles/palette";
 
 function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
-  const [isOverFlow, setIsOverFlow] = useState(false);
+  const [isDescOverFlow, setIsDescOverFlow] = useState(false);
+  const [isFNameOverFlow, setIsFNameOverFlow] = useState(false);
+
   const descRef = useRef();
-
-  function checkOverFlow(ref) {
-    if (ref === undefined) return;
-
-    ref.scrollHeight > ref.clientHeight ? setIsOverFlow(true) : setIsOverFlow(false);
+  const fNameRef = useRef();
+  function checkOverFlow(ref, target) {
+    if (ref === undefined || ref === null) return;
+    console.log(target, ref.scrollWidth, ref.clientWidth);
+    target === "desc"
+      ? ref.scrollHeight > ref.clientHeight
+        ? setIsDescOverFlow(true)
+        : setIsDescOverFlow(false)
+      : ref.scrollWidth > ref.clientWidth
+      ? setIsFNameOverFlow(true)
+      : setIsFNameOverFlow(false);
+    // target === "desc"
+    //   ? ref.scrollHeight > ref.clientHeight
+    //     ? setIsDescOverFlow(true)
+    //     : setIsDescOverFlow(false)
+    //   : ref.scrollHeight > ref.clientHeight
+    //   ? setIsFNameOverFlow(true)
+    //   : setIsFNameOverFlow(false);
   }
 
   useEffect(() => {
-    checkOverFlow(descRef.current);
+    checkOverFlow(descRef.current, "desc");
+    checkOverFlow(fNameRef.current, "fName");
   }, [data]);
 
   useEffect(() => {
@@ -51,19 +67,30 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
     return data?.length > 1 ? (
       <StMain>
         <ArrowLeft onClick={leftBtnClicked} style={{ cursor: "pointer" }} />
-        <StFunctionName>{data[currentPage]?.functionName}</StFunctionName>
-        {/* <StFullFunctionName>{data[currentPage]?.functionName}</StFullFunctionName> */}
+
+        <StWrapper ref={fNameRef} $isOverFlow={isFNameOverFlow}>
+          <StFunctionName $isOverFlow={isFNameOverFlow}>
+            {data[currentPage]?.functionName}
+          </StFunctionName>
+        </StWrapper>
+
         <ArrowRight onClick={rightBtnClicked} style={{ cursor: "pointer" }} />
       </StMain>
     ) : null;
   }
-  console.log(isOverFlow);
+  console.log(isFNameOverFlow);
   return (
     <StContainer>
       {renderMain()}
       {data ? (
         <>
-          <StDesc ref={descRef} $isOverFlow={isOverFlow}>
+          <StDesc
+            ref={descRef}
+            $isOverFlow={isDescOverFlow}
+            onMouseEnter={() => {
+              console.log(123);
+            }}
+          >
             {data[currentPage]?.functionDescription === "-"
               ? ""
               : data[currentPage]?.functionDescription}
@@ -107,14 +134,16 @@ const StMain = styled.div`
 const StFullDesc = styled.div`
   width: 350px;
   padding: 15px 20px;
-  background-color: #444444;
+  background-color: #626262;
   border-radius: 5px;
   color: #ffffff;
   position: absolute;
-  bottom: 130px;
-  left: -20px;
+  bottom: 0px;
+  left: 820px;
   display: none;
   transition: all ease 0.5s;
+  white-space: break-spaces;
+  box-shadow: 0px 0px 10px #444;
 
   font-family: "Hyundai Sans Text KR";
   font-size: 13px;
@@ -128,15 +157,13 @@ const StDesc = styled.div`
   width: 280px;
   color: ${palette.Black};
   font-family: "Hyundai Sans Text KR";
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 165%;
   letter-spacing: -0.39px;
-  height: 90px;
-  overflow: hidden;
   white-space: break-spaces;
-
+  max-height: 140px;
   &:hover ~ ${StFullDesc} {
     display: ${({ $isOverFlow }) => ($isOverFlow ? "block" : "none")};
   }
@@ -156,26 +183,35 @@ const StCircleContainer = styled.div`
   justify-content: center;
   position: absolute;
   bottom: 0;
-  left: 50%;
+  left: 80%;
   transform: translate(-50%);
 `;
 
-// const StFullFunctionName = styled.div`
-//   top: 60px;
-//   position: absolute;
-//   width: 240px;
-//   padding: 15px 20px;
-//   background-color: #444444;
-//   border-radius: 5px;
-//   color: #ffffff;
-//   display: none;
-// `;
-/* &:hover ~ ${StFullFunctionName} {
-    display: block;
-  } */
-
-const StFunctionName = styled.div`
+const StWrapper = styled.div`
+  position: relative;
   height: 20px;
   width: 240px;
+  display: flex;
+  justify-content: ${({ $isOverFlow }) => ($isOverFlow ? "flex-start" : "center")};
   overflow: hidden;
+`;
+
+const move = keyframes`
+    0% {
+      /* transform: translateX(0); */
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      /* transform: translateX(-50%); */
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+`;
+
+const StFunctionName = styled.div`
+  height: 100%;
+  position: absolute;
+  white-space: nowrap;
+  animation: ${({ $isOverFlow }) => ($isOverFlow ? move : null)} 20s linear infinite;
 `;
