@@ -176,6 +176,7 @@ const StImageContainer = styled.div`
 `
 const StHoverContainer = styled.div`
   display: flex;
+  cursor: pointer;
   &:hover img{
     scale: 1.05;
   }
