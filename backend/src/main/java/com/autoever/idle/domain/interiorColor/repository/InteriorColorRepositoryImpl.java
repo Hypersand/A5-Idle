@@ -25,7 +25,7 @@ public class InteriorColorRepositoryImpl implements InteriorColorRepository {
                 "left join INTERIOR_COLOR as IC on TEC.trim_exterior_color_id = IC.trim_exterior_color_id " +
                 "where TEC.trim_id = ? and TEC.exterior_color_id = ?";
 
-        RowMapper<InteriorColorDto> rowMapper = BeanPropertyRowMapper.newInstance(InteriorColorDto.class);
+        RowMapper<InteriorColorDto> rowMapper = new BeanPropertyRowMapper<>();
         return jdbcTemplate.query(query, rowMapper, trimId, exteriorId);
     }
 
@@ -34,7 +34,7 @@ public class InteriorColorRepositoryImpl implements InteriorColorRepository {
         String query = "select i.interior_color_id interiorId, i.color_img_url interiorImgUrl " +
                 "from INTERIOR_COLOR i where i.interior_color_id = ?";
 
-        RowMapper rowMapper = new BeanPropertyRowMapper(InteriorBillDto.class);
+        RowMapper<InteriorBillDto> rowMapper = new BeanPropertyRowMapper<>();
         return jdbcTemplate.query(query, rowMapper, interiorId).stream().findAny();
     }
 
@@ -43,7 +43,7 @@ public class InteriorColorRepositoryImpl implements InteriorColorRepository {
                 "left join INTERIOR_COLOR as IC on TEC.trim_exterior_color_id = IC.trim_exterior_color_id " +
                 "where TEC.trim_id = ?";
 
-        RowMapper<InteriorImgUrlDto> rowMapper = BeanPropertyRowMapper.newInstance(InteriorImgUrlDto.class);
+        RowMapper<InteriorImgUrlDto> rowMapper = new BeanPropertyRowMapper<>();
 
         return jdbcTemplate.query(query, rowMapper, trimId);
     }

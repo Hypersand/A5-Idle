@@ -53,7 +53,7 @@ public class ExteriorColorRepositoryImpl implements ExteriorColorRepository {
         String query = "select e.exterior_color_id exteriorId, e.color_img_url exteriorImgUrl " +
                         "from EXTERIOR_COLOR e where e.exterior_color_id = ?";
 
-        RowMapper rowMapper = new BeanPropertyRowMapper(ExteriorBillDto.class);
+        RowMapper<ExteriorBillDto> rowMapper = new BeanPropertyRowMapper<>();
         return jdbcTemplate.query(query, rowMapper, exteriorId).stream().findAny();
     }
 
@@ -62,7 +62,7 @@ public class ExteriorColorRepositoryImpl implements ExteriorColorRepository {
                 "join EXTERIOR_COLOR as EC on TEC.exterior_color_id = EC.exterior_color_id " +
                 "where TEC.trim_id = ?";
 
-        RowMapper<ExteriorImgUrlDto> rowMapper = BeanPropertyRowMapper.newInstance(ExteriorImgUrlDto.class);
+        RowMapper<ExteriorImgUrlDto> rowMapper = new BeanPropertyRowMapper<>();
 
         return jdbcTemplate.query(query, rowMapper, trimId);
     }

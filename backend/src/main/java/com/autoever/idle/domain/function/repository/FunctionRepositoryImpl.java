@@ -23,7 +23,7 @@ public class FunctionRepositoryImpl implements FunctionRepository {
 
     @Override
     public List<MyTrimFunctionDto> findMyTrimFunctions() {
-        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimFunctionDto.class);
+        RowMapper<MyTrimFunctionDto> rowMapper = new BeanPropertyRowMapper<>();
         return jdbcTemplate.query("select FUNCTIONS.function_id AS functionId, name, description, trim_id AS trimId, img_url AS imgUrl " +
                 "from TRIM_FUNCTION TF " +
                 "join FUNCTIONS on TF.function_id=FUNCTIONS.function_id " +
@@ -43,7 +43,7 @@ public class FunctionRepositoryImpl implements FunctionRepository {
                 "    ON TRIM.trim_id=TTF.trim_id";
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("functionId", functionId);
-        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimDto.class);
+        RowMapper<MyTrimDto> rowMapper = new BeanPropertyRowMapper();
         return jdbcTemplate.query(query, params, rowMapper);
     }
 
@@ -62,8 +62,8 @@ public class FunctionRepositoryImpl implements FunctionRepository {
     public MyTrimOptionResponse findOptionBySelectFunction(Long functionId) {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("functionId", functionId);
-        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(MyTrimOptionResponse.class);
-        return (MyTrimOptionResponse) jdbcTemplate.queryForObject("SELECT O.option_id AS optionId, O.name AS optionName, price AS optionPrice FROM FUNCTIONS AS F " +
+        RowMapper<MyTrimOptionResponse> rowMapper = new BeanPropertyRowMapper<>();
+        return jdbcTemplate.queryForObject("SELECT O.option_id AS optionId, O.name AS optionName, price AS optionPrice FROM FUNCTIONS AS F " +
                         "JOIN `OPTION` AS O ON F.option_id=O.option_id " +
                         "WHERE function_id=:functionId",
                 param, rowMapper);
@@ -78,7 +78,7 @@ public class FunctionRepositoryImpl implements FunctionRepository {
 
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("optionId", optionId);
-        RowMapper rowMapper = new BeanPropertyRowMapper(FunctionDto.class);
+        RowMapper<FunctionDto> rowMapper = new BeanPropertyRowMapper<>();
         return jdbcTemplate.query(query, param, rowMapper);
     }
 

@@ -23,7 +23,7 @@ public class CarTypeRepositoryImpl implements CarTypeRepository {
     }
 
     public List<CarTypeDto> findByCategory(Long categoryId) {
-        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(CarTypeDto.class);
+        RowMapper<CarTypeDto> rowMapper = new BeanPropertyRowMapper<>();
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("categoryId", categoryId);
         return jdbcTemplate.query("SELECT name AS carName, price AS carPrice, img_url AS carImgUrl, logo_url AS logoImgUrl " +

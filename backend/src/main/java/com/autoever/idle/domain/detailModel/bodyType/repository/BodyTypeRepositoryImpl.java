@@ -22,7 +22,7 @@ public class BodyTypeRepositoryImpl implements BodyTypeRepository{
                 "from BODY_TYPE b left join TRIM_BODY_TYPE tbt " +
                 "on b.body_type_id = tbt.body_type_id where tbt.trim_id = :trimId order by b.price asc";
 
-        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(BodyTypeResponse.class);
+        RowMapper<BodyTypeResponse> rowMapper = new BeanPropertyRowMapper<>();
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("trimId", trimId);
 

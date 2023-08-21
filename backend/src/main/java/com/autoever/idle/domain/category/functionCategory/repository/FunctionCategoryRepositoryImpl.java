@@ -49,7 +49,7 @@ public class FunctionCategoryRepositoryImpl implements FunctionCategoryRepositor
 
         Object[] args = { trimId, categoryId };
 
-        RowMapper rowMapper = new BeanPropertyRowMapper(DefaultFunctionResponse.class);
+        RowMapper<DefaultFunctionResponse> rowMapper = new BeanPropertyRowMapper<>();
 
         return jdbcTemplate.query(sql, rowMapper, args);
     }

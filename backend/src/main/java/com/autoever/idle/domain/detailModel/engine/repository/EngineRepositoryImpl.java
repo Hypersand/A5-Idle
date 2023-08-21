@@ -24,7 +24,7 @@ public class EngineRepositoryImpl implements EngineRepository {
                 "on e.engine_id = te.engine_id " +
                 "where te.trim_id = :trimId order by e.price asc";
 
-        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(EngineResponse.class);
+        RowMapper<EngineResponse> rowMapper = new BeanPropertyRowMapper<>();
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("trimId", trimId);
 

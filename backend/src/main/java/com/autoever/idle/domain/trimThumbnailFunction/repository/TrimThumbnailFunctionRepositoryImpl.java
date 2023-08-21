@@ -20,7 +20,7 @@ public class TrimThumbnailFunctionRepositoryImpl implements TrimThumbnailFunctio
         String query = "select trim_thumbnail_function_id, name, description, width_pixel, height_pixel " +
                 "from TRIM_THUMBNAIL_FUNCTION where trim_id = ?";
 
-        RowMapper<TrimThumbnailFunctionResponse> rowMapper = BeanPropertyRowMapper.newInstance(TrimThumbnailFunctionResponse.class);
+        RowMapper<TrimThumbnailFunctionResponse> rowMapper = new BeanPropertyRowMapper<>();
 
         return jdbcTemplate.query(query, rowMapper, trimId);
     }

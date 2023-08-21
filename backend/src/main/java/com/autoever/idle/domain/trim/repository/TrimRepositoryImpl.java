@@ -35,7 +35,7 @@ public class TrimRepositoryImpl implements TrimRepository {
     public TrimDescriptionDto findByTrimId(Long trimId) {
         String query = "select description as trimDescription from TRIM where trim_id = ?";
 
-        RowMapper<TrimDescriptionDto> rowMapper = BeanPropertyRowMapper.newInstance(TrimDescriptionDto.class);
+        RowMapper<TrimDescriptionDto> rowMapper = new BeanPropertyRowMapper<>();
 
         return jdbcTemplate.queryForObject(query, rowMapper, trimId);
     }

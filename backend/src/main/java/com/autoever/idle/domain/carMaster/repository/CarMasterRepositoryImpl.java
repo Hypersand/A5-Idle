@@ -18,7 +18,7 @@ public class CarMasterRepositoryImpl implements CarMasterRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<CarMasterResponse> findSortedCarMasterByDistance(Double latitude, Double longitude) { //10km 이내의 카마스터들 정보를 거리순으로 반환
-        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(CarMasterResponse.class);
+        RowMapper<CarMasterResponse> rowMapper = new BeanPropertyRowMapper<>();
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("latitude",latitude);
         params.addValue("longitude",longitude);
@@ -36,7 +36,7 @@ public class CarMasterRepositoryImpl implements CarMasterRepository {
     }
 
     public List<CarMasterResponse> findSortedCarMasterBySaleRate(Double latitude, Double longitude) { //10km 이내의 카마스터들 정보를 판매량순으로 반환
-        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(CarMasterResponse.class);
+        RowMapper<CarMasterResponse> rowMapper = new BeanPropertyRowMapper<>();
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("latitude",latitude);
         params.addValue("longitude",longitude);

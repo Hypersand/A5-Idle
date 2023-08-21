@@ -32,7 +32,7 @@ public class OptionRepositoryImpl implements OptionRepository {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("trimId", trimId);
 
-        RowMapper rowMapper = new BeanPropertyRowMapper(OptionDto.class);
+        RowMapper<OptionDto> rowMapper = new BeanPropertyRowMapper<>();
         return jdbcTemplate.query(query, params, rowMapper);
     }
 
@@ -51,7 +51,7 @@ public class OptionRepositoryImpl implements OptionRepository {
         params.addValue("engineId", engineId);
         params.addValue("selectedOptionIdList", selectedOptionIdList);
 
-        RowMapper<Long> rowMapper = new SingleColumnRowMapper<>(Long.class);
+        RowMapper<Long> rowMapper = new SingleColumnRowMapper<>();
 
         return jdbcTemplate.query(query, params, rowMapper);
     }
@@ -66,7 +66,7 @@ public class OptionRepositoryImpl implements OptionRepository {
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("optionIdList", optionIdList);
-        RowMapper rowMapper = new BeanPropertyRowMapper(SelectedOptionDto.class);
+        RowMapper<SelectedOptionDto> rowMapper = new BeanPropertyRowMapper<>();
 
         return jdbcTemplate.query(query, params, rowMapper);
     }
