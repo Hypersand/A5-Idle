@@ -11,7 +11,7 @@ import FindTrimTooltip from "toolTips/FindTrimTooltip";
 import TrimMain from "../components/trimMain";
 import { preloadContext } from "utils/context";
 import { preloadImage } from "utils/preloader";
-import Loading from "components/common/loading/Loading";
+import Loading from "../components/common/loading/Loading";
 import ServerErrorPage from "./ServerErrorPage";
 
 let cachedTrimData = null;
