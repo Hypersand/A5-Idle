@@ -6,7 +6,6 @@ import lombok.Getter;
 
 import java.util.List;
 
-@Builder
 @Getter
 public class DefaultFunctionCategoryResponse {
 

@@ -97,12 +97,7 @@ public class TrimControllerTest {
                 "구매자 10%가 선택"));
 
         TrimSelectionResponse selection = new TrimSelectionResponse(
-                trims.get(0).getTrimId(),
-                trims.get(0).getName(),
-                trims.get(0).getDescription(),
-                trims.get(0).getPrice(),
-                trims.get(0).getImgUrl(),
-                trims.get(0).getPurchaseRate(),
+                trims.get(0),
                 functionCategoryDtos,
                 thumbnailFunctions,
                 thumbnailColor

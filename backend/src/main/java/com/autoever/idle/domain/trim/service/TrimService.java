@@ -59,12 +59,7 @@ public class TrimService {
             List<InteriorImgUrlDto> interiorImgUrls = interiorColorRepository.findInteriorColorImgUrlsByTrimId(trim.getTrimId());
             TrimThumbnailColorResponse colors = new TrimThumbnailColorResponse(exteriorImgUrls, interiorImgUrls);
             TrimSelectionResponse trimDto = new TrimSelectionResponse(
-                    trim.getTrimId(),
-                    trim.getName(),
-                    trim.getDescription(),
-                    trim.getPrice(),
-                    trim.getImgUrl(),
-                    trim.getPurchaseRate(),
+                    trim,
                     categoryDtos,
                     thumbnailFunctions,
                     colors

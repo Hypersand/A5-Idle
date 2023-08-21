@@ -21,17 +21,16 @@ public class TrimSelectionResponse {
     private List<TrimThumbnailFunctionResponse> thumbnailFunctions;
     private TrimThumbnailColorResponse colors;
 
-    public TrimSelectionResponse(Long trimId, String name, String description,
-                                 int price, String imgUrl, String purchaseRate,
+    public TrimSelectionResponse(TrimDto trim,
                                  List<DefaultFunctionCategoryResponse> defaultFunctions,
                                  List<TrimThumbnailFunctionResponse> thumbnailFunctions,
                                  TrimThumbnailColorResponse colors) {
-        this.trimId = trimId;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.imgUrl = imgUrl;
-        this.purchaseRate = purchaseRate;
+        this.trimId = trim.getTrimId();
+        this.name = trim.getName();
+        this.description = trim.getDescription();
+        this.price = trim.getPrice();
+        this.imgUrl = trim.getImgUrl();
+        this.purchaseRate = trim.getPurchaseRate();
         this.defaultFunctions = defaultFunctions;
         this.thumbnailFunctions = thumbnailFunctions;
         this.colors = colors;
