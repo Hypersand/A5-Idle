@@ -57,7 +57,6 @@ function TrimPage() {
       setLoaderIdx((prev) => prev + 1);
     }
   }
-  console.log(preLoadData);
   return (
     <>
       {trimData ? <TrimMain data={trimData} onMouseEnter={handleMouseEnter} /> : <Loading />}

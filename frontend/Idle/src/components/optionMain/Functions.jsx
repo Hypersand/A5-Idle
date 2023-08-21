@@ -17,8 +17,8 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
         ? setIsDescOverFlow(true)
         : setIsDescOverFlow(false)
       : ref.scrollWidth > ref.clientWidth
-      ? setIsFNameOverFlow(true)
-      : setIsFNameOverFlow(false);
+        ? setIsFNameOverFlow(true)
+        : setIsFNameOverFlow(false);
   }
 
   useEffect(() => {
@@ -78,9 +78,6 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
           <StDesc
             ref={descRef}
             $isOverFlow={isDescOverFlow}
-            onMouseEnter={() => {
-              console.log(123);
-            }}
           >
             {data[currentPage]?.functionDescription === "-"
               ? ""

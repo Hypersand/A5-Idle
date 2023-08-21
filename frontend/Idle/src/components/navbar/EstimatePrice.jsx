@@ -14,7 +14,7 @@ function EstimatePrice() {
 
   const updateAnimation = () => {
     if (prevMoney !== targetMoney) {
-      setPrevMoney(prevMoney + (targetMoney - prevMoney) * 0.25); // You can adjust the interpolation rate here
+      setPrevMoney(prevMoney + (targetMoney - prevMoney) * 0.25);
     }
   };
 
