@@ -11,6 +11,7 @@ import FindTrimTooltip from "toolTips/FindTrimTooltip";
 import TrimMain from "../components/trimMain";
 import { preloadContext } from "../utils/context";
 import { preloadImage } from "../utils/preloader";
+import Loading from "../components/common/loading/Loading";
 
 let cachedTrimData = null;
 
@@ -45,10 +46,10 @@ function TrimPage() {
 
   return (
     <>
-      {trimData ? <TrimMain data={trimData} onMouseEnter={handleMouseEnter} /> : <p>Loading...</p>}
+      {trimData ? <TrimMain data={trimData} onMouseEnter={handleMouseEnter} /> : <Loading />}
       <StWrapper>
         <StBottomContainer>
-          {trimData ? <TrimBoxContainer data={trimData} /> : <p>Loading...</p>}
+          {trimData ? <TrimBoxContainer data={trimData} /> : <Loading />}
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>트림 선택</Title>
