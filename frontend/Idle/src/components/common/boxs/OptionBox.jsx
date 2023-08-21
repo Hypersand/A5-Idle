@@ -14,6 +14,7 @@ import { ADD, CONFUSE, NONE } from "utils/constants";
 
 function OptionBox({
   optionId,
+  optionCanSelect,
   optionName,
   optionPrice,
   optionPurchaseRate,
@@ -72,6 +73,7 @@ function OptionBox({
         onClick={() => setSelectedOption(optionName)}
         $isSelected={isSelected}
         $state={state}
+        $optionCanSelect={optionCanSelect}
       >
         <ClickedBorder $isSelected={isSelected} $state={state} />
         <StContent>
@@ -143,6 +145,8 @@ const StContainer = styled.div`
   flex-shrink: 0;
   pointer-events: ${({ $state }) => ($state === "block" ? NONE : "")};
   opacity: ${({ $state }) => ($state ? 1 : 0.2)};
+  pointer-events: ${({ $optionCanSelect }) => ($optionCanSelect ? "" : "none")};
+  opacity: ${({ $optionCanSelect }) => ($optionCanSelect ? 1 : 0.2)};
   &:hover {
     background: ${({ $state }) => {
     switch ($state) {
@@ -156,7 +160,7 @@ const StContainer = styled.div`
   }};
     opacity: 0.9;
     cursor: pointer;
-  }
+  };
 `;
 
 const StContent = styled.div`
