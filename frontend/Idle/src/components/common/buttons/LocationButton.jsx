@@ -28,4 +28,5 @@ const StLocationContainer = styled.div`
   text-align: left;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 `;
