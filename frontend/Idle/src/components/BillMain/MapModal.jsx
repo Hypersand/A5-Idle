@@ -254,7 +254,9 @@ function MapModal({ setCarMasterVisible }) {
 export default MapModal;
 
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
   top: 0;
   left: 0;
   width: 1280px;
