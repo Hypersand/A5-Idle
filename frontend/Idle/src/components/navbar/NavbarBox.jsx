@@ -235,6 +235,10 @@ const StSelected = styled.div`
   min-height: 13px;
   margin-bottom: 1px;
   margin-right: 6px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const StForDetail = styled.div`
