@@ -1,5 +1,5 @@
 import { styled, keyframes } from "styled-components";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CloseButton from "./CloseButton";
 import CategoryTabs from "tabs/CategoryTabs";
 import ItemBox from "./ItemBox";
@@ -8,6 +8,7 @@ import { createPortal } from "react-dom";
 import palette from "styles/palette";
 import { getAPI } from "utils/api";
 import { PATH } from "utils/constants";
+import { carContext } from "../../utils/context"
 
 function Modal({ setVisible }) {
   const pageSize = 10;
@@ -15,6 +16,7 @@ function Modal({ setVisible }) {
   const [data, setData] = useState([]);
   const [currentTab, setCurrentTab] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const { car } = useContext(carContext);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -22,7 +24,7 @@ function Modal({ setVisible }) {
 
   useEffect(() => {
     async function fetchGet() {
-      const result = await getAPI(PATH.OPTION.DEFAULT, { trimId: 1 });
+      const result = await getAPI(PATH.OPTION.DEFAULT, { trimId: car.trim.trimId });
       setData(result);
       setCurrentTab(result[0].categoryName);
     }
