@@ -497,6 +497,13 @@ const StBtn = styled.div`
   letter-spacing: -0.42px;
   text-align: center;
   cursor: pointer;
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 const StPage = styled.div`
   position: absolute;
