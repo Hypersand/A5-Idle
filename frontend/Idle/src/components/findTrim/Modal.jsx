@@ -20,7 +20,7 @@ import { PATH } from "utils/constants";
 import { optionPostAPI, submitPostAPI } from "../../utils/api";
 import { PUSH_OPTION_ALERT } from "../../utils/actionType";
 
-function Modal({ setVisible }) {
+function Modal({ setVisible, onMouseEnter }) {
   const { dispatch } = useContext(carContext);
   const [state, stateDispatch] = useReducer(findTrimReducer, findTrimInitialState);
 
@@ -83,9 +83,9 @@ function Modal({ setVisible }) {
               text={"나가기"}
               onClick={() => {
                 clickExit(1000);
-              }}
+              }} onMouseEnter={onMouseEnter}
             />
-            <BlueButton text={"확인"} isActive={state.clickActive} onClick={clickCheck} />
+            <BlueButton text={"확인"} isActive={state.clickActive} onClick={clickCheck} onMouseEnter={onMouseEnter} />
           </StFindTrimContentButtonContainer>
         </StFindTrimContentContainer>
         {state.showOptionAlert && <OptionAlert text={state.optionAlert} />}
