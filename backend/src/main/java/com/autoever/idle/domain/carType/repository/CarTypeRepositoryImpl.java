@@ -3,7 +3,6 @@ package com.autoever.idle.domain.carType.repository;
 import com.autoever.idle.domain.carType.dto.CarTypeDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -15,20 +14,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CarTypeRepositoryImpl implements CarTypeRepository {
 
-    private final JdbcTemplate jdbcTemplate;
-    private final NamedParameterJdbcTemplate jdbcTemplate1;
+    private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public List<Long> findByName(String carTypeName) {
-        return jdbcTemplate.queryForList("select car_type_id from CAR_TYPE where CAR_TYPE.name = ?",
-                Long.class,
-                carTypeName);
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("carTypeName", carTypeName);
+        return jdbcTemplate.queryForList("select car_type_id from CAR_TYPE where CAR_TYPE.name = :carTypeName", param, Long.class);
     }
 
-    public List<CarTypeDto> findByCategory(Long categoryId){
+    public List<CarTypeDto> findByCategory(Long categoryId) {
         RowMapper rowMapper = BeanPropertyRowMapper.newInstance(CarTypeDto.class);
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("categoryId", categoryId);
-        return jdbcTemplate1.query("SELECT name AS carName, price AS carPrice, img_url AS carImgUrl, logo_url AS logoImgUrl " +
+        return jdbcTemplate.query("SELECT name AS carName, price AS carPrice, img_url AS carImgUrl, logo_url AS logoImgUrl " +
                 "FROM CAR_TYPE WHERE car_category_id = :categoryId", param, rowMapper);
     }
 }
