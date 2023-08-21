@@ -8,7 +8,6 @@ import lombok.Getter;
 
 import java.util.List;
 
-@Builder
 @Getter
 public class TrimSelectionResponse {
 
@@ -22,17 +21,19 @@ public class TrimSelectionResponse {
     private List<TrimThumbnailFunctionResponse> thumbnailFunctions;
     private TrimThumbnailColorResponse colors;
 
-    public static TrimSelectionResponse createDto(TrimDto trim, List<DefaultFunctionCategoryResponse> functionCategoryDtos, List<TrimThumbnailFunctionResponse> thumbnailFunctions, TrimThumbnailColorResponse colors) {
-        return TrimSelectionResponse.builder()
-                .trimId(trim.getTrimId())
-                .name(trim.getName())
-                .description(trim.getDescription())
-                .price(trim.getPrice())
-                .imgUrl(trim.getImgUrl())
-                .purchaseRate(trim.getPurchaseRate())
-                .defaultFunctions(functionCategoryDtos)
-                .thumbnailFunctions(thumbnailFunctions)
-                .colors(colors)
-                .build();
+    public TrimSelectionResponse(Long trimId, String name, String description,
+                                 int price, String imgUrl, String purchaseRate,
+                                 List<DefaultFunctionCategoryResponse> defaultFunctions,
+                                 List<TrimThumbnailFunctionResponse> thumbnailFunctions,
+                                 TrimThumbnailColorResponse colors) {
+        this.trimId = trimId;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
+        this.purchaseRate = purchaseRate;
+        this.defaultFunctions = defaultFunctions;
+        this.thumbnailFunctions = thumbnailFunctions;
+        this.colors = colors;
     }
 }
