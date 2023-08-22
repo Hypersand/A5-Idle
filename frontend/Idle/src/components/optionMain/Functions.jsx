@@ -24,6 +24,7 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   useEffect(() => {
     checkOverFlow(descRef.current, "desc");
     checkOverFlow(fNameRef.current, "fName");
+    setSelectedFunction(() => (data ? data[currentPage] : null));
   }, [data]);
 
   useEffect(() => {
