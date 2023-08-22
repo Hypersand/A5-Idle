@@ -1,4 +1,6 @@
+
 # A5-Idle
+<img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/109746210/1d82e28d-fb2e-4c4a-8f15-976a7d999b50" width=400px>
 
 소프티어 부트캠프 2기 오토에버 5팀 'I'들의 모임 Idle 입니다! 😁 </br></br>
 
