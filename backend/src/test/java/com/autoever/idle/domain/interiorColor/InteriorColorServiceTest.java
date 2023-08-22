@@ -2,6 +2,7 @@ package com.autoever.idle.domain.interiorColor;
 
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorResponse;
+import com.autoever.idle.domain.interiorColor.dto.InteriorColorsImgUrlResponse;
 import com.autoever.idle.domain.interiorColor.repository.InteriorColorRepository;
 import com.autoever.idle.domain.interiorColor.service.InteriorColorService;
 import com.autoever.idle.global.exception.custom.InvalidTrimException;
@@ -39,6 +40,8 @@ class InteriorColorServiceTest {
 
     List<InteriorColorDto> interiorColorDtos;
     InteriorColorResponse interiorColorRes;
+    List<String> imgUrls;
+    InteriorColorsImgUrlResponse imgUrlResponse;
 
     @BeforeEach
     void setUp() {
@@ -52,6 +55,13 @@ class InteriorColorServiceTest {
                 "구매자 16%가 선택")
         );
         interiorColorRes = InteriorColorResponse.createInteriorColorDto(interiorColorDtos);
+
+        imgUrls = new ArrayList<>();
+        imgUrls.add("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png");
+        imgUrls.add("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/118-1.png");
+        imgUrls.add("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png");
+
+        imgUrlResponse = new InteriorColorsImgUrlResponse(imgUrls);
     }
 
     @Test
@@ -88,5 +98,17 @@ class InteriorColorServiceTest {
 
         softAssertions.assertThatThrownBy(() -> interiorColorService.findAllInteriorColors(trimId, exteriorId))
                 .isInstanceOf(InvalidTrimException.class);
+    }
+
+    @Test
+    @DisplayName("전체 내장 색상 이미지를 반환한다")
+    void findAllInteriorColorImgUrls() {
+        when(interiorColorRepository.findAllInteriorColorImgUrls()).thenReturn(imgUrls);
+
+        InteriorColorsImgUrlResponse response = interiorColorService.findAllInteriorColorImgUrls();
+
+        softAssertions.assertThat(response.getInteriorImgUrls().get(0)).isEqualTo(imgUrls.get(0));
+        softAssertions.assertThat(response.getInteriorImgUrls().get(1)).isEqualTo(imgUrls.get(1));
+        softAssertions.assertThat(response.getInteriorImgUrls().get(2)).isEqualTo(imgUrls.get(2));
     }
 }
