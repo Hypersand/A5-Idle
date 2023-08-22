@@ -56,4 +56,5 @@ const StContainer = styled.div`
 const StImg = styled.img`
   width: 478px;
   height: 334px;
+  border-radius: 5px;
 `;
