@@ -10,7 +10,7 @@ import CarMasterTooltip from "toolTips/CarMasterTooltip";
 import { PATH } from "utils/constants";
 import WarningModal from "modals/WarningModal";
 import ReactToPrint from "react-to-print";
-import ServerErrorPage from "./ServerErrorPage";
+import ServerErrorPage from "./serverErrorPage";
 import { getWithQueryAPI } from "../utils/api";
 
 let cachedBillData = null;
@@ -46,9 +46,9 @@ function BillPage() {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -229,16 +229,16 @@ const CarContainer = styled.div`
 `;
 const StConfirmContainer = styled.div`
   display: flex;
-  position:absolute;
+  position: absolute;
   flex-direction: row;
-  top:420px;
+  top: 420px;
   right: 100px;
   gap: 40px;
-    justify-content: center;
-    align-items: flex-end;
+  justify-content: center;
+  align-items: flex-end;
 `;
 const fixedAnimation = css`
-  position:fixed;
+  position: fixed;
   flex-direction: column;
   right: 60px;
   bottom: 120px;
@@ -247,7 +247,7 @@ const fixedAnimation = css`
   padding: 10px 20px 10px 20px;
   border: 1px ridge #dde4f8;
   background-color: white;
-`
+`;
 const StConfirmText = styled.div`
   display: flex;
   flex-direction: column;
@@ -256,8 +256,7 @@ const StConfirmText = styled.div`
   gap: 8px;
   right: 320px;
   cursor: pointer;
-  ${({ $scrollPosition }) =>
-    $scrollPosition > 500 ? fixedAnimation : ""};
+  ${({ $scrollPosition }) => ($scrollPosition > 500 ? fixedAnimation : "")};
   p {
     font-family: "Hyundai Sans Text KR";
     font-size: 16px;
