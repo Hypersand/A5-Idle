@@ -12,7 +12,7 @@ import TrimMain from "../components/trimMain";
 import { preloadContext } from "utils/context";
 import { preloadImage } from "utils/preloader";
 import Loading from "../components/common/loading/Loading";
-import ServerErrorPage from "./ServerErrorPage";
+import ServerErrorPage from "./serverErrorPage";
 
 let cachedTrimData = null;
 

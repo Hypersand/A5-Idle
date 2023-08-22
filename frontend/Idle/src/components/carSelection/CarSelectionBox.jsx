@@ -6,10 +6,9 @@ function CarSelectionBox({ isSelected, data, setSelectedCar }) {
     <StContainer $isSelected={isSelected} onClick={() => setSelectedCar(data.carName)}>
       <StImg src={data.carImgUrl}></StImg>
       <StName>{data.carName}</StName>
-      <StPrice>{data.carPrice.toLocaleString()}원~</StPrice>
+      <StPrice>{data.carPrice.toLocaleString()} 만원~</StPrice>
       {data.logoImgUrl && <StWheel src={data.logoImgUrl}></StWheel>}
-      {/* {data.isNew && <StNew></StNew>} */}
-      <StNew>New</StNew>
+      {data.carIsNew && <StNew>New</StNew>}
     </StContainer>
   );
 }
