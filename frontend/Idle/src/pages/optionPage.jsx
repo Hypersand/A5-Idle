@@ -20,6 +20,10 @@ import { ReactComponent as ArrowLogo } from "images/arrowOption.svg";
 import OptionMain from "optionMain/index";
 import palette from "styles/palette";
 import { carContext } from "utils/context";
+<<<<<<< HEAD
+=======
+import ServerErrorPage from "./serverErrorPage";
+>>>>>>> cf484040c716e0f8118da11f3f70687c86182be3
 import ConfusingTooltip from "toolTips/ConfusingTooltip";
 import WarningModal from "modals/WarningModal";
 import { getWithQueryAPI } from "utils/api";

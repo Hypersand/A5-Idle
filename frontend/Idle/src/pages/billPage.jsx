@@ -10,7 +10,7 @@ import CarMasterTooltip from "toolTips/CarMasterTooltip";
 import { PATH } from "utils/constants";
 import WarningModal from "modals/WarningModal";
 import ReactToPrint from "react-to-print";
-import ServerErrorPage from "./ServerErrorPage";
+import ServerErrorPage from "./serverErrorPage";
 import { getWithQueryAPI } from "../utils/api";
 
 let cachedBillData = null;

@@ -20,7 +20,7 @@ import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "utils
 import { PATH } from "utils/constants";
 import { getWithoutQueryAPI } from "utils/api";
 import RemoveOptionModal from "modals/RemoveOptionModal";
-import ServerErrorPage from "./ServerErrorPage";
+import ServerErrorPage from "./serverErrorPage";
 
 let cachedData = null;
 
@@ -36,11 +36,10 @@ function DetailModelPage() {
   const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES];
 
   useEffect(() => {
-    getWithoutQueryAPI(PATH.DETAIL, `trimId=${TRANSLATE[car.trim.name]}`)
-      .then((res) => {
-        setDetailData(res);
-        cachedData = res;
-      })
+    getWithoutQueryAPI(PATH.DETAIL, `trimId=${TRANSLATE[car.trim.name]}`).then((res) => {
+      setDetailData(res);
+      cachedData = res;
+    });
   }, []);
 
   useEffect(() => {
