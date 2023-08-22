@@ -12,17 +12,6 @@ const __dirname = isWindow
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [svgr(), react(), VitePluginHtmlEnv(), vitePluginHtmlEnv({ compiler: true })],
-  server: {
-    proxy: {
-      "/api": {
-        target: "https://api.i-want-to-go-autoever.shop",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-        secure: false,
-        ws: true,
-      },
-    },
-  },
   resolve: {
     alias: {
       images: path.resolve(__dirname, "src/assets/images"),
