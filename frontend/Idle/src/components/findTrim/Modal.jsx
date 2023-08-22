@@ -29,7 +29,6 @@ function Modal({ setVisible, onMouseEnter }) {
       stateDispatch({ type: SET_OPTION_STATUS, payload: defaultOption });
       return;
     }
-    console.log(state);
     async function postFunc() {
       await getWithQueryAPI(PATH.FIND.OPTION, { functionIds: state.selectedOption }).then((res) => {
         stateDispatch({ type: SET_OPTION_STATUS, payload: res });
