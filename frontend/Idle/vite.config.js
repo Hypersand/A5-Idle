@@ -15,7 +15,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: "./src/utils/setUpTest.jsx",
+    setupFiles: [`./setUpTest.jsx`],
   },
   server: {
     // proxy: {
