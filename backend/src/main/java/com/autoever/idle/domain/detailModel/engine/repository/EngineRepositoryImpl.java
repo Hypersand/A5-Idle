@@ -16,8 +16,8 @@ public class EngineRepositoryImpl implements EngineRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
     @Override
     public List<EngineResponse> findAll(Long trimId) {
-        String query = "select e.engine_id id, e.type,  e.price  , e.description, e.purchase_rate, e.img_url, " +
-                "e.peak_output, e.max_torque, e.min_fuel, e.max_fuel  " +
+        String query = "select e.engine_id id, e.type,  e.price, e.description, e.purchase_rate, e.img_url, " +
+                "e.peak_output, e.max_torque engineMaxTorque, e.min_fuel, e.max_fuel  " +
                 "from ENGINE e left join TRIM_ENGINE te " +
                 "on e.engine_id = te.engine_id " +
                 "where te.trim_id = :trimId order by e.price asc";

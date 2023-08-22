@@ -17,12 +17,13 @@ public class EngineResponse {
     private String purchaseRate;
     private String imgUrl;
     private int peakOutput;
-    private double enginemaxTorque;
+    private double engineMaxTorque;
     private double minFuel;
     private double maxFuel;
 
-    public EngineResponse(Long id, String type, int price, String description, String purchaseRate,
-                          String imgUrl, int peakOutput, double enginemaxTorque, double minFuel, double maxFuel) {
+    public EngineResponse(Long id, String type, int price, String description,
+                          String purchaseRate, String imgUrl, int peakOutput,
+                          double engineMaxTorque, double minFuel, double maxFuel) {
         this.id = id;
         this.type = type;
         this.price = price;
@@ -30,7 +31,7 @@ public class EngineResponse {
         this.purchaseRate = purchaseRate;
         this.imgUrl = imgUrl;
         this.peakOutput = peakOutput;
-        this.enginemaxTorque = enginemaxTorque;
+        this.engineMaxTorque = engineMaxTorque;
         this.minFuel = minFuel;
         this.maxFuel = maxFuel;
     }
