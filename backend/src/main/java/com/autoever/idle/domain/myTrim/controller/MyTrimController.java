@@ -7,6 +7,7 @@ import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitRequest;
 import com.autoever.idle.domain.myTrim.service.MyTrimService;
 import com.autoever.idle.domain.option.dto.MyTrimOptionResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,7 @@ public class MyTrimController {
     }
 
     @GetMapping(value = "/select/option") //선택지 선택시
+    @Cacheable("myTrim")
     public ResponseEntity<List<MyTrimResponse>> findTrimsBySelectFunctions(@RequestParam List<Integer> functionIds) {
         List<MyTrimResponse> trimBySelectFunctions = myTrimService.findTrimBySelectFunctions(functionIds);
         return ResponseEntity.ok(trimBySelectFunctions);

@@ -13,6 +13,7 @@ import com.autoever.idle.global.exception.custom.InvalidFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidMyTrimFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidTrimFunctionException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
