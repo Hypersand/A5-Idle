@@ -1,8 +1,21 @@
 
-# A5-Idle
-<img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/109746210/1d82e28d-fb2e-4c4a-8f15-976a7d999b50" width=400px>
+<p align="center">
+      <a href="https://i-want-to-go-autoever.shop/" target="_blank">    
+            <img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/109746210/1d82e28d-fb2e-4c4a-8f15-976a7d999b50" width=300px>
+      </a>
+</p>
 
-소프티어 부트캠프 2기 오토에버 5팀 'I'들의 모임 Idle 입니다! 😁 </br></br>
+<div align = "center">
+
+<h3>소프티어 부트캠프 2기 오토에버 5팀 'I'들의 모임 Idle 입니다! 😁</h3>
+
+
+[마이카마스터](https://i-want-to-go-autoever.shop/)를 통해 **내 차 만들기**를 진행해보세요 🚙 <br> <br> <br>
+
+</div>
+
+
+# A5-Idle
 
 | 종류 | 링크 |
 | --- | --- |
