@@ -73,6 +73,7 @@ const StImg = styled.img`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  border-radius: 4px;
   transition: all 0.2s ease-in-out;
 `;
 

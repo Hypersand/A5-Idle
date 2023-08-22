@@ -88,6 +88,7 @@ const StImage = styled.img`
   width: 100%;
   height: 100%;
   transition: all 0.2s ease-in-out;
+  border-radius: 5px;
 `;
 
 const StTextBox = styled.div`
@@ -135,5 +136,6 @@ const StOutline = styled.div`
   border: 3px solid #fff;
   height: 150px;
   transform: translate(2px, 2px);
+  border-radius: 3px;
   z-index: 1;
 `;

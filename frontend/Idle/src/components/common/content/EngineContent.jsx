@@ -2,11 +2,11 @@ import { styled } from "styled-components";
 import EngineDetail from "./EngineDetail";
 import { CONSUMTION_KR, MAX_TORQUE_KR, PEAK_OUTPUT_KR } from "utils/constants";
 
-function EngineContent({ imgUrl, peakOutput, enginemaxTorque, minFuel, maxFuel }) {
+function EngineContent({ imgUrl, peakOutput, engineMaxTorque, minFuel, maxFuel }) {
   const states = [PEAK_OUTPUT_KR, MAX_TORQUE_KR, CONSUMTION_KR];
   const formedData = {
     "최고 출력": { unit: "PS", value: peakOutput },
-    "최대 토크": { unit: "kgf-m", value: enginemaxTorque },
+    "최대 토크": { unit: "kgf-m", value: engineMaxTorque },
     "복합 연비": { unit: "km/L", value: [minFuel, maxFuel] },
   };
   return (

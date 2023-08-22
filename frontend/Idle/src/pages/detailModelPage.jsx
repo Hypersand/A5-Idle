@@ -34,7 +34,6 @@ function DetailModelPage() {
 
   const navigate = useNavigate();
   const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES];
-
   useEffect(() => {
     getWithoutQueryAPI(PATH.DETAIL, `trimId=${TRANSLATE[car.trim.name]}`)
       .then((res) => {

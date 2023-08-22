@@ -78,6 +78,7 @@ const StContainer = styled.li`
   background: ${palette.White};
   display: flex;
   flex-direction: column;
+  border-radius: 5px;
   &:hover {
     cursor: pointer;
   }

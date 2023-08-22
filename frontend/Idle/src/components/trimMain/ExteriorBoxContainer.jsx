@@ -21,4 +21,5 @@ const StContainer = styled.div`
 const StImageBox = styled.img`
     width: 20px;
     height: 20px;
+    border-radius: 3px;
 `

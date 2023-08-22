@@ -12,7 +12,6 @@ function OutsideColorBox({ data, isSelected, onClick }) {
   return (
     <StContainer $isActive={isSelected} onClick={onClick} $img={data.exteriorImgUrl}>
       <StOutline $isActive={isSelected} />
-
       <StName $isWhite={isWhite}>{data.exteriorName}</StName>
       <StRatio $isWhite={isWhite}>{data.exteriorPurchaseRate}</StRatio>
       <StPrice $isWhite={isWhite}>+ {data.exteriorPrice} 원</StPrice>
@@ -29,8 +28,7 @@ const StOutline = styled.div`
   border: 3px solid #fff;
   height: 65px;
   transform: translate(2px, 2px);
-
-  border-radius: 5px;
+  border-radius: 4px;
 `;
 
 const StContainer = styled.div`

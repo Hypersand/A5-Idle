@@ -125,6 +125,7 @@ const StImg = styled.div`
   width: 452px;
   height: 257.514px;
   flex-shrink: 0;
+  border-radius: 5px;
   background-image: url(${(props) => props.$imgUrl});
   background-size: cover;
 `;

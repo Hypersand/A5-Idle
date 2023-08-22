@@ -121,6 +121,7 @@ const StColorContent = styled.div`
   background-repeat: round;
   flex-shrink: 0;
   position: relative;
+  border-radius:5px;
   p {
     position: absolute;
     bottom: 8px;

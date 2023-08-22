@@ -214,6 +214,7 @@ const StBtn = styled.button`
   justify-content: center;
   align-items: center;
   background-color: #1a3276;
+  border-radius: 3px;
   color: white;
   font-family: "Hyundai Sans Text KR";
   font-size: 13px;
