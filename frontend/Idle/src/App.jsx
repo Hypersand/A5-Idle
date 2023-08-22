@@ -12,6 +12,7 @@ function App() {
   const [preLoadData, setPreLoadData] = useState([])
   const [loaderIdx, setLoaderIdx] = useState(0)
   return (
+
     <ThemeProvider theme={color}>
       <Reset />
       <carContext.Provider value={{ car, dispatch }}>

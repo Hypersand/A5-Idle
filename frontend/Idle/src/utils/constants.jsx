@@ -22,6 +22,7 @@ export const PATH = {
     DISTANCE: `https://api.i-want-to-go-autoever.shop/find/car/masters/distance?`,
   },
   BILL: `https://api.i-want-to-go-autoever.shop/result/bill`,
+  SELECTCAR: "https://api.i-want-to-go-autoever.shop/carType",
 };
 
 export const TYPE = {
@@ -214,7 +215,7 @@ export const emptyCar = {
   trim: {
     trimId: 1,
     name: "Exclusive",
-    price: 40000000,
+    price: 38960000,
   },
   detail: {
     engines: {},
