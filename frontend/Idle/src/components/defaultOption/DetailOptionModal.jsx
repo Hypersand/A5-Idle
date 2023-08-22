@@ -1,25 +1,25 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { createPortal } from "react-dom";
 import { ReactComponent as CloseButton } from "images/esc.svg";
 import palette from "styles/palette";
+import { useState } from "react";
 
-function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
-  console.log(onclose);
-  const stringMaxLength = 23;
-  function checkLength() {
-    if (title.length > stringMaxLength) {
-      return title.slice(0, stringMaxLength) + "...";
-    }
-    return title;
+function DetailOptionModal({ title, description, functionImgUrl, onClose, modalPosition }) {
+  const [animationstate, setAnimationState] = useState(false);
+  function clickClose() {
+    setAnimationState(true);
+    setTimeout(() => {
+      onClose();
+    }, 300);
   }
   return createPortal(
     <ModalContainer>
-      <ModalBackground />
-      <StContainer>
+      <ModalBackground onClick={clickClose} />
+      <StContainer $animationstate={animationstate}>
         <StBox>
           <StTitle>
-            {checkLength()}
-            <StCloseButton onClick={onClose} />
+            {title}
+            <StCloseButton onClick={clickClose} />
           </StTitle>
           <StImg $imgUrl={functionImgUrl} />
         </StBox>
@@ -30,19 +30,19 @@ function DetailOptionModal({ title, description, functionImgUrl, onClose }) {
         </StSubDescription>
       </StContainer>
     </ModalContainer>,
-    document.getElementById("modal")
+    document.getElementById(modalPosition)
   );
 }
 
 export default DetailOptionModal;
 
 const ModalContainer = styled.div`
-  position: absolute;
-  z-index: 102;
+  position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
-  width: 1280px;
-  height: 720px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,20 +62,41 @@ const StBox = styled.div`
   height: 335px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 45px;
   margin-top: 24px;
   margin-left: 44px;
 `;
 
 const StContainer = styled.div`
   display: flex;
-  z-index: 15;
+  z-index: 2;
   background-color: ${palette.White};
   width: 540px;
   height: 550px;
   flex-direction: column;
+  transition: opacity 0.5s ease-in-out;
+  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.5s ease;
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
+`;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 `;
 
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
 const StTitle = styled.div`
   display: flex;
   width: 452px;
@@ -96,6 +117,7 @@ const StCloseButton = styled(CloseButton)`
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: translate(90%, 0%);
   cursor: pointer;
 `;
 
@@ -103,6 +125,7 @@ const StImg = styled.div`
   width: 452px;
   height: 257.514px;
   flex-shrink: 0;
+  border-radius: 5px;
   background-image: url(${(props) => props.$imgUrl});
   background-size: cover;
 `;

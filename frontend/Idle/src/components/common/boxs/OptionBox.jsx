@@ -14,6 +14,7 @@ import { ADD, CONFUSE, NONE } from "utils/constants";
 
 function OptionBox({
   optionId,
+  optionCanSelect,
   optionName,
   optionPrice,
   optionPurchaseRate,
@@ -72,6 +73,7 @@ function OptionBox({
         onClick={() => setSelectedOption(optionName)}
         $isSelected={isSelected}
         $state={state}
+        $optionCanSelect={optionCanSelect}
       >
         <ClickedBorder $isSelected={isSelected} $state={state} />
         <StContent>
@@ -106,26 +108,26 @@ const StContainer = styled.div`
   padding: 12px 16px;
   border: 1px solid
     ${({ $isSelected, $state }) => {
-    if ($isSelected) {
-      switch ($state) {
-        case NONE:
-          return `${palette.NavyBlue_5}`;
-        case CONFUSE:
-          return `${palette.Gold_5}`;
-        case ADD:
-          return `${palette.NavyBlue_5}`;
+      if ($isSelected) {
+        switch ($state) {
+          case NONE:
+            return `${palette.NavyBlue_5}`;
+          case CONFUSE:
+            return `${palette.Gold_5}`;
+          case ADD:
+            return `${palette.NavyBlue_5}`;
+        }
+      } else {
+        switch ($state) {
+          case NONE:
+            return `${palette.Grey_2}`;
+          case CONFUSE:
+            return `${palette.Gold_5}`;
+          case ADD:
+            return `${palette.NavyBlue_5}`;
+        }
       }
-    } else {
-      switch ($state) {
-        case NONE:
-          return `${palette.Grey_2}`;
-        case CONFUSE:
-          return `${palette.Gold_5}`;
-        case ADD:
-          return `${palette.NavyBlue_5}`;
-      }
-    }
-  }};
+    }};
   background: ${({ $state }) => {
     switch ($state) {
       case NONE:
@@ -143,20 +145,28 @@ const StContainer = styled.div`
   flex-shrink: 0;
   pointer-events: ${({ $state }) => ($state === "block" ? NONE : "")};
   opacity: ${({ $state }) => ($state ? 1 : 0.2)};
+  pointer-events: ${({ $optionCanSelect }) => ($optionCanSelect ? "" : "none")};
+  opacity: ${({ $optionCanSelect }) => ($optionCanSelect ? 1 : 0.2)};
   &:hover {
     background: ${({ $state }) => {
-    switch ($state) {
-      case NONE:
-        return `${palette.NavyBlue_1};`;
-      case CONFUSE:
-        return `${palette.Gold_5}`;
-      case ADD:
-        return `${palette.NavyBlue_5}`;
-    }
-  }};
+      switch ($state) {
+        case NONE:
+          return `${palette.NavyBlue_1};`;
+        case CONFUSE:
+          return `${palette.Gold_5}`;
+        case ADD:
+          return `${palette.NavyBlue_5}`;
+      }
+    }};
     opacity: 0.9;
     cursor: pointer;
   }
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StContent = styled.div`
@@ -227,5 +237,4 @@ const ClickedBorder = styled.div`
   height: 156px;
   top: 1px;
   left: 1px;
-  z-index: 0;
 `;

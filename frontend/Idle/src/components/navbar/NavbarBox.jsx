@@ -98,11 +98,17 @@ const params = {
   color: "/exterior",
   option: "/all",
   bill: "",
-}
+};
 
-function boxClicked(type, navigate, car, setIsOpen) {
-  if (type === "bill") car.getAllOptionChecked() ? navigate(`/${type}${params[type]}`) : setIsOpen(true)
-  else navigate(`/${type}${params[type]}`)
+function boxClicked(type, navigate, car, setIsOpen, setIsEngineChekced) {
+  if (type === "option" && car.detail.engines.name === undefined) {
+    setIsEngineChekced(true);
+    return;
+  }
+
+  if (type === "bill")
+    car.getAllOptionChecked() ? navigate(`/${type}${params[type]}`) : setIsOpen(true);
+  else navigate(`/${type}${params[type]}`);
 }
 
 function renderChecked(type, currenPage, car) {
@@ -134,7 +140,7 @@ function renderChecked(type, currenPage, car) {
  * @param {trim,color,option등 중 어떤 건지} type
  * @returns navbar에서 박스 컴포넌트
  */
-function NavbarBox({ type, setIsOpen }) {
+function NavbarBox({ type, setIsOpen, setIsEngineChekced }) {
   const { car } = useContext(carContext);
   const currentPage = useLocation().pathname.slice(1);
   const [isMatch, setIsMatch] = useState(false);
@@ -146,7 +152,10 @@ function NavbarBox({ type, setIsOpen }) {
   }, [currentPage, type]);
 
   return (
-    <StDiv $ismatch={isMatch} onClick={() => boxClicked(type, navigate, car, setIsOpen)}>
+    <StDiv
+      $ismatch={isMatch}
+      onClick={() => boxClicked(type, navigate, car, setIsOpen, setIsEngineChekced)}
+    >
       <StTopDiv>
         <StType>{TYPE[type]}</StType>
         <StRightDiv>
@@ -179,6 +188,9 @@ const StDiv = styled.div`
     cursor: pointer;
   }
   transition: all 0.2s ease;
+
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StTopDiv = styled.div`
@@ -226,6 +238,10 @@ const StSelected = styled.div`
   min-height: 13px;
   margin-bottom: 1px;
   margin-right: 6px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const StForDetail = styled.div`

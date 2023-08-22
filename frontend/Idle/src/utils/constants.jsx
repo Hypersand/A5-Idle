@@ -1,27 +1,28 @@
 /* eslint-disable react-refresh/only-export-components */
 export const PATH = {
-  TRIM: `http://api.i-want-to-go-autoever.shop/trims?carTypeName=팰리세이드`,
+  TRIM: `https://api.i-want-to-go-autoever.shop/trims?carTypeName=팰리세이드`,
   FIND: {
-    GET: `http://api.i-want-to-go-autoever.shop/trims/favorite`,
-    OPTION: `http://api.i-want-to-go-autoever.shop/trims/favorite/select/option`,
-    TRIM: `http://api.i-want-to-go-autoever.shop/trims/favorite/select/trim`,
-    SUBMIT: `http://api.i-want-to-go-autoever.shop/trims/favorite/submit`,
+    GET: `https://api.i-want-to-go-autoever.shop/trims/favorite`,
+    OPTION: `https://api.i-want-to-go-autoever.shop/trims/favorite/select/option`,
+    TRIM: `https://api.i-want-to-go-autoever.shop/trims/favorite/select/trim`,
+    SUBMIT: `https://api.i-want-to-go-autoever.shop/trims/favorite/submit`,
   },
-  DETAIL: `http://api.i-want-to-go-autoever.shop/trims/models?`,
+  DETAIL: `https://api.i-want-to-go-autoever.shop/trims/models?`,
   COLOR: {
-    EXTERIOR: `http://api.i-want-to-go-autoever.shop/trims/exterior/colors?`,
-    INTERIOR: `http://api.i-want-to-go-autoever.shop/trims/interior/colors?`,
+    EXTERIOR: `https://api.i-want-to-go-autoever.shop/trims/exterior/colors?`,
+    INTERIOR: `https://api.i-want-to-go-autoever.shop/trims/interior/colors?`,
   },
   OPTION: {
-    DEFAULT: `http://api.i-want-to-go-autoever.shop/trims/default?`,
-    GET: `http://api.i-want-to-go-autoever.shop/trims/add/options`,
-    SELECT: `http://api.i-want-to-go-autoever.shop/trims/add/select`,
+    DEFAULT: `https://api.i-want-to-go-autoever.shop/trims/default?`,
+    GET: `https://api.i-want-to-go-autoever.shop/trims/add/options`,
+    SELECT: `https://api.i-want-to-go-autoever.shop/trims/add/select`,
   },
   CARMASTER: {
-    SALERATE: `http://api.i-want-to-go-autoever.shop/find/car/masters/salerate?`,
-    DISTANCE: `http://api.i-want-to-go-autoever.shop/find/car/masters/distance?`,
+    SALERATE: `https://api.i-want-to-go-autoever.shop/find/car/masters/salerate?`,
+    DISTANCE: `https://api.i-want-to-go-autoever.shop/find/car/masters/distance?`,
   },
-  BILL: `http://api.i-want-to-go-autoever.shop/result/bill`,
+  BILL: `https://api.i-want-to-go-autoever.shop/result/bill`,
+  SELECTCAR: "https://api.i-want-to-go-autoever.shop/carType",
 };
 
 export const TYPE = {
@@ -48,7 +49,7 @@ export const TRANSLATE = {
   protection: "차량 보호",
   convenience: "편의",
   Exclusive: 1,
-  LeBlanc: 2,
+  "Le Blanc": 2,
   Prestige: 3,
   Calligraphy: 4,
 };
@@ -77,6 +78,8 @@ export const CONSUMTION_KR = "복합 연비";
 export const DISTANCE = "거리순";
 export const SALERATE = "판매량순";
 
+export const CAR_SELECTION_NUM = 8;
+
 export let clickedOptionPage = false;
 
 export function setClickedOptionPage(isTrue) {
@@ -86,18 +89,22 @@ export const DEFAULT_ENGINE = {
   Exclusive: {
     name: "가솔린 3.8",
     price: 0,
+    id: 2,
   },
   "Le Blanc": {
     name: "가솔린 3.8",
     price: 0,
+    id: 2,
   },
   Prestige: {
     name: "가솔린 3.8",
     price: 0,
+    id: 2,
   },
   Calligraphy: {
     name: "가솔린 3.8",
     price: 0,
+    id: 2,
   },
 };
 export const DEFAULT_DRIVING_METHOD = {
@@ -208,7 +215,7 @@ export const emptyCar = {
   trim: {
     trimId: 1,
     name: "Exclusive",
-    price: 40000000,
+    price: 38960000,
   },
   detail: {
     engines: {},
@@ -285,3 +292,6 @@ export const findTrimInitialState = {
   disableFunctionId: [],
   optionAlert: [],
 };
+
+export const optionModalWarningMent =
+  "* 홈페이지의 사진과 설명은 참고용이며 실제 차량에 탑재되는 기능과 설명은 상이할 수 있으니, 차량 구입 전 카마스터를 통해 확인 바랍니다.";

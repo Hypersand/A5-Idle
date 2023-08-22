@@ -17,10 +17,10 @@ import {
 } from "utils/actionType";
 import palette from "styles/palette";
 import { PATH } from "utils/constants";
-import { optionPostAPI, submitPostAPI } from "../../utils/api";
-import { PUSH_OPTION_ALERT } from "../../utils/actionType";
+import { PUSH_OPTION_ALERT } from "utils/actionType";
+import { getWithQueryAPI } from "../../utils/api";
 
-function Modal({ setVisible }) {
+function Modal({ setVisible, onMouseEnter }) {
   const { dispatch } = useContext(carContext);
   const [state, stateDispatch] = useReducer(findTrimReducer, findTrimInitialState);
 
@@ -30,7 +30,7 @@ function Modal({ setVisible }) {
       return;
     }
     async function postFunc() {
-      await optionPostAPI(PATH.FIND.OPTION, state.selectedOption).then((res) => {
+      await getWithQueryAPI(PATH.FIND.OPTION, { functionIds: state.selectedOption }).then((res) => {
         stateDispatch({ type: SET_OPTION_STATUS, payload: res });
       });
     }
@@ -43,28 +43,30 @@ function Modal({ setVisible }) {
       setVisible(false);
     }, animateTime);
   }
-  async function clickCheck() {
-    clickExit(2500);
+  async function postFunc() {
     const payload = {
-      trimId: state.tempCar.trim.trimId,
       selectFunctions: [],
     };
     state.selectedOption.map((item) => {
       payload.selectFunctions.push({ functionId: item });
     });
     stateDispatch({ type: SET_SELECTED_OPTION, payload: [] });
-    const postFunc = async () => {
-      const result = await submitPostAPI(PATH.FIND.SUBMIT, payload);
-      state.tempCar.option.additional = [];
-      result.forEach((item) => {
-        stateDispatch({ type: PUSH_OPTION_ALERT, payload: item.optionName });
-        state.tempCar.option.additional.push({
-          optionId: item.optionId,
-          name: item.optionName,
-          price: item.optionPrice,
-        });
+    const result = await getWithQueryAPI(PATH.FIND.SUBMIT, {
+      trimId: state.tempCar.trim.trimId,
+      selectFunctions: state.selectedOption,
+    });
+    state.tempCar.option.additional = [];
+    result.forEach((item) => {
+      stateDispatch({ type: PUSH_OPTION_ALERT, payload: item.optionName });
+      state.tempCar.option.additional.push({
+        optionId: item.optionId,
+        name: item.optionName,
+        price: item.optionPrice,
       });
-    };
+    });
+  }
+  async function clickCheck() {
+    clickExit(2500);
     stateDispatch({ type: SET_SHOWOPTION_ALERT, payload: true });
     await postFunc().then(() => {
       dispatch({ type: CHANGE_ALL, payload: state.tempCar });
@@ -84,8 +86,14 @@ function Modal({ setVisible }) {
               onClick={() => {
                 clickExit(1000);
               }}
+              onMouseEnter={onMouseEnter}
             />
-            <BlueButton text={"확인"} isActive={state.clickActive} onClick={clickCheck} />
+            <BlueButton
+              text={"확인"}
+              isActive={state.clickActive}
+              onClick={clickCheck}
+              onMouseEnter={onMouseEnter}
+            />
           </StFindTrimContentButtonContainer>
         </StFindTrimContentContainer>
         {state.showOptionAlert && <OptionAlert text={state.optionAlert} />}
@@ -97,6 +105,7 @@ function Modal({ setVisible }) {
 export default Modal;
 
 const StFindTrimContentContainer = styled.div`
+  box-shadow: 0px -3px 9px ${palette.Grey_3};
   position: absolute;
   left: 0;
   display: flex;
@@ -106,11 +115,11 @@ const StFindTrimContentContainer = styled.div`
   flex-direction: column;
   width: 1280px;
   height: 580px;
-  z-index: 1;
+  z-index: 2;
   background-color: ${palette.Grey_1};
   transition:
-    transform 1s ease-in-out,
-    opacity 1s ease-in-out;
+    transform 0.7s ease-in-out,
+    opacity 0.7s ease-in-out;
   ${({ $animationstate }) => $animationstate === true && "transform: translateY(20%); opacity: 0;"}
   animation: ${keyframes`
   0% {
@@ -121,7 +130,7 @@ const StFindTrimContentContainer = styled.div`
     transform: translateY(0);
     opacity: 1;
   }
-  `} 1s ease-in-out;
+  `} 0.7s ease-in-out;
 `;
 
 const StFindTrimContentTitle = styled.div`

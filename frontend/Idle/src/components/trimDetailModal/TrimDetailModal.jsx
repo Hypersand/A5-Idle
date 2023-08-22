@@ -14,9 +14,9 @@ function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions, modalPosit
     }, 300);
   }
   return createPortal(
-    <ModalContainer $animationstate={animationstate}>
+    <ModalContainer>
       <ModalBackground onClick={modalOff} />
-      <StModal>
+      <StModal $animationstate={animationstate}>
         <StContainer>
           <StHeaderContainer>
             <StHeader>
@@ -27,7 +27,7 @@ function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions, modalPosit
           </StHeaderContainer>
           <StOptionContainer>
             {defaultFunctions.map((item, idx) => (
-              <OptionDropDown key={idx} category={item} optionData={optionData} />
+              <OptionDropDown key={idx} category={item} optionData={optionData} modalPosition={modalPosition} />
             ))}
           </StOptionContainer>
         </StContainer>
@@ -40,16 +40,15 @@ function TrimDetailModal({ trim, desc, setModalOff, defaultFunctions, modalPosit
 export default TrimDetailModal;
 
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 1280px;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.1s ease-in-out;
-  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.3s ease;
+  z-index: 1;
 `;
 const fadeIn = keyframes`
   from {
@@ -87,10 +86,15 @@ const StModal = styled.div`
   height: 533px;
   background: ${palette.White};
   overflow: hidden;
-  z-index: 100;
+  z-index: 2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: opacity 0.1s ease-in-out;
+  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.3s ease;
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 const StContainer = styled.div`
   display: inline-flex;

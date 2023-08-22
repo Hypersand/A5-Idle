@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import TrimBox from "./TrimBox";
-import { getAPI } from "utils/api";
+import { getWithoutQueryAPI } from "utils/api";
 import { useEffect, useState, useContext } from "react";
 import OptionBoxContainer from "findTrim/OptionBoxContainer";
 import { PATH, defaultOption } from "utils/constants";
@@ -16,13 +16,13 @@ function FindTrimContent() {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const result = await getAPI(PATH.FIND.GET);
+      const result = await getWithoutQueryAPI(PATH.FIND.GET);
       result.map((item) => {
         stateDispatch({ type: PUSH_FUNCTION_LIST, payload: item });
       });
     };
     const fetchGet = async () => {
-      setTrimInfo(await getAPI(PATH.TRIM));
+      setTrimInfo(await getWithoutQueryAPI(PATH.TRIM));
     };
     stateDispatch({ type: SET_OPTION_STATUS, payload: defaultOption });
     fetchPost();

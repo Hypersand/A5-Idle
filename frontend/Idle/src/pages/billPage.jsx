@@ -1,16 +1,17 @@
-import { styled } from "styled-components";
+import { css, keyframes, styled } from "styled-components";
 import Header from "layout/Header";
 import WhiteButton from "buttons/WhiteButton";
 import BlueButton from "buttons/BlueButton";
 import { useContext, useEffect, useRef, useState } from "react";
 import { carContext } from "utils/context";
 import BillMain from "billMain/BillMain";
-import MapModal from "../components/BillMain/MapModal";
+import MapModal from "billMain/MapModal";
 import CarMasterTooltip from "toolTips/CarMasterTooltip";
-import { submitPostAPI } from "utils/api";
 import { PATH } from "utils/constants";
-import WarningModal from "../components/common/modals/WarningModal";
+import WarningModal from "modals/WarningModal";
 import ReactToPrint from "react-to-print";
+import ServerErrorPage from "./ServerErrorPage";
+import { getWithQueryAPI } from "../utils/api";
 
 let cachedBillData = null;
 
@@ -20,6 +21,37 @@ function BillPage() {
   const [carMasterVisible, setCarMasterVisible] = useState(false);
   const [tooltipState, setTooltipState] = useState(true);
   const [billData, setBillData] = useState(cachedBillData);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [prevMoney, setPrevMoney] = useState(car.getAllSum());
+  const [targetMoney, setTargetMoney] = useState(car.getAllSum());
+
+  useEffect(() => {
+    setTargetMoney(car.getAllSum());
+  }, [car.getAllSum()]);
+
+  const updateAnimation = () => {
+    if (prevMoney !== targetMoney) {
+      setPrevMoney(prevMoney + (targetMoney - prevMoney) * 0.25);
+    }
+  };
+
+  useEffect(() => {
+    if (prevMoney !== targetMoney) {
+      requestAnimationFrame(updateAnimation);
+    }
+  }, [prevMoney, targetMoney]);
+  const handleScroll = () => {
+    const position = window.scrollY;
+    setScrollPosition(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   function carMasterBtnClicked() {
     setCarMasterVisible(true);
     setTooltipState(false);
@@ -33,17 +65,25 @@ function BillPage() {
     if (car.color.exterior.exteriorId === undefined) {
       setModalVisible(true);
     } else {
-      submitPostAPI(PATH.BILL, {
+      getWithQueryAPI(PATH.BILL, {
         trimId: car.trim.trimId,
         exteriorId: car.color.exterior.exteriorId,
         interiorId: car.color.interior.interiorId,
         selectedOptionIds: additionalOptionIds,
-      }).then((result) => {
-        setBillData(result);
-        cachedBillData = result;
-      });
+      })
+        .then((result) => {
+          setBillData(result);
+          cachedBillData = result;
+        })
+        .catch((error) => {
+          if (error) return <ServerErrorPage />;
+        });
     }
   }, []);
+  function scrollTop() {
+    document.documentElement.scrollTop = 0;
+  }
+
   return (
     <StWrapper>
       <StContainer id={"carMasterModal"} ref={billRef}>
@@ -59,12 +99,16 @@ function BillPage() {
         <CarContainer $src={JSON.stringify(car.carImg)} />
         <BlueBgBottom />
         <StConfirmContainer>
-          <StConfirmText>
+          <StConfirmText onClick={scrollTop} $scrollPosition={scrollPosition}>
             <p>예상 가격</p>
-            <h1>{car.getAllSum().toLocaleString()} 원</h1>
+            <h1>{Math.round(prevMoney).toLocaleString()} 원</h1>
           </StConfirmText>
           <StButtonContainer>
-            <StTooltipContainer>
+            <StTooltipContainer
+              onClick={() => {
+                setTooltipState(false);
+              }}
+            >
               <StTooltip isActive={tooltipState} />
             </StTooltipContainer>
 
@@ -117,9 +161,19 @@ const BlueBG = styled.div`
 `;
 const BlueBgBottom = styled(BlueBG)`
   position: absolute;
-  height: 267px;
+  height: 100%;
   top: 414px;
-  z-index: -2;
+  z-index: -1;
+  animation: ${keyframes`
+  0% {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  `} 0.7s ease-in-out;
 `;
 const TitleContainer = styled.div`
   position: absolute;
@@ -157,21 +211,53 @@ const CarContainer = styled.div`
   top: 130px;
   left: 50px;
   background-image: url(${({ $src }) => $src});
-  z-index: 100;
+  animation: ${keyframes`
+  0% {
+    transform: translateX(20%)translateY(-3%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(20%)translateY(-3%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) translateY(0%);
+    
+    opacity: 1;
+  }
+  `} 1.5s ease-in-out;
 `;
 const StConfirmContainer = styled.div`
   display: flex;
+  position:absolute;
   flex-direction: row;
+  top:420px;
+  right: 100px;
   gap: 40px;
+    justify-content: center;
+    align-items: flex-end;
 `;
+const fixedAnimation = css`
+  position:fixed;
+  flex-direction: column;
+  right: 60px;
+  bottom: 120px;
+  height: fit-content;
+  border-radius: 8px;
+  padding: 10px 20px 10px 20px;
+  border: 1px ridge #dde4f8;
+  background-color: white;
+`
 const StConfirmText = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
   color: #222;
   top: 580px;
   gap: 8px;
   right: 320px;
+  cursor: pointer;
+  ${({ $scrollPosition }) =>
+    $scrollPosition > 500 ? fixedAnimation : ""};
   p {
     font-family: "Hyundai Sans Text KR";
     font-size: 16px;
@@ -191,7 +277,6 @@ const StConfirmText = styled.div`
   }
 `;
 const StButtonContainer = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -206,4 +291,22 @@ const StTooltipContainer = styled.div`
   right: 23%;
   width: 199px;
   height: 65px;
+  animation: bounceTop 1.3s infinite linear;
+  @keyframes bounceTop {
+    0% {
+      top: 0;
+    }
+
+    50% {
+      top: -3px;
+    }
+
+    70% {
+      top: -7px;
+    }
+
+    100% {
+      top: 0;
+    }
+  }
 `;

@@ -58,7 +58,7 @@ function BillDetail({ item, data }) {
         ) : (
           <></>
         )}
-        <p>{price ? price.toLocaleString() : "0"} 원</p>
+        <p>+{price ? price.toLocaleString() : "0"} 원</p>
       </StDetailContainer>
     </StContainer>
   );
@@ -118,8 +118,10 @@ const StColorContent = styled.div`
   width: 320px;
   height: 90px;
   background-image: ${({ $img }) => `url(${$img})`};
+  background-repeat: round;
   flex-shrink: 0;
   position: relative;
+  border-radius:5px;
   p {
     position: absolute;
     bottom: 8px;

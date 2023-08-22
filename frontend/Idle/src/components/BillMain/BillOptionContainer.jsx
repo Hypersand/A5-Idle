@@ -1,13 +1,17 @@
 import BillOptionBox from "./BillOptionBox";
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 import palette from "../../styles/palette";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import TrimDetailModal from "../trimDetailModal/TrimDetailModal";
 import { carContext } from "../../utils/context";
+import ModifyButton from "../common/buttons/ModifyButton";
+import { getWithoutQueryAPI } from "../../utils/api";
+import { PATH, TRANSLATE } from "../../utils/constants";
 
 function BillOptionContainer({ added, confused, data }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [optionData, setOptionData] = useState(null);
   const { car } = useContext(carContext);
   const addedData =
     data &&
@@ -31,21 +35,27 @@ function BillOptionContainer({ added, confused, data }) {
     navigate("/option/all");
   }
 
+  async function setModalOn() {
+    setIsOpen(true);
+    const result = await getWithoutQueryAPI(PATH.OPTION.DEFAULT, { trimId: TRANSLATE[car.trim.name] });
+    setOptionData(result);
+  }
+  function setModalOff() {
+    setIsOpen(false);
+  }
   return (
     <StContainer>
       <StTop>
         <StTitle>옵션</StTitle>
         <StSub
-          onClick={() => {
-            setIsOpen(true);
-          }}
+          onClick={setModalOn}
         >
           기본 포함 옵션 {">"}
         </StSub>
       </StTop>
 
       <StMain>
-        <StChangeBtn onClick={changeOptionBtnClicked}>변경하기 {">"}</StChangeBtn>
+        <ModifyButton onClick={changeOptionBtnClicked} />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <StOptionType>추가 옵션</StOptionType>
           <StBlock>{added.length ? renderAddOptions() : "추가한 옵션이 없습니다."}</StBlock>
@@ -55,15 +65,15 @@ function BillOptionContainer({ added, confused, data }) {
           </StBlock>
         </div>
       </StMain>
+      <hr />
       {isOpen ? (
         <TrimDetailModal
           trim={car.trim.name}
           desc={data?.trimDescription}
-          setModalOff={() => {
-            setIsOpen(false);
-          }}
+          setModalOff={setModalOff}
           defaultFunctions={data?.defaultFunctions}
           modalPosition={"carMasterModal"}
+          optionData={optionData}
         />
       ) : null}
     </StContainer>
@@ -74,6 +84,20 @@ export default BillOptionContainer;
 
 const StContainer = styled.div`
   width: 831px;
+  animation: ${keyframes`
+  0% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  50%{
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  `} 2.5s ease;
 `;
 
 const StTop = styled.div`
@@ -105,20 +129,6 @@ const StMain = styled.div`
   display: flex;
   gap: 67px;
   margin-top: 16px;
-`;
-
-const StChangeBtn = styled.div`
-  color: ${palette.CoolGrey_2};
-  font-family: "Hyundai Sans Text KR";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: -0.48px;
-  text-align: center;
-  cursor: pointer;
-  width: 87px;
-  display: flex;
 `;
 
 const StOptionType = styled.p`

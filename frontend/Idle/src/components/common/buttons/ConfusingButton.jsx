@@ -28,9 +28,15 @@ const StContainer = styled.div`
   line-height: 16px;
   letter-spacing: -0.36px;
   text-align: center;
-  z-index: 2;
+  z-index: 1;
   &:hover {
     cursor: pointer;
-    filter: brightness(120%)
+    filter: brightness(120%);
   }
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;

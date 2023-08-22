@@ -2,7 +2,7 @@ import FindTrimButton from "./FindTrimButton";
 import Modal from "./Modal";
 import { useState } from "react";
 
-function FindTrim({ onClick }) {
+function FindTrim({ onClick, onMouseEnter }) {
   function findButtonClicked() {
     onClick(false);
     setModalVisible(true);
@@ -11,10 +11,10 @@ function FindTrim({ onClick }) {
   return (
     <>
       {modalVisible ? (
-        <Modal setVisible={setModalVisible} />
+        <Modal setVisible={setModalVisible} onMouseEnter={onMouseEnter} />
       ) : (<> </>
       )}
-      <FindTrimButton onClick={findButtonClicked} />
+      <FindTrimButton onClick={findButtonClicked} onMouseEnter={onMouseEnter} />
     </>
   );
 }

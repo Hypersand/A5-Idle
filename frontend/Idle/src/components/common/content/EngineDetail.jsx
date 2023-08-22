@@ -99,7 +99,8 @@ const StBarContainer = styled.div`
   position: relative;
   display: flex;
   width: 300px;
-  height: 2px;
+  height: 4px;
+  border-radius: 2px;
   padding-right: 0px;
   background: ${palette.Grey_2};
   align-items: center;
@@ -116,7 +117,8 @@ const StBar = styled.div`
         return `${$value * 3}%`;
     }
   }};
-  height: 2px;
+  height: 4px;
+  border-radius:2px;
   background-color: ${({ $state }) => {
     switch ($state) {
       case PEAK_OUTPUT_KR:
@@ -130,6 +132,6 @@ const StBar = styled.div`
   transition: width 0.3s linear;
 `;
 const StBar2 = styled(StBar)`
-  background-color: ${palette.CoolGrey_2};
+  background-color: ${palette.CoolGrey_1};
   width: ${({ $value }) => `${$value * 3}%`};
 `;

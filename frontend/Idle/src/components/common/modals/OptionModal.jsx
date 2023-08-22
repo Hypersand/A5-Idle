@@ -1,41 +1,42 @@
 import { createPortal } from "react-dom";
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import { ReactComponent as X } from "images/esc.svg";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { stateContext, dispatchContext } from "utils/context";
 import palette from "styles/palette";
-import { PUSH_SELECTED_OPTION } from "../../../utils/actionType";
+import { PUSH_SELECTED_OPTION } from "utils/actionType";
+import { optionModalWarningMent } from "utils/constants";
 
 function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
   const { state } = useContext(stateContext);
   const { stateDispatch } = useContext(dispatchContext);
+  const [animationstate, setAnimationState] = useState(false);
+
+  function clickClose() {
+    setAnimationState(true);
+    setTimeout(() => {
+      setModalVisible(false);
+    }, 300);
+  }
   function selectedBtnClicked() {
     if (state.selectedOption.includes(data.functionId)) {
-      setModalVisible(false);
+      clickClose();
       return;
     } else {
       stateDispatch({ type: PUSH_SELECTED_OPTION, payload: data.functionId });
       setIsSelected(true);
-      setModalVisible(false);
+      clickClose();
     }
   }
 
-  // function dataNameCalc() {
-  //   const dataName = data.name;
-  //   if (dataName.length > 23) {
-  //     return dataName.slice(0, 23) + "...";
-  //   }
-  //   return dataName;
-  // }
-
   return createPortal(
     <ModalContainer onClick={onClick}>
-      <ModalBackground onClick={() => setModalVisible(false)} />
-      <StContainer>
+      <ModalBackground onClick={clickClose} />
+      <StContainer $animationstate={animationstate}>
         <StTitleContainer>
           <StTitle>{data.name}</StTitle>
-          <StImgX onClick={setModalVisible} data-name={"esc"} />
+          <StImgX onClick={clickClose} data-name={"esc"} />
         </StTitleContainer>
         <StDescription>{data.description}</StDescription>
         <img
@@ -43,10 +44,7 @@ function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
           alt="sampleImage"
           style={{ width: "452px", height: "256px", marginBottom: "16px" }}
         />
-        <StNote>
-          * 홈페이지의 사진과 설명은 참고용이며 실제 차량에 탑재되는 기능과 설명은 상이할 수 있으니,
-          차량 구입 전 카마스터를 통해 확인 바랍니다.
-        </StNote>
+        <StNote>{optionModalWarningMent}</StNote>
         <StBtnContainer>
           <BlueButton text={"선택하기"} onClick={selectedBtnClicked} />
         </StBtnContainer>
@@ -57,15 +55,19 @@ function OptionModal({ data, setModalVisible, setIsSelected, onClick }) {
 }
 export default OptionModal;
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
   top: 0;
   left: 0;
-  width: 1280px;
+  width: 100%;
   height: 720px;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 `;
+
 const ModalBackground = styled.div`
   position: absolute;
   top: 0;
@@ -82,11 +84,32 @@ const StContainer = styled.div`
   padding: 32px 44px;
   background: ${palette.White};
   flex-direction: column;
-  z-index: 100;
   align-items: center;
-  z-index: 10;
   position: relative;
+  z-index: 3;
+  transition: opacity 0.5s ease-in-out;
+  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.5s ease;
+
+  border-radius: 5px;
 `;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
 const StTitleContainer = styled.div`
   width: 452px;
   display: flex;

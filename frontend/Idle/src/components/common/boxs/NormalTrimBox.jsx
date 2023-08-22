@@ -5,10 +5,10 @@ import { carContext } from "utils/context";
 import TrimDetailModal from "trimDetailModal/TrimDetailModal";
 import { CHANGE_TRIM } from "utils/actionType";
 import palette from "styles/palette";
-import WarningModal from "../modals/WarningModal";
+import WarningModal from "modals/WarningModal";
 import { CLEAR_OPTION } from "utils/actionType";
-import { PATH, TRANSLATE } from "../../../utils/constants";
-import { getAPI } from "../../../utils/api";
+import { PATH, TRANSLATE } from "utils/constants";
+import { getWithoutQueryAPI } from "utils/api";
 
 function NormalTrimBox({
   purchaseRate,
@@ -52,7 +52,7 @@ function NormalTrimBox({
 
   async function setModalOn() {
     setIsModal(true);
-    const result = await getAPI(PATH.OPTION.DEFAULT, { trimId: TRANSLATE[name] });
+    const result = await getWithoutQueryAPI(PATH.OPTION.DEFAULT, { trimId: TRANSLATE[name] });
     setOptionData(result);
   }
 
@@ -120,11 +120,19 @@ const StContainer = styled.div`
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
     background: ${({ $isSelected }) =>
-    $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
+    box-shadow: 2px 2px 10px #898989;
   }
   transition: all 0.2s ease;
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StContent = styled.div`
@@ -206,5 +214,8 @@ const PopUpButton = styled.div`
   letter-spacing: -0.3px;
   path {
     fill: ${({ $isSelected }) => ($isSelected ? `${palette.White}` : ``)};
+  }
+  &:hover {
+    text-decoration: underline;
   }
 `;

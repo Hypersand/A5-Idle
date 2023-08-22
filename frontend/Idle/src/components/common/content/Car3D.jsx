@@ -1,19 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { styled } from "styled-components";
 import palette from "styles/palette";
-
-function preloadImage(src = null) {
-  return new Promise((resolve, reject) => {
-    const img = new Image()
-    img.onload = function () {
-      resolve(img)
-    }
-    img.onerror = img.onabort = function () {
-      reject(src)
-    }
-    img.src = src
-  })
-}
 
 function Car3D({ data = null }) {
   const [currentImg, setCurrentImage] = useState(0);
@@ -21,17 +8,14 @@ function Car3D({ data = null }) {
   const [beforeX, setBeforeX] = useState(0);
   let imgCount = data === null ? 0 : data[0]?.carImgUrls.length - 1;
 
-  useEffect(() => {
-    data === null ? "" : data[0]?.carImgUrls?.map((item) => { preloadImage(item.imgUrl) })
-  }, [data])
-  function turnRight() {
+  function turnLeft() {
     if (currentImg === imgCount) {
       setCurrentImage(0);
     } else {
       setCurrentImage((before) => before + 1);
     }
   }
-  function turnLeft() {
+  function turnRight() {
     if (currentImg === 0) {
       setCurrentImage(imgCount);
     } else {
@@ -40,8 +24,13 @@ function Car3D({ data = null }) {
   }
   function turnCar(e) {
     if (isMouseDown && e.clientX != beforeX) {
-      e.clientX > beforeX ? turnLeft() : turnRight();
-      setBeforeX(e.clientX);
+      if (e.clientX - beforeX > 2) {
+        turnRight()
+        setBeforeX(e.clientX);
+      } else if (beforeX - e.clientX > 2) {
+        turnLeft()
+        setBeforeX(e.clientX);
+      }
     }
   }
 
