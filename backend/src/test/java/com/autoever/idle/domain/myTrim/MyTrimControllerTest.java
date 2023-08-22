@@ -20,6 +20,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,6 +83,9 @@ class MyTrimControllerTest {
         //given
         JSONArray jsonArray = new JSONArray();
         jsonArray.put(new JSONObject().put("functionId", 109));
+
+        LinkedMultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("functionIds","101,17");
         List<MyTrimResponse> myTrimResponseList = new ArrayList<>();
         myTrimResponseList.add(new MyTrimResponse("Exclusive", null, false));
         myTrimResponseList.add(new MyTrimResponse("Le Blanc", false, true));
@@ -89,11 +94,7 @@ class MyTrimControllerTest {
         given(myTrimService.findTrimBySelectFunctions(anyList())).willReturn(myTrimResponseList);
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/trims/favorite/select/option")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonArray.toString())
-                .accept(MediaType.APPLICATION_JSON));
-
+        ResultActions resultActions = mockMvc.perform(get("/trims/favorite/select/option").queryParams(params));
         //then
         resultActions.andExpect(status().isOk())
                 .andDo(print())
@@ -111,20 +112,17 @@ class MyTrimControllerTest {
     @DisplayName("확인 API 테스트")
     void findOptionBySelectFunctions() throws Exception {
         //given
-        JSONArray selectFunctions = new JSONArray();
-        selectFunctions.put(new JSONObject().put("functionId", 109));
-        JSONObject submitRequest = new JSONObject().put("trimId", 1);
-        submitRequest.put("selectFunctions", selectFunctions);
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("trimId", "1");
+        params.add("selectFunctions", "51,17");
         List<MyTrimOptionResponse> myTrimOptionResponseList = new ArrayList<>();
         MyTrimOptionResponse myTrimOptionResponse = new MyTrimOptionResponse(1L, "옵션 이름", 1000000L);
         myTrimOptionResponseList.add(myTrimOptionResponse);
         given(myTrimService.findOptionBySelectFunctions(any())).willReturn(myTrimOptionResponseList);
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/trims/favorite/submit")
-                .content(submitRequest.toString())
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON));
+        ResultActions resultActions = mockMvc.perform(get("/trims/favorite/submit")
+                .queryParams(params));
 
         //then
         resultActions.andExpect(status().isOk())
@@ -138,9 +136,9 @@ class MyTrimControllerTest {
     void findNotFunctionsByTrim() throws Exception {
         //given
         Map<String, Long> multiValueMap = new HashMap<>();
-        multiValueMap.put("trimId",1L);
+        multiValueMap.put("trimId", 1L);
         JSONObject trimIdRequest = new JSONObject();
-        trimIdRequest.put("trimId",1);
+        trimIdRequest.put("trimId", 1);
         List<FunctionIdResponse> functionIdResponseList = new ArrayList<>();
         FunctionIdResponse functionIdResponse = new FunctionIdResponse(1L);
         functionIdResponseList.add(functionIdResponse);
