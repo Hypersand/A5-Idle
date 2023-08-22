@@ -18,5 +18,6 @@ const StContainer = styled.div`
   left: 128px;
   width: 824px;
   height: 320px;
+  border-radius: 5px;
   background-image: url(${({ $url }) => $url});
 `;

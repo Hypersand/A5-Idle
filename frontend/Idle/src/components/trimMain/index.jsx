@@ -1,28 +1,32 @@
 import { useContext, useRef } from "react"
 import { styled } from "styled-components"
-import { carContext } from "../../utils/context"
+import { carContext } from "utils/context"
+import ExteriorBoxContainer from "./ExteriorBoxContainer";
+import InteriorBoxContainer from "./InteriorBoxContainer";
 
-function TrimMain(data) {
+function TrimMain({ data, onMouseEnter }) {
     const { car } = useContext(carContext)
     const dots = useRef([]);
-    const filteredData = data?.data?.filter((item) => item.name === car.trim.name);
+    const filteredData = data?.filter((item) => item.name === car.trim.name);
     return (
         <StContainer>
             <StTitleContainer>
                 <StTitle>{car.trim.name}</StTitle>
                 <ColorContainer>
-                    <ColorDetailContainer>
+                    <ExteriorContainer>
                         외장
-                    </ColorDetailContainer>
-                    <ColorDetailContainer>
+                        {filteredData ? <ExteriorBoxContainer colors={filteredData[0].colors.exteriorImgUrls} /> : <></>}
+                    </ExteriorContainer>
+                    <InteriorContainer>
                         내장
-                    </ColorDetailContainer>
+                        {filteredData ? <InteriorBoxContainer colors={filteredData[0].colors.interiorImgUrls} /> : <></>}
+                    </InteriorContainer>
                 </ColorContainer>
             </StTitleContainer>
             {filteredData ? <StImage id={"here"} src={filteredData[0]?.imgUrl}></StImage> : <p>Loading...</p>}
             <DotContainer >
                 {filteredData[0].thumbnailFunctions.map((item, idx) => (
-                    <Dot1 key={idx} $y={item.heightPixel} $x={item.widthPixel} ref={elem => (dots.current[idx] = elem)} >
+                    <Dot1 onMouseEnter={onMouseEnter} key={idx} $y={item.heightPixel} $x={item.widthPixel} ref={elem => (dots.current[idx] = elem)} >
                         <InnerDots />
                         <OptionToolTip className="tooltip">{item.name}</OptionToolTip>
                     </Dot1>
@@ -68,7 +72,7 @@ const ColorContainer = styled.div`
     align-items: flex-start;
     gap: 16px;
 `
-const ColorDetailContainer = styled.div`
+const ExteriorContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,6 +86,9 @@ const ColorDetailContainer = styled.div`
         line-height: 20px;
         letter-spacing: -0.42px;
     }   
+`
+const InteriorContainer = styled(ExteriorContainer)`
+    align-items: baseline;
 `
 
 const StImage = styled.img`
@@ -135,7 +142,7 @@ const OptionToolTip = styled.div`
     top: 10px;
     position: absolute;
     border-radius: 10px;
-    z-index: 100;
+    z-index: 1;
     padding: 4px 12px;
     background: var(--navy-blue-1, #E7ECF9);
     align-items: flex-start;

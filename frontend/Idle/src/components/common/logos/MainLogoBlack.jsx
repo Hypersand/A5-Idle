@@ -4,19 +4,23 @@ import WarningModal from "modals/WarningModal";
 import { useContext, useState } from "react";
 import palette from "styles/palette";
 import { useLocation, useNavigate } from "react-router-dom";
-import { carContext } from "../../../utils/context";
-import { CHANGE_ALL } from "../../../utils/actionType";
-import { emptyCar } from "../../../utils/constants";
+import { carContext } from "utils/context";
+import { CHANGE_ALL } from "utils/actionType";
+import { emptyCar } from "utils/constants";
 
-function MainLogoBlack() {
+function MainLogoBlack({ modalPosition = null }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigate = useNavigate();
   const { dispatch } = useContext(carContext);
 
   const pathArr = useLocation().pathname.split("/");
   const location = pathArr[pathArr.length - 1];
-  let modalPosition;
-  location === "bill" ? (modalPosition = "carMasterModal") : (modalPosition = "modal");
+  let position;
+  if (modalPosition === null) {
+    location === "bill" ? (position = "carMasterModal") : (position = "modal");
+  } else {
+    position = modalPosition;
+  }
 
   function resetPage() {
     dispatch({ type: CHANGE_ALL, payload: emptyCar });
@@ -37,7 +41,7 @@ function MainLogoBlack() {
           title={"마이 카마스터를 종료하시겠습니까?"}
           setModalVisible={setModalVisible}
           onSubmitClick={resetPage}
-          modalPosition={modalPosition}
+          modalPosition={position}
         />
       ) : null}
     </Stdiv>

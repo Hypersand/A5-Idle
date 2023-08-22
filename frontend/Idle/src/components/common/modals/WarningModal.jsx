@@ -22,13 +22,13 @@ function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", moda
     setAnimationstate(true);
     setTimeout(() => {
       setModalVisible(false);
-      onSubmitClick()
+      onSubmitClick();
     }, 200);
   }
   return createPortal(
-    <ModalContainer $animationstate={animationstate} $modalPosition={modalPosition}>
-      <ModalBackground />
-      <StContainer>
+    <ModalContainer $modalPosition={modalPosition}>
+      <ModalBackground onClick={clickCancel} />
+      <StContainer $animationstate={animationstate}>
         <StTitle>{title}</StTitle>
         {detail && <p>{detail}</p>}
         <StBtnContainer>
@@ -44,6 +44,10 @@ function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", moda
 export default WarningModal;
 
 const StContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   width: 450px;
   height: 113px;
@@ -52,7 +56,6 @@ const StContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
   p {
     color: ${palette.Black};
     text-align: center;
@@ -63,6 +66,11 @@ const StContainer = styled.div`
     line-height: 24px;
     letter-spacing: -0.48px;
   }
+  transition: opacity 0.1s ease-in-out;
+  animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.2s ease;
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 const fadeIn = keyframes`
   from {
@@ -103,13 +111,12 @@ const ModalContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 1280px;
+  width: 100%;
   height: ${({ $modalPosition }) => ($modalPosition === "carMasterModal" ? "100%" : "720px")};
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.1s ease-in-out;
-    animation: ${({ $animationstate }) => ($animationstate ? fadeOut : fadeIn)} 0.2s ease;
+  z-index: 3;
 `;
 const ModalBackground = styled.div`
   position: absolute;
@@ -119,5 +126,4 @@ const ModalBackground = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
-  z-index: 100;
 `;

@@ -23,9 +23,10 @@ function InnerColorBoxContainer({ data }) {
       return (
         <StInnerColorBox
           key={index}
-          $isselected={item.interiorName === car.color.interior.name}
+          $isSelected={item.interiorName === car.color.interior.name}
           onClick={() => innerColorClick(item)}
         >
+          <StOutline $isSelected={item.interiorName === car.color.interior.name} />
           <StInnerImageContainer>
             <StImage src={item.interiorImgUrl} />
           </StInnerImageContainer>
@@ -56,29 +57,38 @@ const StInnerColorBox = styled.div`
   box-sizing: border-box;
   width: 200px;
   height: 164px;
-  border: 1px solid
-  ${({ $isselected }) => ($isselected ? palette.NavyBlue_5 : palette.Grey_2)};
+  outline: ${({ $isSelected }) => ($isSelected ? "2px" : "1px")} solid
+    ${({ $isSelected }) => ($isSelected ? `${palette.NavyBlue_5}` : `${palette.Grey_2}`)};
+  outline-offset: ${({ $isSelected }) => ($isSelected ? "-2px" : "-1px")};
   background-color: ${palette.White};
   gap: 2px;
   cursor: pointer;
-  &:hover img{
+  &:hover img {
     scale: 1.03;
   }
-  &:hover{
+  &:hover {
     background-color: ${palette.Grey_1};
     filter: brightness(1.1);
   }
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StInnerImageContainer = styled.div`
   overflow: hidden;
-  width: 200px;
-  height: 82px;
-`
+  width: 196px;
+  height: 83px;
+  transform: translate(2px, 2px);
+`;
 const StImage = styled.img`
   width: 100%;
   height: 100%;
   transition: all 0.2s ease-in-out;
+  border-radius: 5px;
 `;
 
 const StTextBox = styled.div`
@@ -92,10 +102,8 @@ const StTextBox = styled.div`
 
 const StTextTitle = styled.div`
   font-family: "Hyundai Sans Text KR";
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: -0.03em;
+  font-size: 15px;
+  line-height: 20px;
   text-align: left;
   color: ${palette.Black};
   margin-bottom: 3px;
@@ -120,4 +128,14 @@ const StTextPrice = styled.div`
   line-height: 16px;
   letter-spacing: -0.03em;
   color: ${palette.CoolGrey_2};
+`;
+const StOutline = styled.div`
+  display: ${({ $isSelected }) => ($isSelected ? "" : "none")};
+  position: absolute;
+  width: 190px;
+  border: 3px solid #fff;
+  height: 150px;
+  transform: translate(2px, 2px);
+  border-radius: 3px;
+  z-index: 1;
 `;

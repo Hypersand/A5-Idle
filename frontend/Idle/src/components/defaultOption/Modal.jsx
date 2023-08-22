@@ -1,13 +1,14 @@
 import { styled, keyframes } from "styled-components";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CloseButton from "./CloseButton";
 import CategoryTabs from "tabs/CategoryTabs";
 import ItemBox from "./ItemBox";
 import PaginationButton from "./PaginationButton";
 import { createPortal } from "react-dom";
 import palette from "styles/palette";
-import { getAPI } from "utils/api";
+import { getWithoutQueryAPI } from "utils/api";
 import { PATH } from "utils/constants";
+import { carContext } from "utils/context";
 
 function Modal({ setVisible }) {
   const pageSize = 10;
@@ -15,6 +16,7 @@ function Modal({ setVisible }) {
   const [data, setData] = useState([]);
   const [currentTab, setCurrentTab] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const { car } = useContext(carContext);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -22,7 +24,7 @@ function Modal({ setVisible }) {
 
   useEffect(() => {
     async function fetchGet() {
-      const result = await getAPI(PATH.OPTION.DEFAULT, { trimId: 1 });
+      const result = await getWithoutQueryAPI(PATH.OPTION.DEFAULT, { trimId: car.trim.trimId });
       setData(result);
       setCurrentTab(result[0].categoryName);
     }
@@ -97,7 +99,7 @@ function Modal({ setVisible }) {
 export default Modal;
 
 const ModalContainer = styled.div`
-  z-index: 101;
+  z-index: 1;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -126,8 +128,8 @@ const StContainer = styled.div`
   height: 692.0703125px;
   background-color: ${palette.Grey_1};
   transition:
-    transform 1s ease-in-out,
-    opacity 1s ease-in-out;
+    transform 0.8s ease-in-out,
+    opacity 0.8s ease-in-out;
   ${({ $animationstate }) => $animationstate === true && "transform: translateY(20%); opacity: 0;"}
   animation: ${keyframes`
   0% {

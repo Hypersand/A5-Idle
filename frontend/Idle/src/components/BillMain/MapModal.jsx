@@ -1,15 +1,15 @@
 import { styled } from "styled-components";
-import palette from "../../styles/palette";
+import palette from "styles/palette";
 import { useEffect, useRef, useState } from "react";
-import esc from "../../assets/images/esc.svg";
-import BlueButton from "../common/buttons/BlueButton";
+import { ReactComponent as EscapeButton } from "images/esc.svg";
+import BlueButton from "buttons/BlueButton";
 import DillerBoxContainer from "./DillerBoxContainer";
-import CategoryTabs from "../common/tabs/CategoryTabs";
+import CategoryTabs from "tabs/CategoryTabs";
 import { createPortal } from "react-dom";
 import Address from "./Address";
-import { getAPI } from "../../utils/api";
-import { DISTANCE, PATH, SALERATE } from "../../utils/constants";
+import { DISTANCE, PATH, SALERATE } from "utils/constants";
 import CustomOverlay from "./CustomOverlay";
+import { getWithoutQueryAPI } from "utils/api";
 const { kakao } = window;
 
 let cachedData = null;
@@ -36,7 +36,7 @@ function MapModal({ setCarMasterVisible }) {
           setLatitude(position.coords.latitude);
           setlongitude(position.coords.longitude);
 
-          getAPI(PATH.CARMASTER.SALERATE, {
+          getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
             nowLatitude: position.coords.latitude,
             nowLongitude: position.coords.longitude,
           }).then((res) => {
@@ -139,14 +139,14 @@ function MapModal({ setCarMasterVisible }) {
       }
     });
     selectedTab === SALERATE
-      ? getAPI(PATH.CARMASTER.SALERATE, {
+      ? getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
           nowLatitude: latitude,
           nowLongitude: longitude,
         }).then((res) => {
           setData(res);
           cachedData = res;
         })
-      : getAPI(PATH.CARMASTER.DISTANCE, {
+      : getWithoutQueryAPI(PATH.CARMASTER.DISTANCE, {
           nowLatitude: latitude,
           nowLongitude: longitude,
         }).then((res) => {
@@ -160,14 +160,14 @@ function MapModal({ setCarMasterVisible }) {
   }
   function TabClicked(name) {
     name === SALERATE
-      ? getAPI(PATH.CARMASTER.SALERATE, {
+      ? getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
           nowLatitude: latitude,
           nowLongitude: longitude,
         }).then((res) => {
           setData(res);
           cachedData = res;
         })
-      : getAPI(PATH.CARMASTER.DISTANCE, {
+      : getWithoutQueryAPI(PATH.CARMASTER.DISTANCE, {
           nowLatitude: latitude,
           nowLongitude: longitude,
         }).then((res) => {
@@ -214,7 +214,7 @@ function MapModal({ setCarMasterVisible }) {
       <ModalBackground onClick={XBtnClicked} />
       <StContainer>
         <StBtnContainer>
-          <StXBtn onClick={XBtnClicked} />
+          <EscapeButton onClick={XBtnClicked} />
         </StBtnContainer>
 
         <StMainContainer>
@@ -254,10 +254,12 @@ function MapModal({ setCarMasterVisible }) {
 export default MapModal;
 
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
   top: 0;
   left: 0;
-  width: 1280px;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -271,6 +273,7 @@ const ModalBackground = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
+  z-index: 1;
 `;
 
 const StContainer = styled.div`
@@ -284,6 +287,9 @@ const StContainer = styled.div`
   height: 572px;
   border: 1px solid black;
   z-index: 1;
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 const StMainContainer = styled.div`
   display: flex;
@@ -295,11 +301,7 @@ const StBtnContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-`;
-const StXBtn = styled.button`
-  background-image: url(${esc});
-  width: 24px;
-  height: 24px;
+  cursor: pointer;
 `;
 
 const StMain = styled.div`

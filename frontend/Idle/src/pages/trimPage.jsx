@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TrimBoxContainer from "trimBoxContainer/TrimBoxContainer";
 import { styled } from "styled-components";
 import BlueButton from "buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
 import FindTrim from "findTrim/index";
-import { getAPI } from "utils/api";
+import { getWithoutQueryAPI } from "utils/api";
 import palette from "styles/palette";
 import { PATH } from "utils/constants";
 import FindTrimTooltip from "toolTips/FindTrimTooltip";
 import TrimMain from "../components/trimMain";
+import { preloadContext } from "utils/context";
+import { preloadImage } from "utils/preloader";
+import Loading from "../components/common/loading/Loading";
+import ServerErrorPage from "./ServerErrorPage";
 
 let cachedTrimData = null;
 
@@ -16,33 +20,66 @@ function TrimPage() {
   const navigate = useNavigate();
   const [toolTipStatus, setToolTipStatus] = useState(true);
   const [trimData, setTrimData] = useState(cachedTrimData);
+  const { preLoadData, setPreLoadData, loaderIdx, setLoaderIdx } = useContext(preloadContext);
 
   function nextBTNClicked() {
     navigate("/detail/engines");
   }
   useEffect(() => {
-    getAPI(PATH.TRIM).then((result) => {
-      setTrimData(result);
-      cachedTrimData = result;
-    });
+    getWithoutQueryAPI(PATH.TRIM)
+      .then((result) => {
+        setTrimData(result);
+        cachedTrimData = result;
+      })
+      .catch((error) => {
+        if (error) return <ServerErrorPage />;
+      });
   }, []);
+
+  useEffect(() => {
+    setPreLoadData([]);
+    getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: 4 })
+      .then((result) => {
+        result.map((item) => {
+          setPreLoadData((prev) => [...prev, item.carImgUrls]);
+        });
+      })
+      .catch((error) => {
+        if (error) return <ServerErrorPage />;
+      });
+  }, []);
+
+  function handleMouseEnter() {
+    if (loaderIdx / 2 < preLoadData.length) {
+      preLoadData[Math.floor(loaderIdx / 2)].map((item, idx) => {
+        idx % 2 === loaderIdx % 2 && preloadImage(item.imgUrl);
+      });
+      setLoaderIdx((prev) => prev + 1);
+    }
+  }
   return (
     <>
-      {trimData ? <TrimMain data={trimData} /> : <p>Loading...</p>}
+      {trimData ? <TrimMain data={trimData} onMouseEnter={handleMouseEnter} /> : <Loading />}
       <StWrapper>
         <StBottomContainer>
-          {trimData ? <TrimBoxContainer data={trimData} /> : <p>Loading...</p>}
+          {trimData ? <TrimBoxContainer data={trimData} /> : <Loading />}
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>트림 선택</Title>
               <Description>원하는 트림을 선택해주세요.</Description>
             </StConfirmHeader>
-            <BlueButton text={"다음"} onClick={nextBTNClicked} />
+            <BlueButton text={"다음"} onClick={nextBTNClicked} onMouseEnter={handleMouseEnter} />
           </StConfirmContainer>
         </StBottomContainer>
-        <FindTrim onClick={setToolTipStatus} />
-        <TrimSelectContainer>
-          <FindTrimTooltip isActive={toolTipStatus} />
+        <FindTrim onClick={setToolTipStatus} onMouseEnter={handleMouseEnter} />
+        <TrimSelectContainer
+          onClick={() => {
+            setToolTipStatus(false);
+          }}
+        >
+          <StTooltipContainer>
+            <StTooltip isActive={toolTipStatus} />
+          </StTooltipContainer>
         </TrimSelectContainer>
       </StWrapper>
     </>
@@ -82,7 +119,7 @@ const StConfirmHeader = styled.div`
 const TrimSelectContainer = styled.div`
   display: flex;
   position: absolute;
-  bottom: 18px;
+  bottom: 10px;
   left: 55%;
   gap: 15px;
 `;
@@ -105,3 +142,27 @@ const Description = styled.p`
   line-height: 165%;
   letter-spacing: -0.39px;
 `;
+
+const StTooltipContainer = styled.div`
+  position: relative;
+  animation: bounceRight 1.3s infinite linear;
+  @keyframes bounceRight {
+    0% {
+      right: 0;
+    }
+
+    50% {
+      right: -3px;
+    }
+
+    70% {
+      right: -7px;
+    }
+
+    100% {
+      right: 0;
+    }
+  }
+`;
+
+const StTooltip = styled(FindTrimTooltip)``;

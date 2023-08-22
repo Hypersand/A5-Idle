@@ -8,9 +8,9 @@ import palette from "styles/palette";
  * @param {boolean} isActive 비/활성화상태 (default : true)
  * @returns 버튼
  */
-function BlueButton({ text, onClick, isActive = true }) {
+function BlueButton({ text, onClick, onMouseEnter, isActive = true }) {
   return (
-    <StButton $isActive={isActive} onClick={onClick}>
+    <StButton $isActive={isActive} onClick={onClick} onMouseEnter={onMouseEnter}>
       {text}
     </StButton>
   );
@@ -39,8 +39,16 @@ const StButton = styled.button`
   letter-spacing: -0.42px;
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   pointer-events: ${({ $isActive }) => ($isActive ? "" : "none")};
+
   &:hover {
     cursor: pointer;
-    filter: brightness(120%)
+    filter: brightness(140%);
+    box-shadow: 1px 1px 5px #898989;
   }
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;

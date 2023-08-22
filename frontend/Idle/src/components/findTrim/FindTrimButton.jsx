@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { ReactComponent as ArrowUpper } from "images/arrowUpper.svg";
 import palette from "styles/palette";
 
-function FindTrimButton({ onClick }) {
+function FindTrimButton({ onClick, onMouseEnter }) {
   return (
     <StFindTrimButton onClick={onClick}>
-      <ArrowUpper />
-      <StFindTrimButtonText>내게 맞는 트림 찾기</StFindTrimButtonText>
+      <StArrowContainer />
+      <StFindTrimButtonText onMouseEnter={onMouseEnter}>내게 맞는 트림 찾기</StFindTrimButtonText>
     </StFindTrimButton>
   );
 }
@@ -16,7 +16,6 @@ export default FindTrimButton;
 const StFindTrimButton = styled.button`
   position: absolute;
   bottom: 18px;
-  width: 102px;
   height: 32px;
   display: flex;
   flex-direction: column;
@@ -29,9 +28,25 @@ const StFindTrimButton = styled.button`
 const StFindTrimButtonText = styled.div`
   color: ${palette.Black};
   font-family: "Hyundai Sans Text KR";
-  font-size: 14px;
+  font-size: 15px;
   font-style: normal;
-  font-weight: 500;
   line-height: 20px;
-  letter-spacing: -0.42px;
 `;
+
+const StArrowContainer = styled(ArrowUpper)`
+position: relative;
+animation: bounceTop 1.3s infinite ease-in-out;
+@keyframes bounceTop {
+  0% {
+    top: 1px;
+  }
+
+  50% {
+    top: -2px;
+  }
+
+  100% {
+    top: 1px;
+  }
+}
+`

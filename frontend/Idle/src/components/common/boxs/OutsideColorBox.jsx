@@ -3,21 +3,17 @@ import { styled } from "styled-components";
 import palette from "styles/palette";
 function OutsideColorBox({ data, isSelected, onClick }) {
   const [isWhite, setIsWhite] = useState(false);
-  const [isGrey, setIsGrey] = useState(false);
 
   useEffect(() => {
     if (data.exteriorName === "크리미 화이트 펄") {
       setIsWhite(true);
-    } else if (data.exteriorName === "쉬버링 실버 메탈릭") {
-      setIsGrey(true);
     }
   }, []);
   return (
     <StContainer $isActive={isSelected} onClick={onClick} $img={data.exteriorImgUrl}>
       <StOutline $isActive={isSelected} />
-
       <StName $isWhite={isWhite}>{data.exteriorName}</StName>
-      <StRatio $isGrey={isGrey}>{data.exteriorPurchaseRate}</StRatio>
+      <StRatio $isWhite={isWhite}>{data.exteriorPurchaseRate}</StRatio>
       <StPrice $isWhite={isWhite}>+ {data.exteriorPrice} 원</StPrice>
     </StContainer>
   );
@@ -28,24 +24,32 @@ export default OutsideColorBox;
 const StOutline = styled.div`
   display: ${({ $isActive }) => ($isActive ? "" : "none")};
   position: absolute;
-    width: 184px;
-    border: 3px solid #FFF;
-    height: 60px;
-    transform: translate(2px, 2px);
+  width: 184px;
+  border: 3px solid #fff;
+  height: 65px;
+  transform: translate(2px, 2px);
+  border-radius: 4px;
 `;
 
 const StContainer = styled.div`
   position: relative;
   width: 194px;
-  height: 70px;
+  height: 75px;
   background-color: grey;
-  outline: ${({ $isActive }) => ($isActive ? "2px" : "1px")} solid ${({ $isActive }) => ($isActive ? `${palette.NavyBlue_5}` : `${palette.Black}`)};
-  outline-offset:  ${({ $isActive }) => ($isActive ? "-2px" : "-1px")};
+  outline: ${({ $isActive }) => ($isActive ? "2px" : "1px")} solid
+    ${({ $isActive }) => ($isActive ? `${palette.NavyBlue_5}` : `${palette.Black}`)};
+  outline-offset: ${({ $isActive }) => ($isActive ? "-2px" : "-1px")};
   background-image: ${({ $img }) => `url(${$img})`};
   &:hover {
     cursor: pointer;
-    filter: brightness(120%)
+    filter: brightness(105%);
   }
+
+  &:active {
+    box-shadow: inset 1px 1px 4px #898989;
+  }
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #b7b7b7;
 `;
 
 const StName = styled.div`
@@ -54,18 +58,18 @@ const StName = styled.div`
   left: 12px;
   color: ${({ $isWhite }) => ($isWhite ? `${palette.Black}` : `${palette.White}`)};
   font-family: "Hyundai Sans Text KR";
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 16px;
-  letter-spacing: -0.36px;
+  letter-spacing: 1px;
 `;
 
 const StRatio = styled.div`
   position: absolute;
   top: 25px;
   left: 12px;
-  color: ${({ $isGrey }) => ($isGrey ? `${palette.White}` : `${palette.Grey_3}`)};
+  color: ${({ $isWhite }) => ($isWhite ? `${palette.Black}` : `${palette.White}`)};
   font-family: "Hyundai Sans Text KR";
   font-size: 10px;
   font-style: normal;

@@ -1,5 +1,5 @@
 import "../../styles/CustomOverlay.css";
-import carMasterHyundai from "../../assets/images/carMasterHyundai.svg";
+import hyundai from "../../assets/images/carMasterHyundai.svg";
 
 function CustomOverlay(data, onClick) {
   const container = document.createElement("div");
@@ -38,7 +38,7 @@ function CustomOverlay(data, onClick) {
   content.appendChild(hr);
 
   const image = document.createElement("img");
-  image.src = carMasterHyundai;
+  image.src = hyundai;
   image.classList.add("st-img");
   main.appendChild(image);
 
