@@ -47,6 +47,7 @@ create table if not exists CAR_TYPE
     car_type_id     bigint auto_increment
     primary key,
     name            varchar(10) null,
+    isNew           varchar(5)  null,
     price           int         null,
     img_url         text        null,
     logo_url        text        null,

@@ -23,7 +23,7 @@ public class DrivingMethodRepositoryImpl implements DrivingMethodRepository {
                 "on d.driving_method_id = tdm.driving_method_id " +
                 "where tdm.trim_id = :trimId order by d.price asc";
 
-        RowMapper rowMapper = BeanPropertyRowMapper.newInstance(DrivingMethodResponse.class);
+        RowMapper<DrivingMethodResponse> rowMapper = new BeanPropertyRowMapper<>(DrivingMethodResponse.class);
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("trimId", trimId);
 

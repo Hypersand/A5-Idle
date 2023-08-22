@@ -14,9 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class OptionService {
-    private static String NEW = "NEW";
-    private static String FALSE = "false";
-
+    private static final String NEW = "NEW";
     private final OptionRepository optionRepository;
     private final FunctionRepository functionRepository;
 
@@ -27,7 +25,7 @@ public class OptionService {
 
         for (OptionDto optionDto : additionalOptionList) {
             if (notActivatedOptionIdList.contains(optionDto.getOptionId())) {
-                optionDto.setOptionCanSelect(FALSE);
+                optionDto.setOptionCanSelect(false);
             }
             optionFunctionsResponseList.add(OptionFunctionsResponse.create(
                     optionDto,

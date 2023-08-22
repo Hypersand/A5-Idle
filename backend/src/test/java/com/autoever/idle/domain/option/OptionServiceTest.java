@@ -64,7 +64,7 @@ class OptionServiceTest {
                 "구매자 10%가 선택",
                 "흠집없이 내 차에 짐을 싣고 싶다면?\n프로텍션 매트 패기지1로 흠집 걱정 없이 짐을 실어보세요.",
                 "차량 보호",
-                "false");
+                false);
 
         OptionDto optionDto2 = new OptionDto(7L,
                 "차량 보호 필름",
@@ -72,7 +72,7 @@ class OptionServiceTest {
                 "구매자 30%가 선택",
                 "흠집으로 부터 차량을 보호하고 싶다면?\n차량 보호 필름을 통해 내 차를 지켜보세요.",
                 "차량 보호",
-                "true");
+                true);
 
         OptionDto optionDto3 = new OptionDto(
                 13L,
@@ -81,7 +81,7 @@ class OptionServiceTest {
                 "구매자 60%가 선택",
                 "현대자동차의 기술력과 노하우가 결합된 커스터마이징 브랜드 N 퍼포먼스의 알콘(alcon)단조 브레이크 & 20인치 휠 패키지",
                 "스타일&퍼포먼스",
-                "true"
+                true
         );
 
         additionalOptionListSortedByPrice.add(optionDto1);

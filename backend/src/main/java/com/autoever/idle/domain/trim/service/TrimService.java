@@ -58,10 +58,14 @@ public class TrimService {
             List<ExteriorImgUrlDto> exteriorImgUrls = exteriorColorRepository.findExteriorColorImgUrlsByTrimId(trim.getTrimId());
             List<InteriorImgUrlDto> interiorImgUrls = interiorColorRepository.findInteriorColorImgUrlsByTrimId(trim.getTrimId());
             TrimThumbnailColorResponse colors = new TrimThumbnailColorResponse(exteriorImgUrls, interiorImgUrls);
-            TrimSelectionResponse trimDto = TrimSelectionResponse.createDto(trim, categoryDtos, thumbnailFunctions, colors);
+            TrimSelectionResponse trimDto = new TrimSelectionResponse(
+                    trim,
+                    categoryDtos,
+                    thumbnailFunctions,
+                    colors
+            );
             trimDtos.add(trimDto);
         }
-        System.out.println("");
         return trimDtos;
     }
 }
