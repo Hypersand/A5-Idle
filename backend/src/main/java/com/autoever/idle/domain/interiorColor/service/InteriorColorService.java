@@ -22,7 +22,7 @@ public class InteriorColorService {
     public InteriorColorResponse findAllInteriorColors(Long trimId, Long exteriorId) {
         List<InteriorColorDto> interiorColors = interiorColorRepository.findInteriorColorByTrimIdAndExteriorId(trimId, exteriorId);
         validateInteriorColor(interiorColors);
-        return InteriorColorResponse.createInteriorColorDto(interiorColors);
+        return new InteriorColorResponse(interiorColors);
     }
 
     public InteriorColorsImgUrlResponse findAllInteriorColorImgUrls() {

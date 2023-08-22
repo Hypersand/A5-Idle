@@ -54,7 +54,7 @@ class InteriorColorServiceTest {
                 "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png",
                 "구매자 16%가 선택")
         );
-        interiorColorRes = InteriorColorResponse.createInteriorColorDto(interiorColorDtos);
+        interiorColorRes = new InteriorColorResponse(interiorColorDtos);
 
         imgUrls = new ArrayList<>();
         imgUrls.add("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png");
