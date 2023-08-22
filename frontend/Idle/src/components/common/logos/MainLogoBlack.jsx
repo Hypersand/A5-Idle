@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { ReactComponent as MainLogoImg } from "images/hyundai.svg";
-import WarningModal from "modals/WarningModal";
-import { useContext, useState } from "react";
-import palette from "styles/palette";
 import { useLocation, useNavigate } from "react-router-dom";
-import { carContext } from "utils/context";
-import { CHANGE_ALL } from "utils/actionType";
-import { emptyCar } from "utils/constants";
+import { useContext, useState } from "react";
+import { ReactComponent as MainLogoImg } from "../../../assets/images/hyundai.svg";
+import { carContext } from "../../../store/context";
+import { emptyCar } from "../../../constant/constants";
+import { CHANGE_ALL } from "../../../store/actionType";
+import WarningModal from "../modals/WarningModal";
+import palette from "../../../styles/palette";
 
 function MainLogoBlack({ modalPosition = null }) {
   const [modalVisible, setModalVisible] = useState(false);

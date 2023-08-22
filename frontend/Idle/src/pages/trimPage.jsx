@@ -1,18 +1,18 @@
 import { useContext, useEffect, useState } from "react";
-import TrimBoxContainer from "trimBoxContainer/TrimBoxContainer";
-import { styled } from "styled-components";
-import BlueButton from "buttons/BlueButton";
 import { useNavigate } from "react-router-dom";
-import FindTrim from "findTrim/index";
-import { getWithoutQueryAPI } from "utils/api";
-import palette from "styles/palette";
-import { PATH } from "utils/constants";
-import FindTrimTooltip from "toolTips/FindTrimTooltip";
-import TrimMain from "../components/trimMain";
-import { preloadContext } from "utils/context";
-import { preloadImage } from "utils/preloader";
-import Loading from "../components/common/loading/Loading";
-import ServerErrorPage from "./serverErrorPage";
+import { styled } from "styled-components";
+import { preloadContext } from "../store/context"
+import { getWithoutQueryAPI } from "../utils/api"
+import { PATH } from "../constant/path"
+import { preloadImage } from "../utils/preloader"
+import Loading from "../components/common/loading/Loading"
+import TrimMain from "../components/trimPage/trimMain/TrimMain"
+import NormalTrimBoxContainer from "../components/trimPage/trimSub/NormalTrimBoxContainer"
+import FindTrim from "../components/trimPage/findTrim/FindTrim"
+import FindTrimButton from "../components/trimPage/trimSub/FindTrimButton"
+import BlueButton from "../components/common/buttons/BlueButton"
+import FindTrimTooltip from "../components/common/toolTips/FindTrimTooltip"
+import palette from "../styles/palette"
 
 let cachedTrimData = null;
 
@@ -20,6 +20,7 @@ function TrimPage() {
   const navigate = useNavigate();
   const [toolTipStatus, setToolTipStatus] = useState(true);
   const [trimData, setTrimData] = useState(cachedTrimData);
+  const [modalVisible, setModalVisible] = useState(false);
   const { preLoadData, setPreLoadData, loaderIdx, setLoaderIdx } = useContext(preloadContext);
 
   function nextBTNClicked() {
@@ -49,12 +50,16 @@ function TrimPage() {
       setLoaderIdx((prev) => prev + 1);
     }
   }
+  function findButtonClicked() {
+    setToolTipStatus(false);
+    setModalVisible(true);
+  }
   return (
     <>
       {trimData ? <TrimMain data={trimData} onMouseEnter={handleMouseEnter} /> : <Loading />}
       <StWrapper>
         <StBottomContainer>
-          {trimData ? <TrimBoxContainer data={trimData} /> : <Loading />}
+          {trimData ? <NormalTrimBoxContainer data={trimData} /> : <Loading />}
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>트림 선택</Title>
@@ -63,17 +68,17 @@ function TrimPage() {
             <BlueButton text={"다음"} onClick={nextBTNClicked} onMouseEnter={handleMouseEnter} />
           </StConfirmContainer>
         </StBottomContainer>
-        <FindTrim onClick={setToolTipStatus} onMouseEnter={handleMouseEnter} />
-        <TrimSelectContainer
-          onClick={() => {
-            setToolTipStatus(false);
-          }}
-        >
+        <FindTrimButton onClick={findButtonClicked} onMouseEnter={handleMouseEnter} />
+        <TrimSelectContainer onClick={() => { setToolTipStatus(false); }}>
           <StTooltipContainer>
             <StTooltip isActive={toolTipStatus} />
           </StTooltipContainer>
         </TrimSelectContainer>
       </StWrapper>
+      {modalVisible ? (
+        <FindTrim setVisible={setModalVisible} onMouseEnter={handleMouseEnter} />
+      ) : (<> </>
+      )}
     </>
   );
 }

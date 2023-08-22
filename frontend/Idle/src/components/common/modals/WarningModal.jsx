@@ -1,9 +1,9 @@
 import { keyframes, styled } from "styled-components";
-import BlueButton from "buttons/BlueButton";
-import WhiteButton from "buttons/WhiteButton";
 import { createPortal } from "react-dom";
-import palette from "styles/palette";
 import { useState } from "react";
+import WhiteButton from "../buttons/WhiteButton";
+import BlueButton from "../buttons/BlueButton";
+import palette from "../../../styles/palette";
 
 /**
  *

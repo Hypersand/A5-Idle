@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
-import { CONFUSE, NONE } from "utils/constants";
-import palette from "styles/palette";
+import palette from "../../../styles/palette";
+import { CONFUSE, NONE } from "../../../constant/constants";
 
 function ConfusingButton({ state, onClick }) {
   return (

@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
-import { ReactComponent as ArrowRight } from "images/arrowRight.svg";
-import palette from "styles/palette";
+import { ReactComponent as ArrowRight } from "../../../assets/images/arrowRight.svg";
+import palette from "../../../styles/palette";
+
 
 function ModifyButton({ onClick }) {
   return (
