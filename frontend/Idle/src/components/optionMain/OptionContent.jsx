@@ -4,7 +4,7 @@ import palette from "styles/palette";
 import { useEffect, useRef, useState } from "react";
 
 function OptionContent({
-  data,
+  optionData,
   setSelectedFunction,
   selectedFunction,
   currentPage,
@@ -15,7 +15,7 @@ function OptionContent({
 
   useEffect(() => {
     checkOverFlow(optionDescRef.current);
-  }, [data]);
+  }, [optionData]);
 
   function checkOverFlow(ref) {
     if (ref === undefined) return;
@@ -30,18 +30,18 @@ function OptionContent({
 
   return (
     <StContainer>
-      <StOption>{data?.optionName}</StOption>
+      <StOption>{optionData?.optionName}</StOption>
       <StOptionDesc ref={optionDescRef} $isOverFlow={isODesccOverFlow}>
-        {data?.optionDescription === "-" ? "" : data?.optionDescription}
+        {optionData?.optionDescription === "-" ? "" : optionData?.optionDescription}
       </StOptionDesc>
       <StFullOptionDesc>
-        {data?.optionDescription === "-" ? "" : data?.optionDescription}
+        {optionData?.optionDescription === "-" ? "" : optionData?.optionDescription}
       </StFullOptionDesc>
       {renderWheelImg()}
 
       <StHr />
       <Functions
-        data={data?.functions}
+        optionData={optionData?.functions}
         setSelectedFunction={setSelectedFunction}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

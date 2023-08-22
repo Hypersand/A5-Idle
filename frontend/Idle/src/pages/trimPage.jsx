@@ -136,6 +136,7 @@ const Description = styled.p`
 `;
 
 const StTooltipContainer = styled.div`
+  cursor: pointer;
   position: relative;
   animation: bounceRight 1.3s infinite linear;
   @keyframes bounceRight {

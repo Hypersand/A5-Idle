@@ -20,7 +20,6 @@ import { ReactComponent as ArrowLogo } from "images/arrowOption.svg";
 import OptionMain from "optionMain/index";
 import palette from "styles/palette";
 import { carContext } from "utils/context";
-import ServerErrorPage from "./ServerErrorPage";
 import ConfusingTooltip from "toolTips/ConfusingTooltip";
 import WarningModal from "modals/WarningModal";
 import { getWithQueryAPI } from "utils/api";
@@ -39,9 +38,9 @@ function navigateTo(car, navigate) {
   else if (car.color.interior.name === undefined) navigate("/color/interior");
 }
 
-function filterData(data, currentTab) {
-  if (currentTab === ALL) return data;
-  return data.filter((item) => item.optionCategory === TRANSLATE[currentTab]);
+function filterData(optionData, currentTab) {
+  if (currentTab === ALL) return optionData;
+  return optionData.filter((item) => item.optionCategory === TRANSLATE[currentTab]);
 }
 
 let cachedOptionData = [];
@@ -50,7 +49,7 @@ function OptionPage() {
   const { tab } = useParams();
   const [currentTab, setCurrentTab] = useState(tab);
   const [selectedOption, setSelectedOption] = useState("");
-  const [data, setData] = useState(cachedOptionData);
+  const [optionData, setOptionData] = useState(cachedOptionData);
   const [currentPage, setCurrentPage] = useState(0);
   const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
   const [filteredData, setFilteredData] = useState([]);
@@ -94,7 +93,7 @@ function OptionPage() {
         engineId: car.detail.engines.id,
       }).then((res) => {
         if (res === cachedOptionData) return;
-        setData(res);
+        setOptionData(res);
         cachedOptionData = res;
       });
     }
@@ -102,8 +101,8 @@ function OptionPage() {
   }, [car.option]);
 
   useLayoutEffect(() => {
-    setFilteredData(filterData(data, currentTab));
-  }, [data, currentTab]);
+    setFilteredData(filterData(optionData, currentTab));
+  }, [optionData, currentTab]);
 
   useLayoutEffect(() => {
     setCurrentTab(tab);
@@ -169,7 +168,7 @@ function OptionPage() {
         </StTabContainer>
         <StContentsContainer>
           <OptionMain
-            data={filteredData}
+            optionData={filteredData}
             selectedOption={selectedOption}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
@@ -392,4 +391,5 @@ const StTooltipContainer = styled.div`
   top: 80%;
   left: -3%;
   z-index: 1;
+  cursor: pointer;
 `;
