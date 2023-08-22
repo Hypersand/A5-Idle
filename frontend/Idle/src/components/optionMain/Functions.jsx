@@ -17,8 +17,8 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
         ? setIsDescOverFlow(true)
         : setIsDescOverFlow(false)
       : ref.scrollWidth > ref.clientWidth
-        ? setIsFNameOverFlow(true)
-        : setIsFNameOverFlow(false);
+      ? setIsFNameOverFlow(true)
+      : setIsFNameOverFlow(false);
   }
 
   useEffect(() => {
@@ -29,6 +29,7 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
 
   useEffect(() => {
     setSelectedFunction(() => (data ? data[currentPage] : null));
+    checkOverFlow(fNameRef.current, "fName");
   }, [currentPage]);
 
   function leftBtnClicked() {
@@ -76,10 +77,7 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
       {renderMain()}
       {data ? (
         <>
-          <StDesc
-            ref={descRef}
-            $isOverFlow={isDescOverFlow}
-          >
+          <StDesc ref={descRef} $isOverFlow={isDescOverFlow}>
             {data[currentPage]?.functionDescription === "-"
               ? ""
               : data[currentPage]?.functionDescription}
