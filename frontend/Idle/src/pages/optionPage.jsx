@@ -92,15 +92,11 @@ function OptionPage() {
         trimId: car.trim.trimId,
         selectedOptionIds: [selectedOptionIds],
         engineId: car.detail.engines.id,
-      })
-        .then((res) => {
-          if (res === cachedOptionData) return;
-          setData(res);
-          cachedOptionData = res;
-        })
-        .catch((error) => {
-          if (error) return <ServerErrorPage />;
-        });
+      }).then((res) => {
+        if (res === cachedOptionData) return;
+        setData(res);
+        cachedOptionData = res;
+      });
     }
     fetchData();
   }, [car.option]);

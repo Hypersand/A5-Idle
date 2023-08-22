@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { carContext } from "utils/context";
@@ -33,7 +33,7 @@ function ColorPage() {
   const [isEngineChecked, setIsEngineChekced] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setCurrentTab(tab);
     switch (tab) {
       case EXTERIOR_COLORS:
@@ -55,31 +55,23 @@ function ColorPage() {
     }
   }, [tab]);
 
-  useEffect(() => {
-    getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: car.trim.trimId })
-      .then((result) => {
-        setExteriorData(result);
-        cachedExterior = result;
-        dispatch({ type: SET_CAR_IMG, payload: result[0].carImgUrls[0].imgUrl });
-      })
-      .catch((error) => {
-        if (error) return <ServerErrorPage />;
-      });
+  useLayoutEffect(() => {
+    getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: car.trim.trimId }).then((result) => {
+      setExteriorData(result);
+      cachedExterior = result;
+      dispatch({ type: SET_CAR_IMG, payload: result[0].carImgUrls[0].imgUrl });
+    });
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (car.color.exterior.exteriorId !== undefined) {
       getWithoutQueryAPI(PATH.COLOR.INTERIOR, {
         trimId: car.trim.trimId,
         exteriorId: car.color.exterior.exteriorId,
-      })
-        .then((result) => {
-          setInteriorData(result);
-          cachedInterior = result;
-        })
-        .catch((error) => {
-          if (error) return <ServerErrorPage />;
-        });
+      }).then((result) => {
+        setInteriorData(result);
+        cachedInterior = result;
+      });
     }
   }, [exteriorData]);
 

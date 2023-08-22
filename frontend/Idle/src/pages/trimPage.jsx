@@ -26,27 +26,19 @@ function TrimPage() {
     navigate("/detail/engines");
   }
   useEffect(() => {
-    getWithoutQueryAPI(PATH.TRIM)
-      .then((result) => {
-        setTrimData(result);
-        cachedTrimData = result;
-      })
-      .catch((error) => {
-        if (error) return <ServerErrorPage />;
-      });
+    getWithoutQueryAPI(PATH.TRIM).then((result) => {
+      setTrimData(result);
+      cachedTrimData = result;
+    });
   }, []);
 
   useEffect(() => {
     setPreLoadData([]);
-    getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: 4 })
-      .then((result) => {
-        result.map((item) => {
-          setPreLoadData((prev) => [...prev, item.carImgUrls]);
-        });
-      })
-      .catch((error) => {
-        if (error) return <ServerErrorPage />;
+    getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: 4 }).then((result) => {
+      result.map((item) => {
+        setPreLoadData((prev) => [...prev, item.carImgUrls]);
       });
+    });
   }, []);
 
   function handleMouseEnter() {

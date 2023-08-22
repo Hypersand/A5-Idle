@@ -70,14 +70,10 @@ function BillPage() {
         exteriorId: car.color.exterior.exteriorId,
         interiorId: car.color.interior.interiorId,
         selectedOptionIds: additionalOptionIds,
-      })
-        .then((result) => {
-          setBillData(result);
-          cachedBillData = result;
-        })
-        .catch((error) => {
-          if (error) return <ServerErrorPage />;
-        });
+      }).then((result) => {
+        setBillData(result);
+        cachedBillData = result;
+      });
     }
   }, []);
   function scrollTop() {
