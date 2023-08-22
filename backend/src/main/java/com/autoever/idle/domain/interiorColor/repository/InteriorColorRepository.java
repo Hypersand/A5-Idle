@@ -12,4 +12,5 @@ public interface InteriorColorRepository {
     List<InteriorColorDto> findInteriorColorByTrimIdAndExteriorId(Long trimId, Long exteriorId);
     Optional<InteriorBillDto> findInteriorBill(Long exteriorId);
     List<InteriorImgUrlDto> findInteriorColorImgUrlsByTrimId(Long trimId);
+    List<String> findAllInteriorColorImgUrls();
 }
