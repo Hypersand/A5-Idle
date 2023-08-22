@@ -20,7 +20,7 @@ function checkOptionBeforeEngineChanged(car, setModalVisible) {
 }
 
 function DetailModelBox({
-  purchase_rate,
+  purchaseRate,
   type,
   description,
   id,
@@ -71,7 +71,7 @@ function DetailModelBox({
           <StTitleContainer>
             <StContentHeader>
               <Title $isSelected={isOptionSelected}>{type}</Title>
-              <TitleDetail $isSelected={isOptionSelected}>{purchase_rate}</TitleDetail>
+              <TitleDetail $isSelected={isOptionSelected}>{purchaseRate}</TitleDetail>
             </StContentHeader>
             <Detail $isSelected={isOptionSelected}>{description}</Detail>
           </StTitleContainer>
