@@ -14,11 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ExteriorColorService {
 
+    private static final String NEW = "NEW";
     private final ExteriorColorRepository exteriorColorRepository;
 
     public List<ExteriorColorResponse> findAllExteriorColors(Long trimId) {
         List<ExteriorColorDto> colors = exteriorColorRepository.findExteriorColorsByTrimId(trimId);
-        sortByPurchaseRateAndName(colors);
+        sortColors(colors);
 
         List<ExteriorColorResponse> exteriorColorResponses = new ArrayList<>();
         for (ExteriorColorDto color : colors) {
@@ -30,30 +31,44 @@ public class ExteriorColorService {
         return exteriorColorResponses;
     }
 
-    private void sortByPurchaseRateAndName(List<ExteriorColorDto> colors) {
+    private void sortColors(List<ExteriorColorDto> colors) {
         colors.sort((o1, o2) -> {
             if (o1.getExteriorPrice() == o2.getExteriorPrice()) {
-                if (o1.getExteriorPurchaseRate().equals("NEW")) {
-                    return -1;
-                } else if (o2.getExteriorPurchaseRate().equals("NEW")) {
-                    return 1;
-                }
-
-                double rate1 = Double.parseDouble(o1.getExteriorPurchaseRate().split("%")[0].split(" ")[1]);
-                double rate2 = Double.parseDouble(o2.getExteriorPurchaseRate().split("%")[0].split(" ")[1]);
-
-                if (rate1 == rate2) {
-                      return o2.getExteriorName().compareTo(o1.getExteriorName());
-                } else if (rate1 < rate2) {
-                    return 1;
-                } else {
-                    return -1;
-                }
+                return validateNew(o1, o2);
             } else if (o1.getExteriorPrice() < o2.getExteriorPrice()) {
                 return -1;
             } else {
                 return 1;
             }
         });
+    }
+
+    private int validateNew(ExteriorColorDto o1, ExteriorColorDto o2) {
+        if (o1.getExteriorPurchaseRate().equals(NEW)) {
+            return -1;
+        }
+
+        if (o2.getExteriorPurchaseRate().equals(NEW)) {
+            return 1;
+        }
+
+        return sortByPurchaseRateAndName(o1, o2);
+    }
+
+    private int sortByPurchaseRateAndName(ExteriorColorDto o1, ExteriorColorDto o2) {
+        Double rate1 = Double.parseDouble(extractPurchaseRate(o1));
+        Double rate2 = Double.parseDouble(extractPurchaseRate(o2));
+
+        int comparedInteger = rate2.compareTo(rate1);
+
+        if (comparedInteger == 0) {
+            return o2.getExteriorName().compareTo(o1.getExteriorName());
+        }
+
+        return comparedInteger;
+    }
+
+    private String extractPurchaseRate(ExteriorColorDto o1) {
+        return o1.getExteriorPurchaseRate().split("%")[0].split(" ")[1];
     }
 }
