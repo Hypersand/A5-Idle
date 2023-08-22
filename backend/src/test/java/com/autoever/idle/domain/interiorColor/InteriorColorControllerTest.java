@@ -3,6 +3,7 @@ package com.autoever.idle.domain.interiorColor;
 import com.autoever.idle.domain.interiorColor.controller.InteriorColorController;
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorDto;
 import com.autoever.idle.domain.interiorColor.dto.InteriorColorResponse;
+import com.autoever.idle.domain.interiorColor.dto.InteriorColorsImgUrlResponse;
 import com.autoever.idle.domain.interiorColor.service.InteriorColorService;
 import com.autoever.idle.global.exception.GlobalExceptionHandler;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -39,6 +41,8 @@ class InteriorColorControllerTest {
 
     List<InteriorColorDto> interiorColorDtos;
     InteriorColorResponse interiorColorRes;
+    List<String> imgUrls;
+    InteriorColorsImgUrlResponse imgUrlResponse;
 
     @BeforeEach
     void setUp() {
@@ -72,6 +76,13 @@ class InteriorColorControllerTest {
                 "구매자 5%가 선택")
         );
         interiorColorRes = InteriorColorResponse.createInteriorColorDto(interiorColorDtos);
+
+        imgUrls = new ArrayList<>();
+        imgUrls.add("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png");
+        imgUrls.add("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/118-1.png");
+        imgUrls.add("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png");
+
+        imgUrlResponse = new InteriorColorsImgUrlResponse(imgUrls);
     }
 
     @Test
@@ -107,5 +118,17 @@ class InteriorColorControllerTest {
                 .andExpect(jsonPath("$.carInteriorColors[2].interiorImgUrl").value(carInteriorColors.get(2).getInteriorImgUrl()))
                 .andExpect(jsonPath("$.carInteriorColors[2].carInteriorImgUrl").value(carInteriorColors.get(2).getCarInteriorImgUrl()))
                 .andExpect(jsonPath("$.carInteriorColors[2].interiorPurchaseRate").value(carInteriorColors.get(2).getInteriorPurchaseRate()));
+    }
+
+    @Test
+    @DisplayName("전체 내장 색상 이미지를 반환한다")
+    void getAllInteriorImgUrls() throws Exception {
+        given(interiorColorService.findAllInteriorColorImgUrls()).willReturn(imgUrlResponse);
+
+        mockMvc.perform(get("/interior/colors/all"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.interiorImgUrls[0]").value(imgUrls.get(0)))
+                .andExpect(jsonPath("$.interiorImgUrls[1]").value(imgUrls.get(1)))
+                .andExpect(jsonPath("$.interiorImgUrls[2]").value(imgUrls.get(2)));
     }
 }
