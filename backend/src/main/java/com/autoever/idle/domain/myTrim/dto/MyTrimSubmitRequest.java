@@ -12,10 +12,10 @@ import java.util.Map;
 public class MyTrimSubmitRequest {
 
     private Long trimId;
-    private List<Map<String, Long>> selectFunctions;
+    private List<Long> selectFunctions;
 
     //테스트 용도 생성자
-    public MyTrimSubmitRequest(Long trimId, List<Map<String, Long>> selectFunctions) {
+    public MyTrimSubmitRequest(Long trimId, List<Long> selectFunctions) {
         this.trimId = trimId;
         this.selectFunctions = selectFunctions;
     }
