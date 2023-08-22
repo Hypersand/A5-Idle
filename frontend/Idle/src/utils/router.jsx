@@ -17,21 +17,21 @@ const ServerErrorPage = React.lazy(() => import("../pages/serverErrorPage"));
 function Router() {
   return (
     <Suspense fallback={<Loading />}>
-      {/* <ErrorBoundary> */}
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/selectCar" element={<CarSelectionPage />} />
-        <Route element={<Layout />}>
-          <Route path="/trim" element={<TrimPage />} />
-          <Route path="/detail/:tab" element={<DetailModelPage />} />
-          <Route path="/color/:tab" element={<ColorPage />} />
-          <Route path="/option/:tab" element={<OptionPage />} />
-        </Route>
-        <Route path="/bill" element={<BillPage />} />
-        <Route path="/error" element={<ServerErrorPage />} />
-        <Route path="/*" element={<ErrorPage />} />
-      </Routes>
-      {/* </ErrorBoundary> */}
+      <ErrorBoundary>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/selectCar" element={<CarSelectionPage />} />
+          <Route element={<Layout />}>
+            <Route path="/trim" element={<TrimPage />} />
+            <Route path="/detail/:tab" element={<DetailModelPage />} />
+            <Route path="/color/:tab" element={<ColorPage />} />
+            <Route path="/option/:tab" element={<OptionPage />} />
+          </Route>
+          <Route path="/bill" element={<BillPage />} />
+          <Route path="/error" element={<ServerErrorPage />} />
+          <Route path="/*" element={<ErrorPage />} />
+        </Routes>
+      </ErrorBoundary>
     </Suspense>
   );
 }

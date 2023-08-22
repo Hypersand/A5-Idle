@@ -63,7 +63,7 @@ function DefaultOption({ setVisible }) {
             <CloseButton onClick={clickClose} />
           </StCloseButtonContainer>
           <StCategoryContainer>{renderCategory()}</StCategoryContainer>
-          <DefaultOptionBoxContainer data={data} currentTab={currentTab} currentPage={currentTab} pageSize={pageSize} />
+          <DefaultOptionBoxContainer data={data} currentTab={currentTab} currentPage={currentPage} pageSize={pageSize} />
           <StPaginationContainer>
             <PaginationButton
               onClickPrev={() => handlePageChange(currentPage - 1)}

@@ -2,25 +2,18 @@ import { styled } from "styled-components";
 import DefaultOptionBox from "./DefaultOptionBox";
 
 function DefaultOptionBoxContainer({ data, currentTab, currentPage, pageSize }) {
-    console.log(data);
     const currentCategory = data.find((tab) => tab.categoryName === currentTab);
-    function renderItem() {
-        if (currentCategory) {
-            return currentCategory.functions
-                .slice((currentPage - 1) * pageSize, currentPage * pageSize)
-                .map((item, idx) => (
-                    <DefaultOptionBox
-                        key={idx}
-                        functionName={item.functionName}
-                        functionImgUrl={item.functionImgUrl}
-                        functionDescription={item.functionDescription}
-                    />
-                ));
-        }
-    }
     return (
-        <StContentContainer>{renderItem()}</StContentContainer>
-
+        <StContentContainer>{currentCategory && currentCategory.functions
+            .slice((currentPage - 1) * pageSize, currentPage * pageSize)
+            .map((item, idx) => (
+                <DefaultOptionBox
+                    key={idx}
+                    functionName={item.functionName}
+                    functionImgUrl={item.functionImgUrl}
+                    functionDescription={item.functionDescription}
+                />
+            ))}</StContentContainer>
     )
 }
 
