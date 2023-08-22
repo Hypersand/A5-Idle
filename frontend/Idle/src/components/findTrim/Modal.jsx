@@ -17,7 +17,6 @@ import {
 } from "utils/actionType";
 import palette from "styles/palette";
 import { PATH } from "utils/constants";
-import { submitPostAPI } from "utils/api";
 import { PUSH_OPTION_ALERT } from "utils/actionType";
 import { getWithQueryAPI } from "../../utils/api";
 
