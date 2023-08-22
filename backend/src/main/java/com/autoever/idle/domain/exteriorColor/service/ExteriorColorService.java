@@ -24,7 +24,7 @@ public class ExteriorColorService {
         List<ExteriorColorResponse> exteriorColorResponses = new ArrayList<>();
         for (ExteriorColorDto color : colors) {
             List<CarExteriorImgDto> images = exteriorColorRepository.findCarExteriorImgsById(color.getExteriorId());
-            ExteriorColorResponse exteriorDto = ExteriorColorResponse.createExteriorColor(color, images);
+            ExteriorColorResponse exteriorDto = new ExteriorColorResponse(color, images);
             exteriorColorResponses.add(exteriorDto);
         }
 
