@@ -25,13 +25,7 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
     checkOverFlow(descRef.current, "desc");
     checkOverFlow(fNameRef.current, "fName");
     setSelectedFunction(() => (data ? data[currentPage] : null));
-  }, [data]);
-
-  useEffect(() => {
-    setSelectedFunction(() => (data ? data[currentPage] : null));
-    checkOverFlow(descRef.current, "desc");
-    checkOverFlow(fNameRef.current, "fName");
-  }, [currentPage]);
+  }, [data, currentPage]);
 
   function leftBtnClicked() {
     currentPage === 0 ? setCurrentPage(() => data.length - 1) : setCurrentPage((cur) => cur - 1);
