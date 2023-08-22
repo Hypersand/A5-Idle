@@ -17,8 +17,9 @@ import {
 } from "utils/actionType";
 import palette from "styles/palette";
 import { PATH } from "utils/constants";
-import { optionPostAPI, submitPostAPI } from "utils/api";
+import { submitPostAPI } from "utils/api";
 import { PUSH_OPTION_ALERT } from "utils/actionType";
+import { getWithQueryAPI } from "../../utils/api";
 
 function Modal({ setVisible, onMouseEnter }) {
   const { dispatch } = useContext(carContext);
@@ -29,8 +30,9 @@ function Modal({ setVisible, onMouseEnter }) {
       stateDispatch({ type: SET_OPTION_STATUS, payload: defaultOption });
       return;
     }
+    console.log(state);
     async function postFunc() {
-      await optionPostAPI(PATH.FIND.OPTION, state.selectedOption).then((res) => {
+      await getWithQueryAPI(PATH.FIND.OPTION, { functionIds: state.selectedOption }).then((res) => {
         stateDispatch({ type: SET_OPTION_STATUS, payload: res });
       });
     }
@@ -45,14 +47,16 @@ function Modal({ setVisible, onMouseEnter }) {
   }
   async function postFunc() {
     const payload = {
-      trimId: state.tempCar.trim.trimId,
       selectFunctions: [],
     };
     state.selectedOption.map((item) => {
       payload.selectFunctions.push({ functionId: item });
     });
     stateDispatch({ type: SET_SELECTED_OPTION, payload: [] });
-    const result = await submitPostAPI(PATH.FIND.SUBMIT, payload);
+    const result = await getWithQueryAPI(PATH.FIND.SUBMIT, {
+      trimId: state.tempCar.trim.trimId,
+      selectFunctions: state.selectedOption,
+    });
     state.tempCar.option.additional = [];
     result.forEach((item) => {
       stateDispatch({ type: PUSH_OPTION_ALERT, payload: item.optionName });
