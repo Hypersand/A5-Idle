@@ -1,8 +1,14 @@
 import { styled } from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MainLogoWhite from "logos/MainLogoWhite";
 
-function ServerErrorPage() {
+function ServerErrorPage(setError = null) {
+
+  const navigate = useNavigate();
+  function moveButtonClick() {
+    navigate("/")
+    setError(false)
+  }
   return (
     <StContainer>
       <StLogoContainer>
@@ -13,7 +19,7 @@ function ServerErrorPage() {
         <StTitle>SERVER</StTitle>
         <StTitle>ERROR</StTitle>
         <StBoxContainer>
-          <StHyperLink to="/">메인페이지로 이동</StHyperLink>
+          <StHyperLink onClick={moveButtonClick}>메인페이지로 이동</StHyperLink>
         </StBoxContainer>
       </StContent>
     </StContainer>
