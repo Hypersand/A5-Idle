@@ -3,345 +3,18 @@ import CarSelectionContainer from "../components/carSelection/CarSelectionContai
 import MainLogoBlack from "logos/MainLogoBlack";
 import palette from "styles/palette";
 import CategoryTabs from "tabs/CategoryTabs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReactComponent as LeftArrow } from "images/optionArrowLeft.svg";
 import { ReactComponent as RightArrow } from "images/optionArrowRight.svg";
 import { useNavigate } from "react-router-dom";
 import WarningModal from "modals/WarningModal";
 import { CAR_SELECTION_NUM } from "utils/constants";
-const data = [
-  {
-    carCategoryId: 1,
-    carCategoryName: "수소/전기차",
-    carTypeDtoList: [
-      {
-        carName: "베뉴",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "디 올 뉴 코나",
-        carPrice: 24860000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "디 올 뉴 코다 H",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-    ],
-  },
-  {
-    carCategoryId: 2,
-    carCategoryName: "N",
-    carTypeDtoList: [
-      {
-        carName: "베뉴",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "디 올 뉴 코나",
-        carPrice: 24860000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "디 올 뉴 코다 H",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-    ],
-  },
-  {
-    carCategoryId: 3,
-    carCategoryName: "승용",
-    carTypeDtoList: [
-      {
-        carName: "베뉴",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "디 올 뉴 코나",
-        carPrice: 24860000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "디 올 뉴 코다 H",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-    ],
-  },
-  {
-    carCategoryId: 4,
-    carCategoryName: "SUV",
-    carTypeDtoList: [
-      {
-        carName: "팰리세이드",
-        carPrice: 38960000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/palisade-24my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "베뉴",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "디 올 뉴 코나",
-        carPrice: 24860000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "디 올 뉴 코다 H",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "투싼",
-        carPrice: 26030000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tucson-23my-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "투싼 Hybirid",
-        carPrice: 30270000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tucson-hybrid-23my-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "싼타페",
-        carPrice: 32770000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-23my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "싼타페 Hybrid",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-hybrid-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "투싼",
-        carPrice: 26030000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tucson-23my-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "투싼 Hybirid",
-        carPrice: 30270000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tucson-hybrid-23my-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "싼타페",
-        carPrice: 32770000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-23my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "싼타페 Hybrid",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-hybrid-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "팰리세이드",
-        carPrice: 38960000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/palisade-24my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "베뉴",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "디 올 뉴 코나",
-        carPrice: 24860000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "디 올 뉴 코다 H",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-    ],
-  },
-  {
-    carCategoryId: 5,
-    carCategoryName: "MPV",
-    carTypeDtoList: [
-      {
-        carName: "베뉴",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "디 올 뉴 코나",
-        carPrice: 24860000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "디 올 뉴 코다 H",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-    ],
-  },
-  {
-    carCategoryId: 6,
-    carCategoryName: "소형트럭&택시",
-    carTypeDtoList: [
-      {
-        carName: "베뉴",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "디 올 뉴 코나",
-        carPrice: 24860000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "디 올 뉴 코다 H",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-    ],
-  },
-  {
-    carCategoryId: 7,
-    carCategoryName: "버스",
-    carTypeDtoList: [
-      {
-        carName: "베뉴",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "디 올 뉴 코나",
-        carPrice: 24860000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "디 올 뉴 코다 H",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-    ],
-  },
-  {
-    carCategoryId: 8,
-    carCategoryName: "트럭",
-    carTypeDtoList: [
-      {
-        carName: "베뉴",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png",
-        logoImgUrl: null,
-      },
-      {
-        carName: "디 올 뉴 코나",
-        carPrice: 24860000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-      {
-        carName: "디 올 뉴 코다 H",
-        carPrice: 21460000,
-        carImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png",
-        logoImgUrl:
-          "https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png",
-      },
-    ],
-  },
-];
+import { getWithoutQueryAPI } from "../utils/api";
+import { PATH } from "../utils/constants";
 
 function filterData(data, selectedTab, currentPage) {
+  if (data.length === 0) return {};
+
   const tabData = data.filter((item) => item.carCategoryName === selectedTab)[0].carTypeDtoList;
   const maxPage = Math.ceil(tabData.length / CAR_SELECTION_NUM);
   const filteredData = [];
@@ -377,10 +50,18 @@ function SelectCarPage() {
   const [selectedCar, setSelectedCar] = useState(null);
   const [warningModalVisible, setWarningModalVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [carData, setCarData] = useState([]);
 
   const tabs = ["수소/전기차", "N", "승용", "SUV", "소형트럭&택시", "트럭", "버스"];
   const navigate = useNavigate();
-  const { filteredData, maxPage } = filterData(data, selectedTab, currentPage);
+  useEffect(() => {
+    getWithoutQueryAPI(PATH.SELECTCAR).then((res) => {
+      setCarData(res);
+    });
+  }, []);
+
+  const { filteredData, maxPage } = filterData(carData, selectedTab, currentPage);
+
   function renderTabs() {
     return tabs.map((item, index) => {
       return (
@@ -406,11 +87,14 @@ function SelectCarPage() {
           <StTabs>{renderTabs()}</StTabs>
         </StHeader>
 
-        <CarSelectionContainer
-          data={filteredData}
-          setSelectedCar={setSelectedCar}
-          selectedCar={selectedCar}
-        />
+        {filteredData && (
+          <CarSelectionContainer
+            data={filteredData}
+            setSelectedCar={setSelectedCar}
+            selectedCar={selectedCar}
+          />
+        )}
+
         <StPage>
           <LeftArrow
             style={{ cursor: "pointer" }}
