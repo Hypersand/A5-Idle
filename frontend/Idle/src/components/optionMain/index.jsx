@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import OptionContent from "./OptionContent";
 
 function OptionMain({
-  data,
+  optionData,
   selectedOption,
   currentPage,
   setCurrentPage,
@@ -13,11 +13,11 @@ function OptionMain({
   function filterData() {
     //없으면 첫 데이터
     if (selectedOption === "") {
-      filteredData = data[0];
+      filteredData = optionData[0];
     }
     //있으면 옵션에 해당하는 데이터
     else {
-      filteredData = data.filter((item) => item.optionName === selectedOption)[0];
+      filteredData = optionData.filter((item) => item.optionName === selectedOption)[0];
     }
   }
 
@@ -34,7 +34,7 @@ function OptionMain({
     <StContainer>
       {renderImg()}
       <OptionContent
-        data={filteredData}
+        optionData={filteredData}
         setSelectedFunction={setSelectedFunction}
         selectedFunction={selectedFunction}
         currentPage={currentPage}

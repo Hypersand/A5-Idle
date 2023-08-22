@@ -282,6 +282,7 @@ const StButtonContainer = styled.div`
 const StTooltip = styled(CarMasterTooltip)``;
 
 const StTooltipContainer = styled.div`
+  cursor: pointer;
   position: relative;
   right: 23%;
   width: 199px;
