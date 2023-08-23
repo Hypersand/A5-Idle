@@ -48,7 +48,7 @@ export default defineConfig({
       // pages: path.resolve(__dirname, "src/pages"),
       // utils: path.resolve(__dirname, "src/utils"),
       // styles: path.resolve(__dirname, "src/styles"),
-      // billMain: path.resolve(__dirname, "src/components/BillMain"),
+      // billMain: path.resolve(__dirname, "src@"),
     },
   },
 });
