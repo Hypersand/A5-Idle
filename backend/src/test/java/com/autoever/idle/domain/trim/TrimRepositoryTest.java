@@ -29,9 +29,9 @@ class TrimRepositoryTest {
     @Test
     @DisplayName("해당 차종의 트림을 반환한다")
     void findAll() {
-        Long carTypeId = 1L;
+        String carTypeName = "팰리세이드";
 
-        List<TrimDto> trims = trimRepository.findAll(carTypeId);
+        List<TrimDto> trims = trimRepository.findAll(carTypeName);
 
         softAssertions.assertThat(trims.size()).isEqualTo(4);
     }
