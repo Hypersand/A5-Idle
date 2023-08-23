@@ -1,6 +1,7 @@
 package com.autoever.idle.domain.category.functionCategory.repository;
 
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
+import com.autoever.idle.domain.function.dto.DefaultFunctionDto;
 import com.autoever.idle.domain.function.dto.DefaultFunctionNameResponse;
 import com.autoever.idle.domain.function.dto.DefaultFunctionResponse;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,20 @@ public class FunctionCategoryRepositoryImpl implements FunctionCategoryRepositor
         return jdbcTemplate.query("select function_category_id, name as categoryName from FUNCTION_CATEGORY", rowMapper);
     }
 
+    public List<DefaultFunctionDto> getDefaultOptionByTrimId(Long trimId) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("trimId", trimId);
+
+        RowMapper<DefaultFunctionDto> rowMapper = new BeanPropertyRowMapper<>(DefaultFunctionDto.class);
+
+        return jdbcTemplate.query(
+                "select F.function_category_id as categoryId, F.name from TRIM_FUNCTION as TF " +
+                        "join FUNCTIONS as F on TF.function_id = F.function_id " +
+                        "where TF.is_default = 'TRUE' and TF.trim_id = :trimId " +
+                        "order by F.function_category_id",
+                param, rowMapper);
+    }
+
     public List<DefaultFunctionNameResponse> getDefaultOptions(Long trimId, Long categoryId) {
         MapSqlParameterSource param = new MapSqlParameterSource();
         param.addValue("trimId", trimId);
@@ -32,9 +47,10 @@ public class FunctionCategoryRepositoryImpl implements FunctionCategoryRepositor
         RowMapper<DefaultFunctionNameResponse> rowMapper = new BeanPropertyRowMapper<>(DefaultFunctionNameResponse.class);
 
         return jdbcTemplate.query(
-                "select name from FUNCTIONS as F " +
-                "left join TRIM_FUNCTION as TF on F.function_id = TF.function_id " +
-                "where TF.is_default = 'TRUE' and TF.trim_id = :trimId and F.function_category_id = :categoryId",
+                "select F.name as function_name " +
+                        "from FUNCTIONS as F " +
+                        "left join TRIM_FUNCTION as TF on F.function_id = TF.function_id " +
+                        "where TF.is_default = 'TRUE' and TF.trim_id = :trimId and F.function_category_id = :categoryId",
                 param, rowMapper);
     }
 

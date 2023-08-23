@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface TrimRepository {
 
-    List<TrimDto> findAll(Long carTypeId);
+    List<TrimDto> findAll(String carTypeName);
     TrimDescriptionDto findByTrimId(Long trimId);
 }

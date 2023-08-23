@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.exteriorColor.dto;
 
+import com.autoever.idle.util.PurchaseRateUtil;
 import lombok.Getter;
 
 import java.util.List;

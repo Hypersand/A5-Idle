@@ -2,6 +2,7 @@ package com.autoever.idle.domain.category.functionCategory;
 
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
 import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
+import com.autoever.idle.domain.function.dto.DefaultFunctionDto;
 import com.autoever.idle.domain.function.dto.DefaultFunctionNameResponse;
 import com.autoever.idle.domain.function.dto.DefaultFunctionResponse;
 import org.assertj.core.api.SoftAssertions;
@@ -38,6 +39,16 @@ class FunctionCategoryRepositoryTest {
         List<FunctionCategoryDto> categories = functionCategoryRepository.findAll();
 
         softAssertions.assertThat(categories.size()).isEqualTo(8);
+    }
+
+    @Test
+    @DisplayName("해당 트림의 모든 기본 옵션을 반환한다.")
+    void getDefaultOptionByTrimId() {
+        Long trimId = 1L;
+
+        List<DefaultFunctionDto> defaultFunctions = functionCategoryRepository.getDefaultOptionByTrimId(trimId);
+
+        softAssertions.assertThat(defaultFunctions.size()).isEqualTo(74);
     }
 
     @Test

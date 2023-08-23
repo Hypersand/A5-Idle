@@ -28,7 +28,7 @@ public class ExteriorColorRepositoryImpl implements ExteriorColorRepository {
                 "ec.color_img_url as exteriorImgUrl, ec.price as exteriorPrice, ec.purchase_rate as exteriorPurchaseRate " +
                 "from TRIM_EXTERIOR_COLOR as tec " +
                 "left join EXTERIOR_COLOR as ec on tec.exterior_color_id = ec.exterior_color_id " +
-                "where trim_id = :trimId order by ec.price asc";
+                "where trim_id = :trimId order by ec.price asc, ec.purchase_rate desc";
 
         RowMapper<ExteriorColorDto> rowMapper = new BeanPropertyRowMapper<>(ExteriorColorDto.class);
 
