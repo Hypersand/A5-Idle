@@ -107,7 +107,6 @@ function boxClicked(type, navigate, car, setIsOpen, setIsEngineChekced) {
 }
 
 function renderChecked(type, currenPage, car) {
-  //type , 현재 페이지, 카 객체
   const options = car[type];
 
   if (currenPage === BILL && car.getAllOptionChecked() && clickedOptionPage)
