@@ -17,8 +17,8 @@ function OptionFunctions({ optionData, setSelectedFunction, currentPage, setCurr
         ? setIsDescOverFlow(true)
         : setIsDescOverFlow(false)
       : ref.scrollWidth > ref.clientWidth
-      ? setIsFNameOverFlow(true)
-      : setIsFNameOverFlow(false);
+        ? setIsFNameOverFlow(true)
+        : setIsFNameOverFlow(false);
   }
 
   useEffect(() => {
@@ -48,9 +48,8 @@ function OptionFunctions({ optionData, setSelectedFunction, currentPage, setCurr
     return (
       <StCircleContainer onClick={circleClicked}>
         {optionData?.map((item, index) => {
-          if (index === currentPage)
-            return <StCircle $isSelected={true} key={index} optionData-key={index} />;
-          else return <StCircle $isSelected={false} key={index} optionData-key={index} />;
+          if (index === currentPage) return <StCircle $isSelected={true} key={index} />;
+          else return <StCircle $isSelected={false} key={index} />;
         })}
       </StCircleContainer>
     );
@@ -118,7 +117,7 @@ const StMain = styled.div`
 `;
 
 const StFullDesc = styled.div`
-  width: 350px;
+  width: 250px;
   padding: 15px 20px;
   background-color: #4d4d4d;
   border-radius: 5px;
