@@ -6,11 +6,11 @@ function PaginationButton({ onClickPrev, onClickNext, currentPage, totalPages })
   return (
     <StContainer>
       <ArrowWrapper $visible={currentPage !== 1}>
-        <ArrowLeft onClick={onClickPrev} />
+        <ArrowLeft alt={"ArrowLeft"} onClick={onClickPrev} />
       </ArrowWrapper>
       <StNumber>{currentPage}</StNumber>
       <ArrowWrapper $visible={currentPage !== totalPages}>
-        <ArrowRight onClick={onClickNext} />
+        <ArrowRight alt={"ArrowRight"} onClick={onClickNext} />
       </ArrowWrapper>
     </StContainer>
   );

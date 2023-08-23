@@ -19,7 +19,7 @@ function OptionModal({ title, description, functionImgUrl, onClose, modalPositio
         <StBox>
           <StTitle>
             {title}
-            <StCloseButton onClick={clickClose} />
+            <StCloseButton alt={"CloseButton"} onClick={clickClose} />
           </StTitle>
           <StImg $imgUrl={functionImgUrl} />
         </StBox>

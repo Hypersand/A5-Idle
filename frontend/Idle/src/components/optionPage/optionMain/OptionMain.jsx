@@ -11,12 +11,9 @@ function OptionMain({
 }) {
   let filteredData;
   function filterData() {
-    //없으면 첫 데이터
     if (selectedOption === "") {
       filteredData = optionData[0];
-    }
-    //있으면 옵션에 해당하는 데이터
-    else {
+    } else {
       filteredData = optionData.filter((item) => item.optionName === selectedOption)[0];
     }
   }
@@ -25,9 +22,9 @@ function OptionMain({
 
   function renderImg() {
     return selectedFunction === "" ? (
-      <StImg src={filteredData?.functions[0].functionImgUrl} />
+      <StImg alt="SelectedFunctionImg" src={filteredData?.functions[0].functionImgUrl} />
     ) : (
-      <StImg src={selectedFunction?.functionImgUrl} />
+      <StImg alt="SelectedFunctionImg" src={selectedFunction?.functionImgUrl} />
     );
   }
   return (

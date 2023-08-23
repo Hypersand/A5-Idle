@@ -39,7 +39,7 @@ function BillOptionBox({ isAdded, data }) {
         }}
       >
         <StImageContainer>
-          <StImg src={data?.optionImgUrl}></StImg>
+          <StImg alt="OptionImg" src={data?.optionImgUrl} />
         </StImageContainer>
         <StContent>
           <StCategory className="optionCategory">{data?.optionCategory}</StCategory>
@@ -85,7 +85,6 @@ const StImg = styled.img`
 const StContent = styled.div`
   display: flex;
   width: 175px;
-  /* padding: 0px 32px; */
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;

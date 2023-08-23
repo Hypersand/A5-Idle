@@ -24,7 +24,7 @@ function OptionContent({
   function renderWheelImg() {
     if (selectedFunction?.wheelLogoImgUrl === undefined) return;
     return selectedFunction?.wheelLogoImgUrl !== null ? (
-      <StWheelImg src={selectedFunction?.wheelLogoImgUrl} />
+      <StWheelImg alt="WheelImg" src={selectedFunction?.wheelLogoImgUrl} />
     ) : null;
   }
 

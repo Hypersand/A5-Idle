@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import { keyframes, styled } from "styled-components";
 import { useState } from "react";
 import { ReactComponent as EscapeButton } from "../../../assets/images/esc.svg";
-import OptionDropDown from "../../common/dropDown/OptionDropDown"
+import OptionDropDown from "../../common/dropDown/OptionDropDown";
 import palette from "../../../styles/palette";
 
 function TrimOptionModal({ trim, desc, setModalOff, defaultFunctions, modalPosition, optionData }) {
@@ -21,13 +21,18 @@ function TrimOptionModal({ trim, desc, setModalOff, defaultFunctions, modalPosit
           <StHeaderContainer>
             <StHeader>
               {trim}
-              <EscapeButton style={{ cursor: "pointer" }} onClick={modalOff} />
+              <EscapeButton alt={"EscapeButton"} style={{ cursor: "pointer" }} onClick={modalOff} />
             </StHeader>
             <Description>{desc}</Description>
           </StHeaderContainer>
           <StOptionContainer>
             {defaultFunctions.map((item, idx) => (
-              <OptionDropDown key={idx} category={item} optionData={optionData} modalPosition={modalPosition} />
+              <OptionDropDown
+                key={idx}
+                category={item}
+                optionData={optionData}
+                modalPosition={modalPosition}
+              />
             ))}
           </StOptionContainer>
         </StContainer>

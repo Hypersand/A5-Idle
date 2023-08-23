@@ -33,7 +33,7 @@ function MainLogoBlack({ modalPosition = null }) {
 
   return (
     <Stdiv>
-      <MainLogoImg onClick={logoClicked} style={{ cursor: "pointer" }} />
+      <MainLogoImg alt="MainLogoImg" onClick={logoClicked} style={{ cursor: "pointer" }} />
       <Stdivision></Stdivision>
       <Stspan>마이 카마스터</Stspan>
       {modalVisible ? (

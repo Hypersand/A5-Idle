@@ -55,7 +55,7 @@ function OptionBox({ data, disable = false }) {
   return (
     <StContainer onClick={boxClicked} $isSelcted={isSelected} $disable={disable}>
       <StOption>
-        <OptionChecked data-name={data.name} />
+        <OptionChecked alt="OptionCheckedImg" data-name={data.name} />
         <StTitle $isSelcted={isSelected}>{dataNameCalc()}</StTitle>
       </StOption>
       <StBtn $isSelcted={isSelected} onClick={modalClicked}>
@@ -81,7 +81,7 @@ const StContainer = styled.div`
   align-items: center;
   &:hover {
     background-color: ${({ $isSelcted }) =>
-    $isSelcted ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+      $isSelcted ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
     box-shadow: 2px 2px 10px #898989;

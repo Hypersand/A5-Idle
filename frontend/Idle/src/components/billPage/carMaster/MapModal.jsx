@@ -11,14 +11,6 @@ import DealerBoxContainer from "./DealerBoxContainer";
 import Address from "./Address";
 import BlueButton from "../../common/buttons/BlueButton";
 import palette from "../../../styles/palette";
-// import BlueButton from "buttons/BlueButton";
-// import DillerBoxContainer from "./DillerBoxContainer";
-// import CategoryTabs from "tabs/CategoryTabs";
-// import { createPortal } from "react-dom";
-// import Address from "./Address";
-// import { DISTANCE, PATH, SALERATE } from "utils/constants";
-// import CustomOverlay from "./CustomOverlay";
-// import { getWithoutQueryAPI } from "utils/api";
 const { kakao } = window;
 
 let cachedData = null;
@@ -102,7 +94,6 @@ function MapModal({ setCarMasterVisible }) {
           content: content,
           map: map.current,
           position: overlayPositon,
-          // image : item.imgUrl
         });
 
         overlays.push({ marker, overlay });
@@ -136,7 +127,6 @@ function MapModal({ setCarMasterVisible }) {
     }
   }, [data]);
 
-  //위치 수정시
   useEffect(() => {
     geocoder.coord2Address(longitude, latitude, function (result, status) {
       if (status === kakao.maps.services.Status.OK) {
@@ -149,19 +139,19 @@ function MapModal({ setCarMasterVisible }) {
     });
     selectedTab === SALERATE
       ? getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
-        nowLatitude: latitude,
-        nowLongitude: longitude,
-      }).then((res) => {
-        setData(res);
-        cachedData = res;
-      })
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        })
       : getWithoutQueryAPI(PATH.CARMASTER.DISTANCE, {
-        nowLatitude: latitude,
-        nowLongitude: longitude,
-      }).then((res) => {
-        setData(res);
-        cachedData = res;
-      });
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        });
   }, [latitude, longitude]);
 
   function XBtnClicked() {
@@ -170,19 +160,19 @@ function MapModal({ setCarMasterVisible }) {
   function TabClicked(name) {
     name === SALERATE
       ? getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
-        nowLatitude: latitude,
-        nowLongitude: longitude,
-      }).then((res) => {
-        setData(res);
-        cachedData = res;
-      })
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        })
       : getWithoutQueryAPI(PATH.CARMASTER.DISTANCE, {
-        nowLatitude: latitude,
-        nowLongitude: longitude,
-      }).then((res) => {
-        setData(res);
-        cachedData = res;
-      });
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        }).then((res) => {
+          setData(res);
+          cachedData = res;
+        });
     setSelectedTab(name);
     setSelectedDealer("");
   }
@@ -223,7 +213,7 @@ function MapModal({ setCarMasterVisible }) {
       <ModalBackground onClick={XBtnClicked} />
       <StContainer>
         <StBtnContainer>
-          <EscapeButton onClick={XBtnClicked} />
+          <EscapeButton alt={"XBtn"} onClick={XBtnClicked} />
         </StBtnContainer>
 
         <StMainContainer>

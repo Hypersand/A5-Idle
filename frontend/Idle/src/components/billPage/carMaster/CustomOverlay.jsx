@@ -40,6 +40,7 @@ function CustomOverlay(data, onClick) {
   const image = document.createElement("img");
   image.src = hyundai;
   image.classList.add("st-img");
+  image.alt = "st-img";
   main.appendChild(image);
 
   const footer = document.createElement("div");

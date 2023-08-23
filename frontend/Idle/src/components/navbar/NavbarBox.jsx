@@ -4,14 +4,16 @@ import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ReactComponent as Checked } from "../../assets/images/checked.svg";
 import { carContext } from "../../store/context";
-import { clickedOptionPage, TRIM, COLOR, DETAIL, OPTION, BILL, TYPE } from "../../constant/constants";
+import {
+  clickedOptionPage,
+  TRIM,
+  COLOR,
+  DETAIL,
+  OPTION,
+  BILL,
+  TYPE,
+} from "../../constant/constants";
 import palette from "../../styles/palette";
-/**
- *
- * @param {trim,color~~} type
- * @param {현재 무슨 페이지인지} currentPage
- * @param {setIsMatch} setIsMatch
- */
 function checkMatch(type, currentPage, setIsMatch) {
   if (currentPage.split("/").includes(type)) {
     setIsMatch(true);
@@ -20,12 +22,6 @@ function checkMatch(type, currentPage, setIsMatch) {
   }
 }
 
-/**
- *
- * @param {trim,color~~} type
- * @param {car[trim],car[color]~~} options
- * @returns option하나 하나
- */
 function renderOption(type, options) {
   let selectedOptions = [];
   switch (type) {
@@ -50,7 +46,6 @@ function renderOption(type, options) {
       keys.forEach((key) => {
         if (options[key].name !== undefined) selectedOptions.push(options[key].name);
       });
-    // selectedOptions[0] === undefined ? (selectedOptions = []) : selectedOptions;
   }
 
   if (type === DETAIL) {
@@ -112,16 +107,16 @@ function boxClicked(type, navigate, car, setIsOpen, setIsEngineChekced) {
 }
 
 function renderChecked(type, currenPage, car) {
-  //type , 현재 페이지, 카 객체
   const options = car[type];
 
-  if (currenPage === BILL && car.getAllOptionChecked() && clickedOptionPage) return <Checked />;
+  if (currenPage === BILL && car.getAllOptionChecked() && clickedOptionPage)
+    return <Checked alt={"Checked"} />;
 
   switch (type) {
     case TRIM:
-      return options.name !== undefined ? <Checked /> : null;
+      return options.name !== undefined ? <Checked alt={"Checked"} /> : null;
     case OPTION:
-      return clickedOptionPage ? <Checked /> : null;
+      return clickedOptionPage ? <Checked alt={"Checked"} /> : null;
     case BILL:
       break;
     default:
