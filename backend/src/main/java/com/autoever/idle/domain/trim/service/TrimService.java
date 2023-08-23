@@ -1,6 +1,5 @@
 package com.autoever.idle.domain.trim.service;
 
-import com.autoever.idle.domain.carType.repository.CarTypeRepository;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResponse;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
 import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
@@ -16,22 +15,16 @@ import com.autoever.idle.domain.trim.dto.TrimSelectionResponse;
 import com.autoever.idle.domain.trim.repository.TrimRepository;
 import com.autoever.idle.domain.trimThumbnailFunction.dto.TrimThumbnailFunctionResponse;
 import com.autoever.idle.domain.trimThumbnailFunction.repository.TrimThumbnailFunctionRepository;
-import com.autoever.idle.global.exception.custom.InvalidCarException;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.net.jsse.JSSEUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import static com.autoever.idle.global.exception.ErrorCode.INVALID_CAR;
 
 @Service
 @RequiredArgsConstructor
 public class TrimService {
 
-    private final CarTypeRepository carTypeRepository;
     private final TrimRepository trimRepository;
     private final FunctionCategoryRepository functionCategoryRepository;
     private final TrimThumbnailFunctionRepository trimThumbnailFunctionRepository;
