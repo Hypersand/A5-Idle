@@ -7,12 +7,14 @@ import com.autoever.idle.domain.option.dto.OptionRequest;
 import com.autoever.idle.domain.option.repository.OptionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class OptionService {
     private final OptionRepository optionRepository;
     private final FunctionRepository functionRepository;
