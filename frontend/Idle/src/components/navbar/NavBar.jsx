@@ -46,7 +46,6 @@ function Navbar() {
             navigateTo(car, navigate);
           }}
           detail={"선택이 필요한 페이지로 이동하시겠습니까?"}
-          modalPosition={"modal"}
         />
       ) : null}
       {isEngineChecked && (
@@ -58,7 +57,6 @@ function Navbar() {
             navigate("/detail/engines");
           }}
           detail={"선택이 필요한 페이지로 이동하시겠습니까?"}
-          modalPosition={"modal"}
         />
       )}
     </StContainer>

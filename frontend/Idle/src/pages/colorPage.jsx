@@ -6,13 +6,11 @@ import { carContext } from "../store/context"
 import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "../store/actionType"
 import { getWithoutQueryAPI } from "../utils/api"
 import { PATH } from "../constant/path"
-import Car3D from "../components/colorPage/colorMain/Car3D";
 import WarningModal from "../components/common/modals/WarningModal";
-import InteriorColorMain from "../components/colorPage/colorMain/InteriorColorMain";
-import ExteriorColorBoxContainer from "../components/colorPage/colorSub/ExteriorColorBoxContainer";
-import InteriorColorBoxContainer from "../components/colorPage/colorSub/InteriorColorBoxContainer";
 import ColorConfirmContainer from "../components/colorPage/colorSub/ColorConfirmContainer";
 import ColorTabContainer from "../components/colorPage/colorMain/ColorTabContainer";
+import ColorMain from "../components/colorPage/colorMain/ColorMain";
+import ColorBoxContainer from "../components/colorPage/colorSub/ColorBoxContainer";
 
 let cachedExterior = null;
 let cachedInterior = null;
@@ -85,35 +83,25 @@ function ColorPage() {
     return item.exteriorId === car.color.exterior?.exteriorId;
   });
 
+  function onSubmitClick() {
+    setIsEngineChecked(false);
+    navigate("/detail/engines");
+  }
   return (
     <>
       <StWrapper>
         <ColorTabContainer tabs={tabs} currentTab={currentTab} />
-        {currentTab === EXTERIOR_COLORS ? (
-          <Car3D data={filteredExteriorData} />
-        ) : (
-          <InteriorColorMain data={interiorData?.carInteriorColors} />
-        )}
+        <ColorMain currentTab={currentTab} filteredExteriorData={filteredExteriorData} interiorData={interiorData} />
         <StBottomContainer>
-          <StContainer>
-            {currentTab === EXTERIOR_COLORS ? (
-              <ExteriorColorBoxContainer data={exteriorData} />
-            ) : (
-              <InteriorColorBoxContainer data={interiorData} />
-            )}
-          </StContainer>
-          <ColorConfirmContainer tabs={tabs} currentTab={currentTab} setIsEngineChecked={currentTab} />
+          <ColorBoxContainer currentTab={currentTab} exteriorData={exteriorData} interiorData={interiorData} />
+          <ColorConfirmContainer tabs={tabs} currentTab={currentTab} setIsEngineChecked={setIsEngineChecked} />
         </StBottomContainer>
         {isEngineChecked && (
           <WarningModal
             title={"옵션 선택을 위해선 엔진을 선택해야 합니다."}
             setModalVisible={setIsEngineChecked}
-            onSubmitClick={() => {
-              setIsEngineChecked(false);
-              navigate("/detail/engines");
-            }}
+            onSubmitClick={onSubmitClick}
             detail={"선택이 필요한 페이지로 이동하시겠습니까?"}
-            modalPosition={"modal"}
           />
         )}
       </StWrapper>
@@ -123,11 +111,6 @@ function ColorPage() {
 
 export default ColorPage;
 
-const StContainer = styled.div`
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 8px;
-`;
 
 const StWrapper = styled.div`
   display: flex;
