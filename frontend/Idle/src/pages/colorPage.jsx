@@ -1,20 +1,19 @@
 import { useContext, useLayoutEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { DEFAULT_EXTERIROR_COLOR, DEFAULT_INTERIROR_COLOR, EXTERIOR_COLORS, INTERIROR_COLORS, TRANSLATE } from "../constant/constants"
+import { DEFAULT_EXTERIROR_COLOR, DEFAULT_INTERIROR_COLOR, EXTERIOR_COLORS, INTERIROR_COLORS } from "../constant/constants"
 import { carContext } from "../store/context"
 import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "../store/actionType"
 import { getWithoutQueryAPI } from "../utils/api"
 import { PATH } from "../constant/path"
-import CategoryTabs from "../components/common/tabs/CategoryTabs";
 import Car3D from "../components/colorPage/colorMain/Car3D";
-import WhiteButton from "../components/common/buttons/WhiteButton";
-import BlueButton from "../components/common/buttons/BlueButton";
 import WarningModal from "../components/common/modals/WarningModal";
 import InteriorColorMain from "../components/colorPage/colorMain/InteriorColorMain";
 import ExteriorColorBoxContainer from "../components/colorPage/colorSub/ExteriorColorBoxContainer";
 import InteriorColorBoxContainer from "../components/colorPage/colorSub/InteriorColorBoxContainer";
 import { preloadImage } from "../utils/preloader";
+import ColorConfirmContainer from "../components/colorPage/colorSub/ColorConfirmContainer";
+import ColorTabContainer from "../components/colorPage/colorMain/ColorTabContainer";
 
 let cachedExterior = null;
 let cachedInterior = null;
@@ -81,27 +80,7 @@ function ColorPage() {
       });
     }
   }
-  function handleTabChange(direction) {
-    const currentIndex = tabs.indexOf(currentTab);
 
-    if (direction === "next") {
-      if (currentIndex !== -1 && currentIndex + 1 < tabs.length) {
-        navigate(`/color/${tabs[currentIndex + 1]}`);
-      } else {
-        if (car.detail.engines.name === undefined) {
-          setIsEngineChecked(true);
-          return;
-        }
-        navigate("/option/all");
-      }
-    } else if (direction === "prev") {
-      if (currentIndex > 0) {
-        navigate(`/color/${tabs[currentIndex - 1]}`);
-      } else {
-        navigate("/detail/bodyTypes");
-      }
-    }
-  }
   const filteredExteriorData = exteriorData?.filter((item) => {
     return item.exteriorId === car.color.exterior?.exteriorId;
   });
@@ -109,18 +88,7 @@ function ColorPage() {
   return (
     <>
       <StWrapper>
-        <StTabContainer>
-          {tabs.map((item, idx) => (
-            <CategoryTabs
-              key={idx}
-              text={TRANSLATE[item]}
-              isClicked={item === currentTab}
-              onClick={() => {
-                navigate(`/color/${item}`);
-              }}
-            />
-          ))}
-        </StTabContainer>
+        <ColorTabContainer tabs={tabs} currentTab={currentTab} />
         {currentTab === EXTERIOR_COLORS ? (
           <Car3D data={filteredExteriorData} />
         ) : (
@@ -134,21 +102,7 @@ function ColorPage() {
               <InteriorColorBoxContainer data={interiorData} />
             )}
           </StContainer>
-          <StConfirmContainer>
-            <StConfirmHeader>
-              <Title>{TRANSLATE[currentTab]} 선택</Title>
-              <Description>원하는 {TRANSLATE[currentTab]}을 선택해주세요.</Description>
-            </StConfirmHeader>
-            <StButtonContainer>
-              <WhiteButton
-                text={"이전"}
-                onClick={() => {
-                  handleTabChange("prev");
-                }}
-              />
-              <BlueButton text={"다음"} onClick={() => handleTabChange("next")} />
-            </StButtonContainer>
-          </StConfirmContainer>
+          <ColorConfirmContainer tabs={tabs} currentTab={currentTab} setIsEngineChecked={currentTab} />
         </StBottomContainer>
         {isEngineChecked && (
           <WarningModal
@@ -192,53 +146,3 @@ const StBottomContainer = styled.div`
   width: 1024px;
 `;
 
-const StConfirmContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 30px;
-  width: 154px;
-`;
-
-const StConfirmHeader = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-`;
-
-const StButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-`;
-
-const Title = styled.h1`
-  color: #222;
-  font-family: "Hyundai Sans Text KR";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 24px;
-  letter-spacing: -0.48px;
-`;
-
-const Description = styled.p`
-  color: #222;
-  font-family: "Hyundai Sans Text KR";
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 165%;
-  letter-spacing: -0.39px;
-  white-space: nowrap;
-`;
-
-const StTabContainer = styled.div`
-  position: absolute;
-  top: 68px;
-  left: 128px;
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 24px;
-`;
