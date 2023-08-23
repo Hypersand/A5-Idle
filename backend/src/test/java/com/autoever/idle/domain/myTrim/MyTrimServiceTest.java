@@ -1,10 +1,10 @@
 package com.autoever.idle.domain.myTrim;
 
-import com.autoever.idle.domain.function.repository.FunctionRepository;
-import com.autoever.idle.domain.function.repository.TrimFunctionRepository;
 import com.autoever.idle.domain.function.dto.FunctionIdResponse;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResponse;
+import com.autoever.idle.domain.function.repository.FunctionRepository;
+import com.autoever.idle.domain.function.repository.TrimFunctionRepository;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResponse;
 import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitRequest;
@@ -74,13 +74,9 @@ class MyTrimServiceTest {
     @DisplayName("선택지 선택시")
     void findTrimBySelectFunctions() {
         //given
-        List<Map<String, Integer>> functionIdList = new ArrayList<>();
-        Map<String, Integer> functionIdMap1 = new HashMap<>();
-        Map<String, Integer> functionIdMap2 = new HashMap<>();
-        functionIdMap1.put("functionId", 109);
-        functionIdMap2.put("functionId", 48);
-        functionIdList.add(functionIdMap1);
-        functionIdList.add(functionIdMap2);
+        List<Integer> functionIdList = new ArrayList<>();
+        functionIdList.add(109);
+        functionIdList.add(48);
         List<MyTrimDto> myTrimDtoList = new ArrayList<>();
         myTrimDtoList.add(new MyTrimDto("Exclusive", null));
         myTrimDtoList.add(new MyTrimDto("Le Blanc", false));
@@ -110,10 +106,8 @@ class MyTrimServiceTest {
     @DisplayName("존재하지 않는 기능 예외 처리")
     void checkFunctionExist() {
         //given
-        List<Map<String, Integer>> functionIdList = new ArrayList<>();
-        Map<String, Integer> functionIdMap = new HashMap<>();
-        functionIdMap.put("functionId", 157);
-        functionIdList.add(functionIdMap);
+        List<Integer> functionIdList = new ArrayList<>();
+        functionIdList.add(157);
         String returnNull = null;
         given(functionRepository.checkMyTrimFunction(anyInt())).willReturn(returnNull);
 
@@ -126,10 +120,8 @@ class MyTrimServiceTest {
     @DisplayName("내게 맞는 트림 찾기의 유효한 기능 예외 처리")
     void checkValidFunction() {
         //given
-        List<Map<String, Integer>> functionIdList = new ArrayList<>();
-        Map<String, Integer> functionIdMap = new HashMap<>();
-        functionIdMap.put("functionId", 15);
-        functionIdList.add(functionIdMap);
+        List<Integer> functionIdList = new ArrayList<>();
+        functionIdList.add(18);
         String returnFalse = "FALSE";
         given(functionRepository.checkMyTrimFunction(anyInt())).willReturn(returnFalse);
 
@@ -142,10 +134,8 @@ class MyTrimServiceTest {
     @DisplayName("내게 맞는 트림 찾기 확인버튼 API 테스트")
     void findOptionBySelects() {
         //given
-        List<Map<String, Long>> functionIdList = new ArrayList<>();
-        Map<String, Long> functionIdMap = new HashMap<>();
-        functionIdMap.put("functionId", 1L);
-        functionIdList.add(functionIdMap);
+        List<Long> functionIdList = new ArrayList<>();
+        functionIdList.add(1L);
         MyTrimSubmitRequest myTrimSubmitRequest = new MyTrimSubmitRequest(1L, functionIdList);
         MyTrimOptionResponse myTrimOptionResponse = new MyTrimOptionResponse(1L, "옵션", 400000L);
         given(trimFunctionRepository.checkDefaultFunction(anyLong(), anyLong())).willReturn("FALSE");
@@ -165,10 +155,10 @@ class MyTrimServiceTest {
     @DisplayName("트림에 선택된 기능이 존재하지 않는 기능일 경우")
     void checkTrimFunction() {
         //given
-        List<Map<String, Long>> functionIdList = new ArrayList<>();
+        List<Long> functionIdList = new ArrayList<>();
         Map<String, Long> functionIdMap = new HashMap<>();
         functionIdMap.put("functionId", 1L);
-        functionIdList.add(functionIdMap);
+        functionIdList.add(1L);
         MyTrimSubmitRequest myTrimSubmitRequest = new MyTrimSubmitRequest(1L, functionIdList);
         given(functionRepository.checkMyTrimFunction(anyInt())).willReturn("TRUE");
         given(trimFunctionRepository.checkDefaultFunction(anyLong(), anyLong())).willReturn(null);

@@ -5,7 +5,9 @@ import com.autoever.idle.domain.detailModel.drivingMethod.repository.DrivingMeth
 import com.autoever.idle.domain.detailModel.dto.DetailModelResponse;
 import com.autoever.idle.domain.detailModel.engine.repository.EngineRepository;
 import com.autoever.idle.global.exception.custom.InvalidDetailModelException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -13,19 +15,13 @@ import java.util.stream.Stream;
 import static com.autoever.idle.global.exception.ErrorCode.INVALID_DETAIL_MODEL;
 
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class DetailModelService {
 
     private final EngineRepository engineRepository;
     private final DrivingMethodRepository drivingMethodRepository;
     private final BodyTypeRepository bodyTypeRepository;
-
-    public DetailModelService(EngineRepository engineRepository,
-                              DrivingMethodRepository drivingMethodRepository,
-                              BodyTypeRepository bodyTypeRepository) {
-        this.engineRepository = engineRepository;
-        this.drivingMethodRepository = drivingMethodRepository;
-        this.bodyTypeRepository = bodyTypeRepository;
-    }
 
     public DetailModelResponse findAllModels(Long trimId) {
         DetailModelResponse detailModelResponse = DetailModelResponse.create(engineRepository.findAll(trimId),

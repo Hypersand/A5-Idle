@@ -1,5 +1,13 @@
 package com.autoever.idle.domain.category.functionCategory.dto;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class FunctionCategoryDto {
 
     private Long functionCategoryId;
@@ -8,13 +16,5 @@ public class FunctionCategoryDto {
     public FunctionCategoryDto(Long functionCategoryId, String categoryName) {
         this.functionCategoryId = functionCategoryId;
         this.categoryName = categoryName;
-    }
-
-    public Long getFunctionCategoryId() {
-        return functionCategoryId;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
     }
 }

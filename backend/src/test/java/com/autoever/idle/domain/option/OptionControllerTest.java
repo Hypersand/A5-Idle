@@ -3,7 +3,6 @@ package com.autoever.idle.domain.option;
 import com.autoever.idle.domain.function.dto.FunctionDto;
 import com.autoever.idle.domain.option.controller.OptionController;
 import com.autoever.idle.domain.option.dto.OptionFunctionsResponse;
-import com.autoever.idle.domain.option.dto.OptionRequest;
 import com.autoever.idle.domain.option.service.OptionService;
 import com.autoever.idle.global.exception.GlobalExceptionHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,13 +17,15 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -64,7 +65,7 @@ class OptionControllerTest {
                 "구매자 10%가 선택",
                 "흠집없이 내 차에 짐을 싣고 싶다면?\n프로텍션 매트 패기지1로 흠집 걱정 없이 짐을 실어보세요.",
                 "차량 보호",
-                "false",
+                false,
                 functionDtoList
         );
         optionFunctionsResponseList.add(optionFunctionsResponse);
@@ -74,13 +75,15 @@ class OptionControllerTest {
     @DisplayName("추가 옵션 선택 페이지 API를 정상적으로 호출한다")
     void getOptionFunctions() throws Exception {
         //given
-        OptionRequest optionRequest = new OptionRequest(1L, List.of(1L, 15L), 1L);
         given(optionService.getOptionFunctions(any())).willReturn(optionFunctionsResponseList);
+        MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
+        multiValueMap.add("trimId", "1");
+        multiValueMap.add("selectedOptionIds", "1,15");
+        multiValueMap.add("engineId", "2");
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/trims/add/options")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(optionRequest)))
+        ResultActions resultActions = mockMvc.perform(get("/trims/add/options")
+                        .queryParams(multiValueMap))
                 .andDo(print());
 
         //then

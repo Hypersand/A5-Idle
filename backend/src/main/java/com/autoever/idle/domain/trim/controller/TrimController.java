@@ -1,8 +1,9 @@
 package com.autoever.idle.domain.trim.controller;
 
-import com.autoever.idle.domain.trim.service.TrimService;
 import com.autoever.idle.domain.trim.dto.TrimSelectionResponse;
+import com.autoever.idle.domain.trim.service.TrimService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class TrimController {
     private final TrimService trimService;
 
     @GetMapping
+    @Cacheable("trims")
     public ResponseEntity<List<TrimSelectionResponse>> getAllTrims(@RequestParam String carTypeName) throws Exception {
         List<TrimSelectionResponse> response = trimService.findAllTrims(carTypeName);
         return ResponseEntity.ok(response);

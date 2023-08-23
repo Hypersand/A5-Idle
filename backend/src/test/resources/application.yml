@@ -7,4 +7,5 @@ spring:
   sql:
     init:
       schema-locations: classpath:h2Schema.sql
+      data-locations: classpath:h2data.sql
 

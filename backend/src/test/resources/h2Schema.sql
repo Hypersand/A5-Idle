@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS CAR_MASTER CASCADE;
+DROP TABLE IF EXISTS CAR_CATEGORY CASCADE;
 DROP TABLE IF EXISTS CAR_TYPE CASCADE;
 DROP TABLE IF EXISTS TRIM CASCADE;
 DROP TABLE IF EXISTS ENGINE CASCADE;
@@ -34,11 +35,25 @@ create table if not exists  CAR_MASTER
     address       varchar(100) null
     );
 
-create table if not exists  CAR_TYPE
+create table if not exists CAR_CATEGORY
 (
-    car_type_id bigint auto_increment
+    car_category_id bigint auto_increment
     primary key,
-    name        varchar(10) null
+    name        varchar(20) null
+    );
+
+create table if not exists CAR_TYPE
+(
+    car_type_id     bigint auto_increment
+    primary key,
+    name            varchar(10) null,
+    isNew           varchar(5)  null,
+    price           int         null,
+    img_url         text        null,
+    logo_url        text        null,
+    car_category_id bigint      null,
+    constraint FK_CAR_CATEGORY_TO_CAR_TYPE_1
+    foreign key (car_category_id) references CAR_CATEGORY (car_category_id)
     );
 
 create table if not exists  TRIM
@@ -49,7 +64,7 @@ create table if not exists  TRIM
     price         int         null,
     img_url       text        null,
     description   text        null,
-    purchase_rate varchar(20) null,
+    purchase_rate int null,
     car_type_id   bigint      null,
     constraint FK_CAR_TYPE_TO_TRIM_1
     foreign key (car_type_id) references CAR_TYPE (car_type_id)
@@ -66,7 +81,7 @@ create table if not exists  ENGINE
     max_torque    double      null,
     min_fuel      double      null,
     max_fuel      double      null,
-    purchase_rate varchar(20) null,
+    purchase_rate int null,
     description   text        null
     );
 
@@ -90,7 +105,7 @@ create table if not exists  DRIVING_METHOD
     price             int         null,
     description       text        null,
     img_url           text        null,
-    purchase_rate     varchar(20) null
+    purchase_rate     int null
     );
 
 create table if not exists  TRIM_DRIVING_METHOD
@@ -112,7 +127,7 @@ create table if not exists  BODY_TYPE
     type          varchar(10) null,
     price         int         null,
     description   text        null,
-    purchase_rate varchar(20) null,
+    purchase_rate int null,
     img_url       text        null
     );
 
@@ -135,7 +150,7 @@ create table if not exists  EXTERIOR_COLOR
     color             varchar(20) null,
     color_img_url     text        null,
     price             int         null,
-    purchase_rate     varchar(20) null
+    purchase_rate     int null
     );
 
 create table if not exists  CAR_EXTERIOR_IMAGE
@@ -169,7 +184,7 @@ create table if not exists  INTERIOR_COLOR
     price                  int         null,
     interior_img_url       text        null,
     color_img_url          text        null,
-    purchase_rate          varchar(20) null,
+    purchase_rate          int null,
     trim_exterior_color_id bigint      null,
     constraint FK_TRIM_EXTERIOR_COLOR_TO_INTERIOR_COLOR_1
     foreign key (trim_exterior_color_id) references TRIM_EXTERIOR_COLOR (trim_exterior_color_id)
@@ -189,7 +204,7 @@ create table if not exists  `OPTION`
     name               varchar(30) null,
     price              int         null,
     description        text        null,
-    purchase_rate      varchar(20) null,
+    purchase_rate      int null,
     option_category_id bigint      null,
     constraint FK_OPTION_CATEGORY_TO_OPTION_1
     foreign key (option_category_id) references OPTION_CATEGORY (option_category_id)

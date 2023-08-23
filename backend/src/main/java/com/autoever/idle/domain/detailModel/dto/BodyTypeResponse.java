@@ -1,10 +1,11 @@
 package com.autoever.idle.domain.detailModel.dto;
 
-import lombok.Builder;
-import lombok.Getter;
+import com.autoever.idle.util.PurchaseRateUtil;
+import lombok.*;
 
 @Getter
-@Builder
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BodyTypeResponse {
     private Long id;
     private String type;
@@ -20,5 +21,9 @@ public class BodyTypeResponse {
         this.description = description;
         this.purchaseRate = purchaseRate;
         this.imgUrl = imgUrl;
+    }
+
+    public void setPurchaseRate(int purchaseRate) {
+        this.purchaseRate = PurchaseRateUtil.setPurchaseRate(purchaseRate);
     }
 }

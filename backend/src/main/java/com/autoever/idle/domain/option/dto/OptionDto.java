@@ -1,12 +1,13 @@
 package com.autoever.idle.domain.option.dto;
 
+import com.autoever.idle.util.PurchaseRateUtil;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OptionDto {
     private Long optionId;
@@ -15,9 +16,9 @@ public class OptionDto {
     private String optionPurchaseRate;
     private String optionDescription;
     private String optionCategory;
-    private String optionCanSelect = "true";
+    private boolean optionCanSelect;
 
-    public OptionDto(Long optionId, String optionName, Long optionPrice, String optionPurchaseRate, String optionDescription, String optionCategory, String optionCanSelect) {
+    public OptionDto(Long optionId, String optionName, Long optionPrice, String optionPurchaseRate, String optionDescription, String optionCategory, boolean optionCanSelect) {
         this.optionId = optionId;
         this.optionName = optionName;
         this.optionPrice = optionPrice;
@@ -25,5 +26,9 @@ public class OptionDto {
         this.optionDescription = optionDescription;
         this.optionCategory = optionCategory;
         this.optionCanSelect = optionCanSelect;
+    }
+
+    public void setOptionPurchaseRate(int optionPurchaseRate) {
+        this.optionPurchaseRate = PurchaseRateUtil.setPurchaseRate(optionPurchaseRate);
     }
 }

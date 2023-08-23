@@ -1,11 +1,10 @@
 package com.autoever.idle.domain.exteriorColor.dto;
 
-import lombok.Builder;
+import com.autoever.idle.util.PurchaseRateUtil;
 import lombok.Getter;
 
 import java.util.List;
 
-@Builder
 @Getter
 public class ExteriorColorResponse {
 
@@ -16,14 +15,12 @@ public class ExteriorColorResponse {
     private String exteriorPurchaseRate;
     private List<CarExteriorImgDto> carImgUrls;
 
-    public static ExteriorColorResponse createExteriorColor(ExteriorColorDto color, List<CarExteriorImgDto> images) {
-        return ExteriorColorResponse.builder()
-                .exteriorId(color.getExteriorId())
-                .exteriorName(color.getExteriorName())
-                .exteriorPrice(color.getExteriorPrice())
-                .exteriorImgUrl(color.getExteriorImgUrl())
-                .exteriorPurchaseRate(color.getExteriorPurchaseRate())
-                .carImgUrls(images)
-                .build();
+    public ExteriorColorResponse(ExteriorColorDto color, List<CarExteriorImgDto> images) {
+        this.exteriorId = color.getExteriorId();
+        this.exteriorName = color.getExteriorName();
+        this.exteriorPrice = color.getExteriorPrice();
+        this.exteriorImgUrl = color.getExteriorImgUrl();
+        this.exteriorPurchaseRate = color.getExteriorPurchaseRate();
+        this.carImgUrls = images;
     }
 }

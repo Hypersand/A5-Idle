@@ -1,17 +1,12 @@
 package com.autoever.idle.domain.function.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
-@Setter
 @Getter
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class FunctionIdResponse {
 
-    Long functionId;
+    private final Long functionId;
 
-    public FunctionIdResponse(Long functionId) {
-        this.functionId = functionId;
-    }
 }

@@ -1,15 +1,18 @@
 package com.autoever.idle.domain.trim;
 
-import com.autoever.idle.domain.carType.CarTypeRepository;
-import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
+import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
+import com.autoever.idle.domain.exteriorColor.dto.ExteriorImgUrlDto;
+import com.autoever.idle.domain.exteriorColor.dto.TrimThumbnailColorResponse;
+import com.autoever.idle.domain.exteriorColor.repository.ExteriorColorRepository;
+import com.autoever.idle.domain.interiorColor.dto.InteriorImgUrlDto;
+import com.autoever.idle.domain.interiorColor.repository.InteriorColorRepository;
 import com.autoever.idle.domain.trim.dto.TrimDto;
 import com.autoever.idle.domain.trim.dto.TrimSelectionResponse;
 import com.autoever.idle.domain.trim.repository.TrimRepository;
 import com.autoever.idle.domain.trim.service.TrimService;
-import com.autoever.idle.domain.trimThumbnailFunction.repository.TrimThumbnailFunctionRepository;
 import com.autoever.idle.domain.trimThumbnailFunction.dto.TrimThumbnailFunctionResponse;
-import com.autoever.idle.global.exception.custom.InvalidCarException;
+import com.autoever.idle.domain.trimThumbnailFunction.repository.TrimThumbnailFunctionRepository;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
@@ -22,11 +25,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SoftAssertionsExtension.class)
@@ -43,24 +44,26 @@ class TrimServiceTest {
     TrimRepository trimRepository;
 
     @Mock
-    CarTypeRepository carTypeRepository;
-
-    @Mock
     FunctionCategoryRepository functionCategoryRepository;
 
     @Mock
     TrimThumbnailFunctionRepository trimThumbnailFunctionRepository;
 
-    List<Long> carTypeIds;
+    @Mock
+    ExteriorColorRepository exteriorColorRepository;
+
+    @Mock
+    InteriorColorRepository interiorColorRepository;
+
     List<FunctionCategoryDto> categories;
     List<TrimThumbnailFunctionResponse> thumbnailFunctions;
+    List<ExteriorImgUrlDto> exteriorImgUrls;
+    List<InteriorImgUrlDto> interiorImgUrls;
+    TrimThumbnailColorResponse thumbnailColor;
     List<TrimDto> trims;
 
     @BeforeEach
     void setUp() {
-        carTypeIds = new ArrayList<>();
-        carTypeIds.add(1L);
-
         categories = new ArrayList<>();
         categories.add(new FunctionCategoryDto(1L, "파워트레인/성능"));
         categories.add(new FunctionCategoryDto(2L, "지능형 안전기술"));
@@ -157,6 +160,14 @@ class TrimServiceTest {
                 179
         ));
 
+        exteriorImgUrls = new ArrayList<>();
+        exteriorImgUrls.add(new ExteriorImgUrlDto("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/11.png"));
+        exteriorImgUrls.add(new ExteriorImgUrlDto("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/12.png"));
+
+        interiorImgUrls = new ArrayList<>();
+        interiorImgUrls.add(new InteriorImgUrlDto("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png"));
+
+        thumbnailColor = new TrimThumbnailColorResponse(exteriorImgUrls, interiorImgUrls);
 
         trims = new ArrayList<>();
         trims.add(new TrimDto(
@@ -193,10 +204,11 @@ class TrimServiceTest {
     @DisplayName("해당 차종의 트림에 대한 정보를 반환한다")
     void findAllTrims() {
         String carTypeName = "팰리세이드";
-        given(carTypeRepository.findByName(carTypeName)).willReturn(carTypeIds);
         given(functionCategoryRepository.findAll()).willReturn(categories);
         given(trimThumbnailFunctionRepository.findThumbnailFunctionByTrimId(1L)).willReturn(thumbnailFunctions);
-        given(trimRepository.findAll(carTypeIds.get(0))).willReturn(trims);
+        given(exteriorColorRepository.findExteriorColorImgUrlsByTrimId(1L)).willReturn(exteriorImgUrls);
+        given(interiorColorRepository.findInteriorColorImgUrlsByTrimId(1L)).willReturn(interiorImgUrls);
+        given(trimRepository.findAll(carTypeName)).willReturn(trims);
 
         List<TrimSelectionResponse> trimResponse = trimService.findAllTrims("팰리세이드");
 
@@ -224,16 +236,11 @@ class TrimServiceTest {
         softAssertions.assertThat(trimResponse.get(3).getImgUrl()).isEqualTo(trims.get(3).getImgUrl());
         softAssertions.assertThat(trimResponse.get(3).getDescription()).isEqualTo(trims.get(3).getDescription());
         softAssertions.assertThat(trimResponse.get(3).getPurchaseRate()).isEqualTo(trims.get(3).getPurchaseRate());
-    }
-
-    @Test
-    @DisplayName("유효하지 않은 차종으로 조회하면 InvalidCarException이 발생한다")
-    void findAllTrimsInvalidCarType() {
-        String carTypeName = "팰리세";
-
-        when(carTypeRepository.findByName(carTypeName)).thenReturn(Collections.emptyList());
-
-        softAssertions.assertThatThrownBy(() -> trimService.findAllTrims(carTypeName))
-                .isInstanceOf(InvalidCarException.class);
+        softAssertions.assertThat(trimResponse.get(0).getColors().getExteriorImgUrls().get(0).getExteriorImgUrl())
+                .isEqualTo(exteriorImgUrls.get(0).getExteriorImgUrl());
+        softAssertions.assertThat(trimResponse.get(0).getColors().getExteriorImgUrls().get(1).getExteriorImgUrl())
+                .isEqualTo(exteriorImgUrls.get(1).getExteriorImgUrl());
+        softAssertions.assertThat(trimResponse.get(0).getColors().getInteriorImgUrls().get(0).getInteriorImgUrl())
+                .isEqualTo(interiorImgUrls.get(0).getInteriorImgUrl());
     }
 }

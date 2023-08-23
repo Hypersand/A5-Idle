@@ -15,6 +15,7 @@ public class MyTrimFunctionDto {
     private String imgUrl;
     private int trim_id;
 
+    //테스트 용도 생성자
     public MyTrimFunctionDto(int functionId, String name, String description, String imgUrl, int trim_id) {
         this.functionId = functionId;
         this.name = name;

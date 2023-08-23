@@ -15,6 +15,7 @@ public class FunctionDto {
     private String functionImgUrl;
     private String wheelLogoImgUrl;
 
+    //테스트 용도 생성자
     public FunctionDto(Long functionId, String functionName, String functionDescription, String functionImgUrl, String wheelLogoImgUrl) {
         this.functionId = functionId;
         this.functionName = functionName;

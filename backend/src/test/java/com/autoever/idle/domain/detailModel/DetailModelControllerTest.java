@@ -1,8 +1,8 @@
 package com.autoever.idle.domain.detailModel;
 
 import com.autoever.idle.domain.detailModel.dto.BodyTypeResponse;
-import com.autoever.idle.domain.detailModel.dto.DrivingMethodResponse;
 import com.autoever.idle.domain.detailModel.dto.DetailModelResponse;
+import com.autoever.idle.domain.detailModel.dto.DrivingMethodResponse;
 import com.autoever.idle.domain.detailModel.dto.EngineResponse;
 import com.autoever.idle.global.exception.ErrorCode;
 import com.autoever.idle.global.exception.custom.InvalidDetailModelException;

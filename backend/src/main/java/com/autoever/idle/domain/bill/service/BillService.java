@@ -2,29 +2,31 @@ package com.autoever.idle.domain.bill.service;
 
 import com.autoever.idle.domain.bill.dto.BillRequest;
 import com.autoever.idle.domain.bill.dto.BillResponse;
-import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResponse;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
-import com.autoever.idle.domain.exteriorColor.repository.ExteriorColorRepository;
+import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.exteriorColor.dto.ExteriorBillDto;
+import com.autoever.idle.domain.exteriorColor.repository.ExteriorColorRepository;
 import com.autoever.idle.domain.function.dto.DefaultFunctionNameResponse;
-import com.autoever.idle.domain.interiorColor.repository.InteriorColorRepository;
 import com.autoever.idle.domain.interiorColor.dto.InteriorBillDto;
-import com.autoever.idle.domain.option.repository.OptionRepository;
+import com.autoever.idle.domain.interiorColor.repository.InteriorColorRepository;
 import com.autoever.idle.domain.option.dto.SelectedOptionDto;
-import com.autoever.idle.domain.trim.repository.TrimRepository;
+import com.autoever.idle.domain.option.repository.OptionRepository;
 import com.autoever.idle.domain.trim.dto.TrimDescriptionDto;
+import com.autoever.idle.domain.trim.repository.TrimRepository;
 import com.autoever.idle.global.exception.ErrorCode;
 import com.autoever.idle.global.exception.custom.InvalidExteriorException;
 import com.autoever.idle.global.exception.custom.InvalidInteriorException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class BillService {
 
     private final TrimRepository trimRepository;
@@ -44,13 +46,8 @@ public class BillService {
         InteriorBillDto interiorBillDto = interiorColorRepository.findInteriorBill(billRequest.getInteriorId())
                 .orElseThrow(() -> new InvalidInteriorException(ErrorCode.INVALID_INTERIOR));
 
-        List<SelectedOptionDto> selectedOptions;
-
-        if (billRequest.getSelectedOptionIds().isEmpty()) {
-            selectedOptions = new ArrayList<>();
-        } else {
-            selectedOptions = optionRepository.findSelectedOptions(billRequest.getSelectedOptionIds());
-        }
+        List<SelectedOptionDto> selectedOptions =
+                billRequest.getSelectedOptionIds().isEmpty() ? new ArrayList<>() : optionRepository.findSelectedOptions(billRequest.getSelectedOptionIds());
 
         List<FunctionCategoryDto> categories = functionCategoryRepository.findAll();
         List<DefaultFunctionCategoryResponse> categoryDtos = new ArrayList<>();
@@ -58,7 +55,7 @@ public class BillService {
         for (FunctionCategoryDto category : categories) {
             List<DefaultFunctionNameResponse> defaultFunctionDtos =
                     functionCategoryRepository.getDefaultOptions(billRequest.getTrimId(), category.getFunctionCategoryId());
-            DefaultFunctionCategoryResponse defaultCategoryDto = DefaultFunctionCategoryResponse.createDefaultFunctionDto(category, defaultFunctionDtos);
+            DefaultFunctionCategoryResponse defaultCategoryDto = new DefaultFunctionCategoryResponse(category, defaultFunctionDtos);
             categoryDtos.add(defaultCategoryDto);
         }
 

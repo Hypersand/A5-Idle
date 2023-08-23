@@ -1,7 +1,6 @@
 package com.autoever.idle.domain.bill;
 
 import com.autoever.idle.domain.bill.controller.BillController;
-import com.autoever.idle.domain.bill.dto.BillRequest;
 import com.autoever.idle.domain.bill.dto.BillResponse;
 import com.autoever.idle.domain.bill.service.BillService;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryResponse;
@@ -25,6 +24,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,6 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -49,9 +49,16 @@ class BillControllerTest {
     @MockBean
     private BillService billService;
     private BillResponse billResponse;
+    private MultiValueMap<String, String> multiValueMap;
 
     @BeforeEach
     void setUp() {
+        multiValueMap = new LinkedMultiValueMap<>();
+        multiValueMap.add("trimId", "1");
+        multiValueMap.add("exteriorId", "1");
+        multiValueMap.add("interiorId", "1");
+        multiValueMap.add("selectedOptionIds", "1,14");
+
         TrimDescriptionDto trimDescriptionDto = new TrimDescriptionDto("실용적이고 기본적인 기능을 갖춘 베이직 트림");
         String trimDescription = trimDescriptionDto.getTrimDescription();
 
@@ -87,13 +94,11 @@ class BillControllerTest {
     @DisplayName("최종 견적서 api 호출")
     void getResultBill() throws Exception {
         //given
-        BillRequest billRequest = new BillRequest(1L, 1L, 1L, List.of(1L));
         given(billService.getResultBill(any())).willReturn(billResponse);
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/result/bill")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(billRequest)))
+        ResultActions resultActions = mockMvc.perform(get("/result/bill")
+                        .queryParams(multiValueMap))
                 .andDo(print());
 
         //then
@@ -106,35 +111,31 @@ class BillControllerTest {
     @DisplayName("최종 견적서 api 요청 시 외장 색상 id의 값이 적절하지 못하면 에러 발생")
     void getResultBill_ExteriorError() throws Exception {
         //given
-        BillRequest billRequest = new BillRequest(99999L, 1L, 1L, List.of(1L));
         given(billService.getResultBill(any())).willThrow(new InvalidExteriorException(ErrorCode.INVALID_EXTERIOR));
+        multiValueMap.add("exteriorId", "0");
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/result/bill")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(billRequest)))
+        ResultActions resultActions = mockMvc.perform(get("/result/bill")
+                        .queryParams(multiValueMap))
                 .andDo(print());
 
         //then
         resultActions.andExpect(status().is4xxClientError());
-        resultActions.andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
     @Test
     @DisplayName("최종 견적서 api 요청 시 내장 색상 id의 값이 적절하지 못하면 에러 발생")
     void getResultBill_InteriorError() throws Exception {
         //given
-        BillRequest billRequest = new BillRequest(1L, 999999L, 1L, List.of(1L));
         given(billService.getResultBill(any())).willThrow(new InvalidInteriorException(ErrorCode.INVALID_INTERIOR));
+        multiValueMap.set("interiorId", "0");
 
         //when
-        ResultActions resultActions = mockMvc.perform(post("/result/bill")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(billRequest)))
+        ResultActions resultActions = mockMvc.perform(get("/result/bill")
+                        .queryParams(multiValueMap))
                 .andDo(print());
 
         //then
         resultActions.andExpect(status().is4xxClientError());
-        resultActions.andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 }
