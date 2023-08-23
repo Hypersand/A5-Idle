@@ -21,7 +21,6 @@ class ErrorBoundary extends Component {
   }
   render(setError) {
     if (this.state.hasError) {
-      // 에러가 발생했을 때 대체 컴포넌트를 반환
       return <ServerErrorPage setError={setError} />;
     }
 

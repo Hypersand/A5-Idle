@@ -85,7 +85,6 @@ const StImg = styled.img`
 const StContent = styled.div`
   display: flex;
   width: 175px;
-  /* padding: 0px 32px; */
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
