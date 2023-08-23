@@ -11,13 +11,6 @@ import WarningModal from "../components/common/modals/WarningModal";
 import InteriorColorMain from "../components/colorPage/colorMain/InteriorColorMain";
 import ExteriorColorBoxContainer from "../components/colorPage/colorSub/ExteriorColorBoxContainer";
 import InteriorColorBoxContainer from "../components/colorPage/colorSub/InteriorColorBoxContainer";
-import InteriorColorMain from "../components/colorPage/colorMain/InteriorColorMain";
-import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "../store/actionType";
-import { getWithoutQueryAPI } from "../utils/api";
-import { DEFAULT_INTERIROR_COLOR } from "../constant/constants";
-import { PATH } from "../constant/path";
-import WarningModal from "../components/common/modals/WarningModal";
-import { preloadImage } from "../utils/preloader";
 import ColorConfirmContainer from "../components/colorPage/colorSub/ColorConfirmContainer";
 import ColorTabContainer from "../components/colorPage/colorMain/ColorTabContainer";
 
