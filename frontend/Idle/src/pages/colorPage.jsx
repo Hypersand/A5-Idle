@@ -14,6 +14,7 @@ import WarningModal from "../components/common/modals/WarningModal";
 import InteriorColorMain from "../components/colorPage/colorMain/InteriorColorMain";
 import ExteriorColorBoxContainer from "../components/colorPage/colorSub/ExteriorColorBoxContainer";
 import InteriorColorBoxContainer from "../components/colorPage/colorSub/InteriorColorBoxContainer";
+import { preloadImage } from "../utils/preloader";
 
 let cachedExterior = null;
 let cachedInterior = null;
@@ -54,6 +55,9 @@ function ColorPage() {
       setExteriorData(result);
       cachedExterior = result;
       dispatch({ type: SET_CAR_IMG, payload: result[0].carImgUrls[0].imgUrl });
+    });
+    getWithoutQueryAPI(PATH.COLOR.INTERIOR_ALL).then((result) => {
+      result.interiorImgUrls.map((item) => { preloadImage(item) })
     });
   }, []);
 
