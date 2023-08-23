@@ -26,7 +26,8 @@ public class TrimRepositoryImpl implements TrimRepository {
         return jdbcTemplate.query(
                 "select T.trim_id, T.name, T.price, T.img_url, T.description, T.purchase_rate from CAR_TYPE as CT " +
                         "left join TRIM as T on CT.car_type_id = T.car_type_id " +
-                        "where CT.name = :carTypeName",
+                        "where CT.name = :carTypeName " +
+                        "order by T.price",
                 param, rowMapper);
     }
 
