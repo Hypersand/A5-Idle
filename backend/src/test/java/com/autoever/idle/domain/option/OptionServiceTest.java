@@ -42,12 +42,10 @@ class OptionServiceTest {
 
     private List<OptionDto> additionalOptionListSortedByPrice;
     private List<OptionDto> additionalOptionListSortedByPurchaseRate;
-    private List<Long> notActivatedOptionIdList;
     private List<FunctionDto> functionDtoList;
 
     @BeforeEach
     void setUp() {
-        notActivatedOptionIdList = List.of(1L, 15L);
         additionalOptionListSortedByPrice = new ArrayList<>();
         additionalOptionListSortedByPurchaseRate = new ArrayList<>();
         functionDtoList = new ArrayList<>();
@@ -97,8 +95,7 @@ class OptionServiceTest {
         OptionRequest optionRequest = new OptionRequest(1L, List.of(1L, 15L), 1L);
 
         //when
-        when(optionRepository.findAdditionalOptionList(any())).thenReturn(additionalOptionListSortedByPrice);
-        when(optionRepository.findNotActivatedOptionIdList(any(), anyList())).thenReturn(notActivatedOptionIdList);
+        when(optionRepository.findAdditionalOptionList(any(), any(), anyList())).thenReturn(additionalOptionListSortedByPrice);
         when(functionRepository.findFunctionsInAdditionalOption(any())).thenReturn(functionDtoList);
         List<OptionFunctionsResponse> optionFunctions = optionService.getOptionFunctions(optionRequest);
 
@@ -116,8 +113,7 @@ class OptionServiceTest {
         OptionRequest optionRequest = new OptionRequest(1L, List.of(1L, 15L), 1L);
 
         //when
-        when(optionRepository.findAdditionalOptionList(any())).thenReturn(additionalOptionListSortedByPurchaseRate);
-        when(optionRepository.findNotActivatedOptionIdList(any(), anyList())).thenReturn(notActivatedOptionIdList);
+        when(optionRepository.findAdditionalOptionList(any(), any(), anyList())).thenReturn(additionalOptionListSortedByPurchaseRate);
         when(functionRepository.findFunctionsInAdditionalOption(any())).thenReturn(functionDtoList);
         List<OptionFunctionsResponse> optionFunctions = optionService.getOptionFunctions(optionRequest);
 

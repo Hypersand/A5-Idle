@@ -30,27 +30,15 @@ class OptionRepositoryImplTest {
     void findAdditionalOptionList() {
         //given
         Long trimId = 1L;
+        Long engineId = 2L;
+        List<Long> selectedOptionIds = List.of(2L, 14L);
 
         //when
-        List<OptionDto> additionalOptionList = optionRepository.findAdditionalOptionList(trimId);
+        List<OptionDto> additionalOptionList = optionRepository.findAdditionalOptionList(trimId, engineId, selectedOptionIds);
 
         //then
         softAssertions.assertThat(additionalOptionList.size()).isEqualTo(12);
 
-    }
-
-    @Test
-    @DisplayName("엔진 ID와 선택된 옵션 ID 목록을 통해 비활성화된 옵션 정보를 반환한다")
-    void findNotActivatedOptionIdList() {
-        //given
-        Long engineId = 1L;
-        List<Long> selectedOptionIds = List.of(15L);
-
-        //when
-        List<Long> notActivatedOptionIdList = optionRepository.findNotActivatedOptionIdList(engineId, selectedOptionIds);
-
-        //then
-        softAssertions.assertThat(notActivatedOptionIdList.size()).isEqualTo(3);
     }
 
     @Test
