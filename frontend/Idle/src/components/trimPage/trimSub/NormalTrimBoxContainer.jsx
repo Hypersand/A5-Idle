@@ -1,11 +1,11 @@
 import { styled } from "styled-components";
 import NormalTrimBox from "./NormalTrimBox"
 
-function NormalTrimBoxContainer(data) {
+function NormalTrimBoxContainer({ data, onMouseEnter }) {
   return (
     <StContainer>
-      {data.data.map((item, idx) => (
-        <NormalTrimBox key={idx} {...item} category={data.category} />
+      {data.map((item, idx) => (
+        <NormalTrimBox key={idx} {...item} category={data.category} onMouseEnter={onMouseEnter} />
       ))}
     </StContainer>
   );

@@ -17,6 +17,7 @@ function NormalTrimBox({
   trimId,
   price,
   defaultFunctions,
+  onMouseEnter,
   isActive = true,
 }) {
   const { car, dispatch } = useContext(carContext);
@@ -54,6 +55,7 @@ function NormalTrimBox({
     setIsModal(true);
     const result = await getWithoutQueryAPI(PATH.OPTION.DEFAULT, { trimId: TRANSLATE[name] });
     setOptionData(result);
+    onMouseEnter()
   }
 
   function setModalOff() {
@@ -62,7 +64,7 @@ function NormalTrimBox({
   const isTrimSelected = car.trim.name === name;
   return (
     <>
-      <StContainer $isSelected={isTrimSelected} $isActive={isActive}>
+      <StContainer $isSelected={isTrimSelected} $isActive={isActive} onMouseEnter={onMouseEnter}>
         <StContent onClick={() => trimClicked(name, price, trimId)}>
           <StTitleContainer>
             <StContentHeader>
@@ -73,7 +75,7 @@ function NormalTrimBox({
           </StTitleContainer>
           <Price $isSelected={isTrimSelected}>{price.toLocaleString()} 원</Price>
         </StContent>
-        <PopUpButton $isSelected={isTrimSelected} onClick={setModalOn}>
+        <PopUpButton $isSelected={isTrimSelected} onMouseEnter={onMouseEnter} onClick={setModalOn}>
           자세히 보기
           <ArrorRight alt="ArrowRightImg" />
         </PopUpButton>
@@ -120,7 +122,7 @@ const StContainer = styled.div`
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
     background: ${({ $isSelected }) =>
-      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+    $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
     box-shadow: 2px 2px 10px #898989;

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+<<<<<<< HEAD
 import { preloadContext } from "../store/context";
 import { getWithQueryAPI, getWithoutQueryAPI } from "../utils/api";
 import { PATH } from "../constant/path";
@@ -13,6 +14,19 @@ import FindTrimButton from "../components/trimPage/trimSub/FindTrimButton";
 import BlueButton from "../components/common/buttons/BlueButton";
 import FindTrimTooltip from "../components/common/toolTips/FindTrimTooltip";
 import palette from "../styles/palette";
+=======
+import { preloadContext } from "../store/context"
+import { getWithoutQueryAPI } from "../utils/api"
+import { PATH } from "../constant/path"
+import Loading from "../components/common/loading/Loading"
+import TrimMain from "../components/trimPage/trimMain/TrimMain"
+import NormalTrimBoxContainer from "../components/trimPage/trimSub/NormalTrimBoxContainer"
+import FindTrim from "../components/trimPage/findTrim/FindTrim"
+import FindTrimButton from "../components/trimPage/trimSub/FindTrimButton"
+import BlueButton from "../components/common/buttons/BlueButton"
+import FindTrimTooltip from "../components/common/toolTips/FindTrimTooltip"
+import palette from "../styles/palette"
+>>>>>>> 76b8e97f5a0d803124d41ae04da59c1c54801882
 
 let cachedTrimData = null;
 
@@ -21,7 +35,7 @@ function TrimPage() {
   const [toolTipStatus, setToolTipStatus] = useState(true);
   const [trimData, setTrimData] = useState(cachedTrimData);
   const [modalVisible, setModalVisible] = useState(false);
-  const { preLoadData, setPreLoadData, loaderIdx, setLoaderIdx } = useContext(preloadContext);
+  const { setPreLoadData, preloadImages } = useContext(preloadContext);
 
   function nextBTNClicked() {
     navigate("/detail/engines");
@@ -45,47 +59,50 @@ function TrimPage() {
     })();
   }, []);
 
-  function handleMouseEnter() {
-    if (loaderIdx / 2 < preLoadData.length) {
-      preLoadData[Math.floor(loaderIdx / 2)].map((item, idx) => {
-        idx % 2 === loaderIdx % 2 && preloadImage(item.imgUrl);
-      });
-      setLoaderIdx((prev) => prev + 1);
-    }
-  }
+
   function findButtonClicked() {
     setToolTipStatus(false);
     setModalVisible(true);
   }
   return (
     <>
-      {trimData ? <TrimMain data={trimData} onMouseEnter={handleMouseEnter} /> : <Loading />}
+      {trimData ? <TrimMain data={trimData} onMouseEnter={preloadImages} /> : <Loading />}
       <StWrapper>
         <StBottomContainer>
-          {trimData ? <NormalTrimBoxContainer data={trimData} /> : <Loading />}
+          {trimData ? <NormalTrimBoxContainer data={trimData} onMouseEnter={preloadImages} /> : <Loading />}
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>트림 선택</Title>
               <Description>원하는 트림을 선택해주세요.</Description>
             </StConfirmHeader>
-            <BlueButton text={"다음"} onClick={nextBTNClicked} onMouseEnter={handleMouseEnter} />
+            <BlueButton text={"다음"} onClick={nextBTNClicked} />
           </StConfirmContainer>
         </StBottomContainer>
+<<<<<<< HEAD
         <FindTrimButton onClick={findButtonClicked} onMouseEnter={handleMouseEnter} />
         <TrimSelectContainer
           onClick={() => {
             setToolTipStatus(false);
           }}
         >
+=======
+        <FindTrimButton onClick={findButtonClicked} onMouseEnter={preloadImages} />
+        <TrimSelectContainer onClick={() => { setToolTipStatus(false); }}>
+>>>>>>> 76b8e97f5a0d803124d41ae04da59c1c54801882
           <StTooltipContainer>
             <StTooltip isActive={toolTipStatus} />
           </StTooltipContainer>
         </TrimSelectContainer>
       </StWrapper>
       {modalVisible ? (
+<<<<<<< HEAD
         <FindTrim setVisible={setModalVisible} onMouseEnter={handleMouseEnter} />
       ) : (
         <> </>
+=======
+        <FindTrim setVisible={setModalVisible} onMouseEnter={preloadImages} />
+      ) : (<> </>
+>>>>>>> 76b8e97f5a0d803124d41ae04da59c1c54801882
       )}
     </>
   );

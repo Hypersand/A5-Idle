@@ -20,6 +20,7 @@ import { getWithoutQueryAPI } from "../utils/api";
 import { DEFAULT_INTERIROR_COLOR } from "../constant/constants";
 import { PATH } from "../constant/path";
 import WarningModal from "../components/common/modals/WarningModal";
+import { preloadImage } from "../utils/preloader";
 
 let cachedExterior = null;
 let cachedInterior = null;
@@ -30,7 +31,7 @@ function ColorPage() {
   const [currentTab, setCurrentTab] = useState(EXTERIOR_COLORS);
   const tabs = [EXTERIOR_COLORS, INTERIROR_COLORS];
   const { car, dispatch } = useContext(carContext);
-  const [isEngineChecked, setIsEngineChekced] = useState(false);
+  const [isEngineChecked, setIsEngineChecked] = useState(false);
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
@@ -95,7 +96,7 @@ function ColorPage() {
         navigate(`/color/${tabs[currentIndex + 1]}`);
       } else {
         if (car.detail.engines.name === undefined) {
-          setIsEngineChekced(true);
+          setIsEngineChecked(true);
           return;
         }
         navigate("/option/all");
@@ -159,9 +160,9 @@ function ColorPage() {
         {isEngineChecked && (
           <WarningModal
             title={"옵션 선택을 위해선 엔진을 선택해야 합니다."}
-            setModalVisible={setIsEngineChekced}
+            setModalVisible={setIsEngineChecked}
             onSubmitClick={() => {
-              setIsEngineChekced(false);
+              setIsEngineChecked(false);
               navigate("/detail/engines");
             }}
             detail={"선택이 필요한 페이지로 이동하시겠습니까?"}

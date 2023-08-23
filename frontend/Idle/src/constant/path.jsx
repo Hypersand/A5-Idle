@@ -1,25 +1,28 @@
+import { BASE_SERVER_URL } from "./constants";
+
 export const PATH = {
-    TRIM: `https://api.i-want-to-go-autoever.shop/trims?carTypeName=팰리세이드`,
+    TRIM: `${BASE_SERVER_URL}/trims?carTypeName=팰리세이드`,
     FIND: {
-        GET: `https://api.i-want-to-go-autoever.shop/trims/favorite`,
-        OPTION: `https://api.i-want-to-go-autoever.shop/trims/favorite/select/option`,
-        TRIM: `https://api.i-want-to-go-autoever.shop/trims/favorite/select/trim`,
-        SUBMIT: `https://api.i-want-to-go-autoever.shop/trims/favorite/submit`,
+        GET: `${BASE_SERVER_URL}/trims/favorite`,
+        OPTION: `${BASE_SERVER_URL}/trims/favorite/select/option`,
+        TRIM: `${BASE_SERVER_URL}/trims/favorite/select/trim`,
+        SUBMIT: `${BASE_SERVER_URL}/trims/favorite/submit`,
     },
-    DETAIL: `https://api.i-want-to-go-autoever.shop/trims/models?`,
+    DETAIL: `${BASE_SERVER_URL}/trims/models?`,
     COLOR: {
-        EXTERIOR: `https://api.i-want-to-go-autoever.shop/trims/exterior/colors?`,
-        INTERIOR: `https://api.i-want-to-go-autoever.shop/trims/interior/colors?`,
+        EXTERIOR: `${BASE_SERVER_URL}/trims/exterior/colors?`,
+        INTERIOR: `${BASE_SERVER_URL}/trims/interior/colors?`,
+        INTERIOR_ALL: `${BASE_SERVER_URL}/interior/colors/all`,
     },
     OPTION: {
-        DEFAULT: `https://api.i-want-to-go-autoever.shop/trims/default?`,
-        GET: `https://api.i-want-to-go-autoever.shop/trims/add/options`,
-        SELECT: `https://api.i-want-to-go-autoever.shop/trims/add/select`,
+        DEFAULT: `${BASE_SERVER_URL}/trims/default?`,
+        GET: `${BASE_SERVER_URL}/trims/add/options`,
+        SELECT: `${BASE_SERVER_URL}/trims/add/select`,
     },
     CARMASTER: {
-        SALERATE: `https://api.i-want-to-go-autoever.shop/find/car/masters/salerate?`,
-        DISTANCE: `https://api.i-want-to-go-autoever.shop/find/car/masters/distance?`,
+        SALERATE: `${BASE_SERVER_URL}/find/car/masters/salerate?`,
+        DISTANCE: `${BASE_SERVER_URL}/find/car/masters/distance?`,
     },
-    BILL: `https://api.i-want-to-go-autoever.shop/result/bill`,
-    SELECTCAR: "https://api.i-want-to-go-autoever.shop/carType",
+    BILL: `${BASE_SERVER_URL}/result/bill`,
+    SELECTCAR: `${BASE_SERVER_URL}/carType`,
 };

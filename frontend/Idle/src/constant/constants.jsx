@@ -1,3 +1,5 @@
+export const BASE_SERVER_URL = "https://api.i-want-to-go-autoever.shop"
+
 export const TYPE = {
   trim: "트림",
   detail: "세부 모델",
