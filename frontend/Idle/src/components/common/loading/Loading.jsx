@@ -6,6 +6,7 @@ function Loading() {
       <LoadingImage
         alt="LoadingImg"
         src="https://www.hyundai.com/static/images/pages/payment/Loading_Car.gif"
+        loading="lazy"
       />
       잠시만 기다려 주세요
     </StContainer>

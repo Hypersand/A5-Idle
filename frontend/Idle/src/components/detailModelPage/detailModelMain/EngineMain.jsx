@@ -11,7 +11,7 @@ function EngineMain({ imgUrl, peakOutput, engineMaxTorque, minFuel, maxFuel }) {
   };
   return (
     <StContainer>
-      <StImage alt="EngineImg" src={imgUrl} />
+      <StImage alt="EngineImg" src={imgUrl} loading="lazy" />
       <StDetailContaier>
         {states.map((item, idx) => (
           <EngineDetail key={idx} state={item} data={formedData} />

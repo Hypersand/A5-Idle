@@ -55,7 +55,7 @@ function OptionBox({ data, disable = false }) {
   return (
     <StContainer onClick={boxClicked} $isSelcted={isSelected} $disable={disable}>
       <StOption>
-        <OptionChecked alt="OptionCheckedImg" data-name={data.name} />
+        <OptionChecked alt="OptionCheckedImg" data-name={data.name} loading="lazy" />
         <StTitle $isSelcted={isSelected}>{dataNameCalc()}</StTitle>
       </StOption>
       <StBtn $isSelcted={isSelected} onClick={modalClicked}>

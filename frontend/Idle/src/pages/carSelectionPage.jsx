@@ -102,12 +102,14 @@ function CarSelectionPage() {
             alt="ArrowLeftImg"
             style={{ cursor: "pointer" }}
             onClick={() => leftBtnClicked(currentPage, setCurrentPage, maxPage)}
+            loading="lazy"
           />
           {currentPage}
           <RightArrow
             alt="ArrowRightImg"
             style={{ cursor: "pointer" }}
             onClick={() => RightBtnClicked(currentPage, setCurrentPage, maxPage)}
+            loading="lazy"
           />
         </StPage>
         <StBtn onClick={() => btnClicked(navigate, selectedCar, setWarningModalVisible)}>

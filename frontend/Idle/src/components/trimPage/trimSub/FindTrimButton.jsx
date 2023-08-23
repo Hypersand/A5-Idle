@@ -5,7 +5,7 @@ import palette from "../../../styles/palette";
 function FindTrimButton({ onClick, onMouseEnter }) {
   return (
     <StFindTrimButton onClick={onClick}>
-      <StArrowContainer alt="ArrowLeftImg" />
+      <StArrowContainer alt="ArrowLeftImg" loading="lazy" />
       <StFindTrimButtonText onMouseEnter={onMouseEnter}>내게 맞는 트림 찾기</StFindTrimButtonText>
     </StFindTrimButton>
   );

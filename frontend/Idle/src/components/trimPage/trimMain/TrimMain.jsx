@@ -32,7 +32,7 @@ function TrimMain({ data, onMouseEnter }) {
         </ColorContainer>
       </StTitleContainer>
       {filteredData ? (
-        <StImage alt="FilteredDataImg" id={"here"} src={filteredData[0]?.imgUrl}></StImage>
+        <StImage alt="FilteredDataImg" id={"here"} src={filteredData[0]?.imgUrl} loading="lazy" />
       ) : (
         <p>Loading...</p>
       )}
