@@ -1,6 +1,5 @@
 import { Component } from "react";
 import ServerErrorPage from "../../../pages/serverErrorPage";
-
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);

@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import MainLogoWhite from "logos/MainLogoWhite";
+import MainLogoWhite from "../components/common/logos/MainLogoWhite";
 
 function ServerErrorPage(setError = null) {
 

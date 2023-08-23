@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as MainLogoImg } from "images/hyundaiDark.svg";
 import { useNavigate } from "react-router-dom";
-import palette from "styles/palette";
+import { ReactComponent as MainLogoImg } from "../../../assets/images/hyundaiDark.svg";
+import palette from "../../../styles/palette";
 
 function MainLogoWhite() {
   const navigate = useNavigate();

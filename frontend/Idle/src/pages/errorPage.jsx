@@ -1,8 +1,12 @@
 import { styled } from "styled-components";
-import { Link } from "react-router-dom";
-import MainLogoWhite from "logos/MainLogoWhite";
+import { Link, useNavigate } from "react-router-dom";
+import MainLogoWhite from "../components/common/logos/MainLogoWhite";
 
 function ErrorPage() {
+  const navigate = useNavigate();
+  function moveButtonClick() {
+    navigate("/");
+  }
   return (
     <StContainer>
       <StLogoContainer>
@@ -13,7 +17,7 @@ function ErrorPage() {
         <StTitle>NOT</StTitle>
         <StTitle>FOUND</StTitle>
         <StBoxContainer>
-          <StHyperLink to="/">메인페이지로 이동</StHyperLink>
+          <StHyperLink onClick={moveButtonClick}>메인페이지로 이동</StHyperLink>
         </StBoxContainer>
       </StContent>
     </StContainer>

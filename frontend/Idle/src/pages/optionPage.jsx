@@ -1,29 +1,21 @@
-import DefaultOption from "defaultOption/index";
-import { useRef, useState, useContext, useLayoutEffect } from "react";
-import OptionBox from "boxs/OptionBox";
-import {
-  ALL,
-  SAFETY,
-  STYLE,
-  PROTECTION,
-  CONVENIENCE,
-  setClickedOptionPage,
-  TRANSLATE,
-  PATH,
-} from "utils/constants";
 import { styled } from "styled-components";
+import { useContext, useLayoutEffect, useRef, useState } from "react";
+import { ALL, CONVENIENCE, PROTECTION, SAFETY, STYLE, TRANSLATE, setClickedOptionPage } from "../constant/constants"
+import { carContext } from "../store/context"
 import { useNavigate, useParams } from "react-router-dom";
-import CategoryTabs from "tabs/CategoryTabs";
-import WhiteButton from "buttons/WhiteButton";
-import BlueButton from "buttons/BlueButton";
-import { ReactComponent as ArrowLogo } from "images/arrowOption.svg";
-import OptionMain from "optionMain/index";
-import palette from "styles/palette";
-import { carContext } from "utils/context";
-import ServerErrorPage from "./serverErrorPage";
-import ConfusingTooltip from "toolTips/ConfusingTooltip";
-import WarningModal from "modals/WarningModal";
-import { getWithQueryAPI } from "utils/api";
+import { getWithQueryAPI } from "../utils/api"
+import { PATH } from "../constant/path"
+import CategoryTabs from "../components/common/tabs/CategoryTabs"
+import OptionMain from "../components/optionPage/optionMain/OptionMain";
+import { ReactComponent as ArrowLogo } from "../assets/images/arrowOption.svg";
+import WhiteButton from "../components/common/buttons/WhiteButton";
+import BlueButton from "../components/common/buttons/BlueButton";
+import WarningModal from "../components/common/modals/WarningModal";
+import DefaultOptionButton from "../components/optionPage/optionSub/DefaultOptionButton";
+import DefaultOption from "../components/optionPage/defaultOption/DefaultOption";
+import palette from "../styles/palette"
+import OptionBoxContainer from "../components/optionPage/optionSub/OptionBoxContainer";
+import ConfusingTooltip from "../components/common/toolTips/ConfusingTooltip"
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,
@@ -39,9 +31,9 @@ function navigateTo(car, navigate) {
   else if (car.color.interior.name === undefined) navigate("/color/interior");
 }
 
-function filterData(data, currentTab) {
-  if (currentTab === ALL) return data;
-  return data.filter((item) => item.optionCategory === TRANSLATE[currentTab]);
+function filterData(optionData, currentTab) {
+  if (currentTab === ALL) return optionData;
+  return optionData.filter((item) => item.optionCategory === TRANSLATE[currentTab]);
 }
 
 let cachedOptionData = [];
@@ -50,13 +42,14 @@ function OptionPage() {
   const { tab } = useParams();
   const [currentTab, setCurrentTab] = useState(tab);
   const [selectedOption, setSelectedOption] = useState("");
-  const [data, setData] = useState(cachedOptionData);
+  const [optionData, setOptionData] = useState(cachedOptionData);
   const [currentPage, setCurrentPage] = useState(0);
   const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
   const [filteredData, setFilteredData] = useState([]);
   const [selectedFunction, setSelectedFunction] = useState("");
   const [tooltipState, setTooltipState] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isWarningOpen, setIsWarningOpen] = useState(false);
+  const [isDefaultModalOpen, setIsDefaultModalOpen] = useState(false);
   const tabs = [ALL, SAFETY, STYLE, PROTECTION, CONVENIENCE];
   const scrollBar = useRef();
   const navigate = useNavigate();
@@ -94,7 +87,7 @@ function OptionPage() {
         engineId: car.detail.engines.id,
       }).then((res) => {
         if (res === cachedOptionData) return;
-        setData(res);
+        setOptionData(res);
         cachedOptionData = res;
       });
     }
@@ -102,8 +95,8 @@ function OptionPage() {
   }, [car.option]);
 
   useLayoutEffect(() => {
-    setFilteredData(filterData(data, currentTab));
-  }, [data, currentTab]);
+    setFilteredData(filterData(optionData, currentTab));
+  }, [optionData, currentTab]);
 
   useLayoutEffect(() => {
     setCurrentTab(tab);
@@ -133,7 +126,7 @@ function OptionPage() {
         navigate(`/option/${tabs[currentIndex + 1]}`);
       } else {
         if (car.getAllOptionChecked()) navigate("/bill");
-        setIsOpen(true);
+        setIsWarningOpen(true);
       }
     } else if (direction === "prev") {
       if (currentIndex > 0) {
@@ -169,7 +162,7 @@ function OptionPage() {
         </StTabContainer>
         <StContentsContainer>
           <OptionMain
-            data={filteredData}
+            optionData={filteredData}
             selectedOption={selectedOption}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
@@ -187,15 +180,11 @@ function OptionPage() {
               />
             </ArrowLeftContainer>
             <StContainer ref={scrollBar}>
-              {filteredData?.map((item, idx) => (
-                <OptionBox
-                  {...item}
-                  key={idx}
-                  selectedOption={selectedOption}
-                  setSelectedOption={setSelectedOption}
-                  setTooltipState={() => setTooltipState(false)}
-                />
-              ))}
+              <OptionBoxContainer
+                filteredData={filteredData}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+                setTooltipState={() => setTooltipState(false)} />
             </StContainer>
             <ArrowRightContainer $blurState={blurState}>
               <ArrowLogo
@@ -204,7 +193,7 @@ function OptionPage() {
                 }}
               />
             </ArrowRightContainer>
-            <DefaultOption />
+            <DefaultOptionButton onClick={() => setIsDefaultModalOpen(true)} />
             <StTooltipContainer onClick={() => setTooltipState(false)}>
               <StTooltip isActive={tooltipState} />
             </StTooltipContainer>
@@ -231,18 +220,21 @@ function OptionPage() {
           </StConfirmContainer>
         </StBottomContainer>
       </StWrapper>
-      {isOpen ? (
+      {isWarningOpen ? (
         <WarningModal
           title={"모든 옵션을 선택하지 않았습니다."}
-          setModalVisible={setIsOpen}
+          setModalVisible={setIsWarningOpen}
           onSubmitClick={() => {
-            setIsOpen(false);
+            setIsWarningOpen(false);
             navigateTo(car, navigate);
           }}
           detail={"선택이 필요한 페이지로 이동하시겠습니까?"}
           modalPosition={"modal"}
         />
       ) : null}
+      {isDefaultModalOpen ? (
+        <DefaultOption setVisible={setIsDefaultModalOpen} />
+      ) : <></>}
     </>
   );
 }
@@ -392,4 +384,5 @@ const StTooltipContainer = styled.div`
   top: 80%;
   left: -3%;
   z-index: 1;
+  cursor: pointer;
 `;
