@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.trim.dto;
 
+import com.autoever.idle.util.PurchaseRateUtil;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,5 +25,9 @@ public class TrimDto {
         this.imgUrl = imgUrl;
         this.description = description;
         this.purchaseRate = purchaseRate;
+    }
+
+    public void setPurchaseRate(int purchaseRate) {
+        this.purchaseRate = PurchaseRateUtil.setPurchaseRate(purchaseRate);
     }
 }

@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.detailModel.dto;
 
+import com.autoever.idle.util.PurchaseRateUtil;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,5 +35,9 @@ public class EngineResponse {
         this.engineMaxTorque = engineMaxTorque;
         this.minFuel = minFuel;
         this.maxFuel = maxFuel;
+    }
+
+    public void setPurchaseRate(int purchaseRate) {
+        this.purchaseRate = PurchaseRateUtil.setPurchaseRate(purchaseRate);
     }
 }
