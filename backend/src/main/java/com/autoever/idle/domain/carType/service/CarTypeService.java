@@ -7,12 +7,14 @@ import com.autoever.idle.domain.category.carCategory.dto.CarCategoryResponse;
 import com.autoever.idle.domain.category.carCategory.repository.CarCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class CarTypeService {
 
     private final CarTypeRepository carTypeRepository;
