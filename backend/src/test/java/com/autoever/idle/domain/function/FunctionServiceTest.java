@@ -1,8 +1,8 @@
 package com.autoever.idle.domain.function;
 
-import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.category.functionCategory.dto.DefaultFunctionCategoryNameResponse;
 import com.autoever.idle.domain.category.functionCategory.dto.FunctionCategoryDto;
+import com.autoever.idle.domain.category.functionCategory.repository.FunctionCategoryRepository;
 import com.autoever.idle.domain.function.dto.DefaultFunctionResponse;
 import com.autoever.idle.domain.function.service.FunctionService;
 import org.assertj.core.api.SoftAssertions;

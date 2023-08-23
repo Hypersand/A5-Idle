@@ -1,12 +1,12 @@
 package com.autoever.idle.domain.detailModel;
 
 import com.autoever.idle.domain.detailModel.bodyType.repository.BodyTypeRepository;
-import com.autoever.idle.domain.detailModel.dto.BodyTypeResponse;
 import com.autoever.idle.domain.detailModel.drivingMethod.repository.DrivingMethodRepository;
-import com.autoever.idle.domain.detailModel.dto.DrivingMethodResponse;
+import com.autoever.idle.domain.detailModel.dto.BodyTypeResponse;
 import com.autoever.idle.domain.detailModel.dto.DetailModelResponse;
-import com.autoever.idle.domain.detailModel.engine.repository.EngineRepository;
+import com.autoever.idle.domain.detailModel.dto.DrivingMethodResponse;
 import com.autoever.idle.domain.detailModel.dto.EngineResponse;
+import com.autoever.idle.domain.detailModel.engine.repository.EngineRepository;
 import com.autoever.idle.global.exception.custom.InvalidDetailModelException;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;

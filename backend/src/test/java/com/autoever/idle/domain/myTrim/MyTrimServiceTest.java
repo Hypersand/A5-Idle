@@ -1,10 +1,10 @@
 package com.autoever.idle.domain.myTrim;
 
-import com.autoever.idle.domain.function.repository.FunctionRepository;
-import com.autoever.idle.domain.function.repository.TrimFunctionRepository;
 import com.autoever.idle.domain.function.dto.FunctionIdResponse;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionDto;
 import com.autoever.idle.domain.function.dto.MyTrimFunctionResponse;
+import com.autoever.idle.domain.function.repository.FunctionRepository;
+import com.autoever.idle.domain.function.repository.TrimFunctionRepository;
 import com.autoever.idle.domain.myTrim.dto.MyTrimDto;
 import com.autoever.idle.domain.myTrim.dto.MyTrimResponse;
 import com.autoever.idle.domain.myTrim.dto.MyTrimSubmitRequest;
