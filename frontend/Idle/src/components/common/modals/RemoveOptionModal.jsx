@@ -1,17 +1,11 @@
 import { styled } from "styled-components";
-import BlueButton from "buttons/BlueButton";
-import WhiteButton from "buttons/WhiteButton";
-import { createPortal } from "react-dom";
 import { useContext } from "react";
-import { carContext } from "utils/context";
-import palette from "styles/palette";
-import { CHANGE_ENGINES, POP_ADDITIONAL_OPTION, POP_CONFUSING_OPTION } from "utils/actionType";
-
-/**
- *
- * @param {string} param0
- * @returns
- */
+import { createPortal } from "react-dom";
+import { carContext } from "../../../store/context";
+import { CHANGE_ENGINES, POP_ADDITIONAL_OPTION, POP_CONFUSING_OPTION } from "../../../store/actionType";
+import WhiteButton from "../buttons/WhiteButton";
+import BlueButton from "../buttons/BlueButton";
+import palette from "../../../styles/palette";
 
 function RemoveOptionModal({ data, setModalVisible }) {
   const { car, dispatch } = useContext(carContext);
@@ -53,14 +47,10 @@ function RemoveOptionModal({ data, setModalVisible }) {
         <StTitle>
           엔진을 변경하시면 <br /> 선택하신 아래 옵션이 해제돼요.
         </StTitle>
-
         <StOptionContainer>
-          {/* <StOptionName>{data.name}</StOptionName>
-          <StOptionPrice>+{data.price.toLocaleString()}원</StOptionPrice> */}
           <StOptionName>{names.join(", ")}</StOptionName>
           <StOptionPrice>총 +{priceSum.toLocaleString()}원</StOptionPrice>
         </StOptionContainer>
-
         <StBtnContainer>
           <WhiteButton text={"취소"} onClick={() => setModalVisible(false)} />
           <BlueButton text={"확인"} onClick={confirmClicked} />

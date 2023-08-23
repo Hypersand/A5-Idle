@@ -1,25 +1,19 @@
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { carContext } from "utils/context";
-import BlueButton from "buttons/BlueButton";
-import WhiteButton from "buttons/WhiteButton";
-import {
-  DEFAULT_EXTERIROR_COLOR,
-  EXTERIOR_COLORS,
-  INTERIROR_COLORS,
-  TRANSLATE,
-} from "utils/constants";
-import CategoryTabs from "tabs/CategoryTabs";
-import Car3D from "content/Car3D";
-import OutsideColorBoxContainer from "colorSelection/OutsideColorBoxContainer";
-import InnerColorBoxContainer from "colorSelection/InnerColorBoxContainer";
-import InnerColorContent from "content/InnerColorContent";
-import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "utils/actionType";
-import { getWithoutQueryAPI } from "utils/api";
-import { DEFAULT_INTERIROR_COLOR, PATH } from "utils/constants";
-import WarningModal from "modals/WarningModal";
-import ServerErrorPage from "./serverErrorPage";
+import { DEFAULT_EXTERIROR_COLOR, DEFAULT_INTERIROR_COLOR, EXTERIOR_COLORS, INTERIROR_COLORS, TRANSLATE } from "../constant/constants"
+import { carContext } from "../store/context"
+import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "../store/actionType"
+import { getWithoutQueryAPI } from "../utils/api"
+import { PATH } from "../constant/path"
+import CategoryTabs from "../components/common/tabs/CategoryTabs";
+import Car3D from "../components/colorPage/colorMain/Car3D";
+import WhiteButton from "../components/common/buttons/WhiteButton";
+import BlueButton from "../components/common/buttons/BlueButton";
+import WarningModal from "../components/common/modals/WarningModal";
+import InteriorColorMain from "../components/colorPage/colorMain/InteriorColorMain";
+import ExteriorColorBoxContainer from "../components/colorPage/colorSub/ExteriorColorBoxContainer";
+import InteriorColorBoxContainer from "../components/colorPage/colorSub/InteriorColorBoxContainer";
 
 let cachedExterior = null;
 let cachedInterior = null;
@@ -126,14 +120,14 @@ function ColorPage() {
         {currentTab === EXTERIOR_COLORS ? (
           <Car3D data={filteredExteriorData} />
         ) : (
-          <InnerColorContent data={interiorData?.carInteriorColors} />
+          <InteriorColorMain data={interiorData?.carInteriorColors} />
         )}
         <StBottomContainer>
           <StContainer>
             {currentTab === EXTERIOR_COLORS ? (
-              <OutsideColorBoxContainer data={exteriorData} />
+              <ExteriorColorBoxContainer data={exteriorData} />
             ) : (
-              <InnerColorBoxContainer data={interiorData} />
+              <InteriorColorBoxContainer data={interiorData} />
             )}
           </StContainer>
           <StConfirmContainer>

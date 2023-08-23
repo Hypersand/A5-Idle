@@ -1,26 +1,17 @@
-import { useContext, useEffect, useState } from "react";
-import DetailModelBox from "boxs/DetailModelBox";
 import { styled } from "styled-components";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import BlueButton from "buttons/BlueButton";
-import {
-  BODY_TYPES,
-  DEFAULT_BODY_TYPE,
-  DEFAULT_DRIVING_METHOD,
-  DEFAULT_ENGINE,
-  DRVING_METHODS,
-  ENGINES,
-  TRANSLATE,
-} from "utils/constants";
-import WhiteButton from "buttons/WhiteButton";
-import CategoryTabs from "tabs/CategoryTabs";
-import MainContents from "content/MainContents";
-import { carContext } from "utils/context";
-import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "utils/actionType";
-import { PATH } from "utils/constants";
-import { getWithoutQueryAPI } from "utils/api";
-import RemoveOptionModal from "modals/RemoveOptionModal";
-import ServerErrorPage from "./serverErrorPage";
+import { carContext } from "../store/context"
+import { BODY_TYPES, DEFAULT_BODY_TYPE, DEFAULT_DRIVING_METHOD, DEFAULT_ENGINE, DRVING_METHODS, ENGINES, TRANSLATE } from "../constant/constants"
+import { PATH } from "../constant/path"
+import { getWithoutQueryAPI } from "../utils/api"
+import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "../store/actionType"
+import CategoryTabs from "../components/common/tabs/CategoryTabs"
+import DetailModelMain from "../components/detailModelPage/detailModelMain/DetailModelMain";
+import RemoveOptionModal from "../components/common/modals/RemoveOptionModal"
+import WhiteButton from "../components/common/buttons/WhiteButton"
+import BlueButton from "../components/common/buttons/BlueButton"
+import DetailModelBoxContainer from "../components/detailModelPage/detailModelSub/DetailModelBoxContainer";
 
 let cachedData = null;
 
@@ -33,7 +24,8 @@ function DetailModelPage() {
   const [optionsToBeRemoved, setOptionsToBeRemoved] = useState([]);
 
   const navigate = useNavigate();
-  const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES];
+  const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES
+  ];
 
   useEffect(() => {
     getWithoutQueryAPI(PATH.DETAIL, `trimId=${TRANSLATE[car.trim.name]}`).then((res) => {
@@ -108,19 +100,14 @@ function DetailModelPage() {
               ))}
             </StTabContainer>
             <StContentsContainer>
-              <MainContents currentState={currentTab} data={detailData} />
+              <DetailModelMain currentState={currentTab} data={detailData} />
             </StContentsContainer>
             <StBottomContainer>
               <StContainer>
-                {detailData[currentTab].map((item, idx) => (
-                  <DetailModelBox
-                    key={idx}
-                    {...item}
-                    currentTab={currentTab}
-                    setOptionsToBeRemoved={setOptionsToBeRemoved}
-                    setModalVisible={setWarningModalVisible}
-                  />
-                ))}
+                <DetailModelBoxContainer detailData={detailData[currentTab]}
+                  currentTab={currentTab}
+                  setOptionsToBeRemoved={setOptionsToBeRemoved}
+                  setWarningModalVisible={setWarningModalVisible} />
               </StContainer>
               <StConfirmContainer>
                 <StConfirmHeader>
