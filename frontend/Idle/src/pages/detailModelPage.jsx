@@ -18,10 +18,10 @@ let cachedData = null;
 function DetailModelPage() {
   const { tab } = useParams();
   const [currentTab, setCurrentTab] = useState(tab);
-  const { car, dispatch } = useContext(carContext);
   const [detailData, setDetailData] = useState(cachedData);
   const [warningModalVisible, setWarningModalVisible] = useState(false);
   const [optionsToBeRemoved, setOptionsToBeRemoved] = useState([]);
+  const { car, dispatch } = useContext(carContext);
 
   const navigate = useNavigate();
   const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES

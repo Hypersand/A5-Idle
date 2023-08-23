@@ -4,7 +4,6 @@ import { styled } from "styled-components";
 import { preloadContext } from "../store/context"
 import { getWithoutQueryAPI } from "../utils/api"
 import { PATH } from "../constant/path"
-import { preloadImage } from "../utils/preloader"
 import Loading from "../components/common/loading/Loading"
 import TrimMain from "../components/trimPage/trimMain/TrimMain"
 import NormalTrimBoxContainer from "../components/trimPage/trimSub/NormalTrimBoxContainer"
@@ -21,7 +20,7 @@ function TrimPage() {
   const [toolTipStatus, setToolTipStatus] = useState(true);
   const [trimData, setTrimData] = useState(cachedTrimData);
   const [modalVisible, setModalVisible] = useState(false);
-  const { preLoadData, setPreLoadData, loaderIdx, setLoaderIdx } = useContext(preloadContext);
+  const { setPreLoadData, preloadImages } = useContext(preloadContext);
 
   function nextBTNClicked() {
     navigate("/detail/engines");
@@ -42,12 +41,7 @@ function TrimPage() {
     });
   }, []);
 
-  function preloadImages() {
-    if (loaderIdx < preLoadData.length) {
-      preLoadData[loaderIdx].map((item) => { preloadImage(item.imgUrl); });
-      setLoaderIdx((prev) => prev + 1);
-    }
-  }
+
   function findButtonClicked() {
     setToolTipStatus(false);
     setModalVisible(true);

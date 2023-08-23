@@ -55,6 +55,7 @@ function NormalTrimBox({
     setIsModal(true);
     const result = await getWithoutQueryAPI(PATH.OPTION.DEFAULT, { trimId: TRANSLATE[name] });
     setOptionData(result);
+    onMouseEnter()
   }
 
   function setModalOff() {
@@ -74,7 +75,7 @@ function NormalTrimBox({
           </StTitleContainer>
           <Price $isSelected={isTrimSelected}>{price.toLocaleString()} 원</Price>
         </StContent>
-        <PopUpButton $isSelected={isTrimSelected} onClick={setModalOn}>
+        <PopUpButton $isSelected={isTrimSelected} onMouseEnter={onMouseEnter} onClick={setModalOn}>
           자세히 보기
           <ArrorRight alt="ArrowRightImg" />
         </PopUpButton>
