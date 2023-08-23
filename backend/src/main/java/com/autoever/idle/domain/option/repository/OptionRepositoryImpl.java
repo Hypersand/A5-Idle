@@ -40,7 +40,7 @@ public class OptionRepositoryImpl implements OptionRepository {
                         "JOIN OPTION_CATEGORY oc ON o.option_category_id = oc.option_category_id " +
                         "WHERE tf.trim_id = :trimId AND tf.is_default = 'FALSE' " +
                         "GROUP BY optionId " +
-                        "ORDER BY optionPrice; ";
+                        "ORDER BY optionName; ";
 
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("trimId", trimId);
