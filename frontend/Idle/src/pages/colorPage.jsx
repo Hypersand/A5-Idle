@@ -11,6 +11,12 @@ import WarningModal from "../components/common/modals/WarningModal";
 import InteriorColorMain from "../components/colorPage/colorMain/InteriorColorMain";
 import ExteriorColorBoxContainer from "../components/colorPage/colorSub/ExteriorColorBoxContainer";
 import InteriorColorBoxContainer from "../components/colorPage/colorSub/InteriorColorBoxContainer";
+import InteriorColorMain from "../components/colorPage/colorMain/InteriorColorMain";
+import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "../store/actionType";
+import { getWithoutQueryAPI } from "../utils/api";
+import { DEFAULT_INTERIROR_COLOR } from "../constant/constants";
+import { PATH } from "../constant/path";
+import WarningModal from "../components/common/modals/WarningModal";
 import { preloadImage } from "../utils/preloader";
 import ColorConfirmContainer from "../components/colorPage/colorSub/ColorConfirmContainer";
 import ColorTabContainer from "../components/colorPage/colorMain/ColorTabContainer";
@@ -50,25 +56,26 @@ function ColorPage() {
   }, [tab]);
 
   useLayoutEffect(() => {
-    getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: car.trim.trimId }).then((result) => {
+    (async () => {
+      const result = await getWithoutQueryAPI(PATH.COLOR.EXTERIOR, {
+        trimId: car.trim.trimId,
+      });
       setExteriorData(result);
       cachedExterior = result;
       dispatch({ type: SET_CAR_IMG, payload: result[0].carImgUrls[0].imgUrl });
-    });
-    getWithoutQueryAPI(PATH.COLOR.INTERIOR_ALL).then((result) => {
-      result.interiorImgUrls.map((item) => { preloadImage(item) })
-    });
+    })();
   }, []);
 
   useLayoutEffect(() => {
     if (car.color.exterior.exteriorId !== undefined) {
-      getWithoutQueryAPI(PATH.COLOR.INTERIOR, {
-        trimId: car.trim.trimId,
-        exteriorId: car.color.exterior.exteriorId,
-      }).then((result) => {
+      (async () => {
+        const result = await getWithoutQueryAPI(PATH.COLOR.INTERIOR, {
+          trimId: car.trim.trimId,
+          exteriorId: car.color.exterior.exteriorId,
+        });
         setInteriorData(result);
         cachedInterior = result;
-      });
+      })();
     }
   }, [exteriorData]);
 

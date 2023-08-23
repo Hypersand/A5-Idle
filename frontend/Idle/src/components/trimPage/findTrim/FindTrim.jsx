@@ -1,15 +1,22 @@
 import { useContext, useEffect, useReducer } from "react";
 import styled, { keyframes } from "styled-components";
 import { carContext, dispatchContext, stateContext } from "../../../store/context";
-import { CHANGE_ALL, PUSH_OPTION_ALERT, SET_ANIMATION_STATE, SET_OPTION_STATUS, SET_SELECTED_OPTION, SET_SHOWOPTION_ALERT } from "../../../store/actionType";
+import {
+  CHANGE_ALL,
+  PUSH_OPTION_ALERT,
+  SET_ANIMATION_STATE,
+  SET_OPTION_STATUS,
+  SET_SELECTED_OPTION,
+  SET_SHOWOPTION_ALERT,
+} from "../../../store/actionType";
 import { getWithQueryAPI } from "../../../utils/api";
-import { PATH } from "../../../constant/path"
-import { defaultOption, findTrimInitialState } from "../../../constant/constants"
-import { findTrimReducer } from "../../../store/reducer"
+import { PATH } from "../../../constant/path";
+import { defaultOption, findTrimInitialState } from "../../../constant/constants";
+import { findTrimReducer } from "../../../store/reducer";
 import WhiteButton from "../../common/buttons/WhiteButton";
 import BlueButton from "../../common/buttons/BlueButton";
 import palette from "../../../styles/palette";
-import OptionAlert from "./findTrimSub/OptionAlert"
+import OptionAlert from "./findTrimSub/OptionAlert";
 import TrimBoxContainer from "./findTrimMain/TrimBoxContainer";
 
 function FindTrim({ setVisible, onMouseEnter }) {
@@ -21,12 +28,10 @@ function FindTrim({ setVisible, onMouseEnter }) {
       stateDispatch({ type: SET_OPTION_STATUS, payload: defaultOption });
       return;
     }
-    async function postFunc() {
-      await getWithQueryAPI(PATH.FIND.OPTION, { functionIds: state.selectedOption }).then((res) => {
-        stateDispatch({ type: SET_OPTION_STATUS, payload: res });
-      });
-    }
-    postFunc();
+    (async () => {
+      const res = await getWithQueryAPI(PATH.FIND.OPTION, { functionIds: state.selectedOption });
+      stateDispatch({ type: SET_OPTION_STATUS, payload: res });
+    })();
   }, [state.selectedOption]);
 
   function clickExit(animateTime) {
@@ -60,9 +65,8 @@ function FindTrim({ setVisible, onMouseEnter }) {
   async function clickCheck() {
     clickExit(2500);
     stateDispatch({ type: SET_SHOWOPTION_ALERT, payload: true });
-    await postFunc().then(() => {
-      dispatch({ type: CHANGE_ALL, payload: state.tempCar });
-    });
+    await postFunc();
+    dispatch({ type: CHANGE_ALL, payload: state.tempCar });
   }
   return (
     <dispatchContext.Provider value={{ stateDispatch }}>

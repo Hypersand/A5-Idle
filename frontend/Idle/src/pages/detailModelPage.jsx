@@ -24,10 +24,11 @@ function DetailModelPage() {
   const tabs = [ENGINES, DRVING_METHODS, BODY_TYPES];
 
   useEffect(() => {
-    getWithoutQueryAPI(PATH.DETAIL, `trimId=${TRANSLATE[car.trim.name]}`).then((res) => {
+    (async () => {
+      const res = await getWithoutQueryAPI(PATH.DETAIL, `trimId=${TRANSLATE[car.trim.name]}`);
       setDetailData(res);
       cachedData = res;
-    });
+    })();
   }, []);
 
   useEffect(() => {

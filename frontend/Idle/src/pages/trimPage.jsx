@@ -20,19 +20,21 @@ function TrimPage() {
   const { setPreLoadData, preloadImages } = useContext(preloadContext);
 
   useEffect(() => {
-    getWithoutQueryAPI(PATH.TRIM).then((result) => {
-      setTrimData(result);
-      cachedTrimData = result;
-    });
+    (async () => {
+      const res = await getWithoutQueryAPI(PATH.TRIM);
+      setTrimData(res);
+      cachedTrimData = res;
+    })();
   }, []);
 
   useEffect(() => {
     setPreLoadData([]);
-    getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: 4 }).then((result) => {
-      result.map((item) => {
+    (async () => {
+      const res = await getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: 4 });
+      res?.map((item) => {
         setPreLoadData((prev) => [...prev, item.carImgUrls]);
       });
-    });
+    })();
   }, []);
 
   function findButtonClicked() {

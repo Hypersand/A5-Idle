@@ -1,16 +1,16 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { css, keyframes, styled } from "styled-components";
-import { carContext } from "../store/context"
-import { getWithQueryAPI } from "../utils/api"
-import { PATH } from "../constant/path"
-import Header from "../components/layout/Header"
+import { carContext } from "../store/context";
+import { getWithQueryAPI } from "../utils/api";
+import { PATH } from "../constant/path";
+import Header from "../components/layout/Header";
 import ReactToPrint from "react-to-print";
 import WhiteButton from "../components/common/buttons/WhiteButton";
 import BlueButton from "../components/common/buttons/BlueButton";
 import BillMain from "../components/billPage/billMain/BillMain";
 import WarningModal from "../components/common/modals/WarningModal";
 import MapModal from "../components/billPage/carMaster/MapModal";
-import CarMasterTooltip from "../components/common/toolTips/CarMasterTooltip"
+import CarMasterTooltip from "../components/common/toolTips/CarMasterTooltip";
 
 let cachedBillData = null;
 
@@ -64,15 +64,16 @@ function BillPage() {
     if (car.color.exterior.exteriorId === undefined) {
       setModalVisible(true);
     } else {
-      getWithQueryAPI(PATH.BILL, {
-        trimId: car.trim.trimId,
-        exteriorId: car.color.exterior.exteriorId,
-        interiorId: car.color.interior.interiorId,
-        selectedOptionIds: additionalOptionIds,
-      }).then((result) => {
-        setBillData(result);
-        cachedBillData = result;
-      });
+      (async () => {
+        const res = await getWithQueryAPI(PATH.BILL, {
+          trimId: car.trim.trimId,
+          exteriorId: car.color.exterior.exteriorId,
+          interiorId: car.color.interior.interiorId,
+          selectedOptionIds: additionalOptionIds,
+        });
+        setBillData(res);
+        cachedBillData = res;
+      })();
     }
   }, []);
   function scrollTop() {
