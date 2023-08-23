@@ -3,11 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import MainLogoWhite from "../components/common/logos/MainLogoWhite";
 
 function ServerErrorPage(setError = null) {
-
   const navigate = useNavigate();
   function moveButtonClick() {
-    navigate("/")
-    setError(false)
+    navigate("/");
+    setError(false);
   }
   return (
     <StContainer>
@@ -68,6 +67,7 @@ const StLogoContainer = styled.div`
   top: 32px;
   left: 128px;
   z-index: 1;
+  cursor: pointer;
 `;
 
 const StTitle = styled.h1`

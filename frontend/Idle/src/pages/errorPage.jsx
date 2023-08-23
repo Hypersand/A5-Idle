@@ -67,6 +67,7 @@ const StLogoContainer = styled.div`
   top: 32px;
   left: 128px;
   z-index: 1;
+  cursor: pointer;
 `;
 
 const StTitle = styled.h1`
