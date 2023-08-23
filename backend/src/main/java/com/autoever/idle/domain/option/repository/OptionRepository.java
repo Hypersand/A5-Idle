@@ -7,8 +7,6 @@ import java.util.List;
 
 
 public interface OptionRepository {
-    List<OptionDto> findAdditionalOptionList(Long trimId);
-    List<Long> findNotActivatedOptionIdList(Long engineId, List<Long> selectedOptionIdList);
-
+    List<OptionDto> findAdditionalOptionList(Long trimId, Long engineId, List<Long> selectedOptionIds);
     List<SelectedOptionDto> findSelectedOptions(List<Long> optionIdList);
 }
