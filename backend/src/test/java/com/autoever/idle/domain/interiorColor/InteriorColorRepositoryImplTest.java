@@ -40,13 +40,13 @@ class InteriorColorRepositoryImplTest {
         softAssertions.assertThat(response.get(0).getInteriorPrice()).isEqualTo(0);
         softAssertions.assertThat(response.get(0).getInteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png");
         softAssertions.assertThat(response.get(0).getCarInteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png");
-        softAssertions.assertThat(response.get(0).getInteriorPurchaseRate()).isEqualTo("구매자 20%가 선택");
+        softAssertions.assertThat(response.get(0).getInteriorPurchaseRate()).isEqualTo("구매자 10%가 선택");
         softAssertions.assertThat(response.get(1).getInteriorId()).isEqualTo(54L);
         softAssertions.assertThat(response.get(1).getInteriorName()).isEqualTo("쿨그레이");
         softAssertions.assertThat(response.get(1).getInteriorPrice()).isEqualTo(0);
         softAssertions.assertThat(response.get(1).getInteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png");
         softAssertions.assertThat(response.get(1).getCarInteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png");
-        softAssertions.assertThat(response.get(1).getInteriorPurchaseRate()).isEqualTo("구매자 3%가 선택");
+        softAssertions.assertThat(response.get(1).getInteriorPurchaseRate()).isEqualTo("구매자 10%가 선택");
     }
   
     @Test

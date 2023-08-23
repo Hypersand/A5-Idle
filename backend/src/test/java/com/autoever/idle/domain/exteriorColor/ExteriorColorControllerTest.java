@@ -33,6 +33,6 @@ class ExteriorColorControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].exteriorName").value("어비스 블랙 펄"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].exteriorPrice").value(0))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].exteriorPurchaseRate").value("구매자의 30%가 선택"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].exteriorPurchaseRate").value("구매자 10%가 선택"));
     }
 }

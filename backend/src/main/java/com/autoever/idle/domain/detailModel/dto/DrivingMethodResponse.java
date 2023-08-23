@@ -1,5 +1,6 @@
 package com.autoever.idle.domain.detailModel.dto;
 
+import com.autoever.idle.util.PurchaseRateUtil;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,5 +24,9 @@ public class DrivingMethodResponse {
         this.description = description;
         this.imgUrl = imgUrl;
         this.purchaseRate = purchaseRate;
+    }
+
+    public void setPurchaseRate(int purchaseRate) {
+        this.purchaseRate = PurchaseRateUtil.setPurchaseRate(purchaseRate);
     }
 }
