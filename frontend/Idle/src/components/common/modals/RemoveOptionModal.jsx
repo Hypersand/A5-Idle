@@ -7,12 +7,6 @@ import WhiteButton from "../buttons/WhiteButton";
 import BlueButton from "../buttons/BlueButton";
 import palette from "../../../styles/palette";
 
-/**
- *
- * @param {string} param0
- * @returns
- */
-
 function RemoveOptionModal({ data, setModalVisible }) {
   const { car, dispatch } = useContext(carContext);
 
