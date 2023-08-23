@@ -1,7 +1,7 @@
 
 <p align="center">
       <a href="https://i-want-to-go-autoever.shop/" target="_blank">    
-            <img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/109746210/1d82e28d-fb2e-4c4a-8f15-976a7d999b50" href="https://i-want-to-go-autoever.shop/" width=300px>
+            <img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/97280492/9c1c72c5-3178-42d4-9ce1-c99cb58c062c" href="https://i-want-to-go-autoever.shop/" width=300px>
       </a>
 </p>
 
