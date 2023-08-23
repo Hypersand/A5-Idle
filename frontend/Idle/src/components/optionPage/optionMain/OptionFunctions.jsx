@@ -59,13 +59,11 @@ function OptionFunctions({ optionData, setSelectedFunction, currentPage, setCurr
     return optionData?.length > 1 ? (
       <StMain>
         <ArrowLeft onClick={leftBtnClicked} style={{ cursor: "pointer" }} />
-
         <StWrapper ref={fNameRef} $isOverFlow={isFNameOverFlow}>
           <StFunctionName $isOverFlow={isFNameOverFlow}>
             {optionData[currentPage]?.functionName}
           </StFunctionName>
         </StWrapper>
-
         <ArrowRight onClick={rightBtnClicked} style={{ cursor: "pointer" }} />
       </StMain>
     ) : null;
