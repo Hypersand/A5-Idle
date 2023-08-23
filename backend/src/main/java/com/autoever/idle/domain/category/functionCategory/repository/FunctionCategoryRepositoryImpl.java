@@ -47,7 +47,7 @@ public class FunctionCategoryRepositoryImpl implements FunctionCategoryRepositor
         RowMapper<DefaultFunctionNameResponse> rowMapper = new BeanPropertyRowMapper<>(DefaultFunctionNameResponse.class);
 
         return jdbcTemplate.query(
-                "select F.name as function_name " +
+                "select F.name " +
                         "from FUNCTIONS as F " +
                         "left join TRIM_FUNCTION as TF on F.function_id = TF.function_id " +
                         "where TF.is_default = 'TRUE' and TF.trim_id = :trimId and F.function_category_id = :categoryId",
