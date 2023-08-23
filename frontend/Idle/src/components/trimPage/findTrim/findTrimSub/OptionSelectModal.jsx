@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { keyframes, styled } from "styled-components";
 import { dispatchContext, stateContext } from "../../../../store/context";
 import { PUSH_SELECTED_OPTION } from "../../../../store/actionType";
-import { optionModalWarningMent } from "../../../../constant/constants"
+import { optionModalWarningMent } from "../../../../constant/constants";
 import BlueButton from "../../../common/buttons/BlueButton";
 import palette from "../../../../styles/palette";
 import { ReactComponent as X } from "../../../../assets/images/esc.svg";
@@ -36,7 +36,7 @@ function OptionSelectModal({ data, setModalVisible, setIsSelected, onClick }) {
       <StContainer $animationstate={animationstate}>
         <StTitleContainer>
           <StTitle>{data.name}</StTitle>
-          <StImgX onClick={clickClose} data-name={"esc"} />
+          <StImgX alt="XImg" onClick={clickClose} data-name={"esc"} />
         </StTitleContainer>
         <StDescription>{data.description}</StDescription>
         <img

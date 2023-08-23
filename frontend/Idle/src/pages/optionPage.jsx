@@ -1,11 +1,19 @@
 import { styled } from "styled-components";
 import { useContext, useLayoutEffect, useRef, useState } from "react";
-import { ALL, CONVENIENCE, PROTECTION, SAFETY, STYLE, TRANSLATE, setClickedOptionPage } from "../constant/constants"
-import { carContext } from "../store/context"
+import {
+  ALL,
+  CONVENIENCE,
+  PROTECTION,
+  SAFETY,
+  STYLE,
+  TRANSLATE,
+  setClickedOptionPage,
+} from "../constant/constants";
+import { carContext } from "../store/context";
 import { useNavigate, useParams } from "react-router-dom";
-import { getWithQueryAPI } from "../utils/api"
-import { PATH } from "../constant/path"
-import CategoryTabs from "../components/common/tabs/CategoryTabs"
+import { getWithQueryAPI } from "../utils/api";
+import { PATH } from "../constant/path";
+import CategoryTabs from "../components/common/tabs/CategoryTabs";
 import OptionMain from "../components/optionPage/optionMain/OptionMain";
 import { ReactComponent as ArrowLogo } from "../assets/images/arrowOption.svg";
 import WhiteButton from "../components/common/buttons/WhiteButton";
@@ -13,9 +21,9 @@ import BlueButton from "../components/common/buttons/BlueButton";
 import WarningModal from "../components/common/modals/WarningModal";
 import DefaultOptionButton from "../components/optionPage/optionSub/DefaultOptionButton";
 import DefaultOption from "../components/optionPage/defaultOption/DefaultOption";
-import palette from "../styles/palette"
+import palette from "../styles/palette";
 import OptionBoxContainer from "../components/optionPage/optionSub/OptionBoxContainer";
-import ConfusingTooltip from "../components/common/toolTips/ConfusingTooltip"
+import ConfusingTooltip from "../components/common/toolTips/ConfusingTooltip";
 
 const BLUR_STATUS = {
   LEFT_NONE: 1,
@@ -174,6 +182,7 @@ function OptionPage() {
           <StWrapper>
             <ArrowLeftContainer $blurState={blurState}>
               <ArrowLogo
+                alt="ArrowLogoImg"
                 onClick={() => {
                   ArrowButtonClicked("LEFT");
                 }}
@@ -184,10 +193,12 @@ function OptionPage() {
                 filteredData={filteredData}
                 selectedOption={selectedOption}
                 setSelectedOption={setSelectedOption}
-                setTooltipState={() => setTooltipState(false)} />
+                setTooltipState={() => setTooltipState(false)}
+              />
             </StContainer>
             <ArrowRightContainer $blurState={blurState}>
               <ArrowLogo
+                alt="ArrowLogoImg"
                 onClick={() => {
                   ArrowButtonClicked("RIGHT");
                 }}
@@ -232,9 +243,7 @@ function OptionPage() {
           modalPosition={"modal"}
         />
       ) : null}
-      {isDefaultModalOpen ? (
-        <DefaultOption setVisible={setIsDefaultModalOpen} />
-      ) : <></>}
+      {isDefaultModalOpen ? <DefaultOption setVisible={setIsDefaultModalOpen} /> : <></>}
     </>
   );
 }

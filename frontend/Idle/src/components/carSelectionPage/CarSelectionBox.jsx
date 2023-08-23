@@ -4,10 +4,10 @@ import palette from "../../styles/palette";
 function CarSelectionBox({ isSelected, data, setSelectedCar }) {
   return (
     <StContainer $isSelected={isSelected} onClick={() => setSelectedCar(data.carName)}>
-      <StImg src={data.carImgUrl}></StImg>
+      <StImg alt="CarImg" src={data.carImgUrl} />
       <StName>{data.carName}</StName>
       <StPrice>{data.carPrice.toLocaleString()} 만원~</StPrice>
-      {data.logoImgUrl && <StWheel src={data.logoImgUrl}></StWheel>}
+      {data.logoImgUrl && <StWheel alt={"logoImg"} src={data.logoImgUrl}></StWheel>}
       {data.carIsNew && <StNew>New</StNew>}
     </StContainer>
   );
@@ -32,7 +32,7 @@ const StContainer = styled.div`
 
   &:hover {
     background-color: ${({ $isSelected }) =>
-    $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
     box-shadow: 2px 2px 10px #898989;

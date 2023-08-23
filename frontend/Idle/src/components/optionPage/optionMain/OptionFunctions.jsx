@@ -17,8 +17,8 @@ function OptionFunctions({ optionData, setSelectedFunction, currentPage, setCurr
         ? setIsDescOverFlow(true)
         : setIsDescOverFlow(false)
       : ref.scrollWidth > ref.clientWidth
-        ? setIsFNameOverFlow(true)
-        : setIsFNameOverFlow(false);
+      ? setIsFNameOverFlow(true)
+      : setIsFNameOverFlow(false);
   }
 
   useEffect(() => {
@@ -58,13 +58,13 @@ function OptionFunctions({ optionData, setSelectedFunction, currentPage, setCurr
   function renderMain() {
     return optionData?.length > 1 ? (
       <StMain>
-        <ArrowLeft onClick={leftBtnClicked} style={{ cursor: "pointer" }} />
+        <ArrowLeft alt={"ArrowLeft"} onClick={leftBtnClicked} style={{ cursor: "pointer" }} />
         <StWrapper ref={fNameRef} $isOverFlow={isFNameOverFlow}>
           <StFunctionName $isOverFlow={isFNameOverFlow}>
             {optionData[currentPage]?.functionName}
           </StFunctionName>
         </StWrapper>
-        <ArrowRight onClick={rightBtnClicked} style={{ cursor: "pointer" }} />
+        <ArrowRight alt={"ArrowRight"} onClick={rightBtnClicked} style={{ cursor: "pointer" }} />
       </StMain>
     ) : null;
   }

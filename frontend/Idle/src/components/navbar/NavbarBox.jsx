@@ -110,13 +110,14 @@ function renderChecked(type, currenPage, car) {
   //type , 현재 페이지, 카 객체
   const options = car[type];
 
-  if (currenPage === BILL && car.getAllOptionChecked() && clickedOptionPage) return <Checked />;
+  if (currenPage === BILL && car.getAllOptionChecked() && clickedOptionPage)
+    return <Checked alt={"Checked"} />;
 
   switch (type) {
     case TRIM:
-      return options.name !== undefined ? <Checked /> : null;
+      return options.name !== undefined ? <Checked alt={"Checked"} /> : null;
     case OPTION:
-      return clickedOptionPage ? <Checked /> : null;
+      return clickedOptionPage ? <Checked alt={"Checked"} /> : null;
     case BILL:
       break;
     default:

@@ -5,7 +5,7 @@ import palette from "../../../styles/palette";
 function FindTrimButton({ onClick, onMouseEnter }) {
   return (
     <StFindTrimButton onClick={onClick}>
-      <StArrowContainer />
+      <StArrowContainer alt="ArrowLeftImg" />
       <StFindTrimButtonText onMouseEnter={onMouseEnter}>내게 맞는 트림 찾기</StFindTrimButtonText>
     </StFindTrimButton>
   );
@@ -34,19 +34,19 @@ const StFindTrimButtonText = styled.div`
 `;
 
 const StArrowContainer = styled(ArrowUpper)`
-position: relative;
-animation: bounceTop 1.3s infinite ease-in-out;
-@keyframes bounceTop {
-  0% {
-    top: 1px;
-  }
+  position: relative;
+  animation: bounceTop 1.3s infinite ease-in-out;
+  @keyframes bounceTop {
+    0% {
+      top: 1px;
+    }
 
-  50% {
-    top: -2px;
-  }
+    50% {
+      top: -2px;
+    }
 
-  100% {
-    top: 1px;
+    100% {
+      top: 1px;
+    }
   }
-}
-`
+`;

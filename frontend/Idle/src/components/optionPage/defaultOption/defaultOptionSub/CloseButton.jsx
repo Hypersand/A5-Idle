@@ -5,7 +5,7 @@ import palette from "../../../../styles/palette";
 function CloseButton({ onClick }) {
   return (
     <StButton onClick={onClick}>
-      <StArrowContainer />
+      <StArrowContainer alt={"ArrowDown"} />
       <StTextBox>추가 옵션 선택하기</StTextBox>
     </StButton>
   );
@@ -20,7 +20,7 @@ const StButton = styled.button`
   width: 99px;
   height: 28px;
   cursor: pointer;
-  &:hover{
+  &:hover {
     text-decoration: underline;
   }
 `;
@@ -42,19 +42,19 @@ const StTextBox = styled.div`
 `;
 
 const StArrowContainer = styled(StArrowDown)`
-position: relative;
-animation: bounceTop 1.3s infinite ease-in-out;
-@keyframes bounceTop {
-  0% {
-    top: -1px;
-  }
+  position: relative;
+  animation: bounceTop 1.3s infinite ease-in-out;
+  @keyframes bounceTop {
+    0% {
+      top: -1px;
+    }
 
-  50% {
-    top: 2px;
-  }
+    50% {
+      top: 2px;
+    }
 
-  100% {
-    top: -1px;
+    100% {
+      top: -1px;
+    }
   }
-}
-`
+`;

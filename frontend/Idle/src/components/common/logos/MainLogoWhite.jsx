@@ -11,7 +11,7 @@ function MainLogoWhite() {
 
   return (
     <Stdiv>
-      <MainLogoImg onClick={logoClicked} />
+      <MainLogoImg alt="MainLogoImg" onClick={logoClicked} />
       <Stdivision></Stdivision>
       <Stspan>마이 카마스터</Stspan>
     </Stdiv>

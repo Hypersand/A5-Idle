@@ -22,9 +22,9 @@ function OptionMain({
 
   function renderImg() {
     return selectedFunction === "" ? (
-      <StImg src={filteredData?.functions[0].functionImgUrl} />
+      <StImg alt="SelectedFunctionImg" src={filteredData?.functions[0].functionImgUrl} />
     ) : (
-      <StImg src={selectedFunction?.functionImgUrl} />
+      <StImg alt="SelectedFunctionImg" src={selectedFunction?.functionImgUrl} />
     );
   }
   return (

@@ -25,10 +25,10 @@ function Car3D({ data = null }) {
   function turnCar(e) {
     if (isMouseDown && e.clientX != beforeX) {
       if (e.clientX - beforeX > 2) {
-        turnRight()
+        turnRight();
         setBeforeX(e.clientX);
       } else if (beforeX - e.clientX > 2) {
-        turnLeft()
+        turnLeft();
         setBeforeX(e.clientX);
       }
     }
@@ -49,9 +49,13 @@ function Car3D({ data = null }) {
           onMouseUp={onMouseUp}
           onMouseLeave={onMouseUp}
         >
-          {data ? data[0]?.carImgUrls?.map((item, idx) => (
-            <StImage key={idx} src={item.imgUrl} $display={currentImg === idx} />
-          )) : <></>}
+          {data ? (
+            data[0]?.carImgUrls?.map((item, idx) => (
+              <StImage alt={"ItemImg"} key={idx} src={item.imgUrl} $display={currentImg === idx} />
+            ))
+          ) : (
+            <></>
+          )}
         </StImageContainer>
         <Circle />
         <Text>360도 돌려보세요!</Text>

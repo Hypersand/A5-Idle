@@ -6,7 +6,7 @@ function LocationButton({ location }) {
   return (
     <StLocationContainer>
       {location}
-      <ArrowDown />
+      <ArrowDown alt={"ArrowDown"} />
     </StLocationContainer>
   );
 }

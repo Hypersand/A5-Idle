@@ -94,7 +94,6 @@ function MapModal({ setCarMasterVisible }) {
           content: content,
           map: map.current,
           position: overlayPositon,
-          // image : item.imgUrl
         });
 
         overlays.push({ marker, overlay });
@@ -214,7 +213,7 @@ function MapModal({ setCarMasterVisible }) {
       <ModalBackground onClick={XBtnClicked} />
       <StContainer>
         <StBtnContainer>
-          <EscapeButton onClick={XBtnClicked} />
+          <EscapeButton alt={"XBtn"} onClick={XBtnClicked} />
         </StBtnContainer>
 
         <StMainContainer>

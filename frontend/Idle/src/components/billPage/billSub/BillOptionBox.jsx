@@ -39,7 +39,7 @@ function BillOptionBox({ isAdded, data }) {
         }}
       >
         <StImageContainer>
-          <StImg src={data?.optionImgUrl}></StImg>
+          <StImg alt="OptionImg" src={data?.optionImgUrl} />
         </StImageContainer>
         <StContent>
           <StCategory className="optionCategory">{data?.optionCategory}</StCategory>

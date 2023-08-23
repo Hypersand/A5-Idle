@@ -17,12 +17,12 @@ function DefaultOptionBox({ functionName, functionImgUrl, functionDescription })
         }}
       >
         <StImgContainer>
-          <StImg src={functionImgUrl} />
+          <StImg alt="OptionImg" src={functionImgUrl} />
         </StImgContainer>
         <StDescription>{functionName}</StDescription>
         <StDetailButton>
           자세히 보기
-          <ArrowRight />
+          <ArrowRight alt={"ArrowRight"} />
         </StDetailButton>
       </StContainer>
       {showDetail && (

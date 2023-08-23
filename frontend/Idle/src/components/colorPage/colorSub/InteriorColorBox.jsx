@@ -25,7 +25,7 @@ function InteriorColorBox({ data }) {
     >
       <StOutline $isSelected={data.interiorName === car.color.interior.name} />
       <StInnerImageContainer>
-        <StImage src={data.interiorImgUrl} />
+        <StImage alt="InteriorImg" src={data.interiorImgUrl} />
       </StInnerImageContainer>
       <StTextBox>
         <StTextTitle>{data.interiorName}</StTextTitle>
@@ -33,10 +33,10 @@ function InteriorColorBox({ data }) {
         <StTextPrice>+ {data.interiorPrice} 원</StTextPrice>
       </StTextBox>
     </StInnerColorBox>
-  )
+  );
 }
 
-export default InteriorColorBox
+export default InteriorColorBox;
 
 const StInnerColorBox = styled.div`
   box-sizing: border-box;

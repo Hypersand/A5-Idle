@@ -47,7 +47,7 @@ function OptionDropDown({ category, optionData, modalPosition }) {
       <StTitle>
         {category.categoryName}
         <StButton $animationstate={animationstate}>
-          <ArrowDown />
+          <ArrowDown alt={"ArrowDown"} />
         </StButton>
       </StTitle>
       <StListContainer $isOpen={isOpen} $animationstate={animationstate}>
