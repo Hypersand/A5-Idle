@@ -17,7 +17,7 @@ public class DefaultFunctionCategoryResponse {
     private String categoryName;
     private List<DefaultFunctionNameResponse> functions;
 
-    public  DefaultFunctionCategoryResponse(Long categoryId, String categoryName, List<DefaultFunctionNameResponse> functions) {
+    public DefaultFunctionCategoryResponse(Long categoryId, String categoryName, List<DefaultFunctionNameResponse> functions) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.functions = functions;
