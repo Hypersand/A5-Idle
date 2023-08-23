@@ -30,20 +30,19 @@ function MapModal({ setCarMasterVisible }) {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          {
-            /**본 코드 */
-          }
+        async (position) => {
           setLatitude(position.coords.latitude);
           setlongitude(position.coords.longitude);
-
-          getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
-            nowLatitude: position.coords.latitude,
-            nowLongitude: position.coords.longitude,
-          }).then((res) => {
+          try {
+            const res = await getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
+              nowLatitude: position.coords.latitude,
+              nowLongitude: position.coords.longitude,
+            });
             setData(res);
             cachedData = res;
-          });
+          } catch (error) {
+            console.error(error);
+          }
         },
         (e) => {
           console.error(e);
@@ -128,51 +127,55 @@ function MapModal({ setCarMasterVisible }) {
   }, [data]);
 
   useEffect(() => {
-    geocoder.coord2Address(longitude, latitude, function (result, status) {
-      if (status === kakao.maps.services.Status.OK) {
-        result[0].road_address === null
-          ? setAddressName(result[0].address.address_name)
-          : setAddressName(result[0].road_address.address_name);
-      } else {
-        setAddressName("위치 정보가 존재하지 않습니다. 위치를 수정해주세요");
-      }
-    });
-    selectedTab === SALERATE
-      ? getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
+    const fetchData = async () => {
+      geocoder.coord2Address(longitude, latitude, function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          result[0].road_address === null
+            ? setAddressName(result[0].address.address_name)
+            : setAddressName(result[0].road_address.address_name);
+        } else {
+          setAddressName("위치 정보가 존재하지 않습니다. 위치를 수정해주세요");
+        }
+      });
+
+      let res;
+      if (selectedTab === SALERATE) {
+        res = await getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
           nowLatitude: latitude,
           nowLongitude: longitude,
-        }).then((res) => {
-          setData(res);
-          cachedData = res;
-        })
-      : getWithoutQueryAPI(PATH.CARMASTER.DISTANCE, {
-          nowLatitude: latitude,
-          nowLongitude: longitude,
-        }).then((res) => {
-          setData(res);
-          cachedData = res;
         });
+      } else {
+        res = await getWithoutQueryAPI(PATH.CARMASTER.DISTANCE, {
+          nowLatitude: latitude,
+          nowLongitude: longitude,
+        });
+      }
+      setData(res);
+      cachedData = res;
+    };
+
+    fetchData();
   }, [latitude, longitude]);
 
   function XBtnClicked() {
     setCarMasterVisible(false);
   }
   function TabClicked(name) {
-    name === SALERATE
-      ? getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
-          nowLatitude: latitude,
-          nowLongitude: longitude,
-        }).then((res) => {
-          setData(res);
-          cachedData = res;
-        })
-      : getWithoutQueryAPI(PATH.CARMASTER.DISTANCE, {
-          nowLatitude: latitude,
-          nowLongitude: longitude,
-        }).then((res) => {
-          setData(res);
-          cachedData = res;
-        });
+    const fetchData = async () => {
+      let res;
+      name === SALERATE
+        ? (res = await getWithoutQueryAPI(PATH.CARMASTER.SALERATE, {
+            nowLatitude: latitude,
+            nowLongitude: longitude,
+          }))
+        : (res = await getWithoutQueryAPI(PATH.CARMASTER.DISTANCE, {
+            nowLatitude: latitude,
+            nowLongitude: longitude,
+          }));
+      setData(res);
+      cachedData = res;
+    };
+    fetchData();
     setSelectedTab(name);
     setSelectedDealer("");
   }

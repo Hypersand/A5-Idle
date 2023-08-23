@@ -1,18 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import { preloadContext } from "../store/context"
-import { getWithoutQueryAPI } from "../utils/api"
-import { PATH } from "../constant/path"
-import { preloadImage } from "../utils/preloader"
-import Loading from "../components/common/loading/Loading"
-import TrimMain from "../components/trimPage/trimMain/TrimMain"
-import NormalTrimBoxContainer from "../components/trimPage/trimSub/NormalTrimBoxContainer"
-import FindTrim from "../components/trimPage/findTrim/FindTrim"
-import FindTrimButton from "../components/trimPage/trimSub/FindTrimButton"
-import BlueButton from "../components/common/buttons/BlueButton"
-import FindTrimTooltip from "../components/common/toolTips/FindTrimTooltip"
-import palette from "../styles/palette"
+import { preloadContext } from "../store/context";
+import { getWithQueryAPI, getWithoutQueryAPI } from "../utils/api";
+import { PATH } from "../constant/path";
+import { preloadImage } from "../utils/preloader";
+import Loading from "../components/common/loading/Loading";
+import TrimMain from "../components/trimPage/trimMain/TrimMain";
+import NormalTrimBoxContainer from "../components/trimPage/trimSub/NormalTrimBoxContainer";
+import FindTrim from "../components/trimPage/findTrim/FindTrim";
+import FindTrimButton from "../components/trimPage/trimSub/FindTrimButton";
+import BlueButton from "../components/common/buttons/BlueButton";
+import FindTrimTooltip from "../components/common/toolTips/FindTrimTooltip";
+import palette from "../styles/palette";
 
 let cachedTrimData = null;
 
@@ -26,20 +26,23 @@ function TrimPage() {
   function nextBTNClicked() {
     navigate("/detail/engines");
   }
+
   useEffect(() => {
-    getWithoutQueryAPI(PATH.TRIM).then((result) => {
-      setTrimData(result);
-      cachedTrimData = result;
-    });
+    (async () => {
+      const res = await getWithoutQueryAPI(PATH.TRIM);
+      setTrimData(res);
+      cachedTrimData = res;
+    })();
   }, []);
 
   useEffect(() => {
     setPreLoadData([]);
-    getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: 4 }).then((result) => {
-      result.map((item) => {
+    (async () => {
+      const res = await getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: 4 });
+      res?.map((item) => {
         setPreLoadData((prev) => [...prev, item.carImgUrls]);
       });
-    });
+    })();
   }, []);
 
   function handleMouseEnter() {
@@ -69,7 +72,11 @@ function TrimPage() {
           </StConfirmContainer>
         </StBottomContainer>
         <FindTrimButton onClick={findButtonClicked} onMouseEnter={handleMouseEnter} />
-        <TrimSelectContainer onClick={() => { setToolTipStatus(false); }}>
+        <TrimSelectContainer
+          onClick={() => {
+            setToolTipStatus(false);
+          }}
+        >
           <StTooltipContainer>
             <StTooltip isActive={toolTipStatus} />
           </StTooltipContainer>
@@ -77,7 +84,8 @@ function TrimPage() {
       </StWrapper>
       {modalVisible ? (
         <FindTrim setVisible={setModalVisible} onMouseEnter={handleMouseEnter} />
-      ) : (<> </>
+      ) : (
+        <> </>
       )}
     </>
   );

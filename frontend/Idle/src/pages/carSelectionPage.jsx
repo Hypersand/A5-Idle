@@ -54,10 +54,12 @@ function CarSelectionPage() {
 
   const tabs = ["수소/전기차", "N", "승용", "SUV", "소형트럭&택시", "트럭", "버스"];
   const navigate = useNavigate();
+
   useEffect(() => {
-    getWithoutQueryAPI(PATH.SELECTCAR).then((res) => {
+    (async () => {
+      const res = await getWithoutQueryAPI(PATH.SELECTCAR);
       setCarData(res);
-    });
+    })();
   }, []);
 
   const { filteredData, maxPage } = filterData(carData, selectedTab, currentPage);

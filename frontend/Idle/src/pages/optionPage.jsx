@@ -88,18 +88,16 @@ function OptionPage() {
     selectedOptionIds = [];
     car.option.additional.map((item) => selectedOptionIds.push(item.optionId));
     car.option.confusing.map((item) => selectedOptionIds.push(item.optionId));
-    async function fetchData() {
-      await getWithQueryAPI(PATH.OPTION.GET, {
+    (async () => {
+      const res = await getWithQueryAPI(PATH.OPTION.GET, {
         trimId: car.trim.trimId,
         selectedOptionIds: [selectedOptionIds],
         engineId: car.detail.engines.id,
-      }).then((res) => {
-        if (res === cachedOptionData) return;
-        setOptionData(res);
-        cachedOptionData = res;
       });
-    }
-    fetchData();
+      if (res === cachedOptionData) return;
+      setOptionData(res);
+      cachedOptionData = res;
+    })();
   }, [car.option]);
 
   useLayoutEffect(() => {

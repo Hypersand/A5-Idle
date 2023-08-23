@@ -1,19 +1,25 @@
 import { useContext, useLayoutEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { DEFAULT_EXTERIROR_COLOR, DEFAULT_INTERIROR_COLOR, EXTERIOR_COLORS, INTERIROR_COLORS, TRANSLATE } from "../constant/constants"
-import { carContext } from "../store/context"
-import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "../store/actionType"
-import { getWithoutQueryAPI } from "../utils/api"
-import { PATH } from "../constant/path"
-import CategoryTabs from "../components/common/tabs/CategoryTabs";
-import Car3D from "../components/colorPage/colorMain/Car3D";
+import { carContext } from "../store/context";
 import WhiteButton from "../components/common/buttons/WhiteButton";
 import BlueButton from "../components/common/buttons/BlueButton";
-import WarningModal from "../components/common/modals/WarningModal";
-import InteriorColorMain from "../components/colorPage/colorMain/InteriorColorMain";
+import {
+  DEFAULT_EXTERIROR_COLOR,
+  EXTERIOR_COLORS,
+  INTERIROR_COLORS,
+  TRANSLATE,
+} from "../constant/constants";
+import CategoryTabs from "../components/common/tabs/CategoryTabs";
+import Car3D from "../components/colorPage/colorMain/Car3D";
 import ExteriorColorBoxContainer from "../components/colorPage/colorSub/ExteriorColorBoxContainer";
 import InteriorColorBoxContainer from "../components/colorPage/colorSub/InteriorColorBoxContainer";
+import InteriorColorMain from "../components/colorPage/colorMain/InteriorColorMain";
+import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "../store/actionType";
+import { getWithoutQueryAPI } from "../utils/api";
+import { DEFAULT_INTERIROR_COLOR } from "../constant/constants";
+import { PATH } from "../constant/path";
+import WarningModal from "../components/common/modals/WarningModal";
 
 let cachedExterior = null;
 let cachedInterior = null;
@@ -50,22 +56,26 @@ function ColorPage() {
   }, [tab]);
 
   useLayoutEffect(() => {
-    getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: car.trim.trimId }).then((result) => {
+    (async () => {
+      const result = await getWithoutQueryAPI(PATH.COLOR.EXTERIOR, {
+        trimId: car.trim.trimId,
+      });
       setExteriorData(result);
       cachedExterior = result;
       dispatch({ type: SET_CAR_IMG, payload: result[0].carImgUrls[0].imgUrl });
-    });
+    })();
   }, []);
 
   useLayoutEffect(() => {
     if (car.color.exterior.exteriorId !== undefined) {
-      getWithoutQueryAPI(PATH.COLOR.INTERIOR, {
-        trimId: car.trim.trimId,
-        exteriorId: car.color.exterior.exteriorId,
-      }).then((result) => {
+      (async () => {
+        const result = await getWithoutQueryAPI(PATH.COLOR.INTERIOR, {
+          trimId: car.trim.trimId,
+          exteriorId: car.color.exterior.exteriorId,
+        });
         setInteriorData(result);
         cachedInterior = result;
-      });
+      })();
     }
   }, [exteriorData]);
 
