@@ -28,16 +28,18 @@ function OptionMain({
     );
   }
   return (
-    <StContainer>
-      {renderImg()}
-      <OptionContent
-        optionData={filteredData}
-        setSelectedFunction={setSelectedFunction}
-        selectedFunction={selectedFunction}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
-    </StContainer>
+    <StContentsContainer>
+      <StContainer>
+        {renderImg()}
+        <OptionContent
+          optionData={filteredData}
+          setSelectedFunction={setSelectedFunction}
+          selectedFunction={selectedFunction}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      </StContainer>
+    </StContentsContainer>
   );
 }
 
@@ -54,4 +56,9 @@ const StImg = styled.img`
   width: 478px;
   height: 334px;
   border-radius: 5px;
+`;
+const StContentsContainer = styled.div`
+  position: absolute;
+  top: 110px;
+  left: 128px;
 `;

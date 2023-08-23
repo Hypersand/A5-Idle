@@ -10,13 +10,15 @@ function DetailModelMain({ currentState, data, color = false }) {
     return item.type === (color ? car.color[currentState].name : car.detail[currentState].name);
   })[0];
   return (
-    <StContainer>
-      {currentState === ENGINES ? (
-        <EngineMain {...filteredData} />
-      ) : (
-        <StImage src={filteredData?.imgUrl} />
-      )}
-    </StContainer>
+    <StContentsContainer>
+      <StContainer>
+        {currentState === ENGINES ? (
+          <EngineMain {...filteredData} />
+        ) : (
+          <StImage src={filteredData?.imgUrl} />
+        )}
+      </StContainer>
+    </StContentsContainer>
   );
 }
 
@@ -30,4 +32,11 @@ const StContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+const StContentsContainer = styled.div`
+  position: absolute;
+  top: 100px;
+  left: 128px;
+`;
+
 const StImage = styled.img``;
