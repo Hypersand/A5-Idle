@@ -4,7 +4,7 @@ function InteriorBoxContainer({ colors }) {
   return (
     <StContainer>
       {colors.map((item, idx) => (
-        <StImageBox alt="InteriorImg" key={idx} src={item.interiorImgUrl} />
+        <StImageBox alt="InteriorImg" key={idx} src={item.interiorImgUrl} loading="lazy" />
       ))}
     </StContainer>
   );

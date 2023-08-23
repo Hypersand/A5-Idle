@@ -36,13 +36,14 @@ function OptionSelectModal({ data, setModalVisible, setIsSelected, onClick }) {
       <StContainer $animationstate={animationstate}>
         <StTitleContainer>
           <StTitle>{data.name}</StTitle>
-          <StImgX alt="XImg" onClick={clickClose} data-name={"esc"} />
+          <StImgX alt="XImg" onClick={clickClose} data-name={"esc"} loading="lazy" />
         </StTitleContainer>
         <StDescription>{data.description}</StDescription>
         <img
           src={data.imgUrl}
           alt="sampleImage"
           style={{ width: "452px", height: "256px", marginBottom: "16px" }}
+          loading="lazy"
         />
         <StNote>{optionModalWarningMent}</StNote>
         <StBtnContainer>

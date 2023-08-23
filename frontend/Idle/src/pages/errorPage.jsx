@@ -1,11 +1,10 @@
 import { styled } from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MainLogoWhite from "../components/common/logos/MainLogoWhite";
 
 function ErrorPage() {
-  const navigate = useNavigate();
   function moveButtonClick() {
-    navigate("/");
+    location.replace("/");
   }
   return (
     <StContainer>

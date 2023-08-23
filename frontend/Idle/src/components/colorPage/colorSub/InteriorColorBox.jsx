@@ -25,7 +25,7 @@ function InteriorColorBox({ data }) {
     >
       <StOutline $isSelected={data.interiorName === car.color.interior.name} />
       <StInnerImageContainer>
-        <StImage alt="InteriorImg" src={data.interiorImgUrl} />
+        <StImage alt="InteriorImg" src={data.interiorImgUrl} loading="lazy" />
       </StInnerImageContainer>
       <StTextBox>
         <StTextTitle>{data.interiorName}</StTextTitle>

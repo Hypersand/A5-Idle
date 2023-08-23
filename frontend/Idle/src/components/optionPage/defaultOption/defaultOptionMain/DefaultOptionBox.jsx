@@ -17,7 +17,7 @@ function DefaultOptionBox({ functionName, functionImgUrl, functionDescription })
         }}
       >
         <StImgContainer>
-          <StImg alt="OptionImg" src={functionImgUrl} />
+          <StImg alt="OptionImg" src={functionImgUrl} loading="lazy" />
         </StImgContainer>
         <StDescription>{functionName}</StDescription>
         <StDetailButton>

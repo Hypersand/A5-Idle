@@ -1,81 +1,80 @@
 import { useLayoutEffect, useRef, useState } from "react";
-import OptionBox from "./OptionBox"
+import OptionBox from "./OptionBox";
 import { ReactComponent as ArrowLogo } from "../../../assets/images/arrowOption.svg";
 import { styled } from "styled-components";
 import palette from "../../../styles/palette";
 
 const BLUR_STATUS = {
-    LEFT_NONE: 1,
-    RIGHT_NONE: -1,
-    BOTH_VISIBLE: 0,
+  LEFT_NONE: 1,
+  RIGHT_NONE: -1,
+  BOTH_VISIBLE: 0,
 };
 
 function OptionBoxContainer({ filteredData, selectedOption, setSelectedOption, setTooltipState }) {
-    const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
-    const scrollBar = useRef();
+  const [blurState, setBlurState] = useState(BLUR_STATUS.LEFT_NONE);
+  const scrollBar = useRef();
 
-    useLayoutEffect(() => {
-        if (!scrollBar.current) {
-            return;
-        }
-        const getScrollState = () => {
-            const element = scrollBar.current;
-            if (element.scrollLeft === 0) {
-                setBlurState(BLUR_STATUS.LEFT_NONE);
-            } else if (element.scrollWidth === element.clientWidth + element.scrollLeft) {
-                setBlurState(BLUR_STATUS.RIGHT_NONE);
-            } else {
-                setBlurState(BLUR_STATUS.BOTH_VISIBLE);
-            }
-        };
-
-        scrollBar.current?.addEventListener("scroll", getScrollState);
-        return () => {
-            scrollBar.current?.removeEventListener("scroll", getScrollState);
-        };
-    }, [scrollBar.current]);
-
-    function ArrowButtonClicked(direction) {
-        const element = scrollBar.current;
-        direction === "LEFT" ? (element.scrollLeft -= 200) : (element.scrollLeft += 200);
+  useLayoutEffect(() => {
+    if (!scrollBar.current) {
+      return;
     }
+    const getScrollState = () => {
+      const element = scrollBar.current;
+      if (element.scrollLeft === 0) {
+        setBlurState(BLUR_STATUS.LEFT_NONE);
+      } else if (element.scrollWidth === element.clientWidth + element.scrollLeft) {
+        setBlurState(BLUR_STATUS.RIGHT_NONE);
+      } else {
+        setBlurState(BLUR_STATUS.BOTH_VISIBLE);
+      }
+    };
 
-    return (
-        <>
-            <ArrowLeftContainer $blurState={blurState}>
-                <ArrowLogo
-                    alt="ArrowLogoImg"
-                    onClick={() => {
-                        ArrowButtonClicked("LEFT");
-                    }}
-                />
-            </ArrowLeftContainer>
-            <StContainer ref={scrollBar}>
-                {filteredData?.map((item, idx) => (
-                    <OptionBox
-                        {...item}
-                        key={idx}
-                        selectedOption={selectedOption}
-                        setSelectedOption={setSelectedOption}
-                        setTooltipState={() => setTooltipState(false)}
-                    />
-                ))
-                }
-            </StContainer>
-            <ArrowRightContainer $blurState={blurState}>
-                <ArrowLogo
-                    alt="ArrowLogoImg"
-                    onClick={() => {
-                        ArrowButtonClicked("RIGHT");
-                    }}
-                />
-            </ArrowRightContainer>
-        </>
-    )
+    scrollBar.current?.addEventListener("scroll", getScrollState);
+    return () => {
+      scrollBar.current?.removeEventListener("scroll", getScrollState);
+    };
+  }, [scrollBar.current]);
+
+  function ArrowButtonClicked(direction) {
+    const element = scrollBar.current;
+    direction === "LEFT" ? (element.scrollLeft -= 200) : (element.scrollLeft += 200);
+  }
+
+  return (
+    <>
+      <ArrowLeftContainer $blurState={blurState}>
+        <ArrowLogo
+          alt="ArrowLogoImg"
+          onClick={() => {
+            ArrowButtonClicked("LEFT");
+          }}
+          loading="lazy"
+        />
+      </ArrowLeftContainer>
+      <StContainer ref={scrollBar}>
+        {filteredData?.map((item, idx) => (
+          <OptionBox
+            {...item}
+            key={idx}
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+            setTooltipState={() => setTooltipState(false)}
+          />
+        ))}
+      </StContainer>
+      <ArrowRightContainer $blurState={blurState}>
+        <ArrowLogo
+          alt="ArrowLogoImg"
+          onClick={() => {
+            ArrowButtonClicked("RIGHT");
+          }}
+        />
+      </ArrowRightContainer>
+    </>
+  );
 }
 
-export default OptionBoxContainer
-
+export default OptionBoxContainer;
 
 const StContainer = styled.div`
   position: relative;
@@ -99,7 +98,6 @@ const StContainer = styled.div`
     background-color: ${palette.Grey_1};
   }
 `;
-
 
 const ArrowRightContainer = styled.div`
   position: absolute;

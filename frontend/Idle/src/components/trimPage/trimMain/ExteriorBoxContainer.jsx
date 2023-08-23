@@ -4,7 +4,7 @@ function ExteriorBoxContainer({ colors }) {
   return (
     <StContainer>
       {colors.map((item, idx) => (
-        <StImageBox alt="ExterirImg" key={idx} src={item.exteriorImgUrl} />
+        <StImageBox alt="ExterirImg" key={idx} src={item.exteriorImgUrl} loading="lazy" />
       ))}
     </StContainer>
   );

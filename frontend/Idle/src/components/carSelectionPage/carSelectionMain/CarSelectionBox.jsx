@@ -4,7 +4,7 @@ import palette from "../../../styles/palette";
 function CarSelectionBox({ isSelected, data, setSelectedCar }) {
   return (
     <StContainer $isSelected={isSelected} onClick={() => setSelectedCar(data.carName)}>
-      <StImg alt="CarImg" src={data.carImgUrl} />
+      <StImg alt="CarImg" src={data.carImgUrl} loading="lazy" />
       <StName>{data.carName}</StName>
       <StPrice>{data.carPrice.toLocaleString()} 만원~</StPrice>
       {data.logoImgUrl && <StWheel alt={"logoImg"} src={data.logoImgUrl}></StWheel>}

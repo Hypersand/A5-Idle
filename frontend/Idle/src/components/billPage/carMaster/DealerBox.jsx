@@ -6,7 +6,7 @@ function DealerBox({ data, isSelected, onClick }) {
     <StContainer $isSelected={isSelected} onClick={onClick}>
       <StMainContainer>
         <div>
-          <StImg alt="MasterImg" src={data.masterImgUrl} />
+          <StImg alt="MasterImg" src={data.masterImgUrl} loading="lazy" />
         </div>
         <StSubContainer>
           <StName>{data.masterName}</StName>

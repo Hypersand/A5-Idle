@@ -28,8 +28,8 @@ function Router() {
             <Route path="/option/:tab" element={<OptionPage />} />
           </Route>
           <Route path="/bill" element={<BillPage />} />
-          <Route path="/error" element={<ServerErrorPage />} />
           <Route path="/*" element={<ErrorPage />} />
+          <Route path="/error" element={<ServerErrorPage />} />
         </Routes>
       </ErrorBoundary>
     </Suspense>
