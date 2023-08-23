@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import palette from "../../styles/palette";
+import palette from "../../../styles/palette";
 
 function CarSelectionBox({ isSelected, data, setSelectedCar }) {
   return (
@@ -32,7 +32,7 @@ const StContainer = styled.div`
 
   &:hover {
     background-color: ${({ $isSelected }) =>
-      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+    $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
     box-shadow: 2px 2px 10px #898989;

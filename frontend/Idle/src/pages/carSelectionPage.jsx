@@ -6,11 +6,10 @@ import { styled } from "styled-components";
 import { CAR_SELECTION_NUM } from "../constant/constants";
 import CategoryTabs from "../components/common/tabs/CategoryTabs";
 import MainLogoBlack from "../components/common/logos/MainLogoBlack";
-import { ReactComponent as LeftArrow } from "../assets/images/optionArrowLeft.svg";
-import { ReactComponent as RightArrow } from "../assets/images/optionArrowRight.svg";
 import WarningModal from "../components/common/modals/WarningModal";
-import CarSelectionContainer from "../components/carSelectionPage/CarSelectionContainer";
+import CarSelectionContainer from "../components/carSelectionPage/carSelectionMain/CarSelectionContainer";
 import palette from "../styles/palette";
+import CarSelectionPagenation from "../components/carSelectionPage/carSelectionSub/CarSelectionPagenation";
 
 function filterData(data, selectedTab, currentPage) {
   if (data.length === 0) return {};
@@ -34,15 +33,6 @@ function btnClicked(navigate, selectedCar, setWarningModalVisible) {
 function tabClicked(item, setSelectedTab, setSelectedCar) {
   setSelectedTab(item);
   setSelectedCar(null);
-}
-
-function leftBtnClicked(currentPage, setCurrentPage, maxPage) {
-  if (currentPage === 1) setCurrentPage(maxPage);
-  else setCurrentPage((cur) => cur - 1);
-}
-function RightBtnClicked(currentPage, setCurrentPage, maxPage) {
-  if (currentPage + 1 > maxPage) setCurrentPage(1);
-  else setCurrentPage((cur) => cur + 1);
 }
 
 function CarSelectionPage() {
@@ -83,12 +73,10 @@ function CarSelectionPage() {
         <StLogo>
           <MainLogoBlack modalPosition={"carSelectModal"} />
         </StLogo>
-
         <StHeader>
           <StP>모델을 선택해주세요</StP>
           <StTabs>{renderTabs()}</StTabs>
         </StHeader>
-
         {filteredData && (
           <CarSelectionContainer
             data={filteredData}
@@ -96,20 +84,7 @@ function CarSelectionPage() {
             selectedCar={selectedCar}
           />
         )}
-
-        <StPage>
-          <LeftArrow
-            alt="ArrowLeftImg"
-            style={{ cursor: "pointer" }}
-            onClick={() => leftBtnClicked(currentPage, setCurrentPage, maxPage)}
-          />
-          {currentPage}
-          <RightArrow
-            alt="ArrowRightImg"
-            style={{ cursor: "pointer" }}
-            onClick={() => RightBtnClicked(currentPage, setCurrentPage, maxPage)}
-          />
-        </StPage>
+        <CarSelectionPagenation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPage={maxPage} />
         <StBtn onClick={() => btnClicked(navigate, selectedCar, setWarningModalVisible)}>
           마이 카마스터 시작하기
         </StBtn>
@@ -192,14 +167,4 @@ const StBtn = styled.div`
 
   border-radius: 2px;
   box-shadow: 1px 1px 1px #b7b7b7;
-`;
-const StPage = styled.div`
-  position: absolute;
-  bottom: 103px;
-  left: 586.31px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 107px;
-  height: 24px;
 `;

@@ -96,7 +96,6 @@ function NormalTrimBox({
           setModalVisible={setIsWarning}
           onSubmitClick={alertSubmit}
           detail={"현재까지의 변경사항은 저장되지 않습니다."}
-          modalPosition={"modal"}
         />
       ) : null}
     </>

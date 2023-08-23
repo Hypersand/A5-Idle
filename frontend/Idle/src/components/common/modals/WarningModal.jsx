@@ -11,7 +11,7 @@ import palette from "../../../styles/palette";
  * @returns 모달창
  */
 
-function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", modalPosition }) {
+function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", modalPosition = "modal" }) {
   const [animationstate, setAnimationstate] = useState(false);
   function clickCancel() {
     setAnimationstate(true);

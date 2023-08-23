@@ -83,6 +83,10 @@ function ColorPage() {
     return item.exteriorId === car.color.exterior?.exteriorId;
   });
 
+  function onSubmitClick() {
+    setIsEngineChecked(false);
+    navigate("/detail/engines");
+  }
   return (
     <>
       <StWrapper>
@@ -96,12 +100,8 @@ function ColorPage() {
           <WarningModal
             title={"옵션 선택을 위해선 엔진을 선택해야 합니다."}
             setModalVisible={setIsEngineChecked}
-            onSubmitClick={() => {
-              setIsEngineChecked(false);
-              navigate("/detail/engines");
-            }}
+            onSubmitClick={onSubmitClick}
             detail={"선택이 필요한 페이지로 이동하시겠습니까?"}
-            modalPosition={"modal"}
           />
         )}
       </StWrapper>
