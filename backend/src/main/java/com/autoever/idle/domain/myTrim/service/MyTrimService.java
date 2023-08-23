@@ -14,6 +14,7 @@ import com.autoever.idle.global.exception.custom.InvalidMyTrimFunctionException;
 import com.autoever.idle.global.exception.custom.InvalidTrimFunctionException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ import static com.autoever.idle.global.exception.ErrorCode.*;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MyTrimService {
 
     private final FunctionRepository functionRepository;

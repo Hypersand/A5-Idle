@@ -7,6 +7,7 @@ import com.autoever.idle.domain.detailModel.engine.repository.EngineRepository;
 import com.autoever.idle.global.exception.custom.InvalidDetailModelException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -15,6 +16,7 @@ import static com.autoever.idle.global.exception.ErrorCode.INVALID_DETAIL_MODEL;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class DetailModelService {
 
     private final EngineRepository engineRepository;
