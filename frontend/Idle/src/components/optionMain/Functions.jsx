@@ -4,7 +4,7 @@ import { ReactComponent as ArrowLeft } from "images/optionArrowLeft.svg";
 import { ReactComponent as ArrowRight } from "images/optionArrowRight.svg";
 import palette from "styles/palette";
 
-function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
+function Functions({ optionData, setSelectedFunction, currentPage, setCurrentPage }) {
   const [isDescOverFlow, setIsDescOverFlow] = useState(false);
   const [isFNameOverFlow, setIsFNameOverFlow] = useState(false);
 
@@ -24,18 +24,22 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   useEffect(() => {
     checkOverFlow(descRef.current, "desc");
     checkOverFlow(fNameRef.current, "fName");
-    setSelectedFunction(() => (data ? data[currentPage] : null));
-  }, [data, currentPage]);
+    setSelectedFunction(() => (optionData ? optionData[currentPage] : null));
+  }, [optionData, currentPage]);
 
   function leftBtnClicked() {
-    currentPage === 0 ? setCurrentPage(() => data.length - 1) : setCurrentPage((cur) => cur - 1);
+    currentPage === 0
+      ? setCurrentPage(() => optionData.length - 1)
+      : setCurrentPage((cur) => cur - 1);
   }
   function rightBtnClicked() {
-    currentPage === data.length - 1 ? setCurrentPage(() => 0) : setCurrentPage((cur) => cur + 1);
+    currentPage === optionData.length - 1
+      ? setCurrentPage(() => 0)
+      : setCurrentPage((cur) => cur + 1);
   }
 
   function circleClicked(e) {
-    const key = e.target.dataset.key;
+    const key = e.target.optionDataset.key;
     if (key === undefined) return;
     setCurrentPage(() => Number(key));
   }
@@ -43,23 +47,22 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   function renderCircle() {
     return (
       <StCircleContainer onClick={circleClicked}>
-        {data?.map((item, index) => {
-          if (index === currentPage)
-            return <StCircle $isSelected={true} key={index} data-key={index} />;
-          else return <StCircle $isSelected={false} key={index} data-key={index} />;
+        {optionData?.map((item, index) => {
+          if (index === currentPage) return <StCircle $isSelected={true} key={index} />;
+          else return <StCircle $isSelected={false} key={index} />;
         })}
       </StCircleContainer>
     );
   }
 
   function renderMain() {
-    return data?.length > 1 ? (
+    return optionData?.length > 1 ? (
       <StMain>
         <ArrowLeft onClick={leftBtnClicked} style={{ cursor: "pointer" }} />
 
         <StWrapper ref={fNameRef} $isOverFlow={isFNameOverFlow}>
           <StFunctionName $isOverFlow={isFNameOverFlow}>
-            {data[currentPage]?.functionName}
+            {optionData[currentPage]?.functionName}
           </StFunctionName>
         </StWrapper>
 
@@ -70,17 +73,17 @@ function Functions({ data, setSelectedFunction, currentPage, setCurrentPage }) {
   return (
     <StContainer>
       {renderMain()}
-      {data ? (
+      {optionData ? (
         <>
           <StDesc ref={descRef} $isOverFlow={isDescOverFlow}>
-            {data[currentPage]?.functionDescription === "-"
+            {optionData[currentPage]?.functionDescription === "-"
               ? ""
-              : data[currentPage]?.functionDescription}
+              : optionData[currentPage]?.functionDescription}
           </StDesc>
           <StFullDesc>
-            {data[currentPage]?.functionDescription === "-"
+            {optionData[currentPage]?.functionDescription === "-"
               ? ""
-              : data[currentPage]?.functionDescription}
+              : optionData[currentPage]?.functionDescription}
           </StFullDesc>
         </>
       ) : (
@@ -114,7 +117,7 @@ const StMain = styled.div`
 `;
 
 const StFullDesc = styled.div`
-  width: 350px;
+  width: 250px;
   padding: 15px 20px;
   background-color: #4d4d4d;
   border-radius: 5px;
