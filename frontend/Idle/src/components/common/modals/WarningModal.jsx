@@ -10,6 +10,7 @@ import palette from "../../../styles/palette";
  * @param {string} title 질문내용 (문자열)
  * @returns 모달창
  */
+
 function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", modalPosition }) {
   const [animationstate, setAnimationstate] = useState(false);
   function clickCancel() {
