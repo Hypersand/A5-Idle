@@ -31,8 +31,8 @@ public class OptionRepositoryImpl implements OptionRepository {
         }
 
         query +=
-                "    THEN 'false' " +
-                        "    ELSE 'true' " +
+                "    THEN 'true' " +
+                        "    ELSE 'false' " +
                         "END AS optionCanSelect " +
                         "FROM FUNCTIONS f " +
                         "JOIN TRIM_FUNCTION tf ON f.function_id = tf.function_id " +
