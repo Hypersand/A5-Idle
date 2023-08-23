@@ -7,28 +7,28 @@ INSERT INTO CAR_CATEGORY (name) VALUES ('소형트럭&택시');
 INSERT INTO CAR_CATEGORY (name) VALUES ('버스');
 INSERT INTO CAR_CATEGORY (name) VALUES ('트럭');
 
-INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('팰리세이드', 3896, 'TRUE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/palisade-24my-45side.png', null, 4);
-INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('베뉴', 2146, 'TRUE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png', null, 4);
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('팰리세이드', 3896, 'TRUE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/palisade-24my-45side.png', 10, 4);
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('베뉴', 2146, 'TRUE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/venue-23my-45side.png', 10, 4);
 INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('디 올 뉴 코나', 2486, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-45side.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png', 4);
 INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('디 올 뉴 코다 H', 2146, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/the-all-new-kona-hybrid-45side.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png', 4);
 INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('투싼', 2603, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tucson-23my-45side.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png', 4);
 INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('투싼 Hybirid', 3027, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/tucson-hybrid-23my-45side.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/Car-Metal-N-Line-Performance-Logo.png', 4);
-INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('싼타페', 3277, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-23my-45side.png', null, 4);
-INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('싼타페 Hybrid', 2146, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-hybrid-45side.png', null, 4);
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('싼타페', 3277, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-23my-45side.png', 10, 4);
+INSERT INTO CAR_TYPE (name, price, isNew, img_url, logo_url, car_category_id) VALUES ('싼타페 Hybrid', 2146, 'FALSE', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/santafe-hybrid-45side.png', 10, 4);
 
-INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Exclusive', 38960000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/exclusive.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', null, 1);
-INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Le Blanc', 41980000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/leblanc.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', null, 1);
-INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Prestige', 46240000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/prestige.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', null, 1);
-INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Calligraphy', 51060000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/calligraphy.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', null, 1);
+INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Exclusive', 38960000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/exclusive.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', 10, 1);
+INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Le Blanc', 41980000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/leblanc.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', 10, 1);
+INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Prestige', 46240000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/prestige.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', 10, 1);
+INSERT INTO TRIM (name, price, img_url, description, purchase_rate, car_type_id) VALUES ('Calligraphy', 51060000, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/calligraphy.png', '실용적이고 기본적인 기능을 갖춘 베이직 트림', 10, 1);
 
-INSERT INTO BODY_TYPE (type, price, description, purchase_rate, img_url) VALUES ('7인승', 0, '2열 가운데 시트를 없에 2열 탑승객의 편의는 물론, 3열 탑승객의 승하차가 편리합니다.', null, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/7.jpg');
-INSERT INTO BODY_TYPE (type, price, description, purchase_rate, img_url) VALUES ('8인승', 0, '1열 2명, 2열 3명, 3열 3명이 탑승할 수 있는 구조로, 많은 인원이 탑승할 수 있습니다.', null, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/8.jpg');
+INSERT INTO BODY_TYPE (type, price, description, purchase_rate, img_url) VALUES ('7인승', 0, '2열 가운데 시트를 없에 2열 탑승객의 편의는 물론, 3열 탑승객의 승하차가 편리합니다.', 10, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/7.jpg');
+INSERT INTO BODY_TYPE (type, price, description, purchase_rate, img_url) VALUES ('8인승', 0, '1열 2명, 2열 3명, 3열 3명이 탑승할 수 있는 구조로, 많은 인원이 탑승할 수 있습니다.', 10, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/8.jpg');
 
-INSERT INTO DRIVING_METHOD (type, price, description, img_url, purchase_rate) VALUES ('2WD', 0, '엔진 동려이 전륜 후륜 중 하나로 전달되어 움직입니다. 차체가 가벼워 연료 효율이 높습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', null);
-INSERT INTO DRIVING_METHOD (type, price, description, img_url, purchase_rate) VALUES ('4WD', 237000, '상시 4륜 구동 시스템으로 주행 환경에 맞춰 전후륜 구동력을 자동배분해 안전성을 높입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', null);
+INSERT INTO DRIVING_METHOD (type, price, description, img_url, purchase_rate) VALUES ('2WD', 0, '엔진 동려이 전륜 후륜 중 하나로 전달되어 움직입니다. 차체가 가벼워 연료 효율이 높습니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', 10);
+INSERT INTO DRIVING_METHOD (type, price, description, img_url, purchase_rate) VALUES ('4WD', 237000, '상시 4륜 구동 시스템으로 주행 환경에 맞춰 전후륜 구동력을 자동배분해 안전성을 높입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/10.jpg', 10);
 
-INSERT INTO ENGINE (type, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('디젤 2.2', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/5.jpg', 1480000, 202, 45, 11.4, 12.4, null, '강력한 토크와 탁월한 효율로 여유있는 파워와 높은 연비를 제공하는 디젤 엔진입니다.');
-INSERT INTO ENGINE (type, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('가솔린 3.8', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/6.jpg', 0, 295, 36.2, 8, 9.2, null, '고효율의 3.8 가솔린 엔진으로 다이내믹한 주행 성능은 물론, 정속성까지 선사합니다.');
+INSERT INTO ENGINE (type, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('디젤 2.2', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/5.jpg', 1480000, 202, 45, 11.4, 12.4, 10, '강력한 토크와 탁월한 효율로 여유있는 파워와 높은 연비를 제공하는 디젤 엔진입니다.');
+INSERT INTO ENGINE (type, img_url, price, peak_output, max_torque, min_fuel, max_fuel, purchase_rate, description) VALUES ('가솔린 3.8', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/6.jpg', 0, 295, 36.2, 8, 9.2, 10, '고효율의 3.8 가솔린 엔진으로 다이내믹한 주행 성능은 물론, 정속성까지 선사합니다.');
 
 INSERT INTO FUNCTION_CATEGORY (name) VALUES ('파워트레인/성능');
 INSERT INTO FUNCTION_CATEGORY (name) VALUES ('지능형 안전기술');
@@ -39,13 +39,13 @@ INSERT INTO FUNCTION_CATEGORY (name) VALUES ('시트');
 INSERT INTO FUNCTION_CATEGORY (name) VALUES ('편의');
 INSERT INTO FUNCTION_CATEGORY (name) VALUES ('멀티미디어');
 
-INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('어비스 블랙 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/11.png', 0, null);
-INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('쉬버링 실버 메탈릭', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/12.png', 0, null);
-INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('로버스트 에메랄드 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/116.png', 0, null);
-INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('문라이트 블루 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/13.png', 0, null);
-INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('가이아 브라운 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/14.png', 0, null);
-INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('그라파이트 그레이 메탈릭', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/15.png', 0, null);
-INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('크리미 화이트 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/16.png', 100000, null);
+INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('어비스 블랙 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/11.png', 0, 10);
+INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('쉬버링 실버 메탈릭', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/12.png', 0, 10);
+INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('로버스트 에메랄드 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/116.png', 0, 10);
+INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('문라이트 블루 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/13.png', 0, 10);
+INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('가이아 브라운 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/14.png', 0, 10);
+INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('그라파이트 그레이 메탈릭', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/15.png', 0, 10);
+INSERT INTO EXTERIOR_COLOR (color, color_img_url, price, purchase_rate) VALUES ('크리미 화이트 펄', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/16.png', 100000, 10);
 
 INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_002.png', 1, 2);
 INSERT INTO CAR_EXTERIOR_IMAGE (car_exterior_img_url, exterior_color_id, img_sequence) VALUES ('https://a5idle.s3.ap-northeast-2.amazonaws.com/abyss_exterior(accel)/image_001.png', 1, 1);
@@ -495,65 +495,65 @@ INSERT INTO TRIM_EXTERIOR_COLOR (trim_id, exterior_color_id) VALUES (1, 5);
 INSERT INTO TRIM_EXTERIOR_COLOR (trim_id, exterior_color_id) VALUES (1, 6);
 INSERT INTO TRIM_EXTERIOR_COLOR (trim_id, exterior_color_id) VALUES (1, 7);
 
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', null, 1);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', null, 2);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', null, 3);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', null, 4);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', null, 5);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', null, 6);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', null, 7);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙원톤(블랙에디션 전용)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/118-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/118-1.png', null, 1);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙원톤(블랙에디션 전용)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/118-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/118-1.png', null, 7);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', null, 1);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', null, 2);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', null, 3);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', null, 4);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', null, 5);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', null, 6);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', null, 7);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', null, 1);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', null, 2);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', null, 3);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', null, 4);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', null, 5);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', null, 6);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', null, 7);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', null, 8);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', null, 9);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', null, 10);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', null, 11);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', null, 12);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', null, 13);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', null, 8);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', null, 9);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', null, 10);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', null, 11);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', null, 12);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', null, 13);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', null, 8);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', null, 9);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', null, 10);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', null, 11);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', null, 12);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', null, 13);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', null, 20);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', null, 21);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', null, 22);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', null, 23);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', null, 24);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', null, 25);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', null, 14);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', null, 15);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', null, 16);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', null, 17);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', null, 18);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', null, 19);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', null, 14);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', null, 15);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', null, 16);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', null, 17);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', null, 18);
-INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', null, 19);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', 10, 1);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', 10, 2);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', 10, 3);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', 10, 4);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', 10, 5);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', 10, 6);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙(고급)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png', 10, 7);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙원톤(블랙에디션 전용)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/118-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/118-1.png', 10, 1);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙원톤(블랙에디션 전용)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/118-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/118-1.png', 10, 7);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', 10, 1);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', 10, 2);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', 10, 3);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', 10, 4);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', 10, 5);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', 10, 6);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('브라운', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png', 10, 7);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 10, 1);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 10, 2);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 10, 3);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 10, 4);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 10, 5);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 10, 6);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비/웜그레이 투톤', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png', 10, 7);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', 10, 8);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', 10, 9);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', 10, 10);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', 10, 11);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', 10, 12);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('네이비', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png', 10, 13);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', 10, 8);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', 10, 9);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', 10, 10);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', 10, 11);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', 10, 12);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('블랙', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png', 10, 13);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', 10, 8);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', 10, 9);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', 10, 10);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', 10, 11);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', 10, 12);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('버건디', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png', 10, 13);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', 10, 20);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', 10, 21);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', 10, 22);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', 10, 23);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', 10, 24);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('인조가죽(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png', 10, 25);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', 10, 14);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', 10, 15);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', 10, 16);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', 10, 17);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', 10, 18);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('퀼팅천연(블랙)', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png', 10, 19);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', 10, 14);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', 10, 15);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', 10, 16);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', 10, 17);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', 10, 18);
+INSERT INTO INTERIOR_COLOR (color, price, interior_img_url, color_img_url, purchase_rate, trim_exterior_color_id) VALUES ('쿨그레이', 0, 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-2.png', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png', 10, 19);
 
 INSERT INTO TRIM_BODY_TYPE (trim_id, body_type_id) VALUES (1, 1);
 INSERT INTO TRIM_BODY_TYPE (trim_id, body_type_id) VALUES (1, 2);
@@ -586,43 +586,43 @@ INSERT INTO OPTION_CATEGORY (name) VALUES ('스타일&퍼포먼스');
 INSERT INTO OPTION_CATEGORY (name) VALUES ('차량 보호');
 INSERT INTO OPTION_CATEGORY (name) VALUES ('편의');
 
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('빌트인 캠(보조배터리 포함)', 690000, '빌트인 캠을 통해 방금 촬영된 운전 영상을 어플로 바로 확인할 수 있어요.', null, 1);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('듀얼와이드 선루프', 890000, '후석에 고정 글라스를 적용한 듀얼 파노라믹 선루프로 2/3열의 탑승객에게도 넓은 개방감을 선사합니다.', null, 4);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('냉온장 컵홀더', 490000, '-', null, 4);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('빌트인 캠(보조배터리 포함)', 690000, '빌트인 캠을 통해 방금 촬영된 운전 영상을 어플로 바로 확인할 수 있어요.', 10, 1);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('듀얼와이드 선루프', 890000, '후석에 고정 글라스를 적용한 듀얼 파노라믹 선루프로 2/3열의 탑승객에게도 넓은 개방감을 선사합니다.', 10, 4);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('냉온장 컵홀더', 490000, '-', 10, 4);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('빌트인 공기청정기', 400000, '더 깨끗한 차량 내 공기를 위해
-빌트인 공기 청정기로 미세먼지 걱정 없이 드라이빙 하세요.', null, 4);
+빌트인 공기 청정기로 미세먼지 걱정 없이 드라이빙 하세요.', 10, 4);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('사이드스텝', 350000, '더욱 편안한 승하차를 원한다면,
-사이드 스텝을 이용하여 편하게 승하차를 할 수 있어요.', null, 4);
+사이드 스텝을 이용하여 편하게 승하차를 할 수 있어요.', 10, 4);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('적외선 무릎워머', 300000, '무릎까지 따뜻한 드라이빙을 원한다면,
-적외선 무릎 워머를 사용해보세요.', null, 4);
+적외선 무릎 워머를 사용해보세요.', 10, 4);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('차량 보호 필름', 490000, '흠집으로 부터 차량을 보호하고 싶다면?
-차량 보호 필름을 통해 내 차를 지켜보세요.', null, 3);
+차량 보호 필름을 통해 내 차를 지켜보세요.', 10, 3);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('프로텍션 매트 패키지 I', 250000, '흠집없이 내 차에 짐을 싣고 싶다면?
-프로텍션 매트 패기지1로 흠집 걱정 없이 짐을 실어보세요.', null, 3);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('H Genuine Accessories 라이프스타일', 690000, '-', null, 2);
+프로텍션 매트 패기지1로 흠집 걱정 없이 짐을 실어보세요.', 10, 3);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('H Genuine Accessories 라이프스타일', 690000, '-', 10, 2);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('H Genuine Accessories 트레일러 & 셀', 1580000, '※ 트레일러 패키지 선택 시 연결장치 견인 능력은 750kg에서 2,000kg으로 증대됩니다.
 ※ 트레일러 패키지의 최대 견인 중량은 2,000kg(피견인장치관성브레이크 적용 시), 수직하중은 100kg입니다.
 ※ 트레일러 패키지의 커넥터는 유럽식 13PIN(ISO 11446) 적용되어 있으며 토우볼 지름은 50mm입니다
-.※ 트레일러 패키지의 토우모드는 가솔린 3.8 HTRAC 사양에 한하여 적용됩니다.', null, 2);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('20인치 다크 스퍼터링 휠', 840000, '현대자동차의 기술력과 노하우가 결합된 커스터마이징 브랜드 N 퍼포먼스의 다크 스파터링 휠', null, 2);
+.※ 트레일러 패키지의 토우모드는 가솔린 3.8 HTRAC 사양에 한하여 적용됩니다.', 10, 2);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('20인치 다크 스퍼터링 휠', 840000, '현대자동차의 기술력과 노하우가 결합된 커스터마이징 브랜드 N 퍼포먼스의 다크 스파터링 휠', 10, 2);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('테스트', 123123, '123123', '123', 1);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('알콘(alcon) 단조 브레이크 & 20인치 휠', 3660000, '현대자동차의 기술력과 노하우가 결합된 커스터마이징 브랜드 N 퍼포먼스의 알콘(alcon)단조 브레이크 & 20인치 휠 패키지', null, 2);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('알콘(alcon) 단조 브레이크 & 20인치 휠', 3660000, '현대자동차의 기술력과 노하우가 결합된 커스터마이징 브랜드 N 퍼포먼스의 알콘(alcon)단조 브레이크 & 20인치 휠 패키지', 10, 2);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('듀얼 머플러 패키지', 840000, '싱글 머플러가 아쉽다면?
-듀얼 머플러 패키지를 통해 멋스러운 드라이빙 감성을 더해보세요.', null, 2);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('VIP 패키지', 5740000, '보다 고급스러운 인테리어를 원한다면 캘리그라피만의 VIP 패키지를 통해 2열 추가 편의 기능과 더욱 고급화된 실내 인테리어를 적용할 수 있어요', null, 2);
+듀얼 머플러 패키지를 통해 멋스러운 드라이빙 감성을 더해보세요.', 10, 2);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('VIP 패키지', 5740000, '보다 고급스러운 인테리어를 원한다면 캘리그라피만의 VIP 패키지를 통해 2열 추가 편의 기능과 더욱 고급화된 실내 인테리어를 적용할 수 있어요', 10, 2);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('현대스마트센스 I', 790000, '"운전 중 돌발 상황에 도움이 필요하다면?
 현대스마트센스 1의 차량 자동 제어를 통해 도움을 받을 수 있어요."
-', null, 1);
+', 10, 1);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('주차보조 시스템 II', 690000, '주차가 어려우신가요?
-‘주차보조 시스템 2’와 함께 안전하게 주차할 수 있어요.', null, 1);
+‘주차보조 시스템 2’와 함께 안전하게 주차할 수 있어요.', 10, 1);
 INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('컴포트 II', 1090000, '안전한 차량 경험을 위한 여섯 가지 기능 모음
-컴포트 2를 통해 편리한 드라이빙을 즐겨보세요.', null, 1);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('KRELL 사운드 패키지', 690000, '-', null, 4);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('2열 통풍시트', 400000, '시동이 걸린 상태에서 해당 좌석의 통풍 스위치를 누르면 표시등이 켜지면서 해당 좌석에 바람이 나오는 편의장치입니다.', null, 4);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('20인치 알로이 휠 & 타이어', 0, '-', null, 2);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('주차보조 시스템 I', 1680000, '-', null, 1);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('컨비니언스', 790000, '-', null, 1);
-INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('컴포트 I', 890000, '-', null, 1);
+컴포트 2를 통해 편리한 드라이빙을 즐겨보세요.', 10, 1);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('KRELL 사운드 패키지', 690000, '-', 10, 4);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('2열 통풍시트', 400000, '시동이 걸린 상태에서 해당 좌석의 통풍 스위치를 누르면 표시등이 켜지면서 해당 좌석에 바람이 나오는 편의장치입니다.', 10, 4);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('20인치 알로이 휠 & 타이어', 0, '-', 10, 2);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('주차보조 시스템 I', 1680000, '-', 10, 1);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('컨비니언스', 790000, '-', 10, 1);
+INSERT INTO `OPTION` (name, price, description, purchase_rate, option_category_id) VALUES ('컴포트 I', 890000, '-', 10, 1);
 
 INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('8단 자동변속기', '전달 효율 증대로 전 엔진 동급 최고의 연비를 구현함은 물론, 최적의 변속 성능으로 드라이빙 감성까지 향상시켜줍니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/19.jpg', null, 'FALSE', 1, null);
 INSERT INTO FUNCTIONS (name, description, img_url, option_id, is_my_trim, function_category_id, wheel_logo_img_url) VALUES ('ISG 시스템', '신호 대기 상황이거나 정차 중일 때 차의 엔진을 일시 정지하여 연비를 향상시키고, 배출가스 발생을 억제하는 시스템입니다.', 'https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/20.jpg', null, 'FALSE', 1, null);
@@ -1376,78 +1376,3 @@ INSERT INTO TRIM_THUMBNAIL_FUNCTION (width_pixel, height_pixel, name, trim_id, d
 INSERT INTO TRIM_THUMBNAIL_FUNCTION (width_pixel, height_pixel, name, trim_id, description) VALUES (140, 121, '원격 스마트 주차 보조', 4, '주차 보조 기능을 활성화 한 후 주차공간을 발견하게 되면 차량 내 안내에 따라 하차한 다음, 스마트키의 작동 버튼을 누르고만 있으면 차가 스스로 주차합니다. 직각주차 및 평행주차 모두 가능하며, 운전자 탑승 시에도 차량 내부의 작동 버튼을 누르고 있으면 자동 주차 보조를 지원합니다.');
 INSERT INTO TRIM_THUMBNAIL_FUNCTION (width_pixel, height_pixel, name, trim_id, description) VALUES (53, 179, '캘리그래피 전용 디자인', 4, '(휠, 라디에이터 그릴 & 가니쉬, 인테이크 그릴, 바디컬러 클래딩, 프론트 & 리어 크롬 스키드 플레이트)');
 
-UPDATE TRIM AS tm
-    JOIN (
-    SELECT tm.trim_id, ROUND(COUNT(sd.trim_id) / (SELECT COUNT(*) FROM SALES_DATA) * 100) AS percent
-    FROM SALES_DATA AS sd
-    RIGHT JOIN TRIM AS tm ON sd.trim_id = tm.trim_id
-    GROUP BY tm.trim_id
-    ) AS subquery
-ON tm.trim_id = subquery.trim_id
-SET tm.purchase_rate = subquery.percent;
-
-UPDATE BODY_TYPE AS bt
-    JOIN (
-    SELECT bt.body_type_id, ROUND(COUNT(sd.body_type_id) / (SELECT COUNT(*) FROM SALES_DATA) * 100) AS percent
-    FROM SALES_DATA AS sd
-    RIGHT JOIN BODY_TYPE AS bt ON sd.body_type_id = bt.body_type_id
-    GROUP BY bt.body_type_id
-    ) AS subquery
-ON bt.body_type_id = subquery.body_type_id
-SET bt.purchase_rate = subquery.percent;
-
-UPDATE ENGINE AS EG
-    JOIN (
-    SELECT EG.engine_id, ROUND(COUNT(sd.engine_id) / (SELECT COUNT(*) FROM SALES_DATA) * 100) AS percent
-    FROM SALES_DATA AS sd
-    RIGHT JOIN ENGINE AS EG ON sd.engine_id = EG.engine_id
-    GROUP BY EG.engine_id
-    ) AS subquery
-ON EG.engine_id = subquery.engine_id
-SET EG.purchase_rate = subquery.percent;
-
-UPDATE DRIVING_METHOD AS DM
-    JOIN (
-    SELECT DM.driving_method_id, ROUND(COUNT(sd.driving_method_id) / (SELECT COUNT(*) FROM SALES_DATA) * 100) AS percent
-    FROM SALES_DATA AS sd
-    RIGHT JOIN DRIVING_METHOD AS DM ON sd.driving_method_id = DM.driving_method_id
-    GROUP BY DM.driving_method_id
-    ) AS subquery
-ON DM.driving_method_id = subquery.driving_method_id
-SET DM.purchase_rate = subquery.percent;
-
-UPDATE EXTERIOR_COLOR AS EC
-    JOIN (
-    SELECT EC.exterior_color_id, ROUND(COUNT(sd.exterior_color_id) / (SELECT COUNT(*) FROM SALES_DATA) * 100) AS percent
-    FROM SALES_DATA AS sd
-    RIGHT JOIN EXTERIOR_COLOR AS EC ON sd.exterior_color_id = EC.exterior_color_id
-    GROUP BY EC.exterior_color_id
-    ) AS subquery
-ON EC.exterior_color_id = subquery.exterior_color_id
-SET EC.purchase_rate = subquery.percent;
-
-UPDATE INTERIOR_COLOR AS IC
-    JOIN (
-    SELECT IC.color, ROUND(COUNT(sd.interior_color_id) / trim_count.count * 100) AS percent
-    FROM SALES_DATA AS sd
-    RIGHT JOIN INTERIOR_COLOR AS IC ON sd.interior_color_id = IC.interior_color_id
-    INNER JOIN (
-    SELECT trim_id, COUNT(*) as count
-    FROM SALES_DATA
-    GROUP BY trim_id
-    ) AS trim_count
-    ON sd.trim_id = trim_count.trim_id
-    GROUP BY sd.trim_id, IC.color
-    ) AS subquery
-ON IC.color = subquery.color
-SET IC.purchase_rate = subquery.percent;
-
-UPDATE `OPTION` AS OT
-    JOIN (
-    SELECT OT.option_id, ROUND(COUNT(SDO.option_id) / (SELECT COUNT(*) FROM SALES_DATA) * 100) AS percent
-    FROM SALES_DATA_OPTION AS SDO
-    RIGHT JOIN `OPTION` AS OT ON SDO.option_id = OT.option_id
-    GROUP BY OT.option_id
-    ) AS subquery
-ON OT.option_id = subquery.option_id
-SET OT.purchase_rate = subquery.percent;
