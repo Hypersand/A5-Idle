@@ -15,7 +15,7 @@ public class OptionDto {
     private String optionPurchaseRate;
     private String optionDescription;
     private String optionCategory;
-    private boolean optionCanSelect = true;
+    private boolean optionCanSelect;
 
     public OptionDto(Long optionId, String optionName, Long optionPrice, String optionPurchaseRate, String optionDescription, String optionCategory, boolean optionCanSelect) {
         this.optionId = optionId;

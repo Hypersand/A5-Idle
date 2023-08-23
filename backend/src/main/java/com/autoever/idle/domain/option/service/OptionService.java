@@ -19,14 +19,13 @@ public class OptionService {
     private final FunctionRepository functionRepository;
 
     public List<OptionFunctionsResponse> getOptionFunctions(OptionRequest optionRequest) {
-        List<OptionDto> additionalOptionList = optionRepository.findAdditionalOptionList(optionRequest.getTrimId());
-        List<Long> notActivatedOptionIdList = optionRepository.findNotActivatedOptionIdList(optionRequest.getEngineId(), optionRequest.getSelectedOptionIds());
+        List<OptionDto> additionalOptionList = optionRepository.findAdditionalOptionList(optionRequest.getTrimId(),
+                optionRequest.getEngineId(),
+                optionRequest.getSelectedOptionIds());
+
         List<OptionFunctionsResponse> optionFunctionsResponseList = new ArrayList<>();
 
         for (OptionDto optionDto : additionalOptionList) {
-            if (notActivatedOptionIdList.contains(optionDto.getOptionId())) {
-                optionDto.setOptionCanSelect(false);
-            }
             optionFunctionsResponseList.add(OptionFunctionsResponse.create(
                     optionDto,
                     functionRepository.findFunctionsInAdditionalOption(optionDto.getOptionId()))
@@ -64,14 +63,14 @@ public class OptionService {
     }
 
     private int compareRatesAndNames(OptionFunctionsResponse o1, OptionFunctionsResponse o2) {
-        double rate1 = extractRate(o1.getOptionPurchaseRate());
-        double rate2 = extractRate(o2.getOptionPurchaseRate());
+                double rate1 = extractRate(o1.getOptionPurchaseRate());
+                double rate2 = extractRate(o2.getOptionPurchaseRate());
 
-        if (rate1 == rate2) {
-            return o2.getOptionName().compareTo(o1.getOptionName());
-        }
-        if (rate1 < rate2) {
-            return 1;
+                if (rate1 == rate2) {
+                    return o2.getOptionName().compareTo(o1.getOptionName());
+                }
+                if (rate1 < rate2) {
+                    return 1;
         }
 
         return -1;
