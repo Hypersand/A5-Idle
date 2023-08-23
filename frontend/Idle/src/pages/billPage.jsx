@@ -30,7 +30,7 @@ function BillPage() {
 
   const updateAnimation = () => {
     if (prevMoney !== targetMoney) {
-      setPrevMoney(prevMoney + (targetMoney - prevMoney) * 0.25);
+      setPrevMoney(prevMoney + (targetMoney - prevMoney) * 0.5);
     }
   };
 
