@@ -6,6 +6,7 @@ import com.autoever.idle.domain.interiorColor.dto.InteriorImgUrlDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SingleColumnRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -59,5 +60,13 @@ public class InteriorColorRepositoryImpl implements InteriorColorRepository {
         RowMapper<InteriorImgUrlDto> rowMapper = new BeanPropertyRowMapper<>(InteriorImgUrlDto.class);
 
         return jdbcTemplate.query(query, param, rowMapper);
+    }
+
+    public List<String> findAllInteriorColorImgUrls() {
+        String query = "select distinct color_img_url from INTERIOR_COLOR";
+
+        RowMapper<String> rowMapper = new SingleColumnRowMapper<>(String.class);
+
+        return jdbcTemplate.query(query, rowMapper);
     }
 }

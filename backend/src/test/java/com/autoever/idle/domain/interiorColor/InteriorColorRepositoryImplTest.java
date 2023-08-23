@@ -73,4 +73,21 @@ class InteriorColorRepositoryImplTest {
         softAssertions.assertThat(interiorColorImgUrls.get(0).getInteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png");
         softAssertions.assertThat(interiorColorImgUrls.get(1).getInteriorImgUrl()).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png");
     }
+
+    @Test
+    @DisplayName("전체 내장 색상 이미지 url을 반환한다")
+    void findAllInteriorColorImgUrls() {
+        List<String> imgUrls = interiorColorRepository.findAllInteriorColorImgUrls();
+
+        softAssertions.assertThat(imgUrls.get(0)).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/117-1.png");
+        softAssertions.assertThat(imgUrls.get(1)).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/118-1.png");
+        softAssertions.assertThat(imgUrls.get(2)).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/119-1.png");
+        softAssertions.assertThat(imgUrls.get(3)).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/120-1.png");
+        softAssertions.assertThat(imgUrls.get(4)).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/121-1.png");
+        softAssertions.assertThat(imgUrls.get(5)).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/122-1.png");
+        softAssertions.assertThat(imgUrls.get(6)).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/123-1.png");
+        softAssertions.assertThat(imgUrls.get(7)).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/128-1.png");
+        softAssertions.assertThat(imgUrls.get(8)).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/17-1.png");
+        softAssertions.assertThat(imgUrls.get(9)).isEqualTo("https://a5idle.s3.ap-northeast-2.amazonaws.com/mycarimages/18-1.png");
+    }
 }
