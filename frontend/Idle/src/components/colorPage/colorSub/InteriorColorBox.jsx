@@ -5,7 +5,6 @@ import { styled } from "styled-components";
 import palette from "../../../styles/palette";
 
 function InteriorColorBox({ data }) {
-  console.log(data);
   const { car, dispatch } = useContext(carContext);
   function innerColorClick(item) {
     if (car.color.interior.name !== item.interiorName) {

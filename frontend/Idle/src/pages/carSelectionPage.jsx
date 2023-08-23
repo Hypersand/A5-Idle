@@ -4,12 +4,12 @@ import { getWithoutQueryAPI } from "../utils/api";
 import { PATH } from "../constant/path";
 import { styled } from "styled-components";
 import { CAR_SELECTION_NUM } from "../constant/constants"
-import { CategoryTabs } from "../components/common/tabs/CategoryTabs"
-import { MainLogoBlack } from "../components/common/logos/MainLogoBlack"
+import CategoryTabs from "../components/common/tabs/CategoryTabs"
+import MainLogoBlack from "../components/common/logos/MainLogoBlack"
 import { ReactComponent as LeftArrow } from "../assets/images/optionArrowLeft.svg";
 import { ReactComponent as RightArrow } from "../assets/images/optionArrowRight.svg";
-import { WarningModal } from "../components/common/modals/WarningModal"
-import { CarSelectionContainer } from "../components/carSelectionPage/CarSelectionContainer"
+import WarningModal from "../components/common/modals/WarningModal"
+import CarSelectionContainer from "../components/carSelectionPage/CarSelectionContainer"
 import palette from "../styles/palette";
 
 function filterData(data, selectedTab, currentPage) {
