@@ -42,7 +42,7 @@ class TrimServiceTest {
 
     @Mock
     TrimRepository trimRepository;
-    
+
     @Mock
     FunctionCategoryRepository functionCategoryRepository;
 
