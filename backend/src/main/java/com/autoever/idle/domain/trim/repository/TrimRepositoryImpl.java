@@ -17,14 +17,16 @@ public class TrimRepositoryImpl implements TrimRepository {
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
-    public List<TrimDto> findAll(Long carTypeId) {
+    public List<TrimDto> findAll(String carTypeName) {
         MapSqlParameterSource param = new MapSqlParameterSource();
-        param.addValue("carTypeId", carTypeId);
+        param.addValue("carTypeName", carTypeName);
 
         RowMapper<TrimDto> rowMapper = new BeanPropertyRowMapper<>(TrimDto.class);
 
         return jdbcTemplate.query(
-                "select trim_id, name, price, img_url, description, purchase_rate from TRIM where car_type_id = :carTypeId",
+                "select T.trim_id, T.name, T.price, T.img_url, T.description, T.purchase_rate from CAR_TYPE as CT " +
+                        "left join TRIM as T on CT.car_type_id = T.car_type_id " +
+                        "where CT.name = :carTypeName",
                 param, rowMapper);
     }
 
