@@ -1,19 +1,16 @@
 import { useContext, useState } from "react";
 import { styled } from "styled-components";
 import { carContext } from "../../../store/context";
-import { POP_ADDITIONAL_OPTION, POP_CONFUSING_OPTION, PUSH_ADDITIONAL_OPTION, PUSH_CONFUSING_OPTION } from "../../../store/actionType";
+import {
+  POP_ADDITIONAL_OPTION,
+  POP_CONFUSING_OPTION,
+  PUSH_ADDITIONAL_OPTION,
+  PUSH_CONFUSING_OPTION,
+} from "../../../store/actionType";
 import OptionModal from "../../common/modals/OptionModal";
-// import { carContext } from "utils/context";
-// import {
-//   POP_ADDITIONAL_OPTION,
-//   POP_CONFUSING_OPTION,
-//   PUSH_ADDITIONAL_OPTION,
-//   PUSH_CONFUSING_OPTION,
-// } from "utils/actionType";
-// import DetailOptionModal from "../../common/modals/OptionModal";
 
 function BillOptionBox({ isAdded, data }) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const { car, dispatch } = useContext(carContext);
 
   function btnClicked() {
@@ -22,12 +19,8 @@ function BillOptionBox({ isAdded, data }) {
       name: data?.optionName,
       price: data?.optionPrice,
     };
-    const filteredAdded = car.option.additional.filter(
-      (item) => item.name !== data?.optionName
-    );
-    const filteredConfused = car.option.confusing.filter(
-      (item) => item.name !== data?.optionName
-    );
+    const filteredAdded = car.option.additional.filter((item) => item.name !== data?.optionName);
+    const filteredConfused = car.option.confusing.filter((item) => item.name !== data?.optionName);
 
     if (isAdded) {
       dispatch({ type: PUSH_CONFUSING_OPTION, payload: payload });
@@ -40,14 +33,20 @@ function BillOptionBox({ isAdded, data }) {
 
   return (
     <StContainer>
-      <StHoverContainer onClick={() => { setIsOpen(true) }}>
+      <StHoverContainer
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
         <StImageContainer>
           <StImg src={data?.optionImgUrl}></StImg>
         </StImageContainer>
         <StContent>
           <StCategory className="optionCategory">{data?.optionCategory}</StCategory>
           <StOptionName className="optionName">{data?.optionName}</StOptionName>
-          <STOptionDesc className="optionDesc">{data?.optionDescription === "-" ? "" : data?.optionDescription}</STOptionDesc>
+          <STOptionDesc className="optionDesc">
+            {data?.optionDescription === "-" ? "" : data?.optionDescription}
+          </STOptionDesc>
         </StContent>
       </StHoverContainer>
       <StBtn onClick={btnClicked} $isAdd={isAdded}>
@@ -60,7 +59,7 @@ function BillOptionBox({ isAdded, data }) {
           description={data?.optionDescription === "-" ? "" : data?.optionDescription}
           functionImgUrl={data?.optionImgUrl}
           onClose={() => {
-            setIsOpen(false)
+            setIsOpen(false);
           }}
           modalPosition={"carMasterModal"}
         />
@@ -76,13 +75,11 @@ const StContainer = styled.div`
   width: 676px;
   justify-content: space-between;
   align-items: center;
-
 `;
 
 const StImg = styled.img`
   width: 100%;
   height: 100%;
-
 `;
 
 const StContent = styled.div`
@@ -176,17 +173,17 @@ const StImageContainer = styled.div`
   overflow: hidden;
   width: 154px;
   height: 120px;
-`
+`;
 const StHoverContainer = styled.div`
   display: flex;
   cursor: pointer;
-  &:hover img{
+  &:hover img {
     scale: 1.05;
   }
-  &:hover .optionName{
+  &:hover .optionName {
     text-decoration: underline;
   }
-  &:hover .optionDesc{
+  &:hover .optionDesc {
     text-decoration: underline;
   }
-`
+`;
