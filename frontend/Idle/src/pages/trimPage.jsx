@@ -4,7 +4,6 @@ import { styled } from "styled-components";
 import { preloadContext } from "../store/context"
 import { getWithoutQueryAPI } from "../utils/api"
 import { PATH } from "../constant/path"
-import { preloadImage } from "../utils/preloader"
 import Loading from "../components/common/loading/Loading"
 import TrimMain from "../components/trimPage/trimMain/TrimMain"
 import NormalTrimBoxContainer from "../components/trimPage/trimSub/NormalTrimBoxContainer"
@@ -21,7 +20,7 @@ function TrimPage() {
   const [toolTipStatus, setToolTipStatus] = useState(true);
   const [trimData, setTrimData] = useState(cachedTrimData);
   const [modalVisible, setModalVisible] = useState(false);
-  const { preLoadData, setPreLoadData, loaderIdx, setLoaderIdx } = useContext(preloadContext);
+  const { setPreLoadData, preloadImages } = useContext(preloadContext);
 
   function nextBTNClicked() {
     navigate("/detail/engines");
@@ -42,33 +41,26 @@ function TrimPage() {
     });
   }, []);
 
-  function handleMouseEnter() {
-    if (loaderIdx / 2 < preLoadData.length) {
-      preLoadData[Math.floor(loaderIdx / 2)].map((item, idx) => {
-        idx % 2 === loaderIdx % 2 && preloadImage(item.imgUrl);
-      });
-      setLoaderIdx((prev) => prev + 1);
-    }
-  }
+
   function findButtonClicked() {
     setToolTipStatus(false);
     setModalVisible(true);
   }
   return (
     <>
-      {trimData ? <TrimMain data={trimData} onMouseEnter={handleMouseEnter} /> : <Loading />}
+      {trimData ? <TrimMain data={trimData} onMouseEnter={preloadImages} /> : <Loading />}
       <StWrapper>
         <StBottomContainer>
-          {trimData ? <NormalTrimBoxContainer data={trimData} /> : <Loading />}
+          {trimData ? <NormalTrimBoxContainer data={trimData} onMouseEnter={preloadImages} /> : <Loading />}
           <StConfirmContainer>
             <StConfirmHeader>
               <Title>트림 선택</Title>
               <Description>원하는 트림을 선택해주세요.</Description>
             </StConfirmHeader>
-            <BlueButton text={"다음"} onClick={nextBTNClicked} onMouseEnter={handleMouseEnter} />
+            <BlueButton text={"다음"} onClick={nextBTNClicked} />
           </StConfirmContainer>
         </StBottomContainer>
-        <FindTrimButton onClick={findButtonClicked} onMouseEnter={handleMouseEnter} />
+        <FindTrimButton onClick={findButtonClicked} onMouseEnter={preloadImages} />
         <TrimSelectContainer onClick={() => { setToolTipStatus(false); }}>
           <StTooltipContainer>
             <StTooltip isActive={toolTipStatus} />
@@ -76,7 +68,7 @@ function TrimPage() {
         </TrimSelectContainer>
       </StWrapper>
       {modalVisible ? (
-        <FindTrim setVisible={setModalVisible} onMouseEnter={handleMouseEnter} />
+        <FindTrim setVisible={setModalVisible} onMouseEnter={preloadImages} />
       ) : (<> </>
       )}
     </>
