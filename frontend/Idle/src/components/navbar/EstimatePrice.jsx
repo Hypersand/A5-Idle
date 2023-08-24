@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { styled } from "styled-components";
-import { carContext } from "utils/context";
-import palette from "styles/palette";
+import { carContext } from "../../store/context";
+import palette from "../../styles/palette";
 
 function EstimatePrice() {
   const { car } = useContext(carContext);
@@ -14,7 +14,7 @@ function EstimatePrice() {
 
   const updateAnimation = () => {
     if (prevMoney !== targetMoney) {
-      setPrevMoney(prevMoney + (targetMoney - prevMoney) * 0.25);
+      setPrevMoney(prevMoney + (targetMoney - prevMoney) * 0.5);
     }
   };
 

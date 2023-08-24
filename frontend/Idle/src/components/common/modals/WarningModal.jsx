@@ -1,16 +1,17 @@
 import { keyframes, styled } from "styled-components";
-import BlueButton from "buttons/BlueButton";
-import WhiteButton from "buttons/WhiteButton";
 import { createPortal } from "react-dom";
-import palette from "styles/palette";
 import { useState } from "react";
+import WhiteButton from "../buttons/WhiteButton";
+import BlueButton from "../buttons/BlueButton";
+import palette from "../../../styles/palette";
 
 /**
  *
  * @param {string} title 질문내용 (문자열)
  * @returns 모달창
  */
-function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", modalPosition }) {
+
+function WarningModal({ title, setModalVisible, onSubmitClick, detail = "", modalPosition = "modal" }) {
   const [animationstate, setAnimationstate] = useState(false);
   function clickCancel() {
     setAnimationstate(true);
