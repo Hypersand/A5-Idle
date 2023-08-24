@@ -2,60 +2,13 @@
 
 소프티어 부트캠프 2기 오토에버 5팀 'I'들의 모임 Idle 입니다! 😁 </br></br>
 
-📄 <a href="https://daffodil-moose-d1e.notion.site/A5-Idle-7c29e9aa89464b6d8bddebc1f3a1322f?pvs=4">노션 링크</a>
-</br>
-
-## 그라운드 룰
-
----
-
-- 깃 브랜치 룰
-  - be-main
-    - be-develop
-    - be-feat#(issueNum)
-  - fe-main
-    - fe-develop
-    - fe-feat#(issueNum)
-- 커밋 컨벤션
-
-  ```jsx
-  [init] 개발 환경 초기 세팅
-  [feat] 새로운 기능 추가
-  [design] UI를 위한 스타일링
-  [fix] 버그 수정
-  [docs] 문서 추가, 수정, 삭제
-  [style] 코드 포맷팅(코드 순서 변경, 세미콜론 추가)
-  [refactor] 코드 리팩터링
-  [asset] 폰트, 이미지 추가
-  [chore] 그 외 자잘한 수정
-  ```
-
-- 이슈 컨벤션
-
-  - [FE] 기능 설명~
-    - 체크 박스로 각 task 정리
-  - [BE] 기능 설명~
-
-    - 체크 박스로 각 task 정리
-
-  - 템플릿에 따라 작성
-  - 태그 및 마일스톤에 정리
-
-- 회의 시간
-  - 매일 아침 스크럼 (10:00)
-  - 매일 저녁 회고 (18:00)
-  - 금요일 주간 마무리 회의
-
-</br>
-<ul>
-    <li> 🖥️  <a href="https://www.figma.com/file/YaOggVbutPWvrA9YtlOC8A/%EB%A7%88%EC%9D%B4%EC%B9%B4%EB%A7%88%EC%8A%A4%ED%84%B0---%EC%83%81%EC%84%B8-%EC%84%A4%EA%B3%84-%EB%B3%B4%EA%B3%A0%EC%84%9C?type=design&node-id=1334-2615&mode=design&t=2T7oe41JGEgHl3Wp-0">기획서 피그마 링크</a>
-    </li></br>
-    <li> 🖥️ <a href="https://www.figma.com/file/CTbEDEVSKBzJzogV8OoW4d/Handoff_guidelines-(%EB%A7%88%EC%9D%B4%EC%B9%B4%EB%A7%88%EC%8A%A4%ED%84%B0)?type=design&node-id=1:6&mode=design&t=VZ05WB7OM2D3WIWI-1">디자인 피그마 링크</a> </br>
-    </li></br>
-
-</ul>
-
-</aside>
+| 종류 | 링크 |
+| --- | --- |
+| Notion | [노션 링크](https://daffodil-moose-d1e.notion.site/A5-Idle-7c29e9aa89464b6d8bddebc1f3a1322f?pvs=4) |
+| Figma | [디자인 피그마 링크](https://www.figma.com/file/CTbEDEVSKBzJzogV8OoW4d/Handoff_guidelines-(%EB%A7%88%EC%9D%B4%EC%B9%B4%EB%A7%88%EC%8A%A4%ED%84%B0)?type=design&node-id=1:6&mode=design&t=VZ05WB7OM2D3WIWI-1)|
+| Issue |[이슈컨벤션](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/A5%E2%80%90Idle-%EA%B7%B8%EB%9D%BC%EC%9A%B4%EB%93%9C-%EB%A3%B0#%EC%9D%B4%EC%8A%88-%EC%BB%A8%EB%B2%A4%EC%85%98)|
+| Git branch | [깃 브렌치 룰](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/A5%E2%80%90Idle-%EA%B7%B8%EB%9D%BC%EC%9A%B4%EB%93%9C-%EB%A3%B0#%EA%B9%83-%EB%B8%8C%EB%A0%8C%EC%B9%98-%EB%A3%B0)|
+| Commit | [커밋컨벤션](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/A5%E2%80%90Idle-%EA%B7%B8%EB%9D%BC%EC%9A%B4%EB%93%9C-%EB%A3%B0#%EC%BB%A4%EB%B0%8B-%EC%BB%A8%EB%B2%A4%EC%85%98)|
 
 ## 👩🏻‍💻 팀원 소개
 
@@ -143,3 +96,43 @@
         </td>
     </tr>
 </table>
+
+
+
+## 🛠 기술 스택
+
+### 🖥 Frontend
+|역할|종류|
+|-|-|
+|Library|<img alt="RED" src ="https://img.shields.io/badge/REACT-61DAFB.svg?&style=for-the-badge&logo=React&logoColor=white"/> 
+|Styling|![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)|
+|Formatting|![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white)|
+|Package Manager|![](https://img.shields.io/badge/npm-CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)|                                         
+|Version Control|![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) |
+<br />
+
+### 🖥 Backend
+
+
+
+|역할|종류|
+|-|-|
+|Framework|<img alt="RED" src ="https://img.shields.io/badge/SPRING Boot-6DB33F.svg?&style=for-the-badge&logo=SpringBoot&logoColor=white"/> |
+|Database|<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">|
+|AWS|<img alt="RED" src ="https://img.shields.io/badge/amazonec2-FF9900.svg?&style=for-the-badge&logo=AmazonRds&logoColor=white"/> <img alt="RED" src ="https://img.shields.io/badge/Amazon S3-569A31.svg?&style=for-the-badge&logo=AmazonS3&logoColor=white"/>|
+|Programming Language|<img alt="RED" src ="https://img.shields.io/badge/JAVA-004027.svg?&style=for-the-badge&logo=Jameson&logoColor=white"/> <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img alt="RED" src ="https://img.shields.io/badge/Jdbc Tempate-6DB33F.svg?&style=for-the-badge&logo=Jdbc Tempate&logoColor=white"/>|                            
+|Version Control|![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) |
+|CI/CD|![GihubAction](https://img.shields.io/badge/githubactions-2088FF?style=for-the-badge&logo={githubactions}&logoColor={white}) <img alt="RED" src ="https://img.shields.io/badge/Amazon S3-569A31.svg?&style=for-the-badge&logo=AmazonS3&logoColor=white"/> |
+<br />
+
+### 🖥 Common
+|역할|종류|
+|-|-|
+|협업 관리|<img alt="RED" src ="https://img.shields.io/badge/Notion-000000.svg?&style=for-the-badge&logo=Notion&logoColor=white"/> |
+|디자인|<img alt="RED" src ="https://img.shields.io/badge/Figma-F24E1E.svg?&style=for-the-badge&logo=Figma&logoColor=white"/>|
+|API|![Kakao Map API](https://img.shields.io/badge/Rest-4B3263?style=for-the-badge&logo=rest&logoColor=white) <img alt="RED" src ="https://img.shields.io/badge/Kakao Map API-FFCD00.svg?&style=for-the-badge&logo=Kakao&logoColor=white"/>         
+
+<br />
+
+</aside>
+
