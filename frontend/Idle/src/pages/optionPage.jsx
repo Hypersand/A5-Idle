@@ -88,10 +88,6 @@ function OptionPage() {
     setCurrentPage(0);
   }, [selectedOption]);
 
-  useLayoutEffect(() => {
-    setSelectedFunction(filteredData[0]?.functions[0]);
-  }, [filteredData]);
-
   setClickedOptionPage(true);
   return (
     <>
@@ -107,13 +103,22 @@ function OptionPage() {
         />
         <StBottomContainer>
           <StWrapper>
-            <OptionBoxContainer filteredData={filteredData} selectedOption={selectedOption} setSelectedOption={setSelectedOption} setTooltipState={setTooltipState} />
+            <OptionBoxContainer
+              filteredData={filteredData}
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+              setTooltipState={setTooltipState}
+            />
             <DefaultOptionButton onClick={() => setIsDefaultModalOpen(true)} />
             <StTooltipContainer onClick={() => setTooltipState(false)}>
               <StTooltip isActive={tooltipState} />
             </StTooltipContainer>
           </StWrapper>
-          <OptionConfirmContainer tabs={tabs} currentTab={currentTab} setIsWarningOpen={setIsWarningOpen} />
+          <OptionConfirmContainer
+            tabs={tabs}
+            currentTab={currentTab}
+            setIsWarningOpen={setIsWarningOpen}
+          />
         </StBottomContainer>
       </StWrapper>
       {isWarningOpen ? (
@@ -149,7 +154,6 @@ const StBottomContainer = styled.div`
   justify-content: space-between;
   width: 1024px;
 `;
-
 
 const StTooltip = styled(ConfusingTooltip)``;
 
