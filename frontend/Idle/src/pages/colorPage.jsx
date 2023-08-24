@@ -1,11 +1,16 @@
 import { useContext, useLayoutEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { DEFAULT_EXTERIROR_COLOR, DEFAULT_INTERIROR_COLOR, EXTERIOR_COLORS, INTERIROR_COLORS } from "../constant/constants"
-import { carContext } from "../store/context"
-import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "../store/actionType"
-import { getWithoutQueryAPI } from "../utils/api"
-import { PATH } from "../constant/path"
+import {
+  DEFAULT_EXTERIROR_COLOR,
+  DEFAULT_INTERIROR_COLOR,
+  EXTERIOR_COLORS,
+  INTERIROR_COLORS,
+} from "../constant/constants";
+import { carContext } from "../store/context";
+import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "../store/actionType";
+import { getWithoutQueryAPI } from "../utils/api";
+import { PATH } from "../constant/path";
 import WarningModal from "../components/common/modals/WarningModal";
 import ColorConfirmContainer from "../components/colorPage/colorSub/ColorConfirmContainer";
 import ColorTabContainer from "../components/colorPage/colorMain/ColorTabContainer";
@@ -91,10 +96,22 @@ function ColorPage() {
     <>
       <StWrapper>
         <ColorTabContainer tabs={tabs} currentTab={currentTab} />
-        <ColorMain currentTab={currentTab} filteredExteriorData={filteredExteriorData} interiorData={interiorData} />
+        <ColorMain
+          currentTab={currentTab}
+          filteredExteriorData={filteredExteriorData}
+          interiorData={interiorData}
+        />
         <StBottomContainer>
-          <ColorBoxContainer currentTab={currentTab} exteriorData={exteriorData} interiorData={interiorData} />
-          <ColorConfirmContainer tabs={tabs} currentTab={currentTab} setIsEngineChecked={setIsEngineChecked} />
+          <ColorBoxContainer
+            currentTab={currentTab}
+            exteriorData={exteriorData}
+            interiorData={interiorData}
+          />
+          <ColorConfirmContainer
+            tabs={tabs}
+            currentTab={currentTab}
+            setIsEngineChecked={setIsEngineChecked}
+          />
         </StBottomContainer>
         {isEngineChecked && (
           <WarningModal
@@ -110,7 +127,6 @@ function ColorPage() {
 }
 
 export default ColorPage;
-
 
 const StWrapper = styled.div`
   display: flex;
@@ -128,4 +144,3 @@ const StBottomContainer = styled.div`
   justify-content: space-between;
   width: 1024px;
 `;
-

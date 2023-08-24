@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { preloadContext } from "../store/context"
-import { getWithoutQueryAPI } from "../utils/api"
-import { PATH } from "../constant/path"
-import Loading from "../components/common/loading/Loading"
-import TrimMain from "../components/trimPage/trimMain/TrimMain"
-import NormalTrimBoxContainer from "../components/trimPage/trimSub/NormalTrimBoxContainer"
-import FindTrim from "../components/trimPage/findTrim/FindTrim"
-import FindTrimButton from "../components/trimPage/trimSub/FindTrimButton"
-import FindTrimTooltip from "../components/common/toolTips/FindTrimTooltip"
+import { preloadContext } from "../store/context";
+import { getWithoutQueryAPI } from "../utils/api";
+import { PATH } from "../constant/path";
+import Loading from "../components/common/loading/Loading";
+import TrimMain from "../components/trimPage/trimMain/TrimMain";
+import NormalTrimBoxContainer from "../components/trimPage/trimSub/NormalTrimBoxContainer";
+import FindTrim from "../components/trimPage/findTrim/FindTrim";
+import FindTrimButton from "../components/trimPage/trimSub/FindTrimButton";
+import FindTrimTooltip from "../components/common/toolTips/FindTrimTooltip";
 import TrimConfirmContainer from "../components/trimPage/trimSub/TrimConfirmContainer";
 
 let cachedTrimData = null;
@@ -18,6 +18,7 @@ function TrimPage() {
   const [trimData, setTrimData] = useState(cachedTrimData);
   const [modalVisible, setModalVisible] = useState(false);
   const { setPreLoadData, preloadImages } = useContext(preloadContext);
+  window.requestIdleCallback(preloadImages);
 
   useEffect(() => {
     (async () => {
@@ -43,23 +44,24 @@ function TrimPage() {
   }
   return (
     <>
-      {trimData ? <TrimMain data={trimData} onMouseEnter={preloadImages} /> : <Loading />}
+      {trimData ? <TrimMain data={trimData} /> : <Loading />}
       <StWrapper>
         <StBottomContainer>
-          {trimData ? <NormalTrimBoxContainer data={trimData} onMouseEnter={preloadImages} /> : <Loading />}
+          {trimData ? <NormalTrimBoxContainer data={trimData} /> : <Loading />}
           <TrimConfirmContainer />
         </StBottomContainer>
-        <FindTrimButton onClick={findButtonClicked} onMouseEnter={preloadImages} />
-        <TrimSelectContainer onClick={() => { setToolTipStatus(false); }}>
+        <FindTrimButton onClick={findButtonClicked} />
+        <TrimSelectContainer
+          onClick={() => {
+            setToolTipStatus(false);
+          }}
+        >
           <StTooltipContainer>
             <StTooltip isActive={toolTipStatus} />
           </StTooltipContainer>
         </TrimSelectContainer>
       </StWrapper>
-      {modalVisible ? (
-        <FindTrim setVisible={setModalVisible} onMouseEnter={preloadImages} />
-      ) : (<> </>
-      )}
+      {modalVisible ? <FindTrim setVisible={setModalVisible} /> : <> </>}
     </>
   );
 }

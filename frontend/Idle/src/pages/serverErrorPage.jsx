@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import MainLogoWhite from "../components/common/logos/MainLogoWhite";
 
-function ServerErrorPage(setError = null) {
+function ServerErrorPage({ setError = null }) {
   const navigate = useNavigate();
   function moveButtonClick() {
     navigate("/");
@@ -11,7 +11,7 @@ function ServerErrorPage(setError = null) {
   return (
     <StContainer>
       <StLogoContainer>
-        <MainLogoWhite />
+        <MainLogoWhite setError={setError} />
       </StLogoContainer>
       <StContent>
         <StTitle>SORRY,</StTitle>

@@ -1,7 +1,11 @@
 import { styled } from "styled-components";
 import { useContext } from "react";
 import { carContext, preloadContext } from "../../../store/context";
-import { CHANGE_BODY_TYPES, CHANGE_DRIVING_METHODS, CHANGE_ENGINES } from "../../../store/actionType";
+import {
+  CHANGE_BODY_TYPES,
+  CHANGE_DRIVING_METHODS,
+  CHANGE_ENGINES,
+} from "../../../store/actionType";
 import palette from "../../../styles/palette";
 
 function checkOptionBeforeEngineChanged(car, setModalVisible) {
@@ -32,6 +36,7 @@ function DetailModelBox({
 }) {
   const { car, dispatch } = useContext(carContext);
   const { preloadImages } = useContext(preloadContext);
+  window.requestIdleCallback(preloadImages);
 
   function optionClicked(type, price) {
     const payload = { name: type, price: price, id: id };
@@ -67,7 +72,6 @@ function DetailModelBox({
         onClick={() => optionClicked(type, price)}
         $isSelected={isOptionSelected}
         $isActive={isActive}
-        onMouseEnter={preloadImages}
       >
         <StContent>
           <StTitleContainer>
@@ -103,7 +107,7 @@ const StContainer = styled.div`
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   &:hover {
     background: ${({ $isSelected }) =>
-    $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+      $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
   }

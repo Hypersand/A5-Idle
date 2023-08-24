@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { ReactComponent as MainLogoImg } from "../../../assets/images/hyundaiDark.svg";
 import palette from "../../../styles/palette";
 
-function MainLogoWhite() {
-  const navigate = useNavigate();
+function MainLogoWhite({ setError = null }) {
   function logoClicked() {
-    navigate("/");
+    location.replace("/");
+    setError(false);
   }
 
   return (
