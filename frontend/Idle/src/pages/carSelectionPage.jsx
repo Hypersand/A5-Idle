@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getWithoutQueryAPI } from "../utils/api";
 import { PATH } from "../constant/path";
@@ -10,6 +10,7 @@ import WarningModal from "../components/common/modals/WarningModal";
 import CarSelectionContainer from "../components/carSelectionPage/carSelectionMain/CarSelectionContainer";
 import palette from "../styles/palette";
 import CarSelectionPagenation from "../components/carSelectionPage/carSelectionSub/CarSelectionPagenation";
+import { preloadContext } from "../store/context";
 
 function filterData(data, selectedTab, currentPage) {
   if (data.length === 0) return {};
@@ -41,6 +42,7 @@ function CarSelectionPage() {
   const [warningModalVisible, setWarningModalVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [carData, setCarData] = useState([]);
+  const { setPreLoadData } = useContext(preloadContext);
 
   const tabs = ["수소/전기차", "N", "승용", "SUV", "소형트럭&택시", "트럭", "버스"];
   const navigate = useNavigate();
@@ -53,6 +55,16 @@ function CarSelectionPage() {
   }, []);
 
   const { filteredData, maxPage } = filterData(carData, selectedTab, currentPage);
+
+  function mouseEnter() {
+    setPreLoadData([]);
+    (async () => {
+      const res = await getWithoutQueryAPI(PATH.COLOR.EXTERIOR, { trimId: 4 });
+      res?.map((item) => {
+        setPreLoadData((prev) => [...prev, item.carImgUrls]);
+      });
+    })();
+  }
 
   function renderTabs() {
     return tabs.map((item, index) => {
@@ -84,8 +96,15 @@ function CarSelectionPage() {
             selectedCar={selectedCar}
           />
         )}
-        <CarSelectionPagenation currentPage={currentPage} setCurrentPage={setCurrentPage} maxPage={maxPage} />
-        <StBtn onClick={() => btnClicked(navigate, selectedCar, setWarningModalVisible)}>
+        <CarSelectionPagenation
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          maxPage={maxPage}
+        />
+        <StBtn
+          onClick={() => btnClicked(navigate, selectedCar, setWarningModalVisible)}
+          onMouseEnter={mouseEnter}
+        >
           마이 카마스터 시작하기
         </StBtn>
         {warningModalVisible && (
