@@ -1,8 +1,11 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
-import MainLogoWhite from "logos/MainLogoWhite";
+import MainLogoWhite from "../components/common/logos/MainLogoWhite";
 
 function ErrorPage() {
+  function moveButtonClick() {
+    location.replace("/");
+  }
   return (
     <StContainer>
       <StLogoContainer>
@@ -13,7 +16,7 @@ function ErrorPage() {
         <StTitle>NOT</StTitle>
         <StTitle>FOUND</StTitle>
         <StBoxContainer>
-          <StHyperLink to="/">메인페이지로 이동</StHyperLink>
+          <StHyperLink onClick={moveButtonClick}>메인페이지로 이동</StHyperLink>
         </StBoxContainer>
       </StContent>
     </StContainer>
@@ -63,6 +66,7 @@ const StLogoContainer = styled.div`
   top: 32px;
   left: 128px;
   z-index: 1;
+  cursor: pointer;
 `;
 
 const StTitle = styled.h1`

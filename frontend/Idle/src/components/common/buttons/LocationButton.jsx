@@ -1,12 +1,12 @@
 import { styled } from "styled-components";
-import palette from "styles/palette";
-import { ReactComponent as ArrowDown } from "images/arrowDown.svg";
+import { ReactComponent as ArrowDown } from "../../../assets/images/arrowDown.svg";
+import palette from "../../../styles/palette";
 
 function LocationButton({ location }) {
   return (
     <StLocationContainer>
       {location}
-      <ArrowDown />
+      <ArrowDown alt={"ArrowDown"} />
     </StLocationContainer>
   );
 }
@@ -19,7 +19,7 @@ const StLocationContainer = styled.div`
   height: 25px;
   padding: 8px 16px 8px 16px;
   background-color: ${palette.Grey_1};
-  font-family: Hyundai Sans Text KR;
+  font-family: "Hyundai Sans Text KR";
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;

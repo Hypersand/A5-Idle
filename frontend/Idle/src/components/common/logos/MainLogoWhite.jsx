@@ -1,17 +1,16 @@
 import styled from "styled-components";
-import { ReactComponent as MainLogoImg } from "images/hyundaiDark.svg";
-import { useNavigate } from "react-router-dom";
-import palette from "styles/palette";
+import { ReactComponent as MainLogoImg } from "../../../assets/images/hyundaiDark.svg";
+import palette from "../../../styles/palette";
 
-function MainLogoWhite() {
-  const navigate = useNavigate();
+function MainLogoWhite({ setError = null }) {
   function logoClicked() {
-    navigate("/");
+    location.replace("/");
+    setError(false);
   }
 
   return (
     <Stdiv>
-      <MainLogoImg onClick={logoClicked} />
+      <MainLogoImg alt="MainLogoImg" onClick={logoClicked} loading="lazy" />
       <Stdivision></Stdivision>
       <Stspan>마이 카마스터</Stspan>
     </Stdiv>

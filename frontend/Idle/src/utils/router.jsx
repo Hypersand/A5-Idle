@@ -10,7 +10,7 @@ const OptionPage = React.lazy(() => import("../pages/optionPage"));
 const BillPage = React.lazy(() => import("../pages/billPage"));
 const MainPage = React.lazy(() => import("../pages/mainPage"));
 const Layout = React.lazy(() => import("../components/layout/Layout"));
-const SelectCarPage = React.lazy(() => import("../pages/selectCarPage"));
+const CarSelectionPage = React.lazy(() => import("../pages/carSelectionPage"));
 const ErrorPage = React.lazy(() => import("../pages/errorPage"));
 const ServerErrorPage = React.lazy(() => import("../pages/serverErrorPage"));
 
@@ -20,7 +20,7 @@ function Router() {
       <ErrorBoundary>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/selectCar" element={<SelectCarPage />} />
+          <Route path="/selectCar" element={<CarSelectionPage />} />
           <Route element={<Layout />}>
             <Route path="/trim" element={<TrimPage />} />
             <Route path="/detail/:tab" element={<DetailModelPage />} />
@@ -28,8 +28,8 @@ function Router() {
             <Route path="/option/:tab" element={<OptionPage />} />
           </Route>
           <Route path="/bill" element={<BillPage />} />
-          <Route path="/error" element={<ServerErrorPage />} />
           <Route path="/*" element={<ErrorPage />} />
+          <Route path="/error" element={<ServerErrorPage />} />
         </Routes>
       </ErrorBoundary>
     </Suspense>

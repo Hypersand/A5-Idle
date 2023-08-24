@@ -1,18 +1,17 @@
 import { styled } from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import MainLogoWhite from "logos/MainLogoWhite";
+import MainLogoWhite from "../components/common/logos/MainLogoWhite";
 
-function ServerErrorPage(setError = null) {
-
+function ServerErrorPage({ setError = null }) {
   const navigate = useNavigate();
   function moveButtonClick() {
-    navigate("/")
-    setError(false)
+    navigate("/");
+    setError(false);
   }
   return (
     <StContainer>
       <StLogoContainer>
-        <MainLogoWhite />
+        <MainLogoWhite setError={setError} />
       </StLogoContainer>
       <StContent>
         <StTitle>SORRY,</StTitle>
@@ -68,6 +67,7 @@ const StLogoContainer = styled.div`
   top: 32px;
   left: 128px;
   z-index: 1;
+  cursor: pointer;
 `;
 
 const StTitle = styled.h1`
