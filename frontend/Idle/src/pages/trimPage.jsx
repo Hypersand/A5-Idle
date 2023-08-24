@@ -17,8 +17,8 @@ function TrimPage() {
   const [toolTipStatus, setToolTipStatus] = useState(true);
   const [trimData, setTrimData] = useState(cachedTrimData);
   const [modalVisible, setModalVisible] = useState(false);
-  const { preloadImages } = useContext(preloadContext);
   const preLoadRef = useRef(false);
+  const { preloadImages } = useContext(preloadContext);
 
   useEffect(() => {
     (async () => {

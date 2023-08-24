@@ -35,6 +35,11 @@ function DetailModelBox({
   setModalVisible,
 }) {
   const { car, dispatch } = useContext(carContext);
+<<<<<<< HEAD
+=======
+  const { preloadImages } = useContext(preloadContext);
+  window.requestIdleCallback(preloadImages);
+>>>>>>> b63c70b4a2f68e1e61d9860af75c82fbcb74e567
 
   function optionClicked(type, price) {
     const payload = { name: type, price: price, id: id };

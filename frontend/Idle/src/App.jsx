@@ -11,6 +11,7 @@ import { preloadImage } from "./utils/preloader";
 function App() {
   const [car, dispatch] = useReducer(carReducer, globalCar);
   const [preLoadData, setPreLoadData] = useState([]);
+<<<<<<< HEAD
 
   function preloadImages() {
     preLoadData.forEach((ele) => {
@@ -18,6 +19,17 @@ function App() {
     });
   }
 
+=======
+  const [loaderIdx, setLoaderIdx] = useState(0);
+  function preloadImages() {
+    if (loaderIdx < preLoadData.length) {
+      preLoadData[loaderIdx].map((item) => {
+        preloadImage(item.imgUrl);
+      });
+      setLoaderIdx((prev) => prev + 1);
+    }
+  }
+>>>>>>> b63c70b4a2f68e1e61d9860af75c82fbcb74e567
   return (
     <ThemeProvider theme={color}>
       <Reset />
