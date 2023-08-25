@@ -11,25 +11,6 @@ import {
 } from "../constant/constants";
 import { carContext } from "../store/context";
 import { useNavigate, useParams } from "react-router-dom";
-<<<<<<< HEAD
-import CategoryTabs from "tabs/CategoryTabs";
-import WhiteButton from "buttons/WhiteButton";
-import BlueButton from "buttons/BlueButton";
-import { ReactComponent as ArrowLogo } from "images/arrowOption.svg";
-import OptionMain from "optionMain/index";
-import palette from "styles/palette";
-import { carContext } from "utils/context";
-import ServerErrorPage from "./serverErrorPage";
-import ConfusingTooltip from "toolTips/ConfusingTooltip";
-import WarningModal from "modals/WarningModal";
-import { getWithQueryAPI } from "utils/api";
-
-const BLUR_STATUS = {
-  LEFT_NONE: 1,
-  RIGHT_NONE: -1,
-  BOTH_VISIBLE: 0,
-};
-=======
 import { getWithQueryAPI } from "../utils/api";
 import { PATH } from "../constant/path";
 import OptionMain from "../components/optionPage/optionMain/OptionMain";
@@ -40,7 +21,6 @@ import ConfusingTooltip from "../components/common/toolTips/ConfusingTooltip";
 import OptionConfirmContainer from "../components/optionPage/optionSub/OptionConfirmContainer";
 import OptionBoxContainer from "../components/optionPage/optionSub/OptionBoxContainer";
 import OptionTabContainer from "../components/optionPage/optionMain/OptionTabContainer";
->>>>>>> 23c3d2d890e66d0d922c3ec5ef3bad57550f4328
 
 function navigateTo(car, navigate) {
   if (car.detail.engines.name === undefined) navigate("/detail/engines");

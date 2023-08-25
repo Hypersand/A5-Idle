@@ -4,16 +4,12 @@ import { preloadContext } from "../store/context";
 import { getWithoutQueryAPI } from "../utils/api";
 import { PATH } from "../constant/path";
 import Loading from "../components/common/loading/Loading";
-<<<<<<< HEAD
-import ServerErrorPage from "./serverErrorPage";
-=======
 import TrimMain from "../components/trimPage/trimMain/TrimMain";
 import NormalTrimBoxContainer from "../components/trimPage/trimSub/NormalTrimBoxContainer";
 import FindTrim from "../components/trimPage/findTrim/FindTrim";
 import FindTrimButton from "../components/trimPage/trimSub/FindTrimButton";
 import FindTrimTooltip from "../components/common/toolTips/FindTrimTooltip";
 import TrimConfirmContainer from "../components/trimPage/trimSub/TrimConfirmContainer";
->>>>>>> 23c3d2d890e66d0d922c3ec5ef3bad57550f4328
 
 let cachedTrimData = null;
 

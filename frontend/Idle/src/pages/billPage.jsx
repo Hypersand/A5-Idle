@@ -1,17 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
-<<<<<<< HEAD
-import { carContext } from "utils/context";
-import BillMain from "billMain/BillMain";
-import MapModal from "billMain/MapModal";
-import CarMasterTooltip from "toolTips/CarMasterTooltip";
-import { PATH } from "utils/constants";
-import WarningModal from "modals/WarningModal";
-import ReactToPrint from "react-to-print";
-import ServerErrorPage from "./serverErrorPage";
-=======
 import { css, keyframes, styled } from "styled-components";
 import { carContext } from "../store/context";
->>>>>>> 23c3d2d890e66d0d922c3ec5ef3bad57550f4328
 import { getWithQueryAPI } from "../utils/api";
 import { PATH } from "../constant/path";
 import Header from "../components/layout/Header";

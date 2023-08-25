@@ -6,20 +6,6 @@ import {
   DEFAULT_INTERIROR_COLOR,
   EXTERIOR_COLORS,
   INTERIROR_COLORS,
-<<<<<<< HEAD
-  TRANSLATE,
-} from "utils/constants";
-import CategoryTabs from "tabs/CategoryTabs";
-import Car3D from "content/Car3D";
-import OutsideColorBoxContainer from "colorSelection/OutsideColorBoxContainer";
-import InnerColorBoxContainer from "colorSelection/InnerColorBoxContainer";
-import InnerColorContent from "content/InnerColorContent";
-import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "utils/actionType";
-import { getWithoutQueryAPI } from "utils/api";
-import { DEFAULT_INTERIROR_COLOR, PATH } from "utils/constants";
-import WarningModal from "modals/WarningModal";
-import ServerErrorPage from "./serverErrorPage";
-=======
 } from "../constant/constants";
 import { carContext } from "../store/context";
 import { CHANGE_EXTERIOR_COLOR, CHANGE_INTERIOR_COLOR, SET_CAR_IMG } from "../store/actionType";
@@ -30,7 +16,6 @@ import ColorConfirmContainer from "../components/colorPage/colorSub/ColorConfirm
 import ColorTabContainer from "../components/colorPage/colorMain/ColorTabContainer";
 import ColorMain from "../components/colorPage/colorMain/ColorMain";
 import ColorBoxContainer from "../components/colorPage/colorSub/ColorBoxContainer";
->>>>>>> 23c3d2d890e66d0d922c3ec5ef3bad57550f4328
 
 let cachedExterior = null;
 let cachedInterior = null;

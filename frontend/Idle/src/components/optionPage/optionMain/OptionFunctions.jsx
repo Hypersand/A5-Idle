@@ -24,13 +24,8 @@ function OptionFunctions({ optionData, setSelectedFunction, currentPage, setCurr
   useEffect(() => {
     checkOverFlow(descRef.current, "desc");
     checkOverFlow(fNameRef.current, "fName");
-<<<<<<< HEAD:frontend/Idle/src/components/optionMain/Functions.jsx
-    setSelectedFunction(() => (data ? data[currentPage] : null));
-  }, [data, currentPage]);
-=======
     setSelectedFunction(() => (optionData ? optionData[currentPage] : null));
   }, [optionData, currentPage]);
->>>>>>> 23c3d2d890e66d0d922c3ec5ef3bad57550f4328:frontend/Idle/src/components/optionPage/optionMain/OptionFunctions.jsx
 
   function leftBtnClicked() {
     currentPage === 0
@@ -79,11 +74,7 @@ function OptionFunctions({ optionData, setSelectedFunction, currentPage, setCurr
       {optionData ? (
         <>
           <StDesc ref={descRef} $isOverFlow={isDescOverFlow}>
-<<<<<<< HEAD:frontend/Idle/src/components/optionMain/Functions.jsx
-            {data[currentPage]?.functionDescription === "-"
-=======
             {optionData[currentPage]?.functionDescription === "-"
->>>>>>> 23c3d2d890e66d0d922c3ec5ef3bad57550f4328:frontend/Idle/src/components/optionPage/optionMain/OptionFunctions.jsx
               ? ""
               : optionData[currentPage]?.functionDescription}
           </StDesc>

@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import { Component } from 'react';
-import ServerErrorPage from '../../../pages/serverErrorPage';
-
-=======
 import { Component } from "react";
 import ServerErrorPage from "../../../pages/serverErrorPage";
->>>>>>> 23c3d2d890e66d0d922c3ec5ef3bad57550f4328
+
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
