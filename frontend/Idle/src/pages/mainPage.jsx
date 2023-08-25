@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
-import hyundaiVideo from "images/palisadeVideo.mp4";
-import MainLogoWhite from "logos/MainLogoWhite";
+import hyundaiVideo from "../assets/images/palisadeVideo.mp4";
+import MainLogoWhite from "../components/common/logos/MainLogoWhite";
 import { useNavigate } from "react-router-dom";
-import { setClickedOptionPage } from "utils/constants";
+import { setClickedOptionPage } from "../constant/constants"
 
 function MainPage() {
   const navigate = useNavigate();

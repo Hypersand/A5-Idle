@@ -1,17 +1,16 @@
-import { css, keyframes, styled } from "styled-components";
-import Header from "layout/Header";
-import WhiteButton from "buttons/WhiteButton";
-import BlueButton from "buttons/BlueButton";
 import { useContext, useEffect, useRef, useState } from "react";
-import { carContext } from "utils/context";
-import BillMain from "billMain/BillMain";
-import MapModal from "billMain/MapModal";
-import CarMasterTooltip from "toolTips/CarMasterTooltip";
-import { PATH } from "utils/constants";
-import WarningModal from "modals/WarningModal";
-import ReactToPrint from "react-to-print";
-import ServerErrorPage from "./serverErrorPage";
+import { css, keyframes, styled } from "styled-components";
+import { carContext } from "../store/context";
 import { getWithQueryAPI } from "../utils/api";
+import { PATH } from "../constant/path";
+import Header from "../components/layout/Header";
+import ReactToPrint from "react-to-print";
+import WhiteButton from "../components/common/buttons/WhiteButton";
+import BlueButton from "../components/common/buttons/BlueButton";
+import BillMain from "../components/billPage/billMain/BillMain";
+import WarningModal from "../components/common/modals/WarningModal";
+import MapModal from "../components/billPage/carMaster/MapModal";
+import CarMasterTooltip from "../components/common/toolTips/CarMasterTooltip";
 
 let cachedBillData = null;
 
@@ -31,7 +30,7 @@ function BillPage() {
 
   const updateAnimation = () => {
     if (prevMoney !== targetMoney) {
-      setPrevMoney(prevMoney + (targetMoney - prevMoney) * 0.25);
+      setPrevMoney(prevMoney + (targetMoney - prevMoney) * 0.5);
     }
   };
 
@@ -65,19 +64,16 @@ function BillPage() {
     if (car.color.exterior.exteriorId === undefined) {
       setModalVisible(true);
     } else {
-      getWithQueryAPI(PATH.BILL, {
-        trimId: car.trim.trimId,
-        exteriorId: car.color.exterior.exteriorId,
-        interiorId: car.color.interior.interiorId,
-        selectedOptionIds: additionalOptionIds,
-      })
-        .then((result) => {
-          setBillData(result);
-          cachedBillData = result;
-        })
-        .catch((error) => {
-          if (error) return <ServerErrorPage />;
+      (async () => {
+        const res = await getWithQueryAPI(PATH.BILL, {
+          trimId: car.trim.trimId,
+          exteriorId: car.color.exterior.exteriorId,
+          interiorId: car.color.interior.interiorId,
+          selectedOptionIds: additionalOptionIds,
         });
+        setBillData(res);
+        cachedBillData = res;
+      })();
     }
   }, []);
   function scrollTop() {
@@ -286,6 +282,7 @@ const StButtonContainer = styled.div`
 const StTooltip = styled(CarMasterTooltip)``;
 
 const StTooltipContainer = styled.div`
+  cursor: pointer;
   position: relative;
   right: 23%;
   width: 199px;

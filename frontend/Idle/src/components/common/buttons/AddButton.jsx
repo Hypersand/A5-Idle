@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
-import { ADD, CONFUSE, NONE } from "utils/constants";
-import palette from "styles/palette";
+import { ADD, CONFUSE, NONE } from "../../../constant/constants";
+import palette from "../../../styles/palette";
 
 function AddButton({ state, onClick }) {
   return (
