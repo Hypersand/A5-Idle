@@ -146,7 +146,7 @@ const StDesc = styled.div`
   line-height: 165%;
   letter-spacing: -0.39px;
   white-space: break-spaces;
-  max-height: 140px;
+  max-height: 130px;
   &:hover ~ ${StFullDesc} {
     display: ${({ $isOverFlow }) => ($isOverFlow ? "block" : "none")};
   }
