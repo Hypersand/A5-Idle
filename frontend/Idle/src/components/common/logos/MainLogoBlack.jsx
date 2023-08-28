@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
-import { carContext } from "utils/context";
+import { carContext } from "../../../store/context";
 import { useContext, useState } from "react";
-import { RESET_ALL } from "../../../utils/actionType";
+import { RESET_ALL } from "../../../store/actionType";
 import { ReactComponent as MainLogoImg } from "../../../assets/images/hyundai.svg";
 import WarningModal from "../modals/WarningModal";
 import palette from "../../../styles/palette";
