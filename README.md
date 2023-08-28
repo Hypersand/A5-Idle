@@ -153,8 +153,9 @@
 
 <p align="center">
       <a>    
-            <img src ="[https://github.com/softeerbootcamp-2nd/A5-Idle/assets/97280492/9c1c72c5-3178-42d4-9ce1-c99cb58c062](https://github.com/softeerbootcamp-2nd/A5-Idle/assets/97280492/033ed384-79ba-497d-a972-754b25c8a33f)c" href="https://i-want-to-go-autoever.shop/" width=300px>
+            <img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/97280492/9d957093-a8b0-4b05-be92-355fa4304bd9" href="https://i-want-to-go-autoever.shop/" width=700px>
       </a>
 </p>
+
 
 
