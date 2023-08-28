@@ -152,8 +152,8 @@
 ## 🌏 인프라
 
 <p align="center">
-      <a>    
-            <img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/97280492/9d957093-a8b0-4b05-be92-355fa4304bd9" href="https://i-want-to-go-autoever.shop/" width=700px>
+      <a>
+            <img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/97280492/421b08fa-6ada-48c6-b7e0-006041a81e0f" href="https://i-want-to-go-autoever.shop/" width=700px>
       </a>
 </p>
 
