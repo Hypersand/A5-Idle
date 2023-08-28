@@ -181,7 +181,7 @@ export function carReducer(car, { type, payload }) {
     case RESET_ALL:
       return {
         ...car,
-        trim: { name: "Exclusive", price: 38960000 },
+        trim: { name: "Exclusive", price: 38960000, trimId: 1 },
         detail: {
           engines: {},
           drivingMethods: {},
