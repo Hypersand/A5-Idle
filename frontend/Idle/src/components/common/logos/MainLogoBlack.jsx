@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
+import { carContext } from "utils/context";
 import { useContext, useState } from "react";
+import { RESET_ALL } from "../../../utils/actionType";
 import { ReactComponent as MainLogoImg } from "../../../assets/images/hyundai.svg";
-import { carContext } from "../../../store/context";
-import { emptyCar } from "../../../constant/constants";
-import { CHANGE_ALL } from "../../../store/actionType";
 import WarningModal from "../modals/WarningModal";
-import palette from "../../../styles/palette";
 
 function MainLogoBlack({ modalPosition = null }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -23,7 +21,7 @@ function MainLogoBlack({ modalPosition = null }) {
   }
 
   function resetPage() {
-    dispatch({ type: CHANGE_ALL, payload: emptyCar });
+    dispatch({ type: RESET_ALL, payload: null });
     navigate("/");
   }
 
