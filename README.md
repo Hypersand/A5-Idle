@@ -192,3 +192,8 @@
 [이미지 360도 회전](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Frontend)#%EC%9D%B4%EB%AF%B8%EC%A7%80-360%ED%9A%8C%EC%A0%84)<br/>
 [LazyLoading & Suspense](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Frontend)#lazyloading--suspense)<br/>
 [ErrorBoundary](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Frontend)#errorboundary)
+
+### BackEnd
+[Github Actions](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Backend)#github-actions) <br/>
+[API 성능 개선](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Backend)#api-%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0) <br/>
+[판매량 스케줄러](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Backend)#api-%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0)
