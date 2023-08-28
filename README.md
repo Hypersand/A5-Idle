@@ -158,4 +158,11 @@
 </p>
 
 
+## 🌈 ERD
+
+<p align="center">
+      <a>    
+            <img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/97280492/4df9fd47-2e32-4b12-abc5-7353e8f63296" href="https://i-want-to-go-autoever.shop/" width=1100px height=700px>
+      </a>
+</p>
 
