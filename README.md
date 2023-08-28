@@ -149,6 +149,24 @@
 
 <br />
 
+## Getting Started
+1. 이 프로젝트를 설치합니다
+   ```sh
+   git clone "https://github.com/softeerbootcamp-2nd/A5-Idle.git"
+   ```
+2. 프로젝트 폴더로 이동합니다
+   ```sh
+   cd A5-Idle/frontend/Idle
+   ```
+3. 패키지를 설치합니다
+   ```sh
+   npm install
+   ```
+4. 개발 서버를 실행합니다
+   ```sh
+   npm run dev
+   ```
+
 ## 🌏 인프라
 
 <p align="center">
@@ -165,3 +183,12 @@
             <img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/64758888/12b3c2ad-7a03-4c74-b946-fbc39ff8bd16" href="https://i-want-to-go-autoever.shop/" width=1100px height=700px>
       </a>
 </p>
+
+## WIKI
+### FrontEnd
+[Pre-Loading](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Frontend)#pre-loading) <br/>
+[CreatePortal](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Frontend)#createportal) <br/>
+[상태관리](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Frontend)#%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC---props-drilling)<br/>
+[이미지 360도 회전](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Frontend)#%EC%9D%B4%EB%AF%B8%EC%A7%80-360%ED%9A%8C%EC%A0%84)<br/>
+[LazyLoading & Suspense](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Frontend)#lazyloading--suspense)<br/>
+[ErrorBoundary](https://github.com/softeerbootcamp-2nd/A5-Idle/wiki/%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-(Frontend)#errorboundary)
