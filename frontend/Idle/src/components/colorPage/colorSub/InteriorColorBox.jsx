@@ -53,7 +53,8 @@ const StInnerColorBox = styled.div`
   }
   &:hover {
     background-color: ${palette.Grey_1};
-    filter: brightness(1.1);
+    filter: brightness(110%);
+    box-shadow: 2px 2px 10px #898989;
   }
 
   &:active {

@@ -29,7 +29,7 @@ const StContainer = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-
+  transition: all 0.2s linear;
   &:hover {
     background-color: ${({ $isSelected }) =>
     $isSelected ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};

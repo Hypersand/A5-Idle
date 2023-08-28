@@ -79,9 +79,10 @@ const StContainer = styled.div`
   pointer-events: ${({ $disable }) => ($disable ? "none" : "")};
   justify-content: space-between;
   align-items: center;
+  transition: all 0.2s linear;
   &:hover {
     background-color: ${({ $isSelcted }) =>
-      $isSelcted ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
+    $isSelcted ? `${palette.NavyBlue_5}` : `${palette.NavyBlue_1}`};
     opacity: 0.9;
     cursor: pointer;
     box-shadow: 2px 2px 10px #898989;

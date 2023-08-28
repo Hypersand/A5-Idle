@@ -179,7 +179,7 @@ const StBtn = styled.div`
   letter-spacing: -0.42px;
   text-align: center;
   cursor: pointer;
-
+  transition: all 0.1s linear;
   &:active {
     box-shadow: inset 1px 1px 4px #898989;
   }

@@ -37,7 +37,7 @@ const StButton = styled.button`
   letter-spacing: -0.42px;
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.2)};
   pointer-events: ${({ $isActive }) => ($isActive ? "" : "none")};
-
+  transition: all 0.1s linear;
   &:hover {
     cursor: pointer;
     filter: brightness(140%);

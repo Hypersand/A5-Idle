@@ -17,8 +17,8 @@ function OptionFunctions({ optionData, setSelectedFunction, currentPage, setCurr
         ? setIsDescOverFlow(true)
         : setIsDescOverFlow(false)
       : ref.scrollWidth > ref.clientWidth
-      ? setIsFNameOverFlow(true)
-      : setIsFNameOverFlow(false);
+        ? setIsFNameOverFlow(true)
+        : setIsFNameOverFlow(false);
   }
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function OptionFunctions({ optionData, setSelectedFunction, currentPage, setCurr
   }
 
   function circleClicked(e) {
-    const key = e.target.optionDataset.key;
+    const key = e.target.dataset.key;
     if (key === undefined) return;
     setCurrentPage(() => Number(key));
   }
@@ -48,8 +48,8 @@ function OptionFunctions({ optionData, setSelectedFunction, currentPage, setCurr
     return (
       <StCircleContainer onClick={circleClicked}>
         {optionData?.map((item, index) => {
-          if (index === currentPage) return <StCircle $isSelected={true} key={index} />;
-          else return <StCircle $isSelected={false} key={index} />;
+          if (index === currentPage) return <StCircle $isSelected={true} key={index} data-key={index} />;
+          else return <StCircle $isSelected={false} key={index} data-key={index} />;
         })}
       </StCircleContainer>
     );

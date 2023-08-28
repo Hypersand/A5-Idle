@@ -154,6 +154,11 @@ const StBtn = styled.button`
   letter-spacing: -0.39px;
   text-align: center;
   cursor: pointer;
+  &:hover{
+    filter: brightness(110%);
+    box-shadow: 2px 2px 10px #898989;
+  }
+  transition: all 0.1s linear;
 `;
 
 const StPrice = styled.div`

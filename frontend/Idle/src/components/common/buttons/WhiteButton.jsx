@@ -43,7 +43,7 @@ const StButton = styled.button`
     filter: brightness(120%);
     box-shadow: 1px 1px 5px #898989;
   }
-
+  transition: all 0.1s linear;
   &:active {
     box-shadow: inset 1px 1px 4px #898989;
   }

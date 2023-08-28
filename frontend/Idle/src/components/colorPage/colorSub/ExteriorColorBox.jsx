@@ -43,7 +43,9 @@ const StContainer = styled.div`
   background-image: ${({ $img }) => `url(${$img})`};
   &:hover {
     cursor: pointer;
-    filter: brightness(105%);
+    filter: brightness(110%);
+    box-shadow: 2px 2px 10px #898989;
+    opacity:0.9;
   }
 
   &:active {

@@ -153,7 +153,6 @@ const StContainer = styled.div`
         return `${palette.NavyBlue_5}`;
     }
   }};
-    opacity: 0.9;
     cursor: pointer;
   }
 
