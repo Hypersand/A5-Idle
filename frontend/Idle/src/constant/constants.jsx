@@ -88,7 +88,7 @@ export const DEFAULT_DRIVING_METHOD = {
     price: 0,
   },
   "Le Blanc": {
-    name: "4WD",
+    name: "2WD",
     price: 0,
   },
   Prestige: {
