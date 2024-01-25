@@ -12,6 +12,15 @@
 
 [마이카마스터](https://i-want-to-go-autoever.shop/)를 통해 **내 차 만들기**를 진행해보세요 🚙 <br> <br> <br>
 
+<h3>시연 영상</h3>
+
+
+
+<img src="https://github.com/Hypersand/A5-Idle/assets/109746210/e9fc75f5-727f-49db-93bc-3736edefb529" width="300">
+
+https://drive.google.com/file/d/1ueiwZK3NVUzDxaV6vTLJObR5Tn-GkyNy/view?usp=sharing
+
+
 </div>
 
 
