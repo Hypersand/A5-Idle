@@ -1,7 +1,7 @@
 
 <p align="center">
       <a href="https://i-want-to-go-autoever.shop/" target="_blank">    
-            <img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/97280492/9c1c72c5-3178-42d4-9ce1-c99cb58c062c" href="https://i-want-to-go-autoever.shop/" width=300px>
+            <img src ="https://github.com/Hypersand/A5-Idle/assets/109746210/ad592689-21b6-470e-9578-c0be52b01bc9" href="https://i-want-to-go-autoever.shop/" width=300px>
       </a>
 </p>
 
@@ -180,7 +180,7 @@ https://drive.google.com/file/d/1ueiwZK3NVUzDxaV6vTLJObR5Tn-GkyNy/view?usp=shari
 
 <p align="center">
       <a>
-            <img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/97280492/9109209c-f748-458a-a85a-64ff9820d492" href="https://i-want-to-go-autoever.shop/" width=700px>
+            <img src ="https://github.com/Hypersand/A5-Idle/assets/109746210/54a82c6c-c063-436a-8a87-c2c30fec5a45" href="https://i-want-to-go-autoever.shop/" width=700px>
       </a>
 </p>
 
@@ -189,7 +189,7 @@ https://drive.google.com/file/d/1ueiwZK3NVUzDxaV6vTLJObR5Tn-GkyNy/view?usp=shari
 
 <p align="center">
       <a>    
-            <img src ="https://github.com/softeerbootcamp-2nd/A5-Idle/assets/64758888/12b3c2ad-7a03-4c74-b946-fbc39ff8bd16" href="https://i-want-to-go-autoever.shop/" width=1100px height=700px>
+            <img src ="https://github.com/Hypersand/A5-Idle/assets/109746210/fddc3f53-f4e7-4edc-a1bc-5fcf1961061e" href="https://i-want-to-go-autoever.shop/" width=1100px height=700px>
       </a>
 </p>
 
